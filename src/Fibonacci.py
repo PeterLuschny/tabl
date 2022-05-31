@@ -1,34 +1,31 @@
 from functools import cache
 from tablgenerator import TablGenerator
 
-"""Skew Fibonacci-Pascal triangle  A037027 
+"""Fibonacci-Pascal triangle A354267
 
-A063967 the Fibonacci triangle.
-A228074	A Fibonacci-Pascal triangle
-some other Fibonacci-Pascal triangles: A027926, A036355, A037027, A074829, A105809, A109906, A111006, A114197, A162741.
-
-[0]   1;
-[1]   1,   1;
-[2]   2,   3,    1;
-[3]   3,   7,    5,    1;
-[4]   5,  15,   16,    7,    1;
-[5]   8,  30,   43,   29,    9,    1;
-[6]  13,  58,  104,   95,   46,   11,   1;
-[7]  21, 109,  235,  271,  179,   67,  13,   1;
-[8]  34, 201,  506,  705,  591,  303,  92,  15,  1;
-[9]  55, 365, 1051, 1717, 1746, 1140, 475, 121, 17, 1;
+[0] [ 1]
+[1] [ 0,  1]
+[2] [ 1,  1,  1]
+[3] [ 1,  2,  2,  1]
+[4] [ 2,  3,  4,  3,  1]
+[5] [ 3,  5,  7,  7,  4,  1]
+[6] [ 5,  8, 12, 14, 11,  5,  1]
+[7] [ 8, 13, 20, 26, 25, 16,  6,  1]
+[8] [13, 21, 33, 46, 51, 41, 22,  7, 1]
+[9] [21, 34, 54, 79, 97, 92, 63, 29, 8, 1]
 """
 
 
 @cache
 def _fi(n: int) -> list[int]:
-    if n == 0:
-        return [1]
-    ro = lambda k: _fi(n - 2)[k] if k >= 0 and k <= n - 2 else 0
-    rw = lambda k: _fi(n - 1)[k] if k >= 0 else 0
+    if n == 0: return [1]
+    if n == 1: return [0, 1]
+
     row = _fi(n - 1) + [1]
-    for k in range(0, n):
-        row[k] += ro(k) + ro(k - 1) + rw(k - 1)
+    s = row[1]
+    for k in range(n-1, 0, -1):
+        row[k] += row[k - 1]
+    row[0] = s
     return row
 
 
