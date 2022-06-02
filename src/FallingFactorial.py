@@ -16,6 +16,7 @@ from tablgenerator import TablGenerator
 def _ff(n: int) -> list[int]:
     if n == 0: 
         return [1]
+
     r = _ff(n - 1)
     row = [n * r[k] for k in range(-1, n)]
     row[0] = 1

@@ -20,6 +20,7 @@ from tablgenerator import TablGenerator
 def _ss(n: int) -> list[int]:
     if n == 0:
         return [1]
+
     row = [0] + _ss(n - 1)
     for k in range(1, n):
         row[k] = row[k] + k * row[k + 1]

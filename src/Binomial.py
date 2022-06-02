@@ -20,6 +20,7 @@ from tablgenerator import TablGenerator
 def _bi(n: int) -> list[int]:
     if n == 0:
         return [1]
+
     row = [1] + _bi(n - 1)
     for k in range(1, n):
         row[k] += row[k + 1]

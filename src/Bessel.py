@@ -21,6 +21,7 @@ def _bes(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 1]
+
     row = _bes(n - 1) + [1]
     for k in range(n - 1, 0, -1):
         row[k] = row[k - 1] + (2 * (n - 1) - k) * row[k]

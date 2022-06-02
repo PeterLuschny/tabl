@@ -19,6 +19,7 @@ from tablgenerator import TablGenerator
 def _lg(n: int) -> list[int]:
     if n == 0:
         return [1]
+
     row = [0] + _lg(n - 1)
     for k in range(0, n):
         row[k] += (n + k) * row[k + 1]

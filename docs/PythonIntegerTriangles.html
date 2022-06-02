@@ -214,10 +214,11 @@ binomial(6) = [1, 6, 15, 20, 15, 6, 1].
 &nbsp;&nbsp;&nbsp;&nbsp;[1, 5, 10, 10, 5, 1]]
 </p>
 
-<p>🔶 Example: The returned format is term, row or triangle:</p>
-<lu><li style="color:darkorange">binomial(0,0) = 1</li>
-<li style="color:darkorange">binomial(0) = [1]</li>
-<li style="color:darkorange">binomial(-1)=[[1]]</li>
+<p>🔶 Example: The returned format is either term, row or triangle. <br>
+Note that all tabls are (0,0)-based, i.e. the index of the first row in a tabl is 0 and the index of the first term in a row is 0.</p>
+<lu><li style="color:darkorange">Term:   binomial(0,0) = 1</li>
+<li style="color:darkorange">First row:&nbsp;  binomial(0) = [1]</li>
+<li style="color:darkorange">Tabl with one row:&nbsp; binomial(-1) = [[1]]</li>
 </lu>
 <h2>The Implementation</h2>
 <pre>

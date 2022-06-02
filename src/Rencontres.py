@@ -22,6 +22,7 @@ def _re(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 1]
+
     row = [(n - 1) * (_re(n - 1)[0] + _re(n - 2)[0])] + _re(n - 1)
     for k in range(1, n - 1):
         row[k] = (n * row[k]) // k

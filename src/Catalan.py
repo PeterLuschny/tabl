@@ -20,6 +20,7 @@ from tablgenerator import TablGenerator
 def _ca(n: int) -> list[int]:
     if n == 0:
         return [1]
+
     row = _ca(n - 1) + [0]
     for k in range(1, n + 1):
         row[k] += row[k - 1]

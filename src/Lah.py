@@ -17,12 +17,10 @@ from tablgenerator import TablGenerator
 
 
 @cache
-def _la(n):
-    """_la(n: int)
-    ->  list[int]
-    """
+def _la(n: int) -> list[int]:
     if n == 0:
         return [1]
+
     row = _la(n - 1) + [1]
     row[0] = 0
     for k in range(n - 1, 0, -1):

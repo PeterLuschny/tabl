@@ -14,7 +14,7 @@ def TablGenerator(g: Callable[[int], list[int]]):
 
 def isTablGenerator(
     T: Callable[[int, int | None], int | list[int] | list[list[int]]]
-) -> bool:
+    ) -> bool:
     return (
         isinstance(T, Callable)
         and isinstance(T(0), list)

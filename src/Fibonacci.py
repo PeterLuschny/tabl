@@ -18,12 +18,14 @@ from tablgenerator import TablGenerator
 
 @cache
 def _fi(n: int) -> list[int]:
-    if n == 0: return [1]
-    if n == 1: return [0, 1]
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 1]
 
     row = _fi(n - 1) + [1]
     s = row[1]
-    for k in range(n-1, 0, -1):
+    for k in range(n - 1, 0, -1):
         row[k] += row[k - 1]
     row[0] = s
     return row

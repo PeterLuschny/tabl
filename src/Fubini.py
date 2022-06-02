@@ -19,6 +19,7 @@ from tablgenerator import TablGenerator
 def _fu(n: int) -> list[int]:
     if n == 0:
         return [1]
+
     r = lambda k: _fu(n - 1)[k] if k <= n - 1 else 0
     row = [0] + _fu(n - 1)
     for k in range(1, n + 1):

@@ -4,22 +4,35 @@ import timeit
 
 
 def PrintTabl(T):
+    print(T)
+
+
+def PrintRows(T):
     for n, row in enumerate(T):
         print([n], row)
 
 
+def PrintTerms(T):
+    for n, row in enumerate(T):
+        for k, term in enumerate(row):
+            print([n, k], term)
+
+
 def TablTest(seq: callable):
-    PrintTabl(seq(-10))
+    PrintTerms(seq(-4))
+    PrintRows(seq(-10))
+    PrintTabl(seq(-5))
+
+    print(seq(5))
+    print(seq(5, 3))
+
     print(isTablGenerator(seq))
 
-    # Increase the default recursion
+    # Increase the default recursion limit
     setrecursionlimit(2000)
-
-    print(seq(-6))
-    print(seq(6))
-    print(seq(6, 4))
     row = seq(1000)
     print(row[500] == seq(1000, 500))
+    print(row[500])
 
 
 def TablBenchmark(seq):

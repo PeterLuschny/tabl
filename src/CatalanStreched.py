@@ -20,6 +20,7 @@ from tablgenerator import TablGenerator
 def _sca(n: int) -> list[int]:
     if n == 0:
         return [1]
+
     r = lambda k: _sca(n - 1)[k] if k >= 0 and k < n else 0
     row = _sca(n - 1) + [1]
     for k in range(0, n):

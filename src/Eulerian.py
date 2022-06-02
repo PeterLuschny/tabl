@@ -19,6 +19,7 @@ from tablgenerator import TablGenerator
 def _eu(n: int) -> list[int]:
     if n == 0:
         return [1]
+
     row = _eu(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = (n - k) * row[k - 1] + (k + 1) * row[k]

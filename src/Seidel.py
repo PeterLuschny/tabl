@@ -28,6 +28,7 @@ Seidel boustrophedon:
 def _sei(n: int) -> list[int]:
     if n == 0:
         return [1]
+
     rowA = _sei(n - 1)
     row = [0] + _sei(n - 1)
     row[1] = row[n]

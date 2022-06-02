@@ -22,6 +22,7 @@ def _del(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [1, 1]
+
     rowA = _del(n - 2)
     row = _del(n - 1) + [1]
     for k in range(n - 1, 0, -1):
