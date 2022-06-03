@@ -19,7 +19,7 @@ def PrintTerms(T):
 
 
 def TablTest(seq: callable):
-    PrintTerms(seq(-4))
+    PrintTerms(seq(-3))
     PrintRows(seq(-10))
     PrintTabl(seq(-5))
 

@@ -1,7 +1,7 @@
 from functools import cache
 from tablgenerator import TablGenerator
 
-"""The Bell (Peirce/Aitken) triangle, A011971.
+"""The Bell (Peirce/Aitken) triangle, A011971 (see also A182930).
 
 [0]     1;
 [1]     1,     2;
