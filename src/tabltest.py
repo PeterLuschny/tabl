@@ -1,27 +1,13 @@
+from tablformat import PrintTabl, PrintRows, PrintTerms
 from tablgenerator import isTablGenerator
 from sys import setrecursionlimit
 import timeit
 
 
-def PrintTabl(T):
-    print(T)
-
-
-def PrintRows(T):
-    for n, row in enumerate(T):
-        print([n], row)
-
-
-def PrintTerms(T):
-    for n, row in enumerate(T):
-        for k, term in enumerate(row):
-            print([n, k], term)
-
-
 def TablTest(seq: callable):
-    PrintTerms(seq(-3))
-    PrintRows(seq(-10))
-    PrintTabl(seq(-5))
+    PrintTerms(seq, 3)
+    PrintRows(seq, 10)
+    PrintTabl(seq, 5)
 
     print(seq(5))
     print(seq(5, 3))
