@@ -4,7 +4,8 @@ from sys import setrecursionlimit
 import timeit
 
 
-def TablTest(seq: callable):
+def TablTest(seq: callable, short=False):
+
     PrintTerms(seq, 3)
     PrintRows(seq, 10)
     PrintTabl(seq, 5)
@@ -16,9 +17,11 @@ def TablTest(seq: callable):
 
     # Increase the default recursion limit
     setrecursionlimit(2000)
-    row = seq(1000)
-    print(row[500] == seq(1000, 500))
-    print(row[500])
+
+    big = 100 if short else 1000
+    row = seq(big)
+    print(row[big // 2] == seq(big, big // 2))
+    print(row[big // 2])
 
 
 def TablBenchmark(seq):

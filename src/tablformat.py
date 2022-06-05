@@ -14,3 +14,13 @@ def PrintTerms(T, k=None):
     for n, row in enumerate(t):
         for k, term in enumerate(row):
             print([n, k], term)
+
+
+def PrintRowArray(F, rows, cols):
+    for j in range(rows):
+        print([F(j + k, k) for k in range(cols)])
+
+
+def PrintColArray(F, rows, cols):
+    for j in range(cols):
+        print([F(j + k, j) for k in range(rows)])
