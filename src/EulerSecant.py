@@ -21,16 +21,17 @@ def _esec(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row = [binomial(n, k) * _esec(n - k)[0] if k > 0 else 0 for k in range(n + 1)]
+    row = [binomial(n, k) * _esec(n - k)[0] if k > 0 else 0 
+           for k in range(n + 1)]
     if n % 2 == 0:
-        row[0] = -sum(row)
+        row[0] = -sum(row[2::2])
     return row
 
 
 euler_sec = TablGenerator(_esec)
 
 
-def euler(n):
+def eulerS(n):
     return 0 if n % 2 == 1 else _esec(n)[0]
 
 
@@ -40,6 +41,6 @@ def euler(n):
 if __name__ == "__main__":
     from tabltest import TablTest
 
-    TablTest(euler_sec, True)
+    TablTest(euler_sec, short=True)
 
-    print([euler(n) for n in range(100)])
+    print([eulerS(n) for n in range(100)])

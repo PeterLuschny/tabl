@@ -20,9 +20,10 @@ from tablgenerator import TablGenerator
 @cache
 def _etan(n: int) -> list[int]:
 
-    row = [binomial(n, k) * _etan(n - k)[0] if k > 0 else 0 for k in range(n + 1)]
+    row = [binomial(n, k) * _etan(n - k)[0] if k > 0 else 0 
+           for k in range(n + 1)]
     if n % 2 == 1:
-        row[0] = -sum(row) + 1
+        row[0] = -sum(row[2::2]) + 1
     return row
 
 
@@ -39,6 +40,6 @@ def eulerT(n):
 if __name__ == "__main__":
     from tabltest import TablTest
 
-    TablTest(euler_tan, True)
+    TablTest(euler_tan, short=True)
 
     print([eulerT(n) for n in range(100)])

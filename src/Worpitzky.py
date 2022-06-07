@@ -16,17 +16,17 @@ from tablgenerator import TablGenerator
 
 
 @cache
-def _wo(n: int) -> list[int]:
+def _wor(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row = _wo(n - 1) + [0]
+    row = _wor(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = k * row[k - 1] + (k + 1) * row[k]
     return row
 
 
-worpitzky = TablGenerator(_wo)
+worpitzky = TablGenerator(_wor)
 
 
 ####################################################################

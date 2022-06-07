@@ -1,7 +1,7 @@
 from functools import cache
 from tablgenerator import TablGenerator
 
-"""The central factorial numbers, A269945 (see also A008957, A036969).
+"""The central set factorial numbers, A269945 (see also A008957, A036969).
 
 [0] [1]
 [1] [0, 1]
@@ -16,19 +16,19 @@ from tablgenerator import TablGenerator
 
 
 @cache
-def _cf(n: int) -> list[int]:
+def _csf(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
 
-    row = _cf(n - 1) + [1]
+    row = _csf(n - 1) + [1]
     for k in range(n - 1, 1, -1):
         row[k] = k ** 2 * row[k] + row[k - 1]
     return row
 
 
-cfact = TablGenerator(_cf)
+csfact = TablGenerator(_csf)
 
 
 ####################################################################
@@ -36,4 +36,4 @@ cfact = TablGenerator(_cf)
 if __name__ == "__main__":
     from tabltest import TablTest
 
-    TablTest(cfact)
+    TablTest(csfact)

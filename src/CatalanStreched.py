@@ -17,18 +17,18 @@ from tablgenerator import TablGenerator
 
 
 @cache
-def _sca(n: int) -> list[int]:
+def _cas(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    r = lambda k: _sca(n - 1)[k] if k >= 0 and k < n else 0
-    row = _sca(n - 1) + [1]
+    r = lambda k: _cas(n - 1)[k] if k >= 0 and k < n else 0
+    row = _cas(n - 1) + [1]
     for k in range(0, n):
         row[k] = r(k - 1) + r(k + 1)
     return row
 
 
-catalan_streched = TablGenerator(_sca)
+catalan_streched = TablGenerator(_cas)
 
 
 ####################################################################

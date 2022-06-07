@@ -17,17 +17,17 @@ from tablgenerator import TablGenerator
 
 
 @cache
-def _ss(n: int) -> list[int]:
+def _sts(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row = [0] + _ss(n - 1)
+    row = [0] + _sts(n - 1)
     for k in range(1, n):
         row[k] = row[k] + k * row[k + 1]
     return row
 
 
-stirling_set = TablGenerator(_ss)
+stirling_set = TablGenerator(_sts)
 
 
 ####################################################################

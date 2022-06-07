@@ -24,3 +24,14 @@ def PrintRowArray(F, rows, cols):
 def PrintColArray(F, rows, cols):
     for j in range(cols):
         print([F(j + k, j) for k in range(rows)])
+
+
+def PrintAll(T, rows, cols=None):
+    if cols == None: cols = rows
+    print()
+    PrintRows(T(-rows))
+    print()
+    PrintRowArray(T, rows, cols)
+    print()
+    PrintColArray(T, rows, cols)
+    print()

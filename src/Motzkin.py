@@ -17,18 +17,18 @@ from tablgenerator import TablGenerator
 
 
 @cache
-def _mo(n: int) -> list[int]:
+def _mot(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    r = lambda k: _mo(n - 1)[k] if k >= 0 and k < n else 0
-    row = _mo(n - 1) + [1]
+    r = lambda k: _mot(n - 1)[k] if k >= 0 and k < n else 0
+    row = _mot(n - 1) + [1]
     for k in range(0, n):
         row[k] += r(k - 1) + r(k + 1)
     return row
 
 
-motzkin = TablGenerator(_mo)
+motzkin = TablGenerator(_mot)
 
 
 ####################################################################

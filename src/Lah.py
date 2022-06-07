@@ -17,18 +17,18 @@ from tablgenerator import TablGenerator
 
 
 @cache
-def _la(n: int) -> list[int]:
+def _lah(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row = _la(n - 1) + [1]
+    row = _lah(n - 1) + [1]
     row[0] = 0
     for k in range(n - 1, 0, -1):
         row[k] = row[k] * (n + k - 1) + row[k - 1]
     return row
 
 
-lah = TablGenerator(_la)
+lah = TablGenerator(_lah)
 
 
 ####################################################################

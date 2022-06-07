@@ -17,17 +17,17 @@ from tablgenerator import TablGenerator
 
 
 @cache
-def _ca(n: int) -> list[int]:
+def _cat(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row = _ca(n - 1) + [0]
+    row = _cat(n - 1) + [0]
     for k in range(1, n + 1):
         row[k] += row[k - 1]
     return row
 
 
-catalan = TablGenerator(_ca)
+catalan = TablGenerator(_cat)
 
 
 ####################################################################

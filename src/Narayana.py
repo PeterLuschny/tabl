@@ -17,12 +17,12 @@ from tablgenerator import TablGenerator
 
 
 @cache
-def _na(n: int) -> list[int]:
+def _nar(n: int) -> list[int]:
     if n < 3:
         return ([1], [0, 1], [0, 1, 1])[n]
 
-    a = _na(n - 2) + [0, 0]
-    row = _na(n - 1) + [1]
+    a = _nar(n - 2) + [0, 0]
+    row = _nar(n - 1) + [1]
     for k in range(n - 1, 1, -1):
         row[k] = (
             (row[k] + row[k - 1]) * (2 * n - 1)
@@ -31,12 +31,12 @@ def _na(n: int) -> list[int]:
     return row
 
 
-narayana = TablGenerator(_na)
+narayana = TablGenerator(_nar)
 
 
 ####################################################################
 
-if __name__ == "__main__":
+if __narme__ == "__main__":
     from tabltest import TablTest
 
     TablTest(narayana)

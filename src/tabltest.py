@@ -1,31 +1,25 @@
-from tablformat import PrintTabl, PrintRows, PrintTerms
+from tablformat import PrintTabl, PrintRows, PrintTerms, PrintAll
 from tablgenerator import isTablGenerator
 from sys import setrecursionlimit
-import timeit
 
 
-def TablTest(seq: callable, short=False):
+def TablTest(seq: callable, dim=7, short=False):
 
-    PrintTerms(seq, 3)
-    PrintRows(seq, 10)
-    PrintTabl(seq, 5)
+    PrintAll(seq, dim)
 
-    print(seq(5))
-    print(seq(5, 3))
-
-    print(isTablGenerator(seq))
+    seqname = seq.__name__
+    print("py>", seqname, "(5) =", seq(5))
+    print("py>", seqname, "(5, 3) =", seq(5, 3))
+    print("py> isTablGenerator(", seqname, ") =", isTablGenerator(seq))
 
     # Increase the default recursion limit
     setrecursionlimit(2000)
 
     big = 100 if short else 1000
-    row = seq(big)
-    print(row[big // 2] == seq(big, big // 2))
-    print(row[big // 2])
-
-
-def TablBenchmark(seq):
-    print("BENCHMARK")
-    setup = "from __main__ import seq"
-    print(timeit.timeit("seq(-10)", setup=setup))
-    print("FIN")
+    Trow = seq(big)
+    b = str(big); b2 = str(big // 2)
+    print("py> Trow[", b2, "] ==", seqname, "(", b, ",", b2, ") =", 
+           Trow[big // 2] == seq(big, big // 2))
+    print("py>", seqname, "(", b, ",", b2, ") =") 
+    print(Trow[big // 2])
+    print()
