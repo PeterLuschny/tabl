@@ -5,7 +5,6 @@
 ## tabl
 Python implementations of integer sequences dubbed tabl in the OEIS.
 
-
 ## src
 ```python
 def isTablGenerator(
@@ -21,6 +20,10 @@ def isTablGenerator(
         and isinstance(T(-1)[0][0], int)
     )
 ```
+
+## docs
+For the [user](https://github.com/PeterLuschny/tabl/blob/main/docs/PythonIntegerTriangles.html), 
+for the [implementer](https://github.com/PeterLuschny/tabl/blob/main/docs/ImplementationNotes.md).
 
 ## install
 python -m pip install "tabl @ git+https://github.com/PeterLuschny/tabl.git"

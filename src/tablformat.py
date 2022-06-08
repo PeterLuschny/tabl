@@ -26,7 +26,7 @@ def PrintColArray(F, rows, cols):
         print([F(j + k, j) for k in range(rows)])
 
 
-def PrintAll(T, rows, cols=None):
+def PrintViews(T, rows, cols=None):
     if cols == None: cols = rows
     print()
     PrintRows(T(-rows))

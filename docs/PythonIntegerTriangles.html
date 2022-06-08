@@ -214,13 +214,32 @@ binomial(6) = [1, 6, 15, 20, 15, 6, 1].
 &nbsp;&nbsp;&nbsp;&nbsp;[1, 5, 10, 10, 5, 1]]
 </p>
 
-<p>🔶 Example: The returned format is either term, row or triangle. <br>
-Note that all tabls are (0,0)-based, i.e. the index of the first row in a tabl is 0 and the index of the first term in a row is 0.</p>
+<p>🔶 Note: The returned type is either term, row or triangle. 
+All tabls are (0,0)-based, i.e. the index of the first row in a tabl is 0 and the index of the first term in a row is 0.</p>
 <lu><li style="color:darkorange">Term:   binomial(0,0) = 1</li>
 <li style="color:darkorange">First row:&nbsp;  binomial(0) = [1]</li>
 <li style="color:darkorange">Tabl with one row:&nbsp; binomial(-1) = [[1]]</li>
 </lu>
-<h2>The Implementation</h2>
+
+<h2 style="margin-top: 2em; font-weight:bolder;">
+Example use</h2>
+<pre>
+from tabl import binomial
+
+print("binomial(1000, 500) =") 
+print( binomial(1000, 500))
+</pre>
+
+<p>The module also provides a number of utility functions which allow to view the triangle in different representations (as a triangular or a rectangular array).</p>
+<pre>
+from tabl import binomial, PrintViews
+
+# The second parameter controls the dimension of the table.
+PrintViews(binomial, 8)  
+</pre>
+
+
+<h2>The implementation</h2>
 <pre>
 from functools import cache
  
@@ -239,7 +258,7 @@ def binomial(n: int, k: int | None = None)
     return _b(n)[k]
 </pre>
 
-<h2>The type 'TablGenerator'.</h2>
+<h2>The type 'TablGenerator'</h2>
 <p>
 A function has type 'TablGenerator' if its signature is 
 </p>

@@ -1,11 +1,11 @@
-from tablformat import PrintAll
+from tablformat import PrintViews
 from tablgenerator import isTablGenerator
 from sys import setrecursionlimit
 
 
 def TablTest(seq: callable, dim=7, short=False):
 
-    PrintAll(seq, dim)
+    PrintViews(seq, dim)
 
     seqname = seq.__name__
     print("py>", seqname, "(5) =", seq(5))
