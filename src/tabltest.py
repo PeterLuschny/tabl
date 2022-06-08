@@ -1,4 +1,4 @@
-from tablformat import PrintTabl, PrintRows, PrintTerms, PrintAll
+from tablformat import PrintAll
 from tablgenerator import isTablGenerator
 from sys import setrecursionlimit
 

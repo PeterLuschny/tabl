@@ -36,7 +36,7 @@ narayana = TablGenerator(_nar)
 
 ####################################################################
 
-if __narme__ == "__main__":
+if __name__ == "__main__":
     from tabltest import TablTest
 
     TablTest(narayana)

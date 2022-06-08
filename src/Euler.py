@@ -1,5 +1,4 @@
 from functools import cache
-from Binomial import binomial
 from tablgenerator import TablGenerator
 
 """The Euler triangle, A247453, A109449.
@@ -25,18 +24,15 @@ def _eul(n: int) -> list[int]:
     row = _eul(n - 1) + [1]
     for k in range(n, 0, -1):
         row[k] = (row[k - 1] * n) // (k)
-    row[0] = -sum((-1) ** (j // 2) * row[j] 
-                  for j in range(n, 0, -2))
+    row[0] = -sum((-1) ** (j // 2) * row[j] for j in range(n, 0, -2))
 
     return row
 
 
-euler_tabl = TablGenerator(_eul)
-
-# print(euler_tabl(8))
+euler = TablGenerator(_eul)
 
 
-def euler(n):
+def euler_num(n):
     return _eul(n)[0]
 
 
@@ -46,6 +42,6 @@ def euler(n):
 if __name__ == "__main__":
     from tabltest import TablTest
 
-    TablTest(euler_tabl)
+    TablTest(euler)
 
-    # print([euler(n) for n in range(20)])
+    print([euler_num(n) for n in range(100)])
