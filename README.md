@@ -22,7 +22,7 @@ def isTablGenerator(
 ```
 
 ## docs
-For the [user](https://github.com/PeterLuschny/tabl/blob/main/docs/PythonIntegerTriangles.html), 
+For the [user](https://luschny.de/math/seq/oeis/PythonIntegerTriangles.html), 
 for the [implementer](https://github.com/PeterLuschny/tabl/blob/main/docs/ImplementationNotes.md).
 
 ## install
