@@ -26,12 +26,15 @@ def PrintColArray(F, rows, cols):
         print([F(j + k, j) for k in range(rows)])
 
 
-def PrintViews(T, rows, cols=None):
+def PrintViews(T, rows, cols=None, verbose=False):
     if cols == None: cols = rows
     print()
+    if verbose: print("Triangle view")
     PrintRows(T(-rows))
     print()
+    if verbose: print("Diagonals -> rows")
     PrintRowArray(T, rows, cols)
     print()
+    if verbose: print("Diagonals -> columns")
     PrintColArray(T, rows, cols)
     print()

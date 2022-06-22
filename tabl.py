@@ -20,13 +20,16 @@ def PrintRowArray(F, rows, cols):
 def PrintColArray(F, rows, cols):
     for j in range(cols):
         print([F(j + k, j) for k in range(rows)])
-def PrintViews(T, rows, cols=None):
+def PrintViews(T, rows, cols=None, verbose=False):
     if cols == None: cols = rows
     print()
+    if verbose: print("Triangle view")
     PrintRows(T(-rows))
     print()
+    if verbose: print("Diagonals -> rows")
     PrintRowArray(T, rows, cols)
     print()
+    if verbose: print("Diagonals -> columns")
     PrintColArray(T, rows, cols)
     print()
 from typing import Callable
@@ -259,6 +262,17 @@ def _lah(n: int) -> list[int]:
         row[k] = row[k] * (n + k - 1) + row[k - 1]
     return row
 lah = TablGenerator(_lah)
+@cache
+def t(n, k, m):
+    if k < 0 or n < 0:
+        return 0
+    if k == 0:
+        return n ** k
+    return m * t(n, k - 1, m) + t(n - 1, k, m + 1)
+def _lecom(n: int) -> list[int]:
+    return [t(k - 1, n - k, n - k) if n != k else 1
+        for k in range(n + 1) ]
+lehmer = TablGenerator(_lecom)
 @cache
 def _mot(n: int) -> list[int]:
     if n == 0:

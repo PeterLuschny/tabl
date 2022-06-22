@@ -5,7 +5,7 @@ from sys import setrecursionlimit
 
 def TablTest(seq: callable, dim=7, short=False):
 
-    PrintViews(seq, dim)
+    PrintViews(seq, dim, verbose=True)
 
     seqname = seq.__name__
     print("py>", seqname, "(5) =", seq(5))

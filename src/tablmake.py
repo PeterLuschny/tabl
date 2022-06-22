@@ -24,6 +24,7 @@ tabl_files = [
     "Genocchi.py",
     "Laguerre.py",
     "Lah.py",
+    "LehmerComtet.py",
     "Motzkin.py",
     "Narayana.py",
     "OrderedCycle.py",
