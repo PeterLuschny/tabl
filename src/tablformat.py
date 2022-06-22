@@ -26,7 +26,7 @@ def PrintColArray(F, rows, cols):
         print([F(j + k, j) for k in range(rows)])
 
 
-def PrintViews(T, rows, cols=None, verbose=False):
+def PrintViews(T, rows=7, cols=None, verbose=True):
     if cols == None: cols = rows
     print()
     if verbose: print("Triangle view")

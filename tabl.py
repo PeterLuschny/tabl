@@ -20,7 +20,7 @@ def PrintRowArray(F, rows, cols):
 def PrintColArray(F, rows, cols):
     for j in range(cols):
         print([F(j + k, j) for k in range(rows)])
-def PrintViews(T, rows, cols=None, verbose=False):
+def PrintViews(T, rows=7, cols=None, verbose=True):
     if cols == None: cols = rows
     print()
     if verbose: print("Triangle view")
@@ -111,7 +111,7 @@ def _ccf(n: int) -> list[int]:
     for k in range(n, 0, -1):
         row[k] = (n + k - 1) * (row[k] + row[k - 1])
     return row
-ccfact = TablGenerator(_ccf)
+cc_factorial = TablGenerator(_ccf)
 @cache
 def _csf(n: int) -> list[int]:
     if n == 0:
@@ -122,7 +122,7 @@ def _csf(n: int) -> list[int]:
     for k in range(n - 1, 1, -1):
         row[k] = k ** 2 * row[k] + row[k - 1]
     return row
-csfact = TablGenerator(_csf)
+cs_factorial = TablGenerator(_csf)
 @cache
 def _del(n: int) -> list[int]:
     if n == 0:
@@ -396,7 +396,7 @@ def _ttr(n: int) -> list[int]:
         u = (n - k) * (k + 2 * n) * (k + 2 * n + 1)
         row[k] = (row[k] * z) // u
     return row
-trenary_tree = TablGenerator(_ttr)
+ternary_tree = TablGenerator(_ttr)
 @cache
 def _war(n: int) -> list[int]:
     if n == 0:

@@ -28,11 +28,11 @@ def _ccf(n: int) -> list[int]:
     return row
 
 
-ccfact = TablGenerator(_ccf)
+cc_factorial = TablGenerator(_ccf)
 
 ####################################################################
 
 if __name__ == "__main__":
     from tabltest import TablTest
 
-    TablTest(ccfact)
+    TablTest(cc_factorial)

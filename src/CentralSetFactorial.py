@@ -28,7 +28,7 @@ def _csf(n: int) -> list[int]:
     return row
 
 
-csfact = TablGenerator(_csf)
+cs_factorial = TablGenerator(_csf)
 
 
 ####################################################################
@@ -36,4 +36,4 @@ csfact = TablGenerator(_csf)
 if __name__ == "__main__":
     from tabltest import TablTest
 
-    TablTest(csfact)
+    TablTest(cs_factorial)

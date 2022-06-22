@@ -28,7 +28,7 @@ def _ttr(n: int) -> list[int]:
     return row
 
 
-trenary_tree = TablGenerator(_ttr)
+ternary_tree = TablGenerator(_ttr)
 
 
 ####################################################################
@@ -36,4 +36,4 @@ trenary_tree = TablGenerator(_ttr)
 if __name__ == "__main__":
     from tabltest import TablTest
 
-    TablTest(trenary_tree)
+    TablTest(ternary_tree)
