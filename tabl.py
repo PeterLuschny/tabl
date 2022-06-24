@@ -1,39 +1,8 @@
 from functools import cache
 from itertools import accumulate
-from cachetools import cached, LRUCache
 from sys import setrecursionlimit
-setrecursionlimit(2000) 
-def PrintTabl(T, k=None):
-    t = T if k == None else T(-k)
-    print(t)
-def PrintRows(T, k=None):
-    t = T if k == None else T(-k)
-    for n, row in enumerate(t):
-        print([n], row)
-def PrintTerms(T, k=None):
-    t = T if k == None else T(-k)
-    for n, row in enumerate(t):
-        for k, term in enumerate(row):
-            print([n, k], term)
-def PrintRowArray(F, rows, cols):
-    for j in range(rows):
-        print([F(j + k, k) for k in range(cols)])
-def PrintColArray(F, rows, cols):
-    for j in range(cols):
-        print([F(j + k, j) for k in range(rows)])
-def PrintViews(T, rows=7, cols=None, verbose=True):
-    if cols == None: cols = rows
-    print()
-    if verbose: print("Triangle view")
-    PrintRows(T(-rows))
-    print()
-    if verbose: print("Diagonals -> rows")
-    PrintRowArray(T, rows, cols)
-    print()
-    if verbose: print("Diagonals -> columns")
-    PrintColArray(T, rows, cols)
-    print()
 from typing import Callable
+setrecursionlimit(2000) 
 def TablGenerator(g: Callable[[int], list[int]]):
     def T(n, k=None):
         if n < 0:
@@ -54,6 +23,61 @@ def isTablGenerator(
         and isinstance(T(-1)[0], list)
         and isinstance(T(-1)[0][0], int)
     )
+def poly(T, n, x):
+    row = T(n)
+    return sum(c * x ** k for (k, c) in enumerate(row))
+def row_poly(T, n, len):
+    return [poly(T, n, k) for k in range(len)]
+def col_poly(T, n, len):
+    return [poly(T, k, n) for k in range(len)]
+def PrintTabl(T, k=None):
+    t = T if k == None else T(-k)
+    print(t)
+def PrintRows(T, k=None):
+    t = T if k == None else T(-k)
+    for n, row in enumerate(t):
+        print([n], row)
+def PrintTerms(T, k=None):
+    t = T if k == None else T(-k)
+    for n, row in enumerate(t):
+        for k, term in enumerate(row):
+            print([n, k], term)
+def PrintRowArray(F, rows, cols):
+    for j in range(rows):
+        print([F(j + k, k) for k in range(cols)])
+def PrintColArray(F, rows, cols):
+    for j in range(cols):
+        print([F(j + k, j) for k in range(rows)])
+def PrintRowPolyArray(T, rows, cols):
+    for n in range(rows):
+        print(row_poly(T, n, cols))
+def PrintColPolyArray(T, rows, cols):
+    for n in range(rows):
+        print(col_poly(T, n, cols))
+def PrintViews(T, rows=7, cols=None, verbose=True):
+    if cols == None:
+        cols = rows
+    print()
+    if verbose:
+        print("Triangle view")
+    PrintRows(T(-rows))
+    print()
+    if verbose:
+        print("Diagonals as rows")
+    PrintRowArray(T, rows, cols)
+    print()
+    if verbose:
+        print("Diagonals as columns")
+    PrintColArray(T, rows, cols)
+    print()
+    if verbose:
+        print("Polynomial values as rows")
+    PrintRowPolyArray(T, rows, cols)
+    print()
+    if verbose:
+        print("Polynomial values as columns")
+    PrintColPolyArray(T, rows, cols)
+    print()
 @cache
 def _abe(n: int) -> list[int]:
     if n == 0:

@@ -1,3 +1,6 @@
+from tabltools import row_poly, col_poly
+
+
 def PrintTabl(T, k=None):
     t = T if k == None else T(-k)
     print(t)
@@ -26,15 +29,37 @@ def PrintColArray(F, rows, cols):
         print([F(j + k, j) for k in range(rows)])
 
 
+def PrintRowPolyArray(T, rows, cols):
+    for n in range(rows):
+        print(row_poly(T, n, cols))
+
+
+def PrintColPolyArray(T, rows, cols):
+    for n in range(rows):
+        print(col_poly(T, n, cols))
+
+
 def PrintViews(T, rows=7, cols=None, verbose=True):
-    if cols == None: cols = rows
+    if cols == None:
+        cols = rows
     print()
-    if verbose: print("Triangle view")
+    if verbose:
+        print("Triangle view")
     PrintRows(T(-rows))
     print()
-    if verbose: print("Diagonals -> rows")
+    if verbose:
+        print("Diagonals as rows")
     PrintRowArray(T, rows, cols)
     print()
-    if verbose: print("Diagonals -> columns")
+    if verbose:
+        print("Diagonals as columns")
     PrintColArray(T, rows, cols)
+    print()
+    if verbose:
+        print("Polynomial values as rows")
+    PrintRowPolyArray(T, rows, cols)
+    print()
+    if verbose:
+        print("Polynomial values as columns")
+    PrintColPolyArray(T, rows, cols)
     print()

@@ -2,8 +2,8 @@ from os import getcwd
 from os.path import join, isfile
 
 tabl_files = [
-    "tablprint.py",
     "tabltools.py",
+    "tablprint.py",
     "Abel.py",
     "Bell.py",
     "Bessel.py",
@@ -44,8 +44,8 @@ tabl_files = [
 import_header = [
     "from functools import cache\n",
     "from itertools import accumulate\n",
-    "from cachetools import cached, LRUCache\n",
     "from sys import setrecursionlimit\n",
+    "from typing import Callable\n",
 ]
 
 dir = join(getcwd(), "src")
@@ -61,6 +61,8 @@ for src in tabl_files:
         src_file = open(file_path, "r")
 
         for line in src_file:
+            if line.startswith("from"):
+                continue
             if start and not line.startswith("@"):
                 continue
             start = False
