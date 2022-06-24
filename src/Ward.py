@@ -1,5 +1,5 @@
 from functools import cache
-from tablgenerator import TablGenerator
+from tabltools import TablGenerator
 
 """The Ward numbers A269939, A134991.
 

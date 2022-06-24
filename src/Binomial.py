@@ -1,5 +1,5 @@
 from functools import cache
-from tablgenerator import TablGenerator
+from tabltools import TablGenerator
 
 """The binomial coefficients, Pascal triangle, A007318. 
 

@@ -2,8 +2,9 @@ from os import getcwd
 from os.path import join, isfile
 
 tabl_files = [
-    "tablformat.py",
-    "tablgenerator.py",
+    "tablprint.py",
+    "tabltools.py",
+    "Abel.py",
     "Bell.py",
     "Bessel.py",
     "Binomial.py",
@@ -43,6 +44,7 @@ tabl_files = [
 import_header = [
     "from functools import cache\n",
     "from itertools import accumulate\n",
+    "from cachetools import cached, LRUCache\n",
     "from sys import setrecursionlimit\n",
 ]
 

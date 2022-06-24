@@ -1,5 +1,5 @@
 from functools import cache
-from tablgenerator import TablGenerator
+from tabltools import TablGenerator
 
 """The central set factorial numbers, A269945 (see also A008957, A036969).
 

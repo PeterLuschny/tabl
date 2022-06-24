@@ -1,6 +1,6 @@
 from functools import cache
 from Binomial import binomial
-from tablgenerator import TablGenerator
+from tabltools import TablGenerator
 
 """The Euler tangent polynomials, A162660, A350972, A155585, A009006, A000182. 
 

@@ -1,5 +1,5 @@
 from functools import cache
-from tablgenerator import TablGenerator
+from tabltools import TablGenerator
 
 """The Seidel triangle, A008281 or A008280. 
 

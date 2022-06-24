@@ -1,5 +1,5 @@
 from functools import cache
-from tablgenerator import TablGenerator
+from tabltools import TablGenerator
 
 """Ternary trees, unsigned A109956, A001764. 
 

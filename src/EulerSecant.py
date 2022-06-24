@@ -1,6 +1,6 @@
 from functools import cache
 from Binomial import binomial
-from tablgenerator import TablGenerator
+from tabltools import TablGenerator
 
 """The Euler secant polynomials, A119879, A081658, A153641. 
 

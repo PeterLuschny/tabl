@@ -1,5 +1,5 @@
 from functools import cache
-from tablgenerator import TablGenerator
+from tabltools import TablGenerator
 
 """Unsigned coefficients of Laguerre polynomials n! * L(n, x), unsigned A021009. 
 

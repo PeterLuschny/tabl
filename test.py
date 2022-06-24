@@ -1,3 +1,4 @@
+from tabl import abel
 from tabl import bell
 from tabl import bessel
 from tabl import binomial
@@ -36,6 +37,7 @@ from tabl import ward
 from tabl import worpitzky
 from tabl import PrintViews
 
+PrintViews(abel)
 PrintViews(bell)
 PrintViews(bessel)
 PrintViews(binomial)

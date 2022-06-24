@@ -1,9 +1,9 @@
-from tablformat import PrintViews
-from tablgenerator import isTablGenerator
+from tablprint import PrintViews
+from tabltools import isTablGenerator
 from sys import setrecursionlimit
 
 
-def TablTest(seq: callable, dim=7, short=False):
+def TablTest(seq: callable, dim=8, short=False):
 
     PrintViews(seq, dim, verbose=True)
 
@@ -22,4 +22,4 @@ def TablTest(seq: callable, dim=7, short=False):
            Trow[big // 2] == seq(big, big // 2))
     print("py>", seqname, "(", b, ",", b2, ") =") 
     print(Trow[big // 2])
-    print()
+    print("---")

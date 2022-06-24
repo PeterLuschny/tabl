@@ -1,5 +1,5 @@
 from functools import cache
-from tablgenerator import TablGenerator
+from tabltools import TablGenerator
 
 """Stirling cycle numbers, unsigned Stirling numbers of the 1. kind, A132393. 
 

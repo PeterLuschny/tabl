@@ -1,5 +1,5 @@
 from functools import cache
-from tablgenerator import TablGenerator
+from tabltools import TablGenerator
 
 """Lehmer-Comtet of 2nd kind, unsigned, A354794
 
