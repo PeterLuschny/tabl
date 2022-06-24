@@ -55,21 +55,11 @@ def isTablGenerator(
         and isinstance(T(-1)[0][0], int)
     )
 @cache
-def a(n):
-    return (-n - 1) ** n
-ncache = LRUCache(maxsize=1001)
-@cached(ncache)
-def _abe(N: int) -> list[int]:
-    if N == 0:
+def _abe(n: int) -> list[int]:
+    if n == 0:
         return [1]
-    item = ncache.get(N, None)
-    while item is not None:
-        _abe(N - 1)
-    def T(n, k):
-        return k ** n if k == 0 else sum(
-            binomial(n - 1, j) * _abe(n - j - 1)[k - 1] * a(j) 
-            for j in range(n - k + 1) )
-    return [T(N, k) for k in range(N + 1)]
+    return [binomial(n - 1, k - 1) * n ** (n - k) 
+            if k > 0 else 0 for k in range(0, n + 1)]
 abel = TablGenerator(_abe)
 @cache
 def _bel(n: int) -> list[int]:
