@@ -38,7 +38,7 @@ tabl_files = [
     "Seidel.py",
     "StirlingCycle.py",
     "StirlingSet.py",
-    "TernaryTree.py",
+    "TernaryTrees.py",
     "Uno.py",
     "Ward.py",
     "Worpitzky.py",

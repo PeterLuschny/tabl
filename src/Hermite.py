@@ -21,10 +21,11 @@ def _her(n: int) -> list[int]:
     if n == 1:
         return [0, 1]
 
+    rowA = _her(n - 1)
     row = _her(n - 1) + [0]
     for k in range(1, n):
-        row[k] = _her(n - 1)[k - 1] + (k + 1) * row[k + 1]
-    row[0] = _her(n - 1)[1]
+        row[k] = rowA[k - 1] + (k + 1) * row[k + 1]
+    row[0] = rowA[1]
     row[n] = 1
     return row
 

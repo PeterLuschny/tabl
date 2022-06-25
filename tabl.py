@@ -118,10 +118,10 @@ binomial = TablGenerator(_bin)
 def _cat(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row = _cat(n - 1) + [0]
-    for k in range(1, n + 1):
-        row[k] += row[k - 1]
-    return row
+    if n == 1:
+        return [0, 1]
+    row = _cat(n - 1) + [_cat(n - 1)[n - 1]]
+    return list(accumulate(row))
 catalan = TablGenerator(_cat)
 @cache
 def _cas(n: int) -> list[int]:
@@ -281,10 +281,11 @@ def _her(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 1]
+    rowA = _her(n - 1)
     row = _her(n - 1) + [0]
     for k in range(1, n):
-        row[k] = _her(n - 1)[k - 1] + (k + 1) * row[k + 1]
-    row[0] = _her(n - 1)[1]
+        row[k] = rowA[k - 1] + (k + 1) * row[k + 1]
+    row[0] = rowA[1]
     row[n] = 1
     return row
 hermite = TablGenerator(_her)
@@ -441,12 +442,10 @@ stirling_set = TablGenerator(_sts)
 def _ttr(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row = _ttr(n - 1) + [1]
-    z = 3 * n * (3 * n - 1) * (3 * n - 2)
-    for k in range(n):
-        u = (n - k) * (k + 2 * n) * (k + 2 * n + 1)
-        row[k] = (row[k] * z) // u
-    return row
+    if n == 1:
+        return [0, 1]
+    row = _ttr(n - 1) + [_ttr(n - 1)[n - 1]]
+    return list(accumulate(list(accumulate(row))))
 ternary_tree = TablGenerator(_ttr)
 @cache
 def _uno(n: int) -> list[int]:

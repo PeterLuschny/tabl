@@ -1,18 +1,17 @@
 from functools import cache
+from itertools import accumulate
 from tabltools import TablGenerator
 
-"""The Catalan triangle, A009766. 
+"""The Catalan triangle, A355173. 
 
 [0] [1]
-[1] [1, 1]
-[2] [1, 2,  2]
-[3] [1, 3,  5,   5]
-[4] [1, 4,  9,  14,  14]
-[5] [1, 5, 14,  28,  42,   42]
-[6] [1, 6, 20,  48,  90,  132,  132]
-[7] [1, 7, 27,  75, 165,  297,  429,  429]
-[8] [1, 8, 35, 110, 275,  572, 1001, 1430, 1430]
-[9] [1, 9, 44, 154, 429, 1001, 2002, 3432, 4862, 4862]
+[1] [0, 1]
+[2] [0, 1, 2]
+[3] [0, 1, 3,  5]
+[4] [0, 1, 4,  9, 14]
+[5] [0, 1, 5, 14, 28,  42]
+[6] [0, 1, 6, 20, 48,  90, 132]
+[7] [0, 1, 7, 27, 75, 165, 297, 429]
 """
 
 
@@ -20,11 +19,11 @@ from tabltools import TablGenerator
 def _cat(n: int) -> list[int]:
     if n == 0:
         return [1]
+    if n == 1:
+        return [0, 1]
 
-    row = _cat(n - 1) + [0]
-    for k in range(1, n + 1):
-        row[k] += row[k - 1]
-    return row
+    row = _cat(n - 1) + [_cat(n - 1)[n - 1]]
+    return list(accumulate(row))
 
 
 catalan = TablGenerator(_cat)
