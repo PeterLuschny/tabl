@@ -276,6 +276,19 @@ def _gen(n: int) -> list[int]:
     return row[1:]
 genocchi = TablGenerator(_gen)
 @cache
+def _her(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 1]
+    row = _her(n - 1) + [0]
+    for k in range(1, n):
+        row[k] = _her(n - 1)[k - 1] + (k + 1) * row[k + 1]
+    row[0] = _her(n - 1)[1]
+    row[n] = 1
+    return row
+hermite = TablGenerator(_her)
+@cache
 def _lag(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -340,6 +353,12 @@ def _osc(n: int) -> list[int]:
         row[k] = (n - 1) * row[k] + k * row[k - 1]
     return row
 ordered_cycle = TablGenerator(_osc)
+@cache
+def _ord(n: int) -> list[int]:
+    if n == 0:
+        return [0]
+    return _ord(n - 1) + [n]
+ord = TablGenerator(_ord)
 @cache
 def _p(n: int, k: int) -> int:
     if k < 0 or n < 0:
@@ -429,6 +448,12 @@ def _ttr(n: int) -> list[int]:
         row[k] = (row[k] * z) // u
     return row
 ternary_tree = TablGenerator(_ttr)
+@cache
+def _uno(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    return _uno(n - 1) + [1]
+uno = TablGenerator(_uno)
 @cache
 def _war(n: int) -> list[int]:
     if n == 0:

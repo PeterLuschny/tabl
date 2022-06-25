@@ -17,11 +17,13 @@ from tabl import falling_factorial
 from tabl import fibonacci
 from tabl import fubini
 from tabl import genocchi
+from tabl import hermite
 from tabl import laguerre
 from tabl import lah
 from tabl import lehmer
 from tabl import motzkin
 from tabl import narayana
+from tabl import ord
 from tabl import ordered_cycle
 from tabl import partnum_exact
 from tabl import partnum_atmost
@@ -33,6 +35,7 @@ from tabl import seidel_boust
 from tabl import stirling_cycle
 from tabl import stirling_set
 from tabl import ternary_tree
+from tabl import uno
 from tabl import ward
 from tabl import worpitzky
 from tabl import PrintViews
@@ -56,11 +59,13 @@ PrintViews(falling_factorial)
 PrintViews(fibonacci)
 PrintViews(fubini)
 PrintViews(genocchi)
+PrintViews(hermite)
 PrintViews(laguerre)
 PrintViews(lah)
 PrintViews(lehmer)
 PrintViews(motzkin)
 PrintViews(narayana)
+PrintViews(ord)
 PrintViews(ordered_cycle)
 PrintViews(partnum_exact)
 PrintViews(partnum_atmost)
@@ -72,5 +77,6 @@ PrintViews(seidel_boust)
 PrintViews(stirling_cycle)
 PrintViews(stirling_set)
 PrintViews(ternary_tree)
+PrintViews(uno)
 PrintViews(ward)
 PrintViews(worpitzky)
