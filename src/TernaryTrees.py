@@ -2,7 +2,7 @@ from functools import cache
 from itertools import accumulate
 from tabltools import TablGenerator
 
-"""Ternary trees, A355172. 
+"""Ternary trees, Fuss-Catalan 2, A355172.
 
 [0] [1]
 [1] [0, 1]
@@ -23,7 +23,7 @@ def _ttr(n: int) -> list[int]:
         return [0, 1]
 
     row = _ttr(n - 1) + [_ttr(n - 1)[n - 1]]
-    return list(accumulate(list(accumulate(row))))
+    return list(accumulate(accumulate(row)))
 
 
 ternary_tree = TablGenerator(_ttr)

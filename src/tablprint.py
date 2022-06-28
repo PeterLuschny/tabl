@@ -1,4 +1,5 @@
 from tabltools import row_poly, col_poly
+from tablsums import PrintSums
 
 
 def PrintTabl(T, k=None):
@@ -43,9 +44,14 @@ def PrintViews(T, rows=7, cols=None, verbose=True):
     if cols == None:
         cols = rows
     print()
+    Tabl = T(-rows)
     if verbose:
         print("Triangle view")
-    PrintRows(T(-rows))
+    PrintRows(Tabl)
+    print()
+    if verbose:
+        print("Row sums: all, even, odd, alternating")
+    PrintSums(Tabl)
     print()
     if verbose:
         print("Diagonals as rows")

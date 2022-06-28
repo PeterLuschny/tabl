@@ -2,7 +2,7 @@ from functools import cache
 from itertools import accumulate
 from tabltools import TablGenerator
 
-"""The Catalan triangle, A355173. 
+"""The Catalan triangle, Fuss-Catalan 1, A355173.
 
 [0] [1]
 [1] [0, 1]

@@ -3,6 +3,7 @@ from os.path import join, isfile
 
 tabl_files = [
     "tabltools.py",
+    "tablsums.py",
     "tablprint.py",
     "Abel.py",
     "Bell.py",

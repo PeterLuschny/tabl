@@ -30,6 +30,55 @@ def row_poly(T, n, len):
     return [poly(T, n, k) for k in range(len)]
 def col_poly(T, n, len):
     return [poly(T, k, n) for k in range(len)]
+"""
+The EvenSum of a list is the sum of the even indexed terms.
+py> EvenSum([0, 1, 2, 3, 4, 5])
+0 + 2 + 4 = 6
+"""
+def even_sum(L: list[int]) -> int:
+    return sum(L[::2])
+"""
+The OddSum of a list is the sum of the odd indexed terms.
+py> OddSum([0, 1, 2, 3, 4, 5])
+1 + 3 + 5 = 9
+"""
+def odd_sum(L: list[int]) -> int:
+    return sum(L[1::2])
+"""
+The AltSum of a list is the alternating sum.
+py> AltSum([0, 1, 2, 3, 4, 5])
++ 0 - 1 + 2 - 3 + 4 - 5 = 6 - 9 = - 3
+"""
+def alt_sum(L: list[int]) -> int:
+    return even_sum(L) - odd_sum(L)
+"""
+The sum of a triangle is the sequence of the sum of the rows.
+"""
+def tabl_sum(T: list[list[int]]) -> list[int]:
+    return [sum(row) for row in T]
+"""
+The even sum of a triangle is the sequence of the sum of the even indexed terms of the rows.
+"""
+def tabl_evensum(T: list[list[int]]) -> list[int]:
+    return [even_sum(row) for row in T]
+"""
+The odd sum of a triangle is the sequence of the sum of the odd indexed terms of the rows.
+"""
+def tabl_oddsum(T: list[list[int]]) -> list[int]:
+    return [odd_sum(row) for row in T]
+"""
+The alternating sum of a triangle is the sequence of the alternating sum of the rows.
+"""
+def tabl_altsum(T: list[list[int]]) -> list[int]:
+    return [alt_sum(row) for row in T]
+"""
+Print the various sums of a triangle.
+"""
+def PrintSums(T: list[list[int]]):
+    print(tabl_sum(T))
+    print(tabl_evensum(T))
+    print(tabl_oddsum(T))
+    print(tabl_altsum(T))
 def PrintTabl(T, k=None):
     t = T if k == None else T(-k)
     print(t)
@@ -58,9 +107,14 @@ def PrintViews(T, rows=7, cols=None, verbose=True):
     if cols == None:
         cols = rows
     print()
+    Tabl = T(-rows)
     if verbose:
         print("Triangle view")
-    PrintRows(T(-rows))
+    PrintRows(Tabl)
+    print()
+    if verbose:
+        print("Row sums: all, even, odd, alternating")
+    PrintSums(Tabl)
     print()
     if verbose:
         print("Diagonals as rows")
@@ -445,7 +499,7 @@ def _ttr(n: int) -> list[int]:
     if n == 1:
         return [0, 1]
     row = _ttr(n - 1) + [_ttr(n - 1)[n - 1]]
-    return list(accumulate(list(accumulate(row))))
+    return list(accumulate(accumulate(row)))
 ternary_tree = TablGenerator(_ttr)
 @cache
 def _uno(n: int) -> list[int]:
