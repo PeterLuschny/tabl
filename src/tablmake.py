@@ -33,6 +33,7 @@ tabl_files = [
     "OrderedCycle.py",
     "Ordinals.py",
     "PartitionNumbers.py",
+    "PolygonalNumbers.py",
     "Rencontres.py",
     "RisingFactorial.py",
     "Schroeder.py",

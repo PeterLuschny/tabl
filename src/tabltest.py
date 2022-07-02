@@ -22,4 +22,5 @@ def TablTest(seq: callable, dim=8, short=False):
            Trow[big // 2] == seq(big, big // 2))
     print("py>", seqname, "(", b, ",", b2, ") =") 
     print(Trow[big // 2])
-    print("---")
+    
+    print("TablTest done!\n")

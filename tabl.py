@@ -430,6 +430,19 @@ def _apn(n: int) -> list[int]:
 partnum_exact = TablGenerator(_pn)
 partnum_atmost = TablGenerator(_apn)
 @cache
+def _pol(n: int) -> list[int]:
+    if n == 0:
+        return [0]
+    if n == 1:
+        return [0, 1]
+    arow = _pol(n - 2)
+    row = _pol(n - 1) + [n]
+    row[n - 1] += row[n - 2]
+    for k in range(2, n - 1):
+        row[k] += row[k] - arow[k]
+    return row
+polygonal = TablGenerator(_pol)
+@cache
 def _ren(n: int) -> list[int]:
     if n == 0:
         return [1]

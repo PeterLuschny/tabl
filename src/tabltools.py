@@ -25,6 +25,7 @@ def isTablGenerator(
         and isinstance(T(-1)[0][0], int)
     )
 
+
 def poly(T, n, x):
     row = T(n)
     return sum(c * x ** k for (k, c) in enumerate(row))

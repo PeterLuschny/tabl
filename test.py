@@ -27,6 +27,7 @@ from tabl import ord
 from tabl import ordered_cycle
 from tabl import partnum_exact
 from tabl import partnum_atmost
+from tabl import polygonal
 from tabl import rencontres
 from tabl import rising_factorial
 from tabl import schroeder
@@ -69,6 +70,7 @@ PrintViews(ord)
 PrintViews(ordered_cycle)
 PrintViews(partnum_exact)
 PrintViews(partnum_atmost)
+PrintViews(polygonal)
 PrintViews(rencontres)
 PrintViews(rising_factorial)
 PrintViews(schroeder)
