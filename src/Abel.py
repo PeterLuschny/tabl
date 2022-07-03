@@ -2,7 +2,7 @@ from functools import cache
 from tabltools import TablGenerator
 from Binomial import binomial
 
-"""The unsigned coefficients of Abel poynomials, A061356
+"""The unsigned coefficients of Abel polynomials, A061356
 
 [0] [1]
 [1] [0,        1]
@@ -25,7 +25,7 @@ def _abe(n: int) -> list[int]:
             if k > 0 else 0 for k in range(0, n + 1)]
 
 
-abel = TablGenerator(_abe)
+abel = TablGenerator(_abe, "Abel")
 
 ####################################################################
 

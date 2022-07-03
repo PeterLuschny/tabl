@@ -30,7 +30,7 @@ def _her(n: int) -> list[int]:
     return row
 
 
-hermite = TablGenerator(_her)
+hermite = TablGenerator(_her, "Hermite")
 
 
 ####################################################################

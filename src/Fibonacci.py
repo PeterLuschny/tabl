@@ -31,7 +31,7 @@ def _fib(n: int) -> list[int]:
     return row
 
 
-fibonacci = TablGenerator(_fib)
+fibonacci = TablGenerator(_fib, "Fibonacci")
 
 
 ####################################################################

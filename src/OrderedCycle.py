@@ -29,7 +29,7 @@ def _osc(n: int) -> list[int]:
     return row
 
 
-ordered_cycle = TablGenerator(_osc)
+ordered_cycle = TablGenerator(_osc, "Ordered cycles")
 
 
 ####################################################################

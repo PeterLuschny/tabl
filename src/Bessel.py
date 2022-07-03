@@ -28,7 +28,7 @@ def _bes(n: int) -> list[int]:
     return row
 
 
-bessel = TablGenerator(_bes)
+bessel = TablGenerator(_bes, "Bessel")
 
 
 ####################################################################

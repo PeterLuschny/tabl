@@ -42,7 +42,7 @@ def _pol(n: int) -> list[int]:
     return row
 
 
-polygonal = TablGenerator(_pol)
+polygonal = TablGenerator(_pol, "Polygonal numbers")
 
 
 ####################################################################

@@ -41,6 +41,9 @@ def PrintColPolyArray(T, rows, cols):
 
 
 def PrintViews(T, rows=7, cols=None, verbose=True):
+    print("_" * 48)
+    print(T.name)
+
     if cols == None:
         cols = rows
     print()

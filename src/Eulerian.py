@@ -26,7 +26,7 @@ def _eur(n: int) -> list[int]:
     return row
 
 
-eulerian = TablGenerator(_eur)
+eulerian = TablGenerator(_eur, "Eulerian")
 
 
 ####################################################################

@@ -27,7 +27,7 @@ def _rf(n: int) -> list[int]:
     return row
 
 
-rising_factorial = TablGenerator(_rf)
+rising_factorial = TablGenerator(_rf, "Rising factorial")
 
 
 ####################################################################

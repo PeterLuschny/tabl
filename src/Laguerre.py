@@ -26,7 +26,7 @@ def _lag(n: int) -> list[int]:
     return row
 
 
-laguerre = TablGenerator(_lag)
+laguerre = TablGenerator(_lag, "Laguerre")
 
 
 ####################################################################

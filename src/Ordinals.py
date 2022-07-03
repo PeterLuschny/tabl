@@ -22,7 +22,7 @@ def _ord(n: int) -> list[int]:
     return _ord(n - 1) + [n]
 
 
-ord = TablGenerator(_ord)
+ord = TablGenerator(_ord, "Ordinals")
 
 
 ####################################################################

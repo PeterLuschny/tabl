@@ -26,7 +26,7 @@ def _wor(n: int) -> list[int]:
     return row
 
 
-worpitzky = TablGenerator(_wor)
+worpitzky = TablGenerator(_wor, "Worpitzky")
 
 
 ####################################################################

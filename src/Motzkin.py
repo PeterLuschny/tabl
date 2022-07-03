@@ -28,7 +28,7 @@ def _mot(n: int) -> list[int]:
     return row
 
 
-motzkin = TablGenerator(_mot)
+motzkin = TablGenerator(_mot, "Motzkin")
 
 
 ####################################################################

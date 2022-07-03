@@ -26,7 +26,7 @@ def _cat(n: int) -> list[int]:
     return list(accumulate(row))
 
 
-catalan = TablGenerator(_cat)
+catalan = TablGenerator(_cat, "Catalan")
 
 
 ####################################################################

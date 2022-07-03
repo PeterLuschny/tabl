@@ -28,7 +28,7 @@ def _war(n: int) -> list[int]:
     return row
 
 
-ward = TablGenerator(_war)
+ward = TablGenerator(_war, "Ward")
 
 
 ####################################################################

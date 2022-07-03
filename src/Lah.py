@@ -28,7 +28,7 @@ def _lah(n: int) -> list[int]:
     return row
 
 
-lah = TablGenerator(_lah)
+lah = TablGenerator(_lah, "Lah numbers")
 
 
 ####################################################################

@@ -26,7 +26,7 @@ def _ttr(n: int) -> list[int]:
     return list(accumulate(accumulate(row)))
 
 
-ternary_tree = TablGenerator(_ttr)
+ternary_tree = TablGenerator(_ttr, "Ternary trees")
 
 
 ####################################################################

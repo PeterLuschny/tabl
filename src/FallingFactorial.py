@@ -22,7 +22,7 @@ def _ff(n: int) -> list[int]:
     row[0] = 1
     return row
 
-falling_factorial = TablGenerator(_ff)
+falling_factorial = TablGenerator(_ff, "Falling factorial")
 
 
 ####################################################################

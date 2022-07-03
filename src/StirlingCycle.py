@@ -27,7 +27,7 @@ def _stc(n: int) -> list[int]:
     return row
 
 
-stirling_cycle = TablGenerator(_stc)
+stirling_cycle = TablGenerator(_stc, "Stirling cycle")
 
 
 ####################################################################

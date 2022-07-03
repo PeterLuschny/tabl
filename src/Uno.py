@@ -23,7 +23,7 @@ def _uno(n: int) -> list[int]:
     return _uno(n - 1) + [1]
 
 
-uno = TablGenerator(_uno)
+uno = TablGenerator(_uno, "Uno")
 
 
 ####################################################################

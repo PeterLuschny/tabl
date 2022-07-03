@@ -30,7 +30,7 @@ def _del(n: int) -> list[int]:
     return row
 
 
-delannoy = TablGenerator(_del)
+delannoy = TablGenerator(_del, "Delannoy")
 
 
 ####################################################################

@@ -28,7 +28,7 @@ def _cas(n: int) -> list[int]:
     return row
 
 
-catalan_streched = TablGenerator(_cas)
+catalan_streched = TablGenerator(_cas, "Catalan streched")
 
 
 ####################################################################

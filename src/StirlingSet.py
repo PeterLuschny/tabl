@@ -27,7 +27,7 @@ def _sts(n: int) -> list[int]:
     return row
 
 
-stirling_set = TablGenerator(_sts)
+stirling_set = TablGenerator(_sts, "Stirling set")
 
 
 ####################################################################

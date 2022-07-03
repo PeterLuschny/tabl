@@ -29,7 +29,7 @@ def _eul(n: int) -> list[int]:
     return row
 
 
-euler = TablGenerator(_eul)
+euler = TablGenerator(_eul, "Euler")
 
 
 def euler_num(n):
