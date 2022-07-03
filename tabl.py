@@ -509,6 +509,16 @@ def _sts(n: int) -> list[int]:
     return row
 stirling_set = TablGenerator(_sts, "Stirling set")
 @cache
+def _sym(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    row = _sym(n - 1) + [1]
+    for m in range(n - 1, 0, -1):
+        row[m] = (n - m + 1) * row[m] + row[m - 1]
+    row[0] *= n
+    return row
+sympoly = TablGenerator(_sym, "Symmetric polynomials")
+@cache
 def _ttr(n: int) -> list[int]:
     if n == 0:
         return [1]

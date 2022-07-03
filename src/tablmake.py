@@ -40,6 +40,7 @@ tabl_files = [
     "Seidel.py",
     "StirlingCycle.py",
     "StirlingSet.py",
+    "SymmetricPolynomial.py",
     "TernaryTrees.py",
     "Uno.py",
     "Ward.py",

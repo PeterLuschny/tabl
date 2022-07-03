@@ -35,6 +35,7 @@ from tabl import seidel
 from tabl import seidel_boust
 from tabl import stirling_cycle
 from tabl import stirling_set
+from tabl import sympoly
 from tabl import ternary_tree
 from tabl import uno
 from tabl import ward
@@ -78,6 +79,7 @@ PrintViews(seidel)
 PrintViews(seidel_boust)
 PrintViews(stirling_cycle)
 PrintViews(stirling_set)
+PrintViews(sympoly)
 PrintViews(ternary_tree)
 PrintViews(uno)
 PrintViews(ward)
