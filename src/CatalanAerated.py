@@ -1,7 +1,7 @@
 from functools import cache
 from tabltools import TablGenerator
 
-"""The streched Catalan triangle, A053121. 
+"""The aerated Catalan triangle, A053121. 
 
 [0]   1,
 [1]   0,   1,
@@ -17,18 +17,18 @@ from tabltools import TablGenerator
 
 
 @cache
-def _cas(n: int) -> list[int]:
+def _car(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    r = lambda k: _cas(n - 1)[k] if k >= 0 and k < n else 0
-    row = _cas(n - 1) + [1]
+    r = lambda k: _car(n - 1)[k] if k >= 0 and k < n else 0
+    row = _car(n - 1) + [1]
     for k in range(0, n):
         row[k] = r(k - 1) + r(k + 1)
     return row
 
 
-catalan_streched = TablGenerator(_cas, "Catalan streched", "CATSTR")
+catalan_aerated = TablGenerator(_car, "Catalan aerated", "CATAER")
 
 
 ####################################################################
@@ -36,4 +36,4 @@ catalan_streched = TablGenerator(_cas, "Catalan streched", "CATSTR")
 if __name__ == "__main__":
     from tabltest import TablTest
 
-    TablTest(catalan_streched)
+    TablTest(catalan_aerated)

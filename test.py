@@ -3,7 +3,7 @@ from tabl import bell
 from tabl import bessel
 from tabl import binomial
 from tabl import catalan
-from tabl import catalan_streched
+from tabl import catalan_aerated
 from tabl import cc_factorial
 from tabl import cs_factorial
 from tabl import delannoy
@@ -42,12 +42,13 @@ from tabl import ward
 from tabl import worpitzky
 from tabl import PrintViews
 
+
 PrintViews(abel)
 PrintViews(bell)
 PrintViews(bessel)
 PrintViews(binomial)
 PrintViews(catalan)
-PrintViews(catalan_streched)
+PrintViews(catalan_aerated)
 PrintViews(cc_factorial)
 PrintViews(cs_factorial)
 PrintViews(delannoy)

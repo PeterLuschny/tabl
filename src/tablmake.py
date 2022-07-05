@@ -10,7 +10,7 @@ tabl_files = [
     "Bessel.py",
     "Binomial.py",
     "Catalan.py",
-    "CatalanStreched.py",
+    "CatalanAerated.py",
     "CentralCycleFactorial.py",
     "CentralSetFactorial.py",
     "Delannoy.py",
