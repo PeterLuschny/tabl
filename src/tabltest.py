@@ -8,8 +8,6 @@ def TablTest(seq: callable, dim=8, short=False):
     PrintViews(seq, dim, verbose=True)
 
     seqname = seq.__name__
-    print("py>", seqname, "(5) =", seq(5))
-    print("py>", seqname, "(5, 3) =", seq(5, 3))
     print("py> isTablGenerator(", seqname, ") =", isTablGenerator(seq))
 
     # Increase the default recursion limit
@@ -23,4 +21,4 @@ def TablTest(seq: callable, dim=8, short=False):
     print("py>", seqname, "(", b, ",", b2, ") =") 
     print(Trow[big // 2])
     
-    print("TablTest done!\n")
+    print("--- TablTest done!\n")

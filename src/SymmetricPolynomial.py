@@ -27,7 +27,7 @@ def _sym(n: int) -> list[int]:
     return row
 
 
-sympoly = TablGenerator(_sym, "Symmetric polynomials")
+sympoly = TablGenerator(_sym, "Symmetric polynomials", "SYMPOL")
 
 
 ####################################################################

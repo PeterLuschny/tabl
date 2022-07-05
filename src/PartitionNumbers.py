@@ -48,9 +48,9 @@ def _apn(n: int) -> list[int]:
     return list(accumulate(_pn(n)))
 
 
-partnum_exact = TablGenerator(_pn, "Partition numbers (exact)")
+partnum_exact = TablGenerator(_pn, "Partition numbers (exact)", "PARTEX")
 
-partnum_atmost = TablGenerator(_apn, "Partition numbers (at most)")
+partnum_atmost = TablGenerator(_apn, "Partition numbers (at most)", "PARMOS")
 
 
 ####################################################################

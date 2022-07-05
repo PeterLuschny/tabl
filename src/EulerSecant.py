@@ -28,7 +28,7 @@ def _esec(n: int) -> list[int]:
     return row
 
 
-euler_sec = TablGenerator(_esec, "Euler secant")
+euler_sec = TablGenerator(_esec, "Euler secant", "EULSEC")
 
 
 def eulerS(n):

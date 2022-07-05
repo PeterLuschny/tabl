@@ -28,7 +28,7 @@ def _eub(n: int) -> list[int]:
     return row
 
 
-eulerianB = TablGenerator(_eub, "EulerianB")
+eulerianB = TablGenerator(_eub, "EulerianB", "EULIAB")
 
 
 ####################################################################

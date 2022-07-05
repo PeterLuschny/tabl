@@ -22,7 +22,7 @@ def _ord(n: int) -> list[int]:
     return _ord(n - 1) + [n]
 
 
-ord = TablGenerator(_ord, "Ordinals")
+ordinals = TablGenerator(_ord, "Ordinals", "ORDREP")
 
 
 ####################################################################
@@ -30,4 +30,4 @@ ord = TablGenerator(_ord, "Ordinals")
 if __name__ == "__main__":
     from tabltest import TablTest
 
-    TablTest(ord)
+    TablTest(ordinals)

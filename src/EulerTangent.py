@@ -27,7 +27,7 @@ def _etan(n: int) -> list[int]:
     return row
 
 
-euler_tan = TablGenerator(_etan, "Euler tangent")
+euler_tan = TablGenerator(_etan, "Euler tangent", "EULTAN")
 
 
 def eulerT(n):

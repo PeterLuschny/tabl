@@ -29,7 +29,7 @@ def _ren(n: int) -> list[int]:
     return row
 
 
-rencontres = TablGenerator(_ren, "Recontres")
+rencontres = TablGenerator(_ren, "Rencontres", "RENCON")
 
 
 ####################################################################

@@ -23,8 +23,8 @@ from tabl import lah
 from tabl import lehmer
 from tabl import motzkin
 from tabl import narayana
-from tabl import ord
 from tabl import ordered_cycle
+from tabl import ordinals
 from tabl import partnum_exact
 from tabl import partnum_atmost
 from tabl import polygonal
@@ -67,7 +67,7 @@ PrintViews(lah)
 PrintViews(lehmer)
 PrintViews(motzkin)
 PrintViews(narayana)
-PrintViews(ord)
+PrintViews(ordinals)
 PrintViews(ordered_cycle)
 PrintViews(partnum_exact)
 PrintViews(partnum_atmost)

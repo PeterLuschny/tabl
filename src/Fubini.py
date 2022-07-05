@@ -27,7 +27,7 @@ def _fub(n: int) -> list[int]:
     return row
 
 
-fubini = TablGenerator(_fub, "Fubini")
+fubini = TablGenerator(_fub, "Fubini", "FUBINI")
 
 
 ####################################################################

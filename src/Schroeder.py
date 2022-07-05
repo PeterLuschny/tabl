@@ -29,7 +29,7 @@ def _sch(n: int) -> list[int]:
     return row
 
 
-schroeder = TablGenerator(_sch, "Schroeder")
+schroeder = TablGenerator(_sch, "Schroeder", "SCHROD")
 
 
 ####################################################################

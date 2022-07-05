@@ -28,7 +28,7 @@ def _ccf(n: int) -> list[int]:
     return row
 
 
-cc_factorial = TablGenerator(_ccf, "Central cycle factorials")
+cc_factorial = TablGenerator(_ccf, "Central cycle factorials", "CYCFAC")
 
 ####################################################################
 

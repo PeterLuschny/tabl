@@ -28,7 +28,7 @@ def _csf(n: int) -> list[int]:
     return row
 
 
-cs_factorial = TablGenerator(_csf, "Central set factorials")
+cs_factorial = TablGenerator(_csf, "Central set factorials", "SETFAC")
 
 
 ####################################################################

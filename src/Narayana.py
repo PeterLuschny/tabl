@@ -31,7 +31,7 @@ def _nar(n: int) -> list[int]:
     return row
 
 
-narayana = TablGenerator(_nar, "Narayana")
+narayana = TablGenerator(_nar, "Narayana", "NARAYA")
 
 
 ####################################################################

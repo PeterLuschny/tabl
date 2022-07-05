@@ -27,7 +27,7 @@ def _bel(n: int) -> list[int]:
     return row
 
 
-bell = TablGenerator(_bel, "Bell")
+bell = TablGenerator(_bel, "Bell", "BELLPE")
 
 
 ####################################################################

@@ -30,7 +30,7 @@ def _gen(n: int) -> list[int]:
     return row[1:]
 
 
-genocchi = TablGenerator(_gen, "Genocchi")
+genocchi = TablGenerator(_gen, "Genocchi", "GENOCC")
 
 
 ####################################################################

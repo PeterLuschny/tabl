@@ -27,7 +27,7 @@ def _bin(n: int) -> list[int]:
     return row
 
 
-binomial = TablGenerator(_bin, "Binomial")
+binomial = TablGenerator(_bin, "Binomial", "BINOMC")
 
 
 ####################################################################

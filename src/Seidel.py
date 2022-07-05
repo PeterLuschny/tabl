@@ -41,9 +41,9 @@ def _seibou(n: int) -> list[int]:
     return _sei(n) if n % 2 else _sei(n)[::-1]
 
 
-seidel = TablGenerator(_sei, "Seidel")
+seidel = TablGenerator(_sei, "Seidel", "SEIDEL")
 
-seidel_boust = TablGenerator(_seibou, "Seidel boustrophedon")
+seidel_boust = TablGenerator(_seibou, "Seidel boustrophedon", "SEIBOU")
 
 ####################################################################
 

@@ -2,7 +2,7 @@ from tokenize import String
 from typing import Callable
 
 
-def TablGenerator(g: Callable[[int], list[int]], name):
+def TablGenerator(g: Callable[[int], list[int]], name: str, id: str):
     def T(n, k=None):
         if n < 0:
             return [g(k) for k in range(-n)]
@@ -11,6 +11,7 @@ def TablGenerator(g: Callable[[int], list[int]], name):
         return g(n)[k]
 
     T.name = name
+    T.id = id
     return T
 
 

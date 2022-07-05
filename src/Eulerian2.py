@@ -28,7 +28,7 @@ def _eu2(n: int) -> list[int]:
     return row
 
 
-eulerian2 = TablGenerator(_eu2, "Eulerian2")
+eulerian2 = TablGenerator(_eu2, "Eulerian2", "EULIA2")
 
 
 ####################################################################

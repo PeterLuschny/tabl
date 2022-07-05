@@ -29,7 +29,7 @@ def _lecom(n: int) -> list[int]:
         for k in range(n + 1) ]
 
 
-lehmer = TablGenerator(_lecom, "LehmerComtet")
+lehmer = TablGenerator(_lecom, "LehmerComtet", "LEHCOM")
 
 
 ####################################################################

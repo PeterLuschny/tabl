@@ -25,7 +25,7 @@ def _abe(n: int) -> list[int]:
             if k > 0 else 0 for k in range(0, n + 1)]
 
 
-abel = TablGenerator(_abe, "Abel")
+abel = TablGenerator(_abe, "Abel", "ABELPO")
 
 ####################################################################
 
