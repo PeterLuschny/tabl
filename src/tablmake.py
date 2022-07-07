@@ -5,6 +5,7 @@ tabl_files = [
     "tabltools.py",
     "tablsums.py",
     "tablprint.py",
+    "tablprofile.py",
     "Abel.py",
     "Bell.py",
     "Bessel.py",
@@ -47,6 +48,7 @@ tabl_files = [
     "Worpitzky.py",
 ]
 
+
 import_header = [
     "from functools import cache\n",
     "from itertools import accumulate\n",
@@ -63,19 +65,70 @@ dest.write("setrecursionlimit(2000) \n")
 for src in tabl_files:
     file_path = join(dir, src)
     if isfile(file_path):
-        start = False if src.startswith("tabl") else True
+        start = False 
         src_file = open(file_path, "r")
 
         for line in src_file:
             if line.startswith("from"):
                 continue
-            if start and not line.startswith("@"):
+            if not start: 
+                start = line.startswith("@") or line.startswith("#@")
+                if line.startswith("@"): 
+                    dest.write(line)
                 continue
-            start = False
+            else:
+                start = True
             if line.startswith("#"):
                 break
             if line != "\n":
                 dest.write(line)
         src_file.close()
+
+s = '''\
+tabl_fun = [
+    abel,
+    bell,
+    bessel,
+    binomial,
+    catalan,
+    catalan_aerated,
+    cc_factorial,
+    cs_factorial,
+    delannoy,
+    euler,
+    eulerian,
+    eulerian2,
+    eulerianB,
+    euler_sec,
+    euler_tan,
+    falling_factorial,
+    fibonacci,
+    fubini,
+    genocchi,
+    hermite,
+    laguerre,
+    lah,
+    lehmer,
+    motzkin,
+    narayana,
+    ordinals,
+    ordered_cycle,
+    partnum_exact,
+    partnum_atmost,
+    polygonal,
+    rencontres,
+    rising_factorial,
+    schroeder,
+    seidel,
+    seidel_boust,
+    stirling_cycle,
+    stirling_set,
+    sympoly,
+    ternary_tree,
+    uno,
+    ward,
+    worpitzky,
+]\n'''.format(length='multi-line', ordinal='second')
+dest.write(s)
 
 dest.close()

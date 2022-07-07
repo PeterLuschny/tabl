@@ -1,6 +1,7 @@
 from tabltools import row_poly, col_poly
 from tablsums import PrintSums
 
+#@
 
 def PrintTabl(T, k=None):
     t = T if k == None else T(-k)

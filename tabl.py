@@ -130,6 +130,44 @@ def PrintViews(T, rows=7, cols=None, verbose=True):
     if verbose: print("Polynomial values as columns")
     PrintColPolyArray(T, rows, cols)
     print()
+def Profile(T, hor=10, ver=5):
+    d = {}
+    tabl = T(-hor)
+    # Triangle flattened
+    d["tabflt"] = tabl[0] + tabl[1] + tabl[2] + tabl[3]
+    # Row sums
+    d["rowsum"] = tabl_sum(tabl)
+    d["evesum"] = tabl_evensum(tabl)
+    d["oddsum"] = tabl_oddsum(tabl)
+    d["altsum"] = tabl_altsum(tabl)
+    # DiagsAsRowArray
+    rows = ver
+    cols = hor
+    for j in range(rows):
+        d["dirow" + str(j)] = [T(j + k, k) for k in range(cols)]
+    # DiagsAsColArray
+    rows = hor
+    cols = ver
+    for j in range(cols):
+        d["dicol" + str(j)] = [T(j + k, j) for k in range(rows)]
+    # RowPolyArray
+    rows = ver
+    cols = hor
+    for j in range(rows):
+        d["porow" + str(j)] = row_poly(T, j, cols)
+    # ColPolyArray
+    rows = ver
+    cols = hor
+    for j in range(rows):
+        d["pocol" + str(j)] = col_poly(T, j, cols)
+    return d
+def PrintProfile(T):
+    d = Profile(T)
+    print()
+    print(T.id)
+    for seq in d.items():
+        print(f"{seq[0]}, {seq[1]}")
+    print()
 @cache
 def _abe(n: int) -> list[int]:
     if n == 0:
@@ -548,3 +586,47 @@ def _wor(n: int) -> list[int]:
         row[k] = k * row[k - 1] + (k + 1) * row[k]
     return row
 worpitzky = TablGenerator(_wor, "Worpitzky", "WORPIT")
+tabl_fun = [
+    abel,
+    bell,
+    bessel,
+    binomial,
+    catalan,
+    catalan_aerated,
+    cc_factorial,
+    cs_factorial,
+    delannoy,
+    euler,
+    eulerian,
+    eulerian2,
+    eulerianB,
+    euler_sec,
+    euler_tan,
+    falling_factorial,
+    fibonacci,
+    fubini,
+    genocchi,
+    hermite,
+    laguerre,
+    lah,
+    lehmer,
+    motzkin,
+    narayana,
+    ordinals,
+    ordered_cycle,
+    partnum_exact,
+    partnum_atmost,
+    polygonal,
+    rencontres,
+    rising_factorial,
+    schroeder,
+    seidel,
+    seidel_boust,
+    stirling_cycle,
+    stirling_set,
+    sympoly,
+    ternary_tree,
+    uno,
+    ward,
+    worpitzky,
+]

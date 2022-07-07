@@ -1,6 +1,8 @@
 from tokenize import String
 from typing import Callable
 
+#@
+
 
 def TablGenerator(g: Callable[[int], list[int]], name: str, id: str):
     def T(n, k=None):
