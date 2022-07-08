@@ -15,20 +15,20 @@ from tabltypes import *
 
 
 @cache
-def _ccf(n: int) -> list[int]:
+def _cc_factorial(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
 
-    row: list[int] = _ccf(n - 1) + [0]
+    row: list[int] = _cc_factorial(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = (n + k - 1) * (row[k] + row[k - 1])
 
     return row
 
 
-cc_factorial: tgen = TablGenerator(_ccf, "Central cycle factorials", "CYCFAC")
+cc_factorial: tgen = TablGenerator(_cc_factorial, "Central cycle factorials", "CYCFAC")
 
 ####################################################################
 

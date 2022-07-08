@@ -17,19 +17,19 @@ from tabltypes import *
 
 
 @cache
-def _sch(n: int) -> list[int]:
+def _schroeder(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
 
-    row: list[int] = _sch(n - 1) + [1]
+    row: list[int] = _schroeder(n - 1) + [1]
     for k in range(n - 1, 0, -1):
         row[k] += row[k - 1] + row[k + 1]
     return row
 
 
-schroeder: tgen = TablGenerator(_sch, "Schroeder", "SCHROD")
+schroeder: tgen = TablGenerator(_schroeder, "Schroeder", "SCHROD")
 
 
 ####################################################################

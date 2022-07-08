@@ -13,16 +13,16 @@ from tabltypes import *
 """
 
 @cache
-def _ff(n: int) -> list[int]:
+def _falling_factorial(n: int) -> list[int]:
     if n == 0: 
         return [1]
 
-    r: list[int] = _ff(n - 1)
+    r: list[int] = _falling_factorial(n - 1)
     row: list[int] = [n * r[k] for k in range(-1, n)]
     row[0] = 1
     return row
 
-falling_factorial: tgen = TablGenerator(_ff, "Falling factorial", "FALFAC")
+falling_factorial: tgen = TablGenerator(_falling_factorial, "Falling factorial", "FALFAC")
 
 
 ####################################################################

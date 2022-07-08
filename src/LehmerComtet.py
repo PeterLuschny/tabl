@@ -24,12 +24,12 @@ def t(n: int, k: int, m: int) -> int:
     return m * t(n, k - 1, m) + t(n - 1, k, m + 1)
 
 
-def _lecom(n: int) -> list[int]:
+def _lehmer(n: int) -> list[int]:
     return [t(k - 1, n - k, n - k) if n != k else 1
         for k in range(n + 1) ]
 
 
-lehmer: tgen = TablGenerator(_lecom, "LehmerComtet", "LEHCOM")
+lehmer: tgen = TablGenerator(_lehmer, "LehmerComtet", "LEHCOM")
 
 
 ####################################################################

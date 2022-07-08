@@ -17,17 +17,17 @@ from tabltypes import *
 
 
 @cache
-def _rf(n: int) -> list[int]:
+def _rising_factorial(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = [0] + _rf(n - 1)
+    row: list[int] = [0] + _rising_factorial(n - 1)
     for k in range(0, n):
         row[k] += (n - k) * row[k + 1]
     return row
 
 
-rising_factorial: tgen = TablGenerator(_rf, "Rising factorial", "RISFAC")
+rising_factorial: tgen = TablGenerator(_rising_factorial, "Rising factorial", "RISFAC")
 
 
 ####################################################################

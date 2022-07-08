@@ -18,19 +18,20 @@ from tabltypes import *
 
 
 @cache
-def _etan(n: int) -> list[int]:
+def _euler_tan(n: int) -> list[int]:
 
-    row: list[int] = [binomial(n, k) * _etan(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  # type: ignore
+    row: list[int] = [binomial(n, k) * _euler_tan(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  # type: ignore
+
     if n % 2 == 1:
         row[0] = -sum(row[2::2]) + 1
     return row
 
 
-euler_tan: tgen = TablGenerator(_etan, "Euler tangent", "EULTAN")
+euler_tan: tgen = TablGenerator(_euler_tan, "Euler tangent", "EULTAN")
 
 
 def eulerT(n) -> int:
-    return 0 if n % 2 == 0 else _etan(n)[0]
+    return 0 if n % 2 == 0 else _euler_tan(n)[0]
 
 
 ####################################################################

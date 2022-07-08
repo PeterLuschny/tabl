@@ -17,20 +17,20 @@ from tabltypes import *
 
 
 @cache
-def _mot(n: int) -> list[int]:
+def _motzkin(n: int) -> list[int]:
     if n == 0:
         return [1]
 
     def r(k: int) -> int:
-        return _mot(n - 1)[k] if k >= 0 and k < n else 0
+        return _motzkin(n - 1)[k] if k >= 0 and k < n else 0
 
-    row: list[int] = _mot(n - 1) + [1]
+    row: list[int] = _motzkin(n - 1) + [1]
     for k in range(0, n):
         row[k] += r(k - 1) + r(k + 1)
     return row
 
 
-motzkin: tgen = TablGenerator(_mot, "Motzkin", "MOTZKI")
+motzkin: tgen = TablGenerator(_motzkin, "Motzkin", "MOTZKI")
 
 
 ####################################################################

@@ -16,19 +16,19 @@ from tabltypes import *
 
 
 @cache
-def _war(n: int) -> list[int]:
+def _ward(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
 
-    row: list[int] = _war(n - 1) + [0]
+    row: list[int] = _ward(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = k * row[k] + (n + k - 1) * row[k - 1]
     return row
 
 
-ward: tgen = TablGenerator(_war, "Ward", "WARDNU")
+ward: tgen = TablGenerator(_ward, "Ward", "WARDNU")
 
 
 ####################################################################

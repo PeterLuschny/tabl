@@ -16,20 +16,20 @@ from tabltypes import *
 
 
 @cache
-def _osc(n: int) -> list[int]:
+def _ordered_cycle(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
 
-    row: list[int] = _osc(n - 1) + [0]
+    row: list[int] = _ordered_cycle(n - 1) + [0]
     row[n] = row[n] * n
     for k in range(n, 0, -1):
         row[k] = (n - 1) * row[k] + k * row[k - 1]
     return row
 
 
-ordered_cycle: tgen = TablGenerator(_osc, "Ordered cycles", "ORDCYC")
+ordered_cycle: tgen = TablGenerator(_ordered_cycle, "Ordered cycles", "ORDCYC")
 
 
 ####################################################################

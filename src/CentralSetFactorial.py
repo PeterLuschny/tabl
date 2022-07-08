@@ -16,19 +16,19 @@ from tabltypes import *
 
 
 @cache
-def _csf(n: int) -> list[int]:
+def _cs_factorial(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
 
-    row: list[int] = _csf(n - 1) + [1]
+    row: list[int] = _cs_factorial(n - 1) + [1]
     for k in range(n - 1, 1, -1):
         row[k] = k ** 2 * row[k] + row[k - 1]
     return row
 
 
-cs_factorial: tgen = TablGenerator(_csf, "Central set factorials", "SETFAC")
+cs_factorial: tgen = TablGenerator(_cs_factorial, "Central set factorials", "SETFAC")
 
 
 ####################################################################

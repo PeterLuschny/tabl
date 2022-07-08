@@ -15,11 +15,11 @@ from tabltypes import *
 
 
 @cache
-def _gen(n: int) -> list[int]:
+def _genocchi(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = [0] + _gen(n - 1) + [0]
+    row: list[int] = [0] + _genocchi(n - 1) + [0]
 
     for k in range(n, 0, -1):
         row[k] += row[k + 1]
@@ -30,7 +30,7 @@ def _gen(n: int) -> list[int]:
     return row[1:]
 
 
-genocchi: tgen = TablGenerator(_gen, "Genocchi", "GENOCC")
+genocchi: tgen = TablGenerator(_genocchi, "Genocchi", "GENOCC")
 
 
 ####################################################################

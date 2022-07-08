@@ -16,17 +16,17 @@ from tabltypes import *
 
 
 @cache
-def _eur(n: int) -> list[int]:
+def _eulerian(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = _eur(n - 1) + [0]
+    row: list[int] = _eulerian(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = (n - k) * row[k - 1] + (k + 1) * row[k]
     return row
 
 
-eulerian: tgen = TablGenerator(_eur, "Eulerian", "EULIA1")
+eulerian: tgen = TablGenerator(_eulerian, "Eulerian", "EULIA1")
 
 
 ####################################################################

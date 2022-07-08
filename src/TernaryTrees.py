@@ -16,17 +16,17 @@ from tabltypes import *
 
 
 @cache
-def _ttr(n: int) -> list[int]:
+def _ternary_tree(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
 
-    row: list[int] = _ttr(n - 1) + [_ttr(n - 1)[n - 1]]
+    row: list[int] = _ternary_tree(n - 1) + [_ternary_tree(n - 1)[n - 1]]
     return list(accumulate(accumulate(row)))
 
 
-ternary_tree: tgen = TablGenerator(_ttr, "Ternary trees", "TETREE")
+ternary_tree: tgen = TablGenerator(_ternary_tree, "Ternary trees", "TETREE")
 
 
 ####################################################################

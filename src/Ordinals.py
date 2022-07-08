@@ -15,14 +15,14 @@ from tabltypes import *
 
 
 @cache
-def _ord(n: int) -> list[int]:
+def _ordinals(n: int) -> list[int]:
     if n == 0:
         return [0]
 
-    return _ord(n - 1) + [n]
+    return _ordinals(n - 1) + [n]
 
 
-ordinals: tgen = TablGenerator(_ord, "Ordinals", "ORDREP")
+ordinals: tgen = TablGenerator(_ordinals, "Ordinals", "ORDREP")
 
 
 ####################################################################

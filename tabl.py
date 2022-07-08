@@ -141,225 +141,224 @@ def PrintProfile(T) -> None:
         print(f"{seq[0]}, {seq[1]}")
     print()
 @cache
-def _abe(n: int) -> list[int]:
+def _abel(n: int) -> list[int]:
     if n == 0:
         return [1]
     return [binomial(n - 1, k - 1) * n ** (n - k) if k > 0 else 0 for k in range(n + 1)]
-abel: tgen = TablGenerator(_abe, "Abel", "ABELPO")
+abel: tgen = TablGenerator(_abel, "Abel", "ABELPO")
 @cache
-def _bel(n: int) -> list[int]:
+def _bell(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = [_bel(n - 1)[n - 1]] + _bel(n - 1)
+    row: list[int] = [_bell(n - 1)[n - 1]] + _bell(n - 1)
     for k in range(1, n + 1):
         row[k] += row[k - 1]
     return row
-bell: tgen = TablGenerator(_bel, "Bell", "BELLPE")
+bell: tgen = TablGenerator(_bell, "Bell", "BELLPE")
 @cache
-def _bes(n: int) -> list[int]:
+def _bessel(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = _bes(n - 1) + [1]
+    row: list[int] = _bessel(n - 1) + [1]
     for k in range(n - 1, 0, -1):
         row[k] = row[k - 1] + (2 * (n - 1) - k) * row[k]
     return row
-bessel: tgen = TablGenerator(_bes, "Bessel", "BESSEL")
+bessel: tgen = TablGenerator(_bessel, "Bessel", "BESSEL")
 @cache
-def _bin(n: int) -> list[int]:
+def _binomial(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = [1] + _bin(n - 1)
+    row: list[int] = [1] + _binomial(n - 1)
     for k in range(1, n):
         row[k] += row[k + 1]
     return row
-binomial: tgen = TablGenerator(_bin, "Binomial", "BINOMC")
+binomial: tgen = TablGenerator(_binomial, "Binomial", "BINOMC")
 @cache
-def _cat(n: int) -> list[int]:
+def _catalan(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = _cat(n - 1) + [_cat(n - 1)[n - 1]]
+    row: list[int] = _catalan(n - 1) + [_catalan(n - 1)[n - 1]]
     return list(accumulate(row))
-catalan: tgen = TablGenerator(_cat, "Catalan", "CATALA")
+catalan: tgen = TablGenerator(_catalan, "Catalan", "CATALA")
 @cache
-def _car(n: int) -> list[int]:
+def _catalan_aerated(n: int) -> list[int]:
     if n == 0:
         return [1]
     def r(k: int) -> int:
-        return _car(n - 1)[k] if k >= 0 and k < n else 0
-    row: list[int] = _car(n - 1) + [1]
+        return _catalan_aerated(n - 1)[k] if k >= 0 and k < n else 0
+    row: list[int] = _catalan_aerated(n - 1) + [1]
     for k in range(0, n):
         row[k] = r(k - 1) + r(k + 1)
     return row
-catalan_aerated: tgen = TablGenerator(_car, "Catalan aerated", "CATAER")
+catalan_aerated: tgen = TablGenerator(_catalan_aerated, "Catalan aerated", "CATAER")
 @cache
-def _ccf(n: int) -> list[int]:
+def _cc_factorial(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = _ccf(n - 1) + [0]
+    row: list[int] = _cc_factorial(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = (n + k - 1) * (row[k] + row[k - 1])
     return row
-cc_factorial: tgen = TablGenerator(_ccf, "Central cycle factorials", "CYCFAC")
+cc_factorial: tgen = TablGenerator(_cc_factorial, "Central cycle factorials", "CYCFAC")
 @cache
-def _csf(n: int) -> list[int]:
+def _cs_factorial(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = _csf(n - 1) + [1]
+    row: list[int] = _cs_factorial(n - 1) + [1]
     for k in range(n - 1, 1, -1):
         row[k] = k ** 2 * row[k] + row[k - 1]
     return row
-cs_factorial: tgen = TablGenerator(_csf, "Central set factorials", "SETFAC")
+cs_factorial: tgen = TablGenerator(_cs_factorial, "Central set factorials", "SETFAC")
 @cache
-def _del(n: int) -> list[int]:
+def _delannoy(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [1, 1]
-    rowA: list[int] = _del(n - 2)
-    row: list[int] = _del(n - 1) + [1]
+    rowA: list[int] = _delannoy(n - 2)
+    row: list[int] = _delannoy(n - 1) + [1]
     for k in range(n - 1, 0, -1):
         row[k] += row[k - 1] + rowA[k - 1]
     return row
-delannoy: tgen = TablGenerator(_del, "Delannoy", "DELANO")
+delannoy: tgen = TablGenerator(_delannoy, "Delannoy", "DELANO")
 @cache
-def _eul(n: int) -> list[int]:
+def _euler(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = _eul(n - 1) + [1]
+    row: list[int] = _euler(n - 1) + [1]
     for k in range(n, 0, -1):
         row[k] = (row[k - 1] * n) // (k)
     row[0] = -sum((-1) ** (j // 2) * row[j] for j in range(n, 0, -2))
     return row
-euler: tgen = TablGenerator(_eul, "Euler", "EULNUM")
+euler: tgen = TablGenerator(_euler, "Euler", "EULNUM")
 def euler_num(n) -> int:
-    return _eul(n)[0]
+    return _euler(n)[0]
 @cache
-def _eur(n: int) -> list[int]:
+def _eulerian(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = _eur(n - 1) + [0]
+    row: list[int] = _eulerian(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = (n - k) * row[k - 1] + (k + 1) * row[k]
     return row
-eulerian: tgen = TablGenerator(_eur, "Eulerian", "EULIA1")
+eulerian: tgen = TablGenerator(_eulerian, "Eulerian", "EULIA1")
 @cache
-def _eu2(n: int) -> list[int]:
+def _eulerian2(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = _eu2(n - 1) + [0]
+    row: list[int] = _eulerian2(n - 1) + [0]
     for k in range(n, 1, -1):
         row[k] = (2 * n - k) * row[k - 1] + k * row[k]
     return row
-eulerian2: tgen = TablGenerator(_eu2, "Eulerian2", "EULIA2")
+eulerian2: tgen = TablGenerator(_eulerian2, "Eulerian2", "EULIA2")
 @cache
-def _eub(n: int) -> list[int]:
+def _eulerianB(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = _eub(n - 1) + [1]
+    row: list[int] = _eulerianB(n - 1) + [1]
     for k in range(n - 1, 1, -1):
         row[k] = (2 * (n - k) + 1) * row[k - 1] + (2 * k - 1) * row[k]
     return row
-eulerianB: tgen = TablGenerator(_eub, "EulerianB", "EULIAB")
+eulerianB: tgen = TablGenerator(_eulerianB, "EulerianB", "EULIAB")
 @cache
-def _esec(n: int) -> list[int]:
+def _euler_sec(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = [binomial(n, k) * _esec(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  # type: ignore
-    #  p: list[int] = [binomial(n - 1, k - 1) * n ** (n - k) if k > 0 else 0 for k in range(0, n + 1)]
+    row: list[int] = [binomial(n, k) * _euler_sec(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  # type: ignore
     if n % 2 == 0:
         row[0] = -sum(row[2::2])
     return row
-euler_sec: tgen = TablGenerator(_esec, "Euler secant", "EULSEC") # type: ignore 
+euler_sec: tgen = TablGenerator(_euler_sec, "Euler secant", "EULSEC") 
 def eulerS(n) -> int:
-    return 0 if n % 2 == 1 else _esec(n)[0]
+    return 0 if n % 2 == 1 else _euler_sec(n)[0]
 @cache
-def _etan(n: int) -> list[int]:
-    row: list[int] = [binomial(n, k) * _etan(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  # type: ignore
+def _euler_tan(n: int) -> list[int]:
+    row: list[int] = [binomial(n, k) * _euler_tan(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  # type: ignore
     if n % 2 == 1:
         row[0] = -sum(row[2::2]) + 1
     return row
-euler_tan: tgen = TablGenerator(_etan, "Euler tangent", "EULTAN")
+euler_tan: tgen = TablGenerator(_euler_tan, "Euler tangent", "EULTAN")
 def eulerT(n) -> int:
-    return 0 if n % 2 == 0 else _etan(n)[0]
+    return 0 if n % 2 == 0 else _euler_tan(n)[0]
 @cache
-def _ff(n: int) -> list[int]:
+def _falling_factorial(n: int) -> list[int]:
     if n == 0: 
         return [1]
-    r: list[int] = _ff(n - 1)
+    r: list[int] = _falling_factorial(n - 1)
     row: list[int] = [n * r[k] for k in range(-1, n)]
     row[0] = 1
     return row
-falling_factorial: tgen = TablGenerator(_ff, "Falling factorial", "FALFAC")
+falling_factorial: tgen = TablGenerator(_falling_factorial, "Falling factorial", "FALFAC")
 @cache
-def _fib(n: int) -> list[int]:
+def _fibonacci(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = _fib(n - 1) + [1]
+    row: list[int] = _fibonacci(n - 1) + [1]
     s: int = row[1]
     for k in range(n - 1, 0, -1):
         row[k] += row[k - 1]
     row[0] = s
     return row
-fibonacci: tgen = TablGenerator(_fib, "Fibonacci", "FIBONA")
+fibonacci: tgen = TablGenerator(_fibonacci, "Fibonacci", "FIBONA")
 @cache
-def _fub(n: int) -> list[int]:
+def _fubini(n: int) -> list[int]:
     if n == 0:
         return [1]
     def r(k: int) -> int: 
-        return _fub(n - 1)[k] if k <= n - 1 else 0
-    row: list[int] = [0] + _fub(n - 1)
+        return _fubini(n - 1)[k] if k <= n - 1 else 0
+    row: list[int] = [0] + _fubini(n - 1)
     for k in range(1, n + 1):
         row[k] = k * (r(k - 1) + r(k))
     return row
-fubini: tgen = TablGenerator(_fub, "Fubini", "FUBINI")
+fubini: tgen = TablGenerator(_fubini, "Fubini", "FUBINI")
 @cache
-def _gen(n: int) -> list[int]:
+def _genocchi(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = [0] + _gen(n - 1) + [0]
+    row: list[int] = [0] + _genocchi(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] += row[k + 1]
     for k in range(2, n + 2):
         row[k] += row[k - 1]
     return row[1:]
-genocchi: tgen = TablGenerator(_gen, "Genocchi", "GENOCC")
+genocchi: tgen = TablGenerator(_genocchi, "Genocchi", "GENOCC")
 @cache
-def _her(n: int) -> list[int]:
+def _hermite(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
-    rowA: list[int] = _her(n - 1)
-    row: list[int] = _her(n - 1) + [0]
+    rowA: list[int] = _hermite(n - 1)
+    row: list[int] = _hermite(n - 1) + [0]
     for k in range(1, n):
         row[k] = rowA[k - 1] + (k + 1) * row[k + 1]
     row[0] = rowA[1]
     row[n] = 1
     return row
-hermite: tgen = TablGenerator(_her, "Hermite", "HERMIT")
+hermite: tgen = TablGenerator(_hermite, "Hermite", "HERMIT")
 @cache
-def _lag(n: int) -> list[int]:
+def _laguerre(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = [0] + _lag(n - 1)
+    row: list[int] = [0] + _laguerre(n - 1)
     for k in range(0, n):
         row[k] += (n + k) * row[k + 1]
     return row
-laguerre: tgen = TablGenerator(_lag, "Laguerre", "LAGUER")
+laguerre: tgen = TablGenerator(_laguerre, "Laguerre", "LAGUER")
 @cache
 def _lah(n: int) -> list[int]:
     if n == 0:
@@ -377,52 +376,52 @@ def t(n: int, k: int, m: int) -> int:
     if k == 0:
         return n ** k
     return m * t(n, k - 1, m) + t(n - 1, k, m + 1)
-def _lecom(n: int) -> list[int]:
+def _lehmer(n: int) -> list[int]:
     return [t(k - 1, n - k, n - k) if n != k else 1
         for k in range(n + 1) ]
-lehmer: tgen = TablGenerator(_lecom, "LehmerComtet", "LEHCOM")
+lehmer: tgen = TablGenerator(_lehmer, "LehmerComtet", "LEHCOM")
 @cache
-def _mot(n: int) -> list[int]:
+def _motzkin(n: int) -> list[int]:
     if n == 0:
         return [1]
     def r(k: int) -> int:
-        return _mot(n - 1)[k] if k >= 0 and k < n else 0
-    row: list[int] = _mot(n - 1) + [1]
+        return _motzkin(n - 1)[k] if k >= 0 and k < n else 0
+    row: list[int] = _motzkin(n - 1) + [1]
     for k in range(0, n):
         row[k] += r(k - 1) + r(k + 1)
     return row
-motzkin: tgen = TablGenerator(_mot, "Motzkin", "MOTZKI")
+motzkin: tgen = TablGenerator(_motzkin, "Motzkin", "MOTZKI")
 @cache
-def _nar(n: int) -> list[int]:
+def _narayana(n: int) -> list[int]:
     if n < 3:
         return ([1], [0, 1], [0, 1, 1])[n]
-    a: list[int] = _nar(n - 2) + [0, 0]
-    row: list[int] = _nar(n - 1) + [1]
+    a: list[int] = _narayana(n - 2) + [0, 0]
+    row: list[int] = _narayana(n - 1) + [1]
     for k in range(n - 1, 1, -1):
         row[k] = (
             (row[k] + row[k - 1]) * (2 * n - 1)
             - (a[k] - 2 * a[k - 1] + a[k - 2]) * (n - 2)
         ) // (n + 1)
     return row
-narayana: tgen = TablGenerator(_nar, "Narayana", "NARAYA")
+narayana: tgen = TablGenerator(_narayana, "Narayana", "NARAYA")
 @cache
-def _osc(n: int) -> list[int]:
+def _ordered_cycle(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = _osc(n - 1) + [0]
+    row: list[int] = _ordered_cycle(n - 1) + [0]
     row[n] = row[n] * n
     for k in range(n, 0, -1):
         row[k] = (n - 1) * row[k] + k * row[k - 1]
     return row
-ordered_cycle: tgen = TablGenerator(_osc, "Ordered cycles", "ORDCYC")
+ordered_cycle: tgen = TablGenerator(_ordered_cycle, "Ordered cycles", "ORDCYC")
 @cache
-def _ord(n: int) -> list[int]:
+def _ordinals(n: int) -> list[int]:
     if n == 0:
         return [0]
-    return _ord(n - 1) + [n]
-ordinals: tgen = TablGenerator(_ord, "Ordinals", "ORDREP")
+    return _ordinals(n - 1) + [n]
+ordinals: tgen = TablGenerator(_ordinals, "Ordinals", "ORDREP")
 @cache
 def _p(n: int, k: int) -> int:
     if k < 0 or n < 0:
@@ -431,108 +430,108 @@ def _p(n: int, k: int) -> int:
         return 1 if n == 0 else 0
     return _p(n - 1, k - 1) + _p(n - k, k)
 @cache
-def _pn(n: int) -> list[int]:
+def _partnum_exact(n: int) -> list[int]:
     return [_p(n, k) for k in range(n + 1)]
 @cache
-def _apn(n: int) -> list[int]:
-    return list(accumulate(_pn(n)))
-partnum_exact: tgen = TablGenerator(_pn, "Partition numbers (exact)", "PARTEX")
-partnum_atmost: tgen = TablGenerator(_apn, "Partition numbers (at most)", "PARMOS")
+def _partnum_atmost(n: int) -> list[int]:
+    return list(accumulate(_partnum_exact(n)))
+partnum_exact: tgen = TablGenerator(_partnum_exact, "Partition numbers (exact)", "PARTEX")
+partnum_atmost: tgen = TablGenerator(_partnum_atmost, "Partition numbers (at most)", "PARMOS")
 @cache
-def _pol(n: int) -> list[int]:
+def _polygonal(n: int) -> list[int]:
     if n == 0:
         return [0]
     if n == 1:
         return [0, 1]
-    arow: list[int] = _pol(n - 2)
-    row: list[int] = _pol(n - 1) + [n]
+    arow: list[int] = _polygonal(n - 2)
+    row: list[int] = _polygonal(n - 1) + [n]
     row[n - 1] += row[n - 2]
     for k in range(2, n - 1):
         row[k] += row[k] - arow[k]
     return row
-polygonal: tgen = TablGenerator(_pol, "Polygonal numbers", "POLYGO")
+polygonal: tgen = TablGenerator(_polygonal, "Polygonal numbers", "POLYGO")
 @cache
-def _ren(n: int) -> list[int]:
+def _rencontres(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = [(n - 1) * (_ren(n - 1)[0] + _ren(n - 2)[0])] + _ren(n - 1)
+    row: list[int] = [(n - 1) * (_rencontres(n - 1)[0] + _rencontres(n - 2)[0])] + _rencontres(n - 1)
     for k in range(1, n - 1):
         row[k] = (n * row[k]) // k
     return row
-rencontres: tgen = TablGenerator(_ren, "Rencontres", "RENCON")
+rencontres: tgen = TablGenerator(_rencontres, "Rencontres", "RENCON")
 @cache
-def _rf(n: int) -> list[int]:
+def _rising_factorial(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = [0] + _rf(n - 1)
+    row: list[int] = [0] + _rising_factorial(n - 1)
     for k in range(0, n):
         row[k] += (n - k) * row[k + 1]
     return row
-rising_factorial: tgen = TablGenerator(_rf, "Rising factorial", "RISFAC")
+rising_factorial: tgen = TablGenerator(_rising_factorial, "Rising factorial", "RISFAC")
 @cache
-def _sch(n: int) -> list[int]:
+def _schroeder(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = _sch(n - 1) + [1]
+    row: list[int] = _schroeder(n - 1) + [1]
     for k in range(n - 1, 0, -1):
         row[k] += row[k - 1] + row[k + 1]
     return row
-schroeder: tgen = TablGenerator(_sch, "Schroeder", "SCHROD")
+schroeder: tgen = TablGenerator(_schroeder, "Schroeder", "SCHROD")
 @cache
-def _sei(n: int) -> list[int]:
+def _seidel(n: int) -> list[int]:
     if n == 0:
         return [1]
-    rowA: list[int] = _sei(n - 1)
-    row: list[int] = [0] + _sei(n - 1)
+    rowA: list[int] = _seidel(n - 1)
+    row: list[int] = [0] + _seidel(n - 1)
     row[1] = row[n]
     for k in range(2, n + 1):
         row[k] = row[k - 1] + rowA[n - k]
     return row
-def _seibou(n: int) -> list[int]:
-    return _sei(n) if n % 2 else _sei(n)[::-1]
-seidel: tgen = TablGenerator(_sei, "Seidel", "SEIDEL")
-seidel_boust: tgen = TablGenerator(_seibou, "Seidel boustrophedon", "SEIBOU")
+def _seidel_boust(n: int) -> list[int]:
+    return _seidel(n) if n % 2 else _seidel(n)[::-1]
+seidel: tgen = TablGenerator(_seidel, "Seidel", "SEIDEL")
+seidel_boust: tgen = TablGenerator(_seidel_boust, "Seidel boustrophedon", "SEIBOU")
 @cache
-def _stc(n: int) -> list[int]:
+def _stirling_cycle(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = [0] + _stc(n - 1)
+    row: list[int] = [0] + _stirling_cycle(n - 1)
     for k in range(1, n):
         row[k] = row[k] + (n - 1) * row[k + 1]
     return row
-stirling_cycle: tgen = TablGenerator(_stc, "Stirling cycle", "STICYC")
+stirling_cycle: tgen = TablGenerator(_stirling_cycle, "Stirling cycle", "STICYC")
 @cache
-def _sts(n: int) -> list[int]:
+def _stirling_set(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = [0] + _sts(n - 1)
+    row: list[int] = [0] + _stirling_set(n - 1)
     for k in range(1, n):
         row[k] = row[k] + k * row[k + 1]
     return row
-stirling_set: tgen = TablGenerator(_sts, "Stirling set", "STISET")
+stirling_set: tgen = TablGenerator(_stirling_set, "Stirling set", "STISET")
 @cache
-def _sym(n: int) -> list[int]:
+def _sympoly(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = _sym(n - 1) + [1]
+    row: list[int] = _sympoly(n - 1) + [1]
     for m in range(n - 1, 0, -1):
         row[m] = (n - m + 1) * row[m] + row[m - 1]
     row[0] *= n
     return row
-sympoly: tgen = TablGenerator(_sym, "Symmetric polynomials", "SYMPOL")
+sympoly: tgen = TablGenerator(_sympoly, "Symmetric polynomials", "SYMPOL")
 @cache
-def _ttr(n: int) -> list[int]:
+def _ternary_tree(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = _ttr(n - 1) + [_ttr(n - 1)[n - 1]]
+    row: list[int] = _ternary_tree(n - 1) + [_ternary_tree(n - 1)[n - 1]]
     return list(accumulate(accumulate(row)))
-ternary_tree: tgen = TablGenerator(_ttr, "Ternary trees", "TETREE")
+ternary_tree: tgen = TablGenerator(_ternary_tree, "Ternary trees", "TETREE")
 @cache
 def _uno(n: int) -> list[int]:
     if n == 0:
@@ -540,25 +539,25 @@ def _uno(n: int) -> list[int]:
     return _uno(n - 1) + [1]
 uno: tgen = TablGenerator(_uno, "Uno", "UNOALL")
 @cache
-def _war(n: int) -> list[int]:
+def _ward(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = _war(n - 1) + [0]
+    row: list[int] = _ward(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = k * row[k] + (n + k - 1) * row[k - 1]
     return row
-ward: tgen = TablGenerator(_war, "Ward", "WARDNU")
+ward: tgen = TablGenerator(_ward, "Ward", "WARDNU")
 @cache
-def _wor(n: int) -> list[int]:
+def _worpitzky(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = _wor(n - 1) + [0]
+    row: list[int] = _worpitzky(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = k * row[k - 1] + (k + 1) * row[k]
     return row
-worpitzky: tgen = TablGenerator(_wor, "Worpitzky", "WORPIT")
+worpitzky: tgen = TablGenerator(_worpitzky, "Worpitzky", "WORPIT")
 tabl_fun: list[tgen] = [
     abel,
     bell,

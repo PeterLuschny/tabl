@@ -16,17 +16,17 @@ from tabltypes import *
 
 
 @cache
-def _cat(n: int) -> list[int]:
+def _catalan(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
 
-    row: list[int] = _cat(n - 1) + [_cat(n - 1)[n - 1]]
+    row: list[int] = _catalan(n - 1) + [_catalan(n - 1)[n - 1]]
     return list(accumulate(row))
 
 
-catalan: tgen = TablGenerator(_cat, "Catalan", "CATALA")
+catalan: tgen = TablGenerator(_catalan, "Catalan", "CATALA")
 
 
 ####################################################################

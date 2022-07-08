@@ -17,17 +17,17 @@ from tabltypes import *
 
 
 @cache
-def _bel(n: int) -> list[int]:
+def _bell(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = [_bel(n - 1)[n - 1]] + _bel(n - 1)
+    row: list[int] = [_bell(n - 1)[n - 1]] + _bell(n - 1)
     for k in range(1, n + 1):
         row[k] += row[k - 1]
     return row
 
 
-bell: tgen = TablGenerator(_bel, "Bell", "BELLPE")
+bell: tgen = TablGenerator(_bell, "Bell", "BELLPE")
 
 
 ####################################################################

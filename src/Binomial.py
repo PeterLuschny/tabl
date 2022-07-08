@@ -17,17 +17,17 @@ from tabltypes import *
 
 
 @cache
-def _bin(n: int) -> list[int]:
+def _binomial(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = [1] + _bin(n - 1)
+    row: list[int] = [1] + _binomial(n - 1)
     for k in range(1, n):
         row[k] += row[k + 1]
     return row
 
 
-binomial: tgen = TablGenerator(_bin, "Binomial", "BINOMC")
+binomial: tgen = TablGenerator(_binomial, "Binomial", "BINOMC")
 
 
 ####################################################################

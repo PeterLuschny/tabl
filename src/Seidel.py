@@ -25,25 +25,25 @@ Seidel boustrophedon:
 
 
 @cache
-def _sei(n: int) -> list[int]:
+def _seidel(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    rowA: list[int] = _sei(n - 1)
-    row: list[int] = [0] + _sei(n - 1)
+    rowA: list[int] = _seidel(n - 1)
+    row: list[int] = [0] + _seidel(n - 1)
     row[1] = row[n]
     for k in range(2, n + 1):
         row[k] = row[k - 1] + rowA[n - k]
     return row
 
 
-def _seibou(n: int) -> list[int]:
-    return _sei(n) if n % 2 else _sei(n)[::-1]
+def _seidel_boust(n: int) -> list[int]:
+    return _seidel(n) if n % 2 else _seidel(n)[::-1]
 
 
-seidel: tgen = TablGenerator(_sei, "Seidel", "SEIDEL")
+seidel: tgen = TablGenerator(_seidel, "Seidel", "SEIDEL")
 
-seidel_boust: tgen = TablGenerator(_seibou, "Seidel boustrophedon", "SEIBOU")
+seidel_boust: tgen = TablGenerator(_seidel_boust, "Seidel boustrophedon", "SEIBOU")
 
 ####################################################################
 

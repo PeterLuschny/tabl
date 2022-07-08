@@ -28,21 +28,21 @@ Triangle view:
 
 
 @cache
-def _pol(n: int) -> list[int]:
+def _polygonal(n: int) -> list[int]:
     if n == 0:
         return [0]
     if n == 1:
         return [0, 1]
 
-    arow: list[int] = _pol(n - 2)
-    row: list[int] = _pol(n - 1) + [n]
+    arow: list[int] = _polygonal(n - 2)
+    row: list[int] = _polygonal(n - 1) + [n]
     row[n - 1] += row[n - 2]
     for k in range(2, n - 1):
         row[k] += row[k] - arow[k]
     return row
 
 
-polygonal: tgen = TablGenerator(_pol, "Polygonal numbers", "POLYGO")
+polygonal: tgen = TablGenerator(_polygonal, "Polygonal numbers", "POLYGO")
 
 
 ####################################################################

@@ -17,20 +17,20 @@ from tabltypes import *
 
 
 @cache
-def _car(n: int) -> list[int]:
+def _catalan_aerated(n: int) -> list[int]:
     if n == 0:
         return [1]
 
     def r(k: int) -> int:
-        return _car(n - 1)[k] if k >= 0 and k < n else 0
+        return _catalan_aerated(n - 1)[k] if k >= 0 and k < n else 0
 
-    row: list[int] = _car(n - 1) + [1]
+    row: list[int] = _catalan_aerated(n - 1) + [1]
     for k in range(0, n):
         row[k] = r(k - 1) + r(k + 1)
     return row
 
 
-catalan_aerated: tgen = TablGenerator(_car, "Catalan aerated", "CATAER")
+catalan_aerated: tgen = TablGenerator(_catalan_aerated, "Catalan aerated", "CATAER")
 
 
 ####################################################################

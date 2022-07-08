@@ -17,17 +17,17 @@ from tabltypes import *
 
 
 @cache
-def _stc(n: int) -> list[int]:
+def _stirling_cycle(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = [0] + _stc(n - 1)
+    row: list[int] = [0] + _stirling_cycle(n - 1)
     for k in range(1, n):
         row[k] = row[k] + (n - 1) * row[k + 1]
     return row
 
 
-stirling_cycle: tgen = TablGenerator(_stc, "Stirling cycle", "STICYC")
+stirling_cycle: tgen = TablGenerator(_stirling_cycle, "Stirling cycle", "STICYC")
 
 
 ####################################################################

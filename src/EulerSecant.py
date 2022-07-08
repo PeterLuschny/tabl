@@ -17,22 +17,21 @@ from tabltypes import *
 
 
 @cache
-def _esec(n: int) -> list[int]:
+def _euler_sec(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = [binomial(n, k) * _esec(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  # type: ignore
-    #  p: list[int] = [binomial(n - 1, k - 1) * n ** (n - k) if k > 0 else 0 for k in range(0, n + 1)]
+    row: list[int] = [binomial(n, k) * _euler_sec(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  # type: ignore
     if n % 2 == 0:
         row[0] = -sum(row[2::2])
     return row
 
 
-euler_sec: tgen = TablGenerator(_esec, "Euler secant", "EULSEC") # type: ignore 
+euler_sec: tgen = TablGenerator(_euler_sec, "Euler secant", "EULSEC") 
 
 
 def eulerS(n) -> int:
-    return 0 if n % 2 == 1 else _esec(n)[0]
+    return 0 if n % 2 == 1 else _euler_sec(n)[0]
 
 
 ####################################################################

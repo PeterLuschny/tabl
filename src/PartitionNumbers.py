@@ -39,18 +39,18 @@ def _p(n: int, k: int) -> int:
 
 
 @cache
-def _pn(n: int) -> list[int]:
+def _partnum_exact(n: int) -> list[int]:
     return [_p(n, k) for k in range(n + 1)]
 
 
 @cache
-def _apn(n: int) -> list[int]:
-    return list(accumulate(_pn(n)))
+def _partnum_atmost(n: int) -> list[int]:
+    return list(accumulate(_partnum_exact(n)))
 
 
-partnum_exact: tgen = TablGenerator(_pn, "Partition numbers (exact)", "PARTEX")
+partnum_exact: tgen = TablGenerator(_partnum_exact, "Partition numbers (exact)", "PARTEX")
 
-partnum_atmost: tgen = TablGenerator(_apn, "Partition numbers (at most)", "PARMOS")
+partnum_atmost: tgen = TablGenerator(_partnum_atmost, "Partition numbers (at most)", "PARMOS")
 
 
 ####################################################################

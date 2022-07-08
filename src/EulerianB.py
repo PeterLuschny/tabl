@@ -16,19 +16,19 @@ from tabltypes import *
 
 
 @cache
-def _eub(n: int) -> list[int]:
+def _eulerianB(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
 
-    row: list[int] = _eub(n - 1) + [1]
+    row: list[int] = _eulerianB(n - 1) + [1]
     for k in range(n - 1, 1, -1):
         row[k] = (2 * (n - k) + 1) * row[k - 1] + (2 * k - 1) * row[k]
     return row
 
 
-eulerianB: tgen = TablGenerator(_eub, "EulerianB", "EULIAB")
+eulerianB: tgen = TablGenerator(_eulerianB, "EulerianB", "EULIAB")
 
 
 ####################################################################

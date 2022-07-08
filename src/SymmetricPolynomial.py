@@ -15,11 +15,11 @@ from tabltypes import *
 
 
 @cache
-def _sym(n: int) -> list[int]:
+def _sympoly(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = _sym(n - 1) + [1]
+    row: list[int] = _sympoly(n - 1) + [1]
 
     for m in range(n - 1, 0, -1):
         row[m] = (n - m + 1) * row[m] + row[m - 1]
@@ -27,7 +27,7 @@ def _sym(n: int) -> list[int]:
     return row
 
 
-sympoly: tgen = TablGenerator(_sym, "Symmetric polynomials", "SYMPOL")
+sympoly: tgen = TablGenerator(_sympoly, "Symmetric polynomials", "SYMPOL")
 
 
 ####################################################################

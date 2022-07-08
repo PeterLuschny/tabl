@@ -17,19 +17,19 @@ from tabltypes import *
 
 
 @cache
-def _ren(n: int) -> list[int]:
+def _rencontres(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
 
-    row: list[int] = [(n - 1) * (_ren(n - 1)[0] + _ren(n - 2)[0])] + _ren(n - 1)
+    row: list[int] = [(n - 1) * (_rencontres(n - 1)[0] + _rencontres(n - 2)[0])] + _rencontres(n - 1)
     for k in range(1, n - 1):
         row[k] = (n * row[k]) // k
     return row
 
 
-rencontres: tgen = TablGenerator(_ren, "Rencontres", "RENCON")
+rencontres: tgen = TablGenerator(_rencontres, "Rencontres", "RENCON")
 
 
 ####################################################################

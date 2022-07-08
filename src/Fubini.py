@@ -16,20 +16,20 @@ from tabltypes import *
 
 
 @cache
-def _fub(n: int) -> list[int]:
+def _fubini(n: int) -> list[int]:
     if n == 0:
         return [1]
 
     def r(k: int) -> int: 
-        return _fub(n - 1)[k] if k <= n - 1 else 0
+        return _fubini(n - 1)[k] if k <= n - 1 else 0
 
-    row: list[int] = [0] + _fub(n - 1)
+    row: list[int] = [0] + _fubini(n - 1)
     for k in range(1, n + 1):
         row[k] = k * (r(k - 1) + r(k))
     return row
 
 
-fubini: tgen = TablGenerator(_fub, "Fubini", "FUBINI")
+fubini: tgen = TablGenerator(_fubini, "Fubini", "FUBINI")
 
 
 ####################################################################

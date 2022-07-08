@@ -17,11 +17,11 @@ from tabltypes import *
 
 
 @cache
-def _eul(n: int) -> list[int]:
+def _euler(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = _eul(n - 1) + [1]
+    row: list[int] = _euler(n - 1) + [1]
     for k in range(n, 0, -1):
         row[k] = (row[k - 1] * n) // (k)
     row[0] = -sum((-1) ** (j // 2) * row[j] for j in range(n, 0, -2))
@@ -29,11 +29,11 @@ def _eul(n: int) -> list[int]:
     return row
 
 
-euler: tgen = TablGenerator(_eul, "Euler", "EULNUM")
+euler: tgen = TablGenerator(_euler, "Euler", "EULNUM")
 
 
 def euler_num(n) -> int:
-    return _eul(n)[0]
+    return _euler(n)[0]
 
 
 ####################################################################

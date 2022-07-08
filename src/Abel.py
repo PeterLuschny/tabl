@@ -16,7 +16,7 @@ from Binomial import binomial
 """
 
 @cache
-def _abe(n: int) -> list[int]:
+def _abel(n: int) -> list[int]:
 
     if n == 0:
         return [1]
@@ -24,7 +24,7 @@ def _abe(n: int) -> list[int]:
     return [binomial(n - 1, k - 1) * n ** (n - k) if k > 0 else 0 for k in range(n + 1)]
 
 
-abel: tgen = TablGenerator(_abe, "Abel", "ABELPO")
+abel: tgen = TablGenerator(_abel, "Abel", "ABELPO")
 
 ####################################################################
 
