@@ -1,5 +1,5 @@
 from functools import cache
-from tabltools import TablGenerator
+from tabltypes import *
 
 """The Worpitzky triangle, A028246.
 
@@ -20,13 +20,13 @@ def _wor(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row = _wor(n - 1) + [0]
+    row: list[int] = _wor(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = k * row[k - 1] + (k + 1) * row[k]
     return row
 
 
-worpitzky = TablGenerator(_wor, "Worpitzky", "WORPIT")
+worpitzky: tgen = TablGenerator(_wor, "Worpitzky", "WORPIT")
 
 
 ####################################################################

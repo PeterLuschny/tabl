@@ -1,5 +1,5 @@
 from functools import cache
-from tabltools import TablGenerator
+from tabltypes import *
 
 """Unsigned Lah numbers, A271703. 
 
@@ -21,14 +21,14 @@ def _lah(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row = _lah(n - 1) + [1]
+    row: list[int] = _lah(n - 1) + [1]
     row[0] = 0
     for k in range(n - 1, 0, -1):
         row[k] = row[k] * (n + k - 1) + row[k - 1]
     return row
 
 
-lah = TablGenerator(_lah, "Lah numbers", "LAHNUM")
+lah: tgen = TablGenerator(_lah, "Lah numbers", "LAHNUM")
 
 
 ####################################################################

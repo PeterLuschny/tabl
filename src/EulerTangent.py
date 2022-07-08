@@ -1,6 +1,6 @@
 from functools import cache
 from Binomial import binomial
-from tabltools import TablGenerator
+from tabltypes import *
 
 """The Euler tangent polynomials, A162660, A350972, A155585, A009006, A000182. 
 
@@ -20,17 +20,16 @@ from tabltools import TablGenerator
 @cache
 def _etan(n: int) -> list[int]:
 
-    row = [binomial(n, k) * _etan(n - k)[0] if k > 0 else 0 
-           for k in range(n + 1)]
+    row: list[int] = [binomial(n, k) * _etan(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  # type: ignore
     if n % 2 == 1:
         row[0] = -sum(row[2::2]) + 1
     return row
 
 
-euler_tan = TablGenerator(_etan, "Euler tangent", "EULTAN")
+euler_tan: tgen = TablGenerator(_etan, "Euler tangent", "EULTAN")
 
 
-def eulerT(n):
+def eulerT(n) -> int:
     return 0 if n % 2 == 0 else _etan(n)[0]
 
 

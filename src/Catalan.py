@@ -1,6 +1,6 @@
 from functools import cache
 from itertools import accumulate
-from tabltools import TablGenerator
+from tabltypes import *
 
 """The Catalan triangle, Fuss-Catalan 1, A355173.
 
@@ -22,11 +22,11 @@ def _cat(n: int) -> list[int]:
     if n == 1:
         return [0, 1]
 
-    row = _cat(n - 1) + [_cat(n - 1)[n - 1]]
+    row: list[int] = _cat(n - 1) + [_cat(n - 1)[n - 1]]
     return list(accumulate(row))
 
 
-catalan = TablGenerator(_cat, "Catalan", "CATALA")
+catalan: tgen = TablGenerator(_cat, "Catalan", "CATALA")
 
 
 ####################################################################

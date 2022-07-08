@@ -1,6 +1,6 @@
 from functools import cache
 from itertools import accumulate
-from tabltools import TablGenerator
+from tabltypes import *
 
 """Ternary trees, Fuss-Catalan 2, A355172.
 
@@ -22,11 +22,11 @@ def _ttr(n: int) -> list[int]:
     if n == 1:
         return [0, 1]
 
-    row = _ttr(n - 1) + [_ttr(n - 1)[n - 1]]
+    row: list[int] = _ttr(n - 1) + [_ttr(n - 1)[n - 1]]
     return list(accumulate(accumulate(row)))
 
 
-ternary_tree = TablGenerator(_ttr, "Ternary trees", "TETREE")
+ternary_tree: tgen = TablGenerator(_ttr, "Ternary trees", "TETREE")
 
 
 ####################################################################

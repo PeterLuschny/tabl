@@ -1,5 +1,5 @@
 from functools import cache
-from tabltools import TablGenerator
+from tabltypes import *
 
 """The Ward numbers A269939, A134991.
 
@@ -22,13 +22,13 @@ def _war(n: int) -> list[int]:
     if n == 1:
         return [0, 1]
 
-    row = _war(n - 1) + [0]
+    row: list[int] = _war(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = k * row[k] + (n + k - 1) * row[k - 1]
     return row
 
 
-ward = TablGenerator(_war, "Ward", "WARDNU")
+ward: tgen = TablGenerator(_war, "Ward", "WARDNU")
 
 
 ####################################################################

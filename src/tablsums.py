@@ -1,64 +1,36 @@
 
 #@
 
-"""
-The EvenSum of a list is the sum of the even indexed terms.
-py> EvenSum([0, 1, 2, 3, 4, 5])
-0 + 2 + 4 = 6
-"""
+
 def even_sum(L: list[int]) -> int:
     return sum(L[::2])
 
 
-"""
-The OddSum of a list is the sum of the odd indexed terms.
-py> OddSum([0, 1, 2, 3, 4, 5])
-1 + 3 + 5 = 9
-"""
 def odd_sum(L: list[int]) -> int:
     return sum(L[1::2])
 
 
-"""
-The AltSum of a list is the alternating sum.
-py> AltSum([0, 1, 2, 3, 4, 5])
-+ 0 - 1 + 2 - 3 + 4 - 5 = 6 - 9 = - 3
-"""
 def alt_sum(L: list[int]) -> int:
     return even_sum(L) - odd_sum(L)
 
 
-"""
-The sum of a triangle is the sequence of the sum of the rows.
-"""
 def tabl_sum(T: list[list[int]]) -> list[int]:
     return [sum(row) for row in T]
 
 
-"""
-The even sum of a triangle is the sequence of the sum of the even indexed terms of the rows.
-"""
 def tabl_evensum(T: list[list[int]]) -> list[int]:
     return [even_sum(row) for row in T]
 
 
-"""
-The odd sum of a triangle is the sequence of the sum of the odd indexed terms of the rows.
-"""
 def tabl_oddsum(T: list[list[int]]) -> list[int]:
     return [odd_sum(row) for row in T]
 
 
-"""
-The alternating sum of a triangle is the sequence of the alternating sum of the rows.
-"""
 def tabl_altsum(T: list[list[int]]) -> list[int]:
     return [alt_sum(row) for row in T]
 
-"""
-Print the various sums of a triangle.
-"""
-def PrintSums(T: list[list[int]]):
+
+def PrintSums(T: list[list[int]]) -> None:
     print(tabl_sum(T))
     print(tabl_evensum(T))
     print(tabl_oddsum(T))

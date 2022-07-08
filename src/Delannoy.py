@@ -1,5 +1,5 @@
 from functools import cache
-from tabltools import TablGenerator
+from tabltypes import *
 
 """The Delannoy triangle, A008288. 
 
@@ -23,14 +23,14 @@ def _del(n: int) -> list[int]:
     if n == 1:
         return [1, 1]
 
-    rowA = _del(n - 2)
-    row = _del(n - 1) + [1]
+    rowA: list[int] = _del(n - 2)
+    row: list[int] = _del(n - 1) + [1]
     for k in range(n - 1, 0, -1):
         row[k] += row[k - 1] + rowA[k - 1]
     return row
 
 
-delannoy = TablGenerator(_del, "Delannoy", "DELANO")
+delannoy: tgen = TablGenerator(_del, "Delannoy", "DELANO")
 
 
 ####################################################################

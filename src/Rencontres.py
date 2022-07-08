@@ -1,5 +1,5 @@
 from functools import cache
-from tabltools import TablGenerator
+from tabltypes import *
 
 """The rencontres triangle, A008290.
 
@@ -23,13 +23,13 @@ def _ren(n: int) -> list[int]:
     if n == 1:
         return [0, 1]
 
-    row = [(n - 1) * (_ren(n - 1)[0] + _ren(n - 2)[0])] + _ren(n - 1)
+    row: list[int] = [(n - 1) * (_ren(n - 1)[0] + _ren(n - 2)[0])] + _ren(n - 1)
     for k in range(1, n - 1):
         row[k] = (n * row[k]) // k
     return row
 
 
-rencontres = TablGenerator(_ren, "Rencontres", "RENCON")
+rencontres: tgen = TablGenerator(_ren, "Rencontres", "RENCON")
 
 
 ####################################################################

@@ -1,5 +1,5 @@
 from functools import cache
-from tabltools import TablGenerator
+from tabltypes import *
 
 """Lehmer-Comtet of 2nd kind, unsigned, A354794
 
@@ -16,7 +16,7 @@ from tabltools import TablGenerator
 
 
 @cache
-def t(n, k, m):
+def t(n: int, k: int, m: int) -> int:
     if k < 0 or n < 0:
         return 0
     if k == 0:
@@ -29,7 +29,7 @@ def _lecom(n: int) -> list[int]:
         for k in range(n + 1) ]
 
 
-lehmer = TablGenerator(_lecom, "LehmerComtet", "LEHCOM")
+lehmer: tgen = TablGenerator(_lecom, "LehmerComtet", "LEHCOM")
 
 
 ####################################################################

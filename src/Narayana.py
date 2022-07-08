@@ -1,5 +1,5 @@
 from functools import cache
-from tabltools import TablGenerator
+from tabltypes import *
 
 """The Narayana triangle, A090181.
 
@@ -21,8 +21,8 @@ def _nar(n: int) -> list[int]:
     if n < 3:
         return ([1], [0, 1], [0, 1, 1])[n]
 
-    a = _nar(n - 2) + [0, 0]
-    row = _nar(n - 1) + [1]
+    a: list[int] = _nar(n - 2) + [0, 0]
+    row: list[int] = _nar(n - 1) + [1]
     for k in range(n - 1, 1, -1):
         row[k] = (
             (row[k] + row[k - 1]) * (2 * n - 1)
@@ -31,7 +31,7 @@ def _nar(n: int) -> list[int]:
     return row
 
 
-narayana = TablGenerator(_nar, "Narayana", "NARAYA")
+narayana: tgen = TablGenerator(_nar, "Narayana", "NARAYA")
 
 
 ####################################################################

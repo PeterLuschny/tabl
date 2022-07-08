@@ -1,5 +1,5 @@
 from functools import cache
-from tabltools import TablGenerator
+from tabltypes import *
 
 """The aerated Catalan triangle, A053121. 
 
@@ -21,14 +21,16 @@ def _car(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    r = lambda k: _car(n - 1)[k] if k >= 0 and k < n else 0
-    row = _car(n - 1) + [1]
+    def r(k: int) -> int:
+        return _car(n - 1)[k] if k >= 0 and k < n else 0
+
+    row: list[int] = _car(n - 1) + [1]
     for k in range(0, n):
         row[k] = r(k - 1) + r(k + 1)
     return row
 
 
-catalan_aerated = TablGenerator(_car, "Catalan aerated", "CATAER")
+catalan_aerated: tgen = TablGenerator(_car, "Catalan aerated", "CATAER")
 
 
 ####################################################################

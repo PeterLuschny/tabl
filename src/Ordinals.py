@@ -1,5 +1,5 @@
 from functools import cache
-from tabltools import TablGenerator
+from tabltypes import *
 
 """von Neumann ordinals (kind of), A002262.
 
@@ -22,7 +22,7 @@ def _ord(n: int) -> list[int]:
     return _ord(n - 1) + [n]
 
 
-ordinals = TablGenerator(_ord, "Ordinals", "ORDREP")
+ordinals: tgen = TablGenerator(_ord, "Ordinals", "ORDREP")
 
 
 ####################################################################

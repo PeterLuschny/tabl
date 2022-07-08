@@ -1,5 +1,5 @@
 from functools import cache
-from tabltools import TablGenerator
+from tabltypes import *
 
 """Polygonal numbers, A139600
 
@@ -34,15 +34,15 @@ def _pol(n: int) -> list[int]:
     if n == 1:
         return [0, 1]
 
-    arow = _pol(n - 2)
-    row = _pol(n - 1) + [n]
+    arow: list[int] = _pol(n - 2)
+    row: list[int] = _pol(n - 1) + [n]
     row[n - 1] += row[n - 2]
     for k in range(2, n - 1):
         row[k] += row[k] - arow[k]
     return row
 
 
-polygonal = TablGenerator(_pol, "Polygonal numbers", "POLYGO")
+polygonal: tgen = TablGenerator(_pol, "Polygonal numbers", "POLYGO")
 
 
 ####################################################################

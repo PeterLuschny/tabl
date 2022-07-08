@@ -1,5 +1,5 @@
 from functools import cache
-from tabltools import TablGenerator
+from tabltypes import *
 
 """The Eulerian triangle, A173018. 
 
@@ -20,13 +20,13 @@ def _eur(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row = _eur(n - 1) + [0]
+    row: list[int] = _eur(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = (n - k) * row[k - 1] + (k + 1) * row[k]
     return row
 
 
-eulerian = TablGenerator(_eur, "Eulerian", "EULIA1")
+eulerian: tgen = TablGenerator(_eur, "Eulerian", "EULIA1")
 
 
 ####################################################################

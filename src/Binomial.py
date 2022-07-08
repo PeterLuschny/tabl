@@ -1,5 +1,5 @@
 from functools import cache
-from tabltools import TablGenerator
+from tabltypes import *
 
 """The binomial coefficients, Pascal triangle, A007318. 
 
@@ -21,13 +21,13 @@ def _bin(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row = [1] + _bin(n - 1)
+    row: list[int] = [1] + _bin(n - 1)
     for k in range(1, n):
         row[k] += row[k + 1]
     return row
 
 
-binomial = TablGenerator(_bin, "Binomial", "BINOMC")
+binomial: tgen = TablGenerator(_bin, "Binomial", "BINOMC")
 
 
 ####################################################################

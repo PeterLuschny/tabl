@@ -1,5 +1,5 @@
 from functools import cache
-from tabltools import TablGenerator
+from tabltypes import *
 
 """Number of permutations of n things k at a time, A008279. 
 
@@ -17,12 +17,12 @@ def _ff(n: int) -> list[int]:
     if n == 0: 
         return [1]
 
-    r = _ff(n - 1)
-    row = [n * r[k] for k in range(-1, n)]
+    r: list[int] = _ff(n - 1)
+    row: list[int] = [n * r[k] for k in range(-1, n)]
     row[0] = 1
     return row
 
-falling_factorial = TablGenerator(_ff, "Falling factorial", "FALFAC")
+falling_factorial: tgen = TablGenerator(_ff, "Falling factorial", "FALFAC")
 
 
 ####################################################################

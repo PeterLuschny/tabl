@@ -1,5 +1,5 @@
 from functools import cache
-from tabltools import TablGenerator
+from tabltypes import *
 
 """Stirling cycle numbers, unsigned Stirling numbers of the 1. kind, A132393. 
 
@@ -21,13 +21,13 @@ def _stc(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row = [0] + _stc(n - 1)
+    row: list[int] = [0] + _stc(n - 1)
     for k in range(1, n):
         row[k] = row[k] + (n - 1) * row[k + 1]
     return row
 
 
-stirling_cycle = TablGenerator(_stc, "Stirling cycle", "STICYC")
+stirling_cycle: tgen = TablGenerator(_stc, "Stirling cycle", "STICYC")
 
 
 ####################################################################

@@ -1,5 +1,5 @@
 from functools import cache
-from tabltools import TablGenerator
+from tabltypes import *
 
 """The rising factorial, A094587. 
 
@@ -21,13 +21,13 @@ def _rf(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row = [0] + _rf(n - 1)
+    row: list[int] = [0] + _rf(n - 1)
     for k in range(0, n):
         row[k] += (n - k) * row[k + 1]
     return row
 
 
-rising_factorial = TablGenerator(_rf, "Rising factorial", "RISFAC")
+rising_factorial: tgen = TablGenerator(_rf, "Rising factorial", "RISFAC")
 
 
 ####################################################################

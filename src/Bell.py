@@ -1,5 +1,5 @@
 from functools import cache
-from tabltools import TablGenerator
+from tabltypes import *
 
 """The Bell (Peirce/Aitken) triangle, A011971 (see also A182930).
 
@@ -21,13 +21,13 @@ def _bel(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row = [_bel(n - 1)[n - 1]] + _bel(n - 1)
+    row: list[int] = [_bel(n - 1)[n - 1]] + _bel(n - 1)
     for k in range(1, n + 1):
         row[k] += row[k - 1]
     return row
 
 
-bell = TablGenerator(_bel, "Bell", "BELLPE")
+bell: tgen = TablGenerator(_bel, "Bell", "BELLPE")
 
 
 ####################################################################

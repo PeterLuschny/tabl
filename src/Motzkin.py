@@ -1,5 +1,5 @@
 from functools import cache
-from tabltools import TablGenerator
+from tabltypes import *
 
 """The Motzkin triangle, A009766.
 
@@ -21,14 +21,16 @@ def _mot(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    r = lambda k: _mot(n - 1)[k] if k >= 0 and k < n else 0
-    row = _mot(n - 1) + [1]
+    def r(k: int) -> int:
+        return _mot(n - 1)[k] if k >= 0 and k < n else 0
+
+    row: list[int] = _mot(n - 1) + [1]
     for k in range(0, n):
         row[k] += r(k - 1) + r(k + 1)
     return row
 
 
-motzkin = TablGenerator(_mot, "Motzkin", "MOTZKI")
+motzkin: tgen = TablGenerator(_mot, "Motzkin", "MOTZKI")
 
 
 ####################################################################

@@ -1,5 +1,5 @@
 from functools import cache
-from tabltools import TablGenerator
+from tabltypes import *
 
 """The Seidel triangle, A008281 or A008280. 
 
@@ -29,8 +29,8 @@ def _sei(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    rowA = _sei(n - 1)
-    row = [0] + _sei(n - 1)
+    rowA: list[int] = _sei(n - 1)
+    row: list[int] = [0] + _sei(n - 1)
     row[1] = row[n]
     for k in range(2, n + 1):
         row[k] = row[k - 1] + rowA[n - k]
@@ -41,9 +41,9 @@ def _seibou(n: int) -> list[int]:
     return _sei(n) if n % 2 else _sei(n)[::-1]
 
 
-seidel = TablGenerator(_sei, "Seidel", "SEIDEL")
+seidel: tgen = TablGenerator(_sei, "Seidel", "SEIDEL")
 
-seidel_boust = TablGenerator(_seibou, "Seidel boustrophedon", "SEIBOU")
+seidel_boust: tgen = TablGenerator(_seibou, "Seidel boustrophedon", "SEIBOU")
 
 ####################################################################
 

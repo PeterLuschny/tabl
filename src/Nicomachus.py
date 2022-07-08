@@ -1,5 +1,5 @@
 from functools import cache
-from tabltools import TablGenerator
+from tabltypes import *
 
 """Nicomachus triangle, A036561
 
@@ -19,13 +19,13 @@ def _nico(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row = _nico(n - 1) + [3 * _nico(n - 1)[n - 1]]
+    row: list[int] = _nico(n - 1) + [3 * _nico(n - 1)[n - 1]]
     for k in range(0, n):
         row[k] *= 2
     return row
 
 
-nicomachus = TablGenerator(_nico, "Nicomachus", "NICOMA")
+nicomachus: tgen = TablGenerator(_nico, "Nicomachus", "NICOMA")
 
 
 ####################################################################

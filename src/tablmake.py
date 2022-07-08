@@ -1,7 +1,9 @@
+from io import TextIOWrapper
 from os import getcwd
 from os.path import join, isfile
 
-tabl_files = [
+tabl_files: list[str] = [
+    "tabltypes.py",
     "tabltools.py",
     "tablsums.py",
     "tablprint.py",
@@ -48,44 +50,43 @@ tabl_files = [
     "Worpitzky.py",
 ]
 
-
-import_header = [
+import_header: list[str] = [
     "from functools import cache\n",
     "from itertools import accumulate\n",
     "from sys import setrecursionlimit\n",
-    "from typing import Callable\n",
+    "from typing import Callable, TypeAlias\n",
 ]
 
-dir = join(getcwd(), "src")
-dest = open("tabl.py", "w+")
+dir: str = join(getcwd(), "src")
+dest: TextIOWrapper = open("tabl.py", "w+")
 
 dest.writelines(import_header)
 dest.write("setrecursionlimit(2000) \n")
 
 for src in tabl_files:
-    file_path = join(dir, src)
+    file_path: str = join(dir, src)
     if isfile(file_path):
-        start = False 
-        src_file = open(file_path, "r")
+        start: bool = False 
+        src_file: TextIOWrapper = open(file_path, "r")
 
         for line in src_file:
             if line.startswith("from"):
                 continue
             if not start: 
-                start = line.startswith("@") or line.startswith("#@")
+                start: bool = line.startswith("@") or line.startswith("#@")
                 if line.startswith("@"): 
                     dest.write(line)
                 continue
             else:
-                start = True
+                start: bool = True
             if line.startswith("#"):
                 break
             if line != "\n":
                 dest.write(line)
         src_file.close()
 
-s = '''\
-tabl_fun = [
+s: str = '''\
+tabl_fun: list[tgen] = [
     abel,
     bell,
     bessel,

@@ -1,24 +1,22 @@
 from tablprint import PrintViews
-from tabltools import isTablGenerator
 from sys import setrecursionlimit
+from typing import Callable
 
 
-def TablTest(seq: callable, dim=8, short=False):
+def TablTest(seq: Callable, dim=8, short=False) -> None:
 
     PrintViews(seq, dim, verbose=True)
-
-    seqname = seq.__name__
-    print("py> isTablGenerator(", seqname, ") =", isTablGenerator(seq))
 
     # Increase the default recursion limit
     setrecursionlimit(2000)
 
-    big = 100 if short else 1000
-    Trow = seq(big)
-    b = str(big); b2 = str(big // 2)
-    print("py> Trow[", b2, "] ==", seqname, "(", b, ",", b2, ") =", 
+    big: int = 100 if short else 1000
+    Trow: list[int] = seq(big)
+    b: str = str(big); b2: str = str(big // 2)
+
+    print("py> Trow[", b2, "] ==", seq.name, "(", b, ",", b2, ") =", 
            Trow[big // 2] == seq(big, big // 2))
-    print("py>", seqname, "(", b, ",", b2, ") =") 
+    print("py>", seq.name, "(", b, ",", b2, ") =") 
     print(Trow[big // 2])
     
     print("--- TablTest done!\n")
