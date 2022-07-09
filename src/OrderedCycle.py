@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import *
+from tabltypes import TablGenerator, tgen
 
-"""Ordered cycle numbers A225479, A048594. 
+"""Ordered cycle numbers A225479, A048594.
 
 [0] [1]
 [1] [0,    1]
@@ -11,7 +11,7 @@ from tabltypes import *
 [5] [0,   24,   100,   210,    240,    120]
 [6] [0,  120,   548,  1350,   2040,   1800,    720]
 [7] [0,  720,  3528,  9744,  17640,  21000,  15120,   5040]
-[8] [0, 5040, 26136, 78792, 162456, 235200, 231840, 141120, 40320] 
+[8] [0, 5040, 26136, 78792, 162456, 235200, 231840, 141120, 40320]
 """
 
 

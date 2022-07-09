@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import *
+from tabltypes import TablGenerator, tgen
 
-"""The binomial coefficients, Pascal triangle, A007318. 
+"""The binomial coefficients, Pascal triangle, A007318.
 
 [0]   1;
 [1]   1,   1;

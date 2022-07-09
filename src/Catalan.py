@@ -1,6 +1,6 @@
 from functools import cache
 from itertools import accumulate
-from tabltypes import *
+from tabltypes import TablGenerator, tgen
 
 """The Catalan triangle, Fuss-Catalan 1, A355173.
 

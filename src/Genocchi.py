@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import *
+from tabltypes import TablGenerator, tgen
 
 """The Genocchi triangle A297703.
 

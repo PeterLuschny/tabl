@@ -2,22 +2,22 @@ from functools import cache
 from itertools import accumulate
 from sys import setrecursionlimit
 from typing import Callable, TypeAlias
-setrecursionlimit(2000) 
-'''table row'''
+setrecursionlimit(2000)
+"""table row"""
 trow: TypeAlias = list[int]
-'''table'''
+"""table"""
 tabl: TypeAlias = list[list[int]]
-'''row generator'''
-rgen: TypeAlias = Callable[[int], trow]
-'''table generator'''
+"""row generator"""
+rgen: TypeAlias = Callable[[int], list[int]]
+"""table generator"""
 tgen: TypeAlias = Callable[[int, int | None], int | trow | tabl]
 def TablGenerator(g: rgen, name: str, id: str) -> tgen:
-    def T(n: int, k: int | None=None) -> int | trow | tabl:
-        if n < 0:
-            return [g(k) for k in range(-n)]
-        if k == None:
+    def T(n: int, k: int | None = None) -> int | trow | tabl:
+        if k is None:
+            if n < 0:
+                return [g(j) for j in range(-n)]
             return g(n)
-        return g(n)[k] 
+        return g(n)[k]
     T.name = name
     T.id = id
     return T
@@ -27,67 +27,64 @@ def isTablGenerator(T) -> bool:
         and isinstance(T(0, 0), int)
         and isinstance(T(0, None), list)
     )
-def poly(T, n, x) -> int:
-    row: list[int] = T(n)
+def poly(T: tgen, n: int, x: int) -> int:
+    row: trow = T(n)
     return sum(c * x ** k for (k, c) in enumerate(row))
-def row_poly(T, n, len) -> list[int]:
-    return [poly(T, n, k) for k in range(len)]
-def col_poly(T, n, len) -> list[int]:
-    return [poly(T, k, n) for k in range(len)]
-def even_sum(L: list[int]) -> int:
-    return sum(L[::2])
-def odd_sum(L: list[int]) -> int:
-    return sum(L[1::2])
-def alt_sum(L: list[int]) -> int:
-    return even_sum(L) - odd_sum(L)
-def tabl_sum(T: list[list[int]]) -> list[int]:
-    return [sum(row) for row in T]
-def tabl_evensum(T: list[list[int]]) -> list[int]:
-    return [even_sum(row) for row in T]
-def tabl_oddsum(T: list[list[int]]) -> list[int]:
-    return [odd_sum(row) for row in T]
-def tabl_altsum(T: list[list[int]]) -> list[int]:
-    return [alt_sum(row) for row in T]
-def PrintSums(T: list[list[int]]) -> None:
-    print(tabl_sum(T))
-    print(tabl_evensum(T))
-    print(tabl_oddsum(T))
-    print(tabl_altsum(T))
-def PrintTabl(T, k=None) -> None:
-    t: list[list[int]] = T if k == None else T(-k)
+def row_poly(T: tgen, n: int, leng: int) -> trow:
+    return [poly(T, n, k) for k in range(leng)]
+def col_poly(T: tgen, n: int, leng: int) -> trow:
+    return [poly(T, k, n) for k in range(leng)]
+def even_sum(r: trow) -> int:
+    return sum(r[::2])
+def odd_sum(r: trow) -> int:
+    return sum(r[1::2])
+def alt_sum(r: trow) -> int:
+    return even_sum(r) - odd_sum(r)
+def tabl_sum(t: tabl) -> trow:
+    return [sum(row) for row in t]
+def tabl_evensum(t: tabl) -> trow:
+    return [even_sum(row) for row in t]
+def tabl_oddsum(t: tabl) -> trow:
+    return [odd_sum(row) for row in t]
+def tabl_altsum(t: tabl) -> trow:
+    return [alt_sum(row) for row in t]
+def PrintSums(t: tabl) -> None:
+    print(tabl_sum(t))
+    print(tabl_evensum(t))
+    print(tabl_oddsum(t))
+    print(tabl_altsum(t))
+def PrintTabl(t: tabl) -> None:
     print(t)
-def PrintRows(T, k=None) -> None:
-    t: list[list[int]] = T if k == None else T(-k)
+def PrintRows(t: tabl) -> None:
     for n, row in enumerate(t):
         print([n], row)
-def PrintTerms(T, k=None) -> None:
-    t: list[list[int]] = T if k == None else T(-k)
+def PrintTerms(t: tabl) -> None:
     for n, row in enumerate(t):
         for k, term in enumerate(row):
             print([n, k], term)
-def PrintRowArray(F, rows, cols) -> None:
+def PrintRowArray(F: tgen, rows: int, cols: int) -> None:
     for j in range(rows):
         print([F(j + k, k) for k in range(cols)])
-def PrintColArray(F, rows, cols) -> None:
+def PrintColArray(F: tgen, rows: int, cols: int) -> None:
     for j in range(cols):
         print([F(j + k, j) for k in range(rows)])
-def PrintRowPolyArray(T, rows, cols) -> None:
+def PrintRowPolyArray(T: tgen, rows: int, cols: int) -> None:
     for n in range(rows):
         print(row_poly(T, n, cols))
-def PrintColPolyArray(T, rows, cols) -> None:
+def PrintColPolyArray(T: tgen, rows: int, cols: int) -> None:
     for n in range(rows):
         print(col_poly(T, n, cols))
-def PrintViews(T, rows: int=7, cono: int | None=None, verbose=True) -> None:
+def PrintViews(T: tgen, rows: int = 7, cono: int | None = None, verbose: bool = True) -> None:
     print("_" * 48)
     print(T.name)
-    cols: int = rows if cono == None else cono
+    cols: int = rows if cono is None else cono
     print()
-    Tabl: list[list[int]] = T(-rows)
+    t: tabl = T(-rows)
     if verbose: print("Triangle view")
-    PrintRows(Tabl)
+    PrintRows(t)
     print()
     if verbose: print("Row sums: all, even, odd, alternating")
-    PrintSums(Tabl)
+    PrintSums(t)
     print()
     if verbose: print("Diagonals as rows")
     PrintRowArray(T, rows, cols)
@@ -101,16 +98,16 @@ def PrintViews(T, rows: int=7, cono: int | None=None, verbose=True) -> None:
     if verbose: print("Polynomial values as columns")
     PrintColPolyArray(T, rows, cols)
     print()
-def Profile(T, hor=10, ver=5) -> dict[str, list[int]]:
+def Profile(T: tgen, hor: int = 10, ver: int = 5) -> dict[str, list[int]]:
     d: dict[str, list[int]] = {}
-    tabl: list[list[int]] = T(-hor)
+    t: tabl = T(-hor)
     # Triangle flattened
-    d["tabflt"] = tabl[0] + tabl[1] + tabl[2] + tabl[3]
+    d["tabflt"] = t[0] + t[1] + t[2] + t[3]
     # Row sums
-    d["rowsum"] = tabl_sum(tabl)
-    d["evesum"] = tabl_evensum(tabl)
-    d["oddsum"] = tabl_oddsum(tabl)
-    d["altsum"] = tabl_altsum(tabl)
+    d["rowsum"] = tabl_sum(t)
+    d["evesum"] = tabl_evensum(t)
+    d["oddsum"] = tabl_oddsum(t)
+    d["altsum"] = tabl_altsum(t)
     # DiagsAsRowArray
     rows: int = ver
     cols: int = hor
@@ -130,10 +127,11 @@ def Profile(T, hor=10, ver=5) -> dict[str, list[int]]:
     rows: int = ver
     cols: int = hor
     for j in range(rows):
-        if j == 1: continue
+        if j == 1:
+            continue
         d["pocol" + str(j)] = col_poly(T, j, cols)
     return d
-def PrintProfile(T) -> None:
+def PrintProfile(T: tgen) -> None:
     d: dict[str, list[int]] = Profile(T)
     print()
     print(T.id)
@@ -144,7 +142,8 @@ def PrintProfile(T) -> None:
 def _abel(n: int) -> list[int]:
     if n == 0:
         return [1]
-    return [binomial(n - 1, k - 1) * n ** (n - k) if k > 0 else 0 for k in range(n + 1)]
+    return [binomial(n - 1, k - 1) * n ** (n - k) 
+           if k > 0 else 0 for k in range(n + 1)]
 abel: tgen = TablGenerator(_abel, "Abel", "ABELPO")
 @cache
 def _bell(n: int) -> list[int]:
@@ -239,7 +238,7 @@ def _euler(n: int) -> list[int]:
     row[0] = -sum((-1) ** (j // 2) * row[j] for j in range(n, 0, -2))
     return row
 euler: tgen = TablGenerator(_euler, "Euler", "EULNUM")
-def euler_num(n) -> int:
+def euler_num(n: int) -> int:
     return _euler(n)[0]
 @cache
 def _eulerian(n: int) -> list[int]:
@@ -276,21 +275,21 @@ eulerianB: tgen = TablGenerator(_eulerianB, "EulerianB", "EULIAB")
 def _euler_sec(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = [binomial(n, k) * _euler_sec(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  # type: ignore
+    row: list[int] = [_binomial(n)[k] * _euler_sec(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  
     if n % 2 == 0:
         row[0] = -sum(row[2::2])
     return row
 euler_sec: tgen = TablGenerator(_euler_sec, "Euler secant", "EULSEC") 
-def eulerS(n) -> int:
+def eulerS(n: int) -> int:
     return 0 if n % 2 == 1 else _euler_sec(n)[0]
 @cache
 def _euler_tan(n: int) -> list[int]:
-    row: list[int] = [binomial(n, k) * _euler_tan(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  # type: ignore
+    row: list[int] = [_binomial(n)[k] * _euler_tan(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  
     if n % 2 == 1:
         row[0] = -sum(row[2::2]) + 1
     return row
 euler_tan: tgen = TablGenerator(_euler_tan, "Euler tangent", "EULTAN")
-def eulerT(n) -> int:
+def eulerT(n: int) -> int:
     return 0 if n % 2 == 0 else _euler_tan(n)[0]
 @cache
 def _falling_factorial(n: int) -> list[int]:
@@ -318,7 +317,7 @@ fibonacci: tgen = TablGenerator(_fibonacci, "Fibonacci", "FIBONA")
 def _fubini(n: int) -> list[int]:
     if n == 0:
         return [1]
-    def r(k: int) -> int: 
+    def r(k: int) -> int:
         return _fubini(n - 1)[k] if k <= n - 1 else 0
     row: list[int] = [0] + _fubini(n - 1)
     for k in range(1, n + 1):
@@ -378,7 +377,7 @@ def t(n: int, k: int, m: int) -> int:
     return m * t(n, k - 1, m) + t(n - 1, k, m + 1)
 def _lehmer(n: int) -> list[int]:
     return [t(k - 1, n - k, n - k) if n != k else 1
-        for k in range(n + 1) ]
+           for k in range(n + 1)]
 lehmer: tgen = TablGenerator(_lehmer, "LehmerComtet", "LEHCOM")
 @cache
 def _motzkin(n: int) -> list[int]:

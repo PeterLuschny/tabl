@@ -1,6 +1,6 @@
 from functools import cache
-from tabltypes import *
 from Binomial import binomial
+from tabltypes import TablGenerator, tgen
 
 """The unsigned coefficients of Abel polynomials, A061356
 
@@ -15,13 +15,15 @@ from Binomial import binomial
 [8] [0,  2097152, 1835008,  688128, 143360,  17920, 1344,  56, 1]
 """
 
+
 @cache
 def _abel(n: int) -> list[int]:
 
     if n == 0:
         return [1]
 
-    return [binomial(n - 1, k - 1) * n ** (n - k) if k > 0 else 0 for k in range(n + 1)]
+    return [binomial(n - 1, k - 1) * n ** (n - k) 
+           if k > 0 else 0 for k in range(n + 1)]
 
 
 abel: tgen = TablGenerator(_abel, "Abel", "ABELPO")
@@ -31,4 +33,4 @@ abel: tgen = TablGenerator(_abel, "Abel", "ABELPO")
 if __name__ == "__main__":
     from tabltest import TablTest
 
-    TablTest(abel) 
+    TablTest(abel)

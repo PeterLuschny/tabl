@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import *
+from tabltypes import TablGenerator, tgen
 
-"""Unsigned Lah numbers, A271703. 
+"""Unsigned Lah numbers, A271703.
 
 [0]  1
 [1]  0       1

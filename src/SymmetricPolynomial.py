@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import *
+from tabltypes import TablGenerator, tgen
 
 """Row k gives the (n-1)-st elementary symmetric polynomial of [k, k+1, k+2,..., k+n], A165675.
 

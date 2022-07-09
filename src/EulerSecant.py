@@ -1,6 +1,6 @@
 from functools import cache
-from Binomial import binomial
-from tabltypes import *
+from Binomial import _binomial 
+from tabltypes import TablGenerator, tgen
 
 """The Euler secant polynomials, A119879, A081658, A153641. 
 
@@ -21,7 +21,7 @@ def _euler_sec(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = [binomial(n, k) * _euler_sec(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  # type: ignore
+    row: list[int] = [_binomial(n)[k] * _euler_sec(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  
     if n % 2 == 0:
         row[0] = -sum(row[2::2])
     return row
@@ -30,7 +30,7 @@ def _euler_sec(n: int) -> list[int]:
 euler_sec: tgen = TablGenerator(_euler_sec, "Euler secant", "EULSEC") 
 
 
-def eulerS(n) -> int:
+def eulerS(n: int) -> int:
     return 0 if n % 2 == 1 else _euler_sec(n)[0]
 
 

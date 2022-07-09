@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import *
+from tabltypes import TablGenerator, tgen
 
-"""The aerated Catalan triangle, A053121. 
+"""The aerated Catalan triangle, A053121.
 
 [0]   1,
 [1]   0,   1,

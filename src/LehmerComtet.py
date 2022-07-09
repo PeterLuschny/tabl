@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import *
+from tabltypes import TablGenerator, tgen
 
 """Lehmer-Comtet of 2nd kind, unsigned, A354794
 
@@ -26,7 +26,7 @@ def t(n: int, k: int, m: int) -> int:
 
 def _lehmer(n: int) -> list[int]:
     return [t(k - 1, n - k, n - k) if n != k else 1
-        for k in range(n + 1) ]
+           for k in range(n + 1)]
 
 
 lehmer: tgen = TablGenerator(_lehmer, "LehmerComtet", "LEHCOM")

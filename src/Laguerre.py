@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import *
+from tabltypes import TablGenerator, tgen
 
-"""Unsigned coefficients of Laguerre polynomials n! * L(n, x), unsigned A021009. 
+"""Unsigned coefficients of Laguerre polynomials n! * L(n, x), unsigned A021009.
 
 [0]      1
 [1]      1,       1

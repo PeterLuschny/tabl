@@ -1,60 +1,60 @@
 from tabltools import row_poly, col_poly
 from tablsums import PrintSums
+from tabltypes import tgen, tabl
 
-#@
+# #@
 
-def PrintTabl(T, k=None) -> None:
-    t: list[list[int]] = T if k == None else T(-k)
+
+def PrintTabl(t: tabl) -> None:
     print(t)
 
 
-def PrintRows(T, k=None) -> None:
-    t: list[list[int]] = T if k == None else T(-k)
+def PrintRows(t: tabl) -> None:
     for n, row in enumerate(t):
         print([n], row)
 
 
-def PrintTerms(T, k=None) -> None:
-    t: list[list[int]] = T if k == None else T(-k)
+def PrintTerms(t: tabl) -> None:
     for n, row in enumerate(t):
         for k, term in enumerate(row):
             print([n, k], term)
 
 
-def PrintRowArray(F, rows, cols) -> None:
+def PrintRowArray(F: tgen, rows: int, cols: int) -> None:
     for j in range(rows):
         print([F(j + k, k) for k in range(cols)])
 
 
-def PrintColArray(F, rows, cols) -> None:
+def PrintColArray(F: tgen, rows: int, cols: int) -> None:
     for j in range(cols):
         print([F(j + k, j) for k in range(rows)])
 
 
-def PrintRowPolyArray(T, rows, cols) -> None:
+def PrintRowPolyArray(T: tgen, rows: int, cols: int) -> None:
     for n in range(rows):
         print(row_poly(T, n, cols))
 
 
-def PrintColPolyArray(T, rows, cols) -> None:
+def PrintColPolyArray(T: tgen, rows: int, cols: int) -> None:
     for n in range(rows):
         print(col_poly(T, n, cols))
 
 
-def PrintViews(T, rows: int=7, cono: int | None=None, verbose=True) -> None:
+def PrintViews(T: tgen, rows: int = 7, cono: int | None = None, verbose: bool = True) -> None:
     print("_" * 48)
     print(T.name)
 
-    cols: int = rows if cono == None else cono
+    cols: int = rows if cono is None else cono
     print()
 
-    Tabl: list[list[int]] = T(-rows)
+    t: tabl = T(-rows)
+
     if verbose: print("Triangle view")
-    PrintRows(Tabl)
+    PrintRows(t)
     print()
 
     if verbose: print("Row sums: all, even, odd, alternating")
-    PrintSums(Tabl)
+    PrintSums(t)
     print()
 
     if verbose: print("Diagonals as rows")
@@ -72,4 +72,3 @@ def PrintViews(T, rows: int=7, cono: int | None=None, verbose=True) -> None:
     if verbose: print("Polynomial values as columns")
     PrintColPolyArray(T, rows, cols)
     print()
-

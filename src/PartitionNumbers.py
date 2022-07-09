@@ -1,6 +1,6 @@
 from functools import cache
 from itertools import accumulate
-from tabltypes import *
+from tabltypes import TablGenerator, tgen
 
 """The partition numbers (Euler's table) A008284, A026820, A000041.
 

@@ -1,6 +1,6 @@
 from functools import cache
 from itertools import accumulate
-from tabltypes import *
+from tabltypes import TablGenerator, tgen
 
 """Ternary trees, Fuss-Catalan 2, A355172.
 

@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import *
+from tabltypes import TablGenerator, tgen
 
-"""The Seidel triangle, A008281 or A008280. 
+"""The Seidel triangle, A008281 or A008280.
 
 [0] [1]
 [1] [0,   1]

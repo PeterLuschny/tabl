@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import *
+from tabltypes import TablGenerator, tgen
 
-"""The coefficients of the Hermite polynomials, A099174, A066325. 
+"""The coefficients of the Hermite polynomials, A099174, A066325.
 
 [0] [1]
 [1] [0, 1]

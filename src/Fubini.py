@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import *
+from tabltypes import TablGenerator, tgen
 
-"""The Fubini triangle, A131689. 
+"""The Fubini triangle, A131689.
 
 [0]  1;
 [1]  0,  1;
@@ -20,7 +20,7 @@ def _fubini(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    def r(k: int) -> int: 
+    def r(k: int) -> int:
         return _fubini(n - 1)[k] if k <= n - 1 else 0
 
     row: list[int] = [0] + _fubini(n - 1)

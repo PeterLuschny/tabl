@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import *
+from tabltypes import TablGenerator, tgen
 
-"""Stirling cycle numbers, unsigned Stirling numbers of the 1. kind, A132393. 
+"""Stirling cycle numbers, unsigned Stirling numbers of the 1. kind, A132393.
 
 [0]  1
 [1]  0,     1

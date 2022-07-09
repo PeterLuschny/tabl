@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import *
+from tabltypes import TablGenerator, tgen
 
 """The Euler triangle, A247453, A109449.
 
@@ -32,7 +32,7 @@ def _euler(n: int) -> list[int]:
 euler: tgen = TablGenerator(_euler, "Euler", "EULNUM")
 
 
-def euler_num(n) -> int:
+def euler_num(n: int) -> int:
     return _euler(n)[0]
 
 

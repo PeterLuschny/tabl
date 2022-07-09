@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import *
+from tabltypes import TablGenerator, tgen
 
-"""The Eulerian triangle, A173018. 
+"""The Eulerian triangle, A173018.
 
 [0]  1,
 [1]  1,    0,

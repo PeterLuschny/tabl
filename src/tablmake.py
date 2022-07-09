@@ -61,20 +61,20 @@ dir: str = join(getcwd(), "src")
 dest: TextIOWrapper = open("tabl.py", "w+")
 
 dest.writelines(import_header)
-dest.write("setrecursionlimit(2000) \n")
+dest.write("setrecursionlimit(2000)\n")
 
 for src in tabl_files:
     file_path: str = join(dir, src)
     if isfile(file_path):
-        start: bool = False 
+        start: bool = False
         src_file: TextIOWrapper = open(file_path, "r")
 
         for line in src_file:
             if line.startswith("from"):
                 continue
-            if not start: 
-                start: bool = line.startswith("@") or line.startswith("#@")
-                if line.startswith("@"): 
+            if not start:
+                start: bool = line.startswith("@") or line.startswith("# #@")
+                if line.startswith("@"):
                     dest.write(line)
                 continue
             else:
@@ -129,7 +129,7 @@ tabl_fun: list[tgen] = [
     uno,
     ward,
     worpitzky,
-]\n'''.format(length='multi-line', ordinal='second')
+]\n'''.format()
 dest.write(s)
 
 dest.close()

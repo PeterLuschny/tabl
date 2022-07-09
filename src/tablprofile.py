@@ -1,22 +1,24 @@
 from io import TextIOWrapper
 from tabltools import row_poly, col_poly
 from tablsums import tabl_sum, tabl_evensum, tabl_oddsum, tabl_altsum
+from tabltypes import tgen, tabl
 
-#@
 
-def Profile(T, hor=10, ver=5) -> dict[str, list[int]]:
+# #@
+
+def Profile(T: tgen, hor: int = 10, ver: int = 5) -> dict[str, list[int]]:
 
     d: dict[str, list[int]] = {}
-    tabl: list[list[int]] = T(-hor)
+    t: tabl = T(-hor)
 
     # Triangle flattened
-    d["tabflt"] = tabl[0] + tabl[1] + tabl[2] + tabl[3]
+    d["tabflt"] = t[0] + t[1] + t[2] + t[3]
 
     # Row sums
-    d["rowsum"] = tabl_sum(tabl)
-    d["evesum"] = tabl_evensum(tabl)
-    d["oddsum"] = tabl_oddsum(tabl)
-    d["altsum"] = tabl_altsum(tabl)
+    d["rowsum"] = tabl_sum(t)
+    d["evesum"] = tabl_evensum(t)
+    d["oddsum"] = tabl_oddsum(t)
+    d["altsum"] = tabl_altsum(t)
 
     # DiagsAsRowArray
     rows: int = ver
@@ -40,13 +42,14 @@ def Profile(T, hor=10, ver=5) -> dict[str, list[int]]:
     rows: int = ver
     cols: int = hor
     for j in range(rows):
-        if j == 1: continue
+        if j == 1:
+            continue
         d["pocol" + str(j)] = col_poly(T, j, cols)
 
     return d
 
 
-def PrintProfile(T) -> None:
+def PrintProfile(T: tgen) -> None:
     d: dict[str, list[int]] = Profile(T)
 
     print()
@@ -56,11 +59,11 @@ def PrintProfile(T) -> None:
     print()
 
 
-#from tabl import tabl_fun
+# from tabl import tabl_fun
 def SaveProfiles() -> None:
-    dest: TextIOWrapper = open("profiles.csv", "w+") 
+    dest: TextIOWrapper = open("profiles.csv", "w+")
 
-    #for fun in tabl_fun:
+    # for fun in tabl_fun:
     for fun in []:
         p: dict[str, list[int]] = Profile(fun)
         id: str = fun.id

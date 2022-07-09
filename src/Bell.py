@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import *
+from tabltypes import TablGenerator, tgen
 
 """The Bell (Peirce/Aitken) triangle, A011971 (see also A182930).
 

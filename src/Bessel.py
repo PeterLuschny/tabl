@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import *
+from tabltypes import TablGenerator, tgen
 
-"""The Bessel triangle, A132062. 
+"""The Bessel triangle, A132062.
 
 [0] [1]
 [1] [0,      1]

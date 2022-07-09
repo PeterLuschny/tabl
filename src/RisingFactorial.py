@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import *
+from tabltypes import TablGenerator, tgen
 
-"""The rising factorial, A094587. 
+"""The rising factorial, A094587.
 
 [0]       1
 [1]       1,      1
