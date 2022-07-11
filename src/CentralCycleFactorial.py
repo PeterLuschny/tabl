@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """The central cycle factorial numbers, A269940, A259456
 
@@ -28,7 +28,10 @@ def _cc_factorial(n: int) -> list[int]:
     return row
 
 
-cc_factorial: tgen = TablGenerator(_cc_factorial, "Central cycle factorials", "CYCFAC")
+@tvals(_cc_factorial, "CCFACT")
+def cc_factorial(size: int) -> tabl: 
+    return [_cc_factorial(j) for j in range(size)]
+
 
 ####################################################################
 

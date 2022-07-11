@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """Ordered cycle numbers A225479, A048594.
 
@@ -29,7 +29,9 @@ def _ordered_cycle(n: int) -> list[int]:
     return row
 
 
-ordered_cycle: tgen = TablGenerator(_ordered_cycle, "Ordered cycles", "ORDCYC")
+@tvals(_ordered_cycle, "ORDCYC")
+def ordered_cycle(size: int) -> tabl: 
+    return [_ordered_cycle(j) for j in range(size)]
 
 
 ####################################################################

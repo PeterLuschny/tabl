@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """Row k gives the (n-1)-st elementary symmetric polynomial of [k, k+1, k+2,..., k+n], A165675.
 
@@ -27,7 +27,9 @@ def _sympoly(n: int) -> list[int]:
     return row
 
 
-sympoly: tgen = TablGenerator(_sympoly, "Symmetric polynomials", "SYMPOL")
+@tvals(_sympoly, "SYMPOL")
+def sympoly(size: int) -> tabl: 
+    return [_sympoly(j) for j in range(size)]
 
 
 ####################################################################

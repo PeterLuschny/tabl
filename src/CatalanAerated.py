@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """The aerated Catalan triangle, A053121.
 
@@ -30,7 +30,9 @@ def _catalan_aerated(n: int) -> list[int]:
     return row
 
 
-catalan_aerated: tgen = TablGenerator(_catalan_aerated, "Catalan aerated", "CATAER")
+@tvals(_catalan_aerated, "ABELPO")
+def catalan_aerated(size: int) -> tabl: 
+    return [_catalan_aerated(j) for j in range(size)]
 
 
 ####################################################################

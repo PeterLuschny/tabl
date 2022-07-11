@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """Unsigned Lah numbers, A271703.
 
@@ -28,7 +28,9 @@ def _lah(n: int) -> list[int]:
     return row
 
 
-lah: tgen = TablGenerator(_lah, "Lah numbers", "LAHNUM")
+@tvals(_lah, "LAHNUM")
+def lah(size: int) -> tabl: 
+    return [_lah(j) for j in range(size)]
 
 
 ####################################################################

@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """Nicomachus triangle, A036561
 
@@ -25,7 +25,9 @@ def _nicomachus(n: int) -> list[int]:
     return row
 
 
-nicomachus: tgen = TablGenerator(_nicomachus, "Nicomachus", "NICOMA")
+@tvals(_nicomachus, "NICOMA")
+def nicomachus(size: int) -> tabl: 
+    return [_nicomachus(j) for j in range(size)]
 
 
 ####################################################################

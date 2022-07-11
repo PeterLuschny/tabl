@@ -1,6 +1,6 @@
 from functools import cache
-from Binomial import _binomial 
-from tabltypes import TablGenerator, tgen
+from Binomial import binomial 
+from tabltypes import tabl, tvals
 
 """The Euler secant polynomials, A119879, A081658, A153641. 
 
@@ -21,13 +21,15 @@ def _euler_sec(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = [_binomial(n)[k] * _euler_sec(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  
+    row: list[int] = [binomial.val(n, k) * _euler_sec(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  
     if n % 2 == 0:
         row[0] = -sum(row[2::2])
     return row
 
 
-euler_sec: tgen = TablGenerator(_euler_sec, "Euler secant", "EULSEC") 
+@tvals(_euler_sec, "EULSEC")
+def euler_sec(size: int) -> tabl: 
+    return [_euler_sec(j) for j in range(size)]
 
 
 def eulerS(n: int) -> int:
@@ -35,11 +37,13 @@ def eulerS(n: int) -> int:
 
 
 ####################################################################
-# See also: https://oeis.org/wiki/User:Peter_Luschny/SwissKnifePolynomials
 
 if __name__ == "__main__":
     from tabltest import TablTest
 
     TablTest(euler_sec, short=True)
 
-    print([eulerS(n) for n in range(100)])
+    print("Bonus:")
+    print([eulerS(n) for n in range(30)])
+
+# See also: https://oeis.org/wiki/User:Peter_Luschny/SwissKnifePolynomials

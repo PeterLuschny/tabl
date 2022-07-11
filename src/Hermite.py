@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """The coefficients of the Hermite polynomials, A099174, A066325.
 
@@ -30,8 +30,9 @@ def _hermite(n: int) -> list[int]:
     return row
 
 
-hermite: tgen = TablGenerator(_hermite, "Hermite", "HERMIT")
-
+@tvals(_hermite, "HERMIT")
+def hermite(size: int) -> tabl: 
+    return [_hermite(j) for j in range(size)]
 
 ####################################################################
 

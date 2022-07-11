@@ -1,42 +1,30 @@
-from typing import Callable, TypeAlias  # , Optional
+from typing import Callable, TypeAlias
 
 # #@
 
 """table row"""
 trow: TypeAlias = list[int]
+
 """table"""
 tabl: TypeAlias = list[list[int]]
+
 """row generator"""
-rgen: TypeAlias = Callable[[int], list[int]]
+rgen: TypeAlias = Callable[[int], trow]
+
 """table generator"""
-tgen: TypeAlias = Callable[[int, int | None], int | trow | tabl]
+tgen: TypeAlias = Callable[[int], tabl]
 
 
-def TablGenerator(g: rgen, name: str, id: str) -> tgen:
-    def T(n: int, k: int | None = None) -> int | trow | tabl:
-        if k is None:
-            if n < 0:
-                return [g(j) for j in range(-n)]
-            return g(n)
-        return g(n)[k]
+def tvals(r: rgen, id: str) -> Callable[[tgen], tgen]:
+    def v(n: int, k: int) -> int: 
+        return r(n)[k]
 
-    T.name = name
-    T.id = id
-    return T
+    def wrapper(f: tgen) -> tgen:
+        f.row = r
+        f.val = v
+        f.id = id
+        return f
 
+    return wrapper
 
-def isTablGenerator(T) -> bool:
-    return (
-        isinstance(T, tgen)
-        and isinstance(T(0, 0), int)
-        and isinstance(T(0, None), list)
-    )
-
-
-####################################################################
-
-# def T(n: int, k: Optional[int]=None) -> int | trow | tabl:
-
-# https://stackoverflow.com/questions/62732402/can-i-omit-optional-if-i-set-default-to-none
-
-# https://stackoverflow.com/questions/14749328/
+# https://stackoverflow.com/questions/47056059/best-way-to-add-attributes-to-a-python-function

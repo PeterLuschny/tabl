@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """Stirling set numbers, A048993.
 
@@ -27,7 +27,9 @@ def _stirling_set(n: int) -> list[int]:
     return row
 
 
-stirling_set: tgen = TablGenerator(_stirling_set, "Stirling set", "STISET")
+@tvals(_stirling_set, "STISET")
+def stirling_set(size: int) -> tabl: 
+    return [_stirling_set(j) for j in range(size)]
 
 
 ####################################################################

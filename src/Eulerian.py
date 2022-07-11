@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """The Eulerian triangle, A173018.
 
@@ -26,7 +26,9 @@ def _eulerian(n: int) -> list[int]:
     return row
 
 
-eulerian: tgen = TablGenerator(_eulerian, "Eulerian", "EULIA1")
+@tvals(_eulerian, "EULRI1")
+def eulerian(size: int) -> tabl: 
+    return [_eulerian(j) for j in range(size)]
 
 
 ####################################################################

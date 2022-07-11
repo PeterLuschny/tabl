@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """The Worpitzky triangle, A028246.
 
@@ -26,7 +26,9 @@ def _worpitzky(n: int) -> list[int]:
     return row
 
 
-worpitzky: tgen = TablGenerator(_worpitzky, "Worpitzky", "WORPIT")
+@tvals(_worpitzky, "WORPIT")
+def worpitzky(size: int) -> tabl: 
+    return [_worpitzky(j) for j in range(size)]
 
 
 ####################################################################

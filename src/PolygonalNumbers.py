@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """Polygonal numbers, A139600
 
@@ -42,7 +42,9 @@ def _polygonal(n: int) -> list[int]:
     return row
 
 
-polygonal: tgen = TablGenerator(_polygonal, "Polygonal numbers", "POLYGO")
+@tvals(_polygonal, "POLYGO")
+def polygonal(size: int) -> tabl: 
+    return [_polygonal(j) for j in range(size)]
 
 
 ####################################################################

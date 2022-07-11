@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """Fibonacci-Pascal triangle A354267
 
@@ -31,7 +31,9 @@ def _fibonacci(n: int) -> list[int]:
     return row
 
 
-fibonacci: tgen = TablGenerator(_fibonacci, "Fibonacci", "FIBONA")
+@tvals(_fibonacci, "FIBONA")
+def fibonacci(size: int) -> tabl: 
+    return [_fibonacci(j) for j in range(size)]
 
 
 ####################################################################

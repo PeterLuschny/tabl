@@ -5,6 +5,7 @@ from os.path import join, isfile
 tabl_files: list[str] = [
     "tabltypes.py",
     "tabltools.py",
+    "tabltrans.py",
     "tablsums.py",
     "tablprint.py",
     "tablprofile.py",
@@ -54,14 +55,15 @@ import_header: list[str] = [
     "from functools import cache\n",
     "from itertools import accumulate\n",
     "from sys import setrecursionlimit\n",
-    "from typing import Callable, TypeAlias\n",
+    "from typing import Callable, TypeAlias, Literal\n",
+    "from io import TextIOWrapper\n",
 ]
 
 dir: str = join(getcwd(), "src")
 dest: TextIOWrapper = open("tabl.py", "w+")
 
 dest.writelines(import_header)
-dest.write("setrecursionlimit(2000)\n")
+dest.write("setrecursionlimit(2100)\n")
 
 for src in tabl_files:
     file_path: str = join(dir, src)

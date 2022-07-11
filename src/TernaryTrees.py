@@ -1,6 +1,6 @@
 from functools import cache
 from itertools import accumulate
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """Ternary trees, Fuss-Catalan 2, A355172.
 
@@ -26,7 +26,9 @@ def _ternary_tree(n: int) -> list[int]:
     return list(accumulate(accumulate(row)))
 
 
-ternary_tree: tgen = TablGenerator(_ternary_tree, "Ternary trees", "TETREE")
+@tvals(_ternary_tree, "TETREE")
+def ternary_tree(size: int) -> tabl: 
+    return [_ternary_tree(j) for j in range(size)]
 
 
 ####################################################################

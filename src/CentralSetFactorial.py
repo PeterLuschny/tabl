@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """The central set factorial numbers, A269945 (see also A008957, A036969).
 
@@ -28,7 +28,9 @@ def _cs_factorial(n: int) -> list[int]:
     return row
 
 
-cs_factorial: tgen = TablGenerator(_cs_factorial, "Central set factorials", "SETFAC")
+@tvals(_cs_factorial, "CSFACT")
+def cs_factorial(size: int) -> tabl: 
+    return [_cs_factorial(j) for j in range(size)]
 
 
 ####################################################################

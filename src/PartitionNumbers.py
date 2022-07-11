@@ -1,6 +1,6 @@
 from functools import cache
 from itertools import accumulate
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """The partition numbers (Euler's table) A008284, A026820, A000041.
 
@@ -48,9 +48,14 @@ def _partnum_atmost(n: int) -> list[int]:
     return list(accumulate(_partnum_exact(n)))
 
 
-partnum_exact: tgen = TablGenerator(_partnum_exact, "Partition numbers (exact)", "PARTEX")
+@tvals(_partnum_exact, "PARTEX")
+def partnum_exact(size: int) -> tabl: 
+    return [_partnum_exact(j) for j in range(size)]
 
-partnum_atmost: tgen = TablGenerator(_partnum_atmost, "Partition numbers (at most)", "PARMOS")
+
+@tvals(_partnum_atmost, "PARMOS")
+def partnum_atmost(size: int) -> tabl: 
+    return [_partnum_atmost(j) for j in range(size)]
 
 
 ####################################################################

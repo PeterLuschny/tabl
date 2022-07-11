@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """The all 1's triangle, A000012.
 
@@ -23,7 +23,9 @@ def _uno(n: int) -> list[int]:
     return _uno(n - 1) + [1]
 
 
-uno: tgen = TablGenerator(_uno, "Uno", "UNOALL")
+@tvals(_uno, "UNOALL")
+def uno(size: int) -> tabl: 
+    return [_uno(j) for j in range(size)]
 
 
 ####################################################################

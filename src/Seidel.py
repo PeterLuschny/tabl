@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """The Seidel triangle, A008281 or A008280.
 
@@ -41,9 +41,15 @@ def _seidel_boust(n: int) -> list[int]:
     return _seidel(n) if n % 2 else _seidel(n)[::-1]
 
 
-seidel: tgen = TablGenerator(_seidel, "Seidel", "SEIDEL")
+@tvals(_seidel, "SEIDEL")
+def seidel(size: int) -> tabl: 
+    return [_seidel(j) for j in range(size)]
 
-seidel_boust: tgen = TablGenerator(_seidel_boust, "Seidel boustrophedon", "SEIBOU")
+
+@tvals(_seidel_boust, "SEIBOU")
+def seidel_boust(size: int) -> tabl: 
+    return [_seidel_boust(j) for j in range(size)]
+
 
 ####################################################################
 

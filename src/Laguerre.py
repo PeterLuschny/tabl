@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """Unsigned coefficients of Laguerre polynomials n! * L(n, x), unsigned A021009.
 
@@ -26,7 +26,9 @@ def _laguerre(n: int) -> list[int]:
     return row
 
 
-laguerre: tgen = TablGenerator(_laguerre, "Laguerre", "LAGUER")
+@tvals(_laguerre, "LAGUER")
+def laguerre(size: int) -> tabl: 
+    return [_laguerre(j) for j in range(size)]
 
 
 ####################################################################

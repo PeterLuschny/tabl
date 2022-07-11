@@ -1,6 +1,6 @@
 from functools import cache
-from Binomial import _binomial
-from tabltypes import TablGenerator, tgen
+from Binomial import binomial
+from tabltypes import tabl, tvals
 
 """The Euler tangent polynomials, A162660, A350972, A155585, A009006, A000182. 
 
@@ -20,14 +20,16 @@ from tabltypes import TablGenerator, tgen
 @cache
 def _euler_tan(n: int) -> list[int]:
 
-    row: list[int] = [_binomial(n)[k] * _euler_tan(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  
+    row: list[int] = [binomial.val(n, k) * _euler_tan(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  
 
     if n % 2 == 1:
         row[0] = -sum(row[2::2]) + 1
     return row
 
 
-euler_tan: tgen = TablGenerator(_euler_tan, "Euler tangent", "EULTAN")
+@tvals(_euler_tan, "EULTAN")
+def euler_tan(size: int) -> tabl: 
+    return [_euler_tan(j) for j in range(size)]
 
 
 def eulerT(n: int) -> int:
@@ -35,11 +37,14 @@ def eulerT(n: int) -> int:
 
 
 ####################################################################
-# See also: https://oeis.org/wiki/User:Peter_Luschny/SwissKnifePolynomials
 
 if __name__ == "__main__":
     from tabltest import TablTest
 
     TablTest(euler_tan, short=True)
 
-    print([eulerT(n) for n in range(100)])
+    print("Bonus:")
+    print([eulerT(n) for n in range(30)])
+
+
+# See also: https://oeis.org/wiki/User:Peter_Luschny/SwissKnifePolynomials

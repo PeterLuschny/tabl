@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """The Genocchi triangle A297703.
 
@@ -30,7 +30,9 @@ def _genocchi(n: int) -> list[int]:
     return row[1:]
 
 
-genocchi: tgen = TablGenerator(_genocchi, "Genocchi", "GENOCC")
+@tvals(_genocchi, "GENOCC")
+def genocchi(size: int) -> tabl: 
+    return [_genocchi(j) for j in range(size)]
 
 
 ####################################################################

@@ -1,5 +1,6 @@
 from functools import cache
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
+
 
 """The Narayana triangle, A090181.
 
@@ -31,7 +32,9 @@ def _narayana(n: int) -> list[int]:
     return row
 
 
-narayana: tgen = TablGenerator(_narayana, "Narayana", "NARAYA")
+@tvals(_narayana, "NARAYA")
+def narayana(size: int) -> tabl: 
+    return [_narayana(j) for j in range(size)]
 
 
 ####################################################################

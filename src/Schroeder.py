@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """Schroeder triangle, A122538
 
@@ -29,7 +29,9 @@ def _schroeder(n: int) -> list[int]:
     return row
 
 
-schroeder: tgen = TablGenerator(_schroeder, "Schroeder", "SCHROD")
+@tvals(_schroeder, "SCHROD")
+def schroeder(size: int) -> tabl: 
+    return [_schroeder(j) for j in range(size)]
 
 
 ####################################################################

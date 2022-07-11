@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """The Fubini triangle, A131689.
 
@@ -29,7 +29,9 @@ def _fubini(n: int) -> list[int]:
     return row
 
 
-fubini: tgen = TablGenerator(_fubini, "Fubini", "FUBINI")
+@tvals(_fubini, "FUBINI")
+def fubini(size: int) -> tabl: 
+    return [_fubini(j) for j in range(size)]
 
 
 ####################################################################

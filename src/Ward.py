@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """The Ward numbers A269939, A134991.
 
@@ -28,7 +28,9 @@ def _ward(n: int) -> list[int]:
     return row
 
 
-ward: tgen = TablGenerator(_ward, "Ward", "WARDNU")
+@tvals(_ward, "WARDNU")
+def ward(size: int) -> tabl: 
+    return [_ward(j) for j in range(size)]
 
 
 ####################################################################

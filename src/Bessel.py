@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
 
 """The Bessel triangle, A132062.
 
@@ -28,7 +28,9 @@ def _bessel(n: int) -> list[int]:
     return row
 
 
-bessel: tgen = TablGenerator(_bessel, "Bessel", "BESSEL")
+@tvals(_bessel, "BESSEL")
+def bessel(size: int) -> tabl: 
+    return [_bessel(j) for j in range(size)]
 
 
 ####################################################################

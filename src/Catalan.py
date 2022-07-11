@@ -1,6 +1,7 @@
 from functools import cache
 from itertools import accumulate
-from tabltypes import TablGenerator, tgen
+from tabltypes import tabl, tvals
+
 
 """The Catalan triangle, Fuss-Catalan 1, A355173.
 
@@ -26,7 +27,9 @@ def _catalan(n: int) -> list[int]:
     return list(accumulate(row))
 
 
-catalan: tgen = TablGenerator(_catalan, "Catalan", "CATALA")
+@tvals(_catalan, "CATALA")
+def catalan(size: int) -> tabl: 
+    return [_catalan(j) for j in range(size)]
 
 
 ####################################################################
