@@ -31,8 +31,6 @@ def worpitzky(size: int) -> tabl:
     return [_worpitzky(j) for j in range(size)]
 
 
-####################################################################
-
 if __name__ == "__main__":
     from tabltest import TablTest
 

@@ -1,7 +1,6 @@
 from typing import Literal
 from tablsums import tabl_sum, tabl_evensum, tabl_oddsum, tabl_altsum, tabl_cumsum, tabl_revcumsum, tabl_diagsum
-from tabltrans import flat_tabl, flat_rev, flat_diag, flat_cum, flat_revcum, flat_cumrev
-from tabltools import row_poly, col_poly
+from tabltransform import flat_tabl, flat_rev, flat_diag, flat_cum, flat_revcum, flat_cumrev, row_poly, col_poly
 from tabltypes import tgen, tabl
 
 # #@

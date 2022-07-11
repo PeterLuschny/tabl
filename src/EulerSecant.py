@@ -36,8 +36,6 @@ def eulerS(n: int) -> int:
     return 0 if n % 2 == 1 else _euler_sec(n)[0]
 
 
-####################################################################
-
 if __name__ == "__main__":
     from tabltest import TablTest
 

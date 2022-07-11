@@ -2,7 +2,7 @@
 # #@
 
 from tabltypes import tabl, trow
-from tabltrans import diag_tabl, cum_tabl, rev_tabl
+from tabltransform import diag_tabl, cum_tabl, rev_tabl
 
 
 def even_sum(r: trow) -> int:

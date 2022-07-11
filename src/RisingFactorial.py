@@ -32,8 +32,6 @@ def rising_factorial(size: int) -> tabl:
     return [_rising_factorial(j) for j in range(size)]
 
 
-####################################################################
-
 if __name__ == "__main__":
     from tabltest import TablTest
 

@@ -35,8 +35,6 @@ def catalan_aerated(size: int) -> tabl:
     return [_catalan_aerated(j) for j in range(size)]
 
 
-####################################################################
-
 if __name__ == "__main__":
     from tabltest import TablTest
 

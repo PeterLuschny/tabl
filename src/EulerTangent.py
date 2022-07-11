@@ -36,8 +36,6 @@ def eulerT(n: int) -> int:
     return 0 if n % 2 == 0 else _euler_tan(n)[0]
 
 
-####################################################################
-
 if __name__ == "__main__":
     from tabltest import TablTest
 

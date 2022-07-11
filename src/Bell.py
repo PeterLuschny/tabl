@@ -32,8 +32,6 @@ def bell(size: int) -> tabl:
     return [_bell(j) for j in range(size)]
 
 
-####################################################################
-
 if __name__ == "__main__":
     from tabltest import TablTest
 

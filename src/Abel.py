@@ -31,8 +31,6 @@ def abel(size: int) -> tabl:
     return [_abel(j) for j in range(size)]
 
 
-####################################################################
-
 if __name__ == "__main__":
     from tabltest import TablTest
 

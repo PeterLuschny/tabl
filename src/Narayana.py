@@ -37,8 +37,6 @@ def narayana(size: int) -> tabl:
     return [_narayana(j) for j in range(size)]
 
 
-####################################################################
-
 if __name__ == "__main__":
     from tabltest import TablTest
 

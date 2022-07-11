@@ -34,7 +34,6 @@ def _hermite(n: int) -> list[int]:
 def hermite(size: int) -> tabl: 
     return [_hermite(j) for j in range(size)]
 
-####################################################################
 
 if __name__ == "__main__":
     from tabltest import TablTest

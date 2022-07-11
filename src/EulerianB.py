@@ -33,8 +33,6 @@ def eulerianB(size: int) -> tabl:
     return [_eulerianB(j) for j in range(size)]
 
 
-####################################################################
-
 if __name__ == "__main__":
     from tabltest import TablTest
 

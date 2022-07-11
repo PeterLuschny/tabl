@@ -1,6 +1,4 @@
-from io import TextIOWrapper
-from tabltools import row_poly, col_poly
-from tabltrans import flat_tabl
+from tabltransform import row_poly, col_poly, flat_tabl
 from tablsums import tabl_sum, tabl_evensum, tabl_oddsum, tabl_altsum, tabl_cumsum, tabl_revcumsum, tabl_diagsum
 from tabltypes import tgen, tabl
 
@@ -64,6 +62,7 @@ def PrintProfile(T: tgen) -> None:
 
 
 """
+from io import TextIOWrapper
 from tabl import tabl_fun
 def SaveProfiles() -> None:
     dest: TextIOWrapper = open("profiles.csv", "w+")

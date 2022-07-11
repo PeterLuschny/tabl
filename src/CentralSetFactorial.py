@@ -33,8 +33,6 @@ def cs_factorial(size: int) -> tabl:
     return [_cs_factorial(j) for j in range(size)]
 
 
-####################################################################
-
 if __name__ == "__main__":
     from tabltest import TablTest
 

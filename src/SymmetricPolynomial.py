@@ -32,8 +32,6 @@ def sympoly(size: int) -> tabl:
     return [_sympoly(j) for j in range(size)]
 
 
-####################################################################
-
 if __name__ == "__main__":
     from tabltest import TablTest
 

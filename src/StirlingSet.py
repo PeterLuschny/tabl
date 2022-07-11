@@ -32,8 +32,6 @@ def stirling_set(size: int) -> tabl:
     return [_stirling_set(j) for j in range(size)]
 
 
-####################################################################
-
 if __name__ == "__main__":
     from tabltest import TablTest
 

@@ -58,7 +58,6 @@ def partnum_atmost(size: int) -> tabl:
     return [_partnum_atmost(j) for j in range(size)]
 
 
-####################################################################
 
 if __name__ == "__main__":
     from tabltest import TablTest

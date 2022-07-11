@@ -8,6 +8,9 @@ trow: TypeAlias = list[int]
 """table"""
 tabl: TypeAlias = list[list[int]]
 
+"""sequence generator"""
+seq: TypeAlias = Callable[[int], int]
+
 """row generator"""
 rgen: TypeAlias = Callable[[int], trow]
 

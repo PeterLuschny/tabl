@@ -30,8 +30,6 @@ def nicomachus(size: int) -> tabl:
     return [_nicomachus(j) for j in range(size)]
 
 
-####################################################################
-
 if __name__ == "__main__":
     from tabltest import TablTest
 

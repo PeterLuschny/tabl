@@ -34,8 +34,6 @@ def fubini(size: int) -> tabl:
     return [_fubini(j) for j in range(size)]
 
 
-####################################################################
-
 if __name__ == "__main__":
     from tabltest import TablTest
 

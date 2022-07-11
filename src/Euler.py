@@ -37,10 +37,6 @@ def euler(size: int) -> tabl:
 def euler_num(n: int) -> int:
     return _euler(n)[0]
 
-
-####################################################################
-# See also: https://oeis.org/wiki/User:Peter_Luschny/SwissKnifePolynomials
-
 if __name__ == "__main__":
     from tabltest import TablTest
 
@@ -48,3 +44,5 @@ if __name__ == "__main__":
 
     print("Bonus:")
     print([euler_num(n) for n in range(30)])
+
+# See also: https://oeis.org/wiki/User:Peter_Luschny/SwissKnifePolynomials

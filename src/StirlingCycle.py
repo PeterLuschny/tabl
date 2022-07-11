@@ -32,8 +32,6 @@ def stirling_cycle(size: int) -> tabl:
     return [_stirling_cycle(j) for j in range(size)]
 
 
-####################################################################
-
 if __name__ == "__main__":
     from tabltest import TablTest
 

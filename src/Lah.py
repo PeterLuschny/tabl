@@ -33,8 +33,6 @@ def lah(size: int) -> tabl:
     return [_lah(j) for j in range(size)]
 
 
-####################################################################
-
 if __name__ == "__main__":
     from tabltest import TablTest
 

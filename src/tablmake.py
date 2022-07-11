@@ -4,8 +4,7 @@ from os.path import join, isfile
 
 tabl_files: list[str] = [
     "tabltypes.py",
-    "tabltools.py",
-    "tabltrans.py",
+    "tabltransform.py",
     "tablsums.py",
     "tablprint.py",
     "tablprofile.py",
@@ -55,8 +54,7 @@ import_header: list[str] = [
     "from functools import cache\n",
     "from itertools import accumulate\n",
     "from sys import setrecursionlimit\n",
-    "from typing import Callable, TypeAlias, Literal\n",
-    "from io import TextIOWrapper\n",
+    "from typing import Callable, TypeAlias\n",
 ]
 
 dir: str = join(getcwd(), "src")
@@ -82,6 +80,8 @@ for src in tabl_files:
             else:
                 start: bool = True
             if line.startswith("#"):
+                continue
+            if line.startswith("if __name__"):
                 break
             if line != "\n":
                 dest.write(line)
