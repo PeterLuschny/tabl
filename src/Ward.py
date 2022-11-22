@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""The Ward numbers A269939, A134991.
+"""Ward numbers, A269939, A134991.
 
 [0] [1]
 [1] [0, 1]
@@ -28,7 +28,7 @@ def _ward(n: int) -> list[int]:
     return row
 
 
-@tvals(_ward, "WARDNU")
+@tstruct(_ward, "WARDNUMBEROS")
 def ward(size: int) -> tabl: 
     return [_ward(j) for j in range(size)]
 

@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""The Euler triangle, A247453, A109449.
+"""Euler triangle, A247453, A109449.
 
 0:      1
 1:     -1      1
@@ -29,7 +29,7 @@ def _euler(n: int) -> list[int]:
     return row
 
 
-@tvals(_euler, "EULNUM")
+@tstruct(_euler, "EULERTRIANGL")
 def euler(size: int) -> tabl: 
     return [_euler(j) for j in range(size)]
 

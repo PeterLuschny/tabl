@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
 """Lehmer-Comtet of 2nd kind, unsigned, A354794
 
@@ -29,7 +29,7 @@ def _lehmer(n: int) -> list[int]:
            for k in range(n + 1)]
 
 
-@tvals(_lehmer, "LEHCOM")
+@tstruct(_lehmer, "LEHMERCOMTET")
 def lehmer(size: int) -> tabl: 
     return [_lehmer(j) for j in range(size)]
 

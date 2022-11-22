@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""The coefficients of the Hermite polynomials, A099174, A066325.
+"""Hermite polynomials (coefficients), A099174, A066325.
 
 [0] [1]
 [1] [0, 1]
@@ -30,7 +30,7 @@ def _hermite(n: int) -> list[int]:
     return row
 
 
-@tvals(_hermite, "HERMIT")
+@tstruct(_hermite, "HERMITEPOLYC")
 def hermite(size: int) -> tabl: 
     return [_hermite(j) for j in range(size)]
 

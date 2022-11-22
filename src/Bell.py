@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""The Bell (Peirce/Aitken) triangle, A011971 (see also A182930).
+"""Bell (Peirce/Aitken) triangle, A011971 (see also A182930).
 
 [0]     1;
 [1]     1,     2;
@@ -27,7 +27,7 @@ def _bell(n: int) -> list[int]:
     return row
 
 
-@tvals(_bell, "BELLNU")
+@tstruct(_bell, "BELLTRIANGLE")
 def bell(size: int) -> tabl: 
     return [_bell(j) for j in range(size)]
 

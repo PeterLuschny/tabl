@@ -1,6 +1,6 @@
 from functools import cache
 from itertools import accumulate
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
 """Ternary trees, Fuss-Catalan 2, A355172.
 
@@ -26,7 +26,7 @@ def _ternary_tree(n: int) -> list[int]:
     return list(accumulate(accumulate(row)))
 
 
-@tvals(_ternary_tree, "TETREE")
+@tstruct(_ternary_tree, "TERNARYTREES")
 def ternary_tree(size: int) -> tabl: 
     return [_ternary_tree(j) for j in range(size)]
 

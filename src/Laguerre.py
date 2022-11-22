@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""Unsigned coefficients of Laguerre polynomials n! * L(n, x), unsigned A021009.
+"""Laguerre polynomials n! * L(n, x) (unsigned coefficients), unsigned A021009.
 
 [0]      1
 [1]      1,       1
@@ -26,7 +26,7 @@ def _laguerre(n: int) -> list[int]:
     return row
 
 
-@tvals(_laguerre, "LAGUER")
+@tstruct(_laguerre, "LAGUERREPOLY")
 def laguerre(size: int) -> tabl: 
     return [_laguerre(j) for j in range(size)]
 

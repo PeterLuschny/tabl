@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
 """Polygonal numbers, A139600
 
@@ -42,7 +42,7 @@ def _polygonal(n: int) -> list[int]:
     return row
 
 
-@tvals(_polygonal, "POLYGO")
+@tstruct(_polygonal, "POLYGONALNUM")
 def polygonal(size: int) -> tabl: 
     return [_polygonal(j) for j in range(size)]
 

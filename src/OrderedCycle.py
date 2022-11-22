@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
 """Ordered cycle numbers A225479, A048594.
 
@@ -29,7 +29,7 @@ def _ordered_cycle(n: int) -> list[int]:
     return row
 
 
-@tvals(_ordered_cycle, "ORDCYC")
+@tstruct(_ordered_cycle, "ORDEREDCYCLE")
 def ordered_cycle(size: int) -> tabl: 
     return [_ordered_cycle(j) for j in range(size)]
 

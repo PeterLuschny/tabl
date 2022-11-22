@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""The Motzkin triangle, A009766.
+"""Motzkin triangle, A009766.
 
 [0]    1;
 [1]    1,    1;
@@ -30,7 +30,7 @@ def _motzkin(n: int) -> list[int]:
     return row
 
 
-@tvals(_motzkin, "MOTZKI")
+@tstruct(_motzkin, "MOTZKINTRIAN")
 def motzkin(size: int) -> tabl: 
     return [_motzkin(j) for j in range(size)]
 

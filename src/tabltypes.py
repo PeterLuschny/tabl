@@ -2,23 +2,23 @@ from typing import Callable, TypeAlias
 
 # #@
 
-"""table row"""
+"""Type: table row"""
 trow: TypeAlias = list[int]
 
-"""table"""
+"""Type: table"""
 tabl: TypeAlias = list[list[int]]
 
-"""sequence generator"""
+"""Type: sequence generator"""
 seq: TypeAlias = Callable[[int], int]
 
-"""row generator"""
+"""Type: row generator"""
 rgen: TypeAlias = Callable[[int], trow]
 
-"""table generator"""
+"""Type: table generator"""
 tgen: TypeAlias = Callable[[int], tabl]
 
 
-def tvals(r: rgen, id: str) -> Callable[[tgen], tgen]:
+def tstruct(r: rgen, id: str) -> Callable[[tgen], tgen]:
     def v(n: int, k: int) -> int: 
         return r(n)[k]
 

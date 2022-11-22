@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""Schroeder triangle, A122538
+"""Schroeder triangle, A122538 (see also A033877)
 
 [0] [1]
 [1] [0,     1]
@@ -29,7 +29,7 @@ def _schroeder(n: int) -> list[int]:
     return row
 
 
-@tvals(_schroeder, "SCHROD")
+@tstruct(_schroeder, "SCHROEDERTRI")
 def schroeder(size: int) -> tabl: 
     return [_schroeder(j) for j in range(size)]
 

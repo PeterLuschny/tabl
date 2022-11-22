@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""The Eulerian triangle, A173018.
+"""Eulerian triangle, A173018.
 
 [0]  1,
 [1]  1,    0,
@@ -26,7 +26,7 @@ def _eulerian(n: int) -> list[int]:
     return row
 
 
-@tvals(_eulerian, "EULRI1")
+@tstruct(_eulerian, "EULERIANTRIA")
 def eulerian(size: int) -> tabl: 
     return [_eulerian(j) for j in range(size)]
 

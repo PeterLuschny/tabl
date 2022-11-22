@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""The Delannoy triangle, A008288.
+"""Delannoy triangle, A008288.
 
 [0] [1]
 [1] [1,  1]
@@ -30,7 +30,7 @@ def _delannoy(n: int) -> list[int]:
     return row
 
 
-@tvals(_delannoy, "DELANO")
+@tstruct(_delannoy, "DELANNOYTRIA")
 def delannoy(size: int) -> tabl: 
     return [_delannoy(j) for j in range(size)]
 

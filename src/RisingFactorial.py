@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""The rising factorial, A094587.
+"""Rising factorial, A094587.
 
 [0]       1
 [1]       1,      1
@@ -27,7 +27,7 @@ def _rising_factorial(n: int) -> list[int]:
     return row
 
 
-@tvals(_rising_factorial, "RISFAC")
+@tstruct(_rising_factorial, "RISFACTORIAL")
 def rising_factorial(size: int) -> tabl: 
     return [_rising_factorial(j) for j in range(size)]
 

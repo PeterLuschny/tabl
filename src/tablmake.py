@@ -33,8 +33,8 @@ tabl_files: list[str] = [
     "LehmerComtet.py",
     "Motzkin.py",
     "Narayana.py",
-    "OrderedCycle.py",
     "Ordinals.py",
+    "OrderedCycle.py",
     "PartitionNumbers.py",
     "PolygonalNumbers.py",
     "Rencontres.py",
@@ -70,6 +70,12 @@ for src in tabl_files:
         src_file: TextIOWrapper = open(file_path, "r")
 
         for line in src_file:
+            #if line.startswith('"""'):
+            #    if len(line) > 4:
+            #        print(line[3:].strip())
+            if line.startswith("@tstruct("):
+                    s = line[1+line.find('"') : line.rfind('"')]
+                    print(s)
             if line.startswith("from"):
                 continue
             if not start:

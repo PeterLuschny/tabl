@@ -1,9 +1,9 @@
 from functools import cache
 from itertools import accumulate
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
 
-"""The Catalan triangle, Fuss-Catalan 1, A355173.
+"""Catalan triangle, Fuss-Catalan 1, A355173.
 
 [0] [1]
 [1] [0, 1]
@@ -27,7 +27,7 @@ def _catalan(n: int) -> list[int]:
     return list(accumulate(row))
 
 
-@tvals(_catalan, "CATALA")
+@tstruct(_catalan, "FUSSCATALAN1")
 def catalan(size: int) -> tabl: 
     return [_catalan(j) for j in range(size)]
 

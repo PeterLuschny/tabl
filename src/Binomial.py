@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""The binomial coefficients, Pascal triangle, A007318.
+"""Pascal triangle, binomial coefficients, A007318.
 
 [0]   1;
 [1]   1,   1;
@@ -27,7 +27,7 @@ def _binomial(n: int) -> list[int]:
     return row
 
 
-@tvals(_binomial, "BINOMI")
+@tstruct(_binomial, "BINOMIALCOEF")
 def binomial(size: int) -> tabl:
     return [_binomial(j) for j in range(size)]
 

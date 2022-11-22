@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
 """Stirling cycle numbers, unsigned Stirling numbers of the 1. kind, A132393.
 
@@ -27,7 +27,7 @@ def _stirling_cycle(n: int) -> list[int]:
     return row
 
 
-@tvals(_stirling_cycle, "STICYC")
+@tstruct(_stirling_cycle, "STIRLINGCYC1")
 def stirling_cycle(size: int) -> tabl: 
     return [_stirling_cycle(j) for j in range(size)]
 

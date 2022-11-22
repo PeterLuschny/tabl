@@ -84,15 +84,13 @@ def flat_cumrev(t: tabl) -> trow:
     return [i for row in cumrev_tabl(t) for i in row]
 
 
-####################################################################
-
 if __name__ == "__main__":
+
     from tabltypes import rgen, tgen, seq, trow
     from Binomial import binomial
     from StirlingSet import stirling_set
     from StirlingCycle import stirling_cycle
     from Motzkin import motzkin
-    from Abel import abel
 
     T: tabl = [
         [1],

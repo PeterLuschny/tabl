@@ -1,8 +1,8 @@
 from functools import cache
 from Binomial import binomial 
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""The Euler secant polynomials, A119879, A081658, A153641. 
+"""Euler secant polynomials, A119879, A081658, A153641. 
 
 [0] [   1]
 [1] [   0,     1]
@@ -27,7 +27,7 @@ def _euler_sec(n: int) -> list[int]:
     return row
 
 
-@tvals(_euler_sec, "EULSEC")
+@tstruct(_euler_sec, "EULERSECANTO")
 def euler_sec(size: int) -> tabl: 
     return [_euler_sec(j) for j in range(size)]
 

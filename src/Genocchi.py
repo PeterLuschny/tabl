@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""The Genocchi triangle A297703.
+"""Genocchi triangle, A297703.
 
 [0] [     1]
 [1] [     1,      1]
@@ -30,7 +30,7 @@ def _genocchi(n: int) -> list[int]:
     return row[1:]
 
 
-@tvals(_genocchi, "GENOCC")
+@tstruct(_genocchi, "GENOCCHITRIA")
 def genocchi(size: int) -> tabl: 
     return [_genocchi(j) for j in range(size)]
 

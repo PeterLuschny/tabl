@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""Number of permutations of n things k at a time, A008279. 
+"""Falling factorial, number of permutations of n things k at a time, A008279. 
 
 [0]  1
 [1]  1,  1
@@ -23,7 +23,7 @@ def _falling_factorial(n: int) -> list[int]:
     return row
 
 
-@tvals(_falling_factorial, "FALFAC")
+@tstruct(_falling_factorial, "FALFACTORIAL")
 def falling_factorial(size: int) -> tabl: 
     return [_falling_factorial(j) for j in range(size)]
 

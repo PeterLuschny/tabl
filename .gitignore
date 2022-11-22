@@ -2,3 +2,5 @@ local/
 __pycache__/
 _pycache_/
 tabl.code-workspace
+docs/
+.gitignore

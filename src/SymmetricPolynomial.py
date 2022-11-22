@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""Row k gives the (n-1)-st elementary symmetric polynomial of [k, k+1, k+2,..., k+n], A165675.
+"""Symmetric polynomial, row k gives the (n-1)-st elementary of [k, k+1, k+2,..., k+n], A165675.
 
 [0]    1;
 [1]    1,     1;
@@ -27,7 +27,7 @@ def _sympoly(n: int) -> list[int]:
     return row
 
 
-@tvals(_sympoly, "SYMPOL")
+@tstruct(_sympoly, "SYMPOLYNOMIA")
 def sympoly(size: int) -> tabl: 
     return [_sympoly(j) for j in range(size)]
 

@@ -22,8 +22,7 @@ def isTablGenerator(
 ```
 
 ## docs
-For the [user](https://luschny.de/math/seq/oeis/PythonIntegerTriangles.html), 
-for the [implementer](https://github.com/PeterLuschny/tabl/blob/main/docs/ImplementationNotes.md).
+See the tables.md for the sequences generated from the tables.
 
 ## install
 python -m pip install "tabl @ git+https://github.com/PeterLuschny/tabl.git"

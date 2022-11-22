@@ -1,8 +1,8 @@
 from functools import cache
 from Binomial import binomial
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""The Euler tangent polynomials, A162660, A350972, A155585, A009006, A000182. 
+"""Euler tangent polynomials, A162660, A350972, A155585, A009006, A000182. 
 
 [0]    0;
 [1]    1,     0;
@@ -27,7 +27,7 @@ def _euler_tan(n: int) -> list[int]:
     return row
 
 
-@tvals(_euler_tan, "EULTAN")
+@tstruct(_euler_tan, "EULERTANGENT")
 def euler_tan(size: int) -> tabl: 
     return [_euler_tan(j) for j in range(size)]
 

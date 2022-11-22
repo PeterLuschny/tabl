@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""The Fubini triangle, A131689.
+"""Fubini triangle, A131689.
 
 [0]  1;
 [1]  0,  1;
@@ -29,7 +29,7 @@ def _fubini(n: int) -> list[int]:
     return row
 
 
-@tvals(_fubini, "FUBINI")
+@tstruct(_fubini, "FUBINITRIANG")
 def fubini(size: int) -> tabl: 
     return [_fubini(j) for j in range(size)]
 

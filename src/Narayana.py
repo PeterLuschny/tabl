@@ -1,8 +1,8 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
 
-"""The Narayana triangle, A090181.
+"""Narayana triangle, A090181.
 
 [0]  1;
 [1]  0,  1;
@@ -32,7 +32,7 @@ def _narayana(n: int) -> list[int]:
     return row
 
 
-@tvals(_narayana, "NARAYA")
+@tstruct(_narayana, "NARAYANATRIA")
 def narayana(size: int) -> tabl: 
     return [_narayana(j) for j in range(size)]
 

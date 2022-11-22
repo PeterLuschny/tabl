@@ -1,9 +1,9 @@
 from functools import cache
 from Binomial import binomial
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
 
-"""The unsigned coefficients of Abel polynomials, A061356
+"""Abel polynomials (unsigned coefficients), A061356
 
 [0] [1]
 [1] [0,        1]
@@ -26,7 +26,7 @@ def _abel(n: int) -> list[int]:
            if k > 0 else 0 for k in range(n + 1)]
 
 
-@tvals(_abel, "ABELPO")
+@tstruct(_abel, "ABELPOLYNOMS")
 def abel(size: int) -> tabl: 
     return [_abel(j) for j in range(size)]
 

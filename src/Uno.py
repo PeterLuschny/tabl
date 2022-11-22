@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""The all 1's triangle, A000012.
+"""Uno, the all 1's triangle, A000012.
 
 [0]  1
 [1]  1,  1
@@ -23,7 +23,7 @@ def _uno(n: int) -> list[int]:
     return _uno(n - 1) + [1]
 
 
-@tvals(_uno, "UNOALL")
+@tstruct(_uno, "UNOPERTUTTIS")
 def uno(size: int) -> tabl: 
     return [_uno(j) for j in range(size)]
 

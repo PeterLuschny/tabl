@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""The central cycle factorial numbers, A269940, A259456
+"""Central cycle factorial numbers, A269940, A259456
 
 [0] [1]
 [1] [0,   1]
@@ -28,7 +28,7 @@ def _cc_factorial(n: int) -> list[int]:
     return row
 
 
-@tvals(_cc_factorial, "CCFACT")
+@tstruct(_cc_factorial, "CENTRFACTCYC")
 def cc_factorial(size: int) -> tabl: 
     return [_cc_factorial(j) for j in range(size)]
 

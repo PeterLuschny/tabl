@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""The rencontres triangle, A008290.
+"""Rencontres triangle, A008290.
 
 [0]       1;
 [1]       0,      1;
@@ -29,7 +29,7 @@ def _rencontres(n: int) -> list[int]:
     return row
 
 
-@tvals(_rencontres, "RENCON")
+@tstruct(_rencontres, "RENCONTRESTR")
 def rencontres(size: int) -> tabl: 
     return [_rencontres(j) for j in range(size)]
 

@@ -123,10 +123,10 @@ def SaveTables() -> None:
                 PrintViews(fun)
 """
 
-####################################################################
 
 if __name__ == "__main__":
-    from tabltypes import tvals
+
+    from tabltypes import tstruct
     from Abel import abel
 
     PrintViews(abel)

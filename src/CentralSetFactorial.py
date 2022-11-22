@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""The central set factorial numbers, A269945 (see also A008957, A036969).
+"""Central set factorial numbers, A269945 (see also A008957, A036969).
 
 [0] [1]
 [1] [0, 1]
@@ -28,7 +28,7 @@ def _cs_factorial(n: int) -> list[int]:
     return row
 
 
-@tvals(_cs_factorial, "CSFACT")
+@tstruct(_cs_factorial, "CENTRFACTSET")
 def cs_factorial(size: int) -> tabl: 
     return [_cs_factorial(j) for j in range(size)]
 

@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""The Seidel triangle, A008281 or A008280.
+"""Seidel triangle, A008281 or A008280.
 
 [0] [1]
 [1] [0,   1]
@@ -41,12 +41,12 @@ def _seidel_boust(n: int) -> list[int]:
     return _seidel(n) if n % 2 else _seidel(n)[::-1]
 
 
-@tvals(_seidel, "SEIDEL")
+@tstruct(_seidel, "SEIDELTRIANG")
 def seidel(size: int) -> tabl: 
     return [_seidel(j) for j in range(size)]
 
 
-@tvals(_seidel_boust, "SEIBOU")
+@tstruct(_seidel_boust, "SEIDELBOUSTO")
 def seidel_boust(size: int) -> tabl: 
     return [_seidel_boust(j) for j in range(size)]
 

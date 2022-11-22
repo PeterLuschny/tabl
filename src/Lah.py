@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""Unsigned Lah numbers, A271703.
+"""Lah numbers (unsigned), A271703.
 
 [0]  1
 [1]  0       1
@@ -28,7 +28,7 @@ def _lah(n: int) -> list[int]:
     return row
 
 
-@tvals(_lah, "LAHNUM")
+@tstruct(_lah, "LAHTRIANGLES")
 def lah(size: int) -> tabl: 
     return [_lah(j) for j in range(size)]
 

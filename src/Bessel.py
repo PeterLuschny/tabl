@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""The Bessel triangle, A132062.
+"""Bessel triangle, A132062.
 
 [0] [1]
 [1] [0,      1]
@@ -28,7 +28,7 @@ def _bessel(n: int) -> list[int]:
     return row
 
 
-@tvals(_bessel, "BESSEL")
+@tstruct(_bessel, "BESSELPOLYNO")
 def bessel(size: int) -> tabl: 
     return [_bessel(j) for j in range(size)]
 

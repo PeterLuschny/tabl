@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""The Worpitzky triangle, A028246.
+"""Worpitzky triangle, A028246.
 
 [0]  1;
 [1]  1,   1;
@@ -26,7 +26,7 @@ def _worpitzky(n: int) -> list[int]:
     return row
 
 
-@tvals(_worpitzky, "WORPIT")
+@tstruct(_worpitzky, "WORPITZKYNUM")
 def worpitzky(size: int) -> tabl: 
     return [_worpitzky(j) for j in range(size)]
 

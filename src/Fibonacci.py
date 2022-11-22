@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""Fibonacci-Pascal triangle A354267
+"""Fibonacci-Pascal triangle, A354267
 
 [0] [ 1]
 [1] [ 0,  1]
@@ -31,7 +31,7 @@ def _fibonacci(n: int) -> list[int]:
     return row
 
 
-@tvals(_fibonacci, "FIBONA")
+@tstruct(_fibonacci, "FIBONACPASCA")
 def fibonacci(size: int) -> tabl: 
     return [_fibonacci(j) for j in range(size)]
 

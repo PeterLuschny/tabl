@@ -1,7 +1,7 @@
 from functools import cache
-from tabltypes import tabl, tvals
+from tabltypes import tabl, tstruct
 
-"""The aerated Catalan triangle, A053121.
+"""Catalan triangle aerated, A053121.
 
 [0]   1,
 [1]   0,   1,
@@ -30,7 +30,7 @@ def _catalan_aerated(n: int) -> list[int]:
     return row
 
 
-@tvals(_catalan_aerated, "ABELPO")
+@tstruct(_catalan_aerated, "CATALANAERAT")
 def catalan_aerated(size: int) -> tabl: 
     return [_catalan_aerated(j) for j in range(size)]
 
