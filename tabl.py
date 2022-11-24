@@ -170,6 +170,15 @@ def PrintViews(T: tgen, rows: int = 7, cono: int | None = None,
     if verbose: print("Polynomial values as columns")
     PrintColPolyArray(T, rows, cols)
     print()
+"""
+import contextlib
+def SaveTables() -> None:
+    path: Literal['tables.md'] = 'tables.md'
+    with open(path, 'w+') as dest:
+        with contextlib.redirect_stdout(dest):
+            for fun in tabl_fun:
+                PrintViews(fun)
+"""
 def Profile(T: tgen, hor: int = 10, ver: int = 5) -> dict[str, list[int]]:
     d: dict[str, list[int]] = {}
     t: tabl = T(hor)  
@@ -213,6 +222,16 @@ def PrintProfile(T: tgen) -> None:
     for seq in d.items():
         print(f"{seq[0]}, {seq[1]}")
     print()
+"""
+def SaveProfiles() -> None:
+    dest: TextIOWrapper = open("profiles.csv", "w+")
+    for fun in tabl_fun:
+        p: dict[str, list[int]] = Profile(fun)
+        id: str = fun.id
+        for seq in p.items():
+            dest.write(f"{seq[1]},{seq[0]},{id}\n")
+    dest.close()
+"""
 @cache
 def _abel(n: int) -> list[int]:
     if n == 0:
@@ -646,7 +665,7 @@ def _stirling_cycle(n: int) -> list[int]:
     for k in range(1, n):
         row[k] = row[k] + (n - 1) * row[k + 1]
     return row
-@tstruct(_stirling_cycle, "STIRLINGCYC1")
+@tstruct(_stirling_cycle, "STIRLING1CYC")
 def stirling_cycle(size: int) -> tabl: 
     return [_stirling_cycle(j) for j in range(size)]
 @cache
@@ -657,9 +676,37 @@ def _stirling_set(n: int) -> list[int]:
     for k in range(1, n):
         row[k] = row[k] + k * row[k + 1]
     return row
-@tstruct(_stirling_set, "STIRLINGSET2")
+@tstruct(_stirling_set, "STIRLING2SET")
 def stirling_set(size: int) -> tabl: 
     return [_stirling_set(j) for j in range(size)]
+@cache
+def _stirling_cycle2(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 0]
+    row1: list[int] = _stirling_cycle2(n - 2)
+    row: list[int]  = _stirling_cycle2(n - 1) + [0]
+    for k in range(1, n // 2 + 1):
+        row[k] = (n - 1) * (row1[k - 1] + row[k])
+    return row
+@tstruct(_stirling_cycle2, "STIRLCYCORD2")
+def stirling_cycle2(size: int) -> tabl: 
+    return [_stirling_cycle2(j) for j in range(size)]
+@cache
+def _stirling_set2(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 0]
+    row1: list[int] = _stirling_set2(n - 2)
+    row: list[int]  = _stirling_set2(n - 1) + [0]
+    for k in range(1, n // 2 + 1):
+        row[k] = (n - 1) * row1[k - 1] + k * row[k]
+    return row
+@tstruct(_stirling_set2, "STIRLSETORD2")
+def stirling_set2(size: int) -> tabl: 
+    return [_stirling_set2(j) for j in range(size)]
 @cache
 def _sympoly(n: int) -> list[int]:
     if n == 0:
@@ -753,6 +800,8 @@ tabl_fun: list[tgen] = [
     seidel_boust,
     stirling_cycle,
     stirling_set,
+    stirling_cycle2,
+    stirling_set2,
     sympoly,
     ternary_tree,
     uno,

@@ -27,7 +27,7 @@ def _stirling_cycle(n: int) -> list[int]:
     return row
 
 
-@tstruct(_stirling_cycle, "STIRLINGCYC1")
+@tstruct(_stirling_cycle, "STIRLING1CYC")
 def stirling_cycle(size: int) -> tabl: 
     return [_stirling_cycle(j) for j in range(size)]
 

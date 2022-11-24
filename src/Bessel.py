@@ -1,7 +1,7 @@
 from functools import cache
 from tabltypes import tabl, tstruct
 
-"""Bessel triangle, A132062.
+"""Bessel triangle, A132062 (see also A001497).
 
 [0] [1]
 [1] [0,      1]

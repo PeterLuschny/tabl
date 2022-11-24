@@ -27,7 +27,7 @@ def _stirling_set(n: int) -> list[int]:
     return row
 
 
-@tstruct(_stirling_set, "STIRLINGSET2")
+@tstruct(_stirling_set, "STIRLING2SET")
 def stirling_set(size: int) -> tabl: 
     return [_stirling_set(j) for j in range(size)]
 
