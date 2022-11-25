@@ -1,7 +1,7 @@
 from functools import cache
 from tabltypes import tabl, tstruct
 
-"""Central cycle factorial numbers, A269940, A259456
+"""Ward cycle numbers, A269940, A259456.
 
 [0] [1]
 [1] [0,    1]
@@ -15,25 +15,24 @@ from tabltypes import tabl, tstruct
 
 
 @cache
-def _cc_factorial(n: int) -> list[int]:
+def _ward_cycle(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
 
-    row: list[int] = _cc_factorial(n - 1) + [0]
+    row: list[int] = _ward_cycle(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = (n + k - 1) * (row[k] + row[k - 1])
-
     return row
 
 
-@tstruct(_cc_factorial, "CENTRFACTCYC")
-def cc_factorial(size: int) -> tabl: 
-    return [_cc_factorial(j) for j in range(size)]
+@tstruct(_ward_cycle, "WARDCYCNUMBR")
+def ward_cycle(size: int) -> tabl: 
+    return [_ward_cycle(j) for j in range(size)]
 
 
 if __name__ == "__main__":
     from tabltest import TablTest
 
-    TablTest(cc_factorial)
+    TablTest(ward_cycle)

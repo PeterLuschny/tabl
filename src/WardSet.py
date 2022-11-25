@@ -1,7 +1,7 @@
 from functools import cache
 from tabltypes import tabl, tstruct
 
-"""Ward numbers, A269939, A134991.
+"""Ward set numbers, A269939, A134991.
 
 [0] [1]
 [1] [0, 1]
@@ -16,24 +16,24 @@ from tabltypes import tabl, tstruct
 
 
 @cache
-def _ward(n: int) -> list[int]:
+def _ward_set(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
 
-    row: list[int] = _ward(n - 1) + [0]
+    row: list[int] = _ward_set(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = k * row[k] + (n + k - 1) * row[k - 1]
     return row
 
 
-@tstruct(_ward, "WARDNUMBEROS")
-def ward(size: int) -> tabl: 
-    return [_ward(j) for j in range(size)]
+@tstruct(_ward_set, "WARDSETNUMBR")
+def ward_set(size: int) -> tabl: 
+    return [_ward_set(j) for j in range(size)]
 
 
 if __name__ == "__main__":
     from tabltest import TablTest
 
-    TablTest(ward)
+    TablTest(ward_set)

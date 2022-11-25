@@ -24,10 +24,10 @@ def _stirling_cycle2(n: int) -> list[int]:
     if n == 1:
         return [0, 0]
 
-    row1: list[int] = _stirling_cycle2(n - 2)
-    row: list[int]  = _stirling_cycle2(n - 1) + [0]
+    rov: list[int] = _stirling_cycle2(n - 2)
+    row: list[int] = _stirling_cycle2(n - 1) + [0]
     for k in range(1, n // 2 + 1):
-        row[k] = (n - 1) * (row1[k - 1] + row[k])
+        row[k] = (n - 1) * (rov[k - 1] + row[k])
     return row
 
 

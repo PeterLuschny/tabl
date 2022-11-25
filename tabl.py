@@ -685,10 +685,10 @@ def _stirling_cycle2(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 0]
-    row1: list[int] = _stirling_cycle2(n - 2)
-    row: list[int]  = _stirling_cycle2(n - 1) + [0]
+    rov: list[int] = _stirling_cycle2(n - 2)
+    row: list[int] = _stirling_cycle2(n - 1) + [0]
     for k in range(1, n // 2 + 1):
-        row[k] = (n - 1) * (row1[k - 1] + row[k])
+        row[k] = (n - 1) * (rov[k - 1] + row[k])
     return row
 @tstruct(_stirling_cycle2, "STIRLCYCORD2")
 def stirling_cycle2(size: int) -> tabl: 
@@ -699,10 +699,10 @@ def _stirling_set2(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 0]
-    row1: list[int] = _stirling_set2(n - 2)
-    row: list[int]  = _stirling_set2(n - 1) + [0]
+    rov: list[int] = _stirling_set2(n - 2)
+    row: list[int] = _stirling_set2(n - 1) + [0]
     for k in range(1, n // 2 + 1):
-        row[k] = (n - 1) * row1[k - 1] + k * row[k]
+        row[k] = (n - 1) * rov[k - 1] + k * row[k]
     return row
 @tstruct(_stirling_set2, "STIRLSETORD2")
 def stirling_set2(size: int) -> tabl: 
@@ -739,18 +739,31 @@ def _uno(n: int) -> list[int]:
 def uno(size: int) -> tabl: 
     return [_uno(j) for j in range(size)]
 @cache
-def _ward(n: int) -> list[int]:
+def _ward_cycle(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = _ward(n - 1) + [0]
+    row: list[int] = _ward_cycle(n - 1) + [0]
+    for k in range(n, 0, -1):
+        row[k] = (n + k - 1) * (row[k] + row[k - 1])
+    return row
+@tstruct(_ward_cycle, "WARDCYCNUMBR")
+def ward_cycle(size: int) -> tabl: 
+    return [_ward_cycle(j) for j in range(size)]
+@cache
+def _ward_set(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 1]
+    row: list[int] = _ward_set(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = k * row[k] + (n + k - 1) * row[k - 1]
     return row
-@tstruct(_ward, "WARDNUMBEROS")
-def ward(size: int) -> tabl: 
-    return [_ward(j) for j in range(size)]
+@tstruct(_ward_set, "WARDSETNUMBR")
+def ward_set(size: int) -> tabl: 
+    return [_ward_set(j) for j in range(size)]
 @cache
 def _worpitzky(n: int) -> list[int]:
     if n == 0:
@@ -805,6 +818,7 @@ tabl_fun: list[tgen] = [
     sympoly,
     ternary_tree,
     uno,
-    ward,
+    ward_cycle,
+    ward_set,
     worpitzky,
 ]

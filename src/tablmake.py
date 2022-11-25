@@ -48,7 +48,8 @@ tabl_files: list[str] = [
     "SymmetricPolynomial.py",
     "TernaryTrees.py",
     "Uno.py",
-    "Ward.py",
+    "WardCycle.py",
+    "WardSet.py",
     "Worpitzky.py",
 ]
 
@@ -139,7 +140,8 @@ tabl_fun: list[tgen] = [
     sympoly,
     ternary_tree,
     uno,
-    ward,
+    ward_cycle,
+    ward_set,
     worpitzky,
 ]\n'''.format()
 dest.write(s)

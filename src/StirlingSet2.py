@@ -4,16 +4,16 @@ from tabltypes import tabl, tstruct
 """Stirling set numbers of second order, A008299, A137375.
 
 
-[0]  1
-[1]  0,     0
-[2]  0,     1,     0
-[3]  0,     2,     0,     0
-[4]  0,     6,     3,     0,    0
-[5]  0,    24,    20,     0,    0, 0
-[6]  0,   120,   130,    15,    0, 0, 0
-[7]  0,   720,   924,   210,    0, 0, 0, 0
-[8]  0,  5040,  7308,  2380,  105, 0, 0, 0, 0
-[9]  0, 40320, 64224, 26432, 2520, 0, 0, 0, 0, 0
+[0] 1;
+[1] 0, 0;
+[2] 0, 1,   0;
+[3] 0, 1,   0,    0;
+[4] 0, 1,   3,    0,    0;
+[5] 0, 1,  10,    0,    0,  0;
+[6] 0, 1,  25,   15,    0,  0,  0;
+[7] 0, 1,  56,  105,    0,  0,  0,  0;
+[8] 0, 1, 119,  490,  105,  0,  0,  0,  0;
+[9] 0, 1, 246, 1918, 1260,  0,  0,  0,  0,  0;
 """
 
 
@@ -24,10 +24,10 @@ def _stirling_set2(n: int) -> list[int]:
     if n == 1:
         return [0, 0]
 
-    row1: list[int] = _stirling_set2(n - 2)
-    row: list[int]  = _stirling_set2(n - 1) + [0]
+    rov: list[int] = _stirling_set2(n - 2)
+    row: list[int] = _stirling_set2(n - 1) + [0]
     for k in range(1, n // 2 + 1):
-        row[k] = (n - 1) * row1[k - 1] + k * row[k]
+        row[k] = (n - 1) * rov[k - 1] + k * row[k]
     return row
 
 
