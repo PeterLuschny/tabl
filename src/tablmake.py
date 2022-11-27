@@ -27,6 +27,7 @@ tabl_files: list[str] = [
     "Fibonacci.py",
     "Fubini.py",
     "Genocchi.py",
+    "HarmonicPolys.py",
     "Hermite.py",
     "Laguerre.py",
     "Lah.py",
@@ -96,6 +97,7 @@ for src in tabl_files:
                 dest.write(line)
         src_file.close()
 
+
 s: str = '''\
 tabl_fun: list[tgen] = [
     abel,
@@ -117,6 +119,7 @@ tabl_fun: list[tgen] = [
     fibonacci,
     fubini,
     genocchi,
+    harmonic,
     hermite,
     laguerre,
     lah,
@@ -147,3 +150,4 @@ tabl_fun: list[tgen] = [
 dest.write(s)
 
 dest.close()
+

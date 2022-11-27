@@ -34,11 +34,11 @@ def _polygonal(n: int) -> list[int]:
     if n == 1:
         return [0, 1]
 
-    arow: list[int] = _polygonal(n - 2)
+    rov: list[int] = _polygonal(n - 2)
     row: list[int] = _polygonal(n - 1) + [n]
     row[n - 1] += row[n - 2]
     for k in range(2, n - 1):
-        row[k] += row[k] - arow[k]
+        row[k] += row[k] - rov[k]
     return row
 
 

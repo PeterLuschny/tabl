@@ -466,6 +466,24 @@ def _genocchi(n: int) -> list[int]:
 def genocchi(size: int) -> tabl: 
     return [_genocchi(j) for j in range(size)]
 @cache
+def _harmonic(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 1]
+  
+    row: list[int] = _harmonic(n - 1) + [1]
+    sav: int = row[1]
+    
+    for k in range(n-1, 0, -1):
+        row[k] = (n - 1) * row[k] + row[k - 1]
+    row[1] += sav
+    
+    return row
+@tstruct(_harmonic, "HARMONICPOLY")
+def harmonic(size: int) -> tabl: 
+    return [_harmonic(j) for j in range(size)]
+@cache
 def _hermite(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -593,11 +611,11 @@ def _polygonal(n: int) -> list[int]:
         return [0]
     if n == 1:
         return [0, 1]
-    arow: list[int] = _polygonal(n - 2)
+    rov: list[int] = _polygonal(n - 2)
     row: list[int] = _polygonal(n - 1) + [n]
     row[n - 1] += row[n - 2]
     for k in range(2, n - 1):
-        row[k] += row[k] - arow[k]
+        row[k] += row[k] - rov[k]
     return row
 @tstruct(_polygonal, "POLYGONALNUM")
 def polygonal(size: int) -> tabl: 
@@ -795,6 +813,7 @@ tabl_fun: list[tgen] = [
     fibonacci,
     fubini,
     genocchi,
+    harmonic,
     hermite,
     laguerre,
     lah,
