@@ -537,6 +537,30 @@ def _lehmer(n: int) -> list[int]:
 def lehmer(size: int) -> tabl: 
     return [_lehmer(j) for j in range(size)]
 @cache
+def _leibniz(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    row: list[int] = _leibniz(n - 1) + [n + 1] 
+    row[0] = row[n] = n + 1
+    for k in range(1, n):
+        row[k] = ((n - k + 1) * row[k - 1]) // k
+    return row
+@tstruct(_leibniz, "LEIBNIZTRIAN")
+def leibniz(size: int) -> tabl: 
+    return [_leibniz(j) for j in range(size)]
+@cache
+def _levin(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    row: list[int] = _levin(n - 1) + [1] 
+    row[0] = row[n] = (row[n - 1] * (4 * n - 2)) // n
+    for k in range(1, n):
+        row[k] = ((n - k + 1) * row[k - 1]) // k
+    return row
+@tstruct(_levin, "LEVINSTRIANG")
+def levin(size: int) -> tabl: 
+    return [_levin(j) for j in range(size)]
+@cache
 def _motzkin(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -620,6 +644,18 @@ def _polygonal(n: int) -> list[int]:
 @tstruct(_polygonal, "POLYGONALNUM")
 def polygonal(size: int) -> tabl: 
     return [_polygonal(j) for j in range(size)]
+@cache
+def _powlag(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    row: list[int] = _powlag(n - 1) + [1] 
+    row[0] = row[n] = row[0] * n
+    for k in range(1, n):
+        row[k] = ((n - k + 1) * row[k - 1]) // k
+    return row
+@tstruct(_powlag, "POWERSLAGUER")
+def powlag(size: int) -> tabl: 
+    return [_powlag(j) for j in range(size)]
 @cache
 def _rencontres(n: int) -> list[int]:
     if n == 0:
@@ -818,6 +854,8 @@ tabl_fun: list[tgen] = [
     laguerre,
     lah,
     lehmer,
+    leibniz,
+    levin,
     motzkin,
     narayana,
     ordinals,
@@ -825,6 +863,7 @@ tabl_fun: list[tgen] = [
     partnum_exact,
     partnum_atmost,
     polygonal,
+    powlag,
     rencontres,
     rising_factorial,
     schroeder,

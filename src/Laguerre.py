@@ -1,6 +1,7 @@
 from functools import cache
 from tabltypes import tabl, tstruct
 
+
 """Laguerre polynomials n! * L(n, x) (unsigned coefficients), unsigned A021009.
 
 [0]      1

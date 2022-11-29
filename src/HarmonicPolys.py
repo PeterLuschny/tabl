@@ -1,7 +1,7 @@
 from functools import cache
 from tabltypes import tabl, tstruct
 
-"""Harmonic polynomials (coefficients), A109822.
+"""Harmonic polynomials (coefficients), A358694.
 
 [0] 1
 [1] 0,     1
