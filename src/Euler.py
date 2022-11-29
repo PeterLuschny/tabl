@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Euler triangle, A247453, A109449.
 
@@ -29,9 +29,10 @@ def _euler(n: int) -> list[int]:
     return row
 
 
-@tstruct(_euler, "EULERTRIANGL")
-def euler(size: int) -> tabl: 
-    return [_euler(j) for j in range(size)]
+@set_name(_euler, "EULERTRIANGL")
+def euler(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _euler(n).copy()
+    return _euler(n)[k]
 
 
 def euler_num(n: int) -> int:

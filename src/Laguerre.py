@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 
 """Laguerre polynomials n! * L(n, x) (unsigned coefficients), unsigned A021009.
@@ -27,9 +27,10 @@ def _laguerre(n: int) -> list[int]:
     return row
 
 
-@tstruct(_laguerre, "LAGUERREPOLY")
-def laguerre(size: int) -> tabl: 
-    return [_laguerre(j) for j in range(size)]
+@set_name(_laguerre, "LAGUERREPOLY")
+def laguerre(n: int, k: int = -1) -> list[int] | int:
+    if k == -1: return _laguerre(n).copy()
+    return _laguerre(n)[k]
 
 
 if __name__ == "__main__":

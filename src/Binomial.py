@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Pascal triangle, binomial coefficients, A007318.
 
@@ -27,9 +27,10 @@ def _binomial(n: int) -> list[int]:
     return row
 
 
-@tstruct(_binomial, "BINOMIALCOEF")
-def binomial(size: int) -> tabl:
-    return [_binomial(j) for j in range(size)]
+@set_name(_binomial, "BINOMIALCOEF")
+def binomial(n: int, k: int = -1) -> list[int] | int:
+    if k == -1: return _binomial(n).copy()
+    return _binomial(n)[k]
 
 
 if __name__ == "__main__":

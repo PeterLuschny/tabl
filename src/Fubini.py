@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Fubini triangle, A131689.
 
@@ -29,9 +29,10 @@ def _fubini(n: int) -> list[int]:
     return row
 
 
-@tstruct(_fubini, "FUBINITRIANG")
-def fubini(size: int) -> tabl: 
-    return [_fubini(j) for j in range(size)]
+@set_name(_fubini, "FUBINITRIANG")
+def fubini(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _fubini(n).copy()
+    return _fubini(n)[k]
 
 
 if __name__ == "__main__":

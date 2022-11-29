@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Central cycle factorial numbers, A269940, A259456
 
@@ -28,9 +28,10 @@ def _cc_factorial(n: int) -> list[int]:
     return row
 
 
-@tstruct(_cc_factorial, "CENTRFACTCYC")
-def cc_factorial(size: int) -> tabl: 
-    return [_cc_factorial(j) for j in range(size)]
+@set_name(_cc_factorial, "CENTRFACTCYC")
+def cc_factorial(n: int, k: int = -1) -> list[int] | int:
+    if k == -1: return _cc_factorial(n).copy()
+    return _cc_factorial(n)[k]
 
 
 if __name__ == "__main__":

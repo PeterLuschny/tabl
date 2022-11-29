@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 
 """Narayana triangle, A090181.
@@ -32,9 +32,10 @@ def _narayana(n: int) -> list[int]:
     return row
 
 
-@tstruct(_narayana, "NARAYANATRIA")
-def narayana(size: int) -> tabl: 
-    return [_narayana(j) for j in range(size)]
+@set_name(_narayana, "NARAYANATRIA")
+def narayana(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _narayana(n).copy()
+    return _narayana(n)[k]
 
 
 if __name__ == "__main__":

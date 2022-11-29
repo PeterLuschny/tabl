@@ -1,6 +1,6 @@
 from functools import cache
 from Binomial import binomial
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Euler tangent polynomials, A162660, A350972, A155585, A009006, A000182. 
 
@@ -20,16 +20,17 @@ from tabltypes import tabl, tstruct
 @cache
 def _euler_tan(n: int) -> list[int]:
 
-    row: list[int] = [binomial.val(n, k) * _euler_tan(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  
+    row: list[int] = [binomial(n, k) * _euler_tan(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  
 
     if n % 2 == 1:
         row[0] = -sum(row[2::2]) + 1
     return row
 
 
-@tstruct(_euler_tan, "EULERTANGENT")
-def euler_tan(size: int) -> tabl: 
-    return [_euler_tan(j) for j in range(size)]
+@set_name(_euler_tan, "EULERTANGENT")
+def euler_tan(n: int, k: int = -1) -> list[int] | int:
+    if k == -1: return _euler_tan(n).copy()
+    return _euler_tan(n)[k]
 
 
 def eulerT(n: int) -> int:

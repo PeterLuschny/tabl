@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 
 
@@ -30,9 +30,10 @@ def _leibniz(n: int) -> list[int]:
     return row
 
 
-@tstruct(_leibniz, "LEIBNIZTRIAN")
-def leibniz(size: int) -> tabl: 
-    return [_leibniz(j) for j in range(size)]
+@set_name(_leibniz, "LEIBNIZTRIAN")
+def leibniz(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _leibniz(n).copy()
+    return _leibniz(n)[k]
 
 
 if __name__ == "__main__":

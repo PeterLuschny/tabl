@@ -1,6 +1,6 @@
 from functools import cache
 from itertools import accumulate
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Partition numbers (Euler's table), A008284, A026820, A000041.
 
@@ -48,14 +48,16 @@ def _partnum_atmost(n: int) -> list[int]:
     return list(accumulate(_partnum_exact(n)))
 
 
-@tstruct(_partnum_exact, "PARTITIONNUM")
-def partnum_exact(size: int) -> tabl: 
-    return [_partnum_exact(j) for j in range(size)]
+@set_name(_partnum_exact, "PARTITIONNUM")
+def partnum_exact(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _partnum_exact(n).copy()
+    return _partnum_exact(n)[k]
 
 
-@tstruct(_partnum_atmost, "PARTITIONMAX")
-def partnum_atmost(size: int) -> tabl: 
-    return [_partnum_atmost(j) for j in range(size)]
+@set_name(_partnum_atmost, "PARTITIONMAX")
+def partnum_atmost(n: int, k: int = -1) -> list[int] | int:
+    if k == -1: return _partnum_atmost(n).copy()
+    return _partnum_atmost(n)[k]
 
 
 

@@ -1,6 +1,6 @@
 from functools import cache
 from Binomial import binomial 
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Euler secant polynomials, A119879, A081658, A153641. 
 
@@ -21,15 +21,16 @@ def _euler_sec(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = [binomial.val(n, k) * _euler_sec(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  
+    row: list[int] = [binomial(n, k) * _euler_sec(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  
     if n % 2 == 0:
         row[0] = -sum(row[2::2])
     return row
 
 
-@tstruct(_euler_sec, "EULERSECANTO")
-def euler_sec(size: int) -> tabl: 
-    return [_euler_sec(j) for j in range(size)]
+@set_name(_euler_sec, "EULERSECANTO")
+def euler_sec(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _euler_sec(n).copy()
+    return _euler_sec(n)[k]
 
 
 def eulerS(n: int) -> int:

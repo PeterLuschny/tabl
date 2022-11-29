@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Catalan triangle aerated, A053121.
 
@@ -30,9 +30,10 @@ def _catalan_aerated(n: int) -> list[int]:
     return row
 
 
-@tstruct(_catalan_aerated, "CATALANAERAT")
-def catalan_aerated(size: int) -> tabl: 
-    return [_catalan_aerated(j) for j in range(size)]
+@set_name(_catalan_aerated, "CATALANAERAT")
+def catalan_aerated(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _catalan_aerated(n).copy()
+    return _catalan_aerated(n)[k]
 
 
 if __name__ == "__main__":

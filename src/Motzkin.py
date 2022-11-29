@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Motzkin triangle, A009766.
 
@@ -30,9 +30,10 @@ def _motzkin(n: int) -> list[int]:
     return row
 
 
-@tstruct(_motzkin, "MOTZKINTRIAN")
-def motzkin(size: int) -> tabl: 
-    return [_motzkin(j) for j in range(size)]
+@set_name(_motzkin, "MOTZKINTRIAN")
+def motzkin(n: int, k: int = -1) -> list[int] | int:
+    if k == -1: return _motzkin(n).copy()
+    return _motzkin(n)[k]
 
 
 if __name__ == "__main__":

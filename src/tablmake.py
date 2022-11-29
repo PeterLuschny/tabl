@@ -81,7 +81,7 @@ for src in tabl_files:
             #if line.startswith('"""'):
             #    if len(line) > 4:
             #        print(line[3:].strip())
-            if line.startswith("@tstruct("):
+            if line.startswith("@set_name("):
                     s = line[1+line.find('"') : line.rfind('"')]
                     print(s)
             if line.startswith("from"):
@@ -158,4 +158,3 @@ tabl_fun: list[tgen] = [
 dest.write(s)
 
 dest.close()
-

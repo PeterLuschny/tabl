@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Symmetric polynomial, row k gives the (n-1)-st elementary of [k, k+1, k+2,..., k+n], A165675.
 
@@ -27,9 +27,10 @@ def _sympoly(n: int) -> list[int]:
     return row
 
 
-@tstruct(_sympoly, "SYMPOLYNOMIA")
-def sympoly(size: int) -> tabl: 
-    return [_sympoly(j) for j in range(size)]
+@set_name(_sympoly, "SYMPOLYNOMIA")
+def sympoly(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _sympoly(n).copy()
+    return _sympoly(n)[k]
 
 
 if __name__ == "__main__":

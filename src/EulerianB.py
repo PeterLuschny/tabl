@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """EulerianB triangle, A060187.
 
@@ -25,9 +25,10 @@ def _eulerianB(n: int) -> list[int]:
     return row
 
 
-@tstruct(_eulerianB, "EULERIANTYPB")
-def eulerianB(size: int) -> tabl: 
-    return [_eulerianB(j) for j in range(size)]
+@set_name(_eulerianB, "EULERIANTYPB")
+def eulerianB(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _eulerianB(n).copy()
+    return _eulerianB(n)[k]
 
 
 if __name__ == "__main__":

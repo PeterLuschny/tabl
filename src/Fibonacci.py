@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Fibonacci-Pascal triangle, A354267
 
@@ -31,9 +31,10 @@ def _fibonacci(n: int) -> list[int]:
     return row
 
 
-@tstruct(_fibonacci, "FIBONACPASCA")
-def fibonacci(size: int) -> tabl: 
-    return [_fibonacci(j) for j in range(size)]
+@set_name(_fibonacci, "FIBONACPASCA")
+def fibonacci(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _fibonacci(n).copy()
+    return _fibonacci(n)[k]
 
 
 if __name__ == "__main__":

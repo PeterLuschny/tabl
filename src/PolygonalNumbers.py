@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Polygonal numbers, A139600
 
@@ -42,9 +42,10 @@ def _polygonal(n: int) -> list[int]:
     return row
 
 
-@tstruct(_polygonal, "POLYGONALNUM")
-def polygonal(size: int) -> tabl: 
-    return [_polygonal(j) for j in range(size)]
+@set_name(_polygonal, "POLYGONALNUM")
+def polygonal(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _polygonal(n).copy()
+    return _polygonal(n)[k]
 
 
 if __name__ == "__main__":

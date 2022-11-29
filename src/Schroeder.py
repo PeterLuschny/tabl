@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Schroeder triangle, A122538 (see also A033877)
 
@@ -29,9 +29,10 @@ def _schroeder(n: int) -> list[int]:
     return row
 
 
-@tstruct(_schroeder, "SCHROEDERTRI")
-def schroeder(size: int) -> tabl: 
-    return [_schroeder(j) for j in range(size)]
+@set_name(_schroeder, "SCHROEDERTRI")
+def schroeder(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _schroeder(n).copy()
+    return _schroeder(n)[k]
 
 
 if __name__ == "__main__":

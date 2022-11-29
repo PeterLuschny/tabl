@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Hermite polynomials (coefficients), A099174, A066325.
 
@@ -30,9 +30,10 @@ def _hermite(n: int) -> list[int]:
     return row
 
 
-@tstruct(_hermite, "HERMITEPOLYC")
-def hermite(size: int) -> tabl: 
-    return [_hermite(j) for j in range(size)]
+@set_name(_hermite, "HERMITEPOLYC")
+def hermite(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _hermite(n).copy()
+    return _hermite(n)[k]
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """von Neumann ordinals (kind of), A002262.
 
@@ -22,9 +22,10 @@ def _ordinals(n: int) -> list[int]:
     return _ordinals(n - 1) + [n]
 
 
-@tstruct(_ordinals, "ORDINALNUMBR")
-def ordinals(size: int) -> tabl: 
-    return [_ordinals(j) for j in range(size)]
+@set_name(_ordinals, "ORDINALNUMBR")
+def ordinals(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _ordinals(n).copy()
+    return _ordinals(n)[k]
 
 
 if __name__ == "__main__":

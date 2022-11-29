@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Bessel triangle, A132062 (see also A001497).
 
@@ -28,9 +28,10 @@ def _bessel(n: int) -> list[int]:
     return row
 
 
-@tstruct(_bessel, "BESSELPOLYNO")
-def bessel(size: int) -> tabl: 
-    return [_bessel(j) for j in range(size)]
+@set_name(_bessel, "BESSELPOLYNO")
+def bessel(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _bessel(n).copy()
+    return _bessel(n)[k]
 
 
 if __name__ == "__main__":

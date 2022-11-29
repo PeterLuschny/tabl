@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Central set factorial numbers, A269945 (see also A008957, A036969).
 
@@ -28,9 +28,10 @@ def _cs_factorial(n: int) -> list[int]:
     return row
 
 
-@tstruct(_cs_factorial, "CENTRFACTSET")
-def cs_factorial(size: int) -> tabl: 
-    return [_cs_factorial(j) for j in range(size)]
+@set_name(_cs_factorial, "CENTRFACTSET")
+def cs_factorial(n: int, k: int = -1) -> list[int] | int:
+    if k == -1: return _cs_factorial(n).copy()
+    return _cs_factorial(n)[k]
 
 
 if __name__ == "__main__":

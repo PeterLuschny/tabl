@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Seidel triangle, A008281 or A008280.
 
@@ -41,14 +41,16 @@ def _seidel_boust(n: int) -> list[int]:
     return _seidel(n) if n % 2 else _seidel(n)[::-1]
 
 
-@tstruct(_seidel, "SEIDELTRIANG")
-def seidel(size: int) -> tabl: 
-    return [_seidel(j) for j in range(size)]
+@set_name(_seidel, "SEIDELTRIANG")
+def seidel(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _seidel(n).copy()
+    return _seidel(n)[k]
 
 
-@tstruct(_seidel_boust, "SEIDELBOUSTO")
-def seidel_boust(size: int) -> tabl: 
-    return [_seidel_boust(j) for j in range(size)]
+@set_name(_seidel_boust, "SEIDELBOUSTO")
+def seidel_boust(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _seidel_boust(n).copy()
+    return _seidel_boust(n)[k]
 
 
 if __name__ == "__main__":

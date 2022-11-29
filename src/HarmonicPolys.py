@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Harmonic polynomials (coefficients), A358694.
 
@@ -32,9 +32,10 @@ def _harmonic(n: int) -> list[int]:
     return row
 
 
-@tstruct(_harmonic, "HARMONICPOLY")
-def harmonic(size: int) -> tabl: 
-    return [_harmonic(j) for j in range(size)]
+@set_name(_harmonic, "HARMONICPOLY")
+def harmonic(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _harmonic(n).copy()
+    return _harmonic(n)[k]
 
 
 if __name__ == "__main__":

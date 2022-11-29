@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Delannoy triangle, A008288.
 
@@ -23,16 +23,17 @@ def _delannoy(n: int) -> list[int]:
     if n == 1:
         return [1, 1]
 
-    rowA: list[int] = _delannoy(n - 2)
+    rov: list[int] = _delannoy(n - 2)
     row: list[int] = _delannoy(n - 1) + [1]
     for k in range(n - 1, 0, -1):
-        row[k] += row[k - 1] + rowA[k - 1]
+        row[k] += row[k - 1] + rov[k - 1]
     return row
 
 
-@tstruct(_delannoy, "DELANNOYTRIA")
-def delannoy(size: int) -> tabl: 
-    return [_delannoy(j) for j in range(size)]
+@set_name(_delannoy, "DELANNOYTRIA")
+def delannoy(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _delannoy(n).copy()
+    return _delannoy(n)[k]
 
 
 if __name__ == "__main__":

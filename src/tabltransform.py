@@ -1,29 +1,29 @@
 from itertools import accumulate
-from tabltypes import seq, rgen, tgen, tabl, trow
+from tabltypes import seq, tri, tabl, trow
 
 # #@
 
 
-def poly(R: rgen, n: int, x: int) -> int:
+def poly(R: tri, n: int, x: int) -> int:
     row: trow = R(n)
     return sum(c * x ** k for (k, c) in enumerate(row))
 
 
-def row_poly(T: tgen, n: int, leng: int) -> trow:
-    return [poly(T.row, n, k) for k in range(leng)]
+def row_poly(T: tri, n: int, leng: int) -> trow:
+    return [poly(T, n, k) for k in range(leng)]
 
 
-def col_poly(T: tgen, n: int, leng: int) -> trow:
-    return [poly(T.row, k, n) for k in range(leng)]
+def col_poly(T: tri, n: int, leng: int) -> trow:
+    return [poly(T, k, n) for k in range(leng)]
 
 
-def trans_seq(T: tgen, a: seq, lg: int) -> trow:
-    return [sum(T.val(n, k) * a(k) for k in range(n + 1)) for n in range(lg)]
+def trans_seq(T: tri, a: seq, lg: int) -> trow:
+    return [sum(T(n, k) * a(k) for k in range(n + 1)) for n in range(lg)]
 
 
-def invtrans_seq(T: tgen, a: seq, lg: int) -> trow:
+def invtrans_seq(T: tri, a: seq, lg: int) -> trow:
     return [
-        sum((-1) ** (n - k) * T.val(n, k) * a(k) for k in range(n + 1))
+        sum((-1) ** (n - k) * T(n, k) * a(k) for k in range(n + 1))
         for n in range(lg)
     ]
 
@@ -108,7 +108,7 @@ if __name__ == "__main__":
     ]
 
     def catalan_number(n: int) -> int:
-        return binomial.val(2 * n, n) // (n + 1)
+        return binomial(2 * n, n) // (n + 1)
 
     print(trans_seq(binomial, catalan_number, 11))
     print(invtrans_seq(binomial, catalan_number, 11))

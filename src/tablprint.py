@@ -1,7 +1,7 @@
 from typing import Literal
 from tablsums import tabl_sum, tabl_evensum, tabl_oddsum, tabl_altsum, tabl_cumsum, tabl_revcumsum, tabl_diagsum
 from tabltransform import flat_tabl, flat_rev, flat_diag, flat_cum, flat_revcum, flat_cumrev, row_poly, col_poly
-from tabltypes import tgen, tabl
+from tabltypes import tri, tabl
 
 # #@
 
@@ -22,28 +22,28 @@ def PrintTerms(t: tabl) -> None:
             print([n, k], term)
 
 
-def PrintRowArray(T: tgen, rows: int, cols: int) -> None:
+def PrintRowArray(T: tri, rows: int, cols: int) -> None:
     print("| rdiag  |   seq  |")
     print("| :---   |  :---  |")
     for j in range(rows):
-        print(f'| rdiag{j} | {[T.val(j + k, k) for k in range(cols)]}|')
+        print(f'| rdiag{j} | {[T(j + k, k) for k in range(cols)]}|')
 
 
-def PrintColArray(T: tgen, rows: int, cols: int) -> None:
+def PrintColArray(T: tri, rows: int, cols: int) -> None:
     print("| cdiag  |   seq  |")
     print("| :---   |  :---  |")
     for j in range(cols):
-        print(f'| cdiag{j} | {[T.val(j + k, j) for k in range(rows)]} |')
+        print(f'| cdiag{j} | {[T(j + k, j) for k in range(rows)]} |')
 
 
-def PrintRowPolyArray(T: tgen, rows: int, cols: int) -> None:
+def PrintRowPolyArray(T: tri, rows: int, cols: int) -> None:
     print("| rpdiag  |   seq  |")
     print("| :---    |  :---  |")
     for n in range(rows):
         print(f'| rpdiag{n} | {row_poly(T, n, cols)} |')
 
 
-def PrintColPolyArray(T: tgen, rows: int, cols: int) -> None:
+def PrintColPolyArray(T: tri, rows: int, cols: int) -> None:
     print("| cpdiag  |   seq  |")
     print("| :---    |  :---  |")
     for n in range(rows):
@@ -73,15 +73,15 @@ def PrintFlats(t: tabl) -> None:
     print(f'| diag     | {flat_diag(t)} |')
 
 
-def PrintViews(T: tgen, rows: int = 7, cono: int | None = None, 
+def PrintViews(T: tri, rows: int = 7, cono: int | None = None, 
     verbose: bool = True) -> None:
 
-    print("# " + T.__name__)
+    print("# " + T.__name__, T.id)
 
     cols: int = rows if cono is None else cono
     print()
 
-    t: tabl = T(rows)
+    t: tabl = T.tab(rows)
 
     if verbose: print("Triangle view")
     PrintRows(t)

@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Bell (Peirce/Aitken) triangle, A011971 (see also A182930).
 
@@ -27,9 +27,10 @@ def _bell(n: int) -> list[int]:
     return row
 
 
-@tstruct(_bell, "BELLTRIANGLE")
-def bell(size: int) -> tabl: 
-    return [_bell(j) for j in range(size)]
+@set_name(_bell, "BELLTRIANGLE")
+def bell(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _bell(n).copy()
+    return _bell(n)[k]
 
 
 if __name__ == "__main__":

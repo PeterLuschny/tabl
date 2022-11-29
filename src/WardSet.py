@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Ward set numbers, A269939, A134991.
 
@@ -28,9 +28,10 @@ def _ward_set(n: int) -> list[int]:
     return row
 
 
-@tstruct(_ward_set, "WARDSETNUMBR")
-def ward_set(size: int) -> tabl: 
-    return [_ward_set(j) for j in range(size)]
+@set_name(_ward_set, "WARDSETNUMBR")
+def ward_set(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _ward_set(n).copy()
+    return _ward_set(n)[k]
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Falling factorial, number of permutations of n things k at a time, A008279. 
 
@@ -23,9 +23,10 @@ def _falling_factorial(n: int) -> list[int]:
     return row
 
 
-@tstruct(_falling_factorial, "FALFACTORIAL")
-def falling_factorial(size: int) -> tabl: 
-    return [_falling_factorial(j) for j in range(size)]
+@set_name(_falling_factorial, "FALFACTORIAL")
+def falling_factorial(n: int, k: int = -1) -> list[int] | int:
+    if k == -1: return _falling_factorial(n).copy()
+    return _falling_factorial(n)[k]
 
 
 if __name__ == "__main__":

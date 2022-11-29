@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Rencontres triangle, A008290.
 
@@ -29,9 +29,10 @@ def _rencontres(n: int) -> list[int]:
     return row
 
 
-@tstruct(_rencontres, "RENCONTRESTR")
-def rencontres(size: int) -> tabl: 
-    return [_rencontres(j) for j in range(size)]
+@set_name(_rencontres, "RENCONTRESTR")
+def rencontres(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _rencontres(n).copy()
+    return _rencontres(n)[k]
 
 
 if __name__ == "__main__":

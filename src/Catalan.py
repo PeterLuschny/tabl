@@ -1,6 +1,6 @@
 from functools import cache
 from itertools import accumulate
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 
 """Catalan triangle, Fuss-Catalan 1, A355173.
@@ -27,9 +27,10 @@ def _catalan(n: int) -> list[int]:
     return list(accumulate(row))
 
 
-@tstruct(_catalan, "FUSSCATALAN1")
-def catalan(size: int) -> tabl: 
-    return [_catalan(j) for j in range(size)]
+@set_name(_catalan, "FUSSCATALAN1")
+def catalan(n: int, k:int = -1) -> list[int] | int:
+    if k == -1: return _catalan(n).copy()
+    return _catalan(n)[k]
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Genocchi triangle, A297703.
 
@@ -30,9 +30,10 @@ def _genocchi(n: int) -> list[int]:
     return row[1:]
 
 
-@tstruct(_genocchi, "GENOCCHITRIA")
-def genocchi(size: int) -> tabl: 
-    return [_genocchi(j) for j in range(size)]
+@set_name(_genocchi, "GENOCCHITRIA")
+def genocchi(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _genocchi(n).copy()
+    return _genocchi(n)[k]
 
 
 if __name__ == "__main__":

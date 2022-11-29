@@ -17,17 +17,19 @@ rgen: TypeAlias = Callable[[int], trow]
 """Type: table generator"""
 tgen: TypeAlias = Callable[[int], tabl]
 
+"""Type: triangle"""
+tri: TypeAlias = Callable[[int, int], trow | int]
 
-def tstruct(r: rgen, id: str) -> Callable[[tgen], tgen]:
-    def v(n: int, k: int) -> int: 
-        return r(n)[k]
 
-    def wrapper(f: tgen) -> tgen:
-        f.row = r
-        f.val = v
+def set_name(r: rgen, id: str):
+    def tabmaker(n: int, k: int = -1) -> list[int] | int:
+        return [r(j).copy() for j in range(n)]
+
+    def wrapper(f: tri) -> tri:
+        f.tab = tabmaker
         f.id = id
         return f
-
     return wrapper
+
 
 # https://stackoverflow.com/questions/47056059/best-way-to-add-attributes-to-a-python-function

@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Lehmer-Comtet of 2nd kind, unsigned, A354794
 
@@ -29,13 +29,14 @@ def _lehmer(n: int) -> list[int]:
            for k in range(n + 1)]
 
 
-@tstruct(_lehmer, "LEHMERCOMTET")
-def lehmer(size: int) -> tabl: 
-    return [_lehmer(j) for j in range(size)]
+@set_name(_lehmer, "LEHMERCOMTET")
+def lehmer(n: int, k: int = -1) -> list[int] | int:
+    if k == -1: return _lehmer(n).copy()
+    return _lehmer(n)[k]
 
 
 if __name__ == "__main__":
     from tabltest import TablTest
 
-    # TODO Needs more efficient implementation.
+    # TODO Needs a more efficient implementation.
     TablTest(lehmer, short=True)

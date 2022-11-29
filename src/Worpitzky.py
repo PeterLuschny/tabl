@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Worpitzky triangle, A028246.
 
@@ -26,9 +26,10 @@ def _worpitzky(n: int) -> list[int]:
     return row
 
 
-@tstruct(_worpitzky, "WORPITZKYNUM")
-def worpitzky(size: int) -> tabl: 
-    return [_worpitzky(j) for j in range(size)]
+@set_name(_worpitzky, "WORPITZKYNUM")
+def worpitzky(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _worpitzky(n).copy()
+    return _worpitzky(n)[k]
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Nicomachus triangle, A036561
 
@@ -25,9 +25,10 @@ def _nicomachus(n: int) -> list[int]:
     return row
 
 
-@tstruct(_nicomachus, "NICOMACHUS  ")
-def nicomachus(size: int) -> tabl: 
-    return [_nicomachus(j) for j in range(size)]
+@set_name(_nicomachus, "NICOMACHUS  ")
+def nicomachus(n: int, k: int = -1) -> list[int] | int:
+    if k == -1: return _nicomachus(n).copy()
+    return _nicomachus(n, k)
 
 
 if __name__ == "__main__":

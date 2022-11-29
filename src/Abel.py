@@ -1,6 +1,6 @@
 from functools import cache
 from Binomial import binomial
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 
 """Abel polynomials (unsigned coefficients), A061356
@@ -22,13 +22,14 @@ def _abel(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    return [binomial.val(n - 1, k - 1) * n ** (n - k) 
+    return [binomial(n - 1, k - 1) * n ** (n - k) 
            if k > 0 else 0 for k in range(n + 1)]
 
 
-@tstruct(_abel, "ABELPOLYNOMS")
-def abel(size: int) -> tabl: 
-    return [_abel(j) for j in range(size)]
+@set_name(_abel, "ABELPOLYNOMS")
+def abel(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _abel(n).copy()
+    return _abel(n)[k]
 
 
 if __name__ == "__main__":

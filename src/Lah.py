@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Lah numbers (unsigned), A271703.
 
@@ -28,9 +28,10 @@ def _lah(n: int) -> list[int]:
     return row
 
 
-@tstruct(_lah, "LAHTRIANGLES")
-def lah(size: int) -> tabl: 
-    return [_lah(j) for j in range(size)]
+@set_name(_lah, "LAHTRIANGLES")
+def lah(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _lah(n).copy()
+    return _lah(n)[k]
 
 
 if __name__ == "__main__":

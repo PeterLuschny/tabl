@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Stirling set numbers, A048993.
 
@@ -27,9 +27,10 @@ def _stirling_set(n: int) -> list[int]:
     return row
 
 
-@tstruct(_stirling_set, "STIRLING2SET")
-def stirling_set(size: int) -> tabl: 
-    return [_stirling_set(j) for j in range(size)]
+@set_name(_stirling_set, "STIRLING2SET")
+def stirling_set(n: int, k: int = -1) -> list[int] | int:
+    if k == -1: return _stirling_set(n).copy()
+    return _stirling_set(n)[k]
 
 
 if __name__ == "__main__":

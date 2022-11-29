@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 
 """Levin's Triangle, RisingFactorial(n + 1, n) / (k! * (n - k)!), A356546.
@@ -28,9 +28,10 @@ def _levin(n: int) -> list[int]:
     return row
 
 
-@tstruct(_levin, "LEVINSTRIANG")
-def levin(size: int) -> tabl: 
-    return [_levin(j) for j in range(size)]
+@set_name(_levin, "LEVINSTRIANG")
+def levin(n: int, k: int = -1) -> list[int] | int:
+    if k == -1: return _levin(n).copy()
+    return _levin(n)[k]
 
 
 if __name__ == "__main__":

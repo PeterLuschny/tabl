@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import tabl, tstruct
+from tabltypes import set_name
 
 """Uno, the all 1's triangle, A000012.
 
@@ -23,9 +23,10 @@ def _uno(n: int) -> list[int]:
     return _uno(n - 1) + [1]
 
 
-@tstruct(_uno, "UNOPERTUTTIS")
-def uno(size: int) -> tabl: 
-    return [_uno(j) for j in range(size)]
+@set_name(_uno, "UNOPERTUTTIS")
+def uno(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _uno(n).copy()
+    return _uno(n)[k]
 
 
 if __name__ == "__main__":
