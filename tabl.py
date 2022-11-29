@@ -694,6 +694,19 @@ def _schroeder(n: int) -> list[int]:
 def schroeder(size: int) -> tabl: 
     return [_schroeder(j) for j in range(size)]
 @cache
+def _bilatpath(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    row: list[int] = _bilatpath(n - 1) + [1]
+    
+    for k in range(n, 0, -1):
+        row[k] = (row[k - 1] * (2 * n - k)) // k
+    row[0] = (row[0] * (4 * n - 2)) // n
+    return row
+@tstruct(_bilatpath, "SCHBILATERAL")
+def bilatpath(size: int) -> tabl: 
+    return [_bilatpath(j) for j in range(size)]
+@cache
 def _seidel(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -833,6 +846,7 @@ tabl_fun: list[tgen] = [
     abel,
     bell,
     bessel,
+    bilatpath,
     binomial,
     catalan,
     catalan_aerated,
