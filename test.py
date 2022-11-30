@@ -1,6 +1,6 @@
 from io import TextIOWrapper
 import contextlib
-from tabl import PrintViews, PrintProfile, Profile, tabl_fun
+from tabl import PrintViews, PrintExtendedProfile, PrintProfile, Profile, tabl_fun
 
 
 def SaveTables() -> None:
@@ -26,8 +26,9 @@ def SaveProfiles(seqonly: bool) -> None:
 
 
 for fun in tabl_fun:
-    PrintViews(fun)
-    PrintProfile(fun)
+    #PrintViews(fun)
+    #PrintProfile(fun, 20)
+    PrintExtendedProfile(fun, 20)
 #   SaveTables()
 #   SaveProfiles(True)
 

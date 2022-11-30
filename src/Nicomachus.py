@@ -28,7 +28,7 @@ def _nicomachus(n: int) -> list[int]:
 @set_attributes(_nicomachus, "NICOMACHUSTR", False)
 def nicomachus(n: int, k: int = -1) -> list[int] | int:
     if k == -1: return _nicomachus(n).copy()
-    return _nicomachus(n, k)
+    return _nicomachus(n)[k]
 
 
 if __name__ == "__main__":

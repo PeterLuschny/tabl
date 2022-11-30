@@ -19,18 +19,18 @@ tgen: TypeAlias = Callable[[int], tabl]
 tri: TypeAlias = Callable[[int, int], trow | int]
 
 
-def set_attributes(r: rgen, id: str, inv: bool = False) -> Callable[[tri], tri]:
+def set_attributes(r: rgen, id: str, vert: bool = False) -> Callable[[tri], tri]:
     def maketab(dim: int) -> tabl:
-        return [r(n).copy() for n in range(dim)]
+        return [list(r(n)) for n in range(dim)]
 
     def makerev(dim: int) -> tabl:
-        return [[r(n)[n - k] for k in range(n + 1)] for n in range(dim)]
+        return [list(reversed(r(n))) for n in range(dim)]
 
     def makemat(dim: int) -> tabl:
         return [[r(n)[k] if k <= n else 0 for k in range(dim)] for n in range(dim)]
 
     def makeinv(dim: int) -> tabl:
-        if not inv:
+        if not vert:
             return []
         I = Matrix(makemat(dim)) ** -1
         return [[I[n, k] for k in range(n + 1)] for n in range(dim)]
@@ -44,6 +44,38 @@ def set_attributes(r: rgen, id: str, inv: bool = False) -> Callable[[tri], tri]:
         return f
 
     return wrapper
+
+
+def inversion_wrapper(T: tri, dim: int) -> tri | None:
+    t = T.inv(dim)
+    if t == []:
+        return None
+
+    def _psgen(n: int) -> trow:
+        return list(t[n])
+
+    @set_attributes(_psgen, "INV" + T.id, True)
+    def psgen(n: int, k: int = -1) -> list[int] | int:
+        if k == -1:
+            return list(t[n])
+        return t[n][k]
+
+    return psgen
+
+
+def reversion_wrapper(T: tri, dim: int) -> tri:
+    t = T.rev(dim)
+
+    def _rsgen(n: int) -> trow:
+        return list(t[n])
+
+    @set_attributes(_rsgen, "REV" + T.id)
+    def rsgen(n: int, k: int = -1) -> list[int] | int:
+        if k == -1:
+            return list(t[n])
+        return t[n][k]
+
+    return rsgen
 
 
 def poly(R: tri, n: int, x: int) -> int:
@@ -273,7 +305,7 @@ def PrintViews(
     print()
 
 
-def Profile(T: tri, hor: int = 10, ver: int = 5) -> dict[str, list[int]]:
+def Profile(T: tri, hor: int, ver: int) -> dict[str, list[int]]:
     d: dict[str, list[int]] = {}
     t: tabl = T.tab(hor)
     # Triangle flattened
@@ -311,13 +343,21 @@ def Profile(T: tri, hor: int = 10, ver: int = 5) -> dict[str, list[int]]:
     return d
 
 
-def PrintProfile(T: tri) -> None:
-    d: dict[str, list[int]] = Profile(T)
-    print()
+def PrintProfile(T: tri, dim: int) -> None:
+    d: dict[str, list[int]] = Profile(T, dim // 2, dim // 4)
     print(T.id)
     for seq in d.items():
         print(f"{seq[0]}, {seq[1]}")
     print()
+
+
+def PrintExtendedProfile(T: tri, dim: int) -> None:
+    PrintProfile(T, dim)
+    I = inversion_wrapper(T, dim)
+    if I != None:
+        PrintProfile(I, dim)
+    R = reversion_wrapper(T, dim)
+    PrintProfile(R, dim)
 
 
 @cache
@@ -871,7 +911,7 @@ def _nicomachus(n: int) -> list[int]:
 def nicomachus(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _nicomachus(n).copy()
-    return _nicomachus(n, k)
+    return _nicomachus(n)[k]
 
 
 @cache
