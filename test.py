@@ -28,5 +28,5 @@ def SaveProfiles(seqonly: bool) -> None:
 for fun in tabl_fun:
     PrintViews(fun)
     PrintProfile(fun)
-#   SaveProfiles(True)
 #   SaveTables()
+#   SaveProfiles(True)

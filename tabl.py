@@ -228,31 +228,31 @@ def PrintViews(
     print()
     t: tabl = T.tab(rows)
     if verbose:
-        print("* Triangle view")
+        print("Triangle view")
     PrintRows(t)
     print()
     if verbose:
-        print("* Flattened seqs")
+        print("Flattened seqs")
     PrintFlats(t)
     print()
     if verbose:
-        print("* Row sums")
+        print("Row sums")
     PrintSums(t)
     print()
     if verbose:
-        print("* Diagonals as rows")
+        print("Diagonals as rows")
     PrintRowArray(T, rows, cols)
     print()
     if verbose:
-        print("* Diagonals as columns")
+        print("Diagonals as columns")
     PrintColArray(T, rows, cols)
     print()
     if verbose:
-        print("* Polynomial values as rows")
+        print("Polynomial values as rows")
     PrintRowPolyArray(T, rows, cols)
     print()
     if verbose:
-        print("* Polynomial values as columns")
+        print("Polynomial values as columns")
     PrintColPolyArray(T, rows, cols)
     print()
 
