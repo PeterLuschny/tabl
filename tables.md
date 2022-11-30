@@ -1,6 +1,6 @@
 # abel
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -11,7 +11,7 @@ Triangle view
 | trow5 | [0, 625, 500, 150, 20, 1] |
 | trow6 | [0, 7776, 6480, 2160, 360, 30, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 0, 2, 1, 0, 9, 6, 1, 0, 64, 48, 12, 1, 0, 625, 500, 150, 20, 1, 0, 7776, 6480, 2160, 360, 30, 1] |
@@ -21,7 +21,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 1, 3, 3, 1, 7, 16, 16, 1, 13, 61, 125, 125, 1, 21, 171, 671, 1296, 1296, 1, 31, 391, 2551, 9031, 16807, 16807] |
 | diag     | [1, 0, 0, 1, 0, 2, 0, 9, 1, 0, 64, 6] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 3, 16, 125, 1296, 16807] |
@@ -32,7 +32,7 @@ Row sums
 | cumsum    | [1, 1, 5, 40, 425, 5616, 88837] |
 | revcumsum | [1, 2, 7, 40, 325, 3456, 45619] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -43,7 +43,7 @@ Diagonals as rows
 | rdiag5 | [0, 7776, 100842, 688128, 3306744, 12600000, 40584852]|
 | rdiag6 | [0, 117649, 1835008, 14880348, 84000000, 372027810, 1379524608]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -54,7 +54,7 @@ Diagonals as columns
 | cdiag5 | [1, 30, 735, 17920, 459270, 12600000, 372027810] |
 | cdiag6 | [1, 42, 1344, 40824, 1260000, 40584852, 1379524608] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -65,7 +65,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 1296, 4802, 12288, 26244, 50000, 87846] |
 | rpdiag6 | [0, 16807, 65536, 177147, 400000, 805255, 1492992] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -78,7 +78,7 @@ Polynomial values as columns
 
 # bell
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -89,7 +89,7 @@ Triangle view
 | trow5 | [52, 67, 87, 114, 151, 203] |
 | trow6 | [203, 255, 322, 409, 523, 674, 877] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 1, 2, 2, 3, 5, 5, 7, 10, 15, 15, 20, 27, 37, 52, 52, 67, 87, 114, 151, 203, 203, 255, 322, 409, 523, 674, 877] |
@@ -99,7 +99,7 @@ Flattened seqs
 | cumrev   | [1, 2, 3, 5, 8, 10, 15, 25, 32, 37, 52, 89, 116, 136, 151, 203, 354, 468, 555, 622, 674, 877, 1551, 2074, 2483, 2805, 3060, 3263] |
 | diag     | [1, 1, 2, 2, 5, 3, 15, 7, 5, 52, 20, 10] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 3, 10, 37, 151, 674, 3263] |
@@ -110,7 +110,7 @@ Row sums
 | cumsum    | [1, 4, 17, 76, 362, 1842, 9991] |
 | revcumsum | [1, 5, 23, 109, 544, 2876, 16113] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 2, 5, 15, 52, 203, 877]|
@@ -121,7 +121,7 @@ Diagonals as rows
 | rdiag5 | [52, 255, 1335, 7432, 43833, 272947, 1788850]|
 | rdiag6 | [203, 1080, 6097, 36401, 229114, 1515903, 10515147]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 1, 2, 5, 15, 52, 203] |
@@ -132,7 +132,7 @@ Diagonals as columns
 | cdiag5 | [203, 674, 2589, 11155, 52922, 272947, 1515903] |
 | cdiag6 | [877, 3263, 13744, 64077, 325869, 1788850, 10515147] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -143,7 +143,7 @@ Polynomial values as rows
 | rpdiag5 | [52, 674, 10358, 65674, 255536, 745562, 1802434] |
 | rpdiag6 | [203, 3263, 91337, 860387, 4448807, 16196903, 46937813] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 1, 2, 5, 15, 52, 203] |
@@ -156,7 +156,7 @@ Polynomial values as columns
 
 # bessel
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -167,7 +167,7 @@ Triangle view
 | trow5 | [0, 105, 105, 45, 10, 1] |
 | trow6 | [0, 945, 945, 420, 105, 15, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 0, 1, 1, 0, 3, 3, 1, 0, 15, 15, 6, 1, 0, 105, 105, 45, 10, 1, 0, 945, 945, 420, 105, 15, 1] |
@@ -177,7 +177,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 1, 2, 2, 1, 4, 7, 7, 1, 7, 22, 37, 37, 1, 11, 56, 161, 266, 266, 1, 16, 121, 541, 1486, 2431, 2431] |
 | diag     | [1, 0, 0, 1, 0, 1, 0, 3, 1, 0, 15, 3] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 2, 7, 37, 266, 2431] |
@@ -188,7 +188,7 @@ Row sums
 | cumsum    | [1, 1, 3, 16, 118, 1101, 12421] |
 | revcumsum | [1, 2, 5, 19, 104, 761, 7027] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -199,7 +199,7 @@ Diagonals as rows
 | rdiag5 | [0, 945, 10395, 62370, 270270, 945945, 2837835]|
 | rdiag6 | [0, 10395, 135135, 945945, 4729725, 18918900, 64324260]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -210,7 +210,7 @@ Diagonals as columns
 | cdiag5 | [1, 15, 210, 3150, 51975, 945945, 18918900] |
 | cdiag6 | [1, 21, 378, 6930, 135135, 2837835, 64324260] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -221,7 +221,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 266, 1182, 3528, 8564, 18150, 34866] |
 | rpdiag6 | [0, 2431, 11254, 35559, 92116, 208975, 429786] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -232,9 +232,87 @@ Polynomial values as columns
 | cpdiag5 | [1, 5, 30, 215, 1825, 18150, 208975] |
 | cpdiag6 | [1, 6, 42, 342, 3222, 34866, 429786] |
 
+# bilatpath
+
+* Triangle view
+| trow  |  list  |
+| :---  |  :---  |
+| trow0 | [1] |
+| trow1 | [2, 1] |
+| trow2 | [6, 6, 1] |
+| trow3 | [20, 30, 12, 1] |
+| trow4 | [70, 140, 90, 20, 1] |
+| trow5 | [252, 630, 560, 210, 30, 1] |
+| trow6 | [924, 2772, 3150, 1680, 420, 42, 1] |
+
+* Flattened seqs
+| flat      |   seq  |
+| :---      |  :---  |
+| tabl     | [1, 2, 1, 6, 6, 1, 20, 30, 12, 1, 70, 140, 90, 20, 1, 252, 630, 560, 210, 30, 1, 924, 2772, 3150, 1680, 420, 42, 1] |
+| rev      | [1, 1, 2, 1, 6, 6, 1, 12, 30, 20, 1, 20, 90, 140, 70, 1, 30, 210, 560, 630, 252, 1, 42, 420, 1680, 3150, 2772, 924] |
+| cum      | [1, 2, 3, 6, 12, 13, 20, 50, 62, 63, 70, 210, 300, 320, 321, 252, 882, 1442, 1652, 1682, 1683, 924, 3696, 6846, 8526, 8946, 8988, 8989] |
+| revcum   | [1, 3, 2, 13, 12, 6, 63, 62, 50, 20, 321, 320, 300, 210, 70, 1683, 1682, 1652, 1442, 882, 252, 8989, 8988, 8946, 8526, 6846, 3696, 924] |
+| cumrev   | [1, 1, 3, 1, 7, 13, 1, 13, 43, 63, 1, 21, 111, 251, 321, 1, 31, 241, 801, 1431, 1683, 1, 43, 463, 2143, 5293, 8065, 8989] |
+| diag     | [1, 2, 6, 1, 20, 6, 70, 30, 1, 252, 140, 12] |
+
+* Row sums
+| sum       |   seq  |
+| :---      |  :---  |
+| sum       | [1, 3, 13, 63, 321, 1683, 8989] |
+| evensum   | [1, 2, 7, 32, 161, 842, 4495] |
+| oddsum    | [0, 1, 6, 31, 160, 841, 4494] |
+| altsum    | [1, 1, 1, 1, 1, 1, 1] |
+| diagsum   | [1, 2, 7, 26, 101, 404] |
+| cumsum    | [1, 5, 31, 195, 1221, 7593, 46915] |
+| revcumsum | [1, 4, 21, 120, 705, 4188, 24997] |
+
+* Diagonals as rows
+| rdiag  |   seq  |
+| :---   |  :---  |
+| rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
+| rdiag1 | [2, 6, 12, 20, 30, 42, 56]|
+| rdiag2 | [6, 30, 90, 210, 420, 756, 1260]|
+| rdiag3 | [20, 140, 560, 1680, 4200, 9240, 18480]|
+| rdiag4 | [70, 630, 3150, 11550, 34650, 90090, 210210]|
+| rdiag5 | [252, 2772, 16632, 72072, 252252, 756756, 2018016]|
+| rdiag6 | [924, 12012, 84084, 420420, 1681680, 5717712, 17153136]|
+
+* Diagonals as columns
+| cdiag  |   seq  |
+| :---   |  :---  |
+| cdiag0 | [1, 2, 6, 20, 70, 252, 924] |
+| cdiag1 | [1, 6, 30, 140, 630, 2772, 12012] |
+| cdiag2 | [1, 12, 90, 560, 3150, 16632, 84084] |
+| cdiag3 | [1, 20, 210, 1680, 11550, 72072, 420420] |
+| cdiag4 | [1, 30, 420, 4200, 34650, 252252, 1681680] |
+| cdiag5 | [1, 42, 756, 9240, 90090, 756756, 5717712] |
+| cdiag6 | [1, 56, 1260, 18480, 210210, 2018016, 17153136] |
+
+* Polynomial values as rows
+| rpdiag  |   seq  |
+| :---    |  :---  |
+| rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
+| rpdiag1 | [2, 3, 4, 5, 6, 7, 8] |
+| rpdiag2 | [6, 13, 22, 33, 46, 61, 78] |
+| rpdiag3 | [20, 63, 136, 245, 396, 595, 848] |
+| rpdiag4 | [70, 321, 886, 1921, 3606, 6145, 9766] |
+| rpdiag5 | [252, 1683, 5944, 15525, 33876, 65527, 116208] |
+| rpdiag6 | [924, 8989, 40636, 127905, 324556, 712909, 1411404] |
+
+* Polynomial values as columns
+| cpdiag  |   seq  |
+| :---    |  :---  |
+| cpdiag0 | [1, 2, 6, 20, 70, 252, 924] |
+| cpdiag1 | [1, 3, 13, 63, 321, 1683, 8989] |
+| cpdiag2 | [1, 4, 22, 136, 886, 5944, 40636] |
+| cpdiag3 | [1, 5, 33, 245, 1921, 15525, 127905] |
+| cpdiag4 | [1, 6, 46, 396, 3606, 33876, 324556] |
+| cpdiag5 | [1, 7, 61, 595, 6145, 65527, 712909] |
+| cpdiag6 | [1, 8, 78, 848, 9766, 116208, 1411404] |
+
 # binomial
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -245,7 +323,7 @@ Triangle view
 | trow5 | [1, 5, 10, 10, 5, 1] |
 | trow6 | [1, 6, 15, 20, 15, 6, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 1, 1, 1, 2, 1, 1, 3, 3, 1, 1, 4, 6, 4, 1, 1, 5, 10, 10, 5, 1, 1, 6, 15, 20, 15, 6, 1] |
@@ -255,7 +333,7 @@ Flattened seqs
 | cumrev   | [1, 1, 2, 1, 3, 4, 1, 4, 7, 8, 1, 5, 11, 15, 16, 1, 6, 16, 26, 31, 32, 1, 7, 22, 42, 57, 63, 64] |
 | diag     | [1, 1, 1, 1, 1, 2, 1, 3, 1, 1, 4, 3] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 2, 4, 8, 16, 32, 64] |
@@ -266,7 +344,7 @@ Row sums
 | cumsum    | [1, 3, 8, 20, 48, 112, 256] |
 | revcumsum | [1, 3, 8, 20, 48, 112, 256] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -277,7 +355,7 @@ Diagonals as rows
 | rdiag5 | [1, 6, 21, 56, 126, 252, 462]|
 | rdiag6 | [1, 7, 28, 84, 210, 462, 924]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -288,7 +366,7 @@ Diagonals as columns
 | cdiag5 | [1, 6, 21, 56, 126, 252, 462] |
 | cdiag6 | [1, 7, 28, 84, 210, 462, 924] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -299,7 +377,7 @@ Polynomial values as rows
 | rpdiag5 | [1, 32, 243, 1024, 3125, 7776, 16807] |
 | rpdiag6 | [1, 64, 729, 4096, 15625, 46656, 117649] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -312,7 +390,7 @@ Polynomial values as columns
 
 # catalan
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -323,7 +401,7 @@ Triangle view
 | trow5 | [0, 1, 5, 14, 28, 42] |
 | trow6 | [0, 1, 6, 20, 48, 90, 132] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 0, 1, 2, 0, 1, 3, 5, 0, 1, 4, 9, 14, 0, 1, 5, 14, 28, 42, 0, 1, 6, 20, 48, 90, 132] |
@@ -333,7 +411,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 2, 3, 3, 5, 8, 9, 9, 14, 23, 27, 28, 28, 42, 70, 84, 89, 90, 90, 132, 222, 270, 290, 296, 297, 297] |
 | diag     | [1, 0, 0, 1, 0, 1, 0, 1, 2, 0, 1, 3] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 3, 9, 28, 90, 297] |
@@ -344,7 +422,7 @@ Row sums
 | cumsum    | [1, 1, 4, 14, 48, 165, 572] |
 | revcumsum | [1, 2, 8, 31, 120, 465, 1804] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 2, 5, 14, 42, 132]|
@@ -355,7 +433,7 @@ Diagonals as rows
 | rdiag5 | [0, 1, 7, 35, 154, 637, 2548]|
 | rdiag6 | [0, 1, 8, 44, 208, 910, 3808]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -366,7 +444,7 @@ Diagonals as columns
 | cdiag5 | [42, 90, 165, 275, 429, 637, 910] |
 | cdiag6 | [132, 297, 572, 1001, 1638, 2548, 3808] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -377,7 +455,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 90, 1926, 12900, 51156, 150630, 366090] |
 | rpdiag6 | [0, 297, 12282, 122583, 646500, 2376405, 6925182] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -390,7 +468,7 @@ Polynomial values as columns
 
 # catalan_aerated
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -401,7 +479,7 @@ Triangle view
 | trow5 | [0, 5, 0, 4, 0, 1] |
 | trow6 | [5, 0, 9, 0, 5, 0, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 1, 0, 1, 0, 2, 0, 1, 2, 0, 3, 0, 1, 0, 5, 0, 4, 0, 1, 5, 0, 9, 0, 5, 0, 1] |
@@ -411,7 +489,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 1, 1, 2, 1, 1, 3, 3, 1, 1, 4, 4, 6, 1, 1, 5, 5, 10, 10, 1, 1, 6, 6, 15, 15, 20] |
 | diag     | [1, 0, 1, 1, 0, 0, 2, 2, 1, 0, 0, 0] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 2, 3, 6, 10, 20] |
@@ -422,7 +500,7 @@ Row sums
 | cumsum    | [1, 1, 4, 7, 20, 38, 96] |
 | revcumsum | [1, 2, 4, 8, 16, 32, 64] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -433,7 +511,7 @@ Diagonals as rows
 | rdiag5 | [0, 0, 0, 0, 0, 0, 0]|
 | rdiag6 | [5, 14, 28, 48, 75, 110, 154]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 1, 0, 2, 0, 5] |
@@ -444,7 +522,7 @@ Diagonals as columns
 | cdiag5 | [1, 0, 6, 0, 27, 0, 110] |
 | cdiag6 | [1, 0, 7, 0, 35, 0, 154] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -455,7 +533,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 10, 74, 366, 1300, 3650, 8670] |
 | rpdiag6 | [5, 20, 185, 1220, 5525, 18980, 53465] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 1, 0, 2, 0, 5] |
@@ -468,7 +546,7 @@ Polynomial values as columns
 
 # cc_factorial
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -479,7 +557,7 @@ Triangle view
 | trow5 | [0, 120, 924, 2380, 2520, 945] |
 | trow6 | [0, 720, 7308, 26432, 44100, 34650, 10395] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 0, 2, 3, 0, 6, 20, 15, 0, 24, 130, 210, 105, 0, 120, 924, 2380, 2520, 945, 0, 720, 7308, 26432, 44100, 34650, 10395] |
@@ -489,7 +567,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 3, 5, 5, 15, 35, 41, 41, 105, 315, 445, 469, 469, 945, 3465, 5845, 6769, 6889, 6889, 10395, 45045, 89145, 115577, 122885, 123605, 123605] |
 | diag     | [1, 0, 0, 1, 0, 2, 0, 6, 3, 0, 24, 20] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 5, 41, 469, 6889, 123605] |
@@ -500,7 +578,7 @@ Row sums
 | cumsum    | [1, 1, 7, 73, 1011, 17421, 358583] |
 | revcumsum | [1, 2, 13, 132, 1803, 30802, 630257] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 3, 15, 105, 945, 10395]|
@@ -511,7 +589,7 @@ Diagonals as rows
 | rdiag5 | [0, 720, 64224, 3678840, 177331440, 7934927000, 345240896000]|
 | rdiag6 | [0, 5040, 623376, 47324376, 2920525608, 162831789120, 8637235647040]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -522,7 +600,7 @@ Diagonals as columns
 | cdiag5 | [945, 34650, 866250, 18858840, 389449060, 7934927000, 162831789120] |
 | cdiag6 | [10395, 540540, 18288270, 520059540, 13642629000, 345240896000, 8637235647040] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -533,7 +611,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 6889, 93536, 506691, 1780384, 4849325, 11162304] |
 | rpdiag6 | [0, 123605, 2721808, 20351601, 91160576, 301755925, 817557840] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -546,7 +624,7 @@ Polynomial values as columns
 
 # cs_factorial
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -557,7 +635,7 @@ Triangle view
 | trow5 | [0, 1, 85, 147, 30, 1] |
 | trow6 | [0, 1, 341, 1408, 627, 55, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 0, 1, 1, 0, 1, 5, 1, 0, 1, 21, 14, 1, 0, 1, 85, 147, 30, 1, 0, 1, 341, 1408, 627, 55, 1] |
@@ -567,7 +645,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 1, 2, 2, 1, 6, 7, 7, 1, 15, 36, 37, 37, 1, 31, 178, 263, 264, 264, 1, 56, 683, 2091, 2432, 2433, 2433] |
 | diag     | [1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 5] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 2, 7, 37, 264, 2433] |
@@ -578,7 +656,7 @@ Row sums
 | cumsum    | [1, 1, 3, 14, 96, 847, 9335] |
 | revcumsum | [1, 2, 5, 21, 126, 1001, 10129] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -589,7 +667,7 @@ Diagonals as rows
 | rdiag5 | [0, 1, 1365, 118482, 3255330, 46587905, 434928221]|
 | rdiag6 | [0, 1, 5461, 1071799, 53157079, 1217854704, 16875270660]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -600,7 +678,7 @@ Diagonals as columns
 | cdiag5 | [1, 55, 2002, 61490, 1733303, 46587905, 1217854704] |
 | cdiag6 | [1, 91, 5278, 251498, 10787231, 434928221, 16875270660] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -611,7 +689,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 264, 2030, 7410, 19476, 42380, 81474] |
 | rpdiag6 | [0, 2433, 24486, 105969, 316500, 763905, 1603338] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -624,7 +702,7 @@ Polynomial values as columns
 
 # delannoy
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -635,7 +713,7 @@ Triangle view
 | trow5 | [1, 9, 25, 25, 9, 1] |
 | trow6 | [1, 11, 41, 63, 41, 11, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 1, 1, 1, 3, 1, 1, 5, 5, 1, 1, 7, 13, 7, 1, 1, 9, 25, 25, 9, 1, 1, 11, 41, 63, 41, 11, 1] |
@@ -645,7 +723,7 @@ Flattened seqs
 | cumrev   | [1, 1, 2, 1, 4, 5, 1, 6, 11, 12, 1, 8, 21, 28, 29, 1, 10, 35, 60, 69, 70, 1, 12, 53, 116, 157, 168, 169] |
 | diag     | [1, 1, 1, 1, 1, 3, 1, 5, 1, 1, 7, 5] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 2, 5, 12, 29, 70, 169] |
@@ -656,7 +734,7 @@ Row sums
 | cumsum    | [1, 3, 10, 30, 87, 245, 676] |
 | revcumsum | [1, 3, 10, 30, 87, 245, 676] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -667,7 +745,7 @@ Diagonals as rows
 | rdiag5 | [1, 11, 61, 231, 681, 1683, 3653]|
 | rdiag6 | [1, 13, 85, 377, 1289, 3653, 8989]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -678,7 +756,7 @@ Diagonals as columns
 | cdiag5 | [1, 11, 61, 231, 681, 1683, 3653] |
 | cdiag6 | [1, 13, 85, 377, 1289, 3653, 8989] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -689,7 +767,7 @@ Polynomial values as rows
 | rpdiag5 | [1, 70, 495, 1900, 5365, 12546, 25795] |
 | rpdiag6 | [1, 169, 1763, 8827, 30589, 84581, 200479] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -702,7 +780,7 @@ Polynomial values as columns
 
 # euler
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -713,7 +791,7 @@ Triangle view
 | trow5 | [-16, 25, -20, 10, -5, 1] |
 | trow6 | [61, -96, 75, -40, 15, -6, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, -1, 1, 1, -2, 1, -2, 3, -3, 1, 5, -8, 6, -4, 1, -16, 25, -20, 10, -5, 1, 61, -96, 75, -40, 15, -6, 1] |
@@ -723,7 +801,7 @@ Flattened seqs
 | cumrev   | [1, 1, 0, 1, -1, 0, 1, -2, 1, -1, 1, -3, 3, -5, 0, 1, -4, 6, -14, 11, -5, 1, -5, 10, -30, 45, -51, 10] |
 | diag     | [1, -1, 1, 1, -2, -2, 5, 3, 1, -16, -8, -3] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 0, 0, -1, 0, -5, 10] |
@@ -734,7 +812,7 @@ Row sums
 | cumsum    | [1, -1, 0, -4, 4, -30, 100] |
 | revcumsum | [1, 1, 0, -1, -4, -5, -20] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -745,7 +823,7 @@ Diagonals as rows
 | rdiag5 | [-16, -96, -336, -896, -2016, -4032, -7392]|
 | rdiag6 | [61, 427, 1708, 5124, 12810, 28182, 56364]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, -1, 1, -2, 5, -16, 61] |
@@ -756,7 +834,7 @@ Diagonals as columns
 | cdiag5 | [1, -6, 21, -112, 630, -4032, 28182] |
 | cdiag6 | [1, -7, 28, -168, 1050, -7392, 56364] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -767,7 +845,7 @@ Polynomial values as rows
 | rpdiag5 | [-16, -5, -14, -13, 148, 859, 2870] |
 | rpdiag6 | [61, 10, -39, -146, 109, 2706, 12985] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, -1, 1, -2, 5, -16, 61] |
@@ -780,7 +858,7 @@ Polynomial values as columns
 
 # eulerian
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -791,7 +869,7 @@ Triangle view
 | trow5 | [1, 26, 66, 26, 1, 0] |
 | trow6 | [1, 57, 302, 302, 57, 1, 0] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 1, 0, 1, 1, 0, 1, 4, 1, 0, 1, 11, 11, 1, 0, 1, 26, 66, 26, 1, 0, 1, 57, 302, 302, 57, 1, 0] |
@@ -801,7 +879,7 @@ Flattened seqs
 | cumrev   | [1, 0, 1, 0, 1, 2, 0, 1, 5, 6, 0, 1, 12, 23, 24, 0, 1, 27, 93, 119, 120, 0, 1, 58, 360, 662, 719, 720] |
 | diag     | [1, 1, 1, 0, 1, 1, 1, 4, 0, 1, 11, 1] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 2, 6, 24, 120, 720] |
@@ -812,7 +890,7 @@ Row sums
 | cumsum    | [1, 2, 5, 18, 84, 480, 3240] |
 | revcumsum | [1, 1, 3, 12, 60, 360, 2520] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 0, 0, 0, 0, 0, 0]|
@@ -823,7 +901,7 @@ Diagonals as rows
 | rdiag5 | [1, 57, 1191, 15619, 156190, 1310354, 9738114]|
 | rdiag6 | [1, 120, 4293, 88234, 1310354, 15724248, 162512286]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -834,7 +912,7 @@ Diagonals as columns
 | cdiag5 | [0, 1, 120, 4293, 88234, 1310354, 15724248] |
 | cdiag6 | [0, 1, 247, 14608, 455192, 9738114, 162512286] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -845,7 +923,7 @@ Polynomial values as rows
 | rpdiag5 | [1, 120, 541, 1456, 3081, 5656, 9445] |
 | rpdiag6 | [1, 720, 4683, 15904, 40005, 84336, 158095] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -858,7 +936,7 @@ Polynomial values as columns
 
 # eulerian2
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -869,7 +947,7 @@ Triangle view
 | trow5 | [0, 1, 52, 328, 444, 120] |
 | trow6 | [0, 1, 114, 1452, 4400, 3708, 720] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 0, 1, 2, 0, 1, 8, 6, 0, 1, 22, 58, 24, 0, 1, 52, 328, 444, 120, 0, 1, 114, 1452, 4400, 3708, 720] |
@@ -879,7 +957,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 2, 3, 3, 6, 14, 15, 15, 24, 82, 104, 105, 105, 120, 564, 892, 944, 945, 945, 720, 4428, 8828, 10280, 10394, 10395, 10395] |
 | diag     | [1, 0, 0, 1, 0, 1, 0, 1, 2, 0, 1, 8] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 3, 15, 105, 945, 10395] |
@@ -890,7 +968,7 @@ Row sums
 | cumsum    | [1, 1, 4, 25, 210, 2205, 27720] |
 | revcumsum | [1, 2, 8, 50, 420, 4410, 55440] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 2, 6, 24, 120, 720]|
@@ -901,7 +979,7 @@ Diagonals as rows
 | rdiag5 | [0, 1, 240, 19950, 1062500, 44765000, 1648384304]|
 | rdiag6 | [0, 1, 494, 67260, 5326160, 314369720, 15548960784]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -912,7 +990,7 @@ Diagonals as columns
 | cdiag5 | [120, 3708, 58140, 644020, 5765500, 44765000, 314369720] |
 | cdiag6 | [720, 33984, 785304, 12440064, 155357384, 1648384304, 15548960784] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -923,7 +1001,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 945, 13778, 74451, 258372, 694805, 1581270] |
 | rpdiag6 | [0, 10395, 247210, 1822557, 7967268, 25771855, 68445870] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -936,85 +1014,85 @@ Polynomial values as columns
 
 # eulerianB
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
-| trow1 | [0, 1] |
-| trow2 | [0, 1, 1] |
-| trow3 | [0, 1, 6, 1] |
-| trow4 | [0, 1, 23, 23, 1] |
-| trow5 | [0, 1, 76, 230, 76, 1] |
-| trow6 | [0, 1, 237, 1682, 1682, 237, 1] |
+| trow1 | [1, 1] |
+| trow2 | [1, 6, 1] |
+| trow3 | [1, 23, 23, 1] |
+| trow4 | [1, 76, 230, 76, 1] |
+| trow5 | [1, 237, 1682, 1682, 237, 1] |
+| trow6 | [1, 722, 10543, 23548, 10543, 722, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
-| tabl     | [1, 0, 1, 0, 1, 1, 0, 1, 6, 1, 0, 1, 23, 23, 1, 0, 1, 76, 230, 76, 1, 0, 1, 237, 1682, 1682, 237, 1] |
-| rev      | [1, 1, 0, 1, 1, 0, 1, 6, 1, 0, 1, 23, 23, 1, 0, 1, 76, 230, 76, 1, 0, 1, 237, 1682, 1682, 237, 1, 0] |
-| cum      | [1, 0, 1, 0, 1, 2, 0, 1, 7, 8, 0, 1, 24, 47, 48, 0, 1, 77, 307, 383, 384, 0, 1, 238, 1920, 3602, 3839, 3840] |
-| revcum   | [1, 1, 0, 2, 1, 0, 8, 7, 1, 0, 48, 47, 24, 1, 0, 384, 383, 307, 77, 1, 0, 3840, 3839, 3602, 1920, 238, 1, 0] |
-| cumrev   | [1, 1, 1, 1, 2, 2, 1, 7, 8, 8, 1, 24, 47, 48, 48, 1, 77, 307, 383, 384, 384, 1, 238, 1920, 3602, 3839, 3840, 3840] |
-| diag     | [1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 6] |
+| tabl     | [1, 1, 1, 1, 6, 1, 1, 23, 23, 1, 1, 76, 230, 76, 1, 1, 237, 1682, 1682, 237, 1, 1, 722, 10543, 23548, 10543, 722, 1] |
+| rev      | [1, 1, 1, 1, 6, 1, 1, 23, 23, 1, 1, 76, 230, 76, 1, 1, 237, 1682, 1682, 237, 1, 1, 722, 10543, 23548, 10543, 722, 1] |
+| cum      | [1, 1, 2, 1, 7, 8, 1, 24, 47, 48, 1, 77, 307, 383, 384, 1, 238, 1920, 3602, 3839, 3840, 1, 723, 11266, 34814, 45357, 46079, 46080] |
+| revcum   | [1, 2, 1, 8, 7, 1, 48, 47, 24, 1, 384, 383, 307, 77, 1, 3840, 3839, 3602, 1920, 238, 1, 46080, 46079, 45357, 34814, 11266, 723, 1] |
+| cumrev   | [1, 1, 2, 1, 7, 8, 1, 24, 47, 48, 1, 77, 307, 383, 384, 1, 238, 1920, 3602, 3839, 3840, 1, 723, 11266, 34814, 45357, 46079, 46080] |
+| diag     | [1, 1, 1, 1, 1, 6, 1, 23, 1, 1, 76, 23] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
-| sum       | [1, 1, 2, 8, 48, 384, 3840] |
-| evensum   | [1, 0, 1, 6, 24, 152, 1920] |
-| oddsum    | [0, 1, 1, 2, 24, 232, 1920] |
-| altsum    | [1, -1, 0, 4, 0, -80, 0] |
-| diagsum   | [1, 0, 1, 1, 2, 7] |
-| cumsum    | [1, 1, 3, 16, 120, 1152, 13440] |
-| revcumsum | [1, 2, 5, 24, 168, 1536, 17280] |
+| sum       | [1, 2, 8, 48, 384, 3840, 46080] |
+| evensum   | [1, 1, 2, 24, 232, 1920, 21088] |
+| oddsum    | [0, 1, 6, 24, 152, 1920, 24992] |
+| altsum    | [1, 0, -4, 0, 80, 0, -3904] |
+| diagsum   | [1, 1, 2, 7, 25, 100] |
+| cumsum    | [1, 3, 16, 120, 1152, 13440, 184320] |
+| revcumsum | [1, 3, 16, 120, 1152, 13440, 184320] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
-| rdiag1 | [0, 1, 6, 23, 76, 237, 722]|
-| rdiag2 | [0, 1, 23, 230, 1682, 10543, 60657]|
-| rdiag3 | [0, 1, 76, 1682, 23548, 259723, 2485288]|
-| rdiag4 | [0, 1, 237, 10543, 259723, 4675014, 69413294]|
-| rdiag5 | [0, 1, 722, 60657, 2485288, 69413294, 1527092468]|
-| rdiag6 | [0, 1, 2179, 331612, 21707972, 906923282, 28588019814]|
+| rdiag1 | [1, 6, 23, 76, 237, 722, 2179]|
+| rdiag2 | [1, 23, 230, 1682, 10543, 60657, 331612]|
+| rdiag3 | [1, 76, 1682, 23548, 259723, 2485288, 21707972]|
+| rdiag4 | [1, 237, 10543, 259723, 4675014, 69413294, 906923282]|
+| rdiag5 | [1, 722, 60657, 2485288, 69413294, 1527092468, 28588019814]|
+| rdiag6 | [1, 2179, 331612, 21707972, 906923282, 28588019814, 743288515164]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
-| cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
-| cdiag1 | [1, 1, 1, 1, 1, 1, 1] |
-| cdiag2 | [1, 6, 23, 76, 237, 722, 2179] |
-| cdiag3 | [1, 23, 230, 1682, 10543, 60657, 331612] |
-| cdiag4 | [1, 76, 1682, 23548, 259723, 2485288, 21707972] |
-| cdiag5 | [1, 237, 10543, 259723, 4675014, 69413294, 906923282] |
-| cdiag6 | [1, 722, 60657, 2485288, 69413294, 1527092468, 28588019814] |
+| cdiag0 | [1, 1, 1, 1, 1, 1, 1] |
+| cdiag1 | [1, 6, 23, 76, 237, 722, 2179] |
+| cdiag2 | [1, 23, 230, 1682, 10543, 60657, 331612] |
+| cdiag3 | [1, 76, 1682, 23548, 259723, 2485288, 21707972] |
+| cdiag4 | [1, 237, 10543, 259723, 4675014, 69413294, 906923282] |
+| cdiag5 | [1, 722, 60657, 2485288, 69413294, 1527092468, 28588019814] |
+| cdiag6 | [1, 2179, 331612, 21707972, 906923282, 28588019814, 743288515164] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
-| rpdiag1 | [0, 1, 2, 3, 4, 5, 6] |
-| rpdiag2 | [0, 2, 6, 12, 20, 30, 42] |
-| rpdiag3 | [0, 8, 34, 84, 164, 280, 438] |
-| rpdiag4 | [0, 48, 294, 912, 2100, 4080, 7098] |
-| rpdiag5 | [0, 384, 3394, 13296, 36420, 81280, 158694] |
-| rpdiag6 | [0, 3840, 48966, 242112, 788820, 2023680, 4441290] |
+| rpdiag1 | [1, 2, 3, 4, 5, 6, 7] |
+| rpdiag2 | [1, 8, 17, 28, 41, 56, 73] |
+| rpdiag3 | [1, 48, 147, 304, 525, 816, 1183] |
+| rpdiag4 | [1, 384, 1697, 4432, 9105, 16256, 26449] |
+| rpdiag5 | [1, 3840, 24483, 80704, 197205, 404736, 740215] |
+| rpdiag6 | [1, 46080, 423857, 1763008, 5121081, 12071936, 24794905] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
-| cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
-| cpdiag1 | [1, 1, 2, 8, 48, 384, 3840] |
-| cpdiag2 | [1, 2, 6, 34, 294, 3394, 48966] |
-| cpdiag3 | [1, 3, 12, 84, 912, 13296, 242112] |
-| cpdiag4 | [1, 4, 20, 164, 2100, 36420, 788820] |
-| cpdiag5 | [1, 5, 30, 280, 4080, 81280, 2023680] |
-| cpdiag6 | [1, 6, 42, 438, 7098, 158694, 4441290] |
+| cpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
+| cpdiag1 | [1, 2, 8, 48, 384, 3840, 46080] |
+| cpdiag2 | [1, 3, 17, 147, 1697, 24483, 423857] |
+| cpdiag3 | [1, 4, 28, 304, 4432, 80704, 1763008] |
+| cpdiag4 | [1, 5, 41, 525, 9105, 197205, 5121081] |
+| cpdiag5 | [1, 6, 56, 816, 16256, 404736, 12071936] |
+| cpdiag6 | [1, 7, 73, 1183, 26449, 740215, 24794905] |
 
 # euler_sec
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -1025,7 +1103,7 @@ Triangle view
 | trow5 | [0, 25, 0, -10, 0, 1] |
 | trow6 | [-61, 0, 75, 0, -15, 0, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, -1, 0, 1, 0, -3, 0, 1, 5, 0, -6, 0, 1, 0, 25, 0, -10, 0, 1, -61, 0, 75, 0, -15, 0, 1] |
@@ -1035,7 +1113,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 1, 1, 0, 1, 1, -2, -2, 1, 1, -5, -5, 0, 1, 1, -9, -9, 16, 16, 1, 1, -14, -14, 61, 61, 0] |
 | diag     | [1, 0, -1, 1, 0, 0, 5, -3, 1, 0, 0, 0] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 0, -2, 0, 16, 0] |
@@ -1046,7 +1124,7 @@ Row sums
 | cumsum    | [1, 1, -2, -8, 8, 96, -96] |
 | revcumsum | [1, 2, 2, -2, -8, 16, 96] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -1057,7 +1135,7 @@ Diagonals as rows
 | rdiag5 | [0, 0, 0, 0, 0, 0, 0]|
 | rdiag6 | [-61, -427, -1708, -5124, -12810, -28182, -56364]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, -1, 0, 5, 0, -61] |
@@ -1068,7 +1146,7 @@ Diagonals as columns
 | cdiag5 | [1, 0, -21, 0, 630, 0, -28182] |
 | cdiag6 | [1, 0, -28, 0, 1050, 0, -56364] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -1079,7 +1157,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 16, 2, 48, 484, 2000, 5766] |
 | rpdiag6 | [-61, 0, 63, 128, 1395, 8064, 29855] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, -1, 0, 5, 0, -61] |
@@ -1092,7 +1170,7 @@ Polynomial values as columns
 
 # euler_tan
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [0] |
@@ -1103,7 +1181,7 @@ Triangle view
 | trow5 | [16, 0, -20, 0, 5, 0] |
 | trow6 | [0, 96, 0, -40, 0, 6, 0] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [0, 1, 0, 0, 2, 0, -2, 0, 3, 0, 0, -8, 0, 4, 0, 16, 0, -20, 0, 5, 0, 0, 96, 0, -40, 0, 6, 0] |
@@ -1113,7 +1191,7 @@ Flattened seqs
 | cumrev   | [0, 0, 1, 0, 2, 2, 0, 3, 3, 1, 0, 4, 4, -4, -4, 0, 5, 5, -15, -15, 1, 0, 6, 6, -34, -34, 62, 62] |
 | diag     | [0, 1, 0, 0, -2, 2, 0, 0, 0, 16, -8, 3] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [0, 1, 2, 1, -4, 1, 62] |
@@ -1124,7 +1202,7 @@ Row sums
 | cumsum    | [0, 2, 4, -2, -24, 26, 428] |
 | revcumsum | [0, 1, 4, 7, 0, -19, 68] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [0, 0, 0, 0, 0, 0, 0]|
@@ -1135,7 +1213,7 @@ Diagonals as rows
 | rdiag5 | [16, 96, 336, 896, 2016, 4032, 7392]|
 | rdiag6 | [0, 0, 0, 0, 0, 0, 0]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [0, 1, 0, -2, 0, 16, 0] |
@@ -1146,7 +1224,7 @@ Diagonals as columns
 | cdiag5 | [0, 6, 0, -112, 0, 4032, 0] |
 | cdiag6 | [0, 7, 0, -168, 0, 7392, 0] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [0, 0, 0, 0, 0, 0, 0] |
@@ -1157,7 +1235,7 @@ Polynomial values as rows
 | rpdiag5 | [16, 1, 16, 241, 976, 2641, 5776] |
 | rpdiag6 | [0, 62, 64, 666, 3968, 14230, 38592] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [0, 1, 0, -2, 0, 16, 0] |
@@ -1170,7 +1248,7 @@ Polynomial values as columns
 
 # falling_factorial
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -1181,7 +1259,7 @@ Triangle view
 | trow5 | [1, 5, 20, 60, 120, 120] |
 | trow6 | [1, 6, 30, 120, 360, 720, 720] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 1, 1, 1, 2, 2, 1, 3, 6, 6, 1, 4, 12, 24, 24, 1, 5, 20, 60, 120, 120, 1, 6, 30, 120, 360, 720, 720] |
@@ -1191,7 +1269,7 @@ Flattened seqs
 | cumrev   | [1, 1, 2, 2, 4, 5, 6, 12, 15, 16, 24, 48, 60, 64, 65, 120, 240, 300, 320, 325, 326, 720, 1440, 1800, 1920, 1950, 1956, 1957] |
 | diag     | [1, 1, 1, 1, 1, 2, 1, 3, 2, 1, 4, 6] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 2, 5, 16, 65, 326, 1957] |
@@ -1202,7 +1280,7 @@ Row sums
 | cumsum    | [1, 3, 9, 31, 129, 651, 3913] |
 | revcumsum | [1, 3, 11, 49, 261, 1631, 11743] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 2, 6, 24, 120, 720]|
@@ -1213,7 +1291,7 @@ Diagonals as rows
 | rdiag5 | [1, 6, 42, 336, 3024, 30240, 332640]|
 | rdiag6 | [1, 7, 56, 504, 5040, 55440, 665280]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -1224,7 +1302,7 @@ Diagonals as columns
 | cdiag5 | [120, 720, 2520, 6720, 15120, 30240, 55440] |
 | cdiag6 | [720, 5040, 20160, 60480, 151200, 332640, 665280] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -1235,7 +1313,7 @@ Polynomial values as rows
 | rpdiag5 | [1, 326, 6331, 40696, 157781, 458026, 1102351] |
 | rpdiag6 | [1, 1957, 75973, 732529, 3786745, 13740781, 39684637] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -1248,7 +1326,7 @@ Polynomial values as columns
 
 # fibonacci
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -1259,7 +1337,7 @@ Triangle view
 | trow5 | [3, 5, 7, 7, 4, 1] |
 | trow6 | [5, 8, 12, 14, 11, 5, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 1, 1, 1, 1, 2, 2, 1, 2, 3, 4, 3, 1, 3, 5, 7, 7, 4, 1, 5, 8, 12, 14, 11, 5, 1] |
@@ -1269,7 +1347,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 1, 2, 3, 1, 3, 5, 6, 1, 4, 8, 11, 13, 1, 5, 12, 19, 24, 27, 1, 6, 17, 31, 43, 51, 56] |
 | diag     | [1, 0, 1, 1, 1, 1, 2, 2, 1, 3, 3, 2] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 3, 6, 13, 27, 56] |
@@ -1280,7 +1358,7 @@ Row sums
 | cumsum    | [1, 1, 6, 15, 41, 101, 243] |
 | revcumsum | [1, 2, 6, 15, 37, 88, 205] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -1291,7 +1369,7 @@ Diagonals as rows
 | rdiag5 | [3, 8, 20, 46, 97, 189, 344]|
 | rdiag6 | [5, 13, 33, 79, 176, 365, 709]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 1, 1, 2, 3, 5] |
@@ -1302,7 +1380,7 @@ Diagonals as columns
 | cdiag5 | [1, 5, 16, 41, 92, 189, 365] |
 | cdiag6 | [1, 6, 22, 63, 155, 344, 709] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -1313,7 +1391,7 @@ Polynomial values as rows
 | rpdiag5 | [3, 27, 193, 837, 2631, 6703, 14757] |
 | rpdiag6 | [5, 56, 581, 3350, 13157, 40220, 103301] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 1, 1, 2, 3, 5] |
@@ -1326,7 +1404,7 @@ Polynomial values as columns
 
 # fubini
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -1337,7 +1415,7 @@ Triangle view
 | trow5 | [0, 1, 30, 150, 240, 120] |
 | trow6 | [0, 1, 62, 540, 1560, 1800, 720] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 0, 1, 2, 0, 1, 6, 6, 0, 1, 14, 36, 24, 0, 1, 30, 150, 240, 120, 0, 1, 62, 540, 1560, 1800, 720] |
@@ -1347,7 +1425,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 2, 3, 3, 6, 12, 13, 13, 24, 60, 74, 75, 75, 120, 360, 510, 540, 541, 541, 720, 2520, 4080, 4620, 4682, 4683, 4683] |
 | diag     | [1, 0, 0, 1, 0, 1, 0, 1, 2, 0, 1, 6] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 3, 13, 75, 541, 4683] |
@@ -1358,7 +1436,7 @@ Row sums
 | cumsum    | [1, 1, 4, 21, 142, 1175, 11476] |
 | revcumsum | [1, 2, 8, 44, 308, 2612, 25988] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 2, 6, 24, 120, 720]|
@@ -1369,7 +1447,7 @@ Diagonals as rows
 | rdiag5 | [0, 1, 126, 5796, 186480, 5103000, 129230640]|
 | rdiag6 | [0, 1, 254, 18150, 818520, 29607600, 953029440]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -1380,7 +1458,7 @@ Diagonals as columns
 | cdiag5 | [120, 1800, 16800, 126000, 834120, 5103000, 29607600] |
 | cdiag6 | [720, 15120, 191520, 1905120, 16435440, 129230640, 953029440] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -1391,7 +1469,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 541, 9002, 52923, 194404, 544505, 1277646] |
 | rpdiag6 | [0, 4683, 133210, 1103781, 5227236, 17919055, 49729758] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -1404,7 +1482,7 @@ Polynomial values as columns
 
 # genocchi
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -1415,7 +1493,7 @@ Triangle view
 | trow5 | [608, 1160, 1608, 1918, 2073, 2073] |
 | trow6 | [9440, 18272, 25944, 32008, 36154, 38227, 38227] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 1, 1, 2, 3, 3, 8, 14, 17, 17, 56, 104, 138, 155, 155, 608, 1160, 1608, 1918, 2073, 2073, 9440, 18272, 25944, 32008, 36154, 38227, 38227] |
@@ -1425,7 +1503,7 @@ Flattened seqs
 | cumrev   | [1, 1, 2, 3, 6, 8, 17, 34, 48, 56, 155, 310, 448, 552, 608, 2073, 4146, 6064, 7672, 8832, 9440, 38227, 76454, 112608, 144616, 170560, 188832, 198272] |
 | diag     | [1, 1, 2, 1, 8, 3, 56, 14, 3, 608, 104, 17] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 2, 8, 56, 608, 9440, 198272] |
@@ -1436,7 +1514,7 @@ Row sums
 | cumsum    | [1, 3, 15, 125, 1575, 27853, 656607] |
 | revcumsum | [1, 3, 17, 155, 2073, 38227, 929569] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 3, 17, 155, 2073, 38227]|
@@ -1447,7 +1525,7 @@ Diagonals as rows
 | rdiag5 | [608, 18272, 557664, 19716064, 826094560, 40990855776, 2391266489696]|
 | rdiag6 | [9440, 387104, 15448416, 691248928, 35729867872, 2142617789472, 148530446419808]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 1, 2, 8, 56, 608, 9440] |
@@ -1458,7 +1536,7 @@ Diagonals as columns
 | cdiag5 | [2073, 38227, 891342, 26031912, 937658760, 40990855776, 2142617789472] |
 | cdiag6 | [38227, 929569, 27891050, 1023191048, 45314184920, 2391266489696, 148530446419808] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -1469,7 +1547,7 @@ Polynomial values as rows
 | rpdiag5 | [608, 9440, 124208, 741998, 2807168, 8060108, 19286000] |
 | rpdiag6 | [9440, 198272, 4654080, 41247086, 207523808, 744102900, 2135594432] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 1, 2, 8, 56, 608, 9440] |
@@ -1480,9 +1558,87 @@ Polynomial values as columns
 | cpdiag5 | [1, 6, 92, 2628, 120276, 8060108, 744102900] |
 | cpdiag6 | [1, 7, 128, 4376, 240008, 19286000, 2135594432] |
 
+# harmonic
+
+* Triangle view
+| trow  |  list  |
+| :---  |  :---  |
+| trow0 | [1] |
+| trow1 | [0, 1] |
+| trow2 | [0, 2, 1] |
+| trow3 | [0, 6, 4, 1] |
+| trow4 | [0, 24, 18, 7, 1] |
+| trow5 | [0, 120, 96, 46, 11, 1] |
+| trow6 | [0, 720, 600, 326, 101, 16, 1] |
+
+* Flattened seqs
+| flat      |   seq  |
+| :---      |  :---  |
+| tabl     | [1, 0, 1, 0, 2, 1, 0, 6, 4, 1, 0, 24, 18, 7, 1, 0, 120, 96, 46, 11, 1, 0, 720, 600, 326, 101, 16, 1] |
+| rev      | [1, 1, 0, 1, 2, 0, 1, 4, 6, 0, 1, 7, 18, 24, 0, 1, 11, 46, 96, 120, 0, 1, 16, 101, 326, 600, 720, 0] |
+| cum      | [1, 0, 1, 0, 2, 3, 0, 6, 10, 11, 0, 24, 42, 49, 50, 0, 120, 216, 262, 273, 274, 0, 720, 1320, 1646, 1747, 1763, 1764] |
+| revcum   | [1, 1, 0, 3, 2, 0, 11, 10, 6, 0, 50, 49, 42, 24, 0, 274, 273, 262, 216, 120, 0, 1764, 1763, 1747, 1646, 1320, 720, 0] |
+| cumrev   | [1, 1, 1, 1, 3, 3, 1, 5, 11, 11, 1, 8, 26, 50, 50, 1, 12, 58, 154, 274, 274, 1, 17, 118, 444, 1044, 1764, 1764] |
+| diag     | [1, 0, 0, 1, 0, 2, 0, 6, 1, 0, 24, 4] |
+
+* Row sums
+| sum       |   seq  |
+| :---      |  :---  |
+| sum       | [1, 1, 3, 11, 50, 274, 1764] |
+| evensum   | [1, 0, 1, 4, 19, 107, 702] |
+| oddsum    | [0, 1, 2, 7, 31, 167, 1062] |
+| altsum    | [1, -1, -1, -3, -12, -60, -360] |
+| diagsum   | [1, 0, 1, 2, 7, 28] |
+| cumsum    | [1, 1, 5, 27, 165, 1145, 8960] |
+| revcumsum | [1, 2, 7, 28, 135, 773, 5152] |
+
+* Diagonals as rows
+| rdiag  |   seq  |
+| :---   |  :---  |
+| rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
+| rdiag1 | [0, 2, 4, 7, 11, 16, 22]|
+| rdiag2 | [0, 6, 18, 46, 101, 197, 351]|
+| rdiag3 | [0, 24, 96, 326, 932, 2311, 5119]|
+| rdiag4 | [0, 120, 600, 2556, 9080, 27568, 73639]|
+| rdiag5 | [0, 720, 4320, 22212, 94852, 342964, 1079354]|
+| rdiag6 | [0, 5040, 35280, 212976, 1066644, 4496284, 16369178]|
+
+* Diagonals as columns
+| cdiag  |   seq  |
+| :---   |  :---  |
+| cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
+| cdiag1 | [1, 2, 6, 24, 120, 720, 5040] |
+| cdiag2 | [1, 4, 18, 96, 600, 4320, 35280] |
+| cdiag3 | [1, 7, 46, 326, 2556, 22212, 212976] |
+| cdiag4 | [1, 11, 101, 932, 9080, 94852, 1066644] |
+| cdiag5 | [1, 16, 197, 2311, 27568, 342964, 4496284] |
+| cdiag6 | [1, 22, 351, 5119, 73639, 1079354, 16369178] |
+
+* Polynomial values as rows
+| rpdiag  |   seq  |
+| :---    |  :---  |
+| rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
+| rpdiag1 | [0, 1, 2, 3, 4, 5, 6] |
+| rpdiag2 | [0, 3, 8, 15, 24, 35, 48] |
+| rpdiag3 | [0, 11, 36, 81, 152, 255, 396] |
+| rpdiag4 | [0, 50, 192, 504, 1088, 2070, 3600] |
+| rpdiag5 | [0, 274, 1200, 3600, 8800, 18750, 36144] |
+| rpdiag6 | [0, 1764, 8640, 29160, 79680, 188100, 398304] |
+
+* Polynomial values as columns
+| cpdiag  |   seq  |
+| :---    |  :---  |
+| cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
+| cpdiag1 | [1, 1, 3, 11, 50, 274, 1764] |
+| cpdiag2 | [1, 2, 8, 36, 192, 1200, 8640] |
+| cpdiag3 | [1, 3, 15, 81, 504, 3600, 29160] |
+| cpdiag4 | [1, 4, 24, 152, 1088, 8800, 79680] |
+| cpdiag5 | [1, 5, 35, 255, 2070, 18750, 188100] |
+| cpdiag6 | [1, 6, 48, 396, 3600, 36144, 398304] |
+
 # hermite
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -1493,7 +1649,7 @@ Triangle view
 | trow5 | [0, 15, 0, 10, 0, 1] |
 | trow6 | [15, 0, 45, 0, 15, 0, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 1, 0, 1, 0, 3, 0, 1, 3, 0, 6, 0, 1, 0, 15, 0, 10, 0, 1, 15, 0, 45, 0, 15, 0, 1] |
@@ -1503,7 +1659,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 1, 1, 2, 1, 1, 4, 4, 1, 1, 7, 7, 10, 1, 1, 11, 11, 26, 26, 1, 1, 16, 16, 61, 61, 76] |
 | diag     | [1, 0, 1, 1, 0, 0, 3, 3, 1, 0, 0, 0] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 2, 4, 10, 26, 76] |
@@ -1514,7 +1670,7 @@ Row sums
 | cumsum    | [1, 1, 4, 10, 34, 106, 376] |
 | revcumsum | [1, 2, 4, 10, 26, 76, 232] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -1525,7 +1681,7 @@ Diagonals as rows
 | rdiag5 | [0, 0, 0, 0, 0, 0, 0]|
 | rdiag6 | [15, 105, 420, 1260, 3150, 6930, 13860]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 1, 0, 3, 0, 15] |
@@ -1536,7 +1692,7 @@ Diagonals as columns
 | cdiag5 | [1, 0, 21, 0, 378, 0, 6930] |
 | cdiag6 | [1, 0, 28, 0, 630, 0, 13860] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -1547,7 +1703,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 26, 142, 558, 1724, 4450, 10026] |
 | rpdiag6 | [15, 76, 499, 2364, 8671, 26140, 67731] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 1, 0, 3, 0, 15] |
@@ -1560,7 +1716,7 @@ Polynomial values as columns
 
 # laguerre
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -1571,7 +1727,7 @@ Triangle view
 | trow5 | [120, 600, 600, 200, 25, 1] |
 | trow6 | [720, 4320, 5400, 2400, 450, 36, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 1, 1, 2, 4, 1, 6, 18, 9, 1, 24, 96, 72, 16, 1, 120, 600, 600, 200, 25, 1, 720, 4320, 5400, 2400, 450, 36, 1] |
@@ -1581,7 +1737,7 @@ Flattened seqs
 | cumrev   | [1, 1, 2, 1, 5, 7, 1, 10, 28, 34, 1, 17, 89, 185, 209, 1, 26, 226, 826, 1426, 1546, 1, 37, 487, 2887, 8287, 12607, 13327] |
 | diag     | [1, 1, 2, 1, 6, 4, 24, 18, 1, 120, 96, 9] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 2, 7, 34, 209, 1546, 13327] |
@@ -1592,7 +1748,7 @@ Row sums
 | cumsum    | [1, 3, 15, 97, 753, 6771, 68983] |
 | revcumsum | [1, 3, 13, 73, 501, 4051, 37633] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -1603,7 +1759,7 @@ Diagonals as rows
 | rdiag5 | [120, 4320, 52920, 376320, 1905120, 7620480, 25613280]|
 | rdiag6 | [720, 35280, 564480, 5080320, 31752000, 153679680, 614718720]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 1, 2, 6, 24, 120, 720] |
@@ -1614,7 +1770,7 @@ Diagonals as columns
 | cdiag5 | [1, 36, 882, 18816, 381024, 7620480, 153679680] |
 | cdiag6 | [1, 49, 1568, 42336, 1058400, 25613280, 614718720] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -1625,7 +1781,7 @@ Polynomial values as rows
 | rpdiag5 | [120, 1546, 5752, 14988, 32344, 61870, 108696] |
 | rpdiag6 | [720, 13327, 58576, 173007, 414160, 866695, 1649232] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 1, 2, 6, 24, 120, 720] |
@@ -1638,7 +1794,7 @@ Polynomial values as columns
 
 # lah
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -1649,7 +1805,7 @@ Triangle view
 | trow5 | [0, 120, 240, 120, 20, 1] |
 | trow6 | [0, 720, 1800, 1200, 300, 30, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 0, 2, 1, 0, 6, 6, 1, 0, 24, 36, 12, 1, 0, 120, 240, 120, 20, 1, 0, 720, 1800, 1200, 300, 30, 1] |
@@ -1659,7 +1815,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 1, 3, 3, 1, 7, 13, 13, 1, 13, 49, 73, 73, 1, 21, 141, 381, 501, 501, 1, 31, 331, 1531, 3331, 4051, 4051] |
 | diag     | [1, 0, 0, 1, 0, 2, 0, 6, 1, 0, 24, 6] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 3, 13, 73, 501, 4051] |
@@ -1670,7 +1826,7 @@ Row sums
 | cumsum    | [1, 1, 5, 31, 229, 1961, 19081] |
 | revcumsum | [1, 2, 7, 34, 209, 1546, 13327] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -1681,7 +1837,7 @@ Diagonals as rows
 | rdiag5 | [0, 720, 15120, 141120, 846720, 3810240, 13970880]|
 | rdiag6 | [0, 5040, 141120, 1693440, 12700800, 69854400, 307359360]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -1692,7 +1848,7 @@ Diagonals as columns
 | cdiag5 | [1, 30, 630, 11760, 211680, 3810240, 69854400] |
 | cdiag6 | [1, 42, 1176, 28224, 635040, 13970880, 307359360] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -1703,7 +1859,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 501, 2512, 7623, 18144, 37225, 68976] |
 | rpdiag6 | [0, 4051, 24064, 83079, 220096, 495475, 997056] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -1716,7 +1872,7 @@ Polynomial values as columns
 
 # lehmer
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -1727,7 +1883,7 @@ Triangle view
 | trow5 | [0, 256, 175, 55, 10, 1] |
 | trow6 | [0, 3125, 2101, 660, 125, 15, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 0, 1, 1, 0, 4, 3, 1, 0, 27, 19, 6, 1, 0, 256, 175, 55, 10, 1, 0, 3125, 2101, 660, 125, 15, 1] |
@@ -1737,7 +1893,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 1, 2, 2, 1, 4, 8, 8, 1, 7, 26, 53, 53, 1, 11, 66, 241, 497, 497, 1, 16, 141, 801, 2902, 6027, 6027] |
 | diag     | [1, 0, 0, 1, 0, 1, 0, 4, 1, 0, 27, 3] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 2, 8, 53, 497, 6027] |
@@ -1748,7 +1904,7 @@ Row sums
 | cumsum    | [1, 1, 3, 19, 178, 2166, 32301] |
 | revcumsum | [1, 2, 5, 21, 140, 1313, 15915] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -1759,7 +1915,7 @@ Diagonals as rows
 | rdiag5 | [0, 3125, 31031, 170898, 688506, 2263065, 6427575]|
 | rdiag6 | [0, 46656, 543607, 3463615, 15958405, 59411605, 189556312]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -1770,7 +1926,7 @@ Diagonals as columns
 | cdiag5 | [1, 15, 245, 4550, 95781, 2263065, 59411605] |
 | cdiag6 | [1, 21, 434, 9702, 238287, 6427575, 189556312] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -1781,7 +1937,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 497, 1844, 4881, 10928, 21905, 40452] |
 | rpdiag6 | [0, 6027, 22478, 60603, 139812, 291275, 562242] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -1792,9 +1948,165 @@ Polynomial values as columns
 | cpdiag5 | [1, 5, 30, 220, 1985, 21905, 291275] |
 | cpdiag6 | [1, 6, 42, 348, 3438, 40452, 562242] |
 
+# leibniz
+
+* Triangle view
+| trow  |  list  |
+| :---  |  :---  |
+| trow0 | [1] |
+| trow1 | [2, 2] |
+| trow2 | [3, 6, 3] |
+| trow3 | [4, 12, 12, 4] |
+| trow4 | [5, 20, 30, 20, 5] |
+| trow5 | [6, 30, 60, 60, 30, 6] |
+| trow6 | [7, 42, 105, 140, 105, 42, 7] |
+
+* Flattened seqs
+| flat      |   seq  |
+| :---      |  :---  |
+| tabl     | [1, 2, 2, 3, 6, 3, 4, 12, 12, 4, 5, 20, 30, 20, 5, 6, 30, 60, 60, 30, 6, 7, 42, 105, 140, 105, 42, 7] |
+| rev      | [1, 2, 2, 3, 6, 3, 4, 12, 12, 4, 5, 20, 30, 20, 5, 6, 30, 60, 60, 30, 6, 7, 42, 105, 140, 105, 42, 7] |
+| cum      | [1, 2, 4, 3, 9, 12, 4, 16, 28, 32, 5, 25, 55, 75, 80, 6, 36, 96, 156, 186, 192, 7, 49, 154, 294, 399, 441, 448] |
+| revcum   | [1, 4, 2, 12, 9, 3, 32, 28, 16, 4, 80, 75, 55, 25, 5, 192, 186, 156, 96, 36, 6, 448, 441, 399, 294, 154, 49, 7] |
+| cumrev   | [1, 2, 4, 3, 9, 12, 4, 16, 28, 32, 5, 25, 55, 75, 80, 6, 36, 96, 156, 186, 192, 7, 49, 154, 294, 399, 441, 448] |
+| diag     | [1, 2, 3, 2, 4, 6, 5, 12, 3, 6, 20, 12] |
+
+* Row sums
+| sum       |   seq  |
+| :---      |  :---  |
+| sum       | [1, 4, 12, 32, 80, 192, 448] |
+| evensum   | [1, 2, 6, 16, 40, 96, 224] |
+| oddsum    | [0, 2, 6, 16, 40, 96, 224] |
+| altsum    | [1, 0, 0, 0, 0, 0, 0] |
+| diagsum   | [1, 2, 5, 10, 20, 38] |
+| cumsum    | [1, 6, 24, 80, 240, 672, 1792] |
+| revcumsum | [1, 6, 24, 80, 240, 672, 1792] |
+
+* Diagonals as rows
+| rdiag  |   seq  |
+| :---   |  :---  |
+| rdiag0 | [1, 2, 3, 4, 5, 6, 7]|
+| rdiag1 | [2, 6, 12, 20, 30, 42, 56]|
+| rdiag2 | [3, 12, 30, 60, 105, 168, 252]|
+| rdiag3 | [4, 20, 60, 140, 280, 504, 840]|
+| rdiag4 | [5, 30, 105, 280, 630, 1260, 2310]|
+| rdiag5 | [6, 42, 168, 504, 1260, 2772, 5544]|
+| rdiag6 | [7, 56, 252, 840, 2310, 5544, 12012]|
+
+* Diagonals as columns
+| cdiag  |   seq  |
+| :---   |  :---  |
+| cdiag0 | [1, 2, 3, 4, 5, 6, 7] |
+| cdiag1 | [2, 6, 12, 20, 30, 42, 56] |
+| cdiag2 | [3, 12, 30, 60, 105, 168, 252] |
+| cdiag3 | [4, 20, 60, 140, 280, 504, 840] |
+| cdiag4 | [5, 30, 105, 280, 630, 1260, 2310] |
+| cdiag5 | [6, 42, 168, 504, 1260, 2772, 5544] |
+| cdiag6 | [7, 56, 252, 840, 2310, 5544, 12012] |
+
+* Polynomial values as rows
+| rpdiag  |   seq  |
+| :---    |  :---  |
+| rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
+| rpdiag1 | [2, 4, 6, 8, 10, 12, 14] |
+| rpdiag2 | [3, 12, 27, 48, 75, 108, 147] |
+| rpdiag3 | [4, 32, 108, 256, 500, 864, 1372] |
+| rpdiag4 | [5, 80, 405, 1280, 3125, 6480, 12005] |
+| rpdiag5 | [6, 192, 1458, 6144, 18750, 46656, 100842] |
+| rpdiag6 | [7, 448, 5103, 28672, 109375, 326592, 823543] |
+
+* Polynomial values as columns
+| cpdiag  |   seq  |
+| :---    |  :---  |
+| cpdiag0 | [1, 2, 3, 4, 5, 6, 7] |
+| cpdiag1 | [1, 4, 12, 32, 80, 192, 448] |
+| cpdiag2 | [1, 6, 27, 108, 405, 1458, 5103] |
+| cpdiag3 | [1, 8, 48, 256, 1280, 6144, 28672] |
+| cpdiag4 | [1, 10, 75, 500, 3125, 18750, 109375] |
+| cpdiag5 | [1, 12, 108, 864, 6480, 46656, 326592] |
+| cpdiag6 | [1, 14, 147, 1372, 12005, 100842, 823543] |
+
+# levin
+
+* Triangle view
+| trow  |  list  |
+| :---  |  :---  |
+| trow0 | [1] |
+| trow1 | [2, 2] |
+| trow2 | [6, 12, 6] |
+| trow3 | [20, 60, 60, 20] |
+| trow4 | [70, 280, 420, 280, 70] |
+| trow5 | [252, 1260, 2520, 2520, 1260, 252] |
+| trow6 | [924, 5544, 13860, 18480, 13860, 5544, 924] |
+
+* Flattened seqs
+| flat      |   seq  |
+| :---      |  :---  |
+| tabl     | [1, 2, 2, 6, 12, 6, 20, 60, 60, 20, 70, 280, 420, 280, 70, 252, 1260, 2520, 2520, 1260, 252, 924, 5544, 13860, 18480, 13860, 5544, 924] |
+| rev      | [1, 2, 2, 6, 12, 6, 20, 60, 60, 20, 70, 280, 420, 280, 70, 252, 1260, 2520, 2520, 1260, 252, 924, 5544, 13860, 18480, 13860, 5544, 924] |
+| cum      | [1, 2, 4, 6, 18, 24, 20, 80, 140, 160, 70, 350, 770, 1050, 1120, 252, 1512, 4032, 6552, 7812, 8064, 924, 6468, 20328, 38808, 52668, 58212, 59136] |
+| revcum   | [1, 4, 2, 24, 18, 6, 160, 140, 80, 20, 1120, 1050, 770, 350, 70, 8064, 7812, 6552, 4032, 1512, 252, 59136, 58212, 52668, 38808, 20328, 6468, 924] |
+| cumrev   | [1, 2, 4, 6, 18, 24, 20, 80, 140, 160, 70, 350, 770, 1050, 1120, 252, 1512, 4032, 6552, 7812, 8064, 924, 6468, 20328, 38808, 52668, 58212, 59136] |
+| diag     | [1, 2, 6, 2, 20, 12, 70, 60, 6, 252, 280, 60] |
+
+* Row sums
+| sum       |   seq  |
+| :---      |  :---  |
+| sum       | [1, 4, 24, 160, 1120, 8064, 59136] |
+| evensum   | [1, 2, 12, 80, 560, 4032, 29568] |
+| oddsum    | [0, 2, 12, 80, 560, 4032, 29568] |
+| altsum    | [1, 0, 0, 0, 0, 0, 0] |
+| diagsum   | [1, 2, 8, 32, 136, 592] |
+| cumsum    | [1, 6, 48, 400, 3360, 28224, 236544] |
+| revcumsum | [1, 6, 48, 400, 3360, 28224, 236544] |
+
+* Diagonals as rows
+| rdiag  |   seq  |
+| :---   |  :---  |
+| rdiag0 | [1, 2, 6, 20, 70, 252, 924]|
+| rdiag1 | [2, 12, 60, 280, 1260, 5544, 24024]|
+| rdiag2 | [6, 60, 420, 2520, 13860, 72072, 360360]|
+| rdiag3 | [20, 280, 2520, 18480, 120120, 720720, 4084080]|
+| rdiag4 | [70, 1260, 13860, 120120, 900900, 6126120, 38798760]|
+| rdiag5 | [252, 5544, 72072, 720720, 6126120, 46558512, 325909584]|
+| rdiag6 | [924, 24024, 360360, 4084080, 38798760, 325909584, 2498640144]|
+
+* Diagonals as columns
+| cdiag  |   seq  |
+| :---   |  :---  |
+| cdiag0 | [1, 2, 6, 20, 70, 252, 924] |
+| cdiag1 | [2, 12, 60, 280, 1260, 5544, 24024] |
+| cdiag2 | [6, 60, 420, 2520, 13860, 72072, 360360] |
+| cdiag3 | [20, 280, 2520, 18480, 120120, 720720, 4084080] |
+| cdiag4 | [70, 1260, 13860, 120120, 900900, 6126120, 38798760] |
+| cdiag5 | [252, 5544, 72072, 720720, 6126120, 46558512, 325909584] |
+| cdiag6 | [924, 24024, 360360, 4084080, 38798760, 325909584, 2498640144] |
+
+* Polynomial values as rows
+| rpdiag  |   seq  |
+| :---    |  :---  |
+| rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
+| rpdiag1 | [2, 4, 6, 8, 10, 12, 14] |
+| rpdiag2 | [6, 24, 54, 96, 150, 216, 294] |
+| rpdiag3 | [20, 160, 540, 1280, 2500, 4320, 6860] |
+| rpdiag4 | [70, 1120, 5670, 17920, 43750, 90720, 168070] |
+| rpdiag5 | [252, 8064, 61236, 258048, 787500, 1959552, 4235364] |
+| rpdiag6 | [924, 59136, 673596, 3784704, 14437500, 43110144, 108707676] |
+
+* Polynomial values as columns
+| cpdiag  |   seq  |
+| :---    |  :---  |
+| cpdiag0 | [1, 2, 6, 20, 70, 252, 924] |
+| cpdiag1 | [1, 4, 24, 160, 1120, 8064, 59136] |
+| cpdiag2 | [1, 6, 54, 540, 5670, 61236, 673596] |
+| cpdiag3 | [1, 8, 96, 1280, 17920, 258048, 3784704] |
+| cpdiag4 | [1, 10, 150, 2500, 43750, 787500, 14437500] |
+| cpdiag5 | [1, 12, 216, 4320, 90720, 1959552, 43110144] |
+| cpdiag6 | [1, 14, 294, 6860, 168070, 4235364, 108707676] |
+
 # motzkin
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -1805,7 +2117,7 @@ Triangle view
 | trow5 | [21, 30, 25, 14, 5, 1] |
 | trow6 | [51, 76, 69, 44, 20, 6, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 1, 1, 2, 2, 1, 4, 5, 3, 1, 9, 12, 9, 4, 1, 21, 30, 25, 14, 5, 1, 51, 76, 69, 44, 20, 6, 1] |
@@ -1815,7 +2127,7 @@ Flattened seqs
 | cumrev   | [1, 1, 2, 1, 3, 5, 1, 4, 9, 13, 1, 5, 14, 26, 35, 1, 6, 20, 45, 75, 96, 1, 7, 27, 71, 140, 216, 267] |
 | diag     | [1, 1, 2, 1, 4, 2, 9, 5, 1, 21, 12, 3] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 2, 5, 13, 35, 96, 267] |
@@ -1826,7 +2138,7 @@ Row sums
 | cumsum    | [1, 3, 11, 38, 129, 429, 1407] |
 | revcumsum | [1, 3, 9, 27, 81, 243, 729] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -1837,7 +2149,7 @@ Diagonals as rows
 | rdiag5 | [21, 76, 189, 392, 726, 1242, 2002]|
 | rdiag6 | [51, 196, 518, 1140, 2235, 4037, 6853]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 1, 2, 4, 9, 21, 51] |
@@ -1848,7 +2160,7 @@ Diagonals as columns
 | cdiag5 | [1, 6, 27, 104, 369, 1242, 4037] |
 | cdiag6 | [1, 7, 35, 147, 560, 2002, 6853] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -1859,7 +2171,7 @@ Polynomial values as rows
 | rpdiag5 | [21, 96, 405, 1362, 3741, 8796, 18381] |
 | rpdiag6 | [51, 267, 1407, 5895, 19635, 54531, 131727] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 1, 2, 4, 9, 21, 51] |
@@ -1872,7 +2184,7 @@ Polynomial values as columns
 
 # narayana
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -1883,7 +2195,7 @@ Triangle view
 | trow5 | [0, 1, 10, 20, 10, 1] |
 | trow6 | [0, 1, 15, 50, 50, 15, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 0, 1, 1, 0, 1, 3, 1, 0, 1, 6, 6, 1, 0, 1, 10, 20, 10, 1, 0, 1, 15, 50, 50, 15, 1] |
@@ -1893,7 +2205,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 1, 2, 2, 1, 4, 5, 5, 1, 7, 13, 14, 14, 1, 11, 31, 41, 42, 42, 1, 16, 66, 116, 131, 132, 132] |
 | diag     | [1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 3] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 2, 5, 14, 42, 132] |
@@ -1904,7 +2216,7 @@ Row sums
 | cumsum    | [1, 1, 3, 10, 35, 126, 462] |
 | revcumsum | [1, 2, 5, 15, 49, 168, 594] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -1915,7 +2227,7 @@ Diagonals as rows
 | rdiag5 | [0, 1, 21, 196, 1176, 5292, 19404]|
 | rdiag6 | [0, 1, 28, 336, 2520, 13860, 60984]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -1926,7 +2238,7 @@ Diagonals as columns
 | cdiag5 | [1, 15, 105, 490, 1764, 5292, 13860] |
 | cdiag6 | [1, 21, 196, 1176, 5292, 19404, 60984] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -1937,7 +2249,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 42, 394, 1686, 5028, 12130, 25422] |
 | rpdiag6 | [0, 132, 1806, 9912, 35700, 100380, 239442] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -1950,7 +2262,7 @@ Polynomial values as columns
 
 # ordinals
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [0] |
@@ -1961,7 +2273,7 @@ Triangle view
 | trow5 | [0, 1, 2, 3, 4, 5] |
 | trow6 | [0, 1, 2, 3, 4, 5, 6] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [0, 0, 1, 0, 1, 2, 0, 1, 2, 3, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 6] |
@@ -1971,7 +2283,7 @@ Flattened seqs
 | cumrev   | [0, 1, 1, 2, 3, 3, 3, 5, 6, 6, 4, 7, 9, 10, 10, 5, 9, 12, 14, 15, 15, 6, 11, 15, 18, 20, 21, 21] |
 | diag     | [0, 0, 0, 1, 0, 1, 0, 1, 2, 0, 1, 2] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [0, 1, 3, 6, 10, 15, 21] |
@@ -1982,7 +2294,7 @@ Row sums
 | cumsum    | [0, 1, 4, 10, 20, 35, 56] |
 | revcumsum | [0, 2, 8, 20, 40, 70, 112] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [0, 1, 2, 3, 4, 5, 6]|
@@ -1993,7 +2305,7 @@ Diagonals as rows
 | rdiag5 | [0, 1, 2, 3, 4, 5, 6]|
 | rdiag6 | [0, 1, 2, 3, 4, 5, 6]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [0, 0, 0, 0, 0, 0, 0] |
@@ -2004,7 +2316,7 @@ Diagonals as columns
 | cdiag5 | [5, 5, 5, 5, 5, 5, 5] |
 | cdiag6 | [6, 6, 6, 6, 6, 6, 6] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [0, 0, 0, 0, 0, 0, 0] |
@@ -2015,7 +2327,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 15, 258, 1641, 6372, 18555, 44790] |
 | rpdiag6 | [0, 21, 642, 6015, 30948, 112305, 324726] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [0, 0, 0, 0, 0, 0, 0] |
@@ -2028,7 +2340,7 @@ Polynomial values as columns
 
 # ordered_cycle
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -2039,7 +2351,7 @@ Triangle view
 | trow5 | [0, 24, 100, 210, 240, 120] |
 | trow6 | [0, 120, 548, 1350, 2040, 1800, 720] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 0, 1, 2, 0, 2, 6, 6, 0, 6, 22, 36, 24, 0, 24, 100, 210, 240, 120, 0, 120, 548, 1350, 2040, 1800, 720] |
@@ -2049,7 +2361,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 2, 3, 3, 6, 12, 14, 14, 24, 60, 82, 88, 88, 120, 360, 570, 670, 694, 694, 720, 2520, 4560, 5910, 6458, 6578, 6578] |
 | diag     | [1, 0, 0, 1, 0, 1, 0, 2, 2, 0, 6, 6] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 3, 14, 88, 694, 6578] |
@@ -2060,7 +2372,7 @@ Row sums
 | cumsum    | [1, 1, 4, 24, 186, 1750, 19300] |
 | revcumsum | [1, 2, 8, 46, 342, 3108, 33324] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 2, 6, 24, 120, 720]|
@@ -2071,7 +2383,7 @@ Diagonals as rows
 | rdiag5 | [0, 120, 3528, 78792, 1614816, 32319000, 649479600]|
 | rdiag6 | [0, 720, 26136, 708744, 17368320, 410031600, 9604465200]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -2082,7 +2394,7 @@ Diagonals as columns
 | cdiag5 | [120, 1800, 21000, 235200, 2693880, 32319000, 410031600] |
 | cdiag6 | [720, 15120, 231840, 3265920, 45556560, 649479600, 9604465200] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -2093,7 +2405,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 694, 9808, 55242, 199456, 553870, 1293264] |
 | rpdiag6 | [0, 6578, 149552, 1169262, 5410208, 18333050, 50545008] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -2106,7 +2418,7 @@ Polynomial values as columns
 
 # partnum_exact
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -2117,7 +2429,7 @@ Triangle view
 | trow5 | [0, 1, 2, 2, 1, 1] |
 | trow6 | [0, 1, 3, 3, 2, 1, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 2, 1, 1, 0, 1, 2, 2, 1, 1, 0, 1, 3, 3, 2, 1, 1] |
@@ -2127,7 +2439,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 1, 2, 2, 1, 2, 3, 3, 1, 2, 4, 5, 5, 1, 2, 4, 6, 7, 7, 1, 2, 4, 7, 10, 11, 11] |
 | diag     | [1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 2, 3, 5, 7, 11] |
@@ -2138,7 +2450,7 @@ Row sums
 | cumsum    | [1, 1, 3, 6, 13, 22, 42] |
 | revcumsum | [1, 2, 5, 9, 17, 27, 46] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -2149,7 +2461,7 @@ Diagonals as rows
 | rdiag5 | [0, 1, 3, 5, 6, 7, 7]|
 | rdiag6 | [0, 1, 4, 7, 9, 10, 11]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -2160,7 +2472,7 @@ Diagonals as columns
 | cdiag5 | [1, 1, 2, 3, 5, 7, 10] |
 | cdiag6 | [1, 1, 2, 3, 5, 7, 11] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -2171,7 +2483,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 7, 74, 399, 1444, 4055, 9582] |
 | rpdiag6 | [0, 11, 166, 1245, 5876, 20455, 57786] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -2184,7 +2496,7 @@ Polynomial values as columns
 
 # partnum_atmost
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -2195,7 +2507,7 @@ Triangle view
 | trow5 | [0, 1, 3, 5, 6, 7] |
 | trow6 | [0, 1, 4, 7, 9, 10, 11] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 0, 1, 2, 0, 1, 2, 3, 0, 1, 3, 4, 5, 0, 1, 3, 5, 6, 7, 0, 1, 4, 7, 9, 10, 11] |
@@ -2205,7 +2517,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 2, 3, 3, 3, 5, 6, 6, 5, 9, 12, 13, 13, 7, 13, 18, 21, 22, 22, 11, 21, 30, 37, 41, 42, 42] |
 | diag     | [1, 0, 0, 1, 0, 1, 0, 1, 2, 0, 1, 2] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 3, 6, 13, 22, 42] |
@@ -2216,7 +2528,7 @@ Row sums
 | cumsum    | [1, 1, 4, 10, 26, 51, 112] |
 | revcumsum | [1, 2, 8, 20, 52, 103, 224] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 2, 3, 5, 7, 11]|
@@ -2227,7 +2539,7 @@ Diagonals as rows
 | rdiag5 | [0, 1, 4, 10, 18, 30, 44]|
 | rdiag6 | [0, 1, 5, 12, 23, 37, 58]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -2238,7 +2550,7 @@ Diagonals as columns
 | cdiag5 | [7, 10, 13, 18, 23, 30, 37] |
 | cdiag6 | [11, 14, 20, 26, 35, 44, 58] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -2249,7 +2561,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 22, 374, 2352, 9076, 26330, 63402] |
 | rpdiag6 | [0, 42, 1242, 11406, 58116, 209730, 604302] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -2262,7 +2574,7 @@ Polynomial values as columns
 
 # polygonal
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [0] |
@@ -2273,7 +2585,7 @@ Triangle view
 | trow5 | [0, 1, 5, 9, 10, 5] |
 | trow6 | [0, 1, 6, 12, 16, 15, 6] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [0, 0, 1, 0, 1, 2, 0, 1, 3, 3, 0, 1, 4, 6, 4, 0, 1, 5, 9, 10, 5, 0, 1, 6, 12, 16, 15, 6] |
@@ -2283,7 +2595,7 @@ Flattened seqs
 | cumrev   | [0, 1, 1, 2, 3, 3, 3, 6, 7, 7, 4, 10, 14, 15, 15, 5, 15, 24, 29, 30, 30, 6, 21, 37, 49, 55, 56, 56] |
 | diag     | [0, 0, 0, 1, 0, 1, 0, 1, 2, 0, 1, 3] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [0, 1, 3, 7, 15, 30, 56] |
@@ -2294,7 +2606,7 @@ Row sums
 | cumsum    | [0, 1, 4, 12, 32, 77, 168] |
 | revcumsum | [0, 2, 8, 23, 58, 133, 280] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [0, 1, 2, 3, 4, 5, 6]|
@@ -2305,7 +2617,7 @@ Diagonals as rows
 | rdiag5 | [0, 1, 7, 18, 34, 55, 81]|
 | rdiag6 | [0, 1, 8, 21, 40, 65, 96]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [0, 0, 0, 0, 0, 0, 0] |
@@ -2316,7 +2628,7 @@ Diagonals as columns
 | cdiag5 | [5, 15, 25, 35, 45, 55, 65] |
 | cdiag6 | [6, 21, 36, 51, 66, 81, 96] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [0, 0, 0, 0, 0, 0, 0] |
@@ -2327,7 +2639,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 30, 414, 2316, 8340, 23130, 53970] |
 | rpdiag6 | [0, 56, 1242, 9696, 44900, 152280, 420126] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [0, 0, 0, 0, 0, 0, 0] |
@@ -2338,9 +2650,87 @@ Polynomial values as columns
 | cpdiag5 | [0, 5, 55, 455, 3355, 23130, 152280] |
 | cpdiag6 | [0, 6, 78, 762, 6630, 53970, 420126] |
 
+# powlag
+
+* Triangle view
+| trow  |  list  |
+| :---  |  :---  |
+| trow0 | [1] |
+| trow1 | [1, 1] |
+| trow2 | [2, 4, 2] |
+| trow3 | [6, 18, 18, 6] |
+| trow4 | [24, 96, 144, 96, 24] |
+| trow5 | [120, 600, 1200, 1200, 600, 120] |
+| trow6 | [720, 4320, 10800, 14400, 10800, 4320, 720] |
+
+* Flattened seqs
+| flat      |   seq  |
+| :---      |  :---  |
+| tabl     | [1, 1, 1, 2, 4, 2, 6, 18, 18, 6, 24, 96, 144, 96, 24, 120, 600, 1200, 1200, 600, 120, 720, 4320, 10800, 14400, 10800, 4320, 720] |
+| rev      | [1, 1, 1, 2, 4, 2, 6, 18, 18, 6, 24, 96, 144, 96, 24, 120, 600, 1200, 1200, 600, 120, 720, 4320, 10800, 14400, 10800, 4320, 720] |
+| cum      | [1, 1, 2, 2, 6, 8, 6, 24, 42, 48, 24, 120, 264, 360, 384, 120, 720, 1920, 3120, 3720, 3840, 720, 5040, 15840, 30240, 41040, 45360, 46080] |
+| revcum   | [1, 2, 1, 8, 6, 2, 48, 42, 24, 6, 384, 360, 264, 120, 24, 3840, 3720, 3120, 1920, 720, 120, 46080, 45360, 41040, 30240, 15840, 5040, 720] |
+| cumrev   | [1, 1, 2, 2, 6, 8, 6, 24, 42, 48, 24, 120, 264, 360, 384, 120, 720, 1920, 3120, 3720, 3840, 720, 5040, 15840, 30240, 41040, 45360, 46080] |
+| diag     | [1, 1, 2, 1, 6, 4, 24, 18, 2, 120, 96, 18] |
+
+* Row sums
+| sum       |   seq  |
+| :---      |  :---  |
+| sum       | [1, 2, 8, 48, 384, 3840, 46080] |
+| evensum   | [1, 1, 4, 24, 192, 1920, 23040] |
+| oddsum    | [0, 1, 4, 24, 192, 1920, 23040] |
+| altsum    | [1, 0, 0, 0, 0, 0, 0] |
+| diagsum   | [1, 1, 3, 10, 44, 234] |
+| cumsum    | [1, 3, 16, 120, 1152, 13440, 184320] |
+| revcumsum | [1, 3, 16, 120, 1152, 13440, 184320] |
+
+* Diagonals as rows
+| rdiag  |   seq  |
+| :---   |  :---  |
+| rdiag0 | [1, 1, 2, 6, 24, 120, 720]|
+| rdiag1 | [1, 4, 18, 96, 600, 4320, 35280]|
+| rdiag2 | [2, 18, 144, 1200, 10800, 105840, 1128960]|
+| rdiag3 | [6, 96, 1200, 14400, 176400, 2257920, 30481920]|
+| rdiag4 | [24, 600, 10800, 176400, 2822400, 45722880, 762048000]|
+| rdiag5 | [120, 4320, 105840, 2257920, 45722880, 914457600, 18441561600]|
+| rdiag6 | [720, 35280, 1128960, 30481920, 762048000, 18441561600, 442597478400]|
+
+* Diagonals as columns
+| cdiag  |   seq  |
+| :---   |  :---  |
+| cdiag0 | [1, 1, 2, 6, 24, 120, 720] |
+| cdiag1 | [1, 4, 18, 96, 600, 4320, 35280] |
+| cdiag2 | [2, 18, 144, 1200, 10800, 105840, 1128960] |
+| cdiag3 | [6, 96, 1200, 14400, 176400, 2257920, 30481920] |
+| cdiag4 | [24, 600, 10800, 176400, 2822400, 45722880, 762048000] |
+| cdiag5 | [120, 4320, 105840, 2257920, 45722880, 914457600, 18441561600] |
+| cdiag6 | [720, 35280, 1128960, 30481920, 762048000, 18441561600, 442597478400] |
+
+* Polynomial values as rows
+| rpdiag  |   seq  |
+| :---    |  :---  |
+| rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
+| rpdiag1 | [1, 2, 3, 4, 5, 6, 7] |
+| rpdiag2 | [2, 8, 18, 32, 50, 72, 98] |
+| rpdiag3 | [6, 48, 162, 384, 750, 1296, 2058] |
+| rpdiag4 | [24, 384, 1944, 6144, 15000, 31104, 57624] |
+| rpdiag5 | [120, 3840, 29160, 122880, 375000, 933120, 2016840] |
+| rpdiag6 | [720, 46080, 524880, 2949120, 11250000, 33592320, 84707280] |
+
+* Polynomial values as columns
+| cpdiag  |   seq  |
+| :---    |  :---  |
+| cpdiag0 | [1, 1, 2, 6, 24, 120, 720] |
+| cpdiag1 | [1, 2, 8, 48, 384, 3840, 46080] |
+| cpdiag2 | [1, 3, 18, 162, 1944, 29160, 524880] |
+| cpdiag3 | [1, 4, 32, 384, 6144, 122880, 2949120] |
+| cpdiag4 | [1, 5, 50, 750, 15000, 375000, 11250000] |
+| cpdiag5 | [1, 6, 72, 1296, 31104, 933120, 33592320] |
+| cpdiag6 | [1, 7, 98, 2058, 57624, 2016840, 84707280] |
+
 # rencontres
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -2351,7 +2741,7 @@ Triangle view
 | trow5 | [44, 45, 20, 10, 0, 1] |
 | trow6 | [265, 264, 135, 40, 15, 0, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 1, 0, 1, 2, 3, 0, 1, 9, 8, 6, 0, 1, 44, 45, 20, 10, 0, 1, 265, 264, 135, 40, 15, 0, 1] |
@@ -2361,7 +2751,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 1, 1, 2, 1, 1, 4, 6, 1, 1, 7, 15, 24, 1, 1, 11, 31, 76, 120, 1, 1, 16, 56, 191, 455, 720] |
 | diag     | [1, 0, 1, 1, 2, 0, 9, 3, 1, 44, 8, 0] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 2, 6, 24, 120, 720] |
@@ -2372,7 +2762,7 @@ Row sums
 | cumsum    | [1, 1, 4, 18, 96, 600, 4320] |
 | revcumsum | [1, 2, 4, 12, 48, 240, 1440] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -2383,7 +2773,7 @@ Diagonals as rows
 | rdiag5 | [44, 264, 924, 2464, 5544, 11088, 20328]|
 | rdiag6 | [265, 1855, 7420, 22260, 55650, 122430, 244860]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 1, 2, 9, 44, 265] |
@@ -2394,7 +2784,7 @@ Diagonals as columns
 | cdiag5 | [1, 0, 21, 112, 1134, 11088, 122430] |
 | cdiag6 | [1, 0, 28, 168, 1890, 20328, 244860] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -2405,7 +2795,7 @@ Polynomial values as rows
 | rpdiag5 | [44, 120, 326, 872, 2208, 5144, 10970] |
 | rpdiag6 | [265, 720, 1957, 5296, 13977, 34960, 81445] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 1, 2, 9, 44, 265] |
@@ -2418,7 +2808,7 @@ Polynomial values as columns
 
 # rising_factorial
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -2429,7 +2819,7 @@ Triangle view
 | trow5 | [120, 120, 60, 20, 5, 1] |
 | trow6 | [720, 720, 360, 120, 30, 6, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 1, 1, 2, 2, 1, 6, 6, 3, 1, 24, 24, 12, 4, 1, 120, 120, 60, 20, 5, 1, 720, 720, 360, 120, 30, 6, 1] |
@@ -2439,7 +2829,7 @@ Flattened seqs
 | cumrev   | [1, 1, 2, 1, 3, 5, 1, 4, 10, 16, 1, 5, 17, 41, 65, 1, 6, 26, 86, 206, 326, 1, 7, 37, 157, 517, 1237, 1957] |
 | diag     | [1, 1, 2, 1, 6, 2, 24, 6, 1, 120, 24, 3] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 2, 5, 16, 65, 326, 1957] |
@@ -2450,7 +2840,7 @@ Row sums
 | cumsum    | [1, 3, 11, 49, 261, 1631, 11743] |
 | revcumsum | [1, 3, 9, 31, 129, 651, 3913] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -2461,7 +2851,7 @@ Diagonals as rows
 | rdiag5 | [120, 720, 2520, 6720, 15120, 30240, 55440]|
 | rdiag6 | [720, 5040, 20160, 60480, 151200, 332640, 665280]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 1, 2, 6, 24, 120, 720] |
@@ -2472,7 +2862,7 @@ Diagonals as columns
 | cdiag5 | [1, 6, 42, 336, 3024, 30240, 332640] |
 | cdiag6 | [1, 7, 56, 504, 5040, 55440, 665280] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -2483,7 +2873,7 @@ Polynomial values as rows
 | rpdiag5 | [120, 326, 872, 2208, 5144, 10970, 21576] |
 | rpdiag6 | [720, 1957, 5296, 13977, 34960, 81445, 176112] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 1, 2, 6, 24, 120, 720] |
@@ -2496,7 +2886,7 @@ Polynomial values as columns
 
 # schroeder
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -2507,7 +2897,7 @@ Triangle view
 | trow5 | [0, 90, 68, 30, 8, 1] |
 | trow6 | [0, 394, 304, 146, 48, 10, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 0, 2, 1, 0, 6, 4, 1, 0, 22, 16, 6, 1, 0, 90, 68, 30, 8, 1, 0, 394, 304, 146, 48, 10, 1] |
@@ -2517,7 +2907,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 1, 3, 3, 1, 5, 11, 11, 1, 7, 23, 45, 45, 1, 9, 39, 107, 197, 197, 1, 11, 59, 205, 509, 903, 903] |
 | diag     | [1, 0, 0, 1, 0, 2, 0, 6, 1, 0, 22, 4] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 3, 11, 45, 197, 903] |
@@ -2528,7 +2918,7 @@ Row sums
 | cumsum    | [1, 1, 5, 27, 149, 829, 4633] |
 | revcumsum | [1, 2, 7, 28, 121, 550, 2591] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -2539,7 +2929,7 @@ Diagonals as rows
 | rdiag5 | [0, 394, 1412, 3534, 7432, 14002, 24396]|
 | rdiag6 | [0, 1806, 6752, 17718, 39152, 77550, 142000]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -2550,7 +2940,7 @@ Diagonals as columns
 | cdiag5 | [1, 10, 70, 430, 2490, 14002, 77550] |
 | cdiag6 | [1, 12, 96, 652, 4080, 24396, 142000] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -2561,7 +2951,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 197, 852, 2583, 6440, 14025, 27612] |
 | rpdiag6 | [0, 903, 4324, 14907, 42408, 104695, 231468] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -2574,7 +2964,7 @@ Polynomial values as columns
 
 # seidel
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -2585,7 +2975,7 @@ Triangle view
 | trow5 | [0, 5, 10, 14, 16, 16] |
 | trow6 | [0, 16, 32, 46, 56, 61, 61] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 0, 1, 1, 0, 1, 2, 2, 0, 2, 4, 5, 5, 0, 5, 10, 14, 16, 16, 0, 16, 32, 46, 56, 61, 61] |
@@ -2595,7 +2985,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 1, 2, 2, 2, 4, 5, 5, 5, 10, 14, 16, 16, 16, 32, 46, 56, 61, 61, 61, 122, 178, 224, 256, 272, 272] |
 | diag     | [1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 2, 2] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 2, 5, 16, 61, 272] |
@@ -2606,7 +2996,7 @@ Row sums
 | cumsum    | [1, 1, 3, 9, 35, 155, 791] |
 | revcumsum | [1, 2, 5, 16, 61, 272, 1385] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 2, 5, 16, 61]|
@@ -2617,7 +3007,7 @@ Diagonals as rows
 | rdiag5 | [0, 16, 122, 800, 5296, 36976, 275792]|
 | rdiag6 | [0, 61, 544, 4094, 30656, 238816, 1965664]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -2628,7 +3018,7 @@ Diagonals as columns
 | cdiag5 | [16, 61, 256, 1202, 6320, 36976, 238816] |
 | cdiag6 | [61, 272, 1324, 7120, 42272, 275792, 1965664] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -2639,7 +3029,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 61, 930, 5667, 21556, 62025, 148566] |
 | rpdiag6 | [0, 272, 7280, 65406, 330176, 1185380, 3404112] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -2652,7 +3042,7 @@ Polynomial values as columns
 
 # seidel_boust
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -2663,7 +3053,7 @@ Triangle view
 | trow5 | [0, 5, 10, 14, 16, 16] |
 | trow6 | [61, 61, 56, 46, 32, 16, 0] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 1, 1, 0, 0, 1, 2, 2, 5, 5, 4, 2, 0, 0, 5, 10, 14, 16, 16, 61, 61, 56, 46, 32, 16, 0] |
@@ -2673,7 +3063,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 0, 1, 2, 2, 4, 5, 5, 0, 2, 6, 11, 16, 16, 32, 46, 56, 61, 61, 0, 16, 48, 94, 150, 211, 272] |
 | diag     | [1, 0, 1, 1, 0, 1, 5, 1, 0, 0, 5, 2] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 2, 5, 16, 61, 272] |
@@ -2684,7 +3074,7 @@ Row sums
 | cumsum    | [1, 1, 5, 9, 61, 155, 1385] |
 | revcumsum | [1, 2, 3, 16, 35, 272, 791] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 0, 2, 0, 16, 0]|
@@ -2695,7 +3085,7 @@ Diagonals as rows
 | rdiag5 | [0, 61, 122, 1202, 5296, 36976, 275792]|
 | rdiag6 | [61, 61, 1324, 4094, 42272, 238816, 1965664]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 1, 0, 5, 0, 61] |
@@ -2706,7 +3096,7 @@ Diagonals as columns
 | cdiag5 | [16, 16, 256, 800, 6320, 36976, 238816] |
 | cdiag6 | [0, 272, 544, 7120, 30656, 275792, 1965664] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -2717,7 +3107,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 61, 930, 5667, 21556, 62025, 148566] |
 | rpdiag6 | [61, 272, 1799, 8470, 28721, 77516, 178267] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 1, 0, 5, 0, 61] |
@@ -2730,7 +3120,7 @@ Polynomial values as columns
 
 # stirling_cycle
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -2741,7 +3131,7 @@ Triangle view
 | trow5 | [0, 24, 50, 35, 10, 1] |
 | trow6 | [0, 120, 274, 225, 85, 15, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 0, 1, 1, 0, 2, 3, 1, 0, 6, 11, 6, 1, 0, 24, 50, 35, 10, 1, 0, 120, 274, 225, 85, 15, 1] |
@@ -2751,7 +3141,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 1, 2, 2, 1, 4, 6, 6, 1, 7, 18, 24, 24, 1, 11, 46, 96, 120, 120, 1, 16, 101, 326, 600, 720, 720] |
 | diag     | [1, 0, 0, 1, 0, 1, 0, 2, 1, 0, 6, 3] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 2, 6, 24, 120, 720] |
@@ -2762,7 +3152,7 @@ Row sums
 | cumsum    | [1, 1, 3, 13, 70, 446, 3276] |
 | revcumsum | [1, 2, 5, 17, 74, 394, 2484] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -2773,7 +3163,7 @@ Diagonals as rows
 | rdiag5 | [0, 120, 1764, 13132, 67284, 269325, 902055]|
 | rdiag6 | [0, 720, 13068, 118124, 723680, 3416930, 13339535]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -2784,7 +3174,7 @@ Diagonals as columns
 | cdiag5 | [1, 15, 175, 1960, 22449, 269325, 3416930] |
 | cdiag6 | [1, 21, 322, 4536, 63273, 902055, 13339535] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -2795,7 +3185,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 120, 720, 2520, 6720, 15120, 30240] |
 | rpdiag6 | [0, 720, 5040, 20160, 60480, 151200, 332640] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -2808,7 +3198,7 @@ Polynomial values as columns
 
 # stirling_set
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -2819,7 +3209,7 @@ Triangle view
 | trow5 | [0, 1, 15, 25, 10, 1] |
 | trow6 | [0, 1, 31, 90, 65, 15, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 0, 1, 1, 0, 1, 3, 1, 0, 1, 7, 6, 1, 0, 1, 15, 25, 10, 1, 0, 1, 31, 90, 65, 15, 1] |
@@ -2829,7 +3219,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 1, 2, 2, 1, 4, 5, 5, 1, 7, 14, 15, 15, 1, 11, 36, 51, 52, 52, 1, 16, 81, 171, 202, 203, 203] |
 | diag     | [1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 3] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 2, 5, 15, 52, 203] |
@@ -2840,7 +3230,7 @@ Row sums
 | cumsum    | [1, 1, 3, 10, 38, 161, 747] |
 | revcumsum | [1, 2, 5, 15, 52, 203, 877] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -2851,7 +3241,7 @@ Diagonals as rows
 | rdiag5 | [0, 1, 63, 966, 7770, 42525, 179487]|
 | rdiag6 | [0, 1, 127, 3025, 34105, 246730, 1323652]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -2862,7 +3252,7 @@ Diagonals as columns
 | cdiag5 | [1, 15, 140, 1050, 6951, 42525, 246730] |
 | cdiag6 | [1, 21, 266, 2646, 22827, 179487, 1323652] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -2873,7 +3263,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 52, 454, 1866, 5428, 12880, 26682] |
 | rpdiag6 | [0, 203, 2430, 12351, 42356, 115155, 268098] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -2884,9 +3274,165 @@ Polynomial values as columns
 | cpdiag5 | [1, 5, 30, 205, 1555, 12880, 115155] |
 | cpdiag6 | [1, 6, 42, 330, 2850, 26682, 268098] |
 
+# stirling_cycle2
+
+* Triangle view
+| trow  |  list  |
+| :---  |  :---  |
+| trow0 | [1] |
+| trow1 | [0, 0] |
+| trow2 | [0, 1, 0] |
+| trow3 | [0, 2, 0, 0] |
+| trow4 | [0, 6, 3, 0, 0] |
+| trow5 | [0, 24, 20, 0, 0, 0] |
+| trow6 | [0, 120, 130, 15, 0, 0, 0] |
+
+* Flattened seqs
+| flat      |   seq  |
+| :---      |  :---  |
+| tabl     | [1, 0, 0, 0, 1, 0, 0, 2, 0, 0, 0, 6, 3, 0, 0, 0, 24, 20, 0, 0, 0, 0, 120, 130, 15, 0, 0, 0] |
+| rev      | [1, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 3, 6, 0, 0, 0, 0, 20, 24, 0, 0, 0, 0, 15, 130, 120, 0] |
+| cum      | [1, 0, 0, 0, 1, 1, 0, 2, 2, 2, 0, 6, 9, 9, 9, 0, 24, 44, 44, 44, 44, 0, 120, 250, 265, 265, 265, 265] |
+| revcum   | [1, 0, 0, 1, 1, 0, 2, 2, 2, 0, 9, 9, 9, 6, 0, 44, 44, 44, 44, 24, 0, 265, 265, 265, 265, 250, 120, 0] |
+| cumrev   | [1, 0, 0, 0, 1, 1, 0, 0, 2, 2, 0, 0, 3, 9, 9, 0, 0, 0, 20, 44, 44, 0, 0, 0, 15, 145, 265, 265] |
+| diag     | [1, 0, 0, 0, 0, 1, 0, 2, 0, 0, 6, 0] |
+
+* Row sums
+| sum       |   seq  |
+| :---      |  :---  |
+| sum       | [1, 0, 1, 2, 9, 44, 265] |
+| evensum   | [1, 0, 0, 0, 3, 20, 130] |
+| oddsum    | [0, 0, 1, 2, 6, 24, 135] |
+| altsum    | [1, 0, -1, -2, -3, -4, -5] |
+| diagsum   | [1, 0, 0, 1, 2, 6] |
+| cumsum    | [1, 0, 2, 6, 33, 200, 1430] |
+| revcumsum | [1, 0, 2, 4, 21, 108, 690] |
+
+* Diagonals as rows
+| rdiag  |   seq  |
+| :---   |  :---  |
+| rdiag0 | [1, 0, 0, 0, 0, 0, 0]|
+| rdiag1 | [0, 1, 0, 0, 0, 0, 0]|
+| rdiag2 | [0, 2, 3, 0, 0, 0, 0]|
+| rdiag3 | [0, 6, 20, 15, 0, 0, 0]|
+| rdiag4 | [0, 24, 130, 210, 105, 0, 0]|
+| rdiag5 | [0, 120, 924, 2380, 2520, 945, 0]|
+| rdiag6 | [0, 720, 7308, 26432, 44100, 34650, 10395]|
+
+* Diagonals as columns
+| cdiag  |   seq  |
+| :---   |  :---  |
+| cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
+| cdiag1 | [0, 1, 2, 6, 24, 120, 720] |
+| cdiag2 | [0, 0, 3, 20, 130, 924, 7308] |
+| cdiag3 | [0, 0, 0, 15, 210, 2380, 26432] |
+| cdiag4 | [0, 0, 0, 0, 105, 2520, 44100] |
+| cdiag5 | [0, 0, 0, 0, 0, 945, 34650] |
+| cdiag6 | [0, 0, 0, 0, 0, 0, 10395] |
+
+* Polynomial values as rows
+| rpdiag  |   seq  |
+| :---    |  :---  |
+| rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
+| rpdiag1 | [0, 0, 0, 0, 0, 0, 0] |
+| rpdiag2 | [0, 1, 2, 3, 4, 5, 6] |
+| rpdiag3 | [0, 2, 4, 6, 8, 10, 12] |
+| rpdiag4 | [0, 9, 24, 45, 72, 105, 144] |
+| rpdiag5 | [0, 44, 128, 252, 416, 620, 864] |
+| rpdiag6 | [0, 265, 880, 1935, 3520, 5725, 8640] |
+
+* Polynomial values as columns
+| cpdiag  |   seq  |
+| :---    |  :---  |
+| cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
+| cpdiag1 | [1, 0, 1, 2, 9, 44, 265] |
+| cpdiag2 | [1, 0, 2, 4, 24, 128, 880] |
+| cpdiag3 | [1, 0, 3, 6, 45, 252, 1935] |
+| cpdiag4 | [1, 0, 4, 8, 72, 416, 3520] |
+| cpdiag5 | [1, 0, 5, 10, 105, 620, 5725] |
+| cpdiag6 | [1, 0, 6, 12, 144, 864, 8640] |
+
+# stirling_set2
+
+* Triangle view
+| trow  |  list  |
+| :---  |  :---  |
+| trow0 | [1] |
+| trow1 | [0, 0] |
+| trow2 | [0, 1, 0] |
+| trow3 | [0, 1, 0, 0] |
+| trow4 | [0, 1, 3, 0, 0] |
+| trow5 | [0, 1, 10, 0, 0, 0] |
+| trow6 | [0, 1, 25, 15, 0, 0, 0] |
+
+* Flattened seqs
+| flat      |   seq  |
+| :---      |  :---  |
+| tabl     | [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0, 0, 1, 10, 0, 0, 0, 0, 1, 25, 15, 0, 0, 0] |
+| rev      | [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 3, 1, 0, 0, 0, 0, 10, 1, 0, 0, 0, 0, 15, 25, 1, 0] |
+| cum      | [1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 4, 4, 4, 0, 1, 11, 11, 11, 11, 0, 1, 26, 41, 41, 41, 41] |
+| revcum   | [1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 4, 4, 4, 1, 0, 11, 11, 11, 11, 1, 0, 41, 41, 41, 41, 26, 1, 0] |
+| cumrev   | [1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 3, 4, 4, 0, 0, 0, 10, 11, 11, 0, 0, 0, 15, 40, 41, 41] |
+| diag     | [1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0] |
+
+* Row sums
+| sum       |   seq  |
+| :---      |  :---  |
+| sum       | [1, 0, 1, 1, 4, 11, 41] |
+| evensum   | [1, 0, 0, 0, 3, 10, 25] |
+| oddsum    | [0, 0, 1, 1, 1, 1, 16] |
+| altsum    | [1, 0, -1, -1, 2, 9, 9] |
+| diagsum   | [1, 0, 0, 1, 1, 1] |
+| cumsum    | [1, 0, 2, 3, 13, 45, 191] |
+| revcumsum | [1, 0, 2, 2, 11, 32, 137] |
+
+* Diagonals as rows
+| rdiag  |   seq  |
+| :---   |  :---  |
+| rdiag0 | [1, 0, 0, 0, 0, 0, 0]|
+| rdiag1 | [0, 1, 0, 0, 0, 0, 0]|
+| rdiag2 | [0, 1, 3, 0, 0, 0, 0]|
+| rdiag3 | [0, 1, 10, 15, 0, 0, 0]|
+| rdiag4 | [0, 1, 25, 105, 105, 0, 0]|
+| rdiag5 | [0, 1, 56, 490, 1260, 945, 0]|
+| rdiag6 | [0, 1, 119, 1918, 9450, 17325, 10395]|
+
+* Diagonals as columns
+| cdiag  |   seq  |
+| :---   |  :---  |
+| cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
+| cdiag1 | [0, 1, 1, 1, 1, 1, 1] |
+| cdiag2 | [0, 0, 3, 10, 25, 56, 119] |
+| cdiag3 | [0, 0, 0, 15, 105, 490, 1918] |
+| cdiag4 | [0, 0, 0, 0, 105, 1260, 9450] |
+| cdiag5 | [0, 0, 0, 0, 0, 945, 17325] |
+| cdiag6 | [0, 0, 0, 0, 0, 0, 10395] |
+
+* Polynomial values as rows
+| rpdiag  |   seq  |
+| :---    |  :---  |
+| rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
+| rpdiag1 | [0, 0, 0, 0, 0, 0, 0] |
+| rpdiag2 | [0, 1, 2, 3, 4, 5, 6] |
+| rpdiag3 | [0, 1, 2, 3, 4, 5, 6] |
+| rpdiag4 | [0, 4, 14, 30, 52, 80, 114] |
+| rpdiag5 | [0, 11, 42, 93, 164, 255, 366] |
+| rpdiag6 | [0, 41, 222, 633, 1364, 2505, 4146] |
+
+* Polynomial values as columns
+| cpdiag  |   seq  |
+| :---    |  :---  |
+| cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
+| cpdiag1 | [1, 0, 1, 1, 4, 11, 41] |
+| cpdiag2 | [1, 0, 2, 2, 14, 42, 222] |
+| cpdiag3 | [1, 0, 3, 3, 30, 93, 633] |
+| cpdiag4 | [1, 0, 4, 4, 52, 164, 1364] |
+| cpdiag5 | [1, 0, 5, 5, 80, 255, 2505] |
+| cpdiag6 | [1, 0, 6, 6, 114, 366, 4146] |
+
 # sympoly
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -2897,7 +3443,7 @@ Triangle view
 | trow5 | [120, 274, 154, 47, 9, 1] |
 | trow6 | [720, 1764, 1044, 342, 74, 11, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 1, 1, 2, 3, 1, 6, 11, 5, 1, 24, 50, 26, 7, 1, 120, 274, 154, 47, 9, 1, 720, 1764, 1044, 342, 74, 11, 1] |
@@ -2907,7 +3453,7 @@ Flattened seqs
 | cumrev   | [1, 1, 2, 1, 4, 6, 1, 6, 17, 23, 1, 8, 34, 84, 108, 1, 10, 57, 211, 485, 605, 1, 12, 86, 428, 1472, 3236, 3956] |
 | diag     | [1, 1, 2, 1, 6, 3, 24, 11, 1, 120, 50, 5] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 2, 6, 23, 108, 605, 3956] |
@@ -2918,7 +3464,7 @@ Row sums
 | cumsum    | [1, 3, 13, 68, 413, 2866, 22457] |
 | revcumsum | [1, 3, 11, 47, 235, 1369, 9191] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -2929,7 +3475,7 @@ Diagonals as rows
 | rdiag5 | [120, 1764, 8028, 24552, 60216, 127860, 245004]|
 | rdiag6 | [720, 13068, 69264, 241128, 662640, 1557660, 3272688]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 1, 2, 6, 24, 120, 720] |
@@ -2940,7 +3486,7 @@ Diagonals as columns
 | cdiag5 | [1, 11, 107, 1066, 11274, 127860, 1557660] |
 | cdiag6 | [1, 13, 146, 1650, 19524, 245004, 3272688] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -2951,7 +3497,7 @@ Polynomial values as rows
 | rpdiag5 | [120, 605, 1836, 4569, 10016, 19965, 36900] |
 | rpdiag6 | [720, 3956, 12760, 34038, 80672, 174640, 350856] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 1, 2, 6, 24, 120, 720] |
@@ -2964,7 +3510,7 @@ Polynomial values as columns
 
 # ternary_tree
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -2975,7 +3521,7 @@ Triangle view
 | trow5 | [0, 1, 9, 42, 130, 273] |
 | trow6 | [0, 1, 11, 63, 245, 700, 1428] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 0, 1, 3, 0, 1, 5, 12, 0, 1, 7, 25, 55, 0, 1, 9, 42, 130, 273, 0, 1, 11, 63, 245, 700, 1428] |
@@ -2985,7 +3531,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 3, 4, 4, 12, 17, 18, 18, 55, 80, 87, 88, 88, 273, 403, 445, 454, 455, 455, 1428, 2128, 2373, 2436, 2447, 2448, 2448] |
 | diag     | [1, 0, 0, 1, 0, 1, 0, 1, 3, 0, 1, 5] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 4, 18, 88, 455, 2448] |
@@ -2996,7 +3542,7 @@ Row sums
 | cumsum    | [1, 1, 5, 25, 130, 700, 3876] |
 | revcumsum | [1, 2, 11, 65, 398, 2485, 15708] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 3, 12, 55, 273, 1428]|
@@ -3007,7 +3553,7 @@ Diagonals as rows
 | rdiag5 | [0, 1, 13, 117, 910, 6578, 45630]|
 | rdiag6 | [0, 1, 15, 150, 1265, 9750, 71253]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -3018,7 +3564,7 @@ Diagonals as columns
 | cdiag5 | [273, 700, 1428, 2565, 4235, 6578, 9750] |
 | cdiag6 | [1428, 3876, 8379, 15939, 27830, 45630, 71253] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -3029,7 +3575,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 455, 11190, 78087, 315668, 939855, 2300730] |
 | rpdiag6 | [0, 2448, 118262, 1232760, 6632820, 24661280, 72399498] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -3042,7 +3588,7 @@ Polynomial values as columns
 
 # uno
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -3053,7 +3599,7 @@ Triangle view
 | trow5 | [1, 1, 1, 1, 1, 1] |
 | trow6 | [1, 1, 1, 1, 1, 1, 1] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -3063,7 +3609,7 @@ Flattened seqs
 | cumrev   | [1, 1, 2, 1, 2, 3, 1, 2, 3, 4, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 7] |
 | diag     | [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 2, 3, 4, 5, 6, 7] |
@@ -3074,7 +3620,7 @@ Row sums
 | cumsum    | [1, 3, 6, 10, 15, 21, 28] |
 | revcumsum | [1, 3, 6, 10, 15, 21, 28] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -3085,7 +3631,7 @@ Diagonals as rows
 | rdiag5 | [1, 1, 1, 1, 1, 1, 1]|
 | rdiag6 | [1, 1, 1, 1, 1, 1, 1]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -3096,7 +3642,7 @@ Diagonals as columns
 | cdiag5 | [1, 1, 1, 1, 1, 1, 1] |
 | cdiag6 | [1, 1, 1, 1, 1, 1, 1] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -3107,7 +3653,7 @@ Polynomial values as rows
 | rpdiag5 | [1, 6, 63, 364, 1365, 3906, 9331] |
 | rpdiag6 | [1, 7, 127, 1093, 5461, 19531, 55987] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -3118,9 +3664,87 @@ Polynomial values as columns
 | cpdiag5 | [1, 6, 31, 156, 781, 3906, 19531] |
 | cpdiag6 | [1, 7, 43, 259, 1555, 9331, 55987] |
 
-# ward
+# ward_cycle
 
-Triangle view
+* Triangle view
+| trow  |  list  |
+| :---  |  :---  |
+| trow0 | [1] |
+| trow1 | [0, 1] |
+| trow2 | [0, 2, 3] |
+| trow3 | [0, 6, 20, 15] |
+| trow4 | [0, 24, 130, 210, 105] |
+| trow5 | [0, 120, 924, 2380, 2520, 945] |
+| trow6 | [0, 720, 7308, 26432, 44100, 34650, 10395] |
+
+* Flattened seqs
+| flat      |   seq  |
+| :---      |  :---  |
+| tabl     | [1, 0, 1, 0, 2, 3, 0, 6, 20, 15, 0, 24, 130, 210, 105, 0, 120, 924, 2380, 2520, 945, 0, 720, 7308, 26432, 44100, 34650, 10395] |
+| rev      | [1, 1, 0, 3, 2, 0, 15, 20, 6, 0, 105, 210, 130, 24, 0, 945, 2520, 2380, 924, 120, 0, 10395, 34650, 44100, 26432, 7308, 720, 0] |
+| cum      | [1, 0, 1, 0, 2, 5, 0, 6, 26, 41, 0, 24, 154, 364, 469, 0, 120, 1044, 3424, 5944, 6889, 0, 720, 8028, 34460, 78560, 113210, 123605] |
+| revcum   | [1, 1, 0, 5, 2, 0, 41, 26, 6, 0, 469, 364, 154, 24, 0, 6889, 5944, 3424, 1044, 120, 0, 123605, 113210, 78560, 34460, 8028, 720, 0] |
+| cumrev   | [1, 1, 1, 3, 5, 5, 15, 35, 41, 41, 105, 315, 445, 469, 469, 945, 3465, 5845, 6769, 6889, 6889, 10395, 45045, 89145, 115577, 122885, 123605, 123605] |
+| diag     | [1, 0, 0, 1, 0, 2, 0, 6, 3, 0, 24, 20] |
+
+* Row sums
+| sum       |   seq  |
+| :---      |  :---  |
+| sum       | [1, 1, 5, 41, 469, 6889, 123605] |
+| evensum   | [1, 0, 3, 20, 235, 3444, 61803] |
+| oddsum    | [0, 1, 2, 21, 234, 3445, 61802] |
+| altsum    | [1, -1, 1, -1, 1, -1, 1] |
+| diagsum   | [1, 0, 1, 2, 9, 44] |
+| cumsum    | [1, 1, 7, 73, 1011, 17421, 358583] |
+| revcumsum | [1, 2, 13, 132, 1803, 30802, 630257] |
+
+* Diagonals as rows
+| rdiag  |   seq  |
+| :---   |  :---  |
+| rdiag0 | [1, 1, 3, 15, 105, 945, 10395]|
+| rdiag1 | [0, 2, 20, 210, 2520, 34650, 540540]|
+| rdiag2 | [0, 6, 130, 2380, 44100, 866250, 18288270]|
+| rdiag3 | [0, 24, 924, 26432, 705320, 18858840, 520059540]|
+| rdiag4 | [0, 120, 7308, 303660, 11098780, 389449060, 13642629000]|
+| rdiag5 | [0, 720, 64224, 3678840, 177331440, 7934927000, 345240896000]|
+| rdiag6 | [0, 5040, 623376, 47324376, 2920525608, 162831789120, 8637235647040]|
+
+* Diagonals as columns
+| cdiag  |   seq  |
+| :---   |  :---  |
+| cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
+| cdiag1 | [1, 2, 6, 24, 120, 720, 5040] |
+| cdiag2 | [3, 20, 130, 924, 7308, 64224, 623376] |
+| cdiag3 | [15, 210, 2380, 26432, 303660, 3678840, 47324376] |
+| cdiag4 | [105, 2520, 44100, 705320, 11098780, 177331440, 2920525608] |
+| cdiag5 | [945, 34650, 866250, 18858840, 389449060, 7934927000, 162831789120] |
+| cdiag6 | [10395, 540540, 18288270, 520059540, 13642629000, 345240896000, 8637235647040] |
+
+* Polynomial values as rows
+| rpdiag  |   seq  |
+| :---    |  :---  |
+| rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
+| rpdiag1 | [0, 1, 2, 3, 4, 5, 6] |
+| rpdiag2 | [0, 5, 16, 33, 56, 85, 120] |
+| rpdiag3 | [0, 41, 212, 603, 1304, 2405, 3996] |
+| rpdiag4 | [0, 469, 3928, 15417, 42496, 95245, 186264] |
+| rpdiag5 | [0, 6889, 93536, 506691, 1780384, 4849325, 11162304] |
+| rpdiag6 | [0, 123605, 2721808, 20351601, 91160576, 301755925, 817557840] |
+
+* Polynomial values as columns
+| cpdiag  |   seq  |
+| :---    |  :---  |
+| cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
+| cpdiag1 | [1, 1, 5, 41, 469, 6889, 123605] |
+| cpdiag2 | [1, 2, 16, 212, 3928, 93536, 2721808] |
+| cpdiag3 | [1, 3, 33, 603, 15417, 506691, 20351601] |
+| cpdiag4 | [1, 4, 56, 1304, 42496, 1780384, 91160576] |
+| cpdiag5 | [1, 5, 85, 2405, 95245, 4849325, 301755925] |
+| cpdiag6 | [1, 6, 120, 3996, 186264, 11162304, 817557840] |
+
+# ward_set
+
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -3131,7 +3755,7 @@ Triangle view
 | trow5 | [0, 1, 56, 490, 1260, 945] |
 | trow6 | [0, 1, 119, 1918, 9450, 17325, 10395] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 0, 1, 0, 1, 3, 0, 1, 10, 15, 0, 1, 25, 105, 105, 0, 1, 56, 490, 1260, 945, 0, 1, 119, 1918, 9450, 17325, 10395] |
@@ -3141,7 +3765,7 @@ Flattened seqs
 | cumrev   | [1, 1, 1, 3, 4, 4, 15, 25, 26, 26, 105, 210, 235, 236, 236, 945, 2205, 2695, 2751, 2752, 2752, 10395, 27720, 37170, 39088, 39207, 39208, 39208] |
 | diag     | [1, 0, 0, 1, 0, 1, 0, 1, 3, 0, 1, 10] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 1, 4, 26, 236, 2752, 39208] |
@@ -3152,7 +3776,7 @@ Row sums
 | cumsum    | [1, 1, 5, 38, 394, 5164, 81668] |
 | revcumsum | [1, 2, 11, 92, 1022, 14100, 231996] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 3, 15, 105, 945, 10395]|
@@ -3163,7 +3787,7 @@ Diagonals as rows
 | rdiag5 | [0, 1, 246, 22935, 1487200, 81431350, 4104160060]|
 | rdiag6 | [0, 1, 501, 74316, 6914908, 510880370, 33309926650]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -3174,7 +3798,7 @@ Diagonals as columns
 | cdiag5 | [945, 17325, 190575, 1636635, 12122110, 81431350, 510880370] |
 | cdiag6 | [10395, 270270, 4099095, 47507460, 466876410, 4104160060, 33309926650] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -3185,7 +3809,7 @@ Polynomial values as rows
 | rpdiag5 | [0, 2752, 54546, 345432, 1322500, 3803280, 9089142] |
 | rpdiag6 | [0, 39208, 1386702, 12606240, 62862580, 222711480, 632374098] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 0, 0, 0, 0, 0, 0] |
@@ -3198,7 +3822,7 @@ Polynomial values as columns
 
 # worpitzky
 
-Triangle view
+* Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -3209,7 +3833,7 @@ Triangle view
 | trow5 | [1, 31, 180, 390, 360, 120] |
 | trow6 | [1, 63, 602, 2100, 3360, 2520, 720] |
 
-Flattened seqs
+* Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 1, 1, 1, 3, 2, 1, 7, 12, 6, 1, 15, 50, 60, 24, 1, 31, 180, 390, 360, 120, 1, 63, 602, 2100, 3360, 2520, 720] |
@@ -3219,7 +3843,7 @@ Flattened seqs
 | cumrev   | [1, 1, 2, 2, 5, 6, 6, 18, 25, 26, 24, 84, 134, 149, 150, 120, 480, 870, 1050, 1081, 1082, 720, 3240, 6600, 8700, 9302, 9365, 9366] |
 | diag     | [1, 1, 1, 1, 1, 3, 1, 7, 2, 1, 15, 12] |
 
-Row sums
+* Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 2, 6, 26, 150, 1082, 9366] |
@@ -3230,7 +3854,7 @@ Row sums
 | cumsum    | [1, 3, 11, 55, 359, 2891, 27635] |
 | revcumsum | [1, 3, 13, 75, 541, 4683, 47293] |
 
-Diagonals as rows
+* Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 2, 6, 24, 120, 720]|
@@ -3241,7 +3865,7 @@ Diagonals as rows
 | rdiag5 | [1, 63, 1932, 46620, 1020600, 21538440, 451725120]|
 | rdiag6 | [1, 127, 6050, 204630, 5921520, 158838240, 4115105280]|
 
-Diagonals as columns
+* Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -3252,7 +3876,7 @@ Diagonals as columns
 | cdiag5 | [120, 2520, 31920, 317520, 2739240, 21538440, 158838240] |
 | cdiag6 | [720, 20160, 332640, 4233600, 46070640, 451725120, 4115105280] |
 
-Polynomial values as rows
+* Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -3263,7 +3887,7 @@ Polynomial values as rows
 | rpdiag5 | [1, 1082, 13503, 70564, 243005, 653406, 1490587] |
 | rpdiag6 | [1, 9366, 199815, 1471708, 6534045, 21502866, 58018051] |
 
-Polynomial values as columns
+* Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 1, 1, 1, 1, 1, 1] |

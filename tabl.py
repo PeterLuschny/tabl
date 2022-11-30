@@ -257,17 +257,6 @@ def PrintViews(
     print()
 
 
-"""
-import contextlib
-def SaveTables() -> None:
-    path: Literal['tables.md'] = 'tables.md'
-    with open(path, 'w+') as dest:
-        with contextlib.redirect_stdout(dest):
-            for fun in tabl_fun:
-                PrintViews(fun)
-"""
-
-
 def Profile(T: tri, hor: int = 10, ver: int = 5) -> dict[str, list[int]]:
     d: dict[str, list[int]] = {}
     t: tabl = T.tab(hor)
@@ -313,16 +302,6 @@ def PrintProfile(T: tri) -> None:
     for seq in d.items():
         print(f"{seq[0]}, {seq[1]}")
     print()
-
-
-def SaveProfiles() -> None:
-    dest: TextIOWrapper = open("profiles.csv", "w+")
-    for fun in tabl_fun:
-        p: dict[str, list[int]] = Profile(fun)
-        id: str = fun.id
-        for seq in p.items():
-            dest.write(f"{seq[1]},{seq[0]},{id}\n")
-    dest.close()
 
 
 @cache

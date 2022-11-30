@@ -61,19 +61,6 @@ def PrintProfile(T: tri) -> None:
     print()
 
 
-from io import TextIOWrapper
-from tabl import tabl_fun
-def SaveProfiles() -> None:
-    dest: TextIOWrapper = open("profiles.csv", "w+")
-
-    for fun in tabl_fun:
-        p: dict[str, list[int]] = Profile(fun)
-        id: str = fun.id
-        for seq in p.items():
-            dest.write(f"{seq[1]},{seq[0]},{id}\n")
-    dest.close()
-
-
 if __name__ == "__main__":
 
     from SymmetricPolynomial import sympoly
@@ -81,4 +68,3 @@ if __name__ == "__main__":
 
     PrintProfile(sympoly)
     PrintProfile(rencontres)
-    SaveProfiles()

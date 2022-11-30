@@ -111,22 +111,10 @@ def PrintViews(T: tri, rows: int = 7, cono: int | None = None,
     PrintColPolyArray(T, rows, cols)
     print()
 
-"""
-import contextlib
-from tabl import tabl_fun
-def SaveTables() -> None:
-    path: Literal['tables.md'] = 'tables.md'
-
-    with open(path, 'w+') as dest:
-        with contextlib.redirect_stdout(dest):
-            for fun in tabl_fun:
-                PrintViews(fun)
-"""
-
 
 if __name__ == "__main__":
 
     from Abel import abel
 
     PrintViews(abel)
-    # SaveTables()
+
