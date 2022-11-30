@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Worpitzky triangle, A028246.
 
@@ -26,7 +26,7 @@ def _worpitzky(n: int) -> list[int]:
     return row
 
 
-@set_name(_worpitzky, "WORPITZKYNUM")
+@set_attributes(_worpitzky, "WORPITZKYNUM", False)
 def worpitzky(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _worpitzky(n).copy()
     return _worpitzky(n)[k]

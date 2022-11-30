@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Eulerian2 triangle, A340556.
 
@@ -28,7 +28,7 @@ def _eulerian2(n: int) -> list[int]:
     return row
 
 
-@set_name(_eulerian2, "EULERIANORD2")
+@set_attributes(_eulerian2, "EULERIANORD2", False)
 def eulerian2(n: int, k: int = -1) -> list[int] | int:
     if k == -1: return _eulerian2(n).copy()
     return _eulerian2(n)[k]

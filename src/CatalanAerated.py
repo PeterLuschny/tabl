@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Catalan triangle aerated, A053121.
 
@@ -30,7 +30,7 @@ def _catalan_aerated(n: int) -> list[int]:
     return row
 
 
-@set_name(_catalan_aerated, "CATALANAERAT")
+@set_attributes(_catalan_aerated, "CATALANAERAT", True)
 def catalan_aerated(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _catalan_aerated(n).copy()
     return _catalan_aerated(n)[k]

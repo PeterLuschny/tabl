@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Central cycle factorial numbers, A269940, A259456
 
@@ -28,7 +28,7 @@ def _cc_factorial(n: int) -> list[int]:
     return row
 
 
-@set_name(_cc_factorial, "CENTRFACTCYC")
+@set_attributes(_cc_factorial, "CENTRFACTCYC", False)
 def cc_factorial(n: int, k: int = -1) -> list[int] | int:
     if k == -1: return _cc_factorial(n).copy()
     return _cc_factorial(n)[k]

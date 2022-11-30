@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Bell (Peirce/Aitken) triangle, A011971 (see also A182930).
 
@@ -27,7 +27,7 @@ def _bell(n: int) -> list[int]:
     return row
 
 
-@set_name(_bell, "BELLTRIANGLE")
+@set_attributes(_bell, "BELLTRIANGLE", False)
 def bell(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _bell(n).copy()
     return _bell(n)[k]

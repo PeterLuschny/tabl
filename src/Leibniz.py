@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 
 
@@ -30,7 +30,7 @@ def _leibniz(n: int) -> list[int]:
     return row
 
 
-@set_name(_leibniz, "LEIBNIZTRIAN")
+@set_attributes(_leibniz, "LEIBNIZTRIAN", False)
 def leibniz(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _leibniz(n).copy()
     return _leibniz(n)[k]

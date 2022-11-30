@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Uno, the all 1's triangle, A000012.
 
@@ -23,7 +23,7 @@ def _uno(n: int) -> list[int]:
     return _uno(n - 1) + [1]
 
 
-@set_name(_uno, "UNOPERTUTTIS")
+@set_attributes(_uno, "UNOPERTUTTIS", True)
 def uno(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _uno(n).copy()
     return _uno(n)[k]

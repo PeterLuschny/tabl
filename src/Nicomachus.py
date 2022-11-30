@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Nicomachus triangle, A036561
 
@@ -25,7 +25,7 @@ def _nicomachus(n: int) -> list[int]:
     return row
 
 
-@set_name(_nicomachus, "NICOMACHUS  ")
+@set_attributes(_nicomachus, "NICOMACHUSTR", False)
 def nicomachus(n: int, k: int = -1) -> list[int] | int:
     if k == -1: return _nicomachus(n).copy()
     return _nicomachus(n, k)

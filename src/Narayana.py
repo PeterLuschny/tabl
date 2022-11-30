@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 
 """Narayana triangle, A090181.
@@ -32,7 +32,7 @@ def _narayana(n: int) -> list[int]:
     return row
 
 
-@set_name(_narayana, "NARAYANATRIA")
+@set_attributes(_narayana, "NARAYANATRIA", True)
 def narayana(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _narayana(n).copy()
     return _narayana(n)[k]

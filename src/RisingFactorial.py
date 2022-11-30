@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Rising factorial, A094587.
 
@@ -27,7 +27,7 @@ def _rising_factorial(n: int) -> list[int]:
     return row
 
 
-@set_name(_rising_factorial, "RISFACTORIAL")
+@set_attributes(_rising_factorial, "RISFACTORIAL", True)
 def rising_factorial(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _rising_factorial(n).copy()
     return _rising_factorial(n)[k]

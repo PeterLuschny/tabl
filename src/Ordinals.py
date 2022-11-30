@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """von Neumann ordinals (kind of), A002262.
 
@@ -22,7 +22,7 @@ def _ordinals(n: int) -> list[int]:
     return _ordinals(n - 1) + [n]
 
 
-@set_name(_ordinals, "ORDINALNUMBR")
+@set_attributes(_ordinals, "ORDINALNUMBR", False)
 def ordinals(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _ordinals(n).copy()
     return _ordinals(n)[k]

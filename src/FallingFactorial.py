@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Falling factorial, number of permutations of n things k at a time, A008279. 
 
@@ -23,7 +23,7 @@ def _falling_factorial(n: int) -> list[int]:
     return row
 
 
-@set_name(_falling_factorial, "FALFACTORIAL")
+@set_attributes(_falling_factorial, "FALFACTORIAL", False)
 def falling_factorial(n: int, k: int = -1) -> list[int] | int:
     if k == -1: return _falling_factorial(n).copy()
     return _falling_factorial(n)[k]

@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Ward cycle numbers, A269940, A259456.
 
@@ -27,7 +27,7 @@ def _ward_cycle(n: int) -> list[int]:
     return row
 
 
-@set_name(_ward_cycle, "WARDCYCNUMBR")
+@set_attributes(_ward_cycle, "WARDCYCNUMBR", False)
 def ward_cycle(n: int, k: int = -1) -> list[int] | int:
     if k == -1: return _ward_cycle(n).copy()
     return _ward_cycle(n)[k]

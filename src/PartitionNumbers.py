@@ -1,6 +1,6 @@
 from functools import cache
 from itertools import accumulate
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Partition numbers (Euler's table), A008284, A026820, A000041.
 
@@ -48,13 +48,13 @@ def _partnum_atmost(n: int) -> list[int]:
     return list(accumulate(_partnum_exact(n)))
 
 
-@set_name(_partnum_exact, "PARTITIONNUM")
+@set_attributes(_partnum_exact, "PARTITIONNUM", True)
 def partnum_exact(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _partnum_exact(n).copy()
     return _partnum_exact(n)[k]
 
 
-@set_name(_partnum_atmost, "PARTITIONMAX")
+@set_attributes(_partnum_atmost, "PARTITIONMAX", False)
 def partnum_atmost(n: int, k: int = -1) -> list[int] | int:
     if k == -1: return _partnum_atmost(n).copy()
     return _partnum_atmost(n)[k]

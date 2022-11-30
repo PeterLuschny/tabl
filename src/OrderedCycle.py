@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Ordered cycle numbers A225479, A048594.
 
@@ -29,7 +29,7 @@ def _ordered_cycle(n: int) -> list[int]:
     return row
 
 
-@set_name(_ordered_cycle, "ORDEREDCYCLE")
+@set_attributes(_ordered_cycle, "ORDEREDCYCLE", False)
 def ordered_cycle(n: int, k: int = -1) -> list[int] | int:
     if k == -1: return _ordered_cycle(n).copy()
     return _ordered_cycle(n)[k]

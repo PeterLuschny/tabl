@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Lehmer-Comtet of 2nd kind, unsigned, A354794
 
@@ -29,7 +29,7 @@ def _lehmer(n: int) -> list[int]:
            for k in range(n + 1)]
 
 
-@set_name(_lehmer, "LEHMERCOMTET")
+@set_attributes(_lehmer, "LEHMERCOMTET", True)
 def lehmer(n: int, k: int = -1) -> list[int] | int:
     if k == -1: return _lehmer(n).copy()
     return _lehmer(n)[k]

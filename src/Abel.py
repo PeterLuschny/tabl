@@ -1,6 +1,6 @@
 from functools import cache
 from Binomial import binomial
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 
 """Abel polynomials (unsigned coefficients), A061356
@@ -26,7 +26,7 @@ def _abel(n: int) -> list[int]:
            if k > 0 else 0 for k in range(n + 1)]
 
 
-@set_name(_abel, "ABELPOLYNOMS")
+@set_attributes(_abel, "ABELPOLYNOMS", True)
 def abel(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _abel(n).copy()
     return _abel(n)[k]

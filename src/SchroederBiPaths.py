@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Schroeder bilateral paths, A104684 (see also A063007).
 
@@ -28,7 +28,7 @@ def _bilatpath(n: int) -> list[int]:
     return row
 
 
-@set_name(_bilatpath, "SCHBILATERAL")
+@set_attributes(_bilatpath, "SCHBILATERAL", True)
 def bilatpath(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _bilatpath(n).copy()
     return _bilatpath(n)[k]

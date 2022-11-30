@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 
 """Expansion of x^n in terms of Laguerre (unsigned), A196347, A021012.
@@ -27,7 +27,7 @@ def _powlag(n: int) -> list[int]:
     return row
 
 
-@set_name(_powlag, "POWERSLAGUER")
+@set_attributes(_powlag, "POWERSLAGUER", False)
 def powlag(n: int, k: int = -1) -> list[int] | int:
     if k == -1: return _powlag(n).copy()
     return _powlag(n)[k]

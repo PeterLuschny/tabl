@@ -1,6 +1,6 @@
 from functools import cache
 from Binomial import binomial
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Euler tangent polynomials, A162660, A350972, A155585, A009006, A000182. 
 
@@ -27,7 +27,7 @@ def _euler_tan(n: int) -> list[int]:
     return row
 
 
-@set_name(_euler_tan, "EULERTANGENT")
+@set_attributes(_euler_tan, "EULERTANGENT", False)
 def euler_tan(n: int, k: int = -1) -> list[int] | int:
     if k == -1: return _euler_tan(n).copy()
     return _euler_tan(n)[k]

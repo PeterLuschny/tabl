@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 
 """Laguerre polynomials n! * L(n, x) (unsigned coefficients), unsigned A021009.
@@ -27,7 +27,7 @@ def _laguerre(n: int) -> list[int]:
     return row
 
 
-@set_name(_laguerre, "LAGUERREPOLY")
+@set_attributes(_laguerre, "LAGUERREPOLY", True)
 def laguerre(n: int, k: int = -1) -> list[int] | int:
     if k == -1: return _laguerre(n).copy()
     return _laguerre(n)[k]

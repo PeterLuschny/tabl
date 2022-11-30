@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Stirling cycle numbers of second order, A008306, A106828.
 
@@ -31,7 +31,7 @@ def _stirling_cycle2(n: int) -> list[int]:
     return row
 
 
-@set_name(_stirling_cycle2, "STIRLCYCORD2")
+@set_attributes(_stirling_cycle2, "STIRLCYCORD2", False)
 def stirling_cycle2(n: int, k: int = -1) -> list[int] | int:
     if k == -1: return _stirling_cycle2(n).copy()
     return _stirling_cycle2(n)[k]

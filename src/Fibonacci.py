@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Fibonacci-Pascal triangle, A354267
 
@@ -31,7 +31,7 @@ def _fibonacci(n: int) -> list[int]:
     return row
 
 
-@set_name(_fibonacci, "FIBONACPASCA")
+@set_attributes(_fibonacci, "FIBONACPASCA")
 def fibonacci(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _fibonacci(n).copy()
     return _fibonacci(n)[k]

@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Polygonal numbers, A139600
 
@@ -42,7 +42,7 @@ def _polygonal(n: int) -> list[int]:
     return row
 
 
-@set_name(_polygonal, "POLYGONALNUM")
+@set_attributes(_polygonal, "POLYGONALNUM", False)
 def polygonal(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _polygonal(n).copy()
     return _polygonal(n)[k]

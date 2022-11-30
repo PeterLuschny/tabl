@@ -36,6 +36,7 @@ tabl_files: list[str] = [
     "Levin.py",
     "Motzkin.py",
     "Narayana.py",
+    "Nicomachus.py",
     "Ordinals.py",
     "OrderedCycle.py",
     "PartitionNumbers.py",
@@ -63,6 +64,7 @@ import_header: list[str] = [
     "from itertools import accumulate\n",
     "from sys import setrecursionlimit\n",
     "from typing import Callable, TypeAlias\n",
+    "from sympy import Matrix\n",
 ]
 
 dir: str = join(getcwd(), "src")
@@ -81,7 +83,7 @@ for src in tabl_files:
             #if line.startswith('"""'):
             #    if len(line) > 4:
             #        print(line[3:].strip())
-            if line.startswith("@set_name("):
+            if line.startswith("@set_attributes("):
                     s = line[1+line.find('"') : line.rfind('"')]
                     print(s)
             if line.startswith("from"):
@@ -133,6 +135,7 @@ tabl_fun: list[tgen] = [
     levin,
     motzkin,
     narayana,
+    nicomachus,
     ordinals,
     ordered_cycle,
     partnum_exact,

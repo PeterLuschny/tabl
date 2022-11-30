@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Stirling set numbers of second order, A008299, A137375.
 
@@ -31,7 +31,7 @@ def _stirling_set2(n: int) -> list[int]:
     return row
 
 
-@set_name(_stirling_set2, "STIRLSETORD2")
+@set_attributes(_stirling_set2, "STIRLSETORD2", False)
 def stirling_set2(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _stirling_set2(n).copy()
     return _stirling_set2(n)[k]

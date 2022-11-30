@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Symmetric polynomial, row k gives the (n-1)-st elementary of [k, k+1, k+2,..., k+n], A165675.
 
@@ -27,7 +27,7 @@ def _sympoly(n: int) -> list[int]:
     return row
 
 
-@set_name(_sympoly, "SYMPOLYNOMIA")
+@set_attributes(_sympoly, "SYMPOLYNOMIA", True)
 def sympoly(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _sympoly(n).copy()
     return _sympoly(n)[k]

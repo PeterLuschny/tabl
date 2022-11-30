@@ -2,6 +2,7 @@ from functools import cache
 from itertools import accumulate
 from sys import setrecursionlimit
 from typing import Callable, TypeAlias
+from sympy import Matrix
 
 setrecursionlimit(2100)
 """Type: table row"""
@@ -18,12 +19,27 @@ tgen: TypeAlias = Callable[[int], tabl]
 tri: TypeAlias = Callable[[int, int], trow | int]
 
 
-def set_name(r: rgen, id: str) -> Callable[[tri], tri]:
-    def maketab(n: int) -> tabl:
-        return [r(j).copy() for j in range(n)]
+def set_attributes(r: rgen, id: str, inv: bool = False) -> Callable[[tri], tri]:
+    def maketab(dim: int) -> tabl:
+        return [r(n).copy() for n in range(dim)]
+
+    def makerev(dim: int) -> tabl:
+        return [[r(n)[n - k] for k in range(n + 1)] for n in range(dim)]
+
+    def makemat(dim: int) -> tabl:
+        return [[r(n)[k] if k <= n else 0 for k in range(dim)] for n in range(dim)]
+
+    def makeinv(dim: int) -> tabl:
+        if not inv:
+            return []
+        I = Matrix(makemat(dim)) ** -1
+        return [[I[n, k] for k in range(n + 1)] for n in range(dim)]
 
     def wrapper(f: tri) -> tri:
         f.tab = maketab
+        f.rev = makerev
+        f.mat = makemat
+        f.inv = makeinv
         f.id = id
         return f
 
@@ -311,7 +327,7 @@ def _abel(n: int) -> list[int]:
     return [binomial(n - 1, k - 1) * n ** (n - k) if k > 0 else 0 for k in range(n + 1)]
 
 
-@set_name(_abel, "ABELPOLYNOMS")
+@set_attributes(_abel, "ABELPOLYNOMS", True)
 def abel(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _abel(n).copy()
@@ -328,7 +344,7 @@ def _bell(n: int) -> list[int]:
     return row
 
 
-@set_name(_bell, "BELLTRIANGLE")
+@set_attributes(_bell, "BELLTRIANGLE", False)
 def bell(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _bell(n).copy()
@@ -347,7 +363,7 @@ def _bessel(n: int) -> list[int]:
     return row
 
 
-@set_name(_bessel, "BESSELPOLYNO")
+@set_attributes(_bessel, "BESSELPOLYNO", True)
 def bessel(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _bessel(n).copy()
@@ -364,7 +380,7 @@ def _binomial(n: int) -> list[int]:
     return row
 
 
-@set_name(_binomial, "BINOMIALCOEF")
+@set_attributes(_binomial, "BINOMIALCOEF", True)
 def binomial(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _binomial(n).copy()
@@ -381,7 +397,7 @@ def _catalan(n: int) -> list[int]:
     return list(accumulate(row))
 
 
-@set_name(_catalan, "FUSSCATALAN1")
+@set_attributes(_catalan, "FUSSCATALAN1", False)
 def catalan(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _catalan(n).copy()
@@ -402,7 +418,7 @@ def _catalan_aerated(n: int) -> list[int]:
     return row
 
 
-@set_name(_catalan_aerated, "CATALANAERAT")
+@set_attributes(_catalan_aerated, "CATALANAERAT", True)
 def catalan_aerated(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _catalan_aerated(n).copy()
@@ -421,7 +437,7 @@ def _cc_factorial(n: int) -> list[int]:
     return row
 
 
-@set_name(_cc_factorial, "CENTRFACTCYC")
+@set_attributes(_cc_factorial, "CENTRFACTCYC", False)
 def cc_factorial(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _cc_factorial(n).copy()
@@ -440,7 +456,7 @@ def _cs_factorial(n: int) -> list[int]:
     return row
 
 
-@set_name(_cs_factorial, "CENTRFACTSET")
+@set_attributes(_cs_factorial, "CENTRFACTSET", True)
 def cs_factorial(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _cs_factorial(n).copy()
@@ -460,7 +476,7 @@ def _delannoy(n: int) -> list[int]:
     return row
 
 
-@set_name(_delannoy, "DELANNOYTRIA")
+@set_attributes(_delannoy, "DELANNOYTRIA", False)
 def delannoy(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _delannoy(n).copy()
@@ -478,7 +494,7 @@ def _euler(n: int) -> list[int]:
     return row
 
 
-@set_name(_euler, "EULERTRIANGL")
+@set_attributes(_euler, "EULERTRIANGL", True)
 def euler(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _euler(n).copy()
@@ -499,7 +515,7 @@ def _eulerian(n: int) -> list[int]:
     return row
 
 
-@set_name(_eulerian, "EULERIANTRIA")
+@set_attributes(_eulerian, "EULERIANTRIA", False)
 def eulerian(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _eulerian(n).copy()
@@ -518,7 +534,7 @@ def _eulerian2(n: int) -> list[int]:
     return row
 
 
-@set_name(_eulerian2, "EULERIANORD2")
+@set_attributes(_eulerian2, "EULERIANORD2", False)
 def eulerian2(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _eulerian2(n).copy()
@@ -535,7 +551,7 @@ def _eulerianB(n: int) -> list[int]:
     return row
 
 
-@set_name(_eulerianB, "EULERIANTYPB")
+@set_attributes(_eulerianB, "EULERIANTYPB", True)
 def eulerianB(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _eulerianB(n).copy()
@@ -554,7 +570,7 @@ def _euler_sec(n: int) -> list[int]:
     return row
 
 
-@set_name(_euler_sec, "EULERSECANTO")
+@set_attributes(_euler_sec, "EULERSECANTO", True)
 def euler_sec(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _euler_sec(n).copy()
@@ -575,7 +591,7 @@ def _euler_tan(n: int) -> list[int]:
     return row
 
 
-@set_name(_euler_tan, "EULERTANGENT")
+@set_attributes(_euler_tan, "EULERTANGENT", False)
 def euler_tan(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _euler_tan(n).copy()
@@ -596,7 +612,7 @@ def _falling_factorial(n: int) -> list[int]:
     return row
 
 
-@set_name(_falling_factorial, "FALFACTORIAL")
+@set_attributes(_falling_factorial, "FALFACTORIAL", False)
 def falling_factorial(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _falling_factorial(n).copy()
@@ -617,7 +633,7 @@ def _fibonacci(n: int) -> list[int]:
     return row
 
 
-@set_name(_fibonacci, "FIBONACPASCA")
+@set_attributes(_fibonacci, "FIBONACPASCA")
 def fibonacci(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _fibonacci(n).copy()
@@ -638,7 +654,7 @@ def _fubini(n: int) -> list[int]:
     return row
 
 
-@set_name(_fubini, "FUBINITRIANG")
+@set_attributes(_fubini, "FUBINITRIANG", False)
 def fubini(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _fubini(n).copy()
@@ -657,7 +673,7 @@ def _genocchi(n: int) -> list[int]:
     return row[1:]
 
 
-@set_name(_genocchi, "GENOCCHITRIA")
+@set_attributes(_genocchi, "GENOCCHITRIA", False)
 def genocchi(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _genocchi(n).copy()
@@ -678,7 +694,7 @@ def _harmonic(n: int) -> list[int]:
     return row
 
 
-@set_name(_harmonic, "HARMONICPOLY")
+@set_attributes(_harmonic, "HARMONICPOLY", True)
 def harmonic(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _harmonic(n).copy()
@@ -700,7 +716,7 @@ def _hermite(n: int) -> list[int]:
     return row
 
 
-@set_name(_hermite, "HERMITEPOLYC")
+@set_attributes(_hermite, "HERMITEPOLYC", True)
 def hermite(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _hermite(n).copy()
@@ -717,7 +733,7 @@ def _laguerre(n: int) -> list[int]:
     return row
 
 
-@set_name(_laguerre, "LAGUERREPOLY")
+@set_attributes(_laguerre, "LAGUERREPOLY", True)
 def laguerre(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _laguerre(n).copy()
@@ -735,7 +751,7 @@ def _lah(n: int) -> list[int]:
     return row
 
 
-@set_name(_lah, "LAHTRIANGLES")
+@set_attributes(_lah, "LAHTRIANGLES", True)
 def lah(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _lah(n).copy()
@@ -756,7 +772,7 @@ def _lehmer(n: int) -> list[int]:
     return [t(k - 1, n - k, n - k) if n != k else 1 for k in range(n + 1)]
 
 
-@set_name(_lehmer, "LEHMERCOMTET")
+@set_attributes(_lehmer, "LEHMERCOMTET", True)
 def lehmer(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _lehmer(n).copy()
@@ -774,7 +790,7 @@ def _leibniz(n: int) -> list[int]:
     return row
 
 
-@set_name(_leibniz, "LEIBNIZTRIAN")
+@set_attributes(_leibniz, "LEIBNIZTRIAN", False)
 def leibniz(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _leibniz(n).copy()
@@ -792,7 +808,7 @@ def _levin(n: int) -> list[int]:
     return row
 
 
-@set_name(_levin, "LEVINSTRIANG")
+@set_attributes(_levin, "LEVINSTRIANG", False)
 def levin(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _levin(n).copy()
@@ -813,7 +829,7 @@ def _motzkin(n: int) -> list[int]:
     return row
 
 
-@set_name(_motzkin, "MOTZKINTRIAN")
+@set_attributes(_motzkin, "MOTZKINTRIAN", True)
 def motzkin(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _motzkin(n).copy()
@@ -834,11 +850,28 @@ def _narayana(n: int) -> list[int]:
     return row
 
 
-@set_name(_narayana, "NARAYANATRIA")
+@set_attributes(_narayana, "NARAYANATRIA", True)
 def narayana(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _narayana(n).copy()
     return _narayana(n)[k]
+
+
+@cache
+def _nicomachus(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    row: list[int] = _nicomachus(n - 1) + [3 * _nicomachus(n - 1)[n - 1]]
+    for k in range(0, n):
+        row[k] *= 2
+    return row
+
+
+@set_attributes(_nicomachus, "NICOMACHUSTR", False)
+def nicomachus(n: int, k: int = -1) -> list[int] | int:
+    if k == -1:
+        return _nicomachus(n).copy()
+    return _nicomachus(n, k)
 
 
 @cache
@@ -848,7 +881,7 @@ def _ordinals(n: int) -> list[int]:
     return _ordinals(n - 1) + [n]
 
 
-@set_name(_ordinals, "ORDINALNUMBR")
+@set_attributes(_ordinals, "ORDINALNUMBR", False)
 def ordinals(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _ordinals(n).copy()
@@ -868,7 +901,7 @@ def _ordered_cycle(n: int) -> list[int]:
     return row
 
 
-@set_name(_ordered_cycle, "ORDEREDCYCLE")
+@set_attributes(_ordered_cycle, "ORDEREDCYCLE", False)
 def ordered_cycle(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _ordered_cycle(n).copy()
@@ -894,14 +927,14 @@ def _partnum_atmost(n: int) -> list[int]:
     return list(accumulate(_partnum_exact(n)))
 
 
-@set_name(_partnum_exact, "PARTITIONNUM")
+@set_attributes(_partnum_exact, "PARTITIONNUM", True)
 def partnum_exact(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _partnum_exact(n).copy()
     return _partnum_exact(n)[k]
 
 
-@set_name(_partnum_atmost, "PARTITIONMAX")
+@set_attributes(_partnum_atmost, "PARTITIONMAX", False)
 def partnum_atmost(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _partnum_atmost(n).copy()
@@ -922,7 +955,7 @@ def _polygonal(n: int) -> list[int]:
     return row
 
 
-@set_name(_polygonal, "POLYGONALNUM")
+@set_attributes(_polygonal, "POLYGONALNUM", False)
 def polygonal(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _polygonal(n).copy()
@@ -940,7 +973,7 @@ def _powlag(n: int) -> list[int]:
     return row
 
 
-@set_name(_powlag, "POWERSLAGUER")
+@set_attributes(_powlag, "POWERSLAGUER", False)
 def powlag(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _powlag(n).copy()
@@ -961,7 +994,7 @@ def _rencontres(n: int) -> list[int]:
     return row
 
 
-@set_name(_rencontres, "RENCONTRESTR")
+@set_attributes(_rencontres, "RENCONTRESTR", True)
 def rencontres(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _rencontres(n).copy()
@@ -978,7 +1011,7 @@ def _rising_factorial(n: int) -> list[int]:
     return row
 
 
-@set_name(_rising_factorial, "RISFACTORIAL")
+@set_attributes(_rising_factorial, "RISFACTORIAL", True)
 def rising_factorial(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _rising_factorial(n).copy()
@@ -997,7 +1030,7 @@ def _schroeder(n: int) -> list[int]:
     return row
 
 
-@set_name(_schroeder, "SCHROEDERTRI")
+@set_attributes(_schroeder, "SCHROEDERTRI", True)
 def schroeder(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _schroeder(n).copy()
@@ -1016,7 +1049,7 @@ def _bilatpath(n: int) -> list[int]:
     return row
 
 
-@set_name(_bilatpath, "SCHBILATERAL")
+@set_attributes(_bilatpath, "SCHBILATERAL", True)
 def bilatpath(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _bilatpath(n).copy()
@@ -1039,14 +1072,14 @@ def _seidel_boust(n: int) -> list[int]:
     return _seidel(n) if n % 2 else _seidel(n)[::-1]
 
 
-@set_name(_seidel, "SEIDELTRIANG")
+@set_attributes(_seidel, "SEIDELTRIANG", False)
 def seidel(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _seidel(n).copy()
     return _seidel(n)[k]
 
 
-@set_name(_seidel_boust, "SEIDELBOUSTO")
+@set_attributes(_seidel_boust, "SEIDELBOUSTO", False)
 def seidel_boust(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _seidel_boust(n).copy()
@@ -1063,7 +1096,7 @@ def _stirling_cycle(n: int) -> list[int]:
     return row
 
 
-@set_name(_stirling_cycle, "STIRLING1CYC")
+@set_attributes(_stirling_cycle, "STIRLING1CYC", True)
 def stirling_cycle(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _stirling_cycle(n).copy()
@@ -1080,7 +1113,7 @@ def _stirling_set(n: int) -> list[int]:
     return row
 
 
-@set_name(_stirling_set, "STIRLING2SET")
+@set_attributes(_stirling_set, "STIRLING2SET", True)
 def stirling_set(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _stirling_set(n).copy()
@@ -1100,7 +1133,7 @@ def _stirling_cycle2(n: int) -> list[int]:
     return row
 
 
-@set_name(_stirling_cycle2, "STIRLCYCORD2")
+@set_attributes(_stirling_cycle2, "STIRLCYCORD2", False)
 def stirling_cycle2(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _stirling_cycle2(n).copy()
@@ -1120,7 +1153,7 @@ def _stirling_set2(n: int) -> list[int]:
     return row
 
 
-@set_name(_stirling_set2, "STIRLSETORD2")
+@set_attributes(_stirling_set2, "STIRLSETORD2", False)
 def stirling_set2(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _stirling_set2(n).copy()
@@ -1138,7 +1171,7 @@ def _sympoly(n: int) -> list[int]:
     return row
 
 
-@set_name(_sympoly, "SYMPOLYNOMIA")
+@set_attributes(_sympoly, "SYMPOLYNOMIA", True)
 def sympoly(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _sympoly(n).copy()
@@ -1155,7 +1188,7 @@ def _ternary_tree(n: int) -> list[int]:
     return list(accumulate(accumulate(row)))
 
 
-@set_name(_ternary_tree, "TERNARYTREES")
+@set_attributes(_ternary_tree, "TERNARYTREES", False)
 def ternary_tree(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _ternary_tree(n).copy()
@@ -1169,7 +1202,7 @@ def _uno(n: int) -> list[int]:
     return _uno(n - 1) + [1]
 
 
-@set_name(_uno, "UNOPERTUTTIS")
+@set_attributes(_uno, "UNOPERTUTTIS", True)
 def uno(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _uno(n).copy()
@@ -1188,7 +1221,7 @@ def _ward_cycle(n: int) -> list[int]:
     return row
 
 
-@set_name(_ward_cycle, "WARDCYCNUMBR")
+@set_attributes(_ward_cycle, "WARDCYCNUMBR", False)
 def ward_cycle(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _ward_cycle(n).copy()
@@ -1207,7 +1240,7 @@ def _ward_set(n: int) -> list[int]:
     return row
 
 
-@set_name(_ward_set, "WARDSETNUMBR")
+@set_attributes(_ward_set, "WARDSETNUMBR", False)
 def ward_set(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _ward_set(n).copy()
@@ -1224,7 +1257,7 @@ def _worpitzky(n: int) -> list[int]:
     return row
 
 
-@set_name(_worpitzky, "WORPITZKYNUM")
+@set_attributes(_worpitzky, "WORPITZKYNUM", False)
 def worpitzky(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _worpitzky(n).copy()
@@ -1261,6 +1294,7 @@ tabl_fun: list[tgen] = [
     levin,
     motzkin,
     narayana,
+    nicomachus,
     ordinals,
     ordered_cycle,
     partnum_exact,

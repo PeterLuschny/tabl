@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Rencontres triangle, A008290.
 
@@ -29,7 +29,7 @@ def _rencontres(n: int) -> list[int]:
     return row
 
 
-@set_name(_rencontres, "RENCONTRESTR")
+@set_attributes(_rencontres, "RENCONTRESTR", True)
 def rencontres(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _rencontres(n).copy()
     return _rencontres(n)[k]

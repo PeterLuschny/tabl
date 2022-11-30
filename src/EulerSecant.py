@@ -1,6 +1,6 @@
 from functools import cache
 from Binomial import binomial 
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Euler secant polynomials, A119879, A081658, A153641. 
 
@@ -27,7 +27,7 @@ def _euler_sec(n: int) -> list[int]:
     return row
 
 
-@set_name(_euler_sec, "EULERSECANTO")
+@set_attributes(_euler_sec, "EULERSECANTO", True)
 def euler_sec(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _euler_sec(n).copy()
     return _euler_sec(n)[k]

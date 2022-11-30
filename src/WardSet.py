@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Ward set numbers, A269939, A134991.
 
@@ -28,7 +28,7 @@ def _ward_set(n: int) -> list[int]:
     return row
 
 
-@set_name(_ward_set, "WARDSETNUMBR")
+@set_attributes(_ward_set, "WARDSETNUMBR", False)
 def ward_set(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _ward_set(n).copy()
     return _ward_set(n)[k]

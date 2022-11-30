@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_name
+from tabltypes import set_attributes
 
 """Stirling cycle numbers, unsigned Stirling numbers of the 1. kind, A132393.
 
@@ -27,7 +27,7 @@ def _stirling_cycle(n: int) -> list[int]:
     return row
 
 
-@set_name(_stirling_cycle, "STIRLING1CYC")
+@set_attributes(_stirling_cycle, "STIRLING1CYC", True)
 def stirling_cycle(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _stirling_cycle(n).copy()
     return _stirling_cycle(n)[k]
