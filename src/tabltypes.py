@@ -21,15 +21,14 @@ tgen: TypeAlias = Callable[[int], tabl]
 tri: TypeAlias = Callable[[int, int], trow | int]
 
 
-def set_name(r: rgen, id: str):
-    def tabmaker(n: int, k: int = -1) -> list[int] | int:
+def set_name(r: rgen, id: str) -> Callable[[tri], tri]:
+    def maketab(n: int) -> tabl:
         return [r(j).copy() for j in range(n)]
 
     def wrapper(f: tri) -> tri:
-        f.tab = tabmaker
+        f.tab = maketab
         f.id = id
         return f
     return wrapper
-
 
 # https://stackoverflow.com/questions/47056059/best-way-to-add-attributes-to-a-python-function

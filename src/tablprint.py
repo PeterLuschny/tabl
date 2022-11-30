@@ -76,38 +76,38 @@ def PrintFlats(t: tabl) -> None:
 def PrintViews(T: tri, rows: int = 7, cono: int | None = None, 
     verbose: bool = True) -> None:
 
-    print("# " + T.__name__, T.id)
+    print("# " + T.__name__)
 
     cols: int = rows if cono is None else cono
     print()
 
     t: tabl = T.tab(rows)
 
-    if verbose: print("Triangle view")
+    if verbose: print("* Triangle view")
     PrintRows(t)
     print()
 
-    if verbose: print("Flattened seqs")
+    if verbose: print("* Flattened seqs")
     PrintFlats(t)
     print()
 
-    if verbose: print("Row sums")
+    if verbose: print("* Row sums")
     PrintSums(t)
     print()
 
-    if verbose: print("Diagonals as rows")
+    if verbose: print("* Diagonals as rows")
     PrintRowArray(T, rows, cols)
     print()
 
-    if verbose: print("Diagonals as columns")
+    if verbose: print("* Diagonals as columns")
     PrintColArray(T, rows, cols)
     print()
 
-    if verbose: print("Polynomial values as rows")
+    if verbose: print("* Polynomial values as rows")
     PrintRowPolyArray(T, rows, cols)
     print()
 
-    if verbose: print("Polynomial values as columns")
+    if verbose: print("* Polynomial values as columns")
     PrintColPolyArray(T, rows, cols)
     print()
 
@@ -126,7 +126,6 @@ def SaveTables() -> None:
 
 if __name__ == "__main__":
 
-    from tabltypes import tstruct
     from Abel import abel
 
     PrintViews(abel)

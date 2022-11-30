@@ -61,7 +61,6 @@ def PrintProfile(T: tri) -> None:
     print()
 
 
-"""
 from io import TextIOWrapper
 from tabl import tabl_fun
 def SaveProfiles() -> None:
@@ -73,7 +72,6 @@ def SaveProfiles() -> None:
         for seq in p.items():
             dest.write(f"{seq[1]},{seq[0]},{id}\n")
     dest.close()
-"""
 
 
 if __name__ == "__main__":
@@ -83,4 +81,4 @@ if __name__ == "__main__":
 
     PrintProfile(sympoly)
     PrintProfile(rencontres)
-    #SaveProfiles()
+    SaveProfiles()
