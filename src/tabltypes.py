@@ -55,9 +55,9 @@ def inversion_wrapper(T: tri, dim: int) -> tri | None:
     def _psgen(n: int) -> trow: return list(t[n])
 
     @set_attributes(_psgen, "INV" + T.id, True)
-    def psgen(n: int, k: int = -1) -> list[int] | int: 
-        if k == -1: return list(t[n])
-        return t[n][k]
+    def psgen(n: int, k: int = -1) -> list[int] | int:
+        if k == -1: return _psgen(n)
+        return _psgen(n)[k]
 
     return psgen
 
@@ -67,30 +67,66 @@ def reversion_wrapper(T: tri, dim: int) -> tri:
     t = T.rev(dim)
     def _rsgen(n: int) -> trow: return list(t[n]) 
 
-    @set_attributes(_rsgen, "REV" + T.id)
-    def rsgen(n: int, k: int = -1) -> list[int] | int: 
-        if k == -1: return list(t[n])
-        return t[n][k]
+    @set_attributes(_rsgen, "REV" + T.id, True)
+    def rsgen(n: int, k: int = -1) -> list[int] | int:
+        if k == -1: return _rsgen(n)
+        return _rsgen(n)[k]
 
     return rsgen
 
+def revinv_wrapper(T: tri, dim: int) -> tri | None:
+
+    I = inversion_wrapper(T, dim)
+    if I == None: return None
+    T = reversion_wrapper(I, dim)
+
+    def _rigen(n: int) -> trow: return list(T(n))
+
+    @set_attributes(_rigen, "REVINV" + T.id, True)
+    def rigen(n: int, k: int = -1) -> list[int] | int:
+        if k == -1: return _rigen(n)
+        return _rigen(n)[k]
+
+    return rigen
+
+def invrev_wrapper(T: tri, dim: int) -> tri | None:
+
+    R = reversion_wrapper(T, dim)
+    T = inversion_wrapper(R, dim)
+    if T == None: return None
+
+    def _tigen(n: int) -> trow: return list(T(n))
+
+    @set_attributes(_tigen, "INVREV" + T.id, True)
+    def tigen(n: int, k: int = -1) -> list[int] | int:
+        if k == -1: return _tigen(n)
+        return _tigen(n)[k]
+
+    return tigen
 
 
 if __name__ == "__main__":
     from Abel import abel
+    from Laguerre import laguerre
 
+    f = laguerre
     dim = 6
-    print(abel.tab(dim))
-    print(abel.inv(dim))
-    i = inversion_wrapper(abel, dim)
-    print(i.tab(dim))
-    print(i.inv(dim))
-    print()
-    print(abel.tab(dim))
-    print(abel.rev(dim))
-    i = reversion_wrapper(abel, dim)
-    print(i.tab(dim))
-    print(i.rev(dim))
 
-
-# https://stackoverflow.com/questions/47056059/best-way-to-add-attributes-to-a-python-function
+    print("TRI   ", f.tab(dim))
+    #print(abel.inv(dim))
+    i = inversion_wrapper(f, dim)
+    print("INV   ", i.tab(dim))
+    #print(i.inv(dim))
+    #print()
+    #print(abel.tab(dim))
+    #print(abel.rev(dim))
+    i = reversion_wrapper(f, dim)
+    print("REV   ", i.tab(dim))
+    #print(i.rev(dim))
+    i = revinv_wrapper(f, dim)
+    print("REVINV", i.tab(dim))
+    #print(i.rev(dim))
+    #print(i.inv(dim))
+    i = invrev_wrapper(f, dim)
+    if i != None:
+        print("INVREV", i.tab(dim))

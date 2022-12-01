@@ -1,6 +1,6 @@
 from tabltransform import row_poly, col_poly, flat_tabl
 from tablsums import tabl_sum, tabl_evensum, tabl_oddsum, tabl_altsum, tabl_cumsum, tabl_revcumsum, tabl_diagsum
-from tabltypes import tri, tabl, inversion_wrapper, reversion_wrapper
+from tabltypes import tri, tabl, inversion_wrapper, reversion_wrapper, revinv_wrapper
 
 
 # #@
@@ -68,6 +68,9 @@ def PrintExtendedProfile(T: tri, dim: int) -> None:
         PrintProfile(I, dim)
     R = reversion_wrapper(T, dim)
     PrintProfile(R, dim)
+    R = revinv_wrapper(T, dim)
+    if R != None:
+        PrintProfile(R, dim)
 
 
 
