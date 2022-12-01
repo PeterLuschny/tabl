@@ -2,9 +2,31 @@ from functools import cache
 from itertools import accumulate
 from sys import setrecursionlimit
 from typing import Callable, TypeAlias
-from sympy import Matrix
+from sympy import Matrix, Rational
 
 setrecursionlimit(2100)
+
+
+def isintegerinv(T: list[list[int]]) -> bool:
+    for row in T:
+        for k in row:
+            if type(k) == Rational:
+                return False
+    return True
+
+
+def InverseTriangle(r, dim: int) -> list[list[int]]:
+    M = [[r(n)[k] if k <= n else 0 for k in range(dim)] for n in range(dim)]
+    try:
+        I = Matrix(M) ** -1
+    except:  # NonInvertibleMatrixError
+        return []
+    T = [[I[n, k] for k in range(n + 1)] for n in range(dim)]
+    if not isintegerinv(T):
+        return []
+    return T
+
+
 """Type: table row"""
 trow: TypeAlias = list[int]
 """Type: table"""
@@ -32,8 +54,7 @@ def set_attributes(r: rgen, id: str, vert: bool = False) -> Callable[[tri], tri]
     def makeinv(dim: int) -> tabl:
         if not vert:
             return []
-        I = Matrix(makemat(dim)) ** -1
-        return [[I[n, k] for k in range(n + 1)] for n in range(dim)]
+        return InverseTriangle(r, dim)
 
     def wrapper(f: tri) -> tri:
         f.tab = maketab
@@ -54,7 +75,7 @@ def inversion_wrapper(T: tri, dim: int) -> tri | None:
     def _psgen(n: int) -> trow:
         return list(t[n])
 
-    @set_attributes(_psgen, "INV" + T.id, True)
+    @set_attributes(_psgen, T.id + "|INV", True)
     def psgen(n: int, k: int = -1) -> list[int] | int:
         if k == -1:
             return _psgen(n)
@@ -69,7 +90,7 @@ def reversion_wrapper(T: tri, dim: int) -> tri:
     def _rsgen(n: int) -> trow:
         return list(t[n])
 
-    @set_attributes(_rsgen, "REV" + T.id, True)
+    @set_attributes(_rsgen, T.id + "|REV", True)
     def rsgen(n: int, k: int = -1) -> list[int] | int:
         if k == -1:
             return _rsgen(n)
@@ -87,7 +108,7 @@ def revinv_wrapper(T: tri, dim: int) -> tri | None:
     def _rigen(n: int) -> trow:
         return list(T(n))
 
-    @set_attributes(_rigen, "REVINV" + T.id, True)
+    @set_attributes(_rigen, T.id + "|INV|REV", True)
     def rigen(n: int, k: int = -1) -> list[int] | int:
         if k == -1:
             return _rigen(n)
@@ -105,7 +126,7 @@ def invrev_wrapper(T: tri, dim: int) -> tri | None:
     def _tigen(n: int) -> trow:
         return list(T(n))
 
-    @set_attributes(_tigen, "INVREV" + T.id, True)
+    @set_attributes(_tigen, T.id + "|REV|INV", True)
     def tigen(n: int, k: int = -1) -> list[int] | int:
         if k == -1:
             return _tigen(n)
@@ -379,24 +400,43 @@ def Profile(T: tri, hor: int, ver: int) -> dict[str, list[int]]:
     return d
 
 
-def PrintProfile(T: tri, dim: int) -> None:
+counter: int = 0
+
+
+def PrintProfile(T: tri, dim: int, format: str) -> None:
     d: dict[str, list[int]] = Profile(T, dim // 2, dim // 4)
-    print(T.id)
-    for seq in d.items():
-        print(f"{seq[0]}, {seq[1]}")
-    print()
+    if format == "twolines":
+        for seq in d.items():
+            print(f"{T.id}|{seq[0]}\n{seq[1]}")
+    if format == "oneline":
+        print(T.id)
+        for seq in d.items():
+            print(f"|{seq[0]}, {seq[1]}")
+        print()
+    if format == "nonames":
+        global counter
+        for seq in d.items():
+            counter += 1
+            print(seq[1])
 
 
-def PrintExtendedProfile(T: tri, dim: int) -> None:
-    PrintProfile(T, dim)
+def PrintExtendedProfile(T: tri, dim: int, format: str) -> None:
+    PrintProfile(T, dim, format)
     I = inversion_wrapper(T, dim)
     if I != None:
-        PrintProfile(I, dim)
+        PrintProfile(I, dim, format)
     R = reversion_wrapper(T, dim)
-    PrintProfile(R, dim)
+    PrintProfile(R, dim, format)
     R = revinv_wrapper(T, dim)
     if R != None:
-        PrintProfile(R, dim)
+        PrintProfile(R, dim, format)
+    R = invrev_wrapper(T, dim)
+    if R != None:
+        PrintProfile(R, dim, format)
+
+    if format == "nonames":
+        global counter
+        print(counter, "sequences generated.")
 
 
 @cache

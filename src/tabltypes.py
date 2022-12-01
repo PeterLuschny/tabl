@@ -1,5 +1,5 @@
 from typing import Callable, TypeAlias
-from sympy import Matrix
+from tablinverse import InverseTriangle
 
 # #@
 
@@ -35,8 +35,7 @@ def set_attributes(r: rgen, id: str, vert: bool=False) -> Callable[[tri], tri]:
 
     def makeinv(dim: int) -> tabl:
         if not vert: return []
-        I = Matrix(makemat(dim)) ** -1
-        return [[I[n, k] for k in range(n + 1)] for n in range(dim)]
+        return InverseTriangle(r, dim)
 
     def wrapper(f: tri) -> tri:
         f.tab = maketab
@@ -54,7 +53,7 @@ def inversion_wrapper(T: tri, dim: int) -> tri | None:
     if t == []: return None
     def _psgen(n: int) -> trow: return list(t[n])
 
-    @set_attributes(_psgen, "INV" + T.id, True)
+    @set_attributes(_psgen, T.id + "|INV", True)
     def psgen(n: int, k: int = -1) -> list[int] | int:
         if k == -1: return _psgen(n)
         return _psgen(n)[k]
@@ -67,7 +66,7 @@ def reversion_wrapper(T: tri, dim: int) -> tri:
     t = T.rev(dim)
     def _rsgen(n: int) -> trow: return list(t[n]) 
 
-    @set_attributes(_rsgen, "REV" + T.id, True)
+    @set_attributes(_rsgen, T.id + "|REV", True)
     def rsgen(n: int, k: int = -1) -> list[int] | int:
         if k == -1: return _rsgen(n)
         return _rsgen(n)[k]
@@ -82,7 +81,7 @@ def revinv_wrapper(T: tri, dim: int) -> tri | None:
 
     def _rigen(n: int) -> trow: return list(T(n))
 
-    @set_attributes(_rigen, "REVINV" + T.id, True)
+    @set_attributes(_rigen, T.id + "|INV|REV", True)
     def rigen(n: int, k: int = -1) -> list[int] | int:
         if k == -1: return _rigen(n)
         return _rigen(n)[k]
@@ -97,7 +96,7 @@ def invrev_wrapper(T: tri, dim: int) -> tri | None:
 
     def _tigen(n: int) -> trow: return list(T(n))
 
-    @set_attributes(_tigen, "INVREV" + T.id, True)
+    @set_attributes(_tigen, T.id + "|REV|INV", True)
     def tigen(n: int, k: int = -1) -> list[int] | int:
         if k == -1: return _tigen(n)
         return _tigen(n)[k]
@@ -112,21 +111,24 @@ if __name__ == "__main__":
     f = laguerre
     dim = 6
 
-    print("TRI   ", f.tab(dim))
-    #print(abel.inv(dim))
-    i = inversion_wrapper(f, dim)
-    print("INV   ", i.tab(dim))
-    #print(i.inv(dim))
-    #print()
-    #print(abel.tab(dim))
-    #print(abel.rev(dim))
+    T = f.tab(dim)
+    print("TRI    ", T)
+
     i = reversion_wrapper(f, dim)
-    print("REV   ", i.tab(dim))
-    #print(i.rev(dim))
+    T = i.tab(dim)
+    print("REV    ", T)
+
+    i = inversion_wrapper(f, dim)
+    if i != None:
+        T = i.tab(dim)
+        print("INV    ", T)
+
     i = revinv_wrapper(f, dim)
-    print("REVINV", i.tab(dim))
-    #print(i.rev(dim))
-    #print(i.inv(dim))
+    if i != None:
+        T = i.tab(dim)
+        print("INV|REV", T)
+
     i = invrev_wrapper(f, dim)
     if i != None:
-        print("INVREV", i.tab(dim))
+        T = i.tab(dim)
+        print("REV|INV", T)

@@ -26,9 +26,12 @@ def SaveProfiles(seqonly: bool) -> None:
 
 
 for fun in tabl_fun:
+    dim = 20
+    format = 'twolines' # 'nonames'
+
     #PrintViews(fun)
-    #PrintProfile(fun, 20)
-    PrintExtendedProfile(fun, 20)
+    #PrintProfile(fun, dim, 'oneline')
+    PrintExtendedProfile(fun, dim, format)
 #   SaveTables()
 #   SaveProfiles(True)
 

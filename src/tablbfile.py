@@ -1,7 +1,7 @@
-from io import TextIOWrapper
-from datetime import date
-from typing import Callable
 import re
+from datetime import date
+from io import TextIOWrapper
+from typing import Callable
 
 
 def write_oeis_bfile(

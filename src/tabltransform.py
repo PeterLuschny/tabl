@@ -86,7 +86,6 @@ def flat_cumrev(t: tabl) -> trow:
 
 if __name__ == "__main__":
 
-    from tabltypes import rgen, tgen, seq, trow
     from Binomial import binomial
     from StirlingSet import stirling_set
     from StirlingCycle import stirling_cycle
@@ -119,7 +118,8 @@ if __name__ == "__main__":
     print(trans_seq(stirling_set, catalan_number, 11))
     print(invtrans_seq(stirling_set, catalan_number, 11))
 
-    S: tabl = motzkin(7)
+    S: tabl = motzkin.tab(7)
+    
     print(diag_tabl(T))
     print("---")
     print(diag_tabl(S))
@@ -139,19 +139,3 @@ if __name__ == "__main__":
     print(flat_cum(T))
     print(flat_revcum(T))
     print(flat_cumrev(T))
-
-
-"""
-Return the diagonal triangle T(n - k - 1, k) where k is in range((n + 1) // 2).
-
-python> print(diagonal_tabl(Motzkin(9)))   # A106489
-
-[1]
-[1]
-[2, 1]
-[4, 2]
-[9, 5, 1]
-[21, 12, 3]
-[51, 30, 9, 1]
-[127, 76, 25, 4]
-"""

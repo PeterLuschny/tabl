@@ -1,6 +1,6 @@
 from tabltransform import row_poly, col_poly, flat_tabl
 from tablsums import tabl_sum, tabl_evensum, tabl_oddsum, tabl_altsum, tabl_cumsum, tabl_revcumsum, tabl_diagsum
-from tabltypes import tri, tabl, inversion_wrapper, reversion_wrapper, revinv_wrapper
+from tabltypes import tri, tabl, inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
 
 
 # #@
@@ -52,25 +52,48 @@ def Profile(T: tri, hor: int, ver: int) -> dict[str, list[int]]:
     return d
 
 
-def PrintProfile(T: tri, dim: int) -> None:
+counter: int = 0
+
+def PrintProfile(T: tri, dim: int, format: str) -> None:
     d: dict[str, list[int]] = Profile(T, dim // 2, dim // 4)
 
-    print(T.id)
-    for seq in d.items():
-        print(f"{seq[0]}, {seq[1]}")
-    print()
+    if format == 'twolines':
+        for seq in d.items():
+            print(f"{T.id}|{seq[0]}\n{seq[1]}")
+
+    if format == 'oneline':
+        print(T.id)
+        for seq in d.items():
+            print(f"|{seq[0]}, {seq[1]}")
+        print()
+
+    if format == 'nonames':
+        global counter
+        for seq in d.items():
+            counter += 1
+            print(seq[1])
 
 
-def PrintExtendedProfile(T: tri, dim: int) -> None:
-    PrintProfile(T, dim)
+def PrintExtendedProfile(T: tri, dim: int, format: str) -> None:
+    PrintProfile(T, dim, format)
     I = inversion_wrapper(T, dim)
     if I != None:
-        PrintProfile(I, dim)
+        PrintProfile(I, dim, format)
+
     R = reversion_wrapper(T, dim)
-    PrintProfile(R, dim)
+    PrintProfile(R, dim, format)
+
     R = revinv_wrapper(T, dim)
     if R != None:
-        PrintProfile(R, dim)
+        PrintProfile(R, dim, format)
+
+    R = invrev_wrapper(T, dim)
+    if R != None:
+        PrintProfile(R, dim, format)
+    
+    if format == 'nonames':
+        global counter
+        print(counter, "sequences generated.")
 
 
 
@@ -80,5 +103,7 @@ if __name__ == "__main__":
     from Motzkin import motzkin
     from Leibniz import leibniz
 
-    PrintExtendedProfile(motzkin, 20)
-    PrintExtendedProfile(leibniz, 20)
+    dim = 20
+    format = 'twolines' # 'nonames'
+    PrintExtendedProfile(motzkin, dim, format)
+    PrintExtendedProfile(leibniz, dim, format)

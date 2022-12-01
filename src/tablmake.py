@@ -3,6 +3,7 @@ from os import getcwd
 from os.path import join, isfile
 
 tabl_files: list[str] = [
+    "tablinverse.py",
     "tabltypes.py",
     "tabltransform.py",
     "tablsums.py",
@@ -64,7 +65,7 @@ import_header: list[str] = [
     "from itertools import accumulate\n",
     "from sys import setrecursionlimit\n",
     "from typing import Callable, TypeAlias\n",
-    "from sympy import Matrix\n",
+    "from sympy import Matrix, Rational\n",
 ]
 
 dir: str = join(getcwd(), "src")
