@@ -1,5 +1,5 @@
 from typing import Callable, TypeAlias
-from tablinverse import InverseTriangle
+from _tablinverse import InverseTriangle
 
 # #@
 
@@ -81,7 +81,7 @@ def revinv_wrapper(T: tri, dim: int) -> tri | None:
 
     def _rigen(n: int) -> trow: return list(T(n))
 
-    @set_attributes(_rigen, T.id + "|INV|REV", True)
+    @set_attributes(_rigen, T.id, True)
     def rigen(n: int, k: int = -1) -> list[int] | int:
         if k == -1: return _rigen(n)
         return _rigen(n)[k]
@@ -96,7 +96,7 @@ def invrev_wrapper(T: tri, dim: int) -> tri | None:
 
     def _tigen(n: int) -> trow: return list(T(n))
 
-    @set_attributes(_tigen, T.id + "|REV|INV", True)
+    @set_attributes(_tigen, T.id, True)
     def tigen(n: int, k: int = -1) -> list[int] | int:
         if k == -1: return _tigen(n)
         return _tigen(n)[k]

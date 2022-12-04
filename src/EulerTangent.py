@@ -1,6 +1,6 @@
 from functools import cache
 from Binomial import binomial
-from tabltypes import set_attributes
+from _tabltypes import set_attributes
 
 """Euler tangent polynomials, A162660, A350972, A155585, A009006, A000182. 
 
@@ -38,7 +38,7 @@ def eulerT(n: int) -> int:
 
 
 if __name__ == "__main__":
-    from tabltest import TablTest
+    from _tabltest import TablTest
 
     TablTest(euler_tan, short=True)
 

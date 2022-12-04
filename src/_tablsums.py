@@ -1,8 +1,8 @@
 
 # #@
 
-from tabltypes import tabl, trow
-from tabltransform import diag_tabl, cum_tabl, rev_tabl
+from _tabltypes import tabl, trow
+from _tabltransforms import diag_tabl, cum_tabl, rev_tabl
 
 
 def even_sum(r: trow) -> int:

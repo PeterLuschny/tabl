@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_attributes
+from _tabltypes import set_attributes
 
 """Schroeder bilateral paths, A104684 (see also A063007).
 
@@ -35,6 +35,6 @@ def bilatpath(n: int, k: int = -1) -> list[int] | int:
 
 
 if __name__ == "__main__":
-    from tabltest import TablTest
+    from _tabltest import TablTest
 
     TablTest(bilatpath)

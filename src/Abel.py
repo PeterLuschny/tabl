@@ -1,6 +1,6 @@
 from functools import cache
 from Binomial import binomial
-from tabltypes import set_attributes
+from _tabltypes import set_attributes
 
 
 """Abel polynomials (unsigned coefficients), A061356
@@ -33,6 +33,6 @@ def abel(n: int, k: int = -1) -> list[int] | int:
 
 
 if __name__ == "__main__":
-    from tabltest import TablTest
+    from _tabltest import TablTest
 
     TablTest(abel, short=True)

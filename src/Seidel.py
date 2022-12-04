@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_attributes
+from _tabltypes import set_attributes
 
 """Seidel triangle, A008281 or A008280.
 
@@ -54,7 +54,7 @@ def seidel_boust(n: int, k: int = -1) -> list[int] | int:
 
 
 if __name__ == "__main__":
-    from tabltest import TablTest
+    from _tabltest import TablTest
 
     TablTest(seidel)
     TablTest(seidel_boust)

@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_attributes
+from _tabltypes import set_attributes
 
 """Central cycle factorial numbers, A269940, A259456
 
@@ -35,6 +35,6 @@ def cc_factorial(n: int, k: int = -1) -> list[int] | int:
 
 
 if __name__ == "__main__":
-    from tabltest import TablTest
+    from _tabltest import TablTest
 
     TablTest(cc_factorial)

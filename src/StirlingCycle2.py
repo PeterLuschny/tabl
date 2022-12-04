@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_attributes
+from _tabltypes import set_attributes
 
 """Stirling cycle numbers of second order, A008306, A106828.
 
@@ -38,6 +38,6 @@ def stirling_cycle2(n: int, k: int = -1) -> list[int] | int:
 
 
 if __name__ == "__main__":
-    from tabltest import TablTest
+    from _tabltest import TablTest
     
     TablTest(stirling_cycle2)

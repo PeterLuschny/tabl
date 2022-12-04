@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_attributes
+from _tabltypes import set_attributes
 
 """Symmetric polynomial, row k gives the (n-1)-st elementary of [k, k+1, k+2,..., k+n], A165675.
 
@@ -34,6 +34,6 @@ def sympoly(n: int, k: int = -1) -> list[int] | int:
 
 
 if __name__ == "__main__":
-    from tabltest import TablTest
+    from _tabltest import TablTest
 
     TablTest(sympoly)

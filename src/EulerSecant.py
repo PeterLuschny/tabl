@@ -1,6 +1,6 @@
 from functools import cache
 from Binomial import binomial 
-from tabltypes import set_attributes
+from _tabltypes import set_attributes
 
 """Euler secant polynomials, A119879, A081658, A153641. 
 
@@ -38,7 +38,7 @@ def eulerS(n: int) -> int:
 
 
 if __name__ == "__main__":
-    from tabltest import TablTest
+    from _tabltest import TablTest
 
     TablTest(euler_sec, short=True)
 

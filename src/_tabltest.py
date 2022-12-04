@@ -1,6 +1,6 @@
-from tablprint import PrintViews
+from _tablviews import PrintViews
 from sys import setrecursionlimit
-from tabltypes import tri
+from _tabltypes import tri
 
 
 def TablTest(T:tri, dim: int = 8, short: bool = False) -> None:

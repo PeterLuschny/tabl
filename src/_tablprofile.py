@@ -1,15 +1,16 @@
-from tabltransform import row_poly, col_poly, flat_tabl
-from tablsums import tabl_sum, tabl_evensum, tabl_oddsum, tabl_altsum, tabl_cumsum, tabl_revcumsum, tabl_diagsum
-from tabltypes import tri, tabl, inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
+from _tabltransforms import row_poly, col_poly, flat_tabl
+from _tablsums import tabl_sum, tabl_evensum, tabl_oddsum, tabl_altsum, tabl_cumsum, tabl_revcumsum, tabl_diagsum
+from _tabltypes import tri, tabl, inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
 
 
 # #@
 
 
-def Profile(T: tri, hor: int, ver: int) -> dict[str, list[int]]:
+def Profile(T: tri, hor: int = 10) -> dict[str, list[int]]:
 
     d: dict[str, list[int]] = {}
     t: tabl = T.tab(hor)
+    ver: int = hor // 2
 
     # Triangle flattened
     d["tabflt"] = flat_tabl(T.tab(6))
@@ -55,7 +56,8 @@ def Profile(T: tri, hor: int, ver: int) -> dict[str, list[int]]:
 counter: int = 0
 
 def PrintProfile(T: tri, dim: int, format: str) -> None:
-    d: dict[str, list[int]] = Profile(T, dim // 2, dim // 4)
+
+    d: dict[str, list[int]] = Profile(T, dim)
 
     if format == 'twolines':
         for seq in d.items():
@@ -75,19 +77,23 @@ def PrintProfile(T: tri, dim: int, format: str) -> None:
 
 
 def PrintExtendedProfile(T: tri, dim: int, format: str) -> None:
+    
+    tim: int = dim + dim // 2
+
     PrintProfile(T, dim, format)
-    I = inversion_wrapper(T, dim)
+
+    I = inversion_wrapper(T, tim)
     if I != None:
         PrintProfile(I, dim, format)
 
-    R = reversion_wrapper(T, dim)
+    R = reversion_wrapper(T, tim)
     PrintProfile(R, dim, format)
 
-    R = revinv_wrapper(T, dim)
+    R = revinv_wrapper(T, tim)
     if R != None:
         PrintProfile(R, dim, format)
 
-    R = invrev_wrapper(T, dim)
+    R = invrev_wrapper(T, tim)
     if R != None:
         PrintProfile(R, dim, format)
     
@@ -103,7 +109,11 @@ if __name__ == "__main__":
     from Motzkin import motzkin
     from Leibniz import leibniz
 
-    dim = 20
-    format = 'twolines' # 'nonames'
-    PrintExtendedProfile(motzkin, dim, format)
-    PrintExtendedProfile(leibniz, dim, format)
+    dim = 10
+    format = 'nonames' # 'twolines' #
+
+    #PrintProfile(leibniz, dim, 'twolines')
+    #PrintProfile(motzkin, dim, format)
+    PrintExtendedProfile(leibniz, dim, 'twolines')
+    #PrintExtendedProfile(motzkin, dim, format)
+

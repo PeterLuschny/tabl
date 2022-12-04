@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_attributes
+from _tabltypes import set_attributes
 
 """Euler triangle, A247453, A109449.
 
@@ -39,7 +39,7 @@ def euler_num(n: int) -> int:
     return _euler(n)[0]
 
 if __name__ == "__main__":
-    from tabltest import TablTest
+    from _tabltest import TablTest
 
     TablTest(euler)
 

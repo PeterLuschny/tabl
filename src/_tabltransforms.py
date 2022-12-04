@@ -1,5 +1,6 @@
 from itertools import accumulate
-from tabltypes import seq, tri, tabl, trow
+from _tabltypes import seq, tri, tabl, trow
+
 
 # #@
 

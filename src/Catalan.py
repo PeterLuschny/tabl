@@ -1,6 +1,6 @@
 from functools import cache
 from itertools import accumulate
-from tabltypes import set_attributes
+from _tabltypes import set_attributes
 
 
 """Catalan triangle, Fuss-Catalan 1, A355173.
@@ -34,6 +34,6 @@ def catalan(n: int, k:int = -1) -> list[int] | int:
 
 
 if __name__ == "__main__":
-    from tabltest import TablTest
+    from _tabltest import TablTest
 
     TablTest(catalan)

@@ -1,6 +1,6 @@
 from functools import cache
 from itertools import accumulate
-from tabltypes import set_attributes
+from _tabltypes import set_attributes
 
 """Partition numbers (Euler's table), A008284, A026820, A000041.
 
@@ -62,7 +62,7 @@ def partnum_atmost(n: int, k: int = -1) -> list[int] | int:
 
 
 if __name__ == "__main__":
-    from tabltest import TablTest
+    from _tabltest import TablTest
 
     TablTest(partnum_exact)
     TablTest(partnum_atmost)

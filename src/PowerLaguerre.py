@@ -1,5 +1,5 @@
 from functools import cache
-from tabltypes import set_attributes
+from _tabltypes import set_attributes
 
 
 """Expansion of x^n in terms of Laguerre (unsigned), A196347, A021012.
@@ -34,6 +34,6 @@ def powlag(n: int, k: int = -1) -> list[int] | int:
 
 
 if __name__ == "__main__":
-    from tabltest import TablTest
+    from _tabltest import TablTest
 
     TablTest(powlag)

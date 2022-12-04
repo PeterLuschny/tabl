@@ -1,6 +1,6 @@
 from functools import cache
 from itertools import accumulate
-from tabltypes import set_attributes
+from _tabltypes import set_attributes
 
 """Ternary trees, Fuss-Catalan 2, A355172.
 
@@ -33,6 +33,6 @@ def ternary_tree(n: int, k: int = -1) -> list[int] | int:
 
 
 if __name__ == "__main__":
-    from tabltest import TablTest
+    from _tabltest import TablTest
 
     TablTest(ternary_tree)

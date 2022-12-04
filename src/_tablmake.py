@@ -3,12 +3,13 @@ from os import getcwd
 from os.path import join, isfile
 
 tabl_files: list[str] = [
-    "tablinverse.py",
-    "tabltypes.py",
-    "tabltransform.py",
-    "tablsums.py",
-    "tablprint.py",
-    "tablprofile.py",
+    "_tablinverse.py",
+    "_tabltypes.py",
+    "_tabltransforms.py",
+    "_tablsums.py",
+    "_tablviews.py",
+    "_tablprofile.py",
+    "_tablexport.py",
     "Abel.py",
     "Bell.py",
     "Bessel.py",
@@ -65,6 +66,8 @@ import_header: list[str] = [
     "from itertools import accumulate\n",
     "from sys import setrecursionlimit\n",
     "from typing import Callable, TypeAlias\n",
+    "from io import TextIOWrapper\n",
+    "import contextlib\n",
     "from sympy import Matrix, Rational\n",
 ]
 
@@ -159,6 +162,6 @@ tabl_fun: list[tgen] = [
     ward_set,
     worpitzky,
 ]\n'''.format()
-dest.write(s)
 
+dest.write(s)
 dest.close()
