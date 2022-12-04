@@ -1,4 +1,6 @@
-from tabl import PrintViews, PrintExtendedProfile, PrintProfile,  SaveExtendedProfiles, SaveProfiles, SaveTables, sortfile, tabl_fun
+from codetiming import Timer
+
+from tabl import PrintViews, PrintExtendedProfile, PrintProfile,  SaveExtendedProfiles, SaveProfiles, SaveTables, SaveExtendedTables, sortfile, tabl_fun
 
 
 if __name__ == "__main__":
@@ -28,4 +30,11 @@ if __name__ == "__main__":
         SaveExtendedProfiles()
         sortfile()
 
-    test1()
+    '''About 12000 meaningful sequences in less than 4 seconds.'''
+    @Timer()
+    def time_me() -> None:
+        SaveExtendedTables()
+
+    #test1()
+    time_me()
+

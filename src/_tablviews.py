@@ -1,4 +1,3 @@
-from typing import Literal
 from _tablsums import tabl_sum, tabl_evensum, tabl_oddsum, tabl_altsum, tabl_cumsum, tabl_revcumsum, tabl_diagsum
 from _tabltransforms import flat_tabl, flat_rev, flat_diag, flat_cum, flat_revcum, flat_cumrev, row_poly, col_poly
 from _tabltypes import tri, tabl
@@ -73,41 +72,40 @@ def PrintFlats(t: tabl) -> None:
     print(f'| diag     | {flat_diag(t)} |')
 
 
-def PrintViews(T: tri, rows: int = 7, cono: int | None = None, 
-    verbose: bool = True) -> None:
+def PrintViews(T: tri, rows: int = 7, verbose: bool = True) -> None:
 
-    print("# " + T.__name__)
+    print("# " + T.id)
 
-    cols: int = rows if cono is None else cono
+    cols: int = rows 
     print()
 
     t: tabl = T.tab(rows)
 
-    if verbose: print("Triangle view")
+    if verbose: print(T.id, "Triangle view")
     PrintRows(t)
     print()
 
-    if verbose: print("Flattened seqs")
+    if verbose: print(T.id, "Flattened seqs")
     PrintFlats(t)
     print()
 
-    if verbose: print("Row sums")
+    if verbose: print(T.id, "Row sums")
     PrintSums(t)
     print()
 
-    if verbose: print("Diagonals as rows")
+    if verbose: print(T.id, "Diagonals as rows")
     PrintRowArray(T, rows, cols)
     print()
 
-    if verbose: print("Diagonals as columns")
+    if verbose: print(T.id, "Diagonals as columns")
     PrintColArray(T, rows, cols)
     print()
 
-    if verbose: print("Polynomial values as rows")
+    if verbose: print(T.id, "Polynomial values as rows")
     PrintRowPolyArray(T, rows, cols)
     print()
 
-    if verbose: print("Polynomial values as columns")
+    if verbose: print(T.id, "Polynomial values as columns")
     PrintColPolyArray(T, rows, cols)
     print()
 
@@ -117,4 +115,3 @@ if __name__ == "__main__":
     from Abel import abel
 
     PrintViews(abel)
-

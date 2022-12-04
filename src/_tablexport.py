@@ -3,11 +3,10 @@ from io import TextIOWrapper
 from _tablprofile import PrintExtendedProfile, PrintProfile, Profile
 from _tablviews import PrintViews
 from _tabltypes import tri, inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
-#from tabl import tabl_fun
+from tabl import tabl_fun # <- this is tricky
 
 
 # #@
-
 
 def sortfile() -> None:
     inpath = 'profiles.csv'
@@ -21,12 +20,38 @@ def sortfile() -> None:
                 outfile.write(line)
 
 
-def SaveTables() -> None:
+def SaveTables(dim: int = 7) -> None:
     path = 'tables.md'
     with open(path, 'w+') as dest:
         with contextlib.redirect_stdout(dest):
             for fun in tabl_fun:
-                PrintViews(fun)
+                PrintViews(fun, dim)
+
+
+def SaveExtendedTables(dim: int = 7) -> None:
+
+    tim: int = dim + dim 
+    path = 'tables.md'
+
+    with open(path, 'w+') as dest:
+        with contextlib.redirect_stdout(dest):
+            for fun in tabl_fun:
+                PrintViews(fun, dim)
+
+                I = inversion_wrapper(fun, tim)
+                if I != None:
+                    PrintViews(I, dim)
+
+                R = reversion_wrapper(fun, tim)
+                PrintViews(R, dim)
+
+                R = revinv_wrapper(fun, tim)
+                if R != None:
+                    PrintViews(R, dim)
+
+                R = invrev_wrapper(fun, tim)
+                if R != None:
+                    PrintViews(R, dim)
 
 
 def WriteProfile(dest: TextIOWrapper, fun: tri, dim: int, seqonly: bool) -> None:
@@ -90,8 +115,8 @@ if __name__ == "__main__":
 
 
     def test2() -> None:
-        SaveTables()
-        #SaveExtendedTables()
+        #SaveTables()
+        SaveExtendedTables()
 
 
     def test3() -> None:
@@ -102,4 +127,6 @@ if __name__ == "__main__":
         SaveExtendedProfiles()
         sortfile()
 
-    test3()
+    print("... bussy")
+    test2()
+    print("Done!")

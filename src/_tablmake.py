@@ -109,7 +109,7 @@ for src in tabl_files:
 
 
 s: str = '''\
-tabl_fun: list[tgen] = [
+tabl_fun: list[tri] = [
     abel,
     bell,
     bessel,
