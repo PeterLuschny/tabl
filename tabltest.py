@@ -1,11 +1,16 @@
 from codetiming import Timer
-
-from tabl import PrintViews, PrintExtendedProfile, PrintProfile,  SaveExtendedProfiles, SaveProfiles, SaveTables, SaveExtendedTables, sortfile, tabl_fun
+from pathlib import Path
+from tabl import PrintViews, PrintExtendedProfile, PrintProfile, SaveExtendedProfiles, SaveProfiles, SaveTables, SaveExtendedTables, sortfile, tabl_fun
 
 
 if __name__ == "__main__":
 
-# 4239 1960
+    path = Path(__file__).parent
+    relprofpath = 'data/profiles.csv'
+    relsortpath = 'data/sortedprofiles.csv'
+    propath = (path / relprofpath).resolve()
+    sorpath = (path / relsortpath).resolve()
+
 
     def test1() -> None:
         dim = 10
@@ -24,17 +29,19 @@ if __name__ == "__main__":
 
     def test3() -> None:
 
-        #SaveProfiles(True)
-        #sortfile()
+        SaveProfiles(propath)
+        sortfile(propath, sorpath)
 
-        SaveExtendedProfiles()
-        sortfile()
+        #SaveExtendedProfiles(propath)
+        #sortfile(propath, sorpath)
 
-    '''About 12000 meaningful sequences in less than 4 seconds.'''
+        print("The profiles are in", propath)
+
     @Timer()
     def time_me() -> None:
         SaveExtendedTables()
+    # time_me()
 
-    #test1()
-    time_me()
-
+    print("... bussy")
+    test3()
+    print("Done")
