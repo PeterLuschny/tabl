@@ -2,15 +2,34 @@ import csv
 from pathlib import Path
 
 '''
-We say two sequences are 'essentially equal' if there is a neighborhood of infinity where they agree. By a sequence, we mean a strictly ordered infinite set S = [a, b, c, d, ...]. 
+We say two sequences are 'essentially equal' if there is a 
+neighborhood of infinity where they agree. By a sequence, we
+mean a strictly ordered infinite set S = [a, b, c, d, ...]. 
 
-A sequence doesn't have an 'offset' or anything like that, but when we index it, we start at 0. This also applies to sequences in the OEIS, where we ignore everything that is said there about offset.
+A sequence doesn't have an 'offset' or anything like that, 
+and when we index it, we start at 0. This also applies to 
+sequences in the OEIS, where we ignore everything that is 
+said there about offset.
 
-We say two sequences are 'absolutely essentially equal' if the sequences of their absolute values are 'essentially equal'. In the following, we will always understand comparisons in the absolute sense and write a ~= b if two sequences are absolutely essentially equal.
+We say two sequences are 'absolutely essentially equal' if 
+the sequences of their absolute values are 'essentially equal'. 
+In the following, we will always understand comparisons in 
+the absolute sense and write a ~= b if two sequences are 
+absolutely essentially equal.
 
-We use the following algorithm to decide if two sequences are '~='. Given two sequences s and t, the function 'ess_equal' returns a pair of integers (n, k) such that, after cutting the first n items from s and k items from t, the remaining sequences are equal; or (-1, -1) if there is no such pair. By convention, we look for the smallest n and k, which meet this requirement, although this is irrelevant to the criterion. 
+We use the following algorithm to decide if two sequences 
+are '~='. Given two sequences s and t, the function 'ess_equal' 
+returns a pair of integers (n, k) such that, after cutting the
+first n items from s and the first k items from t, the remaining
+sequences are equal; or (-1, -1) if there is no such pair. 
+By convention, we look for the smallest n and k, which meet this
+requirement, although this is irrelevant to the criterion. 
 
-But there is one necessary restriction: since the search algorithm must be finite, the statement is relative to a constant K up to which the terms of the sequences are compared. In this sense, it is always only an conjecture that the sequences are essentially equal in the sense of the criterion.
+But there is one necessary restriction: since the search 
+algorithm must be finite, the statement is relative to a 
+constant K up to which the terms of the sequences are compared. 
+In this sense, it is always only a conjecture that the sequences 
+are essentially equal.
 '''
 def ess_equal(s: list[int], t: list[int]) -> list:
 

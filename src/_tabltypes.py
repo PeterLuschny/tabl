@@ -1,5 +1,5 @@
 from typing import Callable, TypeAlias
-from _tablinverse import InverseTriangle
+from _tablinverse import InverseTriangle, InverseTabl
 
 # #@
 
@@ -20,31 +20,6 @@ tgen: TypeAlias = Callable[[int], tabl]
 
 """Type: triangle"""
 tri: TypeAlias = Callable[[int, int], trow | int]
-
-
-def set_attributes(r: rgen, id: str, vert: bool=False) -> Callable[[tri], tri]:
-
-    def maketab(dim: int) -> tabl:
-        return [list(r(n)) for n in range(dim)]
-
-    def makerev(dim: int) -> tabl:
-        return [list(reversed(r(n))) for n in range(dim)]
-
-    def makemat(dim: int) -> tabl:
-        return [[r(n)[k] if k <= n else 0 for k in range(dim)] for n in range(dim)]
-
-    def makeinv(dim: int) -> tabl:
-        if not vert: return []
-        return InverseTriangle(r, dim)
-
-    def wrapper(f: tri) -> tri:
-        f.tab = maketab
-        f.rev = makerev
-        f.mat = makemat
-        f.inv = makeinv
-        f.id = id
-        return f
-    return wrapper
 
 
 def inversion_wrapper(T: tri, dim: int) -> tri | None:
@@ -73,6 +48,7 @@ def reversion_wrapper(T: tri, dim: int) -> tri:
 
     return rsgen
 
+
 def revinv_wrapper(T: tri, dim: int) -> tri | None:
 
     I = inversion_wrapper(T, dim)
@@ -87,6 +63,7 @@ def revinv_wrapper(T: tri, dim: int) -> tri | None:
         return _rigen(n)[k]
 
     return rigen
+
 
 def invrev_wrapper(T: tri, dim: int) -> tri | None:
 
@@ -104,12 +81,52 @@ def invrev_wrapper(T: tri, dim: int) -> tri | None:
     return tigen
 
 
-if __name__ == "__main__":
-    from Abel import abel
-    from Laguerre import laguerre
+def set_attributes(r: rgen, id: str, vert: bool=False) -> Callable[[tri], tri]:
 
-    f = laguerre
+    def maketab(dim: int) -> tabl:
+        return [list(r(n)) for n in range(dim)]
+
+    def makerev(dim: int) -> tabl:
+        return [list(reversed(r(n))) for n in range(dim)]
+
+    def makemat(dim: int) -> tabl:
+        return [[r(n)[k] if k <= n else 0 for k in range(dim)] for n in range(dim)]
+
+    def makeinv(dim: int) -> tabl:
+        if not vert: return []
+        return InverseTriangle(r, dim)
+
+    def makerevinv(dim: int) -> tabl:
+        if not vert: return []
+        I = InverseTriangle(r, dim)
+        return [[I[n][n - k] for k in range(n + 1)] for n in range(dim)]
+
+    def makeinvrev(dim: int) -> tabl:
+        R = [list(reversed(r(n))) for n in range(dim)]
+        M = [[R[n][k] if k <= n else 0 for k in range(dim)] for n in range(dim)]
+        return InverseTabl(M)
+
+    def wrapper(f: tri) -> tri:
+        f.tab = maketab
+        f.rev = makerev
+        f.mat = makemat
+        f.inv = makeinv
+        f.revinv = makerevinv
+        f.invrev = makeinvrev
+        f.id = id
+        return f
+    return wrapper
+
+
+if __name__ == "__main__":
+
+    from StirlingSet import stirling_set
+    from Delannoy import delannoy
+
+    f = stirling_set
+    g = delannoy
     dim = 6
+
 
     T = f.tab(dim)
     print("TRI    ", T)
@@ -123,12 +140,47 @@ if __name__ == "__main__":
         T = i.tab(dim)
         print("INV    ", T)
 
+
+    print("Stirling +++++++++++++++++")
+
     i = revinv_wrapper(f, dim)
     if i != None:
         T = i.tab(dim)
         print("INV|REV", T)
+    else:
+        print("None")
+
+    print("#", f.revinv(dim))
+
+    print("---")
 
     i = invrev_wrapper(f, dim)
     if i != None:
         T = i.tab(dim)
         print("REV|INV", T)
+    else:
+        print("None")
+
+    print("#", f.invrev(dim))
+
+    print("Delannoy +++++++++++++++++")
+
+    i = revinv_wrapper(g, dim)
+    if i != None:
+        T = i.tab(dim)
+        print("INV|REV", T)
+    else:
+        print("None")
+
+    print("#", g.revinv(dim))
+
+    print("---")
+
+    i = invrev_wrapper(g, dim)
+    if i != None:
+        T = i.tab(dim)
+        print("REV|INV", T)
+    else:
+        print("None")
+
+    print("#", g.invrev(dim))

@@ -8,6 +8,10 @@ def PrintTabl(t: tabl) -> None:
     print(t)
 
 
+def PrintFlat(t: tabl) -> None:
+    print(flat_tabl(t))
+
+
 def PrintRows(t: tabl) -> None:
     print("| trow  |  list  |")
     print("| :---  |  :---  |")
@@ -16,9 +20,11 @@ def PrintRows(t: tabl) -> None:
 
 
 def PrintTerms(t: tabl) -> None:
+    count = 0
     for n, row in enumerate(t):
         for k, term in enumerate(row):
-            print([n, k], term)
+            print(count, [n, k], term)
+            count += 1
 
 
 def PrintRowArray(T: tri, rows: int, cols: int) -> None:

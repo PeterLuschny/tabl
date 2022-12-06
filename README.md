@@ -22,7 +22,9 @@ def isTablGenerator(
 ```
 
 ## docs
-See the tables.md for the sequences generated from the tables.
+See the tables.md for the tables generated from the sequences.
+
+The notebook gives a first introduction for the user.
 
 ## install
 python -m pip install "tabl @ git+https://github.com/PeterLuschny/tabl.git"

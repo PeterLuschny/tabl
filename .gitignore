@@ -3,5 +3,6 @@ docs/
 data/
 __pycache__/
 _pycache_/
+.vscode
 .gitignore
-tabl.code-workspace
+
