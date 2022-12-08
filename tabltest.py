@@ -1,6 +1,6 @@
 from codetiming import Timer
 from pathlib import Path
-from tabl import PrintViews, PrintExtendedProfile, PrintProfile, SaveExtendedProfiles, SaveProfiles, SaveTables, SaveExtendedTables, sortfile, tabl_fun
+from tabl import PrintViews, PrintExtendedProfile, PrintProfile, SaveExtendedProfiles, SaveProfiles, SaveTables, SaveExtendedTables, sortfile, tabl_fun, SimilarTriangles
 
 
 if __name__ == "__main__":
@@ -37,11 +37,19 @@ if __name__ == "__main__":
 
         print("The profiles are in", propath)
 
-    @Timer()
-    def time_me() -> None:
-        SaveExtendedTables()
+    def test4() -> None:
+        path = Path(__file__).parent
+        relshortdatapath = 'data/short_data.csv'
+        shortdatapath = (path / relshortdatapath).resolve()
+        SimilarTriangles(shortdatapath)
+
+    test4()
+
+    #@Timer()
+    #def time_me() -> None:
+    #    SaveExtendedTables()
     # time_me()
 
-    print("... bussy")
-    test3()
-    print("Done")
+    #print("... bussy")
+    #test3()
+    #print("Done")
