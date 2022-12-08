@@ -1,5 +1,5 @@
 from _tablsums import tabl_sum, tabl_evensum, tabl_oddsum, tabl_altsum, tabl_cumsum, tabl_revcumsum, tabl_diagsum
-from _tabltransforms import flat_tabl, flat_rev, flat_diag, flat_cum, flat_revcum, flat_cumrev, row_poly, col_poly
+from _tabltransforms import flat_tabl, flat_rev, flat_diag, flat_accu, flat_revaccu, flat_accurev, row_poly, col_poly
 from _tabltypes import tri, tabl
 
 # #@
@@ -72,9 +72,9 @@ def PrintFlats(t: tabl) -> None:
     print("| :---      |  :---  |")
     print(f'| tabl     | {flat_tabl(t)} |')
     print(f'| rev      | {flat_rev(t)} |')
-    print(f'| cum      | {flat_cum(t)} |')
-    print(f'| revcum   | {flat_revcum(t)} |')
-    print(f'| cumrev   | {flat_cumrev(t)} |')
+    print(f'| cum      | {flat_accu(t)} |')
+    print(f'| revcum   | {flat_revaccu(t)} |')
+    print(f'| cumrev   | {flat_accurev(t)} |')
     print(f'| diag     | {flat_diag(t)} |')
 
 

@@ -3,7 +3,9 @@ from itertools import accumulate
 from sys import setrecursionlimit
 from typing import Callable, TypeAlias
 from io import TextIOWrapper
+from pathlib import Path
 import contextlib
+import csv
 from sympy import Matrix, Rational
 setrecursionlimit(2100)
 def isintegerinv(T: list[list[int]]) -> bool:
@@ -128,7 +130,7 @@ def diag_tabl(t: tabl) -> tabl:
             R.append(t[n - k - 1][k])
         U.append(R)
     return U
-def cum_tabl(t: tabl) -> tabl:
+def accu_tabl(t: tabl) -> tabl:
     U: tabl = []
     for row in t:
         U.append(list(accumulate(row)))
@@ -138,22 +140,22 @@ def rev_tabl(t: tabl) -> tabl:
     for row in t:
         U.append(list(reversed(row)))
     return U
-def revcum_tabl(t: tabl) -> tabl:
-    return rev_tabl(cum_tabl(t))
-def cumrev_tabl(t: tabl) -> tabl:
-    return cum_tabl(rev_tabl(t))
+def revaccu_tabl(t: tabl) -> tabl:
+    return rev_tabl(accu_tabl(t))
+def accurev_tabl(t: tabl) -> tabl:
+    return accu_tabl(rev_tabl(t))
 def flat_tabl(t: tabl) -> trow:
     return [i for row in t for i in row]
 def flat_rev(t: tabl) -> trow:
     return [i for row in rev_tabl(t) for i in row]
 def flat_diag(t: tabl) -> trow:
     return [i for row in diag_tabl(t) for i in row]
-def flat_cum(t: tabl) -> trow:
-    return [i for row in cum_tabl(t) for i in row]
-def flat_revcum(t: tabl) -> trow:
-    return [i for row in revcum_tabl(t) for i in row]
-def flat_cumrev(t: tabl) -> trow:
-    return [i for row in cumrev_tabl(t) for i in row]
+def flat_accu(t: tabl) -> trow:
+    return [i for row in accu_tabl(t) for i in row]
+def flat_revaccu(t: tabl) -> trow:
+    return [i for row in revaccu_tabl(t) for i in row]
+def flat_accurev(t: tabl) -> trow:
+    return [i for row in accurev_tabl(t) for i in row]
 def even_sum(r: trow) -> int:
     return sum(r[::2])
 def odd_sum(r: trow) -> int:
@@ -172,10 +174,10 @@ def tabl_diagsum(t: tabl) -> trow:
     diagt: tabl = diag_tabl(t)
     return [sum(row) for row in diagt]
 def tabl_cumsum(t: tabl) -> trow:
-    cumt: tabl = cum_tabl(t)
+    cumt: tabl = accu_tabl(t)
     return [sum(row) for row in cumt]
 def tabl_revcumsum(t: tabl) -> trow:
-    revcumt: tabl = cum_tabl(rev_tabl(t))
+    revcumt: tabl = accu_tabl(rev_tabl(t))
     return [sum(row) for row in revcumt]
 def PrintTabl(t: tabl) -> None:
     print(t)
@@ -227,9 +229,9 @@ def PrintFlats(t: tabl) -> None:
     print("| :---      |  :---  |")
     print(f'| tabl     | {flat_tabl(t)} |')
     print(f'| rev      | {flat_rev(t)} |')
-    print(f'| cum      | {flat_cum(t)} |')
-    print(f'| revcum   | {flat_revcum(t)} |')
-    print(f'| cumrev   | {flat_cumrev(t)} |')
+    print(f'| cum      | {flat_accu(t)} |')
+    print(f'| revcum   | {flat_revaccu(t)} |')
+    print(f'| cumrev   | {flat_accurev(t)} |')
     print(f'| diag     | {flat_diag(t)} |')
 def PrintViews(T: tri, rows: int = 7, verbose: bool = True) -> None:
     print("# " + T.id)
@@ -329,67 +331,6 @@ def PrintExtendedProfile(T: tri, dim: int, format: str) -> None:
     if format == 'nonames':
         global counter
         print(counter, "sequences generated.")
-def sortfile(inpath, outpath) -> None:
-    with open(inpath, 'r') as infile:
-        with open(outpath, 'w') as outfile:
-            inlines = infile.readlines()
-            outlines = sorted(set(inlines))
-            for line in outlines:
-                outfile.write(line)
-def SaveTables(dim: int = 7) -> None:
-    path = 'tables.md'
-    with open(path, 'w+') as dest:
-        with contextlib.redirect_stdout(dest):
-            for fun in tabl_fun:
-                PrintViews(fun, dim)
-def SaveExtendedTables(dim: int = 7) -> None:
-    tim: int = dim + dim 
-    path = 'tables.md'
-    with open(path, 'w+') as dest:
-        with contextlib.redirect_stdout(dest):
-            for fun in tabl_fun:
-                PrintViews(fun, dim)
-                I = inversion_wrapper(fun, tim)
-                if I != None:
-                    PrintViews(I, dim)
-                R = reversion_wrapper(fun, tim)
-                PrintViews(R, dim)
-                R = revinv_wrapper(fun, tim)
-                if R != None:
-                    PrintViews(R, dim)
-                R = invrev_wrapper(fun, tim)
-                if R != None:
-                    PrintViews(R, dim)
-def WriteProfile(dest: TextIOWrapper, fun: tri, dim: int = 10, seqonly: bool = True) -> None:
-    p: dict[str, list[int]] = Profile(fun, dim)
-    id: str = fun.id
-    for seq in p.items():
-        if seqonly:
-            dest.write(f"{seq[1]}\n")
-        else:
-            dest.write(f"{seq[1]},{seq[0]},{id}\n")
-def SaveProfiles(path: str, dim: int = 10, seqonly: bool = True) -> None:
-    dest: TextIOWrapper = open(path, 'w+')
-    for fun in tabl_fun:
-        WriteProfile(dest, fun, dim, seqonly)
-    dest.close()
-def SaveExtendedProfiles(path: str, dim: int = 10, seqonly: bool = True) -> None:
-    dest: TextIOWrapper = open(path, 'w+')
-    tim: int = dim + dim // 2
-    for fun in tabl_fun:
-        WriteProfile(dest, fun, dim, seqonly)
-        I = inversion_wrapper(fun, tim)
-        if I != None:
-            WriteProfile(dest, I, dim, seqonly)
-        R = reversion_wrapper(fun, tim)
-        WriteProfile(dest, R, dim, seqonly)
-        R = revinv_wrapper(fun, tim)
-        if R != None:
-            WriteProfile(dest, R, dim, seqonly)
-        R = invrev_wrapper(fun, tim)
-        if R != None:
-            WriteProfile(dest, R, dim, seqonly)
-    dest.close()
 @cache
 def _abel(n: int) -> list[int]:
     if n == 0:
@@ -1112,3 +1053,64 @@ tabl_fun: list[tri] = [
     ward_set,
     worpitzky,
 ]
+def sortfile(inpath, outpath) -> None:
+    with open(inpath, 'r') as infile:
+        with open(outpath, 'w') as outfile:
+            inlines = infile.readlines()
+            outlines = sorted(set(inlines))
+            for line in outlines:
+                outfile.write(line)
+def SaveTables(dim: int = 7) -> None:
+    path = 'tables.md'
+    with open(path, 'w+') as dest:
+        with contextlib.redirect_stdout(dest):
+            for fun in tabl_fun:
+                PrintViews(fun, dim)
+def SaveExtendedTables(dim: int = 7) -> None:
+    tim: int = dim + dim 
+    path = 'tables.md'
+    with open(path, 'w+') as dest:
+        with contextlib.redirect_stdout(dest):
+            for fun in tabl_fun:
+                PrintViews(fun, dim)
+                I = inversion_wrapper(fun, tim)
+                if I != None:
+                    PrintViews(I, dim)
+                R = reversion_wrapper(fun, tim)
+                PrintViews(R, dim)
+                R = revinv_wrapper(fun, tim)
+                if R != None:
+                    PrintViews(R, dim)
+                R = invrev_wrapper(fun, tim)
+                if R != None:
+                    PrintViews(R, dim)
+def WriteProfile(dest: TextIOWrapper, fun: tri, dim: int = 10, seqonly: bool = True) -> None:
+    p: dict[str, list[int]] = Profile(fun, dim)
+    id: str = fun.id
+    for seq in p.items():
+        if seqonly:
+            dest.write(f"{seq[1]}\n")
+        else:
+            dest.write(f"{seq[1]},{seq[0]},{id}\n")
+def SaveProfiles(path: str, dim: int = 10, seqonly: bool = True) -> None:
+    dest: TextIOWrapper = open(path, 'w+')
+    for fun in tabl_fun:
+        WriteProfile(dest, fun, dim, seqonly)
+    dest.close()
+def SaveExtendedProfiles(path: str, dim: int = 10, seqonly: bool = True) -> None:
+    dest: TextIOWrapper = open(path, 'w+')
+    tim: int = dim + dim // 2
+    for fun in tabl_fun:
+        WriteProfile(dest, fun, dim, seqonly)
+        I = inversion_wrapper(fun, tim)
+        if I != None:
+            WriteProfile(dest, I, dim, seqonly)
+        R = reversion_wrapper(fun, tim)
+        WriteProfile(dest, R, dim, seqonly)
+        R = revinv_wrapper(fun, tim)
+        if R != None:
+            WriteProfile(dest, R, dim, seqonly)
+        R = invrev_wrapper(fun, tim)
+        if R != None:
+            WriteProfile(dest, R, dim, seqonly)
+    dest.close()

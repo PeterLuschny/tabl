@@ -39,7 +39,7 @@ def diag_tabl(t: tabl) -> tabl:
     return U
 
 
-def cum_tabl(t: tabl) -> tabl:
+def accu_tabl(t: tabl) -> tabl:
     U: tabl = []
     for row in t:
         U.append(list(accumulate(row)))
@@ -53,12 +53,12 @@ def rev_tabl(t: tabl) -> tabl:
     return U
 
 
-def revcum_tabl(t: tabl) -> tabl:
-    return rev_tabl(cum_tabl(t))
+def revaccu_tabl(t: tabl) -> tabl:
+    return rev_tabl(accu_tabl(t))
 
 
-def cumrev_tabl(t: tabl) -> tabl:
-    return cum_tabl(rev_tabl(t))
+def accurev_tabl(t: tabl) -> tabl:
+    return accu_tabl(rev_tabl(t))
 
 
 def flat_tabl(t: tabl) -> trow:
@@ -73,16 +73,16 @@ def flat_diag(t: tabl) -> trow:
     return [i for row in diag_tabl(t) for i in row]
 
 
-def flat_cum(t: tabl) -> trow:
-    return [i for row in cum_tabl(t) for i in row]
+def flat_accu(t: tabl) -> trow:
+    return [i for row in accu_tabl(t) for i in row]
 
 
-def flat_revcum(t: tabl) -> trow:
-    return [i for row in revcum_tabl(t) for i in row]
+def flat_revaccu(t: tabl) -> trow:
+    return [i for row in revaccu_tabl(t) for i in row]
 
 
-def flat_cumrev(t: tabl) -> trow:
-    return [i for row in cumrev_tabl(t) for i in row]
+def flat_accurev(t: tabl) -> trow:
+    return [i for row in accurev_tabl(t) for i in row]
 
 
 if __name__ == "__main__":
@@ -125,9 +125,9 @@ if __name__ == "__main__":
     print("---")
     print(diag_tabl(S))
     print("---")
-    print(cum_tabl(T))
+    print(accu_tabl(T))
     print("---")
-    print(cum_tabl(S))
+    print(accu_tabl(S))
     print("---")
     print(rev_tabl(T))
     print("---")
@@ -137,6 +137,6 @@ if __name__ == "__main__":
     print(flat_tabl(T))
     print(flat_rev(T))
     print(flat_diag(T))
-    print(flat_cum(T))
-    print(flat_revcum(T))
-    print(flat_cumrev(T))
+    print(flat_accu(T))
+    print(flat_revaccu(T))
+    print(flat_accurev(T))

@@ -2,7 +2,7 @@
 # #@
 
 from _tabltypes import tabl, trow
-from _tabltransforms import diag_tabl, cum_tabl, rev_tabl
+from _tabltransforms import diag_tabl, accu_tabl, rev_tabl
 
 
 def even_sum(r: trow) -> int:
@@ -39,10 +39,10 @@ def tabl_diagsum(t: tabl) -> trow:
 
 
 def tabl_cumsum(t: tabl) -> trow:
-    cumt: tabl = cum_tabl(t)
+    cumt: tabl = accu_tabl(t)
     return [sum(row) for row in cumt]
 
 
 def tabl_revcumsum(t: tabl) -> trow:
-    revcumt: tabl = cum_tabl(rev_tabl(t))
+    revcumt: tabl = accu_tabl(rev_tabl(t))
     return [sum(row) for row in revcumt]

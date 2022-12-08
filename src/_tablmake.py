@@ -9,7 +9,6 @@ tabl_files: list[str] = [
     "_tablsums.py",
     "_tablviews.py",
     "_tablprofile.py",
-    "_tablexport.py",
     "Abel.py",
     "Bell.py",
     "Bessel.py",
@@ -59,56 +58,12 @@ tabl_files: list[str] = [
     "WardCycle.py",
     "WardSet.py",
     "Worpitzky.py",
+    "_tablmake.py",
+    "_tablexport.py",
+    "_tablsearch.py",
 ]
 
-import_header: list[str] = [
-    "from functools import cache\n",
-    "from itertools import accumulate\n",
-    "from sys import setrecursionlimit\n",
-    "from typing import Callable, TypeAlias\n",
-    "from io import TextIOWrapper\n",
-    "import contextlib\n",
-    "from sympy import Matrix, Rational\n",
-]
-
-dir: str = join(getcwd(), "src")
-dest: TextIOWrapper = open("tabl.py", "w+")
-
-dest.writelines(import_header)
-dest.write("setrecursionlimit(2100)\n")
-
-for src in tabl_files:
-    file_path: str = join(dir, src)
-    if isfile(file_path):
-        start: bool = False
-        src_file: TextIOWrapper = open(file_path, "r")
-
-        for line in src_file:
-            #if line.startswith('"""'):
-            #    if len(line) > 4:
-            #        print(line[3:].strip())
-            if line.startswith("@set_attributes("):
-                    s = line[1+line.find('"') : line.rfind('"')]
-                    print(s)
-            if line.startswith("from"):
-                continue
-            if not start:
-                start: bool = line.startswith("@") or line.startswith("# #@")
-                if line.startswith("@"):
-                    dest.write(line)
-                continue
-            else:
-                start: bool = True
-            if line.startswith("#"):
-                continue
-            if line.startswith("if __name__"):
-                break
-            if line != "\n":
-                dest.write(line)
-        src_file.close()
-
-
-s: str = '''\
+str_tabl_fun: str = '''\
 tabl_fun: list[tri] = [
     abel,
     bell,
@@ -163,5 +118,51 @@ tabl_fun: list[tri] = [
     worpitzky,
 ]\n'''.format()
 
-dest.write(s)
+import_header: list[str] = [
+    "from functools import cache\n",
+    "from itertools import accumulate\n",
+    "from sys import setrecursionlimit\n",
+    "from typing import Callable, TypeAlias\n",
+    "from io import TextIOWrapper\n",
+    "from pathlib import Path\n",
+    "import contextlib\n",
+    "import csv\n",
+    "from sympy import Matrix, Rational\n",
+]
+
+dir: str = join(getcwd(), "src")
+dest: TextIOWrapper = open("tabl.py", "w+")
+
+dest.writelines(import_header)
+dest.write("setrecursionlimit(2100)\n")
+
+for src in tabl_files:
+    if src == "_tablmake.py":
+        dest.write(str_tabl_fun)
+        continue
+    file_path: str = join(dir, src)
+    if isfile(file_path):
+        start: bool = False
+        src_file: TextIOWrapper = open(file_path, "r")
+
+        for line in src_file:
+            if line.startswith("@set_attributes("):
+                s = line[1+line.find('"') : line.rfind('"')]
+                print(s)
+            if line.startswith("from"):
+                continue
+            if not start:
+                start: bool = line.startswith("@") or line.startswith("# #@")
+                if line.startswith("@"):
+                    dest.write(line)
+                continue
+            else:
+                start: bool = True
+            if line.startswith("#"):
+                continue
+            if line.startswith("if __name__"):
+                break
+            if line != "\n":
+                dest.write(line)
+        src_file.close()
 dest.close()
