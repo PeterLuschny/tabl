@@ -167,6 +167,7 @@ if __name__ == "__main__":
 
     from Abel import abel
     from StirlingCycle import stirling_cycle
+    from ChebychevU2 import chebychevU2
 
     def test1() -> None:
         s = [0] + [(-1) ** n * n for n in range(22)]
@@ -198,7 +199,7 @@ if __name__ == "__main__":
     shortdatapath = (path / relshortdatapath).resolve()
 
     #SimilarTriangles(shortdatapath)
-    SingleSimilarTriangles(shortdatapath, stirling_cycle)
+    SingleSimilarTriangles(shortdatapath, chebychevU2)
 
     print("Done")
 
