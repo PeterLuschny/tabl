@@ -43,13 +43,13 @@ if __name__ == "__main__":
         shortdatapath = (path / relshortdatapath).resolve()
         SimilarTriangles(shortdatapath)
 
-    test4()
+    #test4()
 
     #@Timer()
     #def time_me() -> None:
     #    SaveExtendedTables()
     # time_me()
 
-    #print("... bussy")
-    #test3()
-    #print("Done")
+    print("... bussy")
+    test2()
+    print("Done")

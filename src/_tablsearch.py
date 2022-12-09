@@ -51,7 +51,7 @@ def ess_equal(s: list[int], t: list[int]) -> list:
     return [False, (int(-1), int(-1))]
 
 
-def read_seqdata(datapath) -> list[list]: 
+def read_seqdata(datapath: str) -> list[list]: 
 
     seq_list = []
     with open(datapath, 'r') as oeisdata:
@@ -61,16 +61,20 @@ def read_seqdata(datapath) -> list[list]:
     return seq_list
 
 
-def search_oeis(datapath, A: list[int]) -> None:
+def search_oeis(datapath: str, A: list[int]) -> list:
     Seqs = read_seqdata(datapath)
     candidates = []
+    count = 0
     for seq in Seqs:
         found, shifts = ess_equal(A, seq[1])
         if found:
             candidates.append([seq[0], shifts])
-            print(seq)
-    print("\nSimilar sequences are:")
-    print(candidates)
+            count += 1
+        if count > 5: break
+    print(A)
+    print("Similar sequences are:")
+    for cand in candidates: print(cand)
+    return candidates
 
 
 # T ENUMERATED AS A TRIANGLE
@@ -98,7 +102,7 @@ def AbsSubTriangle(T: tri, N: int, K: int, dim: int) -> tabl:
 # AS = AT                         or AS = reversed(AT) 
 # or AS = AT.AbsSubTriangle(1, 0) or AS = reversed(AT.AbsSubTriangle(1,0)) 
 # or AS = AT.AbsSubTriangle(1, 1) or AS = reversed(AT.AbsSubTriangle(1, 1))
-def search_db(Seqs, wanted) -> list | None:
+def search_db(Seqs, wanted: list[int]) -> list | None:
     similars = []
     for seq in Seqs:
         if seq[1] == wanted:
@@ -132,7 +136,7 @@ def lookup_similar_triangles(Seqs, T: tri) -> None:
     return sorted(set(similars))
 
 
-def SimilarTriangles(datapath) -> None:
+def SimilarTriangles(datapath: str) -> None:
 
     seq_list = []
     with open(datapath, 'r') as oeisdata:
@@ -150,7 +154,7 @@ def SimilarTriangles(datapath) -> None:
 # (2) makes all items absolute,
 # (3) shortens the sequence to 28 entries.
 # But otherwise keeps the format of the compressed file.
-def shortabsdata(inpath, outpath) -> None:
+def shortabsdata(inpath: str, outpath: str) -> None:
 
     with open(inpath, 'r') as oeisdata:
         reader = csv.reader(oeisdata)
@@ -167,7 +171,7 @@ if __name__ == "__main__":
 
     from Abel import abel
     from StirlingCycle import stirling_cycle
-    from ChebychevU2 import chebychevU2
+    from ChebyshevS import chebyshevS
 
     def test1() -> None:
         s = [0] + [(-1) ** n * n for n in range(22)]
@@ -199,7 +203,7 @@ if __name__ == "__main__":
     shortdatapath = (path / relshortdatapath).resolve()
 
     #SimilarTriangles(shortdatapath)
-    SingleSimilarTriangles(shortdatapath, chebychevU2)
+    SingleSimilarTriangles(shortdatapath, chebyshevS)
 
     print("Done")
 

@@ -1,8 +1,8 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Coefficients of Chebyshev U(n,x/2) polynomials
-['A049310*'].
+"""Coefficients of Chebyshev S(n, x) = U(n, x/2) polynomials.
+['A049310*', 'A053119', 'A112552', 'A168561']
 
 
 [0]  1;
@@ -19,26 +19,26 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _chebyshevU2(n: int) -> list[int]:
+def _chebyshevS(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
 
-    rov: list[int] = _chebyshevU2(n - 2)
-    row: list[int] = [0] + _chebyshevU2(n - 1)
+    rov: list[int] = _chebyshevS(n - 2)
+    row: list[int] = [0] + _chebyshevS(n - 1)
     for k in range(0, n - 1):
         row[k] -= rov[k]
     return row
 
 
-@set_attributes(_chebyshevU2, "CHEBYSHEVU2P", False)
-def chebyshevU2(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _chebyshevU2(n).copy()
-    return _chebyshevU2(n)[k]
+@set_attributes(_chebyshevS, "CHEBYSHEVSUP", True)
+def chebyshevS(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _chebyshevS(n).copy()
+    return _chebyshevS(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(chebyshevU2)
+    TablTest(chebyshevS)

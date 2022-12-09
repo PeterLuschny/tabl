@@ -108,12 +108,13 @@ if __name__ == "__main__":
     from Rencontres import rencontres
     from Motzkin import motzkin
     from Leibniz import leibniz
+    from ChebyshevS import chebyshevS
 
-    dim = 10
+    dim = 14
     format = 'nonames' # 'twolines' #
 
     #PrintProfile(leibniz, dim, 'twolines')
     #PrintProfile(motzkin, dim, format)
-    PrintExtendedProfile(leibniz, dim, 'twolines')
+    PrintExtendedProfile(chebyshevS, dim, 'twolines')
     #PrintExtendedProfile(motzkin, dim, format)
 

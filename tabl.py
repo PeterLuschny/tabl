@@ -434,20 +434,20 @@ def cs_factorial(n: int, k: int = -1) -> list[int] | int:
     if k == -1: return _cs_factorial(n).copy()
     return _cs_factorial(n)[k]
 @cache
-def _chebyshevU2(n: int) -> list[int]:
+def _chebyshevS(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
-    rov: list[int] = _chebyshevU2(n - 2)
-    row: list[int] = [0] + _chebyshevU2(n - 1)
+    rov: list[int] = _chebyshevS(n - 2)
+    row: list[int] = [0] + _chebyshevS(n - 1)
     for k in range(0, n - 1):
         row[k] -= rov[k]
     return row
-@set_attributes(_chebyshevU2, "CHEBYSHEVU2P", False)
-def chebyshevU2(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _chebyshevU2(n).copy()
-    return _chebyshevU2(n)[k]
+@set_attributes(_chebyshevS, "CHEBYSHEVSUP", True)
+def chebyshevS(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _chebyshevS(n).copy()
+    return _chebyshevS(n)[k]
 @cache
 def _delannoy(n: int) -> list[int]:
     if n == 0:
@@ -1025,7 +1025,7 @@ tabl_fun: list[tri] = [
     catalan_aerated,
     cc_factorial,
     cs_factorial,
-    chebyshevU2,
+    chebyshevS,
     delannoy,
     euler,
     eulerian,
@@ -1141,27 +1141,31 @@ def ess_equal(s: list[int], t: list[int]) -> list:
                     print((i , k), S)
                     return [True, (i , k)]
     return [False, (int(-1), int(-1))]
-def read_seqdata(datapath) -> list[list]: 
+def read_seqdata(datapath: str) -> list[list]: 
     seq_list = []
     with open(datapath, 'r') as oeisdata:
         reader = csv.reader(oeisdata)
         seq_list = [[seq[0], [int(t) for t in seq[1:-1]]] for seq in reader]
     return seq_list
-def search_oeis(datapath, A: list[int]) -> None:
+def search_oeis(datapath: str, A: list[int]) -> list:
     Seqs = read_seqdata(datapath)
     candidates = []
+    count = 0
     for seq in Seqs:
         found, shifts = ess_equal(A, seq[1])
         if found:
             candidates.append([seq[0], shifts])
-            print(seq)
-    print("\nSimilar sequences are:")
-    print(candidates)
+            count += 1
+        if count > 5: break
+    print(A)
+    print("Similar sequences are:")
+    for cand in candidates: print(cand)
+    return candidates
 def SubTriangle(T: tri, N: int, K: int, dim: int) -> tabl:
     return [[T(n, k) for k in range(K, K - N + n + 1)] for n in range(N, N + dim)]
 def AbsSubTriangle(T: tri, N: int, K: int, dim: int) -> tabl:
     return [[abs(T(n, k)) for k in range(K, K - N + n + 1)] for n in range(N, N + dim)]
-def search_db(Seqs, wanted) -> list | None:
+def search_db(Seqs, wanted: list[int]) -> list | None:
     similars = []
     for seq in Seqs:
         if seq[1] == wanted:
@@ -1185,7 +1189,7 @@ def lookup_similar_triangles(Seqs, T: tri) -> None:
         R = search_db(Seqs, var)
         similars.extend(R)
     return sorted(set(similars))
-def SimilarTriangles(datapath) -> None:
+def SimilarTriangles(datapath: str) -> None:
     seq_list = []
     with open(datapath, 'r') as oeisdata:
         reader = csv.reader(oeisdata)
@@ -1194,7 +1198,7 @@ def SimilarTriangles(datapath) -> None:
         similars = lookup_similar_triangles(seq_list, fun)
         print(fun.id, 'Similars:', similars)
     return
-def shortabsdata(inpath, outpath) -> None:
+def shortabsdata(inpath: str, outpath: str) -> None:
     with open(inpath, 'r') as oeisdata:
         reader = csv.reader(oeisdata)
         seq_list = [[seq[0], [abs(int(t)) for t in seq[1:-1]]] for seq in reader]
