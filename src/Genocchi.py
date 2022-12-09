@@ -1,7 +1,8 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Genocchi triangle, A297703.
+"""Genocchi triangle, 
+['A297703*']
 
 [0] [     1]
 [1] [     1,      1]

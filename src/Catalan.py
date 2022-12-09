@@ -3,7 +3,8 @@ from itertools import accumulate
 from _tabltypes import set_attributes
 
 
-"""Catalan triangle, Fuss-Catalan 1, A355173.
+"""Catalan triangle, Fuss-Catalan 1, 
+['A030237', 'A054445', 'A355173*'].
 
 [0] [1]
 [1] [0, 1]

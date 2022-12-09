@@ -3,7 +3,8 @@ from Binomial import binomial
 from _tabltypes import set_attributes
 
 
-"""Abel polynomials (unsigned coefficients), A061356
+"""Abel polynomials (unsigned coefficients), 
+['A061356*', 'A137452', 'A139526']
 
 [0] [1]
 [1] [0,        1]

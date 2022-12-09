@@ -1,7 +1,9 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Rencontres triangle, A008290.
+"""Rencontres triangle, 
+ ['A008290*', 'A098825'].
+
 
 [0]       1;
 [1]       0,      1;

@@ -1,7 +1,8 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Fibonacci-Pascal triangle, A354267
+"""Fibonacci-Pascal triangle, 
+['A105809', 'A228074', 'A354267*'].
 
 [0] [ 1]
 [1] [ 0,  1]

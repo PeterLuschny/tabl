@@ -1,7 +1,10 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Stirling set numbers, A048993.
+"""Stirling set numbers, 
+['A008277 ', 'A008278 ', 'A048993*', 'A080417 ', 'A106800 ', 
+'A151511 ', 'A151512 ', 'A154959 ', 'A213735 ']
+
 
 [0]  1
 [1]  0, 1

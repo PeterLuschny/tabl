@@ -2,7 +2,8 @@ from functools import cache
 from _tabltypes import set_attributes
 
 
-"""Laguerre polynomials n! * L(n, x) (unsigned coefficients), unsigned A021009.
+"""Laguerre polynomials n! * L(n, x) (unsigned coefficients),
+['A021009*', 'A021010', 'A144084']
 
 [0]      1
 [1]      1,       1

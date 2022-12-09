@@ -1,7 +1,9 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Lah numbers (unsigned), A271703.
+"""Lah numbers (unsigned), 
+['A008297 ', 'A066667 ', 'A089231 ', 'A105278 ', 'A111596 ', 'A271703*']
+
 
 [0]  1
 [1]  0       1

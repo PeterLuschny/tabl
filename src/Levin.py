@@ -2,7 +2,9 @@ from functools import cache
 from _tabltypes import set_attributes
 
 
-"""Levin's Triangle, RisingFactorial(n + 1, n) / (k! * (n - k)!), A356546.
+"""Levin's Triangle, RisingFactorial(n + 1, n) / (k! * (n - k)!), 
+['A356546*']
+
 
 [0]     1;
 [1]     2,      2;

@@ -2,7 +2,9 @@ from functools import cache
 from itertools import accumulate
 from _tabltypes import set_attributes
 
-"""Ternary trees, Fuss-Catalan 2, A355172.
+"""Ternary trees, Fuss-Catalan 2, 
+['A355172 '].
+
 
 [0] [1]
 [1] [0, 1]

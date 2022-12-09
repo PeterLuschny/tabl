@@ -1,7 +1,8 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Bell (Peirce/Aitken) triangle, A011971 (see also A182930).
+"""Bell (Peirce/Aitken) triangle, 
+['A011971*', 'A011972', 'A123346'] (see also A182930).
 
 [0]     1;
 [1]     1,     2;

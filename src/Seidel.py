@@ -1,7 +1,9 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Seidel triangle, A008281 or A008280.
+"""Seidel triangle, 
+['A008281*', 'A008282', 'A010094']
+
 
 [0] [1]
 [1] [0,   1]
@@ -13,6 +15,8 @@ from _tabltypes import set_attributes
 [7] [0,  61, 122, 178,  224,  256,  272,  272]
 
 Seidel boustrophedon:
+['A008280 ', 'A108040 ', 'A236935 ', 'A239005 '].
+
 [0] [ 1]
 [1] [ 0,  1]
 [2] [ 1,  1,   0]

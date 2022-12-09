@@ -1,7 +1,9 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""EulerianB triangle, A060187.
+"""EulerianB triangle, 
+['A060187*', 'A138076 ']
+
 
 [0] [1]
 [1] [1,    1]

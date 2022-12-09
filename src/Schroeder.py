@@ -1,7 +1,9 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Schroeder triangle, A122538 (see also A033877)
+"""Schroeder triangle, 
+['A033877 ', 'A080245 ', 'A080247 ', 'A122538*'].
+
 
 [0] [1]
 [1] [0,     1]

@@ -2,7 +2,8 @@ from functools import cache
 from Binomial import binomial 
 from _tabltypes import set_attributes
 
-"""Euler secant polynomials, A119879, A081658, A153641. 
+"""Euler secant polynomials, 
+['A119879*'], A081658, A153641. 
 
 [0] [   1]
 [1] [   0,     1]

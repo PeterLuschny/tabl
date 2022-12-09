@@ -1,7 +1,10 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Stirling cycle numbers, unsigned Stirling numbers of the 1. kind, A132393.
+"""Stirling cycle numbers, unsigned Stirling numbers of the 1. kind, 
+['A008275 ', 'A008276 ', 'A048994 ', 'A054654 ', 
+'A094638 ', 'A130534 ', 'A132393 ']
+
 
 [0]  1
 [1]  0,     1

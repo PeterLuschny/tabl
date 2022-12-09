@@ -1,7 +1,9 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Rising factorial, A094587.
+"""Rising factorial, 
+['A008279', 'A068424', 'A094587*', 'A173333', 'A181511'].
+
 
 [0]       1
 [1]       1,      1

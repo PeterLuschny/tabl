@@ -2,7 +2,9 @@ from functools import cache
 from _tabltypes import set_attributes
 
 
-"""Narayana triangle, A090181.
+"""Narayana triangle, 
+['A001263', 'A090181*', 'A131198'].
+
 
 [0]  1;
 [1]  0,  1;

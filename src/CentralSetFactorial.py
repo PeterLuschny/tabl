@@ -1,7 +1,8 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Central set factorial numbers, A269945 (see also A008957, A036969).
+"""Central set factorial numbers, 
+['A008957', 'A036969', 'A269945*'].
 
 [0] [1]
 [1] [0, 1]

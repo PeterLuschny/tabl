@@ -1,7 +1,8 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Hermite polynomials (coefficients), A099174, A066325.
+"""Hermite polynomials (coefficients), 
+['A066325', 'A073278', 'A099174'].
 
 [0] [1]
 [1] [0, 1]

@@ -2,7 +2,9 @@ from functools import cache
 from _tabltypes import set_attributes
 
 
-"""Expansion of x^n in terms of Laguerre (unsigned), A196347, A021012.
+"""Expansion of x^n in terms of Laguerre (unsigned),  
+['A021012', 'A196347'].
+
 
 [0] [   1]
 [1] [   1,     1]

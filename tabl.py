@@ -1590,10 +1590,11 @@ def AbsSubTriangle(T: tri, N: int, K: int, dim: int) -> tabl:
 
 
 def search_db(Seqs, wanted) -> list | None:
+    similars = []
     for seq in Seqs:
         if seq[1] == wanted:
-            return seq[0]
-    return None
+            similars.append(seq[0])
+    return similars
 
 
 def lookup_similar_triangles(Seqs, T: tri) -> None:
@@ -1612,8 +1613,7 @@ def lookup_similar_triangles(Seqs, T: tri) -> None:
     ]
     for var in variants:
         R = search_db(Seqs, var)
-        if R != None:
-            similars.append(R)
+        similars.extend(R)
     return sorted(set(similars))
 
 

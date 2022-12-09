@@ -1,7 +1,10 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Pascal triangle, binomial coefficients, A007318.
+"""Pascal triangle, binomial coefficients, 
+['A007318*', 'A074909 ', 'A108086 ', 'A117440 ', 'A118433 ', 
+'A130595 ', 'A135278 ', 'A154926 ', 'A180183 ', 'A273914 ']
+
 
 [0]   1;
 [1]   1,   1;

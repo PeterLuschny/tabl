@@ -1,7 +1,9 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Schroeder bilateral paths, A104684 (see also A063007).
+"""Schroeder bilateral paths, 
+['A063007', 'A104684*']
+
 
 [0]     1;
 [1]     2,     1;

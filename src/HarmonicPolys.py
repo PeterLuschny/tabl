@@ -1,7 +1,8 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Harmonic polynomials (coefficients), A358694.
+"""Harmonic polynomials (coefficients), 
+['A109822', 'A358694*'].
 
 [0] 1
 [1] 0,     1

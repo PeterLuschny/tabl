@@ -1,7 +1,8 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Motzkin triangle, A009766.
+"""Motzkin triangle, 
+['A026300', 'A064189'], A009766.
 
 [0]    1;
 [1]    1,    1;

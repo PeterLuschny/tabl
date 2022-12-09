@@ -1,7 +1,9 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Polygonal numbers, A139600
+"""Polygonal numbers, 
+['A057145', 'A134394', 'A139600*', 'A139601'].
+
 
 [0 ] Nonnegatives . A001477: 0,  1,  2,  3,  4,   5,   6,   7, ...
 [1 ] Triangulars .. A000217: 0,  1,  3,  6, 10,  15,  21,  28, ...
