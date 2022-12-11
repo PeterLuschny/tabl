@@ -32,7 +32,7 @@ def _chebyshevS(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_chebyshevS, "CHEBYSHEVSUP", True)
+@set_attributes(_chebyshevS, "CHEBYSHEVSPO", True)
 def chebyshevS(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _chebyshevS(n).copy()
     return _chebyshevS(n)[k]

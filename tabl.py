@@ -634,11 +634,53 @@ def _chebyshevS(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_chebyshevS, "CHEBYSHEVSUP", True)
+@set_attributes(_chebyshevS, "CHEBYSHEVSPO", True)
 def chebyshevS(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _chebyshevS(n).copy()
     return _chebyshevS(n)[k]
+
+
+@cache
+def _chebyshevT(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 1]
+    rov: list[int] = _chebyshevT(n - 2)
+    row: list[int] = [0] + _chebyshevT(n - 1)
+    row[n] = 2 * row[n]
+    for k in range(0, n - 1):
+        row[k] = 2 * row[k] - rov[k]
+    return row
+
+
+@set_attributes(_chebyshevT, "CHEBYSHEVTPO", True)
+def chebyshevT(n: int, k: int = -1) -> list[int] | int:
+    if k == -1:
+        return _chebyshevT(n).copy()
+    return _chebyshevT(n)[k]
+
+
+@cache
+def _chebyshevU(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 2]
+    rov: list[int] = _chebyshevU(n - 2)
+    row: list[int] = [0] + _chebyshevU(n - 1)
+    row[n] = 2 * row[n]
+    for k in range(0, n - 1):
+        row[k] = 2 * row[k] - rov[k]
+    return row
+
+
+@set_attributes(_chebyshevU, "CHEBYSHEVUPO", True)
+def chebyshevU(n: int, k: int = -1) -> list[int] | int:
+    if k == -1:
+        return _chebyshevU(n).copy()
+    return _chebyshevU(n)[k]
 
 
 @cache
@@ -1453,6 +1495,8 @@ tabl_fun: list[tri] = [
     cc_factorial,
     cs_factorial,
     chebyshevS,
+    chebyshevT,
+    chebyshevU,
     delannoy,
     euler,
     eulerian,

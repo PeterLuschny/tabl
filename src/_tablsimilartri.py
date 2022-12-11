@@ -1,6 +1,6 @@
 import csv
 from _tabltypes import tri, tabl
-from tabl import tabl_fun
+# from tabl import tabl_fun
 
 # #@
 
@@ -96,6 +96,7 @@ if __name__ == "__main__":
 
     from pathlib import Path
     from Lah import lah
+    from ChebyshevU import chebyshevU
 
     path = Path(__file__).parent.parent
     reldatapath = "data/oeis_data.csv"
@@ -108,7 +109,7 @@ if __name__ == "__main__":
     #print(SubTriangle(lah, 3, 3, 4))
 
     #SimilarTriangles(shortdatapath)
-    SingleSimilarTriangles(shortdatapath, lah)
+    SingleSimilarTriangles(shortdatapath, chebyshevU)
     print("Done")
 
     # Essentially equal triangles are:
