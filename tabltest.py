@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
         for fun in tabl_fun:
            PrintViews(fun)
-           PrintExtendedProfile(fun, dim, 'nonames')
+           # PrintExtendedProfile(fun, dim, 'nonames')
            PrintProfile(fun, dim, format)
 
 
@@ -37,19 +37,29 @@ if __name__ == "__main__":
 
         print("The profiles are in", propath)
 
+
     def test4() -> None:
         path = Path(__file__).parent
         relshortdatapath = 'data/short_data.csv'
         shortdatapath = (path / relshortdatapath).resolve()
         SimilarTriangles(shortdatapath)
 
-    #test4()
 
-    #@Timer()
-    #def time_me() -> None:
-    #    SaveExtendedTables()
-    # time_me()
+    def test5() -> None:
+        @Timer()
+        def time_me() -> None:
+            SaveExtendedTables()
+        time_me()
 
-    print("... bussy")
-    test2()
-    print("Done")
+
+    def main(test: int) -> None:
+        print("... bussy")
+        match test:
+            case 1: test1()
+            case 2: test2()
+            case 3: test3()
+            case 4: test4()
+            case 5: test5()
+        print("Done")
+
+    main(1)

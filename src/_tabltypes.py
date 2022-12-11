@@ -92,6 +92,9 @@ def set_attributes(r: rgen, id: str, vert: bool=False) -> Callable[[tri], tri]:
     def makemat(dim: int) -> tabl:
         return [[r(n)[k] if k <= n else 0 for k in range(dim)] for n in range(dim)]
 
+    def makeflat(dim: int) -> tabl:
+        return [r(n)[k] for n in range(dim) for k in range(n + 1)]
+
     def makeinv(dim: int) -> tabl:
         if not vert: return []
         return InverseTriangle(r, dim)
@@ -111,6 +114,7 @@ def set_attributes(r: rgen, id: str, vert: bool=False) -> Callable[[tri], tri]:
         f.rev = makerev
         f.mat = makemat
         f.inv = makeinv
+        f.flat = makeflat
         f.revinv = makerevinv
         f.invrev = makeinvrev
         f.id = id
@@ -130,6 +134,9 @@ if __name__ == "__main__":
 
     T = f.tab(dim)
     print("TRI    ", T)
+
+    T = f.flat(dim)
+    print("FLAT   ", T)
 
     i = reversion_wrapper(f, dim)
     T = i.tab(dim)

@@ -61,7 +61,9 @@ tabl_files: list[str] = [
     "Worpitzky.py",
     "_tablmake.py",
     "_tablexport.py",
-    "_tablsearch.py",
+    "_tabldata.py",
+    "_tablsimilarseq.py",
+    "_tablsimilartri.py",
 ]
 
 str_tabl_fun: str = '''\
@@ -126,7 +128,7 @@ import_header: list[str] = [
     "from sys import setrecursionlimit\n",
     "from typing import Callable, TypeAlias\n",
     "from io import TextIOWrapper\n",
-    "from pathlib import Path\n",
+    "from difflib import SequenceMatcher\n",
     "import contextlib\n",
     "import csv\n",
     "from sympy import Matrix, Rational\n",
