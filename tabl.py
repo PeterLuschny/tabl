@@ -279,14 +279,14 @@ def tabl_diagsum(t: tabl) -> trow:
     return [sum(row) for row in diagt]
 
 
-def tabl_cumsum(t: tabl) -> trow:
-    cumt: tabl = accu_tabl(t)
-    return [sum(row) for row in cumt]
+def tabl_accusum(t: tabl) -> trow:
+    accut: tabl = accu_tabl(t)
+    return [sum(row) for row in accut]
 
 
-def tabl_revcumsum(t: tabl) -> trow:
-    revcumt: tabl = accu_tabl(rev_tabl(t))
-    return [sum(row) for row in revcumt]
+def tabl_revaccusum(t: tabl) -> trow:
+    revaccut: tabl = accu_tabl(rev_tabl(t))
+    return [sum(row) for row in revaccut]
 
 
 def PrintTabl(t: tabl) -> None:
@@ -348,8 +348,8 @@ def PrintSums(t: tabl) -> None:
     print(f"| oddsum    | {tabl_oddsum(t)} |")
     print(f"| altsum    | {tabl_altsum(t)} |")
     print(f"| diagsum   | {tabl_diagsum(t)} |")
-    print(f"| cumsum    | {tabl_cumsum(t)} |")
-    print(f"| revcumsum | {tabl_revcumsum(t)} |")
+    print(f"| accusum    | {tabl_accusum(t)} |")
+    print(f"| revaccusum | {tabl_revaccusum(t)} |")
 
 
 def PrintFlats(t: tabl) -> None:
@@ -357,9 +357,9 @@ def PrintFlats(t: tabl) -> None:
     print("| :---      |  :---  |")
     print(f"| tabl     | {flat_tabl(t)} |")
     print(f"| rev      | {flat_rev(t)} |")
-    print(f"| cum      | {flat_accu(t)} |")
-    print(f"| revcum   | {flat_revaccu(t)} |")
-    print(f"| cumrev   | {flat_accurev(t)} |")
+    print(f"| accu      | {flat_accu(t)} |")
+    print(f"| revaccu   | {flat_revaccu(t)} |")
+    print(f"| accurev   | {flat_accurev(t)} |")
     print(f"| diag     | {flat_diag(t)} |")
 
 
@@ -409,8 +409,8 @@ def Profile(T: tri, hor: int = 10) -> dict[str, list[int]]:
     d["evesum"] = tabl_evensum(t)
     d["oddsum"] = tabl_oddsum(t)
     d["altsum"] = tabl_altsum(t)
-    d["cumsum"] = tabl_cumsum(t)
-    d["revcum"] = tabl_revcumsum(t)
+    d["accusum"] = tabl_accusum(t)
+    d["revaccu"] = tabl_revaccusum(t)
     d["diasum"] = tabl_diagsum(t)
     # DiagsAsRowArray
     rows: int = ver
@@ -584,41 +584,41 @@ def catalan_aerated(n: int, k: int = -1) -> list[int] | int:
 
 
 @cache
-def _cc_factorial(n: int) -> list[int]:
+def _central_cycle(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = _cc_factorial(n - 1) + [0]
+    row: list[int] = _central_cycle(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = (n + k - 1) * (row[k] + row[k - 1])
     return row
 
 
-@set_attributes(_cc_factorial, "CENTRFACTCYC", False)
-def cc_factorial(n: int, k: int = -1) -> list[int] | int:
+@set_attributes(_central_cycle, "CENTRCYCFACT", False)
+def central_cycle(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
-        return _cc_factorial(n).copy()
-    return _cc_factorial(n)[k]
+        return _central_cycle(n).copy()
+    return _central_cycle(n)[k]
 
 
 @cache
-def _cs_factorial(n: int) -> list[int]:
+def _central_set(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = _cs_factorial(n - 1) + [1]
+    row: list[int] = _central_set(n - 1) + [1]
     for k in range(n - 1, 1, -1):
         row[k] = k**2 * row[k] + row[k - 1]
     return row
 
 
-@set_attributes(_cs_factorial, "CENTRFACTSET", True)
-def cs_factorial(n: int, k: int = -1) -> list[int] | int:
+@set_attributes(_central_set, "CENTRSETFACT", True)
+def central_set(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
-        return _cs_factorial(n).copy()
-    return _cs_factorial(n)[k]
+        return _central_set(n).copy()
+    return _central_set(n)[k]
 
 
 @cache
@@ -1269,7 +1269,7 @@ def _bilatpath(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_bilatpath, "SCHBILATERAL", True)
+@set_attributes(_bilatpath, "BILATERALSCH", True)
 def bilatpath(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _bilatpath(n).copy()
@@ -1492,8 +1492,8 @@ tabl_fun: list[tri] = [
     binomial,
     catalan,
     catalan_aerated,
-    cc_factorial,
-    cs_factorial,
+    central_cycle,
+    central_set,
     chebyshevS,
     chebyshevT,
     chebyshevU,

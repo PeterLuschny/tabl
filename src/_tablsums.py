@@ -38,11 +38,11 @@ def tabl_diagsum(t: tabl) -> trow:
     return [sum(row) for row in diagt]
 
 
-def tabl_cumsum(t: tabl) -> trow:
-    cumt: tabl = accu_tabl(t)
-    return [sum(row) for row in cumt]
+def tabl_accusum(t: tabl) -> trow:
+    accut: tabl = accu_tabl(t)
+    return [sum(row) for row in accut]
 
 
-def tabl_revcumsum(t: tabl) -> trow:
-    revcumt: tabl = accu_tabl(rev_tabl(t))
-    return [sum(row) for row in revcumt]
+def tabl_revaccusum(t: tabl) -> trow:
+    revaccut: tabl = accu_tabl(rev_tabl(t))
+    return [sum(row) for row in revaccut]

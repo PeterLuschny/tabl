@@ -62,4 +62,4 @@ if __name__ == "__main__":
             case 5: test5()
         print("Done")
 
-    main(1)
+    main(2)

@@ -1,4 +1,4 @@
-from _tablsums import tabl_sum, tabl_evensum, tabl_oddsum, tabl_altsum, tabl_cumsum, tabl_revcumsum, tabl_diagsum
+from _tablsums import tabl_sum, tabl_evensum, tabl_oddsum, tabl_altsum, tabl_accusum, tabl_revaccusum, tabl_diagsum
 from _tabltransforms import flat_tabl, flat_rev, flat_diag, flat_accu, flat_revaccu, flat_accurev, row_poly, col_poly
 from _tabltypes import tri, tabl
 
@@ -63,8 +63,8 @@ def PrintSums(t: tabl) -> None:
     print(f'| oddsum    | {tabl_oddsum(t)} |')
     print(f'| altsum    | {tabl_altsum(t)} |')
     print(f'| diagsum   | {tabl_diagsum(t)} |')
-    print(f'| cumsum    | {tabl_cumsum(t)} |')
-    print(f'| revcumsum | {tabl_revcumsum(t)} |')
+    print(f'| accusum    | {tabl_accusum(t)} |')
+    print(f'| revaccusum | {tabl_revaccusum(t)} |')
 
 
 def PrintFlats(t: tabl) -> None:
@@ -72,9 +72,9 @@ def PrintFlats(t: tabl) -> None:
     print("| :---      |  :---  |")
     print(f'| tabl     | {flat_tabl(t)} |')
     print(f'| rev      | {flat_rev(t)} |')
-    print(f'| cum      | {flat_accu(t)} |')
-    print(f'| revcum   | {flat_revaccu(t)} |')
-    print(f'| cumrev   | {flat_accurev(t)} |')
+    print(f'| accu      | {flat_accu(t)} |')
+    print(f'| revaccu   | {flat_revaccu(t)} |')
+    print(f'| accurev   | {flat_accurev(t)} |')
     print(f'| diag     | {flat_diag(t)} |')
 
 

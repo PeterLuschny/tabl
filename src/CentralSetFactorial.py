@@ -17,25 +17,25 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _cs_factorial(n: int) -> list[int]:
+def _central_set(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
 
-    row: list[int] = _cs_factorial(n - 1) + [1]
+    row: list[int] = _central_set(n - 1) + [1]
     for k in range(n - 1, 1, -1):
         row[k] = k ** 2 * row[k] + row[k - 1]
     return row
 
 
-@set_attributes(_cs_factorial, "CENTRFACTSET", True)
-def cs_factorial(n: int, k: int = -1) -> list[int] | int:
-    if k == -1: return _cs_factorial(n).copy()
-    return _cs_factorial(n)[k]
+@set_attributes(_central_set, "CENTRSETFACT", True)
+def central_set(n: int, k: int = -1) -> list[int] | int:
+    if k == -1: return _central_set(n).copy()
+    return _central_set(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(cs_factorial)
+    TablTest(central_set)

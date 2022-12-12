@@ -16,26 +16,26 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _cc_factorial(n: int) -> list[int]:
+def _central_cycle(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
 
-    row: list[int] = _cc_factorial(n - 1) + [0]
+    row: list[int] = _central_cycle(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = (n + k - 1) * (row[k] + row[k - 1])
 
     return row
 
 
-@set_attributes(_cc_factorial, "CENTRFACTCYC", False)
-def cc_factorial(n: int, k: int = -1) -> list[int] | int:
-    if k == -1: return _cc_factorial(n).copy()
-    return _cc_factorial(n)[k]
+@set_attributes(_central_cycle, "CENTRCYCFACT", False)
+def central_cycle(n: int, k: int = -1) -> list[int] | int:
+    if k == -1: return _central_cycle(n).copy()
+    return _central_cycle(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(cc_factorial)
+    TablTest(central_cycle)

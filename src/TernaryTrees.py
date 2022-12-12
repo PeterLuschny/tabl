@@ -3,7 +3,7 @@ from itertools import accumulate
 from _tabltypes import set_attributes
 
 """Ternary trees, Fuss-Catalan 2, 
-['A355172 '].
+[A355172].
 
 
 [0] [1]

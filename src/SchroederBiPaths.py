@@ -30,7 +30,7 @@ def _bilatpath(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_bilatpath, "SCHBILATERAL", True)
+@set_attributes(_bilatpath, "BILATERALSCH", True)
 def bilatpath(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _bilatpath(n).copy()
     return _bilatpath(n)[k]

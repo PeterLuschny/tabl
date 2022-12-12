@@ -1,5 +1,5 @@
 from _tabltransforms import row_poly, col_poly, flat_tabl
-from _tablsums import tabl_sum, tabl_evensum, tabl_oddsum, tabl_altsum, tabl_cumsum, tabl_revcumsum, tabl_diagsum
+from _tablsums import tabl_sum, tabl_evensum, tabl_oddsum, tabl_altsum, tabl_accusum, tabl_revaccusum, tabl_diagsum
 from _tabltypes import tri, tabl, inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
 
 
@@ -20,8 +20,8 @@ def Profile(T: tri, hor: int = 10) -> dict[str, list[int]]:
     d["evesum"] = tabl_evensum(t)
     d["oddsum"] = tabl_oddsum(t)
     d["altsum"] = tabl_altsum(t)
-    d["cumsum"] = tabl_cumsum(t)
-    d["revcum"] = tabl_revcumsum(t)
+    d["accusum"] = tabl_accusum(t)
+    d["revaccu"] = tabl_revaccusum(t)
     d["diasum"] = tabl_diagsum(t)
 
     # DiagsAsRowArray
