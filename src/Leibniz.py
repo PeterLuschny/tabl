@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """Leibniz's Triangle, FallingFactorial(n + 1, n) / (k! * (n - k)!), 
- ['A003506*']
+ [A003506*]
 
 
 [0]  1

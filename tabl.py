@@ -684,6 +684,20 @@ def chebyshevU(n: int, k: int = -1) -> list[int] | int:
 
 
 @cache
+def _ctree(n: int) -> list[int]:
+    if n % 2 == 1:
+        return [1] * (n + 1)
+    return [1, 0] * (n // 2) + [1]
+
+
+@set_attributes(_ctree, "CHRISMASTREE", True)
+def ctree(n: int, k: int = -1) -> list[int] | int:
+    if k == -1:
+        return _ctree(n).copy()
+    return _ctree(n)[k]
+
+
+@cache
 def _delannoy(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -882,6 +896,27 @@ def fubini(n: int, k: int = -1) -> list[int] | int:
 
 
 @cache
+def _gaussq2(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+
+    row: list[int] = _gaussq2(n - 1)
+    pow: list[int] = [1] + _gaussq2(n - 1)
+    p = 2
+    for k in range(1, n):
+        pow[k] = row[k - 1] + p * row[k]
+        p *= 2
+    return pow
+
+
+@set_attributes(_gaussq2, "GAUSSQ2COEFF", True)
+def gaussq2(n: int, k: int = -1) -> list[int] | int:
+    if k == -1:
+        return _gaussq2(n).copy()
+    return _gaussq2(n)[k]
+
+
+@cache
 def _genocchi(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -1033,6 +1068,27 @@ def levin(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _levin(n).copy()
     return _levin(n)[k]
+
+
+@cache
+def _lozanic(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    row: list[int] = [1] + _lozanic(n - 1)
+    for k in range(1, n):
+        row[k] += row[k + 1]
+    if n % 2 != 0:
+        return row
+    for k in range(1, n, 2):
+        row[k] -= binomial(n // 2 - 1, (k - 1) // 2)
+    return row
+
+
+@set_attributes(_lozanic, "LOZANICTRIAN", True)
+def lozanic(n: int, k: int = -1) -> list[int] | int:
+    if k == -1:
+        return _lozanic(n).copy()
+    return _lozanic(n)[k]
 
 
 @cache
@@ -1307,6 +1363,18 @@ def seidel_boust(n: int, k: int = -1) -> list[int] | int:
 
 
 @cache
+def _sierpinski(n: int) -> list[int]:
+    return [binomial(n, k) % 2 for k in range(n + 1)]
+
+
+@set_attributes(_sierpinski, "SIERPINSKITR", True)
+def sierpinski(n: int, k: int = -1) -> list[int] | int:
+    if k == -1:
+        return _sierpinski(n).copy()
+    return _sierpinski(n)[k]
+
+
+@cache
 def _stirling_cycle(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -1497,6 +1565,7 @@ tabl_fun: list[tri] = [
     chebyshevS,
     chebyshevT,
     chebyshevU,
+    ctree,
     delannoy,
     euler,
     eulerian,
@@ -1507,6 +1576,7 @@ tabl_fun: list[tri] = [
     falling_factorial,
     fibonacci,
     fubini,
+    gaussq2,
     genocchi,
     harmonic,
     hermite,
@@ -1515,6 +1585,7 @@ tabl_fun: list[tri] = [
     lehmer,
     leibniz,
     levin,
+    lozanic,
     motzkin,
     narayana,
     nicomachus,
@@ -1529,6 +1600,7 @@ tabl_fun: list[tri] = [
     schroeder,
     seidel,
     seidel_boust,
+    sierpinski,
     stirling_cycle,
     stirling_set,
     stirling_cycle2,

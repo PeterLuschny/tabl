@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """Catalan triangle aerated,
-['A052173 ', 'A053121*', 'A112554 ', 'A322378 ']
+[A052173, A053121*, A112554, A322378]
 
 [0]   1,
 [1]   0,   1,

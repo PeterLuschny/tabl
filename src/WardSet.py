@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """Ward set numbers, 
-['A134991', 'A269939'].
+[A134991, A269939].
 
 
 [0] [1]

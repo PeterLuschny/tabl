@@ -3,7 +3,7 @@ from Binomial import binomial
 from _tabltypes import set_attributes
 
 """Euler tangent polynomials, 
-['A162660'], A350972, A155585, A009006, A000182. 
+[A162660], A350972, A155585, A009006, A000182. 
 
 [0]    0;
 [1]    1,     0;

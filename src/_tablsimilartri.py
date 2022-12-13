@@ -96,7 +96,6 @@ if __name__ == "__main__":
 
     from pathlib import Path
     from Lah import lah
-    from ChebyshevU import chebyshevU
 
     path = Path(__file__).parent.parent
     reldatapath = "data/oeis_data.csv"
@@ -109,7 +108,7 @@ if __name__ == "__main__":
     #print(SubTriangle(lah, 3, 3, 4))
 
     #SimilarTriangles(shortdatapath)
-    SingleSimilarTriangles(shortdatapath, chebyshevU)
+    SingleSimilarTriangles(shortdatapath, lah)
     print("Done")
 
     # Essentially equal triangles are:

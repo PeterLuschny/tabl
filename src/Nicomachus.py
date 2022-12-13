@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """Nicomachus triangle, 
-['A036561*', 'A081954', 'A175840']
+[A036561*, A081954, A175840]
 
 
 [0] [  1]

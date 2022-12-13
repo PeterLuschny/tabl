@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """Ordered cycle numbers 
-['A048594 ', 'A075181 ', 'A225479*'].
+[A048594, A075181, A225479*].
 
 
 [0] [1]

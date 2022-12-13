@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """Coefficients of Chebyshev U(n, x) polynomials.
-['A053117', 'A053118', 'A115322']
+[A053117, A053118, A115322]
 
 
 [0]  1;

@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """Bessel triangle, 
-['A001497', 'A001498', 'A122850', 'A132062*']
+[A001497, A001498, A122850, A132062*]
 
 [0] [1]
 [1] [0,      1]

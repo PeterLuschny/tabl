@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """Stirling set numbers of second order, 
-['A358623'], A008299, A137375.
+[A358623], A008299, A137375.
 
 
 [0] 1;

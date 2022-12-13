@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """Delannoy triangle, 
-['A008288*'].
+[A008288*].
 
 [0] [1]
 [1] [1,  1]

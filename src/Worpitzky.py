@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """Worpitzky triangle,
-['A028246*', 'A053440 ', 'A075263 ', 'A130850 ', 'A163626 ']
+[A028246*, A053440, A075263, A130850, A163626]
 
 
 [0]  1;

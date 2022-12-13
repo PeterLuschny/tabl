@@ -3,7 +3,7 @@ from _tabltypes import set_attributes
 
 
 """Narayana triangle, 
-['A001263', 'A090181*', 'A131198'].
+[A001263, A090181*, A131198].
 
 
 [0]  1;

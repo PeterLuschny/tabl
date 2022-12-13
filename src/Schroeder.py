@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """Schroeder triangle, 
-['A033877 ', 'A080245 ', 'A080247 ', 'A122538*'].
+[A033877, A080245, A080247, A122538*].
 
 
 [0] [1]

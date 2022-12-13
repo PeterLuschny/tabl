@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """Schroeder bilateral paths, 
-['A063007', 'A104684*']
+[A063007, A104684*]
 
 
 [0]     1;

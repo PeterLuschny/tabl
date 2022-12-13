@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """Seidel triangle, 
-['A008281*', 'A008282', 'A010094']
+[A008281*, A008282, A010094]
 
 
 [0] [1]

@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """Fubini triangle, 
-['A019538', 'A090582', 'A131689*', 'A278075'].
+[A019538, A090582, A131689*, A278075].
 
 [0]  1;
 [1]  0,  1;

@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """Lehmer-Comtet of 2nd kind, unsigned, 
-['A039621', 'A354794*'].
+[A039621, A354794*].
 
 
 [0] 1;

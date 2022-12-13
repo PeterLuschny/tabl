@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """Ward cycle numbers, 
-['A111999', 'A259456', 'A269940*'].
+[A111999, A259456, A269940*].
 
 
 [0] [1]

@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """Stirling cycle numbers of second order, 
- ['A358622'], A008306, A106828.
+ [A358622], A008306, A106828.
 
 
 [0]  1

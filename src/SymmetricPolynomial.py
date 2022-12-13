@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """Symmetric polynomial, row k gives the (n-1)-st elementary of [k, k+1, k+2,..., k+n], 
-['A093905', 'A105954', 'A165674', 'A165675*'].
+[A093905, A105954, A165674, A165675*].
 
 
 [0]    1;
