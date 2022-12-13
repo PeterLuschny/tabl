@@ -59,7 +59,8 @@ tabl_files: list[str] = [
     "StirlingSet.py",
     "StirlingCycle2.py",
     "StirlingSet2.py",
-    "SymmetricPolynomial.py",
+    "SylvesterPolynomials.py",
+    "SymmetricPolynomials.py",
     "TernaryTrees.py",
     "Uno.py",
     "WardCycle.py",
@@ -72,7 +73,7 @@ tabl_files: list[str] = [
     "_tablsimilartri.py",
 ]
 
-str_tabl_fun: str = '''\
+str_tabl_fun: str = """\
 tabl_fun: list[tri] = [
     abel,
     bell,
@@ -126,13 +127,14 @@ tabl_fun: list[tri] = [
     stirling_set,
     stirling_cycle2,
     stirling_set2,
+    sylvester,
     sympoly,
     ternary_tree,
     uno,
     ward_cycle,
     ward_set,
     worpitzky,
-]\n'''.format()
+]\n""".format()
 
 import_header: list[str] = [
     "from functools import cache\n",
@@ -143,7 +145,8 @@ import_header: list[str] = [
     "from difflib import SequenceMatcher\n",
     "import contextlib\n",
     "import csv\n",
-    "from sympy import Matrix, Rational\n",
+    "from math import factorial\n",
+    "from sympy import Matrix, Rational, Symbol, Poly\n",
 ]
 
 dir: str = join(getcwd(), "src")
@@ -163,7 +166,7 @@ for src in tabl_files:
 
         for line in src_file:
             if line.startswith("@set_attributes("):
-                s = line[1+line.find('"') : line.rfind('"')]
+                s = line[1 + line.find('"') : line.rfind('"')]
                 print(s)
             if line.startswith("from"):
                 continue

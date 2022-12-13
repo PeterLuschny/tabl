@@ -6,7 +6,8 @@ from io import TextIOWrapper
 from difflib import SequenceMatcher
 import contextlib
 import csv
-from sympy import Matrix, Rational
+from math import factorial
+from sympy import Matrix, Rational, Symbol, Poly
 
 setrecursionlimit(2100)
 
@@ -1449,6 +1450,31 @@ def stirling_set2(n: int, k: int = -1) -> list[int] | int:
 
 
 @cache
+def L(n, m, x):
+    if n == 0:
+        return 1
+    if n == 1:
+        return 1 - m - 2 * x
+    return (2 * (n - x) - m - 1) * L(n - 1, m, x) / n - (n - x - m - 1) * L(
+        n - 2, m, x
+    ) / n
+
+
+@cache
+def _sylvester(n: int) -> list[int]:
+    x = Symbol("x")
+    p = (-1) ** n * factorial(n) * L(n, n, x)
+    return list(reversed(Poly(p, x).all_coeffs()))
+
+
+@set_attributes(_sylvester, "SYLVESTERPOL", False)
+def sylvester(n: int, k: int = -1) -> list[int] | int:
+    if k == -1:
+        return _sylvester(n).copy()
+    return _sylvester(n)[k]
+
+
+@cache
 def _sympoly(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -1605,6 +1631,7 @@ tabl_fun: list[tri] = [
     stirling_set,
     stirling_cycle2,
     stirling_set2,
+    sylvester,
     sympoly,
     ternary_tree,
     uno,
