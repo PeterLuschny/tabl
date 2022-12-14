@@ -147,8 +147,7 @@ import_header: list[str] = [
     "from difflib import SequenceMatcher\n",
     "import contextlib\n",
     "import csv\n",
-    "from math import factorial\n",
-    "from sympy import Matrix, Rational, Symbol, Poly\n",
+    "from sympy import Matrix, Rational\n",
 ]
 
 dir: str = join(getcwd(), "src")

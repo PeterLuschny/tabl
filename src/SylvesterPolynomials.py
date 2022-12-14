@@ -1,6 +1,6 @@
 from functools import cache
-from math import factorial
-from sympy import Symbol, Poly
+from Binomial import binomial
+from StirlingCycle import stirling_cycle
 from _tabltypes import set_attributes
 
 """Sylvester polynomials. 
@@ -16,23 +16,31 @@ from _tabltypes import set_attributes
 [7] 0, 720, 2604, 4046, 3570, 1960, 672, 128;
 """
 
-
-@cache
-def L(n, m, x):
-    if n == 0:
-        return 1
-    if n == 1:
-        return 1 - m - 2 * x
-
-    return ((2 * (n  - x) - m - 1) * L(n - 1, m, x) / n 
-          - (n  - x - m - 1) * L(n - 2, m, x) / n)
+#from math import factorial
+#from sympy import Symbol, Poly
+#@cache
+#def L(n, m, x):
+#    if n == 0:
+#        return 1
+#    if n == 1:
+#        return 1 - m - 2 * x
+#
+#    return ((2 * (n  - x) - m - 1) * L(n - 1, m, x) / n 
+#          - (n  - x - m - 1) * L(n - 2, m, x) / n)
+#@cache
+#def _sylvester(n: int) -> list[int]:
+#    x = Symbol("x")
+#    p = (-1) ** n * factorial(n) * L(n, n, x)
+#    return list(reversed(Poly(p, x).all_coeffs()))
+#
+#    from _tablviews import PrintViews
+#    PrintViews(sylvester, 8, True)
 
 
 @cache
 def _sylvester(n: int) -> list[int]:
-    x = Symbol("x")
-    p = (-1) ** n * factorial(n) * L(n, n, x)
-    return list(reversed(Poly(p, x).all_coeffs()))
+    return [sum(binomial(n, k - j) * stirling_cycle(n - k + j, j)
+            for j in range(k + 1)) for k in range(n + 1)]
 
 
 @set_attributes(_sylvester, "SYLVESTERPOL", False)
@@ -42,6 +50,6 @@ def sylvester(n: int, k: int = -1) -> list[int] | int:
 
 
 if __name__ == "__main__":
-    from _tablviews import PrintViews
+    from _tabltest import TablTest
 
-    PrintViews(sylvester, 8, True)
+    TablTest(sylvester)
