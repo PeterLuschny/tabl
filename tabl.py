@@ -1566,25 +1566,6 @@ def ternary_tree(n: int, k: int = -1) -> list[int] | int:
 
 
 @cache
-def _ward_cycle(n: int) -> list[int]:
-    if n == 0:
-        return [1]
-    if n == 1:
-        return [0, 1]
-    row: list[int] = _ward_cycle(n - 1) + [0]
-    for k in range(n, 0, -1):
-        row[k] = (n + k - 1) * (row[k] + row[k - 1])
-    return row
-
-
-@set_attributes(_ward_cycle, "WARDCYCNUMBR", False)
-def ward_cycle(n: int, k: int = -1) -> list[int] | int:
-    if k == -1:
-        return _ward_cycle(n).copy()
-    return _ward_cycle(n)[k]
-
-
-@cache
 def _ward_set(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -1679,7 +1660,6 @@ tabl_fun: list[tri] = [
     sylvester,
     sympoly,
     ternary_tree,
-    ward_cycle,
     ward_set,
     worpitzky,
 ]

@@ -65,7 +65,6 @@ tabl_files: list[str] = [
     "SylvesterPolynomials.py",
     "SymmetricPolynomials.py",
     "TernaryTrees.py",
-    "WardCycle.py",
     "WardSet.py",
     "Worpitzky.py",
     "_tablmake.py",
@@ -135,7 +134,6 @@ tabl_fun: list[tri] = [
     sylvester,
     sympoly,
     ternary_tree,
-    ward_cycle,
     ward_set,
     worpitzky,
 ]\n""".format()
