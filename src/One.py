@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """Uno, the all 1's triangle, 
-[A000012].
+[A000012, A008836, A014077].
 
 [0]  1
 [1]  1,  1

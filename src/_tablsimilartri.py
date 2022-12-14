@@ -86,18 +86,24 @@ def SimilarTriangles(datapath: str, md: bool = True) -> None:
         seq_list = [[seq[0], [int(t) for t in seq[1:-1]]] for seq in reader]
 
     if md:
-        print("|  ID    |  OEIS  |")
+        print("|  ID    |  OEIS  SIMILARS |")
         print("| :---:  |  :---  |")
 
+# https://oeis.org/search?q=id%3AA039991%7Cid%3AA123456&sort=&language=&go=Search
+
     for fun in tabl_fun:
-        similars = lookup_similar_triangles(seq_list, fun)
+        similars = lookup_similar_triangles(seq_list, fun)[:10]
         if md:
+            anum = ""
+            for sim in similars:
+                anum += "%7Cid%3A" + sim
             s = (   str(similars)
                     .replace("[", "")
                     .replace("]", "")
                     .replace("'", "")
                 )
-            print("|", fun.id, "|", s, "|")
+            id = fun.id
+            print(f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/tables.md#{id}) | [{s}](https://oeis.org/search?q={anum}) |")
         else:
             print(fun.id, "Similars:", similars)
     return

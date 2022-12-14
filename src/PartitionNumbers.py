@@ -3,7 +3,7 @@ from itertools import accumulate
 from _tabltypes import set_attributes
 
 """Partition numbers (Euler's table), 
-[A008284*, A058398, A069713, A072233, A208245, A215521, A319453], A026820, A000041.
+[A008284, A058398, A072233], see also A026820, A000041.
 
 [0] 1
 [1] 0, 1

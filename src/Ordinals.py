@@ -1,8 +1,8 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""von Neumann ordinals (kind of), 
-[A002260, A002262*, A004736, A025581]
+"""von Neumann ordinals (kind of). 
+[A002260, A002262, A004736, A025581]
 
 
 [0] [0]
