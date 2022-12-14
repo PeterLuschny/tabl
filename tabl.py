@@ -1393,23 +1393,6 @@ def stirling_cycle(n: int, k: int = -1) -> list[int] | int:
 
 
 @cache
-def _stirling_set(n: int) -> list[int]:
-    if n == 0:
-        return [1]
-    row: list[int] = [0] + _stirling_set(n - 1)
-    for k in range(1, n):
-        row[k] = row[k] + k * row[k + 1]
-    return row
-
-
-@set_attributes(_stirling_set, "STIRLING2SET", True)
-def stirling_set(n: int, k: int = -1) -> list[int] | int:
-    if k == -1:
-        return _stirling_set(n).copy()
-    return _stirling_set(n)[k]
-
-
-@cache
 def _stirling_cycle2(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -1430,6 +1413,42 @@ def stirling_cycle2(n: int, k: int = -1) -> list[int] | int:
 
 
 @cache
+def _stirling_cycleB(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    row: list[int] = _stirling_cycleB(n - 1) + [1]
+    m = 2 * n - 1
+    for k in range(n - 1, 0, -1):
+        row[k] = m * row[k] + row[k - 1]
+    row[0] *= m
+    return row
+
+
+@set_attributes(_stirling_cycleB, "STIRLCYCANAB", True)
+def stirling_cycleB(n: int, k: int = -1) -> list[int] | int:
+    if k == -1:
+        return _stirling_cycleB(n).copy()
+    return _stirling_cycleB(n)[k]
+
+
+@cache
+def _stirling_set(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    row: list[int] = [0] + _stirling_set(n - 1)
+    for k in range(1, n):
+        row[k] = row[k] + k * row[k + 1]
+    return row
+
+
+@set_attributes(_stirling_set, "STIRLING2SET", True)
+def stirling_set(n: int, k: int = -1) -> list[int] | int:
+    if k == -1:
+        return _stirling_set(n).copy()
+    return _stirling_set(n)[k]
+
+
+@cache
 def _stirling_set2(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -1447,6 +1466,29 @@ def stirling_set2(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _stirling_set2(n).copy()
     return _stirling_set2(n)[k]
+
+
+@cache
+def _stirling_setB(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [1, 1]
+    pow: list[int] = _stirling_setB(n - 1)
+    row: list[int] = _stirling_setB(n - 1) + [1]
+    row[0] += 2 * row[1]
+
+    for k in range(1, n - 1):
+        row[k] = 2 * (k + 1) * pow[k + 1] + (2 * k + 1) * pow[k] + pow[k - 1]
+    row[n - 1] = (2 * n - 1) * pow[n - 1] + pow[n - 2]
+    return row
+
+
+@set_attributes(_stirling_setB, "STIRLSETANAB", True)
+def stirling_setB(n: int, k: int = -1) -> list[int] | int:
+    if k == -1:
+        return _stirling_setB(n).copy()
+    return _stirling_setB(n)[k]
 
 
 @cache
@@ -1628,9 +1670,11 @@ tabl_fun: list[tri] = [
     seidel_boust,
     sierpinski,
     stirling_cycle,
-    stirling_set,
     stirling_cycle2,
+    stirling_cycleB,
+    stirling_set,
     stirling_set2,
+    stirling_setB,
     sylvester,
     sympoly,
     ternary_tree,

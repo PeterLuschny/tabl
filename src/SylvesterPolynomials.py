@@ -6,7 +6,6 @@ from _tabltypes import set_attributes
 """Sylvester polynomials. 
 [A341101]
 
-
 [0] 1;
 [1] 0,   2;
 [2] 0,   1,    4;
