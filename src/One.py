@@ -17,20 +17,20 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _uno(n: int) -> list[int]:
+def _one(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    return _uno(n - 1) + [1]
+    return _one(n - 1) + [1]
 
 
-@set_attributes(_uno, "UNOPERTUTTIS", True)
-def uno(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _uno(n).copy()
-    return _uno(n)[k]
+@set_attributes(_one, "ONEPERTUTTIS", True)
+def one(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _one(n).copy()
+    return _one(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(uno)
+    TablTest(one)

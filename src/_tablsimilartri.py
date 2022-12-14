@@ -78,17 +78,28 @@ def SingleSimilarTriangles(datapath, fun) -> None:
         return
 
 
-def SimilarTriangles(datapath: str) -> None:
+def SimilarTriangles(datapath: str, md: bool = True) -> None:
 
     seq_list = []
     with open(datapath, "r") as oeisdata:
         reader = csv.reader(oeisdata)
         seq_list = [[seq[0], [int(t) for t in seq[1:-1]]] for seq in reader]
 
+    if md:
+        print("|  ID    |  OEIS  |")
+        print("| :---:  |  :---  |")
+
     for fun in tabl_fun:
         similars = lookup_similar_triangles(seq_list, fun)
-        print(fun.id, "Similars:", similars)
-
+        if md:
+            s = (   str(similars)
+                    .replace("[", "")
+                    .replace("]", "")
+                    .replace("'", "")
+                )
+            print("|", fun.id, "|", s, "|")
+        else:
+            print(fun.id, "Similars:", similars)
     return
 
 

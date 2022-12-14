@@ -1152,6 +1152,20 @@ def nicomachus(n: int, k: int = -1) -> list[int] | int:
 
 
 @cache
+def _one(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    return _one(n - 1) + [1]
+
+
+@set_attributes(_one, "ONEPERTUTTIS", True)
+def one(n: int, k: int = -1) -> list[int] | int:
+    if k == -1:
+        return _one(n).copy()
+    return _one(n)[k]
+
+
+@cache
 def _ordinals(n: int) -> list[int]:
     if n == 0:
         return [0]
@@ -1552,20 +1566,6 @@ def ternary_tree(n: int, k: int = -1) -> list[int] | int:
 
 
 @cache
-def _uno(n: int) -> list[int]:
-    if n == 0:
-        return [1]
-    return _uno(n - 1) + [1]
-
-
-@set_attributes(_uno, "UNOPERTUTTIS", True)
-def uno(n: int, k: int = -1) -> list[int] | int:
-    if k == -1:
-        return _uno(n).copy()
-    return _uno(n)[k]
-
-
-@cache
 def _ward_cycle(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -1657,6 +1657,7 @@ tabl_fun: list[tri] = [
     motzkin,
     narayana,
     nicomachus,
+    one,
     ordinals,
     ordered_cycle,
     partnum_exact,
@@ -1678,7 +1679,6 @@ tabl_fun: list[tri] = [
     sylvester,
     sympoly,
     ternary_tree,
-    uno,
     ward_cycle,
     ward_set,
     worpitzky,
@@ -1896,12 +1896,19 @@ def SingleSimilarTriangles(datapath, fun) -> None:
     return
 
 
-def SimilarTriangles(datapath: str) -> None:
+def SimilarTriangles(datapath: str, md: bool = True) -> None:
     seq_list = []
     with open(datapath, "r") as oeisdata:
         reader = csv.reader(oeisdata)
         seq_list = [[seq[0], [int(t) for t in seq[1:-1]]] for seq in reader]
+    if md:
+        print("|  ID    |  OEIS  |")
+        print("| :---:  |  :---  |")
     for fun in tabl_fun:
         similars = lookup_similar_triangles(seq_list, fun)
-        print(fun.id, "Similars:", similars)
+        if md:
+            s = str(similars).replace("[", "").replace("]", "").replace("'", "")
+            print("|", fun.id, "|", s, "|")
+        else:
+            print(fun.id, "Similars:", similars)
     return

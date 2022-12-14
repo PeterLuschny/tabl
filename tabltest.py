@@ -1,6 +1,6 @@
 from codetiming import Timer
 from pathlib import Path
-from tabl import PrintViews, PrintExtendedProfile, PrintProfile, SaveExtendedProfiles, SaveProfiles, SaveTables, SaveExtendedTables, sortfile, tabl_fun, SimilarTriangles
+from tabl import PrintViews, PrintExtendedProfile, PrintProfile, SaveExtendedProfiles, SaveProfiles, SaveTables, SaveExtendedTables, SimilarTriangles, sortfile, tabl_fun 
 
 
 if __name__ == "__main__":
@@ -8,8 +8,10 @@ if __name__ == "__main__":
     path = Path(__file__).parent
     relprofpath = 'data/profiles.csv'
     relsortpath = 'data/sortedprofiles.csv'
+    relshortdatapath = 'data/short_data.csv'
     propath = (path / relprofpath).resolve()
     sorpath = (path / relsortpath).resolve()
+    shortdatapath = (path / relshortdatapath).resolve()
 
 
     def test1() -> None:
@@ -31,17 +33,13 @@ if __name__ == "__main__":
 
         SaveProfiles(propath)
         sortfile(propath, sorpath)
-
         #SaveExtendedProfiles(propath)
         #sortfile(propath, sorpath)
-
         print("The profiles are in", propath)
 
 
     def test4() -> None:
         path = Path(__file__).parent
-        relshortdatapath = 'data/short_data.csv'
-        shortdatapath = (path / relshortdatapath).resolve()
         SimilarTriangles(shortdatapath)
 
 
@@ -62,4 +60,4 @@ if __name__ == "__main__":
             case 5: test5()
         print("Done")
 
-    main(2)
+    main(4)

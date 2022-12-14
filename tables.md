@@ -4444,9 +4444,9 @@ TERNARYTREES Polynomial values as columns
 | cpdiag5 | [1, 5, 80, 1630, 37680, 939855, 24661280] |
 | cpdiag6 | [1, 6, 114, 2778, 76938, 2300730, 72399498] |
 
-# UNOPERTUTTIS
+# ONEPERTUTTIS
 
-UNOPERTUTTIS Triangle view
+ONEPERTUTTIS Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -4457,7 +4457,7 @@ UNOPERTUTTIS Triangle view
 | trow5 | [1, 1, 1, 1, 1, 1] |
 | trow6 | [1, 1, 1, 1, 1, 1, 1] |
 
-UNOPERTUTTIS Flattened seqs
+ONEPERTUTTIS Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -4467,7 +4467,7 @@ UNOPERTUTTIS Flattened seqs
 | accurev   | [1, 1, 2, 1, 2, 3, 1, 2, 3, 4, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 7] |
 | diag     | [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] |
 
-UNOPERTUTTIS Row sums
+ONEPERTUTTIS Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 2, 3, 4, 5, 6, 7] |
@@ -4478,7 +4478,7 @@ UNOPERTUTTIS Row sums
 | accusum    | [1, 3, 6, 10, 15, 21, 28] |
 | revaccusum | [1, 3, 6, 10, 15, 21, 28] |
 
-UNOPERTUTTIS Diagonals as rows
+ONEPERTUTTIS Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -4489,7 +4489,7 @@ UNOPERTUTTIS Diagonals as rows
 | rdiag5 | [1, 1, 1, 1, 1, 1, 1]|
 | rdiag6 | [1, 1, 1, 1, 1, 1, 1]|
 
-UNOPERTUTTIS Diagonals as columns
+ONEPERTUTTIS Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -4500,7 +4500,7 @@ UNOPERTUTTIS Diagonals as columns
 | cdiag5 | [1, 1, 1, 1, 1, 1, 1] |
 | cdiag6 | [1, 1, 1, 1, 1, 1, 1] |
 
-UNOPERTUTTIS Polynomial values as rows
+ONEPERTUTTIS Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -4511,7 +4511,7 @@ UNOPERTUTTIS Polynomial values as rows
 | rpdiag5 | [1, 6, 63, 364, 1365, 3906, 9331] |
 | rpdiag6 | [1, 7, 127, 1093, 5461, 19531, 55987] |
 
-UNOPERTUTTIS Polynomial values as columns
+ONEPERTUTTIS Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
