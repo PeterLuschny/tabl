@@ -16,27 +16,6 @@ from _tabltypes import set_attributes
 [7] 0, 720, 2604, 4046, 3570, 1960, 672, 128;
 """
 
-#from math import factorial
-#from sympy import Symbol, Poly
-#@cache
-#def L(n, m, x):
-#    if n == 0:
-#        return 1
-#    if n == 1:
-#        return 1 - m - 2 * x
-#
-#    return ((2 * (n  - x) - m - 1) * L(n - 1, m, x) / n 
-#          - (n  - x - m - 1) * L(n - 2, m, x) / n)
-#@cache
-#def _sylvester(n: int) -> list[int]:
-#    x = Symbol("x")
-#    p = (-1) ** n * factorial(n) * L(n, n, x)
-#    return list(reversed(Poly(p, x).all_coeffs()))
-#
-#    from _tablviews import PrintViews
-#    PrintViews(sylvester, 8, True)
-
-
 @cache
 def _sylvester(n: int) -> list[int]:
     return [sum(binomial(n, k - j) * stirling_cycle(n - k + j, j)

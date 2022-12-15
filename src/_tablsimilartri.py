@@ -89,7 +89,6 @@ def SimilarTriangles(datapath: str, md: bool = True) -> None:
         print("|  ID    |  OEIS  SIMILARS |")
         print("| :---:  |  :---  |")
 
-# https://oeis.org/search?q=id%3AA039991%7Cid%3AA123456&sort=&language=&go=Search
 
     for fun in tabl_fun:
         similars = lookup_similar_triangles(seq_list, fun)[:10]
