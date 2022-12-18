@@ -1,5 +1,5 @@
-from _tablsums import tabl_sum, tabl_evensum, tabl_oddsum, tabl_altsum, tabl_accusum, tabl_revaccusum, tabl_diagsum
-from _tabltransforms import flat_tabl, flat_rev, flat_diag, flat_accu, flat_revaccu, flat_accurev, row_poly, col_poly
+from _tablsums import tabl_sum, tabl_evensum, tabl_oddsum, tabl_altsum, tabl_accsum, tabl_revaccsum, tabl_diagsum
+from _tabltransforms import flat_tabl, flat_rev, flat_diag, flat_acc, flat_revacc, flat_accrev, row_poly, col_poly
 from _tabltypes import tri, tabl
 
 # #@
@@ -56,15 +56,15 @@ def PrintColPolyArray(T: tri, rows: int, cols: int) -> None:
 
 
 def PrintSums(t: tabl) -> None:
-    print("| sum       |   seq  |")
-    print("| :---      |  :---  |")
+    print("| sum        |   seq  |")
+    print("| :---       |  :---  |")
     print(f'| sum       | {tabl_sum(t)} |')
     print(f'| evensum   | {tabl_evensum(t)} |')
     print(f'| oddsum    | {tabl_oddsum(t)} |')
     print(f'| altsum    | {tabl_altsum(t)} |')
     print(f'| diagsum   | {tabl_diagsum(t)} |')
-    print(f'| accusum    | {tabl_accusum(t)} |')
-    print(f'| revaccusum | {tabl_revaccusum(t)} |')
+    print(f'| accusum   | {tabl_accsum(t)} |')
+    print(f'| revaccusum | {tabl_revaccsum(t)} |')
 
 
 def PrintFlats(t: tabl) -> None:
@@ -72,9 +72,9 @@ def PrintFlats(t: tabl) -> None:
     print("| :---      |  :---  |")
     print(f'| tabl     | {flat_tabl(t)} |')
     print(f'| rev      | {flat_rev(t)} |')
-    print(f'| accu      | {flat_accu(t)} |')
-    print(f'| revaccu   | {flat_revaccu(t)} |')
-    print(f'| accurev   | {flat_accurev(t)} |')
+    print(f'| accu     | {flat_acc(t)} |')
+    print(f'| revaccu  | {flat_revacc(t)} |')
+    print(f'| accurev  | {flat_accrev(t)} |')
     print(f'| diag     | {flat_diag(t)} |')
 
 
@@ -119,5 +119,6 @@ def PrintViews(T: tri, rows: int = 7, verbose: bool = True) -> None:
 if __name__ == "__main__":
 
     from Abel import abel
+    from Bell import bell
 
-    PrintViews(abel)
+    PrintViews(bell)

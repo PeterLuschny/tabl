@@ -2,7 +2,7 @@
 # #@
 
 from _tabltypes import tabl, trow
-from _tabltransforms import diag_tabl, accu_tabl, rev_tabl
+from _tabltransforms import diag_tabl, acc_tabl, rev_tabl
 
 
 def even_sum(r: trow) -> int:
@@ -38,11 +38,15 @@ def tabl_diagsum(t: tabl) -> trow:
     return [sum(row) for row in diagt]
 
 
-def tabl_accusum(t: tabl) -> trow:
-    accut: tabl = accu_tabl(t)
-    return [sum(row) for row in accut]
+def tabl_accsum(t: tabl) -> trow:
+    acc: tabl = acc_tabl(t)
+    return [sum(row) for row in acc]
 
 
-def tabl_revaccusum(t: tabl) -> trow:
-    revaccut: tabl = accu_tabl(rev_tabl(t))
-    return [sum(row) for row in revaccut]
+def tabl_revaccsum(t: tabl) -> trow:
+    revacc: tabl = acc_tabl(rev_tabl(t))
+    return [sum(row) for row in revacc]
+
+def tabl_accrevsum(t: tabl) -> trow:
+    accurev: tabl = rev_tabl(acc_tabl(t))
+    return [sum(row) for row in accurev]

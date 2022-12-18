@@ -6,6 +6,7 @@ from io import TextIOWrapper
 from difflib import SequenceMatcher
 import contextlib
 import csv
+from fractions import Fraction as frac
 from sympy import Matrix, Rational
 
 setrecursionlimit(2100)
@@ -167,9 +168,13 @@ def set_attributes(r: rgen, id: str, vert: bool = False) -> Callable[[tri], tri]
     return wrapper
 
 
-def poly(R: tri, n: int, x: int) -> int:
-    row: trow = R(n)
-    return sum(c * x**k for (k, c) in enumerate(row))
+def poly(T: tri, n: int, x: int) -> int:
+    row: trow = T(n)
+    return sum(c * (x**j) for (j, c) in enumerate(row))
+
+
+def poly_frac(T: tabl, x: frac) -> list[frac]:
+    return [sum(c * (x**k) for (k, c) in enumerate(row)) for row in T]
 
 
 def row_poly(T: tri, n: int, leng: int) -> trow:
@@ -180,14 +185,74 @@ def col_poly(T: tri, n: int, leng: int) -> trow:
     return [poly(T, k, n) for k in range(leng)]
 
 
+def diag_poly(T: tri, n: int) -> trow:
+    return [poly(T, n - k, k) for k in range(n + 1)]
+
+
+def poly_diag(T: tri, leng: int) -> trow:
+    return [poly(T, n, n) for n in range(leng)]
+
+
+def poly_tabl(T: tri, leng: int) -> tabl:
+    return [diag_poly(T, n) for n in range(leng)]
+
+
+def pos_half(T: tabl) -> list[int]:
+    R = poly_frac(T, frac(1, 2))
+    return [((2**n) * r).numerator for n, r in enumerate(R)]
+
+
+def neg_half(T: tabl) -> list[int]:
+    R = poly_frac(T, frac(-1, 2))
+    return [(((-2) ** n) * r).numerator for n, r in enumerate(R)]
+
+
 def trans_seq(T: tri, a: seq, lg: int) -> trow:
     return [sum(T(n, k) * a(k) for k in range(n + 1)) for n in range(lg)]
+
+
+def trans_self(T: tri, lg: int) -> tabl:
+    return [trans_seq(T, lambda k: T(n, k), n + 1) for n in range(lg)]
+
+
+def transbin_tabl(T: tri, lg: int) -> tabl:
+    return [trans_seq(binomial, lambda k: T(n, k), n + 1) for n in range(lg)]
+
+
+def transbin_val(f: tri, lg: int) -> trow:
+    T = transbin_tabl(f, lg)
+    return [row[-1] for row in T]
 
 
 def invtrans_seq(T: tri, a: seq, lg: int) -> trow:
     return [
         sum((-1) ** (n - k) * T(n, k) * a(k) for k in range(n + 1)) for n in range(lg)
     ]
+
+
+def invtrans_self(T: tri, lg: int) -> tabl:
+    return [invtrans_seq(T, lambda k: T(n, k), n + 1) for n in range(lg)]
+
+
+def invtransbin_tabl(T: tri, lg: int) -> tabl:
+    return [invtrans_seq(binomial, lambda k: T(n, k), n + 1) for n in range(lg)]
+
+
+def invtransbin_val(f: tri, lg: int) -> trow:
+    T = invtransbin_tabl(f, lg)
+    return [row[-1] for row in T]
+
+
+def row_diag(T: tri, j: int, leng: int) -> trow:
+    return [T(j + k, k) for k in range(leng)]
+
+
+def col_diag(T: tri, j: int, leng: int) -> trow:
+    return [T(j + k, j) for k in range(leng)]
+
+
+def trans(M: tri, V: Callable, leng: int) -> list[int]:
+    return [sum(M(n, k) * V(k) for k in range(n + 1)) for n in range(leng)]
 
 
 def diag_tabl(t: tabl) -> tabl:
@@ -200,26 +265,24 @@ def diag_tabl(t: tabl) -> tabl:
     return U
 
 
-def accu_tabl(t: tabl) -> tabl:
-    U: tabl = []
-    for row in t:
-        U.append(list(accumulate(row)))
-    return U
+def acc_tabl(t: tabl) -> tabl:
+    return [list(accumulate(row)) for row in t]
 
 
 def rev_tabl(t: tabl) -> tabl:
-    U: tabl = []
-    for row in t:
-        U.append(list(reversed(row)))
-    return U
+    return [list(reversed(row)) for row in t]
 
 
-def revaccu_tabl(t: tabl) -> tabl:
-    return rev_tabl(accu_tabl(t))
+def inv_tabl(t: tabl) -> tabl:
+    return InverseTabl(t)
 
 
-def accurev_tabl(t: tabl) -> tabl:
-    return accu_tabl(rev_tabl(t))
+def revacc_tabl(t: tabl) -> tabl:
+    return rev_tabl(acc_tabl(t))
+
+
+def accrev_tabl(t: tabl) -> tabl:
+    return acc_tabl(rev_tabl(t))
 
 
 def flat_tabl(t: tabl) -> trow:
@@ -234,16 +297,32 @@ def flat_diag(t: tabl) -> trow:
     return [i for row in diag_tabl(t) for i in row]
 
 
-def flat_accu(t: tabl) -> trow:
-    return [i for row in accu_tabl(t) for i in row]
+def flat_acc(t: tabl) -> trow:
+    return [i for row in acc_tabl(t) for i in row]
 
 
-def flat_revaccu(t: tabl) -> trow:
-    return [i for row in revaccu_tabl(t) for i in row]
+def flat_revacc(t: tabl) -> trow:
+    return [i for row in revacc_tabl(t) for i in row]
 
 
-def flat_accurev(t: tabl) -> trow:
-    return [i for row in accurev_tabl(t) for i in row]
+def flat_accrev(t: tabl) -> trow:
+    return [i for row in accrev_tabl(t) for i in row]
+
+
+def middle(t: tabl) -> list[int]:
+    return [row[n // 2] for n, row in enumerate(t)]
+
+
+def central(t: tabl) -> list[int]:
+    return [row[n // 2] for n, row in enumerate(t) if n % 2 == 0]
+
+
+def left_side(t: tabl) -> list[int]:
+    return [row[0] for row in t]
+
+
+def right_side(t: tabl) -> list[int]:
+    return [row[-1] for row in t]
 
 
 def even_sum(r: trow) -> int:
@@ -279,14 +358,19 @@ def tabl_diagsum(t: tabl) -> trow:
     return [sum(row) for row in diagt]
 
 
-def tabl_accusum(t: tabl) -> trow:
-    accut: tabl = accu_tabl(t)
-    return [sum(row) for row in accut]
+def tabl_accsum(t: tabl) -> trow:
+    acc: tabl = acc_tabl(t)
+    return [sum(row) for row in acc]
 
 
-def tabl_revaccusum(t: tabl) -> trow:
-    revaccut: tabl = accu_tabl(rev_tabl(t))
-    return [sum(row) for row in revaccut]
+def tabl_revaccsum(t: tabl) -> trow:
+    revacc: tabl = acc_tabl(rev_tabl(t))
+    return [sum(row) for row in revacc]
+
+
+def tabl_accrevsum(t: tabl) -> trow:
+    accurev: tabl = rev_tabl(acc_tabl(t))
+    return [sum(row) for row in accurev]
 
 
 def PrintTabl(t: tabl) -> None:
@@ -341,15 +425,15 @@ def PrintColPolyArray(T: tri, rows: int, cols: int) -> None:
 
 
 def PrintSums(t: tabl) -> None:
-    print("| sum       |   seq  |")
-    print("| :---      |  :---  |")
+    print("| sum        |   seq  |")
+    print("| :---       |  :---  |")
     print(f"| sum       | {tabl_sum(t)} |")
     print(f"| evensum   | {tabl_evensum(t)} |")
     print(f"| oddsum    | {tabl_oddsum(t)} |")
     print(f"| altsum    | {tabl_altsum(t)} |")
     print(f"| diagsum   | {tabl_diagsum(t)} |")
-    print(f"| accusum    | {tabl_accusum(t)} |")
-    print(f"| revaccusum | {tabl_revaccusum(t)} |")
+    print(f"| accusum   | {tabl_accsum(t)} |")
+    print(f"| revaccusum | {tabl_revaccsum(t)} |")
 
 
 def PrintFlats(t: tabl) -> None:
@@ -357,9 +441,9 @@ def PrintFlats(t: tabl) -> None:
     print("| :---      |  :---  |")
     print(f"| tabl     | {flat_tabl(t)} |")
     print(f"| rev      | {flat_rev(t)} |")
-    print(f"| accu      | {flat_accu(t)} |")
-    print(f"| revaccu   | {flat_revaccu(t)} |")
-    print(f"| accurev   | {flat_accurev(t)} |")
+    print(f"| accu     | {flat_acc(t)} |")
+    print(f"| revaccu  | {flat_revacc(t)} |")
+    print(f"| accurev  | {flat_accrev(t)} |")
     print(f"| diag     | {flat_diag(t)} |")
 
 
@@ -1887,3 +1971,270 @@ def SimilarTriangles(datapath: str, md: bool = True) -> None:
         else:
             print(fun.id, "Similars:", similars)
     return
+
+
+def GetSeqnum(S: list[int]) -> str:
+    return "--"  # "A123456"
+
+
+def SeqToFixlenString(seq: list[int], maxlen: int = 90) -> str:
+    separator = " "
+    stri = "[ "
+    maxl = 3
+    for trm in seq:
+        s = str(trm) + separator
+        maxl += len(s)
+        if maxl > maxlen:
+            break
+        stri += s
+    return stri + "]"
+
+
+def Flat(t: tabl) -> list[int]:
+    return [i for row in t for i in row]
+
+
+def FlatAcc(T: tabl) -> list[int]:
+    return flat_acc(T)
+
+
+def FlatRevAcc(T: tabl) -> list[int]:
+    return flat_revacc(T)
+
+
+def FlatAccRev(T: tabl) -> list[int]:
+    return flat_accrev(T)
+
+
+def DiagTri(T: tabl) -> list[int]:
+    return diag_tabl(T)
+
+
+def PolyTri(f: tri, n: int) -> list[int]:
+    return poly_tabl(f, n)
+
+
+def ConvTri(f: tri, n: int) -> list[int]:
+    return trans_self(f, n)
+
+
+def BinConT(f: tri, n: int) -> list[int]:
+    return transbin_tabl(f, n)
+
+
+def IBinConT(f: tri, n: int) -> list[int]:
+    return invtransbin_tabl(f, n)
+
+
+def Sum(T: tabl) -> list[int]:
+    return tabl_sum(T)
+
+
+def EvenSum(T: tabl) -> list[int]:
+    return tabl_evensum(T)
+
+
+def OddSum(T: tabl) -> list[int]:
+    return tabl_oddsum(T)
+
+
+def AltSum(T: tabl) -> list[int]:
+    return tabl_altsum(T)
+
+
+def AccSum(T: tabl) -> list[int]:
+    return tabl_accsum(T)
+
+
+def AccRevSum(T: tabl) -> list[int]:
+    return tabl_accrevsum(T)
+
+
+def RevAccSum(T: tabl) -> list[int]:
+    return tabl_revaccsum(T)
+
+
+def DiagSum(T: tabl) -> list[int]:
+    return tabl_diagsum(T)
+
+
+def Middle(T: tabl) -> list[int]:
+    return middle(T)
+
+
+def Central(T: tabl) -> list[int]:
+    return central(T)
+
+
+def LeftSide(T: tabl) -> list[int]:
+    return left_side(T)
+
+
+def RightSide(T: tabl) -> list[int]:
+    return right_side(T)
+
+
+def PosHalf(T: tabl) -> list[int]:
+    return pos_half(T)
+
+
+def NegHalf(T: tabl) -> list[int]:
+    return neg_half(T)
+
+
+def BinConV(f: tri, n: int) -> list[int]:
+    return transbin_val(f, n)
+
+
+def IBinConV(f: tri, n: int) -> list[int]:
+    return invtransbin_val(f, n)
+
+
+def TransSqrs(f, n: int) -> list[int]:
+    return trans(f, lambda k: k * k, n)
+
+
+def TransNat0(f, n: int) -> list[int]:
+    return trans(f, lambda k: k, n)
+
+
+def TransNat1(f, n: int) -> list[int]:
+    return trans(f, lambda k: k + 1, n)
+
+
+def DiagRow0(f: tri, n: int) -> list[int]:
+    return row_diag(f, 0, n)
+
+
+def DiagRow1(f: tri, n: int) -> list[int]:
+    return row_diag(f, 1, n)
+
+
+def DiagRow2(f: tri, n: int) -> list[int]:
+    return row_diag(f, 2, n)
+
+
+def DiagRow3(f: tri, n: int) -> list[int]:
+    return row_diag(f, 3, n)
+
+
+def DiagCol0(f: tri, n: int) -> list[int]:
+    return col_diag(f, 0, n)
+
+
+def DiagCol1(f: tri, n: int) -> list[int]:
+    return col_diag(f, 1, n)
+
+
+def DiagCol2(f: tri, n: int) -> list[int]:
+    return col_diag(f, 2, n)
+
+
+def DiagCol3(f: tri, n: int) -> list[int]:
+    return col_diag(f, 3, n)
+
+
+def PolyRow0(f: tri, n: int) -> list[int]:
+    return row_poly(f, 0, n)
+
+
+def PolyRow1(f: tri, n: int) -> list[int]:
+    return row_poly(f, 1, n)
+
+
+def PolyRow2(f: tri, n: int) -> list[int]:
+    return row_poly(f, 2, n)
+
+
+def PolyRow3(f: tri, n: int) -> list[int]:
+    return row_poly(f, 3, n)
+
+
+def PolyCol0(f: tri, n: int) -> list[int]:
+    return col_poly(f, 0, n)
+
+
+def PolyCol1(f: tri, n: int) -> list[int]:
+    return col_poly(f, 1, n)
+
+
+def PolyCol2(f: tri, n: int) -> list[int]:
+    return col_poly(f, 2, n)
+
+
+def PolyCol3(f: tri, n: int) -> list[int]:
+    return col_poly(f, 3, n)
+
+
+def PolyDiag(f: tri, n: int) -> list[int]:
+    return poly_diag(f, n)
+
+
+def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
+    T = f.tab(dim)
+    R = f.rev(dim)
+    I = f.inv(dim)
+    RI = f.revinv(dim)
+    IR = f.invrev(dim)
+    funname = f.id
+    maxlen = (dim * (dim + 1)) // 2
+
+    def printer(S, traitname) -> None:
+        sep = ","
+        anum = GetSeqnum(S) if seqnum else ""
+        print(f"{anum}{sep}{funname}{sep}{traitname}{sep}{SeqToFixlenString(S, 80)}")
+
+    print("\n=================")
+    print(funname)
+    print()
+    print("ANumber,Triangle,Trait,Sequence")
+    printer(Flat(T), "Triangle ")
+    printer(Flat(R), "Reverse  ")
+    if I != []:
+        printer(Flat(I), "Inverse  ")
+        printer(Flat(RI), "RevInv   ")
+    if IR != []:
+        printer(Flat(IR), "InvRev   ")
+    printer(FlatAcc(T), "AccTri   ")
+    printer(FlatRevAcc(T), "RevAccTri")
+    printer(FlatAccRev(T), "AccRevTri")
+    printer(Flat(DiagTri(T)), "DiagTri  ")
+    printer(Flat(PolyTri(f, dim)), "PolyTri  ")
+    printer(Flat(ConvTri(f, dim)), "ConvTri  ")
+    printer(Flat(BinConT(f, dim)), "BinConT  ")
+    printer(Flat(IBinConT(f, dim)), "IBinConT ")
+    printer(Sum(T), "Sum      ")
+    printer(EvenSum(T), "EvenSum  ")
+    printer(OddSum(T), "OddSum   ")
+    printer(AltSum(T), "AltSum   ")
+    printer(AccSum(T), "AccSum   ")
+    printer(RevAccSum(T), "RevAccSum")
+    printer(DiagSum(T), "DiagSum  ")
+    printer(Middle(T), "Middle   ")
+    printer(Central(T), "Central  ")
+    printer(LeftSide(T), "LeftSide ")
+    printer(RightSide(T), "RightSide")
+    printer(PosHalf(T), "PosHalf  ")
+    printer(NegHalf(T), "NegHalf  ")
+    printer(BinConV(f, maxlen), "BinConV  ")
+    printer(IBinConV(f, maxlen), "IBinConV ")
+    printer(TransSqrs(f, maxlen), "TransSqrs")
+    printer(TransNat0(f, maxlen), "TransNat0")
+    printer(TransNat1(f, maxlen), "TransNat1")
+    printer(DiagRow0(f, maxlen), "DiagRow0 ")
+    printer(DiagRow1(f, maxlen), "DiagRow1 ")
+    printer(DiagRow2(f, maxlen), "DiagRow2 ")
+    printer(DiagRow3(f, maxlen), "DiagRow3 ")
+    printer(DiagCol0(f, maxlen), "DiagCol0 ")
+    printer(DiagCol1(f, maxlen), "DiagCol1 ")
+    printer(DiagCol2(f, maxlen), "DiagCol2 ")
+    printer(DiagCol3(f, maxlen), "DiagCol3 ")
+    printer(PolyRow0(f, maxlen), "PolyRow0 ")
+    printer(PolyRow1(f, maxlen), "PolyRow1 ")
+    printer(PolyRow2(f, maxlen), "PolyRow2 ")
+    printer(PolyRow3(f, maxlen), "PolyRow3 ")
+    printer(PolyCol0(f, maxlen), "PolyCol0 ")
+    printer(PolyCol1(f, maxlen), "PolyCol1 ")
+    printer(PolyCol2(f, maxlen), "PolyCol2 ")
+    printer(PolyCol3(f, maxlen), "PolyCol3 ")
+    printer(PolyDiag(f, maxlen), "PolyDiag ")

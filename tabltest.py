@@ -1,6 +1,6 @@
 from codetiming import Timer
 from pathlib import Path
-from tabl import PrintViews, PrintExtendedProfile, PrintProfile, SaveExtendedProfiles, SaveProfiles, SaveTables, SaveExtendedTables, SimilarTriangles, sortfile, tabl_fun 
+from tabl import PrintViews, PrintExtendedProfile, PrintProfile, SaveExtendedProfiles, SaveProfiles, SaveTables, SaveExtendedTables, SimilarTriangles, sortfile, Traits, stirling_set, tabl_fun
 
 
 if __name__ == "__main__":
@@ -50,6 +50,10 @@ if __name__ == "__main__":
         time_me()
 
 
+    def test6() -> None:
+        Traits(stirling_set, 20, True)
+
+
     def main(test: int) -> None:
         print("... bussy")
         match test:
@@ -58,6 +62,7 @@ if __name__ == "__main__":
             case 3: test3()
             case 4: test4()
             case 5: test5()
+            case 6: test6()
         print("Done")
 
-    main(2)
+    main(6)

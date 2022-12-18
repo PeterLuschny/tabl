@@ -72,6 +72,7 @@ tabl_files: list[str] = [
     "_tabldata.py",
     "_tablsimilarseq.py",
     "_tablsimilartri.py",
+    "_tabltraitcard.py",
 ]
 
 str_tabl_fun: str = """\
@@ -147,6 +148,7 @@ import_header: list[str] = [
     "from difflib import SequenceMatcher\n",
     "import contextlib\n",
     "import csv\n",
+    "from fractions import Fraction as frac\n",
     "from sympy import Matrix, Rational\n",
 ]
 

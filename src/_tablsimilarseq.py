@@ -125,9 +125,10 @@ if __name__ == "__main__":
     ['A271703', (0, 0, 74)]
     """
 
-    candidates = SimilarSequences(datapath, lah.flat(8))
+    candidates = SimilarSequences2(datapath, lah.flat(8))
     print("Similar sequences are:")
     for cand in candidates: print(cand)
+    print("done")
 
     # takes too long ?
     # candidates = SimilarSequences2(datapath, lah.flat(8))

@@ -1,13 +1,21 @@
+from typing import Callable
 from itertools import accumulate
+from fractions import Fraction as frac
+from Binomial import binomial
+from _tablinverse import InverseTabl
 from _tabltypes import seq, tri, tabl, trow
 
 
 # #@
 
 
-def poly(R: tri, n: int, x: int) -> int:
-    row: trow = R(n)
-    return sum(c * x ** k for (k, c) in enumerate(row))
+def poly(T: tri, n: int, x: int) -> int:
+    row: trow = T(n)
+    return sum(c * (x ** j) for (j, c) in enumerate(row))
+
+
+def poly_frac(T: tabl, x: frac) -> list[frac]:
+    return [sum(c * (x ** k) for (k, c) in enumerate(row)) for row in T]
 
 
 def row_poly(T: tri, n: int, leng: int) -> trow:
@@ -18,15 +26,75 @@ def col_poly(T: tri, n: int, leng: int) -> trow:
     return [poly(T, k, n) for k in range(leng)]
 
 
+def diag_poly(T: tri, n: int) -> trow:
+    return [poly(T, n - k, k) for k in range(n + 1)]
+
+
+def poly_diag(T: tri, leng: int) -> trow:
+    return [poly(T, n, n) for n in range(leng)]
+
+
+def poly_tabl(T: tri, leng: int) -> tabl:
+    return [diag_poly(T, n) for n in range(leng)]
+
+
+def pos_half(T: tabl) -> list[int]:
+    R = poly_frac(T, frac(1, 2))
+    return [((2 ** n) * r).numerator for n, r in enumerate(R)]
+
+
+def neg_half(T: tabl) -> list[int]:
+    R = poly_frac(T, frac(-1, 2))
+    return [(((-2) ** n) * r).numerator for n, r in enumerate(R)]
+
+
 def trans_seq(T: tri, a: seq, lg: int) -> trow:
     return [sum(T(n, k) * a(k) for k in range(n + 1)) for n in range(lg)]
 
 
+def trans_self(T: tri, lg: int) -> tabl:
+    return [trans_seq(T, lambda k: T(n, k), n + 1) for n in range(lg)]
+
+
+def transbin_tabl(T: tri, lg: int) -> tabl:
+    return [trans_seq(binomial, lambda k: T(n, k), n + 1) for n in range(lg)]
+
+
+def transbin_val(f: tri, lg: int) -> trow:
+    T = transbin_tabl(f, lg)
+    return [row[-1] for row in T]
+
+
 def invtrans_seq(T: tri, a: seq, lg: int) -> trow:
-    return [
-        sum((-1) ** (n - k) * T(n, k) * a(k) for k in range(n + 1))
-        for n in range(lg)
-    ]
+    return [ sum((-1) ** (n - k) * T(n, k) * a(k) for k in range(n + 1))
+        for n in range(lg) ]
+
+
+def invtrans_self(T: tri, lg: int) -> tabl:
+    return [invtrans_seq(T, lambda k: T(n, k), n + 1) for n in range(lg)]
+
+
+def invtransbin_tabl(T: tri, lg: int) -> tabl:
+    return [invtrans_seq(binomial, lambda k: T(n, k), n + 1) for n in range(lg)]
+
+
+def invtransbin_val(f: tri, lg: int) -> trow:
+    T = invtransbin_tabl(f, lg)
+    return [row[-1] for row in T]
+
+
+def row_diag(T: tri, j: int, leng: int) -> trow:
+    return [T(j + k, k) for k in range(leng)]
+
+
+def col_diag(T: tri, j: int, leng: int) -> trow:
+    return [T(j + k, j) for k in range(leng)]
+
+
+################################################
+
+def trans(M: tri, V: Callable, leng: int) -> list[int]:
+    return [sum(M(n, k) * V(k) for k in range(n + 1)) for n in range(leng)]
 
 
 def diag_tabl(t: tabl) -> tabl:
@@ -39,26 +107,24 @@ def diag_tabl(t: tabl) -> tabl:
     return U
 
 
-def accu_tabl(t: tabl) -> tabl:
-    U: tabl = []
-    for row in t:
-        U.append(list(accumulate(row)))
-    return U
+def acc_tabl(t: tabl) -> tabl:
+    return [list(accumulate(row)) for row in t]
 
 
 def rev_tabl(t: tabl) -> tabl:
-    U: tabl = []
-    for row in t:
-        U.append(list(reversed(row)))
-    return U
+    return [list(reversed(row)) for row in t]
 
 
-def revaccu_tabl(t: tabl) -> tabl:
-    return rev_tabl(accu_tabl(t))
+def inv_tabl(t: tabl) -> tabl:
+    return InverseTabl(t)
 
 
-def accurev_tabl(t: tabl) -> tabl:
-    return accu_tabl(rev_tabl(t))
+def revacc_tabl(t: tabl) -> tabl:
+    return rev_tabl(acc_tabl(t))
+
+
+def accrev_tabl(t: tabl) -> tabl:
+    return acc_tabl(rev_tabl(t))
 
 
 def flat_tabl(t: tabl) -> trow:
@@ -73,24 +139,46 @@ def flat_diag(t: tabl) -> trow:
     return [i for row in diag_tabl(t) for i in row]
 
 
-def flat_accu(t: tabl) -> trow:
-    return [i for row in accu_tabl(t) for i in row]
+def flat_acc(t: tabl) -> trow:
+    return [i for row in acc_tabl(t) for i in row]
 
 
-def flat_revaccu(t: tabl) -> trow:
-    return [i for row in revaccu_tabl(t) for i in row]
+def flat_revacc(t: tabl) -> trow:
+    return [i for row in revacc_tabl(t) for i in row]
 
 
-def flat_accurev(t: tabl) -> trow:
-    return [i for row in accurev_tabl(t) for i in row]
+def flat_accrev(t: tabl) -> trow:
+    return [i for row in accrev_tabl(t) for i in row]
+
+
+def middle(t: tabl) -> list[int]:
+    return [row[n // 2] for n, row in enumerate(t)]
+
+
+def central(t: tabl) -> list[int]:
+    return [row[n // 2] for n, row in enumerate(t) if n % 2 == 0]
+
+
+def left_side(t: tabl) -> list[int]:
+    return [row[0] for row in t]
+
+
+def right_side(t: tabl)  -> list[int]:
+    return [row[-1] for row in t]
+
 
 
 if __name__ == "__main__":
+
 
     from Binomial import binomial
     from StirlingSet import stirling_set
     from StirlingCycle import stirling_cycle
     from Motzkin import motzkin
+
+    nums = [0, 1, 15, 117, 627, 2565, 8379, 21945, 43263]
+    print([c*k for c,k in enumerate(nums)])
+
 
     T: tabl = [
         [1],
@@ -110,24 +198,16 @@ if __name__ == "__main__":
     def catalan_number(n: int) -> int:
         return binomial(2 * n, n) // (n + 1)
 
-    print(trans_seq(binomial, catalan_number, 11))
-    print(invtrans_seq(binomial, catalan_number, 11))
-
-    print(trans_seq(stirling_cycle, catalan_number, 11))
-    print(invtrans_seq(stirling_cycle, catalan_number, 11))
-
-    print(trans_seq(stirling_set, catalan_number, 11))
-    print(invtrans_seq(stirling_set, catalan_number, 11))
-
-    S: tabl = motzkin.tab(7)
     
+    S: tabl = motzkin.tab(7)
+
     print(diag_tabl(T))
     print("---")
     print(diag_tabl(S))
-    print("---")
-    print(accu_tabl(T))
-    print("---")
-    print(accu_tabl(S))
+    print("--- acctabl")
+    print(acc_tabl(T))
+    print("--- acctabl")
+    print(acc_tabl(S))
     print("---")
     print(rev_tabl(T))
     print("---")
@@ -137,6 +217,6 @@ if __name__ == "__main__":
     print(flat_tabl(T))
     print(flat_rev(T))
     print(flat_diag(T))
-    print(flat_accu(T))
-    print(flat_revaccu(T))
-    print(flat_accurev(T))
+    print(flat_acc(T))
+    print(flat_revacc(T))
+    print(flat_accrev(T))
