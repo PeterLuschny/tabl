@@ -1,15 +1,30 @@
 from _tabltypes import tri, tabl, trow
+from _tablsimilarseq import read_seqdata, SimilarSequences 
 from _tablsums import tabl_accsum, tabl_altsum, tabl_diagsum, tabl_evensum, tabl_oddsum, tabl_revaccsum, tabl_sum, diag_tabl, tabl_accrevsum
 from _tabltransforms import rev_tabl, row_diag, revacc_tabl, row_poly, col_diag, col_poly, inv_tabl, acc_tabl, accrev_tabl, middle, central, left_side, right_side, pos_half, neg_half, trans_seq, invtrans_seq, trans_self, invtrans_self, diag_tabl, poly_tabl, flat_acc, flat_revacc, flat_accrev, trans, poly_diag, transbin_tabl, invtransbin_tabl, transbin_val, invtransbin_val
 
+from pathlib import Path
+
+path = Path(__file__).parent.parent
+relprofpath = 'data/profiles.csv'
+relsortpath = 'data/sortedprofiles.csv'
+relshortdatapath = 'data/short_data.csv'
+reldatapath = 'data/oeis_data.csv'
+propath = (path / relprofpath).resolve()
+sorpath = (path / relsortpath).resolve()
+shortdatapath = (path / relshortdatapath).resolve()
+datapath = (path / reldatapath).resolve()
+
+def GetDataPath() -> Path: return datapath
+
 # #@
 
-def GetSeqnum(S: list[int]) -> str:
-    return "A123456"
+def flat(t: tabl) -> list[int]: 
+    return [i for row in t for i in row] 
 
 
 def SeqToFixlenString(seq: list[int], maxlen:int=90) -> str:
-    separator = " "
+    separator = ","
     stri = "[ "
     maxl = 3
     for trm in seq:
@@ -19,8 +34,6 @@ def SeqToFixlenString(seq: list[int], maxlen:int=90) -> str:
         stri += s
     return stri + "]"
 
-def Flat(t: tabl) -> list[int]: 
-    return [i for row in t for i in row] 
 
 def Traits(f: tri, dim: int, seqnum: bool = False) -> None: 
 
@@ -33,34 +46,41 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
 
     maxlen = (dim * (dim + 1)) // 2
 
-    def printer(S, traitname) -> None:
-        sep = ","
-        anum = GetSeqnum(S) if seqnum else ""
-        print(f"{anum}{sep}{funname}{sep}{traitname}{sep}{SeqToFixlenString(S, 80)}")
+    seqdata = []
+    if seqnum:
+        datapath = GetDataPath()
+        seqdata = read_seqdata(datapath)
 
-    print("\n=================")
-    print(funname)
-    print()
+
+    def printer(seq, traitname) -> None:
+        print(funname, traitname)
+        if seqnum: print(SimilarSequences(seqdata, seq))
+        print(SeqToFixlenString(seq, 80))
+        # sep = ","
+        # write(f"{candidates}{sep}{funname}{sep}{traitname}{sep}{seqstr}")
+
+
+    print(f"\n=================\n{funname}\n")
     print("ANumber,Triangle,Trait,Sequence")
 
-    printer(Flat(T), "Triangle ")
-    printer(Flat(R), "Reverse  ")
+    printer(flat(T), "Triangle ")
+    printer(flat(R), "Reverse  ")
 
     if I != []:
-        printer(Flat(I),  "Inverse  ")
-        printer(Flat(RI), "RevInv   ")
+        printer(flat(I),  "Inverse  ")
+        printer(flat(RI), "RevInv   ")
 
     if IR != []:
-        printer(Flat(IR), "InvRev   ")
+        printer(flat(IR), "InvRev   ")
 
     printer(flat_acc(T),                    "AccTri   ")
     printer(flat_revacc(T),                 "RevAccTri")
     printer(flat_accrev(T),                 "AccRevTri")
-    printer(Flat(diag_tabl(T)),             "DiagTri  ")
-    printer(Flat(poly_tabl(f, dim)),        "PolyTri  ")
-    printer(Flat(trans_self(f, dim)),       "ConvTri  ")
-    printer(Flat(transbin_tabl(f, dim)),    "BinConT  ")
-    printer(Flat(invtransbin_tabl(f, dim)), "IBinConT ")
+    printer(flat(diag_tabl(T)),             "DiagTri  ")
+    printer(flat(poly_tabl(f, dim)),        "PolyTri  ")
+    printer(flat(trans_self(f, dim)),       "ConvTri  ")
+    printer(flat(transbin_tabl(f, dim)),    "BinConT  ")
+    printer(flat(invtransbin_tabl(f, dim)), "IBinConT ")
 
     printer(tabl_sum(T),       "Sum      ")
     printer(tabl_evensum(T),   "EvenSum  ")
@@ -116,4 +136,8 @@ if __name__ == "__main__":
     from StirlingCycle import stirling_cycle
     from Laguerre import laguerre
 
-    Traits(stirling_set, 20, True)
+    # Quick ckeck:
+    Traits(stirling_set, 12)
+
+    # very SLOW, but with A-numbers:
+    #Traits(stirling_set, 20, True)

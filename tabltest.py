@@ -51,7 +51,7 @@ if __name__ == "__main__":
 
 
     def test6() -> None:
-        Traits(stirling_set, 20, True)
+        Traits(stirling_set, 12)
 
 
     def main(test: int) -> None:

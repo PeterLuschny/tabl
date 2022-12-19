@@ -152,10 +152,19 @@ import_header: list[str] = [
     "from sympy import Matrix, Rational\n",
 ]
 
+data_path: list[str] = [
+    "from pathlib import Path\n",
+    "path = Path(__file__).parent\n",
+    "reldatapath = 'data/oeis_data.csv'\n",
+    "datapath = (path / reldatapath).resolve()\n",
+    "def GetDataPath() -> Path: return datapath\n",
+]
+
 dir: str = join(getcwd(), "src")
 dest: TextIOWrapper = open("tabl.py", "w+")
 
 dest.writelines(import_header)
+dest.writelines(data_path)
 dest.write("setrecursionlimit(2100)\n")
 
 for src in tabl_files:

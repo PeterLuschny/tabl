@@ -8,6 +8,16 @@ import contextlib
 import csv
 from fractions import Fraction as frac
 from sympy import Matrix, Rational
+from pathlib import Path
+
+path = Path(__file__).parent
+reldatapath = "data/oeis_data.csv"
+datapath = (path / reldatapath).resolve()
+
+
+def GetDataPath() -> Path:
+    return datapath
+
 
 setrecursionlimit(2100)
 
@@ -493,8 +503,8 @@ def Profile(T: tri, hor: int = 10) -> dict[str, list[int]]:
     d["evesum"] = tabl_evensum(t)
     d["oddsum"] = tabl_oddsum(t)
     d["altsum"] = tabl_altsum(t)
-    d["accusum"] = tabl_accusum(t)
-    d["revaccu"] = tabl_revaccusum(t)
+    d["accusum"] = tabl_accsum(t)
+    d["revaccu"] = tabl_revaccsum(t)
     d["diasum"] = tabl_diagsum(t)
     # DiagsAsRowArray
     rows: int = ver
@@ -1830,38 +1840,17 @@ def shortabsdata(inpath: str, outpath: str) -> None:
                 outfile.write(str(seq[0]) + s + "\n")
 
 
-def compact_absstr(s: list[int]) -> str:
-    return str(s).replace("-", "").replace(",", "").replace(" ", "")[1:-1]
-
-
-def compact_absstr2(s: str) -> str:
-    return s.replace("-", "").replace(",", "").replace(" ", "")[:-1]
-
-
-def SequenceMatch(a: list[int], b: list[int]) -> tuple[int, int, int]:
-    str_a = compact_absstr(a)
-    str_b = compact_absstr(b)
-    s = SequenceMatcher(None, str_a, str_b)
-    m = s.find_longest_match()
-    return (m.a, m.b, m.size)
-
-
-def SequenceMatch2(a: list[int], b: str) -> tuple[int, int, int]:
-    str_a = compact_absstr(a)
-    s = SequenceMatcher(None, str_a, b)
-    m = s.find_longest_match()
-    return (m.a, m.b, m.size)
-
-
-def ess_equal(s: list[int], t: list[int]) -> tuple[int, int, int]:
-    K = len(s) // 2
-    if len(t) >= 2 * K:
-        for i in range(K):
-            S = [abs(s[i + n]) for n in range(K)]
-            for k in range(K):
-                T = [abs(t[k + n]) for n in range(K)]
-                if S == T:
-                    return (i, k, K)
+def ess_equal(s: list[int], tt: list[int]) -> tuple[int, int, int]:
+    t = [abs(x) for x in tt]
+    K = min(len(t), len(s)) // 2
+    for i in range(K):
+        for k in range(K):
+            L = len(s[i : i + K])
+            if s[i : i + K] == t[k : k + L]:
+                j = 0
+                while i + j < len(s) and k + j < len(t) and s[i + j] == t[k + j]:
+                    j += 1
+                return (i, k, j)
     return (-1, -1, 0)
 
 
@@ -1873,33 +1862,17 @@ def read_seqdata(datapath: str) -> list[list]:
     return seq_list
 
 
-def SimilarSequences(datapath: str, A: list[int]) -> list:
-    Seqs = read_seqdata(datapath)
+def SimilarSequences(Seqs: list[list], A: list[int]) -> list:
     candidates = []
     count = 0
+    Abs = [abs(x) for x in A]
     for seq in Seqs:
-        a, b, size = ess_equal(A, seq[1])
-        if size > 0:
+        a, b, size = ess_equal(Abs, seq[1])
+        if size > min(16, len(A) // 2):
             candidates.append([seq[0], (a, b, size)])
             count += 1
-        if count > 5:
+        if count > 9:
             break
-    return candidates
-
-
-def SimilarSequences2(datapath: str, A: list[int]) -> list:
-    candidates = []
-    count = 0
-    with open(datapath, "r") as oeisdata:
-        for line in oeisdata:
-            seq = compact_absstr2(line[7:-1])
-            found = SequenceMatch2(A, seq)
-            if found[2] < 28:
-                continue
-            candidates.append([line[:7], found])
-            count += 1
-            if count > 5:
-                break
     return candidates
 
 
@@ -1973,12 +1946,12 @@ def SimilarTriangles(datapath: str, md: bool = True) -> None:
     return
 
 
-def GetSeqnum(S: list[int]) -> str:
-    return "A123456"
+def flat(t: tabl) -> list[int]:
+    return [i for row in t for i in row]
 
 
 def SeqToFixlenString(seq: list[int], maxlen: int = 90) -> str:
-    separator = " "
+    separator = ","
     stri = "[ "
     maxl = 3
     for trm in seq:
@@ -1990,10 +1963,6 @@ def SeqToFixlenString(seq: list[int], maxlen: int = 90) -> str:
     return stri + "]"
 
 
-def Flat(t: tabl) -> list[int]:
-    return [i for row in t for i in row]
-
-
 def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
     T = f.tab(dim)
     R = f.rev(dim)
@@ -2002,31 +1971,36 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
     IR = f.invrev(dim)
     funname = f.id
     maxlen = (dim * (dim + 1)) // 2
+    seqdata = []
+    if seqnum:
+        datapath = GetDataPath()
+        seqdata = read_seqdata(datapath)
 
-    def printer(S, traitname) -> None:
-        sep = ","
-        anum = GetSeqnum(S) if seqnum else ""
-        print(f"{anum}{sep}{funname}{sep}{traitname}{sep}{SeqToFixlenString(S, 80)}")
+    def printer(seq, traitname) -> None:
+        print(funname, traitname)
+        if seqnum:
+            print(SimilarSequences(seqdata, seq))
+        print(SeqToFixlenString(seq, 80))
+        # sep = ","
+        # write(f"{candidates}{sep}{funname}{sep}{traitname}{sep}{seqstr}")
 
-    print("\n=================")
-    print(funname)
-    print()
+    print(f"\n=================\n{funname}\n")
     print("ANumber,Triangle,Trait,Sequence")
-    printer(Flat(T), "Triangle ")
-    printer(Flat(R), "Reverse  ")
+    printer(flat(T), "Triangle ")
+    printer(flat(R), "Reverse  ")
     if I != []:
-        printer(Flat(I), "Inverse  ")
-        printer(Flat(RI), "RevInv   ")
+        printer(flat(I), "Inverse  ")
+        printer(flat(RI), "RevInv   ")
     if IR != []:
-        printer(Flat(IR), "InvRev   ")
+        printer(flat(IR), "InvRev   ")
     printer(flat_acc(T), "AccTri   ")
     printer(flat_revacc(T), "RevAccTri")
     printer(flat_accrev(T), "AccRevTri")
-    printer(Flat(diag_tabl(T)), "DiagTri  ")
-    printer(Flat(poly_tabl(f, dim)), "PolyTri  ")
-    printer(Flat(trans_self(f, dim)), "ConvTri  ")
-    printer(Flat(transbin_tabl(f, dim)), "BinConT  ")
-    printer(Flat(invtransbin_tabl(f, dim)), "IBinConT ")
+    printer(flat(diag_tabl(T)), "DiagTri  ")
+    printer(flat(poly_tabl(f, dim)), "PolyTri  ")
+    printer(flat(trans_self(f, dim)), "ConvTri  ")
+    printer(flat(transbin_tabl(f, dim)), "BinConT  ")
+    printer(flat(invtransbin_tabl(f, dim)), "IBinConT ")
     printer(tabl_sum(T), "Sum      ")
     printer(tabl_evensum(T), "EvenSum  ")
     printer(tabl_oddsum(T), "OddSum   ")

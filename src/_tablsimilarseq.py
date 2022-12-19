@@ -1,4 +1,3 @@
-from difflib import SequenceMatcher
 import csv
 
 # #@
@@ -32,39 +31,20 @@ import csv
 # In this sense, it is always only a conjecture that the sequences
 # are essentially equal.
 
-def compact_absstr(s: list[int]) -> str:
-    return str(s).replace("-", "").replace(",", "").replace(" ", "")[1:-1]
 
+def ess_equal(s: list[int], tt: list[int]) -> tuple[int, int, int]:
 
-def compact_absstr2(s: str) -> str:
-    return s.replace("-", "").replace(",", "").replace(" ", "")[:-1]
-
-
-def SequenceMatch(a: list[int], b: list[int]) -> tuple[int, int, int]:
-    str_a = compact_absstr(a)
-    str_b = compact_absstr(b)
-    s = SequenceMatcher(None, str_a, str_b)
-    m = s.find_longest_match()
-    return (m.a, m.b, m.size)
-
-
-def SequenceMatch2(a: list[int], b: str) -> tuple[int, int, int]:
-    str_a = compact_absstr(a)
-    s = SequenceMatcher(None, str_a, b)
-    m = s.find_longest_match()
-    return (m.a, m.b, m.size)
-
-
-def ess_equal(s: list[int], t: list[int]) -> tuple[int, int, int]:
-
-    K = len(s) // 2
-    if len(t) >= 2 * K:
-        for i in range(K):
-            S = [abs(s[i + n]) for n in range(K)]
-            for k in range(K):
-                T = [abs(t[k + n]) for n in range(K)]
-                if S == T:
-                    return (i, k, K)
+    t = [abs(x) for x in tt]
+    K = min(len(t), len(s)) // 2
+    for i in range(K):
+        for k in range(K):
+            L = len(s[i: i + K])
+            if s[i: i + K] == t[k: k + L]:
+                j = 0; 
+                while (i + j < len(s) and k + j < len(t) 
+                        and s[i + j] == t[k + j]):
+                    j += 1
+                return (i, k, j)
     return (-1, -1, 0)
 
 
@@ -78,31 +58,16 @@ def read_seqdata(datapath: str) -> list[list]:
     return seq_list
 
 
-def SimilarSequences(datapath: str, A: list[int]) -> list:
-    Seqs = read_seqdata(datapath)
+def SimilarSequences(Seqs: list[list], A: list[int]) -> list:
     candidates = []
     count = 0
+    Abs = [abs(x) for x in A]
     for seq in Seqs:
-        a, b, size = ess_equal(A, seq[1])
-        if size > 0:
+        a, b, size = ess_equal(Abs, seq[1])
+        if size > min(16, len(A) // 2):
             candidates.append([seq[0], (a, b, size)])
             count += 1
-        if count > 5: break
-    return candidates
-
-
-def SimilarSequences2(datapath: str, A: list[int]) -> list:
-    candidates = []
-    count = 0
-    with open(datapath, "r") as oeisdata:
-        for line in oeisdata:
-            seq = compact_absstr2(line[7:-1])
-            found = SequenceMatch2(A, seq)
-            if found[2] < 28:
-                continue
-            candidates.append([line[:7], found])
-            count += 1
-            if count > 5: break
+        if count > 9: break
     return candidates
 
 
@@ -112,23 +77,37 @@ if __name__ == "__main__":
     from Lah import lah
 
     path = Path(__file__).parent.parent
-    reldatapath = "data/oeis_data.csv"
+    relprofpath = 'data/profiles.csv'
+    relsortpath = 'data/sortedprofiles.csv'
+    reldatapath = 'data/oeis_data.csv'
+    relshortdatapath = 'data/short_data.csv'
+    propath = (path / relprofpath).resolve()
+    sorpath = (path / relsortpath).resolve()
+    shortdatapath = (path / relshortdatapath).resolve()
     datapath = (path / reldatapath).resolve()
 
-    """
-    lah.flat(8) =
-    [1, 0, 1, 0, 2, 1, 0, 6, 6, 1, 0, 24, 36, 12, 1, 0, 120, 
-    240, 120, 20, 1, 0, 720, 1800, 1200, 300, 30, 1, 0, 5040, 
-    15120, 12600, 4200, 630, 42, 1]
-    Similar sequences are:
-    ['A111596', (0, 0, 74)]
-    ['A271703', (0, 0, 74)]
-    """
 
-    candidates = SimilarSequences2(datapath, lah.flat(8))
+    #lahflat8 =  [1, 0, 1, 0, 2, 1, 0, 6, 6, 1, 0, 24, 36, 12, 1, 0, 120, 
+    #240, 120, 20, 1, 0, 720, 1800, 1200, 300, 30, 1, 0, 5040, 
+    #15120, 12600, 4200, 630, 42, 1]
+    #Similar sequences are:
+    #['A111596', (0, 0, 74)]
+    #['A271703', (0, 0, 74)]
+
+    #[],STIRLING2SET,BinConV  ,
+    a = [ 1, 1, 3, 13, 71, 456, 3337, 27203, 243203, 2357356, 24554426, 272908736, 3218032897, 40065665043, 524575892037, 7197724224361, 103188239447115, 1541604242708064, 23945078236133674, 385890657416861532, 6440420888899573136, 111132957321230896024,]
+    #[],STIRLING2SET,IBinConV ,
+    b= [ 1,1,-1,-5,15,56,-455,-237,16947,-64220,-529494,6833608,-8606015,-459331677,]
+    #[],STIRLING2SET,TransSqrs,
+    c =[ 0,1,5,22,99,471,2386,12867,73681,446620,2856457,19217243,135610448,]
+    #[],STIRLING2SET,TransNat0,
+    d = [ 0,1,3,10,37,151,674,3263,17007,94828,562595,3535027,23430840,163254885,]
+    #[],STIRLING2SET,TransNat1,
+    e = [ 1,2,5,15,52,203,877,4140,21147,115975,678570,4213597,27644437,190899322,]
+
+    print(a)
     print("Similar sequences are:")
-    for cand in candidates: print(cand)
-    print("done")
 
-    # takes too long ?
-    # candidates = SimilarSequences2(datapath, lah.flat(8))
+    Seqs = read_seqdata(datapath)
+    anums = SimilarSequences(Seqs, a)
+    for anum in anums: print(anum)
