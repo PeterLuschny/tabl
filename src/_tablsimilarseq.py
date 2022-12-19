@@ -1,5 +1,18 @@
 import csv
 
+from pathlib import Path
+path = Path(__file__).parent.parent
+relprofpath = 'data/profiles.csv'
+relsortpath = 'data/sortedprofiles.csv'
+reldatapath = 'data/oeis_data.csv'
+relshortdatapath = 'data/short_data.csv'
+propath = (path / relprofpath).resolve()
+sorpath = (path / relsortpath).resolve()
+shortdatapath = (path / relshortdatapath).resolve()
+datapath = (path / reldatapath).resolve()
+def GetDataPath() -> Path: return datapath
+
+
 # #@
 
 # We say two sequences are 'essentially equal' if there is a
@@ -71,21 +84,17 @@ def SimilarSequences(Seqs: list[list], A: list[int]) -> list:
     return candidates
 
 
+def OEISANumber(a: str) -> str:
+    datapath = GetDataPath()
+    astr = a.replace("-", "").replace(" ", "")[1:-1]
+    with open(datapath, "r") as oeisdata:
+        for line in oeisdata:
+            if astr in line:
+                return line[:7]
+    return "A??????"
+
+
 if __name__ == "__main__":
-
-    from pathlib import Path
-    from Lah import lah
-
-    path = Path(__file__).parent.parent
-    relprofpath = 'data/profiles.csv'
-    relsortpath = 'data/sortedprofiles.csv'
-    reldatapath = 'data/oeis_data.csv'
-    relshortdatapath = 'data/short_data.csv'
-    propath = (path / relprofpath).resolve()
-    sorpath = (path / relsortpath).resolve()
-    shortdatapath = (path / relshortdatapath).resolve()
-    datapath = (path / reldatapath).resolve()
-
 
     #lahflat8 =  [1, 0, 1, 0, 2, 1, 0, 6, 6, 1, 0, 24, 36, 12, 1, 0, 120, 
     #240, 120, 20, 1, 0, 720, 1800, 1200, 300, 30, 1, 0, 5040, 
@@ -95,7 +104,7 @@ if __name__ == "__main__":
     #['A271703', (0, 0, 74)]
 
     #[],STIRLING2SET,BinConV  ,
-    a = [ 1, 1, 3, 13, 71, 456, 3337, 27203, 243203, 2357356, 24554426, 272908736, 3218032897, 40065665043, 524575892037, 7197724224361, 103188239447115, 1541604242708064, 23945078236133674, 385890657416861532, 6440420888899573136, 111132957321230896024,]
+    a = [1, 1, 3, 13, 71, 456, 3337, 27203, 243203, 2357356, 24554426, 272908736, 3218032897, 40065665043, 524575892037, 7197724224361, 103188239447115, 1541604242708064, 23945078236133674, 385890657416861532, 6440420888899573136, 111132957321230896024]
     #[],STIRLING2SET,IBinConV ,
     b= [ 1,1,-1,-5,15,56,-455,-237,16947,-64220,-529494,6833608,-8606015,-459331677,]
     #[],STIRLING2SET,TransSqrs,
@@ -105,9 +114,12 @@ if __name__ == "__main__":
     #[],STIRLING2SET,TransNat1,
     e = [ 1,2,5,15,52,203,877,4140,21147,115975,678570,4213597,27644437,190899322,]
 
-    print(a)
+    print(e)
     print("Similar sequences are:")
 
-    Seqs = read_seqdata(datapath)
-    anums = SimilarSequences(Seqs, a)
-    for anum in anums: print(anum)
+    # Seqs = read_seqdata(datapath)
+    # anums = SimilarSequences(Seqs, a)
+    anum = OEISNumber(str(e))
+    #for anum in anums: 
+    print(anum)
+    print("... done")

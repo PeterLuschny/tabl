@@ -1,5 +1,5 @@
 from _tabltypes import tri, tabl, trow
-from _tablsimilarseq import read_seqdata, SimilarSequences 
+from _tablsimilarseq import read_seqdata, OEISANumber, SimilarSequences
 from _tablsums import tabl_accsum, tabl_altsum, tabl_diagsum, tabl_evensum, tabl_oddsum, tabl_revaccsum, tabl_sum, diag_tabl, tabl_accrevsum
 from _tabltransforms import rev_tabl, row_diag, revacc_tabl, row_poly, col_diag, col_poly, inv_tabl, acc_tabl, accrev_tabl, middle, central, left_side, right_side, pos_half, neg_half, trans_seq, invtrans_seq, trans_self, invtrans_self, diag_tabl, poly_tabl, flat_acc, flat_revacc, flat_accrev, trans, poly_diag, transbin_tabl, invtransbin_tabl, transbin_val, invtransbin_val
 
@@ -17,15 +17,22 @@ datapath = (path / reldatapath).resolve()
 
 def GetDataPath() -> Path: return datapath
 
+
 # #@
 
 def flat(t: tabl) -> list[int]: 
     return [i for row in t for i in row] 
 
 
+def trim(s: str, lg: int) -> str:
+    r = s[:lg]
+    p = r.rfind(',')
+    return r[:p]
+
+
 def SeqToFixlenString(seq: list[int], maxlen:int=90) -> str:
     separator = ","
-    stri = "[ "
+    stri = "["
     maxl = 3
     for trm in seq:
         s = str(trm) + separator
@@ -45,19 +52,16 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
     funname = f.id
 
     maxlen = (dim * (dim + 1)) // 2
-
-    seqdata = []
-    if seqnum:
-        datapath = GetDataPath()
-        seqdata = read_seqdata(datapath)
-
+# Alternative:
+# seqdata = read_seqdata(GetDataPath()) if seqnum else []
 
     def printer(seq, traitname) -> None:
-        print(funname, traitname)
-        if seqnum: print(SimilarSequences(seqdata, seq))
-        print(SeqToFixlenString(seq, 80))
-        # sep = ","
-        # write(f"{candidates}{sep}{funname}{sep}{traitname}{sep}{seqstr}")
+        seqstr = SeqToFixlenString(seq, 100)
+# Alternative:
+# if seqnum: print(SimilarSequences(seqdata, seq))
+        anum = OEISANumber(seqstr) if seqnum else ""
+        print(funname, traitname, anum, trim(seqstr, 70)+']')
+# write(f"{funname},{traitname},{anum},{seqstr}")
 
 
     print(f"\n=================\n{funname}\n")
@@ -136,8 +140,11 @@ if __name__ == "__main__":
     from StirlingCycle import stirling_cycle
     from Laguerre import laguerre
 
-    # Quick ckeck:
-    Traits(stirling_set, 12)
+    # Quick ckeck without A-numbers:
+    #Traits(stirling_set, 12)
 
-    # very SLOW, but with A-numbers:
+    Traits(stirling_set, 20, True)
+
+    # very SLOW, but also with similar A-numbers:
+    # use SimilarSequences (see the two outcommented lines)
     #Traits(stirling_set, 20, True)

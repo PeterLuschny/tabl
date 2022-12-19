@@ -1876,6 +1876,16 @@ def SimilarSequences(Seqs: list[list], A: list[int]) -> list:
     return candidates
 
 
+def OEISANumber(a: str) -> str:
+    datapath = GetDataPath()
+    astr = a.replace("-", "").replace(" ", "")[1:-1]
+    with open(datapath, "r") as oeisdata:
+        for line in oeisdata:
+            if astr in line:
+                return line[:7]
+    return "A??????"
+
+
 def SubTriangle(T: tri, N: int, K: int, dim: int) -> tabl:
     return [[T(n, k) for k in range(K, K - N + n + 1)] for n in range(N, N + dim)]
 
@@ -1950,9 +1960,15 @@ def flat(t: tabl) -> list[int]:
     return [i for row in t for i in row]
 
 
+def trim(s: str, lg: int) -> str:
+    r = s[:lg]
+    p = r.rfind(",")
+    return r[:p]
+
+
 def SeqToFixlenString(seq: list[int], maxlen: int = 90) -> str:
     separator = ","
-    stri = "[ "
+    stri = "["
     maxl = 3
     for trm in seq:
         s = str(trm) + separator
@@ -1971,18 +1987,11 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
     IR = f.invrev(dim)
     funname = f.id
     maxlen = (dim * (dim + 1)) // 2
-    seqdata = []
-    if seqnum:
-        datapath = GetDataPath()
-        seqdata = read_seqdata(datapath)
 
     def printer(seq, traitname) -> None:
-        print(funname, traitname)
-        if seqnum:
-            print(SimilarSequences(seqdata, seq))
-        print(SeqToFixlenString(seq, 80))
-        # sep = ","
-        # write(f"{candidates}{sep}{funname}{sep}{traitname}{sep}{seqstr}")
+        seqstr = SeqToFixlenString(seq, 100)
+        anum = OEISANumber(seqstr) if seqnum else ""
+        print(funname, traitname, anum, trim(seqstr, 70) + "]")
 
     print(f"\n=================\n{funname}\n")
     print("ANumber,Triangle,Trait,Sequence")

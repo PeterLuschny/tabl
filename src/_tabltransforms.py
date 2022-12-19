@@ -220,3 +220,6 @@ if __name__ == "__main__":
     print(flat_acc(T))
     print(flat_revacc(T))
     print(flat_accrev(T))
+
+    T = invtransbin_tabl(stirling_set, 10)
+    for t in T: print(t)
