@@ -1,5 +1,6 @@
-from functools import cache
-from itertools import accumulate
+from functools import cache, reduce
+from itertools import accumulate, count
+from math import lcm, gcd, floor
 from sys import setrecursionlimit
 from typing import Callable, TypeAlias
 from io import TextIOWrapper
@@ -13,10 +14,16 @@ from pathlib import Path
 path = Path(__file__).parent
 reldatapath = "data/oeis_data.csv"
 datapath = (path / reldatapath).resolve()
+relcsvpath = "data/csv"
+csvpath = (path / relcsvpath).resolve()
 
 
 def GetDataPath() -> Path:
     return datapath
+
+
+def GetCsvPath() -> Path:
+    return csvpath
 
 
 setrecursionlimit(2100)
@@ -157,6 +164,8 @@ def set_attributes(r: rgen, id: str, vert: bool = False) -> Callable[[tri], tri]
         if not vert:
             return []
         I = InverseTriangle(r, dim)
+        if I == []:
+            return []
         return [[I[n][n - k] for k in range(n + 1)] for n in range(dim)]
 
     def makeinvrev(dim: int) -> tabl:
@@ -261,8 +270,46 @@ def col_diag(T: tri, j: int, leng: int) -> trow:
     return [T(j + k, j) for k in range(leng)]
 
 
+def row_lcm(f: tri, n: int) -> int:
+    Z = [v for v in f(n) if not v in [-1, 0, 1]]
+    return reduce(lcm, Z) if Z != [] else 1
+
+
+def row_gcd(f: tri, n: int) -> int:
+    Z = [v for v in f(n) if not v in [-1, 0, 1]]
+    return reduce(gcd, Z) if Z != [] else 1
+
+
+def tabl_lcm(f: tri, leng: int) -> list[int]:
+    return [row_lcm(f, n) for n in range(leng)]
+
+
+def tabl_gcd(f: tri, leng: int) -> list[int]:
+    return [row_gcd(f, n) for n in range(leng)]
+
+
+def row_max(f, n: int) -> int:
+    return reduce(max, f(n))
+
+
+def tabl_max(f: tri, leng: int) -> list[int]:
+    return [row_max(f, n) for n in range(leng)]
+
+
 def trans(M: tri, V: Callable, leng: int) -> list[int]:
     return [sum(M(n, k) * V(k) for k in range(n + 1)) for n in range(leng)]
+
+
+def trans_sqrs(f: tri, n: int) -> list[int]:
+    return trans(f, lambda k: k * k, n)
+
+
+def trans_nat0(f: tri, n: int) -> list[int]:
+    return trans(f, lambda k: k, n)
+
+
+def trans_nat1(f: tri, n: int) -> list[int]:
+    return trans(f, lambda k: k + 1, n)
 
 
 def diag_tabl(t: tabl) -> tabl:
@@ -1422,10 +1469,10 @@ def schroeder(n: int, k: int = -1) -> list[int] | int:
 
 
 @cache
-def _bilatpath(n: int) -> list[int]:
+def _schroeder_paths(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = _bilatpath(n - 1) + [1]
+    row: list[int] = _schroeder_paths(n - 1) + [1]
 
     for k in range(n, 0, -1):
         row[k] = (row[k - 1] * (2 * n - k)) // k
@@ -1433,11 +1480,11 @@ def _bilatpath(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_bilatpath, "BILATERALSCH", True)
-def bilatpath(n: int, k: int = -1) -> list[int] | int:
+@set_attributes(_schroeder_paths, "SCHROEDERPTH", True)
+def schroeder_paths(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
-        return _bilatpath(n).copy()
-    return _bilatpath(n)[k]
+        return _schroeder_paths(n).copy()
+    return _schroeder_paths(n)[k]
 
 
 @cache
@@ -1688,7 +1735,6 @@ tabl_fun: list[tri] = [
     abel,
     bell,
     bessel,
-    bilatpath,
     binomial,
     catalan,
     catalan_aerated,
@@ -1731,6 +1777,7 @@ tabl_fun: list[tri] = [
     rencontres,
     rising_factorial,
     schroeder,
+    schroeder_paths,
     seidel,
     seidel_boust,
     sierpinski,
@@ -1755,6 +1802,15 @@ def sortfile(inpath, outpath) -> None:
             outlines = sorted(set(inlines))
             for line in outlines:
                 outfile.write(line)
+
+
+def SaveTraits(dim: int = 20) -> None:
+    for fun in tabl_fun:
+        csvfile = fun.__name__ + ".csv"
+        path = (csvpath / csvfile).resolve()
+        with open(path, "w+") as dest:
+            with contextlib.redirect_stdout(dest):
+                Traits(fun, dim, True)
 
 
 def SaveTables(dim: int = 7) -> None:
@@ -1883,7 +1939,7 @@ def OEISANumber(a: str) -> str:
         for line in oeisdata:
             if astr in line:
                 return line[:7]
-    return "A??????"
+    return []
 
 
 def SubTriangle(T: tri, N: int, K: int, dim: int) -> tabl:
@@ -1957,6 +2013,8 @@ def SimilarTriangles(datapath: str, md: bool = True) -> None:
 
 
 def flat(t: tabl) -> list[int]:
+    if t == [] or t == None:
+        return []
     return [i for row in t for i in row]
 
 
@@ -1987,14 +2045,23 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
     IR = f.invrev(dim)
     funname = f.id
     maxlen = (dim * (dim + 1)) // 2
+    all_traits = count()
+    traits_with_anum = count()
 
     def printer(seq, traitname) -> None:
-        seqstr = SeqToFixlenString(seq, 100)
+        # Nota bene: we start with the third term!
+        global counter
+        next(all_traits)
+        seqstr = SeqToFixlenString(seq[2:], 100)
         anum = OEISANumber(seqstr) if seqnum else ""
-        print(funname, traitname, anum, trim(seqstr, 70) + "]")
+        tstr = (trim(seqstr, 70) + "]").replace(",", " ")
+        if anum == []:
+            anum = "A.....?"
+        else:
+            next(traits_with_anum)
+        print(f"{funname},{traitname},{anum},{tstr}")
 
-    print(f"\n=================\n{funname}\n")
-    print("ANumber,Triangle,Trait,Sequence")
+    print("Triangle,Trait,ANumber,Sequence")
     printer(flat(T), "Triangle ")
     printer(flat(R), "Reverse  ")
     if I != []:
@@ -2002,14 +2069,6 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
         printer(flat(RI), "RevInv   ")
     if IR != []:
         printer(flat(IR), "InvRev   ")
-    printer(flat_acc(T), "AccTri   ")
-    printer(flat_revacc(T), "RevAccTri")
-    printer(flat_accrev(T), "AccRevTri")
-    printer(flat(diag_tabl(T)), "DiagTri  ")
-    printer(flat(poly_tabl(f, dim)), "PolyTri  ")
-    printer(flat(trans_self(f, dim)), "ConvTri  ")
-    printer(flat(transbin_tabl(f, dim)), "BinConT  ")
-    printer(flat(invtransbin_tabl(f, dim)), "IBinConT ")
     printer(tabl_sum(T), "Sum      ")
     printer(tabl_evensum(T), "EvenSum  ")
     printer(tabl_oddsum(T), "OddSum   ")
@@ -2018,6 +2077,8 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
     printer(tabl_accrevsum(T), "AccRevSum")
     printer(tabl_revaccsum(T), "RevAccSum")
     printer(tabl_diagsum(T), "DiagSum  ")
+    printer(tabl_gcd(f, dim), "RowGcd   ")
+    printer(tabl_max(f, dim), "RowMax   ")
     printer(middle(T), "Middle   ")
     printer(central(T), "Central  ")
     printer(left_side(T), "LeftSide ")
@@ -2026,19 +2087,8 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
     printer(neg_half(T), "NegHalf  ")
     printer(transbin_val(f, maxlen), "BinConV  ")
     printer(invtransbin_val(f, maxlen), "IBinConV ")
-
-    def TransSqrs(f, n: int) -> list[int]:
-        return trans(f, lambda k: k * k, n)
-
-    def TransNat0(f, n: int) -> list[int]:
-        return trans(f, lambda k: k, n)
-
-    def TransNat1(f, n: int) -> list[int]:
-        return trans(f, lambda k: k + 1, n)
-
-    printer(TransSqrs(f, maxlen), "TransSqrs")
-    printer(TransNat0(f, maxlen), "TransNat0")
-    printer(TransNat1(f, maxlen), "TransNat1")
+    printer(trans_nat0(f, maxlen), "TransNat0")
+    printer(trans_nat1(f, maxlen), "TransNat1")
     printer(row_diag(f, 0, maxlen), "DiagRow0 ")
     printer(row_diag(f, 1, maxlen), "DiagRow1 ")
     printer(row_diag(f, 2, maxlen), "DiagRow2 ")
@@ -2056,3 +2106,7 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
     printer(col_poly(f, 2, maxlen), "PolyCol2 ")
     printer(col_poly(f, 3, maxlen), "PolyCol3 ")
     printer(poly_diag(f, maxlen), "PolyDiag ")
+    atraits = next(all_traits)
+    ntraits = next(traits_with_anum)
+    perc = floor(100 * ntraits / atraits)
+    print(f"{f.__name__}, {atraits} traits, {ntraits} A-numbers, {perc}%")

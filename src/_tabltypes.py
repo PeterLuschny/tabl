@@ -102,6 +102,7 @@ def set_attributes(r: rgen, id: str, vert: bool=False) -> Callable[[tri], tri]:
     def makerevinv(dim: int) -> tabl:
         if not vert: return []
         I = InverseTriangle(r, dim)
+        if I == []: return []
         return [[I[n][n - k] for k in range(n + 1)] for n in range(dim)]
 
     def makeinvrev(dim: int) -> tabl:
@@ -126,8 +127,9 @@ if __name__ == "__main__":
 
     from StirlingSet import stirling_set
     from Delannoy import delannoy
+    from ChebyshevT import chebyshevT
 
-    f = stirling_set
+    f = chebyshevT # stirling_set
     g = delannoy
     dim = 6
 

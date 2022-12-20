@@ -1,6 +1,6 @@
 from codetiming import Timer
 from pathlib import Path
-from tabl import PrintViews, PrintExtendedProfile, PrintProfile, SaveExtendedProfiles, SaveProfiles, SaveTables, SaveExtendedTables, SimilarTriangles, sortfile, Traits, stirling_set, tabl_fun
+from tabl import PrintViews, PrintExtendedProfile, PrintProfile, SaveExtendedProfiles, SaveProfiles, SaveTables, SaveExtendedTables, SaveTraits, SimilarTriangles, sortfile, Traits, stirling_set, tabl_fun
 
 
 if __name__ == "__main__":
@@ -12,6 +12,10 @@ if __name__ == "__main__":
     propath = (path / relprofpath).resolve()
     sorpath = (path / relsortpath).resolve()
     shortdatapath = (path / relshortdatapath).resolve()
+    reldatapath = 'data/oeis_data.csv'
+    datapath = (path / reldatapath).resolve()
+    relcsvpath = 'data/csv'
+    csvpath = (path / relcsvpath).resolve()
 
 
     def test1() -> None:
@@ -54,6 +58,10 @@ if __name__ == "__main__":
         Traits(stirling_set, 12)
 
 
+    def test7() -> None:
+        SaveTraits()
+
+
     def main(test: int) -> None:
         print("... bussy")
         match test:
@@ -63,6 +71,7 @@ if __name__ == "__main__":
             case 4: test4()
             case 5: test5()
             case 6: test6()
+            case 7: test7()
         print("Done")
 
-    main(6)
+    main(7)

@@ -91,7 +91,7 @@ def OEISANumber(a: str) -> str:
         for line in oeisdata:
             if astr in line:
                 return line[:7]
-    return "A??????"
+    return []
 
 
 if __name__ == "__main__":

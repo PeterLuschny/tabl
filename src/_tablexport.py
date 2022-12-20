@@ -3,6 +3,22 @@ from io import TextIOWrapper
 from _tablprofile import Profile
 from _tablviews import PrintViews
 from _tabltypes import tri, inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
+from _tabltraitcard import Traits
+# from tabl import tabl_fun
+
+from pathlib import Path
+
+path = Path(__file__).parent.parent
+relprofpath = 'data/profiles.csv'
+relsortpath = 'data/sortedprofiles.csv'
+relshortdatapath = 'data/short_data.csv'
+reldatapath = 'data/oeis_data.csv'
+propath = (path / relprofpath).resolve()
+sorpath = (path / relsortpath).resolve()
+shortdatapath = (path / relshortdatapath).resolve()
+datapath = (path / reldatapath).resolve()
+relcsvpath = 'data/csv'
+csvpath = (path / relcsvpath).resolve()
 
 
 # #@
@@ -15,6 +31,15 @@ def sortfile(inpath, outpath) -> None:
             outlines = sorted(set(inlines))
             for line in outlines:
                 outfile.write(line)
+
+
+def SaveTraits(dim: int = 20) -> None:
+        for fun in tabl_fun:
+            csvfile = fun.__name__ + ".csv"
+            path = (csvpath / csvfile).resolve()
+            with open(path, 'w+') as dest:
+                with contextlib.redirect_stdout(dest):
+                    Traits(fun, dim, True)
 
 
 def SaveTables(dim: int = 7) -> None:

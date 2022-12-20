@@ -2,6 +2,8 @@ from typing import Callable
 from itertools import accumulate
 from fractions import Fraction as frac
 from Binomial import binomial
+from math import lcm, gcd
+from functools import reduce
 from _tablinverse import InverseTabl
 from _tabltypes import seq, tri, tabl, trow
 
@@ -91,10 +93,50 @@ def col_diag(T: tri, j: int, leng: int) -> trow:
     return [T(j + k, j) for k in range(leng)]
 
 
+# Note our convention to exclude 0 and 1.
+def row_lcm(f: tri, n: int) -> int:
+    Z = [v for v in f(n) if not v in [-1, 0, 1]]
+    return reduce(lcm, Z) if Z != [] else 1
+
+
+# Note our convention to exclude 0 and 1.
+def row_gcd(f: tri, n: int) -> int:
+    Z = [v for v in f(n) if not v in [-1, 0, 1]]
+    return reduce(gcd, Z) if Z != [] else 1
+
+
+def tabl_lcm(f: tri, leng: int) -> list[int]:
+    return [row_lcm(f, n) for n in range(leng)]
+
+
+def tabl_gcd(f: tri, leng: int) -> list[int]:
+    return [row_gcd(f, n) for n in range(leng)]
+
+
+def row_max(f, n: int) -> int:
+    return reduce(max, f(n)) 
+
+
+def tabl_max(f: tri, leng: int) -> list[int]:
+    return [row_max(f, n) for n in range(leng)]
+
+
 ################################################
 
 def trans(M: tri, V: Callable, leng: int) -> list[int]:
     return [sum(M(n, k) * V(k) for k in range(n + 1)) for n in range(leng)]
+
+
+def trans_sqrs(f: tri, n:int) -> list[int]: 
+    return trans(f, lambda k: k * k, n)
+
+
+def trans_nat0(f: tri, n:int) -> list[int]: 
+    return trans(f, lambda k: k, n)
+
+
+def trans_nat1(f: tri, n:int) -> list[int]: 
+    return trans(f, lambda k: k + 1, n)
 
 
 def diag_tabl(t: tabl) -> tabl:
@@ -221,5 +263,5 @@ if __name__ == "__main__":
     print(flat_revacc(T))
     print(flat_accrev(T))
 
-    T = invtransbin_tabl(stirling_set, 10)
+    T = invtransbin_tabl(binomial, 10)
     for t in T: print(t)

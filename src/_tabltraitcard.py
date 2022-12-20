@@ -1,8 +1,10 @@
 from _tabltypes import tri, tabl, trow
 from _tablsimilarseq import read_seqdata, OEISANumber, SimilarSequences
 from _tablsums import tabl_accsum, tabl_altsum, tabl_diagsum, tabl_evensum, tabl_oddsum, tabl_revaccsum, tabl_sum, diag_tabl, tabl_accrevsum
-from _tabltransforms import rev_tabl, row_diag, revacc_tabl, row_poly, col_diag, col_poly, inv_tabl, acc_tabl, accrev_tabl, middle, central, left_side, right_side, pos_half, neg_half, trans_seq, invtrans_seq, trans_self, invtrans_self, diag_tabl, poly_tabl, flat_acc, flat_revacc, flat_accrev, trans, poly_diag, transbin_tabl, invtransbin_tabl, transbin_val, invtransbin_val
+from _tabltransforms import rev_tabl, row_diag, revacc_tabl, row_poly, col_diag, col_poly, inv_tabl, acc_tabl, accrev_tabl, middle, central, left_side, right_side, pos_half, neg_half, trans_seq, invtrans_seq, trans_self, invtrans_self, diag_tabl, poly_tabl, flat_acc, flat_revacc, flat_accrev, trans, poly_diag, transbin_tabl, tabl_lcm, tabl_gcd, tabl_max, invtransbin_tabl, transbin_val, invtransbin_val, trans_sqrs, trans_nat0, trans_nat1
 
+from math import floor
+from itertools import count
 from pathlib import Path
 
 path = Path(__file__).parent.parent
@@ -14,13 +16,72 @@ propath = (path / relprofpath).resolve()
 sorpath = (path / relsortpath).resolve()
 shortdatapath = (path / relshortdatapath).resolve()
 datapath = (path / reldatapath).resolve()
+relcsvpath = 'data/TraitCards'
+csvpath = (path / relcsvpath).resolve()
 
 def GetDataPath() -> Path: return datapath
+
+d = dict(
+Triangle =0,
+Reverse  =0,
+Inverse  =0,
+RevInv   =0,
+InvRev   =0,
+AccTri   =0,
+RevAccTri=0,
+AccRevTri=0,
+DiagTri  =0,
+PolyTri  =0,
+ConvTri  =0,
+BinConT  =0,
+IBinConT =0,
+Sum      =0,
+EvenSum  =0,
+OddSum   =0,
+AltSum   =0,
+AccSum   =0,
+AccRevSum=0,
+RevAccSum=0,
+DiagSum  =0,
+RowLcm   =0,
+RowGcd   =0,
+RowMax   =0,
+Middle   =0,
+Central  =0,
+LeftSide =0,
+RightSide=0,
+PosHalf  =0,
+NegHalf  =0,
+BinConV  =0,
+IBinConV =0,
+TransSqrs=0,
+TransNat0=0,
+TransNat1=0,
+DiagRow0 =0,
+DiagRow1 =0,
+DiagRow2 =0,
+DiagRow3 =0,
+DiagCol0 =0,
+DiagCol1 =0,
+DiagCol2 =0,
+DiagCol3 =0,
+PolyRow0 =0,
+PolyRow1 =0,
+PolyRow2 =0,
+PolyRow3 =0,
+PolyCol0 =0,
+PolyCol1 =0,
+PolyCol2 =0,
+PolyCol3 =0,
+PolyDiag =0
+)
 
 
 # #@
 
+
 def flat(t: tabl) -> list[int]: 
+    if t == [] or t == None: return []
     return [i for row in t for i in row] 
 
 
@@ -52,20 +113,28 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
     funname = f.id
 
     maxlen = (dim * (dim + 1)) // 2
-# Alternative:
-# seqdata = read_seqdata(GetDataPath()) if seqnum else []
+
+    all_traits = count()
+    traits_with_anum = count()
 
     def printer(seq, traitname) -> None:
-        seqstr = SeqToFixlenString(seq, 100)
-# Alternative:
-# if seqnum: print(SimilarSequences(seqdata, seq))
+        # Nota bene: we start with the third term!
+        global counter
+        next(all_traits)
+        seqstr = SeqToFixlenString(seq[2:], 100)
         anum = OEISANumber(seqstr) if seqnum else ""
-        print(funname, traitname, anum, trim(seqstr, 70)+']')
-# write(f"{funname},{traitname},{anum},{seqstr}")
+        tstr = (trim(seqstr, 70) + ']').replace(",", " ")
+        if anum == []:
+            anum = "A.....?" 
+        else:
+            next(traits_with_anum)
+        print(f"{funname},{traitname},{anum},{tstr}")
 
+# Alternative:
+# seqdata = read_seqdata(GetDataPath()) if seqnum else []
+# if seqnum: print(SimilarSequences(seqdata, seq))
 
-    print(f"\n=================\n{funname}\n")
-    print("ANumber,Triangle,Trait,Sequence")
+    print("Triangle,Trait,ANumber,Sequence")
 
     printer(flat(T), "Triangle ")
     printer(flat(R), "Reverse  ")
@@ -77,14 +146,14 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
     if IR != []:
         printer(flat(IR), "InvRev   ")
 
-    printer(flat_acc(T),                    "AccTri   ")
-    printer(flat_revacc(T),                 "RevAccTri")
-    printer(flat_accrev(T),                 "AccRevTri")
-    printer(flat(diag_tabl(T)),             "DiagTri  ")
-    printer(flat(poly_tabl(f, dim)),        "PolyTri  ")
-    printer(flat(trans_self(f, dim)),       "ConvTri  ")
-    printer(flat(transbin_tabl(f, dim)),    "BinConT  ")
-    printer(flat(invtransbin_tabl(f, dim)), "IBinConT ")
+#    printer(flat_acc(T),                    "AccTri   ")
+#    printer(flat_revacc(T),                 "RevAccTri")
+#    printer(flat_accrev(T),                 "AccRevTri")
+#    printer(flat(diag_tabl(T)),             "DiagTri  ")
+#    printer(flat(poly_tabl(f, dim)),        "PolyTri  ")
+#    printer(flat(trans_self(f, dim)),       "ConvTri  ")
+#    printer(flat(transbin_tabl(f, dim)),    "BinConT  ")
+#    printer(flat(invtransbin_tabl(f, dim)), "IBinConT ")
 
     printer(tabl_sum(T),       "Sum      ")
     printer(tabl_evensum(T),   "EvenSum  ")
@@ -94,24 +163,21 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
     printer(tabl_accrevsum(T), "AccRevSum")
     printer(tabl_revaccsum(T), "RevAccSum")
     printer(tabl_diagsum(T),   "DiagSum  ")
+#    printer(tabl_lcm(f, dim),  "RowLcm   ")
+    printer(tabl_gcd(f, dim),  "RowGcd   ")
+    printer(tabl_max(f, dim),  "RowMax   ")
     printer(middle(T),         "Middle   ")
     printer(central(T),        "Central  ")
     printer(left_side(T),      "LeftSide ")
     printer(right_side(T),     "RightSide")
     printer(pos_half(T),       "PosHalf  ")
     printer(neg_half(T),       "NegHalf  ")
-
-    printer(transbin_val(f, maxlen),    "BinConV  ")
+    printer(transbin_val(f, maxlen), "BinConV  ")
     printer(invtransbin_val(f, maxlen), "IBinConV ")
 
-    def TransSqrs(f,n:int)->list[int]: return trans(f,lambda k: k * k, n)
-    def TransNat0(f,n:int)->list[int]: return trans(f,lambda k: k, n)
-    def TransNat1(f,n:int)->list[int]: return trans(f,lambda k: k + 1, n)
-
-    printer(TransSqrs(f, maxlen),   "TransSqrs")
-    printer(TransNat0(f, maxlen),   "TransNat0")
-    printer(TransNat1(f, maxlen),   "TransNat1")
-
+#    printer(trans_sqrs(f, maxlen),  "TransSqrs")
+    printer(trans_nat0(f, maxlen),  "TransNat0")
+    printer(trans_nat1(f, maxlen),  "TransNat1")
     printer(row_diag(f, 0, maxlen), "DiagRow0 ")
     printer(row_diag(f, 1, maxlen), "DiagRow1 ")
     printer(row_diag(f, 2, maxlen), "DiagRow2 ")
@@ -130,6 +196,11 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
     printer(col_poly(f, 3, maxlen), "PolyCol3 ")
     printer(poly_diag(f, maxlen),   "PolyDiag ")
 
+    atraits = next(all_traits)
+    ntraits = next(traits_with_anum)
+    perc = floor(100*ntraits/atraits)
+    print(f"{f.__name__}, {atraits} traits, {ntraits} A-numbers, {perc}%")
+
 
 if __name__ == "__main__":
 
@@ -138,12 +209,14 @@ if __name__ == "__main__":
     from Bell import bell
     from StirlingSet import stirling_set
     from StirlingCycle import stirling_cycle
+    from ChebyshevT import chebyshevT
     from Laguerre import laguerre
 
     # Quick ckeck without A-numbers:
-    #Traits(stirling_set, 12)
+    Traits(stirling_set, 12)
 
-    Traits(stirling_set, 20, True)
+    # With A-numbers:
+    # Traits(stirling_set, 20, True)
 
     # very SLOW, but also with similar A-numbers:
     # use SimilarSequences (see the two outcommented lines)

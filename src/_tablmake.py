@@ -53,7 +53,7 @@ tabl_files: list[str] = [
     "Rencontres.py",
     "RisingFactorial.py",
     "Schroeder.py",
-    "SchroederBiPaths.py",
+    "SchroederPaths.py",
     "Seidel.py",
     "SierpinskiTriangle.py",
     "StirlingCycle.py",
@@ -80,7 +80,6 @@ tabl_fun: list[tri] = [
     abel,
     bell,
     bessel,
-    bilatpath,
     binomial,
     catalan,
     catalan_aerated,
@@ -123,6 +122,7 @@ tabl_fun: list[tri] = [
     rencontres,
     rising_factorial,
     schroeder,
+    schroeder_paths,
     seidel,
     seidel_boust,
     sierpinski,
@@ -140,8 +140,9 @@ tabl_fun: list[tri] = [
 ]\n""".format()
 
 import_header: list[str] = [
-    "from functools import cache\n",
-    "from itertools import accumulate\n",
+    "from functools import cache, reduce\n",
+    "from itertools import accumulate, count\n",
+    "from math import lcm, gcd, floor\n",
     "from sys import setrecursionlimit\n",
     "from typing import Callable, TypeAlias\n",
     "from io import TextIOWrapper\n",
@@ -157,7 +158,10 @@ data_path: list[str] = [
     "path = Path(__file__).parent\n",
     "reldatapath = 'data/oeis_data.csv'\n",
     "datapath = (path / reldatapath).resolve()\n",
+    "relcsvpath = 'data/csv'\n",
+    "csvpath = (path / relcsvpath).resolve()\n",
     "def GetDataPath() -> Path: return datapath\n",
+    "def GetCsvPath() -> Path: return csvpath\n",
 ]
 
 dir: str = join(getcwd(), "src")

@@ -18,11 +18,11 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _bilatpath(n: int) -> list[int]:
+def _schroeder_paths(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = _bilatpath(n - 1) + [1]
+    row: list[int] = _schroeder_paths(n - 1) + [1]
     
     for k in range(n, 0, -1):
         row[k] = (row[k - 1] * (2 * n - k)) // k
@@ -30,13 +30,13 @@ def _bilatpath(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_bilatpath, "BILATERALSCH", True)
-def bilatpath(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _bilatpath(n).copy()
-    return _bilatpath(n)[k]
+@set_attributes(_schroeder_paths, "SCHROEDERPTH", True)
+def schroeder_paths(n: int, k: int = -1) -> list[int] | int: 
+    if k == -1: return _schroeder_paths(n).copy()
+    return _schroeder_paths(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(bilatpath)
+    TablTest(schroeder_paths)
