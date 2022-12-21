@@ -21,61 +21,6 @@ csvpath = (path / relcsvpath).resolve()
 
 def GetDataPath() -> Path: return datapath
 
-d = dict(
-Triangle =0,
-Reverse  =0,
-Inverse  =0,
-RevInv   =0,
-InvRev   =0,
-AccTri   =0,
-RevAccTri=0,
-AccRevTri=0,
-DiagTri  =0,
-PolyTri  =0,
-ConvTri  =0,
-BinConT  =0,
-IBinConT =0,
-Sum      =0,
-EvenSum  =0,
-OddSum   =0,
-AltSum   =0,
-AccSum   =0,
-AccRevSum=0,
-RevAccSum=0,
-DiagSum  =0,
-RowLcm   =0,
-RowGcd   =0,
-RowMax   =0,
-Middle   =0,
-Central  =0,
-LeftSide =0,
-RightSide=0,
-PosHalf  =0,
-NegHalf  =0,
-BinConV  =0,
-IBinConV =0,
-TransSqrs=0,
-TransNat0=0,
-TransNat1=0,
-DiagRow0 =0,
-DiagRow1 =0,
-DiagRow2 =0,
-DiagRow3 =0,
-DiagCol0 =0,
-DiagCol1 =0,
-DiagCol2 =0,
-DiagCol3 =0,
-PolyRow0 =0,
-PolyRow1 =0,
-PolyRow2 =0,
-PolyRow3 =0,
-PolyCol0 =0,
-PolyCol1 =0,
-PolyCol2 =0,
-PolyCol3 =0,
-PolyDiag =0
-)
-
 
 # #@
 
@@ -91,8 +36,7 @@ def trim(s: str, lg: int) -> str:
     return r[:p]
 
 
-def SeqToFixlenString(seq: list[int], maxlen:int=90) -> str:
-    separator = ","
+def SeqToFixlenString(seq: list[int], maxlen:int=90, separator=',') -> str:
     stri = "["
     maxl = 3
     for trm in seq:
@@ -110,25 +54,39 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
     I  = f.inv(dim)
     RI = f.revinv(dim) 
     IR = f.invrev(dim)
-    funname = f.id
+    # funname = f.id
+    funname = f.__name__
 
     maxlen = (dim * (dim + 1)) // 2
 
     all_traits = count()
     traits_with_anum = count()
+    no_oeis = []
 
     def printer(seq, traitname) -> None:
-        # Nota bene: we start with the third term!
-        global counter
         next(all_traits)
-        seqstr = SeqToFixlenString(seq[2:], 100)
-        anum = OEISANumber(seqstr) if seqnum else ""
-        tstr = (trim(seqstr, 70) + ']').replace(",", " ")
-        if anum == []:
-            anum = "A.....?" 
-        else:
+        anum = ""
+        if seqnum:
+            # TODO optimize this! Push this to OEISANumber.
+            # Note: we start at different positions!
+            seqstr = SeqToFixlenString(seq, 100, ',')
+            anum = OEISANumber(seqstr)
+            if anum == "": 
+                seqstr = SeqToFixlenString(seq[1:], 100, ',')
+                anum = OEISANumber(seqstr)
+                if anum == "": 
+                    seqstr = SeqToFixlenString(seq[2:], 100, ',')
+                    anum = OEISANumber(seqstr)
+                    if anum == "": 
+                        no_oeis.append(traitname) 
+                        return
             next(traits_with_anum)
-        print(f"{funname},{traitname},{anum},{tstr}")
+
+        tstr = SeqToFixlenString(seq, 70, ' ')
+        if seqnum:
+            print(f"{funname},{traitname},{anum},{tstr}")
+        else:
+            print(f"{funname},{traitname},{tstr}")
 
 # Alternative:
 # seqdata = read_seqdata(GetDataPath()) if seqnum else []
@@ -146,14 +104,14 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
     if IR != []:
         printer(flat(IR), "InvRev   ")
 
-#    printer(flat_acc(T),                    "AccTri   ")
-#    printer(flat_revacc(T),                 "RevAccTri")
-#    printer(flat_accrev(T),                 "AccRevTri")
-#    printer(flat(diag_tabl(T)),             "DiagTri  ")
-#    printer(flat(poly_tabl(f, dim)),        "PolyTri  ")
-#    printer(flat(trans_self(f, dim)),       "ConvTri  ")
-#    printer(flat(transbin_tabl(f, dim)),    "BinConT  ")
-#    printer(flat(invtransbin_tabl(f, dim)), "IBinConT ")
+    printer(flat_acc(T),                    "AccTri   ")
+    printer(flat_revacc(T),                 "RevAccTri")
+    printer(flat_accrev(T),                 "AccRevTri")
+    printer(flat(diag_tabl(T)),             "DiagTri  ")
+    printer(flat(poly_tabl(f, dim)),        "PolyTri  ")
+    printer(flat(trans_self(f, dim)),       "ConvTri  ")
+    printer(flat(transbin_tabl(f, dim)),    "BinConT  ")
+    printer(flat(invtransbin_tabl(f, dim)), "IBinConT ")
 
     printer(tabl_sum(T),       "Sum      ")
     printer(tabl_evensum(T),   "EvenSum  ")
@@ -163,7 +121,7 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
     printer(tabl_accrevsum(T), "AccRevSum")
     printer(tabl_revaccsum(T), "RevAccSum")
     printer(tabl_diagsum(T),   "DiagSum  ")
-#    printer(tabl_lcm(f, dim),  "RowLcm   ")
+    printer(tabl_lcm(f, dim),  "RowLcm   ")
     printer(tabl_gcd(f, dim),  "RowGcd   ")
     printer(tabl_max(f, dim),  "RowMax   ")
     printer(middle(T),         "Middle   ")
@@ -175,7 +133,7 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
     printer(transbin_val(f, maxlen), "BinConV  ")
     printer(invtransbin_val(f, maxlen), "IBinConV ")
 
-#    printer(trans_sqrs(f, maxlen),  "TransSqrs")
+    printer(trans_sqrs(f, maxlen),  "TransSqrs")
     printer(trans_nat0(f, maxlen),  "TransNat0")
     printer(trans_nat1(f, maxlen),  "TransNat1")
     printer(row_diag(f, 0, maxlen), "DiagRow0 ")
@@ -198,25 +156,30 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
 
     atraits = next(all_traits)
     ntraits = next(traits_with_anum)
-    perc = floor(100*ntraits/atraits)
+    perc = floor(100 * ntraits / atraits)
     print(f"{f.__name__}, {atraits} traits, {ntraits} A-numbers, {perc}%")
+    # print("\nNot found in the OEIS:", no_oeis)
 
 
 if __name__ == "__main__":
 
-    from Binomial import binomial
     from Abel import abel
     from Bell import bell
+    from Lah import lah
+    from Binomial import binomial
     from StirlingSet import stirling_set
     from StirlingCycle import stirling_cycle
     from ChebyshevT import chebyshevT
     from Laguerre import laguerre
 
-    # Quick ckeck without A-numbers:
+    # Quick ckeck without A-numbers, recommended.
     Traits(stirling_set, 12)
 
-    # With A-numbers:
+    # With A-numbers, much slower:
     # Traits(stirling_set, 20, True)
+    # Traits(binomial, 20, True)
+    # Traits(laguerre, 20, True)
+    # Traits(lah, 20, True)
 
     # very SLOW, but also with similar A-numbers:
     # use SimilarSequences (see the two outcommented lines)

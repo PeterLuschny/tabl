@@ -288,8 +288,9 @@ def tabl_gcd(f: tri, leng: int) -> list[int]:
     return [row_gcd(f, n) for n in range(leng)]
 
 
-def row_max(f, n: int) -> int:
-    return reduce(max, f(n))
+def row_max(f: tri, n: int) -> int:
+    absf = [abs(t) for t in f(n)]
+    return reduce(max, absf)
 
 
 def tabl_max(f: tri, leng: int) -> list[int]:
@@ -1939,7 +1940,7 @@ def OEISANumber(a: str) -> str:
         for line in oeisdata:
             if astr in line:
                 return line[:7]
-    return []
+    return ""
 
 
 def SubTriangle(T: tri, N: int, K: int, dim: int) -> tabl:
@@ -2024,8 +2025,7 @@ def trim(s: str, lg: int) -> str:
     return r[:p]
 
 
-def SeqToFixlenString(seq: list[int], maxlen: int = 90) -> str:
-    separator = ","
+def SeqToFixlenString(seq: list[int], maxlen: int = 90, separator=",") -> str:
     stri = "["
     maxl = 3
     for trm in seq:
@@ -2043,23 +2043,36 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
     I = f.inv(dim)
     RI = f.revinv(dim)
     IR = f.invrev(dim)
-    funname = f.id
+    # funname = f.id
+    funname = f.__name__
     maxlen = (dim * (dim + 1)) // 2
     all_traits = count()
     traits_with_anum = count()
+    no_oeis = []
 
     def printer(seq, traitname) -> None:
-        # Nota bene: we start with the third term!
-        global counter
         next(all_traits)
-        seqstr = SeqToFixlenString(seq[2:], 100)
-        anum = OEISANumber(seqstr) if seqnum else ""
-        tstr = (trim(seqstr, 70) + "]").replace(",", " ")
-        if anum == []:
-            anum = "A.....?"
-        else:
+        anum = ""
+        if seqnum:
+            # TODO optimize this! Push this to OEISANumber.
+            # Note: we start at different positions!
+            seqstr = SeqToFixlenString(seq, 100, ",")
+            anum = OEISANumber(seqstr)
+            if anum == "":
+                seqstr = SeqToFixlenString(seq[1:], 100, ",")
+                anum = OEISANumber(seqstr)
+                if anum == "":
+                    seqstr = SeqToFixlenString(seq[2:], 100, ",")
+                    anum = OEISANumber(seqstr)
+                    if anum == "":
+                        no_oeis.append(traitname)
+                        return
             next(traits_with_anum)
-        print(f"{funname},{traitname},{anum},{tstr}")
+        tstr = SeqToFixlenString(seq, 70, " ")
+        if seqnum:
+            print(f"{funname},{traitname},{anum},{tstr}")
+        else:
+            print(f"{funname},{traitname},{tstr}")
 
     print("Triangle,Trait,ANumber,Sequence")
     printer(flat(T), "Triangle ")
@@ -2069,6 +2082,14 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
         printer(flat(RI), "RevInv   ")
     if IR != []:
         printer(flat(IR), "InvRev   ")
+    printer(flat_acc(T), "AccTri   ")
+    printer(flat_revacc(T), "RevAccTri")
+    printer(flat_accrev(T), "AccRevTri")
+    printer(flat(diag_tabl(T)), "DiagTri  ")
+    printer(flat(poly_tabl(f, dim)), "PolyTri  ")
+    printer(flat(trans_self(f, dim)), "ConvTri  ")
+    printer(flat(transbin_tabl(f, dim)), "BinConT  ")
+    printer(flat(invtransbin_tabl(f, dim)), "IBinConT ")
     printer(tabl_sum(T), "Sum      ")
     printer(tabl_evensum(T), "EvenSum  ")
     printer(tabl_oddsum(T), "OddSum   ")
@@ -2077,6 +2098,7 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
     printer(tabl_accrevsum(T), "AccRevSum")
     printer(tabl_revaccsum(T), "RevAccSum")
     printer(tabl_diagsum(T), "DiagSum  ")
+    printer(tabl_lcm(f, dim), "RowLcm   ")
     printer(tabl_gcd(f, dim), "RowGcd   ")
     printer(tabl_max(f, dim), "RowMax   ")
     printer(middle(T), "Middle   ")
@@ -2087,6 +2109,7 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
     printer(neg_half(T), "NegHalf  ")
     printer(transbin_val(f, maxlen), "BinConV  ")
     printer(invtransbin_val(f, maxlen), "IBinConV ")
+    printer(trans_sqrs(f, maxlen), "TransSqrs")
     printer(trans_nat0(f, maxlen), "TransNat0")
     printer(trans_nat1(f, maxlen), "TransNat1")
     printer(row_diag(f, 0, maxlen), "DiagRow0 ")
@@ -2110,3 +2133,4 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
     ntraits = next(traits_with_anum)
     perc = floor(100 * ntraits / atraits)
     print(f"{f.__name__}, {atraits} traits, {ntraits} A-numbers, {perc}%")
+    # print("\nNot found in the OEIS:", no_oeis)

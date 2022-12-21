@@ -113,8 +113,9 @@ def tabl_gcd(f: tri, leng: int) -> list[int]:
     return [row_gcd(f, n) for n in range(leng)]
 
 
-def row_max(f, n: int) -> int:
-    return reduce(max, f(n)) 
+def row_max(f: tri, n: int) -> int:
+    absf =[abs(t) for t in f(n)]
+    return reduce(max, absf) 
 
 
 def tabl_max(f: tri, leng: int) -> list[int]:
@@ -212,11 +213,16 @@ def right_side(t: tabl)  -> list[int]:
 
 if __name__ == "__main__":
 
-
     from Binomial import binomial
     from StirlingSet import stirling_set
     from StirlingCycle import stirling_cycle
     from Motzkin import motzkin
+
+    col_poly
+    print(col_poly(stirling_set, 0, 12))
+
+
+'''
 
     nums = [0, 1, 15, 117, 627, 2565, 8379, 21945, 43263]
     print([c*k for c,k in enumerate(nums)])
@@ -240,7 +246,6 @@ if __name__ == "__main__":
     def catalan_number(n: int) -> int:
         return binomial(2 * n, n) // (n + 1)
 
-    
     S: tabl = motzkin.tab(7)
 
     print(diag_tabl(T))
@@ -265,3 +270,4 @@ if __name__ == "__main__":
 
     T = invtransbin_tabl(binomial, 10)
     for t in T: print(t)
+'''

@@ -74,4 +74,4 @@ if __name__ == "__main__":
             case 7: test7()
         print("Done")
 
-    main(7)
+    main(6)
