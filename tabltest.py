@@ -36,7 +36,6 @@ if __name__ == "__main__":
 
 
     def test3() -> None:
-
         SaveProfiles(propath)
         sortfile(propath, sorpath)
         #SaveExtendedProfiles(propath)
@@ -45,7 +44,6 @@ if __name__ == "__main__":
 
 
     def test4() -> None:
-        path = Path(__file__).parent
         SimilarTriangles(shortdatapath)
 
 
@@ -80,4 +78,4 @@ if __name__ == "__main__":
             case 7: test7()
         print("Done")
 
-    main(2)
+    main(5)

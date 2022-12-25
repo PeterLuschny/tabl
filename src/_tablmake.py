@@ -149,7 +149,6 @@ import_header: list[str] = [
     "from sys import setrecursionlimit\n",
     "from typing import Callable, TypeAlias\n",
     "from io import TextIOWrapper\n",
-    "from difflib import SequenceMatcher\n",
     "import contextlib\n",
     "import csv\n",
     "from fractions import Fraction as frac\n",

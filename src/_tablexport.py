@@ -4,7 +4,7 @@ from _tablprofile import Profile
 from _tablviews import PrintViews
 from _tabltypes import tri, inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
 from _tabltraitcard import Traits
-# from tabl import tabl_fun
+from tabl import tabl_fun
 
 from pathlib import Path
 

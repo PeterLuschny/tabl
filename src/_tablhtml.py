@@ -19,7 +19,6 @@ CSS = ["<head><style> table, td, th, p {border-collapse: collapse; font-family: 
     "th.rowNumber, td.rowNumber {text-align: right;}",
     "a {text-decoration: none; color:brown;} </style></head><body>"]
 
-
 Table = [ "<table>",
     "<tr class = 'header headerLastRow'>",
     "<th style = 'text-align: left;'>Trait</th>",
@@ -30,7 +29,7 @@ Table = [ "<table>",
 Footer = [
     "Note: The A-numbers are based on a finite number of numerical comparisons.",
     "They ignore the offset and the sign, and might differ in the first few values.&nbsp;&nbsp;",
-    "<a href='https://oeis.org'><i>Go to the index.<i></a>",
+    "<a href='https://luschny.de/math/oeis/index.html'><i>Go to the index.<i></a>",
     "<p>&nbsp;</p>"
     "</body></html>" ]
 

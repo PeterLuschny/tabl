@@ -28,7 +28,7 @@ def inversion_wrapper(T: tri, dim: int) -> tri | None:
     if t == []: return None
     def _psgen(n: int) -> trow: return list(t[n])
 
-    @set_attributes(_psgen, T.id + "|INV", True)
+    @set_attributes(_psgen, T.id + "Inv", True)
     def psgen(n: int, k: int = -1) -> list[int] | int:
         if k == -1: return _psgen(n)
         return _psgen(n)[k]
@@ -41,7 +41,7 @@ def reversion_wrapper(T: tri, dim: int) -> tri:
     t = T.rev(dim)
     def _rsgen(n: int) -> trow: return list(t[n]) 
 
-    @set_attributes(_rsgen, T.id + "|REV", True)
+    @set_attributes(_rsgen, T.id + "Rev", True)
     def rsgen(n: int, k: int = -1) -> list[int] | int:
         if k == -1: return _rsgen(n)
         return _rsgen(n)[k]
