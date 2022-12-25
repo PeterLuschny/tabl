@@ -1,8 +1,7 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Euler triangle, 
-[A109449, A247453*].
+"""Euler triangle.
 
 [0]      1
 [1]    -1      1
@@ -16,6 +15,7 @@ from _tabltypes import set_attributes
 [9] -7936  12465  -9792   5124  -2016   630  -168   36  -9   1
 """
 
+# sim  = ['A109449', 'A247453']
 
 @cache
 def _euler(n: int) -> list[int]:
@@ -30,7 +30,11 @@ def _euler(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_euler, "EULERTRIANGL", True)
+@set_attributes(
+    _euler, 
+    "Euler", 
+    ['A109449', 'A247453'], 
+    True)
 def euler(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _euler(n).copy()
     return _euler(n)[k]

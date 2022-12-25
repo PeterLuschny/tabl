@@ -2,7 +2,6 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """Gaussian coefficient for q = 2.
-[A022166]
 
 [0]  1;
 [1]  1,   1;
@@ -14,6 +13,7 @@ from _tabltypes import set_attributes
 [7]  1, 127, 2667, 11811, 11811, 2667, 127, 1;
 """
 
+# sim = ['A022166']
 
 @cache
 def _gaussq2(n: int) -> list[int]:
@@ -29,7 +29,11 @@ def _gaussq2(n: int) -> list[int]:
     return pow
 
 
-@set_attributes(_gaussq2, "GAUSSQ2COEFF", True)
+@set_attributes(
+    _gaussq2, 
+    "Gaussq2", 
+    ['A022166'], 
+    True)
 def gaussq2(n: int, k: int = -1) -> list[int] | int:
     if k == -1: return _gaussq2(n).copy()
     return _gaussq2(n)[k]

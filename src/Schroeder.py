@@ -1,9 +1,7 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Schroeder triangle, 
-[A033877, A080245, A080247, A122538*].
-
+"""Schroeder triangle.
 
 [0] [1]
 [1] [0,     1]
@@ -17,6 +15,7 @@ from _tabltypes import set_attributes
 [9] [0, 41586, 33028, 17718, 7432, 2490, 652, 126, 16, 1]
 """
 
+# sim = ['A033877', 'A080245', 'A080247', 'A122538', 'A106579']
 
 @cache
 def _schroeder(n: int) -> list[int]:
@@ -31,7 +30,11 @@ def _schroeder(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_schroeder, "SCHROEDERTRI", True)
+@set_attributes(
+    _schroeder, 
+    "Schroeder", 
+    ['A033877', 'A080245', 'A080247', 'A122538', 'A106579'], 
+    True)
 def schroeder(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _schroeder(n).copy()
     return _schroeder(n)[k]

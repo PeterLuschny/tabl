@@ -1,8 +1,7 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Fubini triangle, 
-[A019538, A090582, A131689*, A278075].
+"""Fubini triangle.
 
 [0]  1;
 [1]  0,  1;
@@ -15,6 +14,7 @@ from _tabltypes import set_attributes
 [8]  0,  1,  254,  5796, 40824, 126000, 191520, 141120, 40320;
 """
 
+# sim = ['A019538', 'A090582', 'A131689', 'A278075']
 
 @cache
 def _fubini(n: int) -> list[int]:
@@ -30,7 +30,11 @@ def _fubini(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_fubini, "FUBINITRIANG", False)
+@set_attributes(
+    _fubini, 
+    "Fubini", 
+    ['A019538', 'A090582', 'A131689', 'A278075'], 
+    False)
 def fubini(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _fubini(n).copy()
     return _fubini(n)[k]

@@ -1,8 +1,7 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Bell (Peirce/Aitken) triangle, 
-[A011971*, A011972, A123346] (see also A182930).
+"""Bell (Peirce/Aitken) triangle, (see also A182930).
 
 [0]     1;
 [1]     1,     2;
@@ -16,6 +15,7 @@ from _tabltypes import set_attributes
 [9] 21147, 25287, 30304, 36401, 43833, 52922, 64077, 77821, 94828, 115975;
 """
 
+# sim = ['A011971', 'A011972', 'A123346']
 
 @cache
 def _bell(n: int) -> list[int]:
@@ -28,7 +28,11 @@ def _bell(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_bell, "BELLTRIANGLE", False)
+@set_attributes(
+    _bell, 
+    "Bell", 
+    ['A011971', 'A011972', 'A123346'],
+    False)
 def bell(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _bell(n).copy()
     return _bell(n)[k]

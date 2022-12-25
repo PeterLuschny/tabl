@@ -1,8 +1,7 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Genocchi triangle, 
-[A297703*]
+"""Genocchi triangle.
 
 [0] [     1]
 [1] [     1,      1]
@@ -14,6 +13,7 @@ from _tabltypes import set_attributes
 [7] [198272, 387104, 557664, 702280, 814888, 891342, 929569, 929569]
 """
 
+# sim = ['A297703']
 
 @cache
 def _genocchi(n: int) -> list[int]:
@@ -31,7 +31,11 @@ def _genocchi(n: int) -> list[int]:
     return row[1:]
 
 
-@set_attributes(_genocchi, "GENOCCHITRIA", False)
+@set_attributes(
+    _genocchi, 
+    "Genocchi", 
+    ['A297703'], 
+    False)
 def genocchi(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _genocchi(n).copy()
     return _genocchi(n)[k]

@@ -1,9 +1,7 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Pascal triangle, binomial coefficients, 
-[A007318, A074909, A108086, A117440, A118433, 
-A130595, A135278, A154926]
+"""Pascal triangle, binomial coefficients.
 
 
 [0]   1;
@@ -19,6 +17,9 @@ A130595, A135278, A154926]
 """
 
 
+# sim = ['A007318', 'A074909', 'A108086', 'A117440', 'A118433', 'A130595', 'A135278', 'A154926']
+
+
 @cache
 def _binomial(n: int) -> list[int]:
     if n == 0:
@@ -30,7 +31,11 @@ def _binomial(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_binomial, "BINOMIALCOEF", True)
+@set_attributes(
+    _binomial, 
+    "Binomial", 
+    ['A007318', 'A074909', 'A108086', 'A117440', 'A118433', 'A130595', 'A135278', 'A154926'], 
+    True)
 def binomial(n: int, k: int = -1) -> list[int] | int:
     if k == -1: return _binomial(n).copy()
     return _binomial(n)[k]

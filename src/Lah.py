@@ -1,8 +1,7 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Lah numbers (unsigned), 
-[A008297, A066667, A089231, A105278, A111596, A271703*]
+"""Lah numbers (unsigned).
 
 
 [0]  1
@@ -17,6 +16,7 @@ from _tabltypes import set_attributes
 [9]  0  362880  1451520  1693440   846720  211680  28224  2016   72   1
 """
 
+# sim = ['A008297', 'A066667', 'A089231', 'A105278', 'A111596', 'A271703']
 
 @cache
 def _lah(n: int) -> list[int]:
@@ -30,7 +30,11 @@ def _lah(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_lah, "LAHTRIANGLES", True)
+@set_attributes(
+    _lah, 
+    "Lah", 
+    ['A008297', 'A066667', 'A089231', 'A105278', 'A111596', 'A271703'], 
+    True)
 def lah(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _lah(n).copy()
     return _lah(n)[k]

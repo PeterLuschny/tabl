@@ -2,8 +2,7 @@ from functools import cache
 from itertools import accumulate
 from _tabltypes import set_attributes
 
-"""Catalan triangle, Fuss-Catalan 1, 
-[A030237, A054445, A355173*].
+"""Catalan triangle, Fuss-Catalan 1.
 
 [0] [1]
 [1] [0, 1]
@@ -15,6 +14,7 @@ from _tabltypes import set_attributes
 [7] [0, 1, 7, 27, 75, 165, 297, 429]
 """
 
+# sim = ['A030237', 'A054445', 'A355173']
 
 @cache
 def _catalan(n: int) -> list[int]:
@@ -27,7 +27,11 @@ def _catalan(n: int) -> list[int]:
     return list(accumulate(row))
 
 
-@set_attributes(_catalan, "FUSSCATALAN1", False)
+@set_attributes(
+    _catalan, 
+    "Catalan", 
+    ['A030237', 'A054445', 'A355173'], 
+    False)
 def catalan(n: int, k:int = -1) -> list[int] | int:
     if k == -1: return _catalan(n).copy()
     return _catalan(n)[k]

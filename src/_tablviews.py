@@ -81,6 +81,7 @@ def PrintFlats(t: tabl) -> None:
 def PrintViews(T: tri, rows: int = 7, verbose: bool = True) -> None:
 
     print("# " + T.id)
+    print(T.sim)
 
     cols: int = rows 
     print()

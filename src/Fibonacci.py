@@ -1,8 +1,7 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Fibonacci-Pascal triangle, 
-[A105809, A228074, A354267*].
+"""Fibonacci-Pascal triangle.
 
 [0] [ 1]
 [1] [ 0,  1]
@@ -16,6 +15,7 @@ from _tabltypes import set_attributes
 [9] [21, 34, 54, 79, 97, 92, 63, 29, 8, 1]
 """
 
+# sim = ['A105809', 'A228074', 'A354267']
 
 @cache
 def _fibonacci(n: int) -> list[int]:
@@ -32,7 +32,11 @@ def _fibonacci(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_fibonacci, "FIBONACPASCA")
+@set_attributes(
+    _fibonacci, 
+    "Fibonacci", 
+    ['A105809', 'A228074', 'A354267'], 
+    False)
 def fibonacci(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _fibonacci(n).copy()
     return _fibonacci(n)[k]

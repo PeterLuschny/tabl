@@ -1,10 +1,8 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Rencontres triangle, 
- [A008290*, A098825].
-
-
+"""Rencontres triangle.
+ 
 [0]       1;
 [1]       0,      1;
 [2]       1,      0,     1;
@@ -17,6 +15,7 @@ from _tabltypes import set_attributes
 [9]  133496, 133497, 66744, 22260, 5544, 1134, 168, 36, 0, 1;
 """
 
+# sim = ['A008290', 'A098825']
 
 @cache
 def _rencontres(n: int) -> list[int]:
@@ -31,7 +30,11 @@ def _rencontres(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_rencontres, "RENCONTRESTR", True)
+@set_attributes(
+    _rencontres, 
+    "Rencontres", 
+    ['A008290', 'A098825'], 
+    True)
 def rencontres(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _rencontres(n).copy()
     return _rencontres(n)[k]

@@ -3,6 +3,7 @@ from _tablsimilarseq import read_seqdata, OEISANumber, SimilarSequences
 from _tablsums import tabl_accsum, tabl_altsum, tabl_diagsum, tabl_evensum, tabl_oddsum, tabl_revaccsum, tabl_sum, diag_tabl, tabl_accrevsum
 from _tabltransforms import rev_tabl, row_diag, revacc_tabl, row_poly, col_diag, col_poly, inv_tabl, acc_tabl, accrev_tabl, middle, central, left_side, right_side, pos_half, neg_half, trans_seq, invtrans_seq, trans_self, invtrans_self, diag_tabl, poly_tabl, flat_acc, flat_revacc, flat_accrev, trans, poly_diag, transbin_tabl, tabl_lcm, tabl_gcd, tabl_max, invtransbin_tabl, transbin_val, invtransbin_val, trans_sqrs, trans_nat0, trans_nat1
 
+
 from math import floor
 from itertools import count
 from pathlib import Path
@@ -17,7 +18,9 @@ sorpath = (path / relsortpath).resolve()
 shortdatapath = (path / relshortdatapath).resolve()
 datapath = (path / reldatapath).resolve()
 relcsvpath = 'data/TraitCards'
+allcsvfile = 'data/allcsv.csv'
 csvpath = (path / relcsvpath).resolve()
+allcsvpath = (path / allcsvfile).resolve()
 
 def GetDataPath() -> Path: return datapath
 
@@ -47,24 +50,24 @@ def SeqToFixlenString(seq: list[int], maxlen:int=90, separator=',') -> str:
     return stri + "]"
 
 
-def Traits(f: tri, dim: int, seqnum: bool = False) -> None: 
+def Traits(f: tri, dim: int, seqnum: bool = False, csvfile = None) -> None: 
 
-    T  = f.tab(dim)
-    R  = f.rev(dim)
-    I  = f.inv(dim)
+    T  = f.tab(dim) 
+    R  = f.rev(dim) 
+    I  = f.inv(dim) 
     RI = f.revinv(dim) 
-    IR = f.invrev(dim)
+    IR = f.invrev(dim) 
     # funname = f.id
     funname = f.__name__
 
     maxlen = (dim * (dim + 1)) // 2
 
-    all_traits = count()
-    traits_with_anum = count()
+    count_all_traits = count()
+    count_traits_with_anum = count()
     no_oeis = []
 
     def printer(seq, traitname) -> None:
-        next(all_traits)
+        next(count_all_traits)
         anum = ""
         if seqnum:
             # TODO optimize this! Push this to OEISANumber.
@@ -80,19 +83,25 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
                     if anum == "": 
                         no_oeis.append(traitname) 
                         return
-            next(traits_with_anum)
+            next(count_traits_with_anum)
 
         tstr = SeqToFixlenString(seq, 70, ' ')
+
         if seqnum:
             print(f"{funname},{traitname},{anum},{tstr}")
+            if csvfile != None:
+                csvfile.write(f"{funname},{traitname},{anum},{tstr}\n")
         else:
             print(f"{funname},{traitname},{tstr}")
+            if csvfile != None:
+                csvfile.write(f"{funname},{traitname},{tstr}\n")
 
-# Alternative:
-# seqdata = read_seqdata(GetDataPath()) if seqnum else []
-# if seqnum: print(SimilarSequences(seqdata, seq))
 
-    print("Triangle,Trait,ANumber,Sequence")
+    if seqnum:
+        print("Triangle,Trait,ANumber,Sequence")
+    else:
+        print("Triangle,Trait,Sequence")
+
 
     printer(flat(T), "Triangle ")
     printer(flat(R), "Reverse  ")
@@ -154,11 +163,14 @@ def Traits(f: tri, dim: int, seqnum: bool = False) -> None:
     printer(col_poly(f, 3, maxlen), "PolyCol3 ")
     printer(poly_diag(f, maxlen),   "PolyDiag ")
 
-    atraits = next(all_traits)
-    ntraits = next(traits_with_anum)
-    perc = floor(100 * ntraits / atraits)
-    print(f"{f.__name__}, {atraits} traits, {ntraits} A-numbers, {perc}%")
-    # print("\nNot found in the OEIS:", no_oeis)
+    if seqnum:
+        atraits = next(count_all_traits)
+        ntraits = next(count_traits_with_anum)
+        perc = floor(100 * ntraits / atraits)
+        w = f"# {f.__name__}, {atraits} traits, {ntraits} A-numbers,{perc}%"
+        if csvfile != None: csvfile.write(w)
+        print(w)
+        print(f"Not found in the OEIS: {no_oeis}\n")
 
 
 if __name__ == "__main__":
@@ -168,7 +180,7 @@ if __name__ == "__main__":
     from Lah import lah
     from Binomial import binomial
     from StirlingSet import stirling_set
-    from StirlingCycle import stirling_cycle
+    from StirlingCyc import stirling_cycle
     from ChebyshevT import chebyshevT
     from Laguerre import laguerre
 
@@ -177,10 +189,8 @@ if __name__ == "__main__":
 
     # With A-numbers, much slower:
     # Traits(stirling_set, 20, True)
-    # Traits(binomial, 20, True)
-    # Traits(laguerre, 20, True)
-    # Traits(lah, 20, True)
 
     # very SLOW, but also with similar A-numbers:
     # use SimilarSequences (see the two outcommented lines)
     #Traits(stirling_set, 20, True)
+

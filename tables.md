@@ -232,9 +232,9 @@ BESSELPOLYNO Polynomial values as columns
 | cpdiag5 | [1, 5, 30, 215, 1825, 18150, 208975] |
 | cpdiag6 | [1, 6, 42, 342, 3222, 34866, 429786] |
 
-# BILATERALSCH
+# SCHROEDERPTH
 
-BILATERALSCH Triangle view
+SCHROEDERPTH Triangle view
 | trow  |  list  |
 | :---  |  :---  |
 | trow0 | [1] |
@@ -245,7 +245,7 @@ BILATERALSCH Triangle view
 | trow5 | [252, 630, 560, 210, 30, 1] |
 | trow6 | [924, 2772, 3150, 1680, 420, 42, 1] |
 
-BILATERALSCH Flattened seqs
+SCHROEDERPTH Flattened seqs
 | flat      |   seq  |
 | :---      |  :---  |
 | tabl     | [1, 2, 1, 6, 6, 1, 20, 30, 12, 1, 70, 140, 90, 20, 1, 252, 630, 560, 210, 30, 1, 924, 2772, 3150, 1680, 420, 42, 1] |
@@ -255,7 +255,7 @@ BILATERALSCH Flattened seqs
 | accurev   | [1, 1, 3, 1, 7, 13, 1, 13, 43, 63, 1, 21, 111, 251, 321, 1, 31, 241, 801, 1431, 1683, 1, 43, 463, 2143, 5293, 8065, 8989] |
 | diag     | [1, 2, 6, 1, 20, 6, 70, 30, 1, 252, 140, 12] |
 
-BILATERALSCH Row sums
+SCHROEDERPTH Row sums
 | sum       |   seq  |
 | :---      |  :---  |
 | sum       | [1, 3, 13, 63, 321, 1683, 8989] |
@@ -266,7 +266,7 @@ BILATERALSCH Row sums
 | accusum    | [1, 5, 31, 195, 1221, 7593, 46915] |
 | revaccusum | [1, 4, 21, 120, 705, 4188, 24997] |
 
-BILATERALSCH Diagonals as rows
+SCHROEDERPTH Diagonals as rows
 | rdiag  |   seq  |
 | :---   |  :---  |
 | rdiag0 | [1, 1, 1, 1, 1, 1, 1]|
@@ -277,7 +277,7 @@ BILATERALSCH Diagonals as rows
 | rdiag5 | [252, 2772, 16632, 72072, 252252, 756756, 2018016]|
 | rdiag6 | [924, 12012, 84084, 420420, 1681680, 5717712, 17153136]|
 
-BILATERALSCH Diagonals as columns
+SCHROEDERPTH Diagonals as columns
 | cdiag  |   seq  |
 | :---   |  :---  |
 | cdiag0 | [1, 2, 6, 20, 70, 252, 924] |
@@ -288,7 +288,7 @@ BILATERALSCH Diagonals as columns
 | cdiag5 | [1, 42, 756, 9240, 90090, 756756, 5717712] |
 | cdiag6 | [1, 56, 1260, 18480, 210210, 2018016, 17153136] |
 
-BILATERALSCH Polynomial values as rows
+SCHROEDERPTH Polynomial values as rows
 | rpdiag  |   seq  |
 | :---    |  :---  |
 | rpdiag0 | [1, 1, 1, 1, 1, 1, 1] |
@@ -299,7 +299,7 @@ BILATERALSCH Polynomial values as rows
 | rpdiag5 | [252, 1683, 5944, 15525, 33876, 65527, 116208] |
 | rpdiag6 | [924, 8989, 40636, 127905, 324556, 712909, 1411404] |
 
-BILATERALSCH Polynomial values as columns
+SCHROEDERPTH Polynomial values as columns
 | cpdiag  |   seq  |
 | :---    |  :---  |
 | cpdiag0 | [1, 2, 6, 20, 70, 252, 924] |

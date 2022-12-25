@@ -1,8 +1,7 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Stirling set numbers of second order, 
-[A358623], A008299, A137375.
+"""Stirling set numbers of second order.
 
 
 [0] 1;
@@ -16,6 +15,8 @@ from _tabltypes import set_attributes
 [8] 0, 1, 119,  490,  105,  0,  0,  0,  0;
 [9] 0, 1, 246, 1918, 1260,  0,  0,  0,  0,  0;
 """
+
+# sim = ['A358623', 'A008299', 'A137375']
 
 
 @cache
@@ -32,7 +33,11 @@ def _stirling_set2(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_stirling_set2, "STIRLSETORD2", False)
+@set_attributes(
+    _stirling_set2, 
+    "StirlingSet2", 
+    ['A358623', 'A008299', 'A137375'], 
+    False)
 def stirling_set2(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _stirling_set2(n).copy()
     return _stirling_set2(n)[k]

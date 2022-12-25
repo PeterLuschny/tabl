@@ -14,61 +14,64 @@ tabl_files: list[str] = [
     "Bessel.py",
     "Binomial.py",
     "Catalan.py",
-    "CatalanAerated.py",
-    "CentralCycleFactorial.py",
-    "CentralSetFactorial.py",
+    "CatalanAer.py",
+    "CentralCyc.py",
+    "CentralSet.py",
     "ChebyshevS.py",
     "ChebyshevT.py",
     "ChebyshevU.py",
-    "ChristmasTree.py",
+    "ChristTree.py",
     "Delannoy.py",
     "Euler.py",
     "Eulerian.py",
     "Eulerian2.py",
     "EulerianB.py",
-    "EulerSecant.py",
-    "EulerTangent.py",
-    "FallingFactorial.py",
+    "EulerSec.py",
+    "EulerTan.py",
+    "FallingFact.py",
     "Fibonacci.py",
     "Fubini.py",
     "Gaussq2.py",
     "Genocchi.py",
-    "HarmonicPolys.py",
+    "Harmonic.py",
     "Hermite.py",
     "Laguerre.py",
     "Lah.py",
-    "LehmerComtet.py",
+    "Lehmer.py",
     "Leibniz.py",
     "Levin.py",
-    "LozanicTriangle.py",
+    "Lozanic.py",
     "Motzkin.py",
     "Narayana.py",
     "Nicomachus.py",
     "One.py",
     "Ordinals.py",
-    "OrderedCycle.py",
-    "PartitionNumbers.py",
-    "PolygonalNumbers.py",
-    "PowerLaguerre.py",
+    "OrderedCyc.py",
+    "Partition.py",
+    "PartitionMax.py",
+    "Polygonal.py",
+    "PowLaguerre.py",
     "Rencontres.py",
-    "RisingFactorial.py",
+    "RisingFact.py",
     "Schroeder.py",
-    "SchroederPaths.py",
+    "SchroederP.py",
     "Seidel.py",
-    "SierpinskiTriangle.py",
-    "StirlingCycle.py",
-    "StirlingCycle2.py",
-    "StirlingCycleB.py",
+    "SeidelBoust.py",
+    "Sierpinski.py",
+    "StirlingCyc.py",
+    "StirlingCyc2.py",
+    "StirlingCycB.py",
     "StirlingSet.py",
     "StirlingSet2.py",
     "StirlingSetB.py",
-    "SylvesterPolynomials.py",
-    "SymmetricPolynomials.py",
+    "Sylvester.py",
+    "SymPoly.py",
     "TernaryTrees.py",
     "WardSet.py",
     "Worpitzky.py",
     "_tablmake.py",
     "_tablexport.py",
+    "_tablhtml.py",
     "_tabldata.py",
     "_tablsimilarseq.py",
     "_tablsimilartri.py",
@@ -116,7 +119,7 @@ tabl_fun: list[tri] = [
     ordinals,
     ordered_cycle,
     partnum_exact,
-    partnum_atmost,
+    partnum_max,
     polygonal,
     powlag,
     rencontres,
@@ -160,9 +163,12 @@ data_path: list[str] = [
     "datapath = (path / reldatapath).resolve()\n",
     "relcsvpath = 'data/csv'\n",
     "csvpath = (path / relcsvpath).resolve()\n",
+    "allcsvfile = 'data/allcsv.csv'\n",
+    "allcsvpath = (path / allcsvfile).resolve()\n",
     "def GetDataPath() -> Path: return datapath\n",
     "def GetCsvPath() -> Path: return csvpath\n",
 ]
+
 
 dir: str = join(getcwd(), "src")
 dest: TextIOWrapper = open("tabl.py", "w+")
@@ -175,15 +181,13 @@ for src in tabl_files:
     if src == "_tablmake.py":
         dest.write(str_tabl_fun)
         continue
+    print(src)
     file_path: str = join(dir, src)
     if isfile(file_path):
         start: bool = False
         src_file: TextIOWrapper = open(file_path, "r")
 
         for line in src_file:
-            if line.startswith("@set_attributes("):
-                s = line[1 + line.find('"') : line.rfind('"')]
-                print(s)
             if line.startswith("from"):
                 continue
             if not start:

@@ -1,8 +1,7 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Delannoy triangle, 
-[A008288*].
+"""Delannoy triangle.
 
 [0] [1]
 [1] [1,  1]
@@ -16,6 +15,7 @@ from _tabltypes import set_attributes
 [9] [1, 17, 113, 377, 681, 681, 377, 113, 17, 1]
 """
 
+# sim = ['A008288']
 
 @cache
 def _delannoy(n: int) -> list[int]:
@@ -31,7 +31,11 @@ def _delannoy(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_delannoy, "DELANNOYTRIA", False)
+@set_attributes(
+    _delannoy, 
+    "Delannoy", 
+    ['A008288'], 
+    False)
 def delannoy(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _delannoy(n).copy()
     return _delannoy(n)[k]

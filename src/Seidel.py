@@ -1,9 +1,7 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Seidel triangle, 
-[A008281*, A008282, A010094]
-
+"""Seidel triangle.
 
 [0] [1]
 [1] [0,   1]
@@ -13,19 +11,9 @@ from _tabltypes import set_attributes
 [5] [0,   5,  10,  14,   16,   16]
 [6] [0,  16,  32,  46,   56,   61,   61]
 [7] [0,  61, 122, 178,  224,  256,  272,  272]
-
-Seidel boustrophedon:
-['A008280 ', 'A108040 ', 'A236935 ', 'A239005 '].
-
-[0] [ 1]
-[1] [ 0,  1]
-[2] [ 1,  1,   0]
-[3] [ 0,  1,   2,   2]
-[4] [ 5,  5,   4,   2,   0]
-[5] [ 0,  5,  10,  14,  16,  16]
-[6] [61, 61,  56,  46,  32,  16,   0]
-[7] [ 0, 61, 122, 178, 224, 256, 272, 272]
 """
+
+# sim  = ['A008281', 'A008282', 'A010094']
 
 
 @cache
@@ -41,24 +29,17 @@ def _seidel(n: int) -> list[int]:
     return row
 
 
-def _seidel_boust(n: int) -> list[int]:
-    return _seidel(n) if n % 2 else _seidel(n)[::-1]
-
-
-@set_attributes(_seidel, "SEIDELTRIANG", False)
+@set_attributes(
+    _seidel, 
+    "Seidel", 
+    ['A008281', 'A008282', 'A010094'], 
+    False)
 def seidel(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _seidel(n).copy()
     return _seidel(n)[k]
-
-
-@set_attributes(_seidel_boust, "SEIDELBOUSTO", False)
-def seidel_boust(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _seidel_boust(n).copy()
-    return _seidel_boust(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
     TablTest(seidel)
-    TablTest(seidel_boust)

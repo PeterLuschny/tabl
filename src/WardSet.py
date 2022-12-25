@@ -1,8 +1,7 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Ward set numbers, 
-[A134991, A269939].
+"""Ward set numbers.
 
 
 [0] [1]
@@ -15,6 +14,8 @@ from _tabltypes import set_attributes
 [7] [0, 1, 246,  6825,  56980,  190575,  270270,  135135]
 [8] [0, 1, 501, 22935, 302995, 1636635, 4099095, 4729725, 2027025]
 """
+
+# sim = ['A134991', 'A269939']
 
 
 @cache
@@ -30,7 +31,11 @@ def _ward_set(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_ward_set, "WARDSETNUMBR", False)
+@set_attributes(
+    _ward_set, 
+    "WardSet", 
+    ['A134991', 'A269939'], 
+    False)
 def ward_set(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _ward_set(n).copy()
     return _ward_set(n)[k]

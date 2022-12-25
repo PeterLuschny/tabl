@@ -1,9 +1,7 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Worpitzky triangle,
-[A028246*, A053440, A075263, A130850, A163626]
-
+"""Worpitzky triangle.
 
 [0]  1;
 [1]  1,   1;
@@ -15,6 +13,8 @@ from _tabltypes import set_attributes
 [7]  1, 127, 1932, 10206,  25200,  31920,  20160,   5040;
 [8]  1, 255, 6050, 46620, 166824, 317520, 332640, 181440, 40320;
 """
+
+# sim = ['A028246', 'A053440', 'A075263', 'A130850', 'A163626']
 
 
 @cache
@@ -28,7 +28,11 @@ def _worpitzky(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_worpitzky, "WORPITZKYNUM", False)
+@set_attributes(
+    _worpitzky, 
+    "Worpitzki", 
+    ['A028246', 'A053440', 'A075263', 'A130850', 'A163626'],
+    False)
 def worpitzky(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _worpitzky(n).copy()
     return _worpitzky(n)[k]

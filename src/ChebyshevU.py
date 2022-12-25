@@ -2,7 +2,6 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """Coefficients of Chebyshev U(n, x) polynomials.
-[A053117, A053118, A115322]
 
 
 [0]  1;
@@ -17,6 +16,7 @@ from _tabltypes import set_attributes
 [9]  0, 10,   0, -160,   0,  672,    0, -1024,   0,  512;
 """
 
+# sim = ['A053117', 'A053118', 'A115322']
 
 @cache
 def _chebyshevU(n: int) -> list[int]:
@@ -33,7 +33,11 @@ def _chebyshevU(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_chebyshevU, "CHEBYSHEVUPO", True)
+@set_attributes(
+    _chebyshevU, 
+    "ChebyshevU", 
+    ['A053117', 'A053118', 'A115322'], 
+    True)
 def chebyshevU(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _chebyshevU(n).copy()
     return _chebyshevU(n)[k]

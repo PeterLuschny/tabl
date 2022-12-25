@@ -1,8 +1,7 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Motzkin triangle, 
-[A026300, A064189], A009766.
+"""Motzkin triangle.
 
 [0]    1;
 [1]    1,    1;
@@ -16,6 +15,7 @@ from _tabltypes import set_attributes
 [9]  835, 1353, 1422, 1140, 726, 369, 147, 44, 9, 1.
 """
 
+# sim = ['A026300', 'A064189', 'A009766']
 
 @cache
 def _motzkin(n: int) -> list[int]:
@@ -31,7 +31,11 @@ def _motzkin(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_motzkin, "MOTZKINTRIAN", True)
+@set_attributes(
+    _motzkin, 
+    "Motzkin", 
+    ['A026300', 'A064189', 'A009766'], 
+    True)
 def motzkin(n: int, k: int = -1) -> list[int] | int:
     if k == -1: return _motzkin(n).copy()
     return _motzkin(n)[k]

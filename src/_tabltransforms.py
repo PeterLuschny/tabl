@@ -215,7 +215,7 @@ if __name__ == "__main__":
 
     from Binomial import binomial
     from StirlingSet import stirling_set
-    from StirlingCycle import stirling_cycle
+    from StirlingCyc import stirling_cycle
     from Motzkin import motzkin
 
     col_poly

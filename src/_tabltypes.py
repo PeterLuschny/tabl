@@ -81,7 +81,7 @@ def invrev_wrapper(T: tri, dim: int) -> tri | None:
     return tigen
 
 
-def set_attributes(r: rgen, id: str, vert: bool=False) -> Callable[[tri], tri]:
+def set_attributes(r: rgen, id: str, sim: list, vert: bool=False) -> Callable[[tri], tri]:
 
     def maketab(dim: int) -> tabl:
         return [list(r(n)) for n in range(dim)]
@@ -118,6 +118,7 @@ def set_attributes(r: rgen, id: str, vert: bool=False) -> Callable[[tri], tri]:
         f.flat = makeflat
         f.revinv = makerevinv
         f.invrev = makeinvrev
+        f.sim = sim
         f.id = id
         return f
     return wrapper
@@ -125,6 +126,7 @@ def set_attributes(r: rgen, id: str, vert: bool=False) -> Callable[[tri], tri]:
 
 if __name__ == "__main__":
 
+    from Abel import abel
     from StirlingSet import stirling_set
     from Delannoy import delannoy
     from ChebyshevT import chebyshevT
@@ -193,3 +195,6 @@ if __name__ == "__main__":
         print("None")
 
     print("#", g.invrev(dim))
+
+    print("xxxxx")
+    print(abel.sim)

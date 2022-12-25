@@ -2,8 +2,6 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """von Neumann ordinals (kind of). 
-[A002260, A002262, A004736, A025581]
-
 
 [0] [0]
 [1] [0,  1]
@@ -15,6 +13,8 @@ from _tabltypes import set_attributes
 [7] [0,  1,  2,  3,  4,  5,  6,  7]
 """
 
+# sim = ['A002260', 'A002262', 'A004736', 'A025581']
+
 
 @cache
 def _ordinals(n: int) -> list[int]:
@@ -24,7 +24,11 @@ def _ordinals(n: int) -> list[int]:
     return _ordinals(n - 1) + [n]
 
 
-@set_attributes(_ordinals, "ORDINALNUMBR", False)
+@set_attributes(
+    _ordinals, 
+    "Ordinals", 
+    ['A002260', 'A002262', 'A004736', 'A025581'], 
+    False)
 def ordinals(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _ordinals(n).copy()
     return _ordinals(n)[k]

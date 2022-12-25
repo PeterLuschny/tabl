@@ -1,8 +1,7 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""EulerianB triangle, 
-[A060187*, A138076]
+"""EulerianB triangle.
 
 
 [0] [1]
@@ -15,6 +14,7 @@ from _tabltypes import set_attributes
 [7] [1, 2179, 60657, 259723, 259723, 60657, 2179,  1]
 """
 
+# sim = ['A060187', 'A138076']
 
 @cache
 def _eulerianB(n: int) -> list[int]:
@@ -27,7 +27,11 @@ def _eulerianB(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_eulerianB, "EULERIANTYPB", True)
+@set_attributes(
+    _eulerianB, 
+    "EulerianB", 
+    ['A060187', 'A138076'],
+    True)
 def eulerianB(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _eulerianB(n).copy()
     return _eulerianB(n)[k]

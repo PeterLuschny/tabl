@@ -119,7 +119,7 @@ if __name__ == "__main__":
 
     # Seqs = read_seqdata(datapath)
     # anums = SimilarSequences(Seqs, a)
-    anum = OEISNumber(str(e))
+    anum = OEISANumber(str(e))
     #for anum in anums: 
     print(anum)
     print("... done")

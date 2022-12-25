@@ -1,8 +1,7 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Bessel triangle, 
-[A001497, A001498, A122850, A132062*]
+"""Bessel triangle.
 
 [0] [1]
 [1] [0,      1]
@@ -14,6 +13,8 @@ from _tabltypes import set_attributes
 [7] [0,  10395,  10395,  4725,  1260,  210,  21,  1]
 [8] [0, 135135, 135135, 62370, 17325, 3150, 378, 28, 1]
 """
+
+# sim = ['A001497', 'A001498', 'A122850', 'A132062']
 
 
 @cache
@@ -29,7 +30,11 @@ def _bessel(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_bessel, "BESSELPOLYNO", True)
+@set_attributes(
+    _bessel, 
+    "Bessel", 
+    ['A001497', 'A001498', 'A122850', 'A132062'],
+    True)
 def bessel(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _bessel(n).copy()
     return _bessel(n)[k]

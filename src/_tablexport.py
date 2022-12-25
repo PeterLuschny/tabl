@@ -19,7 +19,9 @@ shortdatapath = (path / relshortdatapath).resolve()
 datapath = (path / reldatapath).resolve()
 relcsvpath = 'data/csv'
 csvpath = (path / relcsvpath).resolve()
-
+allcsvfile = 'data/allcsv.csv'
+csvpath = (path / relcsvpath).resolve()
+allcsvpath = (path / allcsvfile).resolve()
 
 # #@
 
@@ -32,14 +34,32 @@ def sortfile(inpath, outpath) -> None:
             for line in outlines:
                 outfile.write(line)
 
+def SaveToCsv(fun: tri, dim: int = 24) -> None:
+    csvfile = fun.id + ".csv"
+    path = (csvpath / csvfile).resolve()
+    with open(path, 'w+') as dest:
+        dest.write("Triangle,Trait,ANumber,Sequence\n")
+        s = str(fun.sim).replace("[", "").replace("]", "").replace("'", "").replace(",", "")
+        dest.write(f"OEIS Similars: {s},,,\n")
+        Traits(fun, dim, True, dest)
 
-def SaveTraits(dim: int = 20) -> None:
-        for fun in tabl_fun:
-            csvfile = fun.__name__ + ".csv"
-            path = (csvpath / csvfile).resolve()
-            with open(path, 'w+') as dest:
-                with contextlib.redirect_stdout(dest):
-                    Traits(fun, dim, True)
+
+def SaveAllToCsv(dim: int = 24) -> None:
+    for fun in tabl_fun:
+        SaveToCsv(fun, dim)
+
+
+def AllTraits(seqnum: bool = False) -> None:
+    dim = 28
+    csvfile = open(allcsvpath, 'w')
+    if seqnum:
+        csvfile.write("Triangle,Trait,ANumber,Sequence\n")
+    else:
+        csvfile.write("Triangle,Trait,Sequence\n")
+
+    for fun in tabl_fun:  # is in tabl.py
+        Traits(fun, dim, False, csvfile)
+    csvfile.close()
 
 
 def SaveTables(dim: int = 7) -> None:
@@ -124,5 +144,5 @@ def SaveExtendedProfiles(path: str, dim: int = 10, seqonly: bool = True) -> None
 
 if __name__ == "__main__":
 
-    # Please test in tabltest.py
-    def nothinghere() -> None: return None
+    from Abel import abel
+    SaveToCsv(abel, 10)

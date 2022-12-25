@@ -2,8 +2,7 @@ from functools import cache
 from _tabltypes import set_attributes
 
 
-"""Laguerre polynomials n! * L(n, x) (unsigned coefficients),
-[A021009*, A021010, A144084]
+"""Laguerre polynomials n! * L(n, x) (unsigned coefficients).
 
 [0]      1
 [1]      1,       1
@@ -16,6 +15,7 @@ from _tabltypes import set_attributes
 [8]  40320,  322560,  564480,  376320,  117600,  18816,  1568,   64,  1
 """
 
+# sim = ['A021009', 'A021010', 'A144084']
 
 @cache
 def _laguerre(n: int) -> list[int]:
@@ -28,7 +28,11 @@ def _laguerre(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_laguerre, "LAGUERREPOLY", True)
+@set_attributes(
+    _laguerre, 
+    "Laguerre", 
+    ['A021009', 'A021010', 'A144084'], 
+    True)
 def laguerre(n: int, k: int = -1) -> list[int] | int:
     if k == -1: return _laguerre(n).copy()
     return _laguerre(n)[k]

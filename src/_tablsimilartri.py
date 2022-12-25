@@ -1,6 +1,6 @@
 import csv
 from _tabltypes import tri, tabl
-# from tabl import tabl_fun
+from tabl import tabl_fun
 
 # #@
 
@@ -77,6 +77,23 @@ def SingleSimilarTriangles(datapath, fun) -> None:
         print(fun.id, "Similars:", similars)
         return
 
+def Readme() -> None:
+
+    print("Tables |  Src   | Traits   |  OEIS  SIMILARS |")
+    print("| :--- | :---   | :---     |    :---         |")
+
+    for fun in tabl_fun:
+        id = fun.id
+        similars = fun.sim
+        anum = ""
+        s = ( str(similars)
+                .replace("[", "")
+                .replace("]", "")
+                .replace("'", "")
+            )
+        for sim in similars: anum += "%7Cid%3A" + sim
+        print(f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/tables.md#{id}) | [src](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://oeis.org/search?q={anum}) |\n")
+
 
 def SimilarTriangles(datapath: str, md: bool = True) -> None:
 
@@ -87,7 +104,7 @@ def SimilarTriangles(datapath: str, md: bool = True) -> None:
 
     if md:
         print("|  ID    |  OEIS  SIMILARS |")
-        print("| :---:  |  :---  |")
+        print("| :---:  |  :---:          |")
 
 
     for fun in tabl_fun:
@@ -110,6 +127,12 @@ def SimilarTriangles(datapath: str, md: bool = True) -> None:
 
 if __name__ == "__main__":
 
+    # Alternative:
+    # seqdata = read_seqdata(GetDataPath()) if seqnum else []
+    # if seqnum: print(SimilarSequences(seqdata, seq))
+
+
+    '''
     from pathlib import Path
     from Lah import lah
 
@@ -130,3 +153,6 @@ if __name__ == "__main__":
     # Essentially equal triangles are:
     # LAHTRIANGLES Similars: ['A008297', 'A066667', 'A089231', 
     #'A105278', 'A111596', 'A271703']
+    '''
+
+    Readme()

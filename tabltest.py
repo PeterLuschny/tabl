@@ -1,6 +1,6 @@
 from codetiming import Timer
 from pathlib import Path
-from tabl import PrintViews, PrintExtendedProfile, PrintProfile, SaveExtendedProfiles, SaveProfiles, SaveTables, SaveExtendedTables, SaveTraits, SimilarTriangles, sortfile, Traits, stirling_set, tabl_fun
+from tabl import PrintViews, PrintExtendedProfile, PrintProfile, SaveExtendedProfiles, SaveProfiles, SaveTables, SaveExtendedTables, SaveAllToCsv, CsvToHtml, SimilarTriangles, sortfile, Traits, stirling_set, tabl_fun
 
 
 if __name__ == "__main__":
@@ -16,6 +16,8 @@ if __name__ == "__main__":
     datapath = (path / reldatapath).resolve()
     relcsvpath = 'data/csv'
     csvpath = (path / relcsvpath).resolve()
+    relhtmlpath = 'data/html'
+    htmlpath = (path / relhtmlpath).resolve()
 
 
     def test1() -> None:
@@ -57,9 +59,13 @@ if __name__ == "__main__":
     def test6() -> None:
         Traits(stirling_set, 12)
 
-
+    # This takes very long! It builds
+    # the traitcards of all sequences.
     def test7() -> None:
-        SaveTraits()
+        SaveAllToCsv()
+
+    def test8() -> None:
+        CsvToHtml(csvpath, htmlpath)
 
 
     def main(test: int) -> None:
@@ -74,4 +80,4 @@ if __name__ == "__main__":
             case 7: test7()
         print("Done")
 
-    main(6)
+    main(2)

@@ -77,7 +77,7 @@ def PrintProfile(T: tri, dim: int, format: str) -> None:
 
 
 def PrintExtendedProfile(T: tri, dim: int, format: str) -> None:
-    
+
     tim: int = dim + dim // 2
 
     PrintProfile(T, dim, format)
@@ -96,7 +96,7 @@ def PrintExtendedProfile(T: tri, dim: int, format: str) -> None:
     R = invrev_wrapper(T, tim)
     if R != None:
         PrintProfile(R, dim, format)
-    
+
     if format == 'nonames':
         global counter
         print(counter, "sequences generated.")

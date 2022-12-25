@@ -24,7 +24,6 @@ def InverseTriangle(r, dim: int) -> list[list[int]]:
 
 
 def InverseTabl(M: list[list[int]]) -> list[list[int]]:
-
     try:
         I = Matrix(M) ** -1
     except: # NonInvertibleMatrixError 

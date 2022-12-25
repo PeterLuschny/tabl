@@ -1,10 +1,7 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Stirling set numbers, 
-[A008277, A008278, A048993*, A080417, A106800, 
-A151511, A151512, A154959, A213735]
-
+"""Stirling set numbers.
 
 [0]  1
 [1]  0, 1
@@ -18,6 +15,7 @@ A151511, A151512, A154959, A213735]
 [9]  0, 1, 255, 3025, 7770, 6951, 2646, 462, 36, 1
 """
 
+# sim = ['A008277', 'A008278', 'A048993', 'A080417', 'A106800', 'A151511', 'A151512', 'A154959', 'A213735']
 
 @cache
 def _stirling_set(n: int) -> list[int]:
@@ -30,7 +28,11 @@ def _stirling_set(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_stirling_set, "STIRLING2SET", True)
+@set_attributes(
+    _stirling_set, 
+    "StirlingSet", 
+    ['A008277', 'A008278', 'A048993', 'A080417', 'A106800', 'A151511', 'A151512', 'A154959', 'A213735'], 
+    True)
 def stirling_set(n: int, k: int = -1) -> list[int] | int:
     if k == -1: return _stirling_set(n).copy()
     return _stirling_set(n)[k]

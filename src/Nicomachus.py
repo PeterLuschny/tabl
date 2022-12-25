@@ -1,9 +1,7 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Nicomachus triangle, 
-[A036561*, A081954, A175840]
-
+"""Nicomachus triangle.
 
 [0] [  1]
 [1] [  2,   3]
@@ -14,6 +12,8 @@ from _tabltypes import set_attributes
 [6] [ 64,  96, 144, 216, 324, 486,  729]
 [7] [128, 192, 288, 432, 648, 972, 1458, 2187]
 """
+
+# sim = ['A036561', 'A081954', 'A175840']
 
 
 @cache
@@ -27,7 +27,11 @@ def _nicomachus(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_nicomachus, "NICOMACHUSTR", False)
+@set_attributes(
+    _nicomachus, 
+    "Nicomachus", 
+    ['A036561', 'A081954', 'A175840'], 
+    False)
 def nicomachus(n: int, k: int = -1) -> list[int] | int:
     if k == -1: return _nicomachus(n).copy()
     return _nicomachus(n)[k]

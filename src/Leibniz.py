@@ -1,9 +1,8 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-"""Leibniz's Triangle, FallingFactorial(n + 1, n) / (k! * (n - k)!), 
- [A003506*]
-
+"""Leibniz's Triangle, FallingFactorial(n + 1, n) / (k! * (n - k)!).
+ 
 
 [0]  1
 [1]  2   2
@@ -17,6 +16,7 @@ from _tabltypes import set_attributes
 [9] 10  90  360  840 1260 1260  840  360  90  10
 """
 
+# sim = ['A003506']
 
 @cache
 def _leibniz(n: int) -> list[int]:
@@ -30,7 +30,11 @@ def _leibniz(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_leibniz, "LEIBNIZTRIAN", False)
+@set_attributes(
+    _leibniz, 
+    "Leibniz", 
+    ['A003506'], 
+    False)
 def leibniz(n: int, k: int = -1) -> list[int] | int: 
     if k == -1: return _leibniz(n).copy()
     return _leibniz(n)[k]

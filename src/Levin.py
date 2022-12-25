@@ -2,8 +2,7 @@ from functools import cache
 from _tabltypes import set_attributes
 
 
-"""Levin's Triangle, RisingFactorial(n + 1, n) / (k! * (n - k)!), 
-[A356546*]
+"""Levin's Triangle, RisingFactorial(n + 1, n) / (k! * (n - k)!).
 
 
 [0]     1;
@@ -17,6 +16,7 @@ from _tabltypes import set_attributes
 [8] 12870, 102960, 360360, 720720, 900900, 720720, 360360, 102960, 12870;
 """
 
+# sim = ['A356546']
 
 @cache
 def _levin(n: int) -> list[int]:
@@ -30,7 +30,11 @@ def _levin(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_levin, "LEVINSTRIANG", False)
+@set_attributes(
+    _levin, 
+    "Levin", 
+    ['A356546'], 
+    False)
 def levin(n: int, k: int = -1) -> list[int] | int:
     if k == -1: return _levin(n).copy()
     return _levin(n)[k]
