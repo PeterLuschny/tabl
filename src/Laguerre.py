@@ -15,7 +15,6 @@ from _tabltypes import set_attributes
 [8]  40320,  322560,  564480,  376320,  117600,  18816,  1568,   64,  1
 """
 
-# sim = ['A021009', 'A021010', 'A144084']
 
 @cache
 def _laguerre(n: int) -> list[int]:

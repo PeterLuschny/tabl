@@ -14,8 +14,6 @@ from _tabltypes import set_attributes
 [8] [0, 135135, 135135, 62370, 17325, 3150, 378, 28, 1]
 """
 
-# sim = ['A001497', 'A001498', 'A122850', 'A132062']
-
 
 @cache
 def _bessel(n: int) -> list[int]:

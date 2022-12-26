@@ -13,8 +13,6 @@ from _tabltypes import set_attributes
 [7] [128, 192, 288, 432, 648, 972, 1458, 2187]
 """
 
-# sim = ['A036561', 'A081954', 'A175840']
-
 
 @cache
 def _nicomachus(n: int) -> list[int]:

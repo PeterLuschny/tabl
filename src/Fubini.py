@@ -14,7 +14,6 @@ from _tabltypes import set_attributes
 [8]  0,  1,  254,  5796, 40824, 126000, 191520, 141120, 40320;
 """
 
-# sim = ['A019538', 'A090582', 'A131689', 'A278075']
 
 @cache
 def _fubini(n: int) -> list[int]:

@@ -59,8 +59,8 @@ if __name__ == "__main__":
 
     # This takes very long! It builds
     # the traitcards of all sequences.
-    def test7() -> None:
-        SaveAllToCsv()
+    # def test7() -> None:
+        # SaveAllToCsv()
 
     def test8() -> None:
         CsvToHtml(csvpath, htmlpath)
@@ -75,7 +75,8 @@ if __name__ == "__main__":
             case 4: test4()
             case 5: test5()
             case 6: test6()
-            case 7: test7()
+            # case 7: test7()
+            case 8: test8()
         print("Done")
 
-    main(5)
+    main(8)

@@ -12,7 +12,6 @@ from _tabltypes import set_attributes
 [6]  1,  6, 30, 120,  360,  720,  720
 """
 
-# sim = ['A008279', 'A068424', 'A094587', 'A173333', 'A181511'] 
 
 @cache
 def _falling_factorial(n: int) -> list[int]:

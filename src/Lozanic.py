@@ -17,8 +17,6 @@ from Binomial import binomial
 [9]  1,  5, 20, 44, 66, 66, 44, 20,  5,  1;
 """
 
-# sim = ['A034851']
-
 
 @cache
 def _lozanic(n: int) -> list[int]:

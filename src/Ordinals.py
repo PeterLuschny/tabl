@@ -13,8 +13,6 @@ from _tabltypes import set_attributes
 [7] [0,  1,  2,  3,  4,  5,  6,  7]
 """
 
-# sim = ['A002260', 'A002262', 'A004736', 'A025581']
-
 
 @cache
 def _ordinals(n: int) -> list[int]:

@@ -15,8 +15,6 @@ from _tabltypes import set_attributes
 [7] [0, 1, 13, 88, 408, 1428, 3876, 7752]
 """
 
-# sim = ['A355172']
-
 
 @cache
 def _ternary_tree(n: int) -> list[int]:

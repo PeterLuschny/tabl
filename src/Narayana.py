@@ -17,7 +17,6 @@ from _tabltypes import set_attributes
 [9]  0,  1,  36,  336,  1176,  1764,  1176,  336,  36,  1;
 """
 
-# sim = ['A001263', 'A090181', 'A131198']
 
 @cache
 def _narayana(n: int) -> list[int]:

@@ -14,8 +14,6 @@ from _tabltypes import set_attributes
 [8] [0, 1, 5461, 118482, 196053, 61490, 5278, 140,  1]
 """
 
-# sim = ['A008957', 'A036969', 'A269945']
-
 
 @cache
 def _central_set(n: int) -> list[int]:

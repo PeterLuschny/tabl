@@ -13,7 +13,6 @@ from _tabltypes import set_attributes
 [7] [0, 105, 0, 105, 0, 21, 0, 1]
 """
 
-# sim = ['A066325', 'A073278', 'A099174']
 
 @cache
 def _hermite(n: int) -> list[int]:

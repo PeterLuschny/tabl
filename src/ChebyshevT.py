@@ -15,7 +15,6 @@ from _tabltypes import set_attributes
 [9]   0,  9,   0, -120,    0,   432     0, -576,    0,  256;
 """
 
-# sim = ['A039991', 'A053120', 'A081265']
 
 @cache
 def _chebyshevT(n: int) -> list[int]:

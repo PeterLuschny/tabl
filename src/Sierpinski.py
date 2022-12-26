@@ -16,7 +16,6 @@ from Binomial import binomial
 [9]                  1, 1, 0, 0, 0, 0, 0, 0, 1, 1
 """
 
-# sim = ['A047999', 'A090971', 'A114700', 'A143200', 'A166282']
 
 @cache
 def _sierpinski(n: int) -> list[int]:

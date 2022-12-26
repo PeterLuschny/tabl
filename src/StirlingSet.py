@@ -15,7 +15,6 @@ from _tabltypes import set_attributes
 [9]  0, 1, 255, 3025, 7770, 6951, 2646, 462, 36, 1
 """
 
-# sim = ['A008277', 'A008278', 'A048993', 'A080417', 'A106800', 'A151511', 'A151512', 'A154959', 'A213735']
 
 @cache
 def _stirling_set(n: int) -> list[int]:

@@ -16,8 +16,6 @@ from Seidel import _seidel
 """
 
 # #@
-# sim = ['A008280', 'A108040', 'A236935', 'A239005']
-
 
 def _seidel_boust(n: int) -> list[int]:
     return _seidel(n) if n % 2 else _seidel(n)[::-1]

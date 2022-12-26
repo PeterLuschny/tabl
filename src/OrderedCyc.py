@@ -14,7 +14,6 @@ from _tabltypes import set_attributes
 [8] [0, 5040, 26136, 78792, 162456, 235200, 231840, 141120, 40320]
 """
 
-# sim = ['A048594', 'A075181', 'A225479']
 
 @cache
 def _ordered_cycle(n: int) -> list[int]:

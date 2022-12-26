@@ -14,8 +14,6 @@ from _tabltypes import set_attributes
 [8]  1, 255, 6050, 46620, 166824, 317520, 332640, 181440, 40320;
 """
 
-# sim = ['A028246', 'A053440', 'A075263', 'A130850', 'A163626']
-
 
 @cache
 def _worpitzky(n: int) -> list[int]:

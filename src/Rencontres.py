@@ -15,7 +15,6 @@ from _tabltypes import set_attributes
 [9]  133496, 133497, 66744, 22260, 5544, 1134, 168, 36, 0, 1;
 """
 
-# sim = ['A008290', 'A098825']
 
 @cache
 def _rencontres(n: int) -> list[int]:

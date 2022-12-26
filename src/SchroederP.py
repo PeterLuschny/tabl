@@ -15,7 +15,6 @@ from _tabltypes import set_attributes
 [8] 12870, 51480, 84084, 72072, 34650, 9240, 1260, 72, 1;
 """
 
-# sim = ['A063007', 'A104684']
 
 @cache
 def _schroeder_paths(n: int) -> list[int]:

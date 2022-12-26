@@ -16,7 +16,6 @@ from _tabltypes import set_attributes
 [9]  362880, 362880, 181440, 60480, 15120, 3024, 504, 72, 9, 1
 """
 
-# sim = ['A008279', 'A068424', 'A094587', 'A173333', 'A181511']
 
 @cache
 def _rising_factorial(n: int) -> list[int]:

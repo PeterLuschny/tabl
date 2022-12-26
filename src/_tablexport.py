@@ -46,6 +46,7 @@ def SaveToCsv(fun: tri, dim: int = 24) -> None:
 
 def SaveAllToCsv(dim: int = 24) -> None:
     for fun in tabl_fun:
+        print(fun.id)
         SaveToCsv(fun, dim)
 
 
@@ -145,4 +146,4 @@ def SaveExtendedProfiles(path: str, dim: int = 10, seqonly: bool = True) -> None
 if __name__ == "__main__":
 
     from Abel import abel
-    SaveToCsv(abel, 10)
+    SaveToCsv(abel, 12)

@@ -15,7 +15,6 @@ from _tabltypes import set_attributes
 [7] 0, 720, 2604, 4046, 3570, 1960, 672, 128;
 """
 
-# sim = ['A341101']
 
 @cache
 def _sylvester(n: int) -> list[int]:

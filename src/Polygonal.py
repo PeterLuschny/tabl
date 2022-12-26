@@ -26,8 +26,6 @@ Triangle view:
 [7] [0, 1, 7, 15, 22, 25, 21, 7]
 """
 
-# sim = ['A057145', 'A134394', 'A139600', 'A139601']
-
 
 @cache
 def _polygonal(n: int) -> list[int]:

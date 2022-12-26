@@ -15,7 +15,6 @@ from _tabltypes import set_attributes
 [9] [1, 17, 113, 377, 681, 681, 377, 113, 17, 1]
 """
 
-# sim = ['A008288']
 
 @cache
 def _delannoy(n: int) -> list[int]:

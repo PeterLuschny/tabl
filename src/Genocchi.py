@@ -13,7 +13,6 @@ from _tabltypes import set_attributes
 [7] [198272, 387104, 557664, 702280, 814888, 891342, 929569, 929569]
 """
 
-# sim = ['A297703']
 
 @cache
 def _genocchi(n: int) -> list[int]:

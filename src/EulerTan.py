@@ -16,8 +16,6 @@ from _tabltypes import set_attributes
 [9] 7936,     0, -9792,   0, 2016,    0, -168,  0,  9,  0;
 """
 
-# sim = ['A162660', 'A350972', 'A155585', 'A009006', 'A000182'] 
-
 
 @cache
 def _euler_tan(n: int) -> list[int]:

@@ -14,7 +14,6 @@ from _tabltypes import set_attributes
 [7] [1, 2179, 60657, 259723, 259723, 60657, 2179,  1]
 """
 
-# sim = ['A060187', 'A138076']
 
 @cache
 def _eulerianB(n: int) -> list[int]:

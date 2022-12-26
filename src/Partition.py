@@ -16,7 +16,6 @@ from _tabltypes import set_attributes
 [9] 0, 1, 4, 7, 6, 5, 3, 2, 1, 1
 """
 
-# sim = ['A008284', 'A058398', 'A072233']
 
 @cache
 def _part(n: int, k: int) -> int:

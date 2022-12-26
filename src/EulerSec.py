@@ -15,7 +15,6 @@ from _tabltypes import set_attributes
 [8] [1385,     0, -1708,   0, 350,   0, -28,  0,  1]
 """
 
-# sim = ['A119879', 'A081658', 'A153641'] 
 
 @cache
 def _euler_sec(n: int) -> list[int]:

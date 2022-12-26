@@ -15,7 +15,6 @@ from _tabltypes import set_attributes
 [8] 0, 823543, 543607, 170898, 33621, 4550, 434, 28, 1;
 """
 
-# sim = ['A039621', 'A354794']
 
 @cache
 def t(n: int, k: int, m: int) -> int:

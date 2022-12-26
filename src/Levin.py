@@ -16,7 +16,6 @@ from _tabltypes import set_attributes
 [8] 12870, 102960, 360360, 720720, 900900, 720720, 360360, 102960, 12870;
 """
 
-# sim = ['A356546']
 
 @cache
 def _levin(n: int) -> list[int]:

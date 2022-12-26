@@ -15,7 +15,6 @@ from _tabltypes import set_attributes
 [9] 21147, 25287, 30304, 36401, 43833, 52922, 64077, 77821, 94828, 115975;
 """
 
-# sim = ['A011971', 'A011972', 'A123346']
 
 @cache
 def _bell(n: int) -> list[int]:

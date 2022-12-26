@@ -17,8 +17,6 @@ from Partition import _partnum_exact
 [9] 0, 1, 5, 12, 18, 23, 26, 28, 29, 30
 """
 
-# sim = ['A008284', 'A058398', 'A072233']
-
 
 @cache
 def _partnum_max(n: int) -> list[int]:

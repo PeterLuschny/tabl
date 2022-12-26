@@ -16,7 +16,6 @@ from _tabltypes import set_attributes
 [9] 10  90  360  840 1260 1260  840  360  90  10
 """
 
-# sim = ['A003506']
 
 @cache
 def _leibniz(n: int) -> list[int]:

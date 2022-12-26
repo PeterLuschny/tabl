@@ -13,7 +13,6 @@ from _tabltypes import set_attributes
 [7] 135135, 264207, 177331, 57379, 10045, 973, 49, 1;
 """
 
-# sim = ['A028338', 'A039757', 'A039758', 'A109692']
 
 @cache
 def _stirling_cycleB(n: int) -> list[int]:

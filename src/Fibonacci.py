@@ -15,7 +15,6 @@ from _tabltypes import set_attributes
 [9] [21, 34, 54, 79, 97, 92, 63, 29, 8, 1]
 """
 
-# sim = ['A105809', 'A228074', 'A354267']
 
 @cache
 def _fibonacci(n: int) -> list[int]:

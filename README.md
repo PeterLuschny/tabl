@@ -13,7 +13,7 @@ The notebook gives a first introduction for the user.
 
 
 
-Tables |  Src   | Traits   |  OEIS  SIMILARS |
+Tables |  Src   | Traits   |  OEIS  Similars |
 | :--- | :---   | :---     |    :---         |
 | [Abel](https://github.com/PeterLuschny/tabl/blob/main/tables.md#Abel) | [src](https://github.com/PeterLuschny/tabl/blob/main/src/Abel.py) | [traits](https://luschny.de/math/oeis/Abel.html) | [A061356, A137452, A139526](https://oeis.org/search?q=%7Cid%3AA061356%7Cid%3AA137452%7Cid%3AA139526) |
 | [Bell](https://github.com/PeterLuschny/tabl/blob/main/tables.md#Bell) | [src](https://github.com/PeterLuschny/tabl/blob/main/src/Bell.py) | [traits](https://luschny.de/math/oeis/Bell.html) | [A011971, A011972, A123346](https://oeis.org/search?q=%7Cid%3AA011971%7Cid%3AA011972%7Cid%3AA123346) |

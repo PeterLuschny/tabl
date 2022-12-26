@@ -13,8 +13,6 @@ from _tabltypes import set_attributes
 [7] [0,  61, 122, 178,  224,  256,  272,  272]
 """
 
-# sim  = ['A008281', 'A008282', 'A010094']
-
 
 @cache
 def _seidel(n: int) -> list[int]:

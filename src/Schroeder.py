@@ -15,7 +15,6 @@ from _tabltypes import set_attributes
 [9] [0, 41586, 33028, 17718, 7432, 2490, 652, 126, 16, 1]
 """
 
-# sim = ['A033877', 'A080245', 'A080247', 'A122538', 'A106579']
 
 @cache
 def _schroeder(n: int) -> list[int]:

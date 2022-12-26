@@ -15,8 +15,6 @@ from _tabltypes import set_attributes
 [9]   0,  42,   0,  48,   0,  27,   0,  8,  0,  1.
 """
 
-# sim = ['A052173', 'A053121', 'A112554', 'A322378']
-
 
 @cache
 def _catalan_aerated(n: int) -> list[int]:

@@ -15,8 +15,6 @@ from _tabltypes import set_attributes
 [8] [0, 1, 501, 22935, 302995, 1636635, 4099095, 4729725, 2027025]
 """
 
-# sim = ['A134991', 'A269939']
-
 
 @cache
 def _ward_set(n: int) -> list[int]:

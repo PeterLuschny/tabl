@@ -13,7 +13,6 @@ from _tabltypes import set_attributes
 [7]  1, 127, 2667, 11811, 11811, 2667, 127, 1;
 """
 
-# sim = ['A022166']
 
 @cache
 def _gaussq2(n: int) -> list[int]:

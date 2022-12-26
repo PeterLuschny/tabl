@@ -13,8 +13,6 @@ from _tabltypes import set_attributes
 [7] 5040, 13068, 8028, 2754, 638, 107, 13, 1;
 """
 
-# sim = ['A093905', 'A105954', 'A165674', 'A165675']
-
 
 @cache
 def _sympoly(n: int) -> list[int]:

@@ -1913,6 +1913,7 @@ def SaveToCsv(fun: tri, dim: int = 24) -> None:
 
 def SaveAllToCsv(dim: int = 24) -> None:
     for fun in tabl_fun:
+        print(fun.id)
         SaveToCsv(fun, dim)
 
 
@@ -2009,7 +2010,8 @@ CSS = [
     "tr.subheader {background: lightgray !important; color: black;}",
     "tr.headerLastRow {border-bottom: 2px solid black;}",
     "th.rowNumber, td.rowNumber {text-align: right;}",
-    "a {text-decoration: none; color:brown;} </style></head><body>",
+    "a {text-decoration: none; color:brown;}",
+    "a:hover {background-color: #AFE1AF;} </style></head><body>",
 ]
 Table = [
     "<table>",
@@ -2020,9 +2022,11 @@ Table = [
     "</tr>",
 ]
 Footer = [
-    "Note: The A-numbers are based on a finite number of numerical comparisons.",
-    "They ignore the offset and the sign, and might differ in the first few values.&nbsp;&nbsp;",
-    "<a href='https://luschny.de/math/oeis/index.html'><i>Go to the index.<i></a>",
+    "<p>Note: The A-numbers are based on a finite number of numerical comparisons. ",
+    "They ignore the offset and the sign, and might differ in the first few values.",
+    "<i>Go to the <a href='https://luschny.de/math/oeis/index.html'>index</a>, ",
+    "to the <a href='https://luschny.de/math/oeis/tables.html'>tables</a>, ",
+    "or the <a href='https://github.com/PeterLuschny/tabl'>Python sources</a> on GitHub.</i></p>",
     "<p>&nbsp;</p>" "</body></html>",
 ]
 

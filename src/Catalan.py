@@ -14,7 +14,6 @@ from _tabltypes import set_attributes
 [7] [0, 1, 7, 27, 75, 165, 297, 429]
 """
 
-# sim = ['A030237', 'A054445', 'A355173']
 
 @cache
 def _catalan(n: int) -> list[int]:

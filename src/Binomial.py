@@ -17,9 +17,6 @@ from _tabltypes import set_attributes
 """
 
 
-# sim = ['A007318', 'A074909', 'A108086', 'A117440', 'A118433', 'A130595', 'A135278', 'A154926']
-
-
 @cache
 def _binomial(n: int) -> list[int]:
     if n == 0:

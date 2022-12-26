@@ -13,8 +13,6 @@ from _tabltypes import set_attributes
 [7] [0, 5040, 64224, 303660, 705320, 866250, 540540, 135135]
 """
 
-# sim = ['A111999', 'A259456', 'A269940']
-
 
 @cache
 def _central_cycle(n: int) -> list[int]:

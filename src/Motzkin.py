@@ -15,7 +15,6 @@ from _tabltypes import set_attributes
 [9]  835, 1353, 1422, 1140, 726, 369, 147, 44, 9, 1.
 """
 
-# sim = ['A026300', 'A064189', 'A009766']
 
 @cache
 def _motzkin(n: int) -> list[int]:

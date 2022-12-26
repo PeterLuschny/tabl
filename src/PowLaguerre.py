@@ -15,8 +15,6 @@ from _tabltypes import set_attributes
 [7] [5040, 35280, 105840, 176400, 176400, 105840, 35280, 5040]
 """
 
-# sim = ['A021012', 'A196347']
-
 
 @cache
 def _powlag(n: int) -> list[int]:

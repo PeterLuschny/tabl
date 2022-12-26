@@ -13,7 +13,6 @@ from _tabltypes import set_attributes
 [7] 0,  5040,  4320,  2556,  932,  197,  22,  1
 """
 
-# sim = ['A109822', 'A358694']
 
 @cache
 def _harmonic(n: int) -> list[int]:

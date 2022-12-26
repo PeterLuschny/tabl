@@ -16,7 +16,6 @@ from _tabltypes import set_attributes
 [9]  0  362880  1451520  1693440   846720  211680  28224  2016   72   1
 """
 
-# sim = ['A008297', 'A066667', 'A089231', 'A105278', 'A111596', 'A271703']
 
 @cache
 def _lah(n: int) -> list[int]:

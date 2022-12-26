@@ -15,7 +15,6 @@ from _tabltypes import set_attributes
 [9]              1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 """
 
-# sim = ['A106465', 'A106470']
 
 @cache
 def _ctree(n: int) -> list[int]:
