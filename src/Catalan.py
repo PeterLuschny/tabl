@@ -2,16 +2,18 @@ from functools import cache
 from itertools import accumulate
 from _tabltypes import set_attributes
 
-"""Catalan triangle, Fuss-Catalan 1.
+"""Balott Catalan triangle. 
 
-[0] [1]
-[1] [0, 1]
-[2] [0, 1, 2]
-[3] [0, 1, 3,  5]
-[4] [0, 1, 4,  9, 14]
-[5] [0, 1, 5, 14, 28,  42]
-[6] [0, 1, 6, 20, 48,  90, 132]
-[7] [0, 1, 7, 27, 75, 165, 297, 429]
+[0] 1;
+[1] 0,    1;
+[2] 0,    2,    1;
+[3] 0,    5,    4,    1;
+[4] 0,   14,   14,    6,    1;
+[5] 0,   42,   48,   27,    8,    1;
+[6] 0,  132,  165,  110,   44,   10,   1;
+[7] 0,  429,  572,  429,  208,   65,  12,   1;
+[8] 0, 1430, 2002, 1638,  910,  350,  90,  14,  1;
+[9] 0, 4862, 7072, 6188, 3808, 1700, 544, 119, 16, 1;
 """
 
 
@@ -22,14 +24,19 @@ def _catalan(n: int) -> list[int]:
     if n == 1:
         return [0, 1]
 
-    row: list[int] = _catalan(n - 1) + [_catalan(n - 1)[n - 1]]
-    return list(accumulate(row))
+    pow: list[int] = _catalan(n - 1) + [0]
+    row: list[int] = pow.copy() 
+    for k in range(n - 1, 0, -1):
+        row[k] = pow[k - 1] + 2 * pow[k] + pow[k + 1]
+    row[n] = 1
+
+    return row
 
 
 @set_attributes(
     _catalan, 
     "Catalan", 
-    ['A030237', 'A054445', 'A355173'], 
+    ['A128899', 'A039598'], 
     False)
 def catalan(n: int, k:int = -1) -> list[int] | int:
     if k == -1: return _catalan(n).copy()

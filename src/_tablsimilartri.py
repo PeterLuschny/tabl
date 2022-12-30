@@ -77,6 +77,7 @@ def SingleSimilarTriangles(datapath, fun) -> None:
         print(fun.id, "Similars:", similars)
         return
 
+
 def Readme() -> None:
 
     print("Tables |  Src   | Traits   |  OEIS  SIMILARS |")

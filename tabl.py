@@ -1,6 +1,6 @@
 from functools import cache, reduce
 from itertools import accumulate, count
-from math import lcm, gcd, floor
+from math import lcm, gcd, floor, factorial
 from sys import setrecursionlimit
 from typing import Callable, TypeAlias
 from io import TextIOWrapper
@@ -189,6 +189,18 @@ def set_attributes(
         return f
 
     return wrapper
+
+
+def SeqToFixlenString(seq: list[int], maxlen: int = 90, separator=",") -> str:
+    stri = "["
+    maxl = 3
+    for trm in seq:
+        s = str(trm) + separator
+        maxl += len(s)
+        if maxl > maxlen:
+            break
+        stri += s
+    return stri + "]"
 
 
 def poly(T: tri, n: int, x: int) -> int:
@@ -638,6 +650,28 @@ def abel(n: int, k: int = -1) -> list[int] | int:
 
 
 @cache
+def F(n: int) -> int:
+    return factorial(n) ** 3 * ((n + 1) * (n + 1) * (n + 2))
+
+
+@cache
+def _baxter(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    row: list[int] = [0] + [
+        (2 * F(n - 1)) // (F(k - 1) * F(n - k)) for k in range(1, n + 1)
+    ]
+    return row
+
+
+@set_attributes(_baxter, "baxter", ["A359363", "A056939"], False)
+def baxter(n: int, k: int = -1) -> list[int] | int:
+    if k == -1:
+        return _baxter(n).copy()
+    return _baxter(n)[k]
+
+
+@cache
 def _bell(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -710,11 +744,15 @@ def _catalan(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = _catalan(n - 1) + [_catalan(n - 1)[n - 1]]
-    return list(accumulate(row))
+    pow: list[int] = _catalan(n - 1) + [0]
+    row: list[int] = pow.copy()
+    for k in range(n - 1, 0, -1):
+        row[k] = pow[k - 1] + 2 * pow[k] + pow[k + 1]
+    row[n] = 1
+    return row
 
 
-@set_attributes(_catalan, "Catalan", ["A030237", "A054445", "A355173"], False)
+@set_attributes(_catalan, "Catalan", ["A128899", "A039598"], False)
 def catalan(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _catalan(n).copy()
@@ -1068,6 +1106,23 @@ def fubini(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _fubini(n).copy()
     return _fubini(n)[k]
+
+
+@cache
+def _fuss_catalan(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 1]
+    row: list[int] = _fuss_catalan(n - 1) + [_fuss_catalan(n - 1)[n - 1]]
+    return list(accumulate(row))
+
+
+@set_attributes(_fuss_catalan, "FussCatalan", ["A030237", "A054445", "A355173"], False)
+def fuss_catalan(n: int, k: int = -1) -> list[int] | int:
+    if k == -1:
+        return _fuss_catalan(n).copy()
+    return _fuss_catalan(n)[k]
 
 
 @cache
@@ -1824,6 +1879,7 @@ def worpitzky(n: int, k: int = -1) -> list[int] | int:
 
 tabl_fun: list[tri] = [
     abel,
+    baxter,
     bell,
     bessel,
     binomial,
@@ -1845,6 +1901,7 @@ tabl_fun: list[tri] = [
     falling_factorial,
     fibonacci,
     fubini,
+    fuss_catalan,
     gaussq2,
     genocchi,
     harmonic,
@@ -1895,7 +1952,7 @@ def sortfile(inpath, outpath) -> None:
                 outfile.write(line)
 
 
-def SaveToCsv(fun: tri, dim: int = 24) -> None:
+def GenerateCsvFile(fun: tri, dim: int = 24) -> None:
     csvfile = fun.id + ".csv"
     path = (csvpath / csvfile).resolve()
     with open(path, "w+") as dest:
@@ -1911,10 +1968,10 @@ def SaveToCsv(fun: tri, dim: int = 24) -> None:
         Traits(fun, dim, True, dest)
 
 
-def SaveAllToCsv(dim: int = 24) -> None:
+def GenerateAllCsvFiles(dim: int = 24) -> None:
     for fun in tabl_fun:
         print(fun.id)
-        SaveToCsv(fun, dim)
+        GenerateCsvFile(fun, dim)
 
 
 def AllTraits(seqnum: bool = False) -> None:
@@ -2031,37 +2088,47 @@ Footer = [
 ]
 
 
-def CsvToHtml(csvpath, outpath) -> None:
-    for fun in tabl_fun:
-        name = fun.id
-        csvfile = (csvpath / (name + ".csv")).resolve()
-        outfile = (outpath / (name + ".html")).resolve()
-        with open(csvfile, "r") as csvfile:
-            reader = csv.reader(csvfile)
-            next(reader)  # skip the first row
-            with open(outfile, "w") as outfile:
-                for l in Header:
-                    outfile.write(l)
-                outfile.write(f"<title>{name} : IntegerTriangles.py</title>")
-                for l in CSS:
-                    outfile.write(l)
-                l = next(reader)
-                outfile.write(
-                    f"<p><b>{name.upper()}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{l[0]}\n</p>"
-                )
-                for l in Table:
-                    outfile.write(l)
-                for line in reader:
-                    if line[0][0] == "#":
-                        break
-                    outfile.write(f"<tr><td><b>{line[1]}</b></td>")
+def CsvToHtml(fun: tri, csvpath: str, outpath: str) -> None:
+    name = fun.id
+    csvfile = (csvpath / (name + ".csv")).resolve()
+    outfile = (outpath / (name + ".html")).resolve()
+    with open(csvfile, "r") as csvfile:
+        reader = csv.reader(csvfile)
+        next(reader)  # skip the first row
+        with open(outfile, "w") as outfile:
+            for l in Header:
+                outfile.write(l)
+            outfile.write(f"<title>{name} : IntegerTriangles.py</title>")
+            for l in CSS:
+                outfile.write(l)
+            l = next(reader)
+            outfile.write(
+                f"<p><b>{name.upper()}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{l[0]}\n</p>"
+            )
+            for l in Table:
+                outfile.write(l)
+            for line in reader:
+                if line[0][0] == "#":
+                    break
+                outfile.write(f"<tr><td><b>{line[1]}</b></td>")
+                if line[2] == "nothing":
+                    seq = line[3].replace(" ", "+")
+                    outfile.write(
+                        f"<td><a href='https://oeis.org/?q={seq}&sort=&language=&go=Search' target='_blank'>search </a></td>"
+                    )
+                else:
                     outfile.write(
                         f"<td><a href='https://oeis.org/{line[2]}'>{line[2]}</a></td>"
                     )
-                    outfile.write(f"<td>{line[3]}</td></tr>")
-                outfile.write(f"</table><p>{line[1]}, {line[2]}, ({line[3]}).</p>")
-                for l in Footer:
-                    outfile.write(l)
+                outfile.write(f"<td>{line[3]}</td></tr>")
+            outfile.write(f"</table><p>{line[1]}, {line[2]}, ({line[3]}).</p>")
+            for l in Footer:
+                outfile.write(l)
+
+
+def AllCsvToHtml(csvpath, outpath) -> None:
+    for fun in tabl_fun:
+        CsvToHtml(fun, csvpath, outpath)
 
 
 def shortabsdata(inpath: str, outpath: str) -> None:
@@ -2117,7 +2184,7 @@ def SimilarSequences(Seqs: list[list], A: list[int]) -> list:
     return candidates
 
 
-def OEISANumber(a: str) -> str:
+def FindAnumber(a: str) -> str:
     datapath = GetDataPath()
     astr = a.replace("-", "").replace(" ", "")[1:-1]
     with open(datapath, "r") as oeisdata:
@@ -2125,6 +2192,18 @@ def OEISANumber(a: str) -> str:
             if astr in line:
                 return line[:7]
     return ""
+
+
+def GetAnumber(seq: list[int]) -> str:
+    seqstr = SeqToFixlenString(seq, 100, ",")
+    anum = FindAnumber(seqstr)
+    if anum == "":
+        seqstr = SeqToFixlenString(seq[1:], 100, ",")
+        anum = FindAnumber(seqstr)
+        if anum == "":
+            seqstr = SeqToFixlenString(seq[2:], 100, ",")
+            anum = FindAnumber(seqstr)
+    return anum
 
 
 def SubTriangle(T: tri, N: int, K: int, dim: int) -> tabl:
@@ -2224,18 +2303,6 @@ def trim(s: str, lg: int) -> str:
     return r[:p]
 
 
-def SeqToFixlenString(seq: list[int], maxlen: int = 90, separator=",") -> str:
-    stri = "["
-    maxl = 3
-    for trm in seq:
-        s = str(trm) + separator
-        maxl += len(s)
-        if maxl > maxlen:
-            break
-        stri += s
-    return stri + "]"
-
-
 def Traits(f: tri, dim: int, seqnum: bool = False, csvfile=None) -> None:
     T = f.tab(dim)
     R = f.rev(dim)
@@ -2249,53 +2316,43 @@ def Traits(f: tri, dim: int, seqnum: bool = False, csvfile=None) -> None:
     count_traits_with_anum = count()
     no_oeis = []
 
-    def printer(seq, traitname) -> None:
+    def printer(seq: list[int], traitname: str) -> None:
         next(count_all_traits)
-        anum = ""
+        seqstr = SeqToFixlenString(seq, 70, " ")
         if seqnum:
-            # TODO optimize this! Push this to OEISANumber.
-            # Note: we start at different positions!
-            seqstr = SeqToFixlenString(seq, 100, ",")
-            anum = OEISANumber(seqstr)
+            anum = GetAnumber(seq)
             if anum == "":
-                seqstr = SeqToFixlenString(seq[1:], 100, ",")
-                anum = OEISANumber(seqstr)
-                if anum == "":
-                    seqstr = SeqToFixlenString(seq[2:], 100, ",")
-                    anum = OEISANumber(seqstr)
-                    if anum == "":
-                        no_oeis.append(traitname)
-                        return
-            next(count_traits_with_anum)
-        tstr = SeqToFixlenString(seq, 70, " ")
-        if seqnum:
-            print(f"{funname},{traitname},{anum},{tstr}")
+                anum = "nothing"
+                no_oeis.append(traitname)
+            else:
+                next(count_traits_with_anum)
+            line = f"{funname},{traitname},{anum},{seqstr}"
             if csvfile != None:
-                csvfile.write(f"{funname},{traitname},{anum},{tstr}\n")
+                csvfile.write(line + "\n")
+            print(line)
+            print("Triangle,Trait,ANumber,Sequence")
         else:
-            print(f"{funname},{traitname},{tstr}")
+            line = f"{funname},{traitname},{seqstr}"
             if csvfile != None:
-                csvfile.write(f"{funname},{traitname},{tstr}\n")
+                csvfile.write(line + "\n")
+            print(line)
+            print("Triangle,Trait,Sequence")
 
-    if seqnum:
-        print("Triangle,Trait,ANumber,Sequence")
-    else:
-        print("Triangle,Trait,Sequence")
     printer(flat(T), "Triangle ")
-    printer(flat(R), "Reverse  ")
+    printer(flat(R), "TriRev   ")
     if I != []:
-        printer(flat(I), "Inverse  ")
-        printer(flat(RI), "RevInv   ")
+        printer(flat(I), "TriInv   ")
+        printer(flat(RI), "TriRevInv")
     if IR != []:
-        printer(flat(IR), "InvRev   ")
-    printer(flat_acc(T), "AccTri   ")
-    printer(flat_revacc(T), "RevAccTri")
-    printer(flat_accrev(T), "AccRevTri")
-    printer(flat(diag_tabl(T)), "DiagTri  ")
-    printer(flat(poly_tabl(f, dim)), "PolyTri  ")
-    printer(flat(trans_self(f, dim)), "ConvTri  ")
-    printer(flat(transbin_tabl(f, dim)), "BinConT  ")
-    printer(flat(invtransbin_tabl(f, dim)), "IBinConT ")
+        printer(flat(IR), "TriInvRev")
+    printer(flat_acc(T), "TriAcc   ")
+    printer(flat_revacc(T), "TriRevAcc")
+    printer(flat_accrev(T), "TriAccRev")
+    printer(flat(diag_tabl(T)), "TriDiag  ")
+    printer(flat(poly_tabl(f, dim)), "TriPoly  ")
+    printer(flat(trans_self(f, dim)), "TriConv  ")
+    printer(flat(transbin_tabl(f, dim)), "TriBin   ")
+    printer(flat(invtransbin_tabl(f, dim)), "TriInvBin")
     printer(tabl_sum(T), "Sum      ")
     printer(tabl_evensum(T), "EvenSum  ")
     printer(tabl_oddsum(T), "OddSum   ")
@@ -2313,8 +2370,8 @@ def Traits(f: tri, dim: int, seqnum: bool = False, csvfile=None) -> None:
     printer(right_side(T), "RightSide")
     printer(pos_half(T), "PosHalf  ")
     printer(neg_half(T), "NegHalf  ")
-    printer(transbin_val(f, maxlen), "BinConV  ")
-    printer(invtransbin_val(f, maxlen), "IBinConV ")
+    printer(transbin_val(f, maxlen), "Bin      ")
+    printer(invtransbin_val(f, maxlen), "InvBin   ")
     printer(trans_sqrs(f, maxlen), "TransSqrs")
     printer(trans_nat0(f, maxlen), "TransNat0")
     printer(trans_nat1(f, maxlen), "TransNat1")

@@ -1,7 +1,7 @@
 from _tabltypes import tri, tabl, trow
-from _tablsimilarseq import read_seqdata, OEISANumber, SimilarSequences
+from _tablsimilarseq import read_seqdata, GetAnumber, SimilarSequences
 from _tablsums import tabl_accsum, tabl_altsum, tabl_diagsum, tabl_evensum, tabl_oddsum, tabl_revaccsum, tabl_sum, diag_tabl, tabl_accrevsum
-from _tabltransforms import rev_tabl, row_diag, revacc_tabl, row_poly, col_diag, col_poly, inv_tabl, acc_tabl, accrev_tabl, middle, central, left_side, right_side, pos_half, neg_half, trans_seq, invtrans_seq, trans_self, invtrans_self, diag_tabl, poly_tabl, flat_acc, flat_revacc, flat_accrev, trans, poly_diag, transbin_tabl, tabl_lcm, tabl_gcd, tabl_max, invtransbin_tabl, transbin_val, invtransbin_val, trans_sqrs, trans_nat0, trans_nat1
+from _tabltransforms import rev_tabl, row_diag, revacc_tabl, row_poly, col_diag, col_poly, inv_tabl, acc_tabl, accrev_tabl, middle, central, left_side, right_side, pos_half, neg_half, trans_seq, invtrans_seq, trans_self, invtrans_self, diag_tabl, poly_tabl, flat_acc, flat_revacc, flat_accrev, trans, poly_diag, transbin_tabl, tabl_lcm, tabl_gcd, tabl_max, invtransbin_tabl, transbin_val, invtransbin_val, trans_sqrs, trans_nat0, trans_nat1, SeqToFixlenString
 
 
 from math import floor
@@ -39,17 +39,6 @@ def trim(s: str, lg: int) -> str:
     return r[:p]
 
 
-def SeqToFixlenString(seq: list[int], maxlen:int=90, separator=',') -> str:
-    stri = "["
-    maxl = 3
-    for trm in seq:
-        s = str(trm) + separator
-        maxl += len(s)
-        if maxl > maxlen: break
-        stri += s
-    return stri + "]"
-
-
 def Traits(f: tri, dim: int, seqnum: bool = False, csvfile = None) -> None: 
 
     T  = f.tab(dim) 
@@ -66,61 +55,50 @@ def Traits(f: tri, dim: int, seqnum: bool = False, csvfile = None) -> None:
     count_traits_with_anum = count()
     no_oeis = []
 
-    def printer(seq, traitname) -> None:
+    def printer(seq: list[int], traitname: str) -> None:
         next(count_all_traits)
-        anum = ""
+
+        seqstr = SeqToFixlenString(seq, 70, ' ')
+
         if seqnum:
-            # TODO optimize this! Push this to OEISANumber.
-            # Note: we start at different positions!
-            seqstr = SeqToFixlenString(seq, 100, ',')
-            anum = OEISANumber(seqstr)
+            anum = GetAnumber(seq)
             if anum == "": 
-                seqstr = SeqToFixlenString(seq[1:], 100, ',')
-                anum = OEISANumber(seqstr)
-                if anum == "": 
-                    seqstr = SeqToFixlenString(seq[2:], 100, ',')
-                    anum = OEISANumber(seqstr)
-                    if anum == "": 
-                        no_oeis.append(traitname) 
-                        return
-            next(count_traits_with_anum)
+                anum = "nothing"
+                no_oeis.append(traitname) 
+            else:
+                next(count_traits_with_anum)
 
-        tstr = SeqToFixlenString(seq, 70, ' ')
-
-        if seqnum:
-            print(f"{funname},{traitname},{anum},{tstr}")
+            line = f"{funname},{traitname},{anum},{seqstr}"
             if csvfile != None:
-                csvfile.write(f"{funname},{traitname},{anum},{tstr}\n")
+                csvfile.write(line + '\n')
+            print(line)
+            print("Triangle,Trait,ANumber,Sequence")
         else:
-            print(f"{funname},{traitname},{tstr}")
+            line = f"{funname},{traitname},{seqstr}"
             if csvfile != None:
-                csvfile.write(f"{funname},{traitname},{tstr}\n")
-
-
-    if seqnum:
-        print("Triangle,Trait,ANumber,Sequence")
-    else:
-        print("Triangle,Trait,Sequence")
+                csvfile.write(line + '\n')
+            print(line)
+            print("Triangle,Trait,Sequence")
 
 
     printer(flat(T), "Triangle ")
-    printer(flat(R), "Reverse  ")
+    printer(flat(R), "TriRev   ")
 
     if I != []:
-        printer(flat(I),  "Inverse  ")
-        printer(flat(RI), "RevInv   ")
+        printer(flat(I),  "TriInv   ")
+        printer(flat(RI), "TriRevInv")
 
     if IR != []:
-        printer(flat(IR), "InvRev   ")
+        printer(flat(IR), "TriInvRev")
 
-    printer(flat_acc(T),                    "AccTri   ")
-    printer(flat_revacc(T),                 "RevAccTri")
-    printer(flat_accrev(T),                 "AccRevTri")
-    printer(flat(diag_tabl(T)),             "DiagTri  ")
-    printer(flat(poly_tabl(f, dim)),        "PolyTri  ")
-    printer(flat(trans_self(f, dim)),       "ConvTri  ")
-    printer(flat(transbin_tabl(f, dim)),    "BinConT  ")
-    printer(flat(invtransbin_tabl(f, dim)), "IBinConT ")
+    printer(flat_acc(T),                    "TriAcc   ")
+    printer(flat_revacc(T),                 "TriRevAcc")
+    printer(flat_accrev(T),                 "TriAccRev")
+    printer(flat(diag_tabl(T)),             "TriDiag  ")
+    printer(flat(poly_tabl(f, dim)),        "TriPoly  ")
+    printer(flat(trans_self(f, dim)),       "TriConv  ")
+    printer(flat(transbin_tabl(f, dim)),    "TriBin   ")
+    printer(flat(invtransbin_tabl(f, dim)), "TriInvBin")
 
     printer(tabl_sum(T),       "Sum      ")
     printer(tabl_evensum(T),   "EvenSum  ")
@@ -139,8 +117,8 @@ def Traits(f: tri, dim: int, seqnum: bool = False, csvfile = None) -> None:
     printer(right_side(T),     "RightSide")
     printer(pos_half(T),       "PosHalf  ")
     printer(neg_half(T),       "NegHalf  ")
-    printer(transbin_val(f, maxlen), "BinConV  ")
-    printer(invtransbin_val(f, maxlen), "IBinConV ")
+    printer(transbin_val(f, maxlen),    "Bin      ")
+    printer(invtransbin_val(f, maxlen), "InvBin   ")
 
     printer(trans_sqrs(f, maxlen),  "TransSqrs")
     printer(trans_nat0(f, maxlen),  "TransNat0")
@@ -183,14 +161,21 @@ if __name__ == "__main__":
     from StirlingCyc import stirling_cycle
     from ChebyshevT import chebyshevT
     from Laguerre import laguerre
+    from Fubini import fubini
+    from Eulerian import eulerian
+    from Catalan import catalan
+    from Motzkin import motzkin
+    from Narayana import narayana
+    from Baxter import baxter
 
     # Quick ckeck without A-numbers, recommended.
-    Traits(stirling_set, 12)
+    #Traits(catalan, 12, True)
+    Traits(narayana, 12, True)
 
     # With A-numbers, much slower:
     # Traits(stirling_set, 20, True)
 
     # very SLOW, but also with similar A-numbers:
-    # use SimilarSequences (see the two outcommented lines)
+    # use SimilarSequences (see the two outcommented lines) broken now
     #Traits(stirling_set, 20, True)
 

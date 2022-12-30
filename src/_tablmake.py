@@ -10,6 +10,7 @@ tabl_files: list[str] = [
     "_tablviews.py",
     "_tablprofile.py",
     "Abel.py",
+    "Baxter.py",
     "Bell.py",
     "Bessel.py",
     "Binomial.py",
@@ -31,6 +32,7 @@ tabl_files: list[str] = [
     "FallingFact.py",
     "Fibonacci.py",
     "Fubini.py",
+    "FussCatalan.py",
     "Gaussq2.py",
     "Genocchi.py",
     "Harmonic.py",
@@ -81,6 +83,7 @@ tabl_files: list[str] = [
 str_tabl_fun: str = """\
 tabl_fun: list[tri] = [
     abel,
+    baxter,
     bell,
     bessel,
     binomial,
@@ -102,6 +105,7 @@ tabl_fun: list[tri] = [
     falling_factorial,
     fibonacci,
     fubini,
+    fuss_catalan,
     gaussq2,
     genocchi,
     harmonic,
@@ -145,7 +149,7 @@ tabl_fun: list[tri] = [
 import_header: list[str] = [
     "from functools import cache, reduce\n",
     "from itertools import accumulate, count\n",
-    "from math import lcm, gcd, floor\n",
+    "from math import lcm, gcd, floor, factorial\n",
     "from sys import setrecursionlimit\n",
     "from typing import Callable, TypeAlias\n",
     "from io import TextIOWrapper\n",

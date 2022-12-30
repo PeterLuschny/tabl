@@ -10,6 +10,16 @@ from _tabltypes import seq, tri, tabl, trow
 
 # #@
 
+def SeqToFixlenString(seq: list[int], maxlen:int=90, separator=',') -> str:
+    stri = "["
+    maxl = 3
+    for trm in seq:
+        s = str(trm) + separator
+        maxl += len(s)
+        if maxl > maxlen: break
+        stri += s
+    return stri + "]"
+
 
 def poly(T: tri, n: int, x: int) -> int:
     row: trow = T(n)

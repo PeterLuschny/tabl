@@ -34,7 +34,7 @@ def sortfile(inpath, outpath) -> None:
             for line in outlines:
                 outfile.write(line)
 
-def SaveToCsv(fun: tri, dim: int = 24) -> None:
+def GenerateCsvFile(fun: tri, dim: int = 24) -> None:
     csvfile = fun.id + ".csv"
     path = (csvpath / csvfile).resolve()
     with open(path, 'w+') as dest:
@@ -44,10 +44,10 @@ def SaveToCsv(fun: tri, dim: int = 24) -> None:
         Traits(fun, dim, True, dest)
 
 
-def SaveAllToCsv(dim: int = 24) -> None:
+def GenerateAllCsvFiles(dim: int = 24) -> None:
     for fun in tabl_fun:
         print(fun.id)
-        SaveToCsv(fun, dim)
+        GenerateCsvFile(fun, dim)
 
 
 def AllTraits(seqnum: bool = False) -> None:
@@ -146,4 +146,4 @@ def SaveExtendedProfiles(path: str, dim: int = 10, seqonly: bool = True) -> None
 if __name__ == "__main__":
 
     from Abel import abel
-    SaveToCsv(abel, 12)
+    GenerateCsvFile(abel, 12)

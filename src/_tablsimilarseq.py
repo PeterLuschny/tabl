@@ -1,6 +1,8 @@
 import csv
-
+import re
 from pathlib import Path
+from _tabltransforms import SeqToFixlenString
+
 path = Path(__file__).parent.parent
 relprofpath = 'data/profiles.csv'
 relsortpath = 'data/sortedprofiles.csv'
@@ -84,7 +86,7 @@ def SimilarSequences(Seqs: list[list], A: list[int]) -> list:
     return candidates
 
 
-def OEISANumber(a: str) -> str:
+def FindAnumber(a: str) -> str:
     datapath = GetDataPath()
     astr = a.replace("-", "").replace(" ", "")[1:-1]
     with open(datapath, "r") as oeisdata:
@@ -92,6 +94,18 @@ def OEISANumber(a: str) -> str:
             if astr in line:
                 return line[:7]
     return ""
+
+
+def GetAnumber(seq: list[int]) -> str:
+    seqstr = SeqToFixlenString(seq, 100, ',')
+    anum = FindAnumber(seqstr)
+    if anum == "":
+        seqstr = SeqToFixlenString(seq[1:], 100, ',')
+        anum = FindAnumber(seqstr)
+        if anum == "":
+            seqstr = SeqToFixlenString(seq[2:], 100, ',')
+            anum = FindAnumber(seqstr)
+    return anum
 
 
 if __name__ == "__main__":
@@ -119,7 +133,7 @@ if __name__ == "__main__":
 
     # Seqs = read_seqdata(datapath)
     # anums = SimilarSequences(Seqs, a)
-    anum = OEISANumber(str(e))
+    anum = FindAnumber(str(e))
     #for anum in anums: 
     print(anum)
     print("... done")
