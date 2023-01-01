@@ -1,5 +1,4 @@
 from _tabltypes import tri, tabl, trow
-from _tablsimilarseq import read_seqdata, GetAnumber, SimilarSequences
 from _tablsums import tabl_accsum, tabl_altsum, tabl_diagsum, tabl_evensum, tabl_oddsum, tabl_revaccsum, tabl_sum, diag_tabl, tabl_accrevsum
 from _tabltransforms import rev_tabl, row_diag, revacc_tabl, row_poly, col_diag, col_poly, inv_tabl, acc_tabl, accrev_tabl, middle, central, left_side, right_side, pos_half, neg_half, trans_seq, invtrans_seq, trans_self, invtrans_self, diag_tabl, poly_tabl, flat_acc, flat_revacc, flat_accrev, trans, poly_diag, transbin_tabl, tabl_lcm, tabl_gcd, tabl_max, invtransbin_tabl, transbin_val, invtransbin_val, trans_sqrs, trans_nat0, trans_nat1, SeqToFixlenString
 
@@ -11,32 +10,52 @@ from pathlib import Path
 path = Path(__file__).parent.parent
 relprofpath = 'data/profiles.csv'
 relsortpath = 'data/sortedprofiles.csv'
+
 relshortdatapath = 'data/short_data.csv'
+shortdatapath = (path / relshortdatapath).resolve()
+
 reldatapath = 'data/oeis_data.csv'
+longdatapath = (path / reldatapath).resolve()
+
 propath = (path / relprofpath).resolve()
 sorpath = (path / relsortpath).resolve()
-shortdatapath = (path / relshortdatapath).resolve()
-datapath = (path / reldatapath).resolve()
+
 relcsvpath = 'data/TraitCards'
 allcsvfile = 'data/allcsv.csv'
 csvpath = (path / relcsvpath).resolve()
 allcsvpath = (path / allcsvfile).resolve()
 
-def GetDataPath() -> Path: return datapath
+def GetLongDataPath() -> Path: return longdatapath
+def GetShortDataPath() -> Path: return shortdatapath
 
 
 # #@
+
+
+# Nota bene: OEIS data with abs terms!
+def FindAnumber(seq: str) -> str:
+    datapath = GetLongDataPath()
+    with open(datapath, "r") as oeisdata:
+        for data in oeisdata:
+            if seq in data:
+                return data[:6]
+    return ""
+
+
+def GetAnumber(seq: list[int]) -> str:
+    for n in range(3):
+        seqstr = SeqToFixlenString(seq[n:], 100, ',')
+        abstr = seqstr.replace("-", "").replace(" ", "")[1:-1]
+        anum = FindAnumber(abstr)
+        if anum != "": 
+            return anum
+    return ""
 
 
 def flat(t: tabl) -> list[int]: 
     if t == [] or t == None: return []
     return [i for row in t for i in row] 
 
-
-def trim(s: str, lg: int) -> str:
-    r = s[:lg]
-    p = r.rfind(',')
-    return r[:p]
 
 
 def Traits(f: tri, dim: int, seqnum: bool = False, csvfile = None) -> None: 
@@ -59,6 +78,7 @@ def Traits(f: tri, dim: int, seqnum: bool = False, csvfile = None) -> None:
         next(count_all_traits)
 
         seqstr = SeqToFixlenString(seq, 70, ' ')
+        line = ""
 
         if seqnum:
             anum = GetAnumber(seq)
@@ -71,14 +91,11 @@ def Traits(f: tri, dim: int, seqnum: bool = False, csvfile = None) -> None:
             line = f"{funname},{traitname},{anum},{seqstr}"
             if csvfile != None:
                 csvfile.write(line + '\n')
-            print(line)
-            print("Triangle,Trait,ANumber,Sequence")
         else:
             line = f"{funname},{traitname},{seqstr}"
             if csvfile != None:
                 csvfile.write(line + '\n')
-            print(line)
-            print("Triangle,Trait,Sequence")
+        print(line)
 
 
     printer(flat(T), "Triangle ")
@@ -167,15 +184,11 @@ if __name__ == "__main__":
     from Motzkin import motzkin
     from Narayana import narayana
     from Baxter import baxter
+    from ChristTree import ctree
+    from SchroederL import schroederL
 
     # Quick ckeck without A-numbers, recommended.
-    #Traits(catalan, 12, True)
-    Traits(narayana, 12, True)
+    # Traits(catalan, 12, True)
 
     # With A-numbers, much slower:
-    # Traits(stirling_set, 20, True)
-
-    # very SLOW, but also with similar A-numbers:
-    # use SimilarSequences (see the two outcommented lines) broken now
-    #Traits(stirling_set, 20, True)
-
+    Traits(schroederL, 20, True)

@@ -228,9 +228,12 @@ if __name__ == "__main__":
     from StirlingCyc import stirling_cycle
     from Motzkin import motzkin
 
-    col_poly
-    print(col_poly(stirling_set, 0, 12))
+    #col_poly
+    #print(col_poly(stirling_set, 0, 12))
 
+    T = invtransbin_tabl(binomial, 16)
+    print([sum((v) for v in t) for t in T])
+    for t in T: print(t)
 
 '''
 
@@ -277,7 +280,5 @@ if __name__ == "__main__":
     print(flat_acc(T))
     print(flat_revacc(T))
     print(flat_accrev(T))
-
-    T = invtransbin_tabl(binomial, 10)
-    for t in T: print(t)
 '''
+

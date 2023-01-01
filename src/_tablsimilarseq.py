@@ -86,28 +86,6 @@ def SimilarSequences(Seqs: list[list], A: list[int]) -> list:
     return candidates
 
 
-def FindAnumber(a: str) -> str:
-    datapath = GetDataPath()
-    astr = a.replace("-", "").replace(" ", "")[1:-1]
-    with open(datapath, "r") as oeisdata:
-        for line in oeisdata:
-            if astr in line:
-                return line[:7]
-    return ""
-
-
-def GetAnumber(seq: list[int]) -> str:
-    seqstr = SeqToFixlenString(seq, 100, ',')
-    anum = FindAnumber(seqstr)
-    if anum == "":
-        seqstr = SeqToFixlenString(seq[1:], 100, ',')
-        anum = FindAnumber(seqstr)
-        if anum == "":
-            seqstr = SeqToFixlenString(seq[2:], 100, ',')
-            anum = FindAnumber(seqstr)
-    return anum
-
-
 if __name__ == "__main__":
 
     #lahflat8 =  [1, 0, 1, 0, 2, 1, 0, 6, 6, 1, 0, 24, 36, 12, 1, 0, 120, 
@@ -133,7 +111,7 @@ if __name__ == "__main__":
 
     # Seqs = read_seqdata(datapath)
     # anums = SimilarSequences(Seqs, a)
-    anum = FindAnumber(str(e))
+    #anum = FindAnumber(str(e))
     #for anum in anums: 
-    print(anum)
+    #print(anum)
     print("... done")

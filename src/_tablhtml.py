@@ -30,7 +30,7 @@ Table = [ "<table>",
 
 Footer = [
     "<p>Note: The A-numbers are based on a finite number of numerical comparisons. ",
-    "They ignore the offset and the sign, and might differ in the first few values.",
+    "They ignore the offset and<br>sign, and might differ in the first few values.",
     "<i>Go to the <a href='https://luschny.de/math/oeis/index.html'>index</a>, ",
     "to the <a href='https://luschny.de/math/oeis/tables.html'>tables</a>, ",
     "or the <a href='https://github.com/PeterLuschny/tabl'>Python sources</a> on GitHub.</i></p>",
