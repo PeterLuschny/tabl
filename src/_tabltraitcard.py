@@ -1,6 +1,6 @@
-from _tabltypes import tri, tabl, trow
+from _tabltypes import tri, tabl
 from _tablsums import tabl_accsum, tabl_altsum, tabl_diagsum, tabl_evensum, tabl_oddsum, tabl_revaccsum, tabl_sum, diag_tabl, tabl_accrevsum
-from _tabltransforms import rev_tabl, row_diag, revacc_tabl, row_poly, col_diag, col_poly, inv_tabl, acc_tabl, accrev_tabl, middle, central, left_side, right_side, pos_half, neg_half, trans_seq, invtrans_seq, trans_self, invtrans_self, diag_tabl, poly_tabl, flat_acc, flat_revacc, flat_accrev, trans, poly_diag, transbin_tabl, tabl_lcm, tabl_gcd, tabl_max, invtransbin_tabl, transbin_val, invtransbin_val, trans_sqrs, trans_nat0, trans_nat1, SeqToFixlenString
+from _tabltransforms import row_diag, row_poly, col_diag, col_poly, middle, central, left_side, right_side, pos_half, neg_half, trans_self, diag_tabl, poly_tabl, flat_acc, flat_revacc, flat_accrev, poly_diag, transbin_tabl, tabl_lcm, tabl_gcd, tabl_max, invtransbin_tabl, transbin_val, invtransbin_val, trans_sqrs, trans_nat0, trans_nat1, SeqToFixlenString
 
 
 from math import floor
@@ -25,7 +25,7 @@ allcsvfile = 'data/allcsv.csv'
 csvpath = (path / relcsvpath).resolve()
 allcsvpath = (path / allcsvfile).resolve()
 
-def GetLongDataPath() -> Path: return longdatapath
+def GetDataPath() -> Path: return longdatapath
 def GetShortDataPath() -> Path: return shortdatapath
 
 
@@ -34,7 +34,7 @@ def GetShortDataPath() -> Path: return shortdatapath
 
 # Nota bene: OEIS data with abs terms!
 def FindAnumber(seq: str) -> str:
-    datapath = GetLongDataPath()
+    datapath = GetDataPath()
     with open(datapath, "r") as oeisdata:
         for data in oeisdata:
             if seq in data:
@@ -83,12 +83,13 @@ def Traits(f: tri, dim: int, seqnum: bool = False, csvfile = None) -> None:
         if seqnum:
             anum = GetAnumber(seq)
             if anum == "": 
-                anum = "nothing"
+                sanum = "nothing"
                 no_oeis.append(traitname) 
             else:
                 next(count_traits_with_anum)
+                sanum = 'A' + str(anum)
 
-            line = f"{funname},{traitname},{anum},{seqstr}"
+            line = f"{funname},{traitname},{sanum},{seqstr}"
             if csvfile != None:
                 csvfile.write(line + '\n')
         else:
@@ -186,9 +187,10 @@ if __name__ == "__main__":
     from Baxter import baxter
     from ChristTree import ctree
     from SchroederL import schroederL
+    from Composition import compo
 
     # Quick ckeck without A-numbers, recommended.
     # Traits(catalan, 12, True)
 
     # With A-numbers, much slower:
-    Traits(schroederL, 20, True)
+    Traits(compo, 20, True)

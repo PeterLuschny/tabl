@@ -899,6 +899,39 @@ def ctree(n: int, k: int = -1) -> list[int] | int:
 
 
 @cache
+def _compo(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    cm = _compo_max(n)
+    return [cm[k] - cm[k - 1] if k > 0 else 0 for k in range(n + 1)]
+
+
+@set_attributes(_compo, "Compositions", ["A048004"], True)
+def compo(n: int, k: int = -1) -> list[int] | int:
+    if k == -1:
+        return _compo(n).copy()
+    return _compo(n)[k]
+
+
+@cache
+def _compo_max(n: int) -> list[int]:
+    @cache
+    def t(n: int, k: int) -> int:
+        if n == 0 or k == 1:
+            return 1
+        return sum(t(n - j, k) for j in range(1, min(n, k) + 1))
+
+    return [t(n, k) for k in range(n + 1)]
+
+
+@set_attributes(_compo_max, "CompositionMax", ["A126198"], True)
+def compo_max(n: int, k: int = -1) -> list[int] | int:
+    if k == -1:
+        return _compo_max(n).copy()
+    return _compo_max(n)[k]
+
+
+@cache
 def _delannoy(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -1890,6 +1923,8 @@ tabl_fun: list[tri] = [
     chebyshevS,
     chebyshevT,
     chebyshevU,
+    compo,
+    compo_max,
     ctree,
     delannoy,
     euler,
@@ -2080,7 +2115,7 @@ Table = [
 ]
 Footer = [
     "<p>Note: The A-numbers are based on a finite number of numerical comparisons. ",
-    "They ignore the offset and the sign, and might differ in the first few values.",
+    "They ignore the offset and<br>sign, and might differ in the first few values.",
     "<i>Go to the <a href='https://luschny.de/math/oeis/index.html'>index</a>, ",
     "to the <a href='https://luschny.de/math/oeis/tables.html'>tables</a>, ",
     "or the <a href='https://github.com/PeterLuschny/tabl'>Python sources</a> on GitHub.</i></p>",
@@ -2184,28 +2219,6 @@ def SimilarSequences(Seqs: list[list], A: list[int]) -> list:
     return candidates
 
 
-def FindAnumber(a: str) -> str:
-    datapath = GetDataPath()
-    astr = a.replace("-", "").replace(" ", "")[1:-1]
-    with open(datapath, "r") as oeisdata:
-        for line in oeisdata:
-            if astr in line:
-                return line[:7]
-    return ""
-
-
-def GetAnumber(seq: list[int]) -> str:
-    seqstr = SeqToFixlenString(seq, 100, ",")
-    anum = FindAnumber(seqstr)
-    if anum == "":
-        seqstr = SeqToFixlenString(seq[1:], 100, ",")
-        anum = FindAnumber(seqstr)
-        if anum == "":
-            seqstr = SeqToFixlenString(seq[2:], 100, ",")
-            anum = FindAnumber(seqstr)
-    return anum
-
-
 def SubTriangle(T: tri, N: int, K: int, dim: int) -> tabl:
     return [[T(n, k) for k in range(K, K - N + n + 1)] for n in range(N, N + dim)]
 
@@ -2291,16 +2304,29 @@ def SimilarTriangles(datapath: str, md: bool = True) -> None:
     return
 
 
+def FindAnumber(seq: str) -> str:
+    datapath = GetDataPath()
+    with open(datapath, "r") as oeisdata:
+        for data in oeisdata:
+            if seq in data:
+                return data[:6]
+    return ""
+
+
+def GetAnumber(seq: list[int]) -> str:
+    for n in range(3):
+        seqstr = SeqToFixlenString(seq[n:], 100, ",")
+        abstr = seqstr.replace("-", "").replace(" ", "")[1:-1]
+        anum = FindAnumber(abstr)
+        if anum != "":
+            return anum
+    return ""
+
+
 def flat(t: tabl) -> list[int]:
     if t == [] or t == None:
         return []
     return [i for row in t for i in row]
-
-
-def trim(s: str, lg: int) -> str:
-    r = s[:lg]
-    p = r.rfind(",")
-    return r[:p]
 
 
 def Traits(f: tri, dim: int, seqnum: bool = False, csvfile=None) -> None:
@@ -2319,24 +2345,23 @@ def Traits(f: tri, dim: int, seqnum: bool = False, csvfile=None) -> None:
     def printer(seq: list[int], traitname: str) -> None:
         next(count_all_traits)
         seqstr = SeqToFixlenString(seq, 70, " ")
+        line = ""
         if seqnum:
             anum = GetAnumber(seq)
             if anum == "":
-                anum = "nothing"
+                sanum = "nothing"
                 no_oeis.append(traitname)
             else:
                 next(count_traits_with_anum)
-            line = f"{funname},{traitname},{anum},{seqstr}"
+                sanum = "A" + str(anum)
+            line = f"{funname},{traitname},{sanum},{seqstr}"
             if csvfile != None:
                 csvfile.write(line + "\n")
-            print(line)
-            print("Triangle,Trait,ANumber,Sequence")
         else:
             line = f"{funname},{traitname},{seqstr}"
             if csvfile != None:
                 csvfile.write(line + "\n")
-            print(line)
-            print("Triangle,Trait,Sequence")
+        print(line)
 
     printer(flat(T), "Triangle ")
     printer(flat(R), "TriRev   ")
