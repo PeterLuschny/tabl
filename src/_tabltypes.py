@@ -3,6 +3,21 @@ from _tablinverse import InverseTriangle, InverseTabl
 
 # #@
 
+# T ENUMERATED AS A TRIANGLE
+#
+# T(0,0)
+# T(1,0)  T(1,1)
+# T(2,0)  T(2,1)  T(2,2)
+# T(3,0)  T(3,1)  T(3,2)  T(3,3)
+# T(4,0)  T(4,1)  T(4,2)  T(4,3)  T(4,4)
+# T(5,0)  T(5,1)  T(5,2)  T(5,3)  T(5,4)  T(5,5)
+#
+# A subtriangle of the standard triangle T as indexed above
+# is given by a new root node [N, K].
+# For some dimension dim > 0 it is defined as
+# T[N, K, dim] = [[T(n, k) for k in range(K, K - N + n + 1)] for n in range(N, N + dim)]
+
+
 """Type: table row"""
 trow: TypeAlias = list[int]
 
@@ -81,6 +96,15 @@ def invrev_wrapper(T: tri, dim: int) -> tri | None:
     return tigen
 
 
+def SubTriangle(T: tri, N: int, K: int, dim: int) -> tabl:
+    return [[T(n, k) for k in range(K, K - N + n + 1)] for n in range(N, N + dim)]
+
+
+def AbsSubTriangle(T: tri, N: int, K: int, dim: int) -> tabl:
+    return [[abs(T(n, k)) for k in range(K, K - N + n + 1)] for n in range(N, N + dim)]
+
+
+
 def set_attributes(r: rgen, id: str, sim: list, vert: bool=False) -> Callable[[tri], tri]:
 
     def maketab(dim: int) -> tabl:
@@ -110,6 +134,17 @@ def set_attributes(r: rgen, id: str, sim: list, vert: bool=False) -> Callable[[t
         M = [[R[n][k] if k <= n else 0 for k in range(dim)] for n in range(dim)]
         return InverseTabl(M)
 
+    def sub(N: int, K: int) -> Callable[[int], tabl]:
+        def gsub(dim: int) -> tabl:
+            return [[r(n)[k] for k in range(K, K - N + n + 1)] for n in range(N, N + dim)]
+        return gsub
+
+    def abssub(N: int, K: int) -> Callable[[int], tabl]:
+        def gabssub(dim: int) -> tabl:
+            return [[abs(r(n)[k]) for k in range(K, K - N + n + 1)] for n in range(N, N + dim)]
+        return gabssub
+
+
     def wrapper(f: tri) -> tri:
         f.tab = maketab
         f.rev = makerev
@@ -118,6 +153,8 @@ def set_attributes(r: rgen, id: str, sim: list, vert: bool=False) -> Callable[[t
         f.flat = makeflat
         f.revinv = makerevinv
         f.invrev = makeinvrev
+        f.sub = sub
+        f.abssub = abssub
         f.sim = sim
         f.id = id
         return f
@@ -127,6 +164,7 @@ def set_attributes(r: rgen, id: str, sim: list, vert: bool=False) -> Callable[[t
 if __name__ == "__main__":
 
     from Abel import abel
+    from Bell import bell
     from StirlingSet import stirling_set
     from Delannoy import delannoy
     from ChebyshevT import chebyshevT
@@ -198,3 +236,13 @@ if __name__ == "__main__":
 
     print("xxxxx")
     print(abel.sim)
+    print("===")
+    print(abel.tab(6))
+    print(abel.sub(0,0)(6))
+    print(abel.sub(1,0)(6))
+    print(abel.sub(1,1)(6))
+    print("===")
+    print(bell.tab(6))
+    print(bell.sub(0,0)(6))
+    print(bell.sub(1,0)(6))
+    print(bell.sub(1,1)(6))

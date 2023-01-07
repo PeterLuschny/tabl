@@ -174,6 +174,7 @@ data_path: list[str] = [
     "allcsvpath = (path / allcsvfile).resolve()\n",
     "def GetDataPath() -> Path: return datapath\n",
     "def GetCsvPath() -> Path: return csvpath\n",
+    "def GetAllCsvPath() -> Path: return allcsvpath\n",
 ]
 
 

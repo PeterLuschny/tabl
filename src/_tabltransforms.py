@@ -281,4 +281,3 @@ if __name__ == "__main__":
     print(flat_revacc(T))
     print(flat_accrev(T))
 '''
-

@@ -27,6 +27,10 @@ def GetCsvPath() -> Path:
     return csvpath
 
 
+def GetAllCsvPath() -> Path:
+    return allcsvpath
+
+
 setrecursionlimit(2100)
 
 
@@ -143,6 +147,14 @@ def invrev_wrapper(T: tri, dim: int) -> tri | None:
     return tigen
 
 
+def SubTriangle(T: tri, N: int, K: int, dim: int) -> tabl:
+    return [[T(n, k) for k in range(K, K - N + n + 1)] for n in range(N, N + dim)]
+
+
+def AbsSubTriangle(T: tri, N: int, K: int, dim: int) -> tabl:
+    return [[abs(T(n, k)) for k in range(K, K - N + n + 1)] for n in range(N, N + dim)]
+
+
 def set_attributes(
     r: rgen, id: str, sim: list, vert: bool = False
 ) -> Callable[[tri], tri]:
@@ -176,6 +188,23 @@ def set_attributes(
         M = [[R[n][k] if k <= n else 0 for k in range(dim)] for n in range(dim)]
         return InverseTabl(M)
 
+    def sub(N: int, K: int) -> Callable[[int], tabl]:
+        def gsub(dim: int) -> tabl:
+            return [
+                [r(n)[k] for k in range(K, K - N + n + 1)] for n in range(N, N + dim)
+            ]
+
+        return gsub
+
+    def abssub(N: int, K: int) -> Callable[[int], tabl]:
+        def gabssub(dim: int) -> tabl:
+            return [
+                [abs(r(n)[k]) for k in range(K, K - N + n + 1)]
+                for n in range(N, N + dim)
+            ]
+
+        return gabssub
+
     def wrapper(f: tri) -> tri:
         f.tab = maketab
         f.rev = makerev
@@ -184,6 +213,8 @@ def set_attributes(
         f.flat = makeflat
         f.revinv = makerevinv
         f.invrev = makeinvrev
+        f.sub = sub
+        f.abssub = abssub
         f.sim = sim
         f.id = id
         return f
@@ -1989,7 +2020,7 @@ def sortfile(inpath, outpath) -> None:
 
 def GenerateCsvFile(fun: tri, dim: int = 24) -> None:
     csvfile = fun.id + ".csv"
-    path = (csvpath / csvfile).resolve()
+    path = (GetCsvPath() / csvfile).resolve()
     with open(path, "w+") as dest:
         dest.write("Triangle,Trait,ANumber,Sequence\n")
         s = (
@@ -2011,7 +2042,7 @@ def GenerateAllCsvFiles(dim: int = 24) -> None:
 
 def AllTraits(seqnum: bool = False) -> None:
     dim = 28
-    csvfile = open(allcsvpath, "w")
+    csvfile = open(GetAllCsvPath(), "w")
     if seqnum:
         csvfile.write("Triangle,Trait,ANumber,Sequence\n")
     else:
@@ -2219,23 +2250,40 @@ def SimilarSequences(Seqs: list[list], A: list[int]) -> list:
     return candidates
 
 
-def SubTriangle(T: tri, N: int, K: int, dim: int) -> tabl:
-    return [[T(n, k) for k in range(K, K - N + n + 1)] for n in range(N, N + dim)]
-
-
-def AbsSubTriangle(T: tri, N: int, K: int, dim: int) -> tabl:
-    return [[abs(T(n, k)) for k in range(K, K - N + n + 1)] for n in range(N, N + dim)]
-
-
-def search_db(Seqs, wanted: list[int]) -> list | None:
+def search_db(database: list[list[int]], wanted: list[int]) -> list:
+    """Runs through the database looking for the given triangle.
+    Uses only the first 28 terms of the sequences.
+    Args:
+        database (list[list[int]]): oeis_data
+        wanted (list[int]): sequence looked for
+    Returns:
+        list: oeis A-numbers of similar triangles
+    """
     similars = []
-    for seq in Seqs:
-        if seq[1] == wanted:
-            similars.append(seq[0][:-1])
+    count = 0
+    for seq in database:
+        if wanted == seq[1][:28]:
+            similars.append(seq[0])
+            count += 1
+            if count > 6:
+                break
     return similars
 
 
-def lookup_similar_triangles(Seqs, T: tri) -> None:
+def lookup_similar_triangles(database: list[list[int]], T: tri) -> list:
+    """Tries to identify triangles similar to the given one.
+    Assumes database is given with absulute terms!
+    Let AT = abs(T) and AS = abs(S).  We say a triangle S is 'similar'
+    to the triangle T iff
+    * AS = AT                        or AS = reversed(AT)
+    * or AS = AT.AbsSubTriangle(1,0) or AS = reversed(AT.AbsSubTriangle(1,0))
+    * or AS = AT.AbsSubTriangle(1,1) or AS = reversed(AT.AbsSubTriangle(1,1))
+    Args:
+        database (list[list[int]]): oeis_data
+        T (tri): generator of the triangle
+    Returns:
+        list: oeis A-numbers of similar triangles
+    """
     dim = 7  # do not change! It corresponds to the short data file.
     similars = []
     T00 = AbsSubTriangle(T, 0, 0, dim)
@@ -2250,22 +2298,37 @@ def lookup_similar_triangles(Seqs, T: tri) -> None:
         [k for row in T11 for k in list(reversed(row))],
     ]
     for var in variants:
-        R = search_db(Seqs, var)
+        R = search_db(database, var)
         similars.extend(R)
     return sorted(set(similars))
 
 
-def SingleSimilarTriangles(datapath, fun) -> None:
+def GetSimilarTriangles(datapath: str, fun: tri) -> list:
+    """Assumes the database in csv-format.
+    Args:
+        datapath (str): location of the database
+        fun (tri): generator of the reference triangle
+    Returns:
+        list: oeis A-numbers of similar triangles
+    Examples:
+        in>  GetSimilarTriangles(GetShortDataPath(), lah)
+        out> lah similars: ['A008297', 'A066667', 'A089231',
+            'A105278', 'A111596', 'A271703']
+    """
     seq_list = []
     with open(datapath, "r") as oeisdata:
         reader = csv.reader(oeisdata)
         seq_list = [[seq[0], [int(t) for t in seq[1:-1]]] for seq in reader]
-    similars = lookup_similar_triangles(seq_list, fun)
-    print(fun.id, "Similars:", similars)
-    return
+        similars = lookup_similar_triangles(seq_list, fun)
+        print(fun.id, "similars:", similars)
+        return similars
 
 
-def Readme() -> None:
+def md_table() -> None:
+    """Writes a table in markdown style (for readme.md)
+    Uses stored data from fun.sim (no searching)
+
+    """
     print("Tables |  Src   | Traits   |  OEIS  SIMILARS |")
     print("| :--- | :---   | :---     |    :---         |")
     for fun in tabl_fun:
@@ -2281,6 +2344,12 @@ def Readme() -> None:
 
 
 def SimilarTriangles(datapath: str, md: bool = True) -> None:
+    """Searches the database for all similar triangles for all
+    triangles defined in this package (listed in tabl_fun).
+    Args:
+        datapath (str): location of the database
+        md (bool, optional): format option markdown. Defaults to True.
+    """
     seq_list = []
     with open(datapath, "r") as oeisdata:
         reader = csv.reader(oeisdata)
@@ -2304,32 +2373,60 @@ def SimilarTriangles(datapath: str, md: bool = True) -> None:
     return
 
 
-def FindAnumber(seq: str) -> str:
+def FindSequence(seq: str) -> str:
+    """Search for a match in the database.
+    Nota bene: The database is assumed to have abs terms!
+    Args:
+        seq (str): The stringified sequence
+    Returns:
+        str: The oeis A-number if found, "" otherwise.
+    """
     datapath = GetDataPath()
-    with open(datapath, "r") as oeisdata:
-        for data in oeisdata:
+    with open(datapath, "r") as database:
+        for data in database:
             if seq in data:
                 return data[:6]
     return ""
 
 
 def GetAnumber(seq: list[int]) -> str:
+    """Search for a match in the database.
+    Increase the 'offset' twice if not found.
+    Args:
+        seq (list[int]): The sequence as a list of integers
+    Returns:
+        str: The oeis A-number if found, "" otherwise
+    """
     for n in range(3):
         seqstr = SeqToFixlenString(seq[n:], 100, ",")
         abstr = seqstr.replace("-", "").replace(" ", "")[1:-1]
-        anum = FindAnumber(abstr)
+        anum = FindSequence(abstr)
         if anum != "":
             return anum
     return ""
 
 
 def flat(t: tabl) -> list[int]:
+    """Flatten table to sequence
+    Args:
+        t (tabl): table
+    Returns:
+        list[int]: sequence
+    """
     if t == [] or t == None:
         return []
     return [i for row in t for i in row]
 
 
 def Traits(f: tri, dim: int, seqnum: bool = False, csvfile=None) -> None:
+    """Generate the traits of a triangle and look them up
+    in the database, then write the result in a csv file.
+    Args:
+        f (tri): Triangle (function)
+        dim (int): Length of triangle table to generate
+        seqnum (bool, optional): Look up the oeis A-number. Defaults to False.
+        csvfile (TextIOWrapper, optional): Open csv file. Defaults to None.
+    """
     T = f.tab(dim)
     R = f.rev(dim)
     I = f.inv(dim)
@@ -2342,11 +2439,20 @@ def Traits(f: tri, dim: int, seqnum: bool = False, csvfile=None) -> None:
     count_traits_with_anum = count()
     no_oeis = []
 
-    def printer(seq: list[int], traitname: str) -> None:
+    def printer(seq: list[int], traitname: str, tria: bool = False) -> None:
+        """Writes to the csv file if given or prints otherwise.
+        Args:
+            seq (list[int]): sequence
+            traitname (str): trait
+            tria (bool, optional): Is seq a triangle?. Defaults to False.
+        """
         next(count_all_traits)
         seqstr = SeqToFixlenString(seq, 70, " ")
         line = ""
         if seqnum:
+            # if tria:  # needs function, not tabl
+            #    anum = GetSimilarTriangles()
+            # else:
             anum = GetAnumber(seq)
             if anum == "":
                 sanum = "nothing"
@@ -2370,14 +2476,14 @@ def Traits(f: tri, dim: int, seqnum: bool = False, csvfile=None) -> None:
         printer(flat(RI), "TriRevInv")
     if IR != []:
         printer(flat(IR), "TriInvRev")
-    printer(flat_acc(T), "TriAcc   ")
-    printer(flat_revacc(T), "TriRevAcc")
-    printer(flat_accrev(T), "TriAccRev")
-    printer(flat(diag_tabl(T)), "TriDiag  ")
-    printer(flat(poly_tabl(f, dim)), "TriPoly  ")
-    printer(flat(trans_self(f, dim)), "TriConv  ")
-    printer(flat(transbin_tabl(f, dim)), "TriBin   ")
-    printer(flat(invtransbin_tabl(f, dim)), "TriInvBin")
+    printer(flat_acc(T), "TriAcc   ", True)
+    printer(flat_revacc(T), "TriRevAcc", True)
+    printer(flat_accrev(T), "TriAccRev", True)
+    printer(flat(diag_tabl(T)), "TriDiag  ", True)
+    printer(flat(poly_tabl(f, dim)), "TriPoly  ", True)
+    printer(flat(trans_self(f, dim)), "TriConv  ", True)
+    printer(flat(transbin_tabl(f, dim)), "TriBin   ", True)
+    printer(flat(invtransbin_tabl(f, dim)), "TriInvBin", True)
     printer(tabl_sum(T), "Sum      ")
     printer(tabl_evensum(T), "EvenSum  ")
     printer(tabl_oddsum(T), "OddSum   ")

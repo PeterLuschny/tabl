@@ -1,19 +1,6 @@
 import csv
-import re
 from pathlib import Path
 from _tabltransforms import SeqToFixlenString
-
-path = Path(__file__).parent.parent
-relprofpath = 'data/profiles.csv'
-relsortpath = 'data/sortedprofiles.csv'
-reldatapath = 'data/oeis_data.csv'
-relshortdatapath = 'data/short_data.csv'
-propath = (path / relprofpath).resolve()
-sorpath = (path / relsortpath).resolve()
-shortdatapath = (path / relshortdatapath).resolve()
-datapath = (path / reldatapath).resolve()
-def GetDataPath() -> Path: return datapath
-
 
 # #@
 
@@ -88,30 +75,25 @@ def SimilarSequences(Seqs: list[list], A: list[int]) -> list:
 
 if __name__ == "__main__":
 
-    #lahflat8 =  [1, 0, 1, 0, 2, 1, 0, 6, 6, 1, 0, 24, 36, 12, 1, 0, 120, 
-    #240, 120, 20, 1, 0, 720, 1800, 1200, 300, 30, 1, 0, 5040, 
-    #15120, 12600, 4200, 630, 42, 1]
-    #Similar sequences are:
-    #['A111596', (0, 0, 74)]
-    #['A271703', (0, 0, 74)]
+    from _tablpaths import GetDataPath
 
-    #[],STIRLING2SET,BinConV  ,
+    # [],STIRLING2SET,BinConV  
     a = [1, 1, 3, 13, 71, 456, 3337, 27203, 243203, 2357356, 24554426, 272908736, 3218032897, 40065665043, 524575892037, 7197724224361, 103188239447115, 1541604242708064, 23945078236133674, 385890657416861532, 6440420888899573136, 111132957321230896024]
-    #[],STIRLING2SET,IBinConV ,
+    # [],STIRLING2SET,IBinConV ,
     b= [ 1,1,-1,-5,15,56,-455,-237,16947,-64220,-529494,6833608,-8606015,-459331677,]
-    #[],STIRLING2SET,TransSqrs,
+    # [],STIRLING2SET,TransSqrs,
     c =[ 0,1,5,22,99,471,2386,12867,73681,446620,2856457,19217243,135610448,]
-    #[],STIRLING2SET,TransNat0,
+    # [],STIRLING2SET,TransNat0,
     d = [ 0,1,3,10,37,151,674,3263,17007,94828,562595,3535027,23430840,163254885,]
-    #[],STIRLING2SET,TransNat1,
+    # [],STIRLING2SET,TransNat1,
     e = [ 1,2,5,15,52,203,877,4140,21147,115975,678570,4213597,27644437,190899322,]
 
-    print(e)
+    search = e
+    print(search)
     print("Similar sequences are:")
 
-    # Seqs = read_seqdata(datapath)
-    # anums = SimilarSequences(Seqs, a)
-    #anum = FindAnumber(str(e))
-    #for anum in anums: 
-    #print(anum)
+    seqs = read_seqdata(GetDataPath())
+    anums = SimilarSequences(seqs, search)
+    for anum in anums: 
+        print(anum)
     print("... done")

@@ -4,24 +4,9 @@ from _tablprofile import Profile
 from _tablviews import PrintViews
 from _tabltypes import tri, inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
 from _tabltraitcard import Traits
+from _tablpaths import GetCsvPath, GetAllCsvPath
 from tabl import tabl_fun
-
 from pathlib import Path
-
-path = Path(__file__).parent.parent
-relprofpath = 'data/profiles.csv'
-relsortpath = 'data/sortedprofiles.csv'
-relshortdatapath = 'data/short_data.csv'
-reldatapath = 'data/oeis_data.csv'
-propath = (path / relprofpath).resolve()
-sorpath = (path / relsortpath).resolve()
-shortdatapath = (path / relshortdatapath).resolve()
-datapath = (path / reldatapath).resolve()
-relcsvpath = 'data/csv'
-csvpath = (path / relcsvpath).resolve()
-allcsvfile = 'data/allcsv.csv'
-csvpath = (path / relcsvpath).resolve()
-allcsvpath = (path / allcsvfile).resolve()
 
 # #@
 
@@ -36,7 +21,7 @@ def sortfile(inpath, outpath) -> None:
 
 def GenerateCsvFile(fun: tri, dim: int = 24) -> None:
     csvfile = fun.id + ".csv"
-    path = (csvpath / csvfile).resolve()
+    path = (GetCsvPath() / csvfile).resolve()
     with open(path, 'w+') as dest:
         dest.write("Triangle,Trait,ANumber,Sequence\n")
         s = str(fun.sim).replace("[", "").replace("]", "").replace("'", "").replace(",", "")
@@ -52,7 +37,7 @@ def GenerateAllCsvFiles(dim: int = 24) -> None:
 
 def AllTraits(seqnum: bool = False) -> None:
     dim = 28
-    csvfile = open(allcsvpath, 'w')
+    csvfile = open(GetAllCsvPath(), 'w')
     if seqnum:
         csvfile.write("Triangle,Trait,ANumber,Sequence\n")
     else:

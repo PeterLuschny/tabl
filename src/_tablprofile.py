@@ -2,9 +2,7 @@ from _tabltransforms import row_poly, col_poly, flat_tabl
 from _tablsums import tabl_sum, tabl_evensum, tabl_oddsum, tabl_altsum, tabl_accsum, tabl_revaccsum, tabl_diagsum
 from _tabltypes import tri, tabl, inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
 
-
 # #@
-
 
 def Profile(T: tri, hor: int = 10) -> dict[str, list[int]]:
 

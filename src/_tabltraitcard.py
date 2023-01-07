@@ -1,65 +1,75 @@
+from itertools import count
+from math import floor
+from pathlib import Path
+from _tablpaths import GetDataPath
 from _tabltypes import tri, tabl
+from _tablsimilartri import GetSimilarTriangles
 from _tablsums import tabl_accsum, tabl_altsum, tabl_diagsum, tabl_evensum, tabl_oddsum, tabl_revaccsum, tabl_sum, diag_tabl, tabl_accrevsum
 from _tabltransforms import row_diag, row_poly, col_diag, col_poly, middle, central, left_side, right_side, pos_half, neg_half, trans_self, diag_tabl, poly_tabl, flat_acc, flat_revacc, flat_accrev, poly_diag, transbin_tabl, tabl_lcm, tabl_gcd, tabl_max, invtransbin_tabl, transbin_val, invtransbin_val, trans_sqrs, trans_nat0, trans_nat1, SeqToFixlenString
-
-
-from math import floor
-from itertools import count
-from pathlib import Path
-
-path = Path(__file__).parent.parent
-relprofpath = 'data/profiles.csv'
-relsortpath = 'data/sortedprofiles.csv'
-
-relshortdatapath = 'data/short_data.csv'
-shortdatapath = (path / relshortdatapath).resolve()
-
-reldatapath = 'data/oeis_data.csv'
-longdatapath = (path / reldatapath).resolve()
-
-propath = (path / relprofpath).resolve()
-sorpath = (path / relsortpath).resolve()
-
-relcsvpath = 'data/TraitCards'
-allcsvfile = 'data/allcsv.csv'
-csvpath = (path / relcsvpath).resolve()
-allcsvpath = (path / allcsvfile).resolve()
-
-def GetDataPath() -> Path: return longdatapath
-def GetShortDataPath() -> Path: return shortdatapath
-
 
 # #@
 
 
-# Nota bene: OEIS data with abs terms!
-def FindAnumber(seq: str) -> str:
+def FindSequence(seq: str) -> str:
+    """Search for a match in the database.
+    Nota bene: The database is assumed to have abs terms!
+
+    Args:
+        seq (str): The stringified sequence
+
+    Returns:
+        str: The oeis A-number if found, "" otherwise.
+    """
     datapath = GetDataPath()
-    with open(datapath, "r") as oeisdata:
-        for data in oeisdata:
+    with open(datapath, "r") as database:
+        for data in database:
             if seq in data:
                 return data[:6]
     return ""
 
 
 def GetAnumber(seq: list[int]) -> str:
+    """Search for a match in the database.
+    Increase the 'offset' twice if not found.
+
+    Args:
+        seq (list[int]): The sequence as a list of integers
+
+    Returns:
+        str: The oeis A-number if found, "" otherwise
+    """
     for n in range(3):
         seqstr = SeqToFixlenString(seq[n:], 100, ',')
         abstr = seqstr.replace("-", "").replace(" ", "")[1:-1]
-        anum = FindAnumber(abstr)
+        anum = FindSequence(abstr)
         if anum != "": 
             return anum
     return ""
 
 
 def flat(t: tabl) -> list[int]: 
+    """Flatten table to sequence
+
+    Args:
+        t (tabl): table
+
+    Returns:
+        list[int]: sequence
+    """
     if t == [] or t == None: return []
     return [i for row in t for i in row] 
 
 
-
 def Traits(f: tri, dim: int, seqnum: bool = False, csvfile = None) -> None: 
+    """Generate the traits of a triangle and look them up
+    in the database, then write the result in a csv file.
 
+    Args:
+        f (tri): Triangle (function)
+        dim (int): Length of triangle table to generate
+        seqnum (bool, optional): Look up the oeis A-number. Defaults to False.
+        csvfile (TextIOWrapper, optional): Open csv file. Defaults to None.
+    """
     T  = f.tab(dim) 
     R  = f.rev(dim) 
     I  = f.inv(dim) 
@@ -74,13 +84,23 @@ def Traits(f: tri, dim: int, seqnum: bool = False, csvfile = None) -> None:
     count_traits_with_anum = count()
     no_oeis = []
 
-    def printer(seq: list[int], traitname: str) -> None:
+    def printer(seq: list[int], traitname: str, tria: bool=False) -> None:
+        """Writes to the csv file if given or prints otherwise.
+
+        Args:
+            seq (list[int]): sequence
+            traitname (str): trait
+            tria (bool, optional): Is seq a triangle?. Defaults to False.
+        """    
         next(count_all_traits)
 
         seqstr = SeqToFixlenString(seq, 70, ' ')
         line = ""
 
         if seqnum:
+            #if tria:  # needs function, not tabl
+            #    anum = GetSimilarTriangles()
+            #else:
             anum = GetAnumber(seq)
             if anum == "": 
                 sanum = "nothing"
@@ -109,14 +129,14 @@ def Traits(f: tri, dim: int, seqnum: bool = False, csvfile = None) -> None:
     if IR != []:
         printer(flat(IR), "TriInvRev")
 
-    printer(flat_acc(T),                    "TriAcc   ")
-    printer(flat_revacc(T),                 "TriRevAcc")
-    printer(flat_accrev(T),                 "TriAccRev")
-    printer(flat(diag_tabl(T)),             "TriDiag  ")
-    printer(flat(poly_tabl(f, dim)),        "TriPoly  ")
-    printer(flat(trans_self(f, dim)),       "TriConv  ")
-    printer(flat(transbin_tabl(f, dim)),    "TriBin   ")
-    printer(flat(invtransbin_tabl(f, dim)), "TriInvBin")
+    printer(flat_acc(T),                    "TriAcc   ", True)
+    printer(flat_revacc(T),                 "TriRevAcc", True)
+    printer(flat_accrev(T),                 "TriAccRev", True)
+    printer(flat(diag_tabl(T)),             "TriDiag  ", True)
+    printer(flat(poly_tabl(f, dim)),        "TriPoly  ", True)
+    printer(flat(trans_self(f, dim)),       "TriConv  ", True)
+    printer(flat(transbin_tabl(f, dim)),    "TriBin   ", True)
+    printer(flat(invtransbin_tabl(f, dim)), "TriInvBin", True)
 
     printer(tabl_sum(T),       "Sum      ")
     printer(tabl_evensum(T),   "EvenSum  ")
@@ -174,23 +194,9 @@ if __name__ == "__main__":
     from Abel import abel
     from Bell import bell
     from Lah import lah
-    from Binomial import binomial
-    from StirlingSet import stirling_set
-    from StirlingCyc import stirling_cycle
-    from ChebyshevT import chebyshevT
-    from Laguerre import laguerre
-    from Fubini import fubini
-    from Eulerian import eulerian
-    from Catalan import catalan
-    from Motzkin import motzkin
-    from Narayana import narayana
-    from Baxter import baxter
-    from ChristTree import ctree
-    from SchroederL import schroederL
-    from Composition import compo
-
+    
     # Quick ckeck without A-numbers, recommended.
-    # Traits(catalan, 12, True)
+    # Traits(lah, 12)
 
     # With A-numbers, much slower:
-    Traits(compo, 20, True)
+    Traits(lah, 20, True)

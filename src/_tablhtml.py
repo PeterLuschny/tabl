@@ -1,6 +1,6 @@
 import csv
 from _tabltypes import tri
-# from tabl import tabl_fun
+from tabl import tabl_fun
 
 # #@
 
@@ -85,23 +85,7 @@ if __name__ == "__main__":
 
     from Abel import abel
     from pathlib import Path
+    from _tablpaths import GetHtmlPath, GetCsvPath
 
-    path = Path(__file__).parent.parent
-    relprofpath = 'data/profiles.csv'
-    relsortpath = 'data/sortedprofiles.csv'
-    relshortdatapath = 'data/short_data.csv'
-    reldatapath = 'data/oeis_data.csv'
-
-    propath = (path / relprofpath).resolve()
-    sorpath = (path / relsortpath).resolve()
-    shortdatapath = (path / relshortdatapath).resolve()
-    datapath = (path / reldatapath).resolve()
-
-    relcsvpath = 'data/csv'
-    csvpath = (path / relcsvpath).resolve()
-
-    relhtmlpath = 'data/html'
-    htmlpath = (path / relhtmlpath).resolve()
-
-    CsvToHtml(abel, csvpath, htmlpath)
+    CsvToHtml(abel, GetCsvPath(), GetHtmlPath())
     print("Done ...")
