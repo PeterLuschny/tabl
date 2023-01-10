@@ -1251,25 +1251,35 @@ def harmonic(n: int, k: int = -1) -> list[int] | int:
 
 
 @cache
-def _hermite(n: int) -> list[int]:
-    if n == 0:
-        return [1]
-    if n == 1:
-        return [0, 1]
-    rowA: list[int] = _hermite(n - 1)
-    row: list[int] = _hermite(n - 1) + [0]
-    for k in range(1, n):
-        row[k] = rowA[k - 1] + (k + 1) * row[k + 1]
-    row[0] = rowA[1]
+def _hermiteE(n: int) -> list[int]:
+    row: list[int] = [0] * (n + 1)
     row[n] = 1
+    for k in range(n - 2, -1, -2):
+        row[k] = (row[k + 2] * (k + 2) * (k + 1)) // (n - k)
     return row
 
 
-@set_attributes(_hermite, "Hermite", ["A066325", "A073278", "A099174"], True)
-def hermite(n: int, k: int = -1) -> list[int] | int:
+@set_attributes(_hermiteE, "HermiteE", ["A066325", "A073278", "A099174"], True)
+def hermiteE(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
-        return _hermite(n).copy()
-    return _hermite(n)[k]
+        return _hermiteE(n).copy()
+    return _hermiteE(n)[k]
+
+
+@cache
+def _hermiteH(n: int) -> list[int]:
+    row: list[int] = [0] * (n + 1)
+    row[n] = 2**n
+    for k in range(n - 2, -1, -2):
+        row[k] = (row[k + 2] * (k + 2) * (k + 1)) // (2 * (n - k))
+    return row
+
+
+@set_attributes(_hermiteH, "HermiteH", ["A060821"], True)
+def hermiteH(n: int, k: int = -1) -> list[int] | int:
+    if k == -1:
+        return _hermiteH(n).copy()
+    return _hermiteH(n)[k]
 
 
 @cache
@@ -1394,21 +1404,41 @@ def lozanic(n: int, k: int = -1) -> list[int] | int:
 def _motzkin(n: int) -> list[int]:
     if n == 0:
         return [1]
+    if n == 1:
+        return [1, 0]
+    l = 0 if n % 2 else (_motzkin(n - 2)[n - 2] * 2 * (n - 1)) // (n // 2 + 1)
+    row = _motzkin(n - 1) + [l]
+    for k in range(2, n, 2):
+        row[k] = (n * row[k]) // (n - k)
+    return row
+
+
+@set_attributes(_motzkin, "Motzkin-Poly", ["A"], True)
+def motzkin(n: int, k: int = -1) -> list[int] | int:
+    if k == -1:
+        return _motzkin(n).copy()
+    return _motzkin(n)[k]
+
+
+@cache
+def _motzkin_gf(n: int) -> list[int]:
+    if n == 0:
+        return [1]
 
     def r(k: int) -> int:
-        return _motzkin(n - 1)[k] if k >= 0 and k < n else 0
+        return _motzkin_gf(n - 1)[k] if k >= 0 and k < n else 0
 
-    row: list[int] = _motzkin(n - 1) + [1]
+    row: list[int] = _motzkin_gf(n - 1) + [1]
     for k in range(0, n):
         row[k] += r(k - 1) + r(k + 1)
     return row
 
 
-@set_attributes(_motzkin, "Motzkin", ["A026300", "A064189", "A009766"], True)
-def motzkin(n: int, k: int = -1) -> list[int] | int:
+@set_attributes(_motzkin_gf, "Motzkin-Gf", ["A026300", "A064189", "A009766"], True)
+def motzkin_gf(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
-        return _motzkin(n).copy()
-    return _motzkin(n)[k]
+        return _motzkin_gf(n).copy()
+    return _motzkin_gf(n)[k]
 
 
 @cache
@@ -1971,7 +2001,8 @@ tabl_fun: list[tri] = [
     gaussq2,
     genocchi,
     harmonic,
-    hermite,
+    hermiteE,
+    hermiteH,
     laguerre,
     lah,
     lehmer,
@@ -1979,6 +2010,7 @@ tabl_fun: list[tri] = [
     levin,
     lozanic,
     motzkin,
+    motzkin_gf,
     narayana,
     nicomachus,
     one,

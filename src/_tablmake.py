@@ -38,7 +38,8 @@ tabl_files: list[str] = [
     "Gaussq2.py",
     "Genocchi.py",
     "Harmonic.py",
-    "Hermite.py",
+    "HermiteE.py",
+    "HermiteH.py",
     "Laguerre.py",
     "Lah.py",
     "Lehmer.py",
@@ -46,6 +47,7 @@ tabl_files: list[str] = [
     "Levin.py",
     "Lozanic.py",
     "Motzkin.py",
+    "MotzkinGF.py",
     "Narayana.py",
     "Nicomachus.py",
     "One.py",
@@ -82,6 +84,7 @@ tabl_files: list[str] = [
     "_tabltraitcard.py",
 ]
 
+
 str_tabl_fun: str = """\
 tabl_fun: list[tri] = [
     abel,
@@ -113,7 +116,8 @@ tabl_fun: list[tri] = [
     gaussq2,
     genocchi,
     harmonic,
-    hermite,
+    hermiteE,
+    hermiteH,
     laguerre,
     lah,
     lehmer,
@@ -121,6 +125,7 @@ tabl_fun: list[tri] = [
     levin,
     lozanic,
     motzkin,
+    motzkin_gf,
     narayana,
     nicomachus,
     one,

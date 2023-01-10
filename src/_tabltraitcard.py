@@ -199,4 +199,7 @@ if __name__ == "__main__":
     # Traits(lah, 12)
 
     # With A-numbers, much slower:
-    Traits(lah, 20, True)
+    # Traits(lah, 20, True)
+
+    from Motzkin import motzkin
+    Traits(motzkin, 20, True)

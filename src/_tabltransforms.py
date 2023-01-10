@@ -226,7 +226,7 @@ if __name__ == "__main__":
     from Binomial import binomial
     from StirlingSet import stirling_set
     from StirlingCyc import stirling_cycle
-    from Motzkin import motzkin
+    from MotzkinGF import motzkin
 
     #col_poly
     #print(col_poly(stirling_set, 0, 12))
