@@ -32,7 +32,7 @@ def _motzkin_gf(n: int) -> list[int]:
 
 @set_attributes(
     _motzkin_gf, 
-    "Motzkin-Gf", 
+    "MotzkinGF", 
     ['A026300', 'A064189', 'A009766'], 
     True)
 def motzkin_gf(n: int, k: int = -1) -> list[int] | int:

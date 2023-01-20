@@ -5,11 +5,14 @@ path = Path(__file__).parent.parent
 relprofpath = "data/profiles.csv"
 relsortpath = "data/sortedprofiles.csv"
 
-relshortdatapath = "data/short_data.csv"
-shortdatapath = (path / relshortdatapath).resolve()
+relstrippedpath = "data/stripped"
+strippedpath = (path / relstrippedpath).resolve()
 
-reldatapath = "data/oeis_data.csv"
-longdatapath = (path / reldatapath).resolve()
+reloeispath = "data/oeis.csv"
+oeispath = (path / reloeispath).resolve()
+
+reldatapath = "data/abs_data.csv"
+datapath = (path / reldatapath).resolve()
 
 propath = (path / relprofpath).resolve()
 sorpath = (path / relsortpath).resolve()
@@ -31,12 +34,7 @@ htmlpath = (path / relhtmlpath).resolve()
 
 
 def GetDataPath() -> Path:
-    return longdatapath
-
-
-def GetShortDataPath() -> Path:
-    return shortdatapath
-
+    return datapath
 
 def GetCsvPath() -> Path:
     return csvpath
@@ -53,4 +51,5 @@ def GetHtmlPath() -> Path:
 githubtab = "https://github.com/PeterLuschny/tabl/blob/main/tables.md"
 githubsrc = "https://github.com/PeterLuschny/tabl/blob/main/src/"
 htmltraits = "https://luschny.de/math/oeis/" 
+oeisstripped = "https://oeis.org/stripped.gz"
 oeissearch = "https://oeis.org/search?q="

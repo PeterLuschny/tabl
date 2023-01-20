@@ -3,16 +3,16 @@ from _tabltypes import set_attributes
 
 """Motzkin triangle, coefficients of Motzkin polynomials.
 
-[0] 1;
-[1] 1, 0;
-[2] 1, 0,  1;
-[3] 1, 0,  3, 0;
-[4] 1, 0,  6, 0,   2;
-[5] 1, 0, 10, 0,  10, 0;
-[6] 1, 0, 15, 0,  30, 0,   5;
-[7] 1, 0, 21, 0,  70, 0,  35, 0;
-[8] 1, 0, 28, 0, 140, 0, 140, 0,  14;
-[9] 1, 0, 36, 0, 252, 0, 420, 0, 126, 0;
+[0] 1
+[1] 1, 0
+[2] 1, 0,  1
+[3] 1, 0,  3, 0
+[4] 1, 0,  6, 0,   2
+[5] 1, 0, 10, 0,  10, 0
+[6] 1, 0, 15, 0,  30, 0,   5
+[7] 1, 0, 21, 0,  70, 0,  35, 0
+[8] 1, 0, 28, 0, 140, 0, 140, 0,  14
+[9] 1, 0, 36, 0, 252, 0, 420, 0, 126, 0
 """
 
 
@@ -30,8 +30,8 @@ def _motzkin(n: int) -> list[int]:
 
 @set_attributes(
     _motzkin,
-    "Motzkin-Poly",
-    ['A'],
+    "Motzkin",
+    ['A359364'],
     True)
 def motzkin(n: int, k: int = -1) -> list[int] | int:
     if k == -1: return _motzkin(n).copy()

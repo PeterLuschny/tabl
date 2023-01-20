@@ -1,25 +1,41 @@
-import csv
+import requests
+import gzip
+from _tablpaths import strippedpath, datapath, oeispath
 
 # #@
 
-# Special edition of the data file, only for internal use.
-# (1) Disregards sequences with less than 28 items (first 6 lines of a triangle),
-# (2) makes all items absolute,
-# (3) shortens the sequence to 28 entries.
-# But otherwise keeps the format of the compressed file.
-def shortabsdata(inpath: str, outpath: str) -> None:
 
-    with open(inpath, "r") as oeisdata:
-        reader = csv.reader(oeisdata)
-        seq_list = [[seq[0], [abs(int(t)) for t in seq[1:-1]]] for seq in reader]
-        with open(outpath, "w") as outfile:
-            for seq in seq_list:
-                if len(seq[1]) < 29:
-                    continue
-                s = (
-                    str(seq[1][0:28])
-                    .replace("[", ",")
-                    .replace("]", ",")
-                    .replace(" ", "")
-                )
-                outfile.write(str(seq[0]) + s + "\n")
+def get_compressed() -> None:
+    oeisstripped = "https://oeis.org/stripped.gz"
+    r = requests.get(oeisstripped, stream = True)
+
+    with open(strippedpath, "wb") as local:
+        for chunk in r.iter_content(chunk_size=8192):
+            if chunk:
+                local.write(chunk)
+
+    with gzip.open(strippedpath, 'rb') as gz:
+        with open(oeispath, 'wb') as da:
+            da.write(gz.read())
+
+
+def oeisabsdata() -> None:
+    """Make all terms absolute."""
+
+    with open(oeispath, "r") as oeisdata:
+        with open(datapath, "w") as absdata:
+            for seq in oeisdata:
+                if not '#' in seq:
+                    absdata.write(seq.replace("-", ""))
+
+
+def GetOEISdata() -> None:
+    get_compressed()
+    oeisabsdata()
+
+
+if __name__ == "__main__":
+
+    get_compressed()
+    oeisabsdata()
+    print("Done")

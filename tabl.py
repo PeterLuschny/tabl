@@ -6,6 +6,8 @@ from typing import Callable, TypeAlias
 from io import TextIOWrapper
 import contextlib
 import csv
+import requests
+import gzip
 from fractions import Fraction as frac
 from sympy import Matrix, Rational
 from pathlib import Path
@@ -13,10 +15,16 @@ from pathlib import Path
 path = Path(__file__).parent
 reldatapath = "data/oeis_data.csv"
 datapath = (path / reldatapath).resolve()
+reloeispath = "data/oeis.csv"
+oeispath = (path / reloeispath).resolve()
+relstrippedpath = "data/stripped"
+strippedpath = (path / relstrippedpath).resolve()
 relcsvpath = "data/csv"
 csvpath = (path / relcsvpath).resolve()
 allcsvfile = "data/allcsv.csv"
 allcsvpath = (path / allcsvfile).resolve()
+relhtmlpath = "data/html"
+htmlpath = (path / relhtmlpath).resolve()
 
 
 def GetDataPath() -> Path:
@@ -29,6 +37,10 @@ def GetCsvPath() -> Path:
 
 def GetAllCsvPath() -> Path:
     return allcsvpath
+
+
+def GetHtmlPath() -> Path:
+    return htmlpath
 
 
 setrecursionlimit(2100)
@@ -695,7 +707,7 @@ def _baxter(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_baxter, "baxter", ["A359363", "A056939"], False)
+@set_attributes(_baxter, "Baxter", ["A359363", "A056939"], False)
 def baxter(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _baxter(n).copy()
@@ -736,6 +748,31 @@ def bessel(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _bessel(n).copy()
     return _bessel(n)[k]
+
+
+@cache
+def _bessel2(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [1, 0]
+    row = _bessel2(n - 1) + [0]
+    row[n] = 0 if n % 2 else row[n - 2]
+    for k in range(2, n, 2):
+        row[k] = (n * row[k]) // (n - k)
+    return row
+
+
+@set_attributes(
+    _bessel2,
+    "Bessel2",
+    ["A359760", "A073278", "A066325", "A099174", "A111924", "A144299", "A104556"],
+    True,
+)
+def bessel2(n: int, k: int = -1) -> list[int] | int:
+    if k == -1:
+        return _bessel2(n).copy()
+    return _bessel2(n)[k]
 
 
 @cache
@@ -1413,7 +1450,7 @@ def _motzkin(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_motzkin, "Motzkin-Poly", ["A"], True)
+@set_attributes(_motzkin, "Motzkin", ["A359364"], True)
 def motzkin(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _motzkin(n).copy()
@@ -1434,7 +1471,7 @@ def _motzkin_gf(n: int) -> list[int]:
     return row
 
 
-@set_attributes(_motzkin_gf, "Motzkin-Gf", ["A026300", "A064189", "A009766"], True)
+@set_attributes(_motzkin_gf, "MotzkinGF", ["A026300", "A064189", "A009766"], True)
 def motzkin_gf(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _motzkin_gf(n).copy()
@@ -1976,6 +2013,7 @@ tabl_fun: list[tri] = [
     baxter,
     bell,
     bessel,
+    bessel2,
     binomial,
     catalan,
     catalan_aerated,
@@ -2150,6 +2188,27 @@ def SaveExtendedProfiles(path: str, dim: int = 10, seqonly: bool = True) -> None
     dest.close()
 
 
+def CrossReferences(path="xrefs.md") -> None:
+    """Writes a table in markdown style (for readme.md)
+    Uses stored data from fun.sim (no searching)
+
+    """
+    with open(path, "w+") as xrefs:
+
+        xrefs.write("Tables |  Src   | Traits   |  OEIS  SIMILARS |\n")
+        xrefs.write("| :--- | :---   | :---     |    :---         |\n")
+        for fun in tabl_fun:
+            id = fun.id
+            similars = fun.sim
+            anum = ""
+            s = str(similars).replace("[", "").replace("]", "").replace("'", "")
+            for sim in similars:
+                anum += "%7Cid%3A" + sim
+            xrefs.write(
+                f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/tables.md#{id}) | [src](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://oeis.org/search?q={anum}) |\n"
+            )
+
+
 Header = [
     "<!DOCTYPE html>",
     "<html lang='en'><head><meta charset='UTF-8'/>",
@@ -2178,7 +2237,7 @@ Table = [
 ]
 Footer = [
     "<p>Note: The A-numbers are based on a finite number of numerical comparisons. ",
-    "They ignore the offset and<br>sign, and might differ in the first few values.",
+    "They ignore the offset and sign, and might differ in the first few values.",
     "<i>Go to the <a href='https://luschny.de/math/oeis/index.html'>index</a>, ",
     "to the <a href='https://luschny.de/math/oeis/tables.html'>tables</a>, ",
     "or the <a href='https://github.com/PeterLuschny/tabl'>Python sources</a> on GitHub.</i></p>",
@@ -2224,26 +2283,35 @@ def CsvToHtml(fun: tri, csvpath: str, outpath: str) -> None:
                 outfile.write(l)
 
 
-def AllCsvToHtml(csvpath, outpath) -> None:
+def AllCsvToHtml(csvpath=GetCsvPath(), outpath=GetHtmlPath()) -> None:
     for fun in tabl_fun:
         CsvToHtml(fun, csvpath, outpath)
 
 
-def shortabsdata(inpath: str, outpath: str) -> None:
-    with open(inpath, "r") as oeisdata:
-        reader = csv.reader(oeisdata)
-        seq_list = [[seq[0], [abs(int(t)) for t in seq[1:-1]]] for seq in reader]
-        with open(outpath, "w") as outfile:
-            for seq in seq_list:
-                if len(seq[1]) < 29:
-                    continue
-                s = (
-                    str(seq[1][0:28])
-                    .replace("[", ",")
-                    .replace("]", ",")
-                    .replace(" ", "")
-                )
-                outfile.write(str(seq[0]) + s + "\n")
+def get_compressed() -> None:
+    oeisstripped = "https://oeis.org/stripped.gz"
+    r = requests.get(oeisstripped, stream=True)
+    with open(strippedpath, "wb") as local:
+        for chunk in r.iter_content(chunk_size=8192):
+            if chunk:
+                local.write(chunk)
+    with gzip.open(strippedpath, "rb") as gz:
+        with open(oeispath, "wb") as da:
+            da.write(gz.read())
+
+
+def oeisabsdata() -> None:
+    """Make all terms absolute."""
+    with open(oeispath, "r") as oeisdata:
+        with open(datapath, "w") as absdata:
+            for seq in oeisdata:
+                if not "#" in seq:
+                    absdata.write(seq.replace("-", ""))
+
+
+def GetOEISdata() -> None:
+    get_compressed()
+    oeisabsdata()
 
 
 def ess_equal(s: list[int], tt: list[int]) -> tuple[int, int, int]:
@@ -2356,25 +2424,6 @@ def GetSimilarTriangles(datapath: str, fun: tri) -> list:
         return similars
 
 
-def md_table() -> None:
-    """Writes a table in markdown style (for readme.md)
-    Uses stored data from fun.sim (no searching)
-
-    """
-    print("Tables |  Src   | Traits   |  OEIS  SIMILARS |")
-    print("| :--- | :---   | :---     |    :---         |")
-    for fun in tabl_fun:
-        id = fun.id
-        similars = fun.sim
-        anum = ""
-        s = str(similars).replace("[", "").replace("]", "").replace("'", "")
-        for sim in similars:
-            anum += "%7Cid%3A" + sim
-        print(
-            f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/tables.md#{id}) | [src](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://oeis.org/search?q={anum}) |\n"
-        )
-
-
 def SimilarTriangles(datapath: str, md: bool = True) -> None:
     """Searches the database for all similar triangles for all
     triangles defined in this package (listed in tabl_fun).
@@ -2417,7 +2466,7 @@ def FindSequence(seq: str) -> str:
     with open(datapath, "r") as database:
         for data in database:
             if seq in data:
-                return data[:6]
+                return data[:7]
     return ""
 
 
@@ -2431,6 +2480,13 @@ def GetAnumber(seq: list[int]) -> str:
     """
     for n in range(3):
         seqstr = SeqToFixlenString(seq[n:], 100, ",")
+        abstr = seqstr.replace("-", "").replace(" ", "")[1:-1]
+        anum = FindSequence(abstr)
+        if anum != "":
+            return anum
+    zerofree = [t for t in seq if t != 0]
+    if zerofree != seq:
+        seqstr = SeqToFixlenString(zerofree, 100, ",")
         abstr = seqstr.replace("-", "").replace(" ", "")[1:-1]
         anum = FindSequence(abstr)
         if anum != "":
@@ -2491,7 +2547,7 @@ def Traits(f: tri, dim: int, seqnum: bool = False, csvfile=None) -> None:
                 no_oeis.append(traitname)
             else:
                 next(count_traits_with_anum)
-                sanum = "A" + str(anum)
+                sanum = anum
             line = f"{funname},{traitname},{sanum},{seqstr}"
             if csvfile != None:
                 csvfile.write(line + "\n")

@@ -5,10 +5,11 @@ from _tablviews import PrintViews
 from _tabltypes import tri, inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
 from _tabltraitcard import Traits
 from _tablpaths import GetCsvPath, GetAllCsvPath
-from tabl import tabl_fun
-from pathlib import Path
+# from tabl import tabl_fun
+
 
 # #@
+
 
 def sortfile(inpath, outpath) -> None:
 
@@ -18,6 +19,7 @@ def sortfile(inpath, outpath) -> None:
             outlines = sorted(set(inlines))
             for line in outlines:
                 outfile.write(line)
+
 
 def GenerateCsvFile(fun: tri, dim: int = 24) -> None:
     csvfile = fun.id + ".csv"
@@ -128,7 +130,35 @@ def SaveExtendedProfiles(path: str, dim: int = 10, seqonly: bool = True) -> None
     dest.close()
 
 
+def CrossReferences(path = 'xrefs.md') -> None:
+    """Writes a table in markdown style (for readme.md)
+    Uses stored data from fun.sim (no searching) 
+    
+    """
+
+    with open(path, 'w+') as xrefs:
+        
+        xrefs.write("Tables |  Src   | Traits   |  OEIS  SIMILARS |\n")
+        xrefs.write("| :--- | :---   | :---     |    :---         |\n")
+
+        for fun in tabl_fun:
+            id = fun.id
+            similars = fun.sim
+            anum = ""
+            s = str(similars).replace("[", "").replace("]", "").replace("'", "")
+            for sim in similars:
+                anum += "%7Cid%3A" + sim
+            xrefs.write(
+                f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/tables.md#{id}) | [src](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://oeis.org/search?q={anum}) |\n"
+            )
+
+
 if __name__ == "__main__":
 
-    from Abel import abel
-    GenerateCsvFile(abel, 12)
+    #from Abel import abel
+    #GenerateCsvFile(abel, 12)
+
+    GenerateAllCsvFiles()
+    #SaveExtendedTables()
+    #CrossReferences()
+    print("Done")

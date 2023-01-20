@@ -1,6 +1,6 @@
 import csv
 from _tabltypes import tri, tabl, SubTriangle, AbsSubTriangle
-from tabl import tabl_fun
+# from tabl import tabl_fun
 
 # #@
 
@@ -89,26 +89,6 @@ def GetSimilarTriangles(datapath: str, fun: tri) -> list:
         return similars
 
 
-def md_table() -> None:
-    """Writes a table in markdown style (for readme.md)
-    Uses stored data from fun.sim (no searching) 
-    
-    """
-    print("Tables |  Src   | Traits   |  OEIS  SIMILARS |")
-    print("| :--- | :---   | :---     |    :---         |")
-
-    for fun in tabl_fun:
-        id = fun.id
-        similars = fun.sim
-        anum = ""
-        s = str(similars).replace("[", "").replace("]", "").replace("'", "")
-        for sim in similars:
-            anum += "%7Cid%3A" + sim
-        print(
-            f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/tables.md#{id}) | [src](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://oeis.org/search?q={anum}) |\n"
-        )
-
-
 def SimilarTriangles(datapath: str, md: bool = True) -> None:
     """Searches the database for all similar triangles for all
     triangles defined in this package (listed in tabl_fun).
@@ -144,10 +124,10 @@ def SimilarTriangles(datapath: str, md: bool = True) -> None:
 
 if __name__ == "__main__":
 
-    from _tablpaths import GetShortDataPath
+    from _tablpaths import GetDataPath
     from Lah import lah
 
     # Essentially equal triangles are:
     # Lah similars: ['A008297', 'A066667', 'A089231',
     #                'A105278', 'A111596', 'A271703']
-    GetSimilarTriangles(GetShortDataPath(), lah)
+    GetSimilarTriangles(GetDataPath(), lah)

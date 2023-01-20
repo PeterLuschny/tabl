@@ -24,7 +24,7 @@ def FindSequence(seq: str) -> str:
     with open(datapath, "r") as database:
         for data in database:
             if seq in data:
-                return data[:6]
+                return data[:7]
     return ""
 
 
@@ -44,6 +44,15 @@ def GetAnumber(seq: list[int]) -> str:
         anum = FindSequence(abstr)
         if anum != "": 
             return anum
+
+    zerofree = [t for t in seq if t != 0]
+    if zerofree != seq:
+        seqstr = SeqToFixlenString(zerofree, 100, ',')
+        abstr = seqstr.replace("-", "").replace(" ", "")[1:-1]
+        anum = FindSequence(abstr)
+        if anum != "": 
+            return anum
+
     return ""
 
 
@@ -107,7 +116,7 @@ def Traits(f: tri, dim: int, seqnum: bool = False, csvfile = None) -> None:
                 no_oeis.append(traitname) 
             else:
                 next(count_traits_with_anum)
-                sanum = 'A' + str(anum)
+                sanum = anum
 
             line = f"{funname},{traitname},{sanum},{seqstr}"
             if csvfile != None:
@@ -196,10 +205,7 @@ if __name__ == "__main__":
     from Lah import lah
     
     # Quick ckeck without A-numbers, recommended.
-    # Traits(lah, 12)
+    Traits(lah, 12)
 
     # With A-numbers, much slower:
-    # Traits(lah, 20, True)
-
-    from Motzkin import motzkin
-    Traits(motzkin, 20, True)
+    # Traits(abel, 20, True)
