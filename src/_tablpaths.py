@@ -11,7 +11,7 @@ strippedpath = (path / relstrippedpath).resolve()
 reloeispath = "data/oeis.csv"
 oeispath = (path / reloeispath).resolve()
 
-reldatapath = "data/abs_data.csv"
+reldatapath = "data/oeis_data.csv"
 datapath = (path / reldatapath).resolve()
 
 propath = (path / relprofpath).resolve()
@@ -32,12 +32,20 @@ csvpath = (path / relcsvpath).resolve()
 relhtmlpath = 'data/html'
 htmlpath = (path / relhtmlpath).resolve()
 
+relmdpath = 'data/md'
+mdpath = (path / relmdpath).resolve()
+
 
 def GetDataPath() -> Path:
     return datapath
 
+
 def GetCsvPath() -> Path:
     return csvpath
+
+
+def GetMdPath() -> Path:
+    return mdpath
 
 
 def GetAllCsvPath() -> Path:

@@ -25,6 +25,8 @@ allcsvfile = "data/allcsv.csv"
 allcsvpath = (path / allcsvfile).resolve()
 relhtmlpath = "data/html"
 htmlpath = (path / relhtmlpath).resolve()
+relmdpath = "data/md"
+mdpath = (path / relmdpath).resolve()
 
 
 def GetDataPath() -> Path:
@@ -41,6 +43,10 @@ def GetAllCsvPath() -> Path:
 
 def GetHtmlPath() -> Path:
     return htmlpath
+
+
+def GetMdPath() -> Path:
+    return mdpath
 
 
 setrecursionlimit(2100)
@@ -974,7 +980,7 @@ def _compo(n: int) -> list[int]:
     return [cm[k] - cm[k - 1] if k > 0 else 0 for k in range(n + 1)]
 
 
-@set_attributes(_compo, "Compositions", ["A048004"], True)
+@set_attributes(_compo, "Composition", ["A048004"], True)
 def compo(n: int, k: int = -1) -> list[int] | int:
     if k == -1:
         return _compo(n).copy()
@@ -2130,12 +2136,34 @@ def SaveTables(dim: int = 7) -> None:
                 PrintViews(fun, dim)
 
 
-def SaveExtendedTables(dim: int = 7) -> None:
+def SaveExtendedTablesOneFile(dim: int = 7) -> None:
     tim: int = dim + dim
     path = "tables.md"
     with open(path, "w+") as dest:
         with contextlib.redirect_stdout(dest):
             for fun in tabl_fun:
+                PrintViews(fun, dim)
+                I = inversion_wrapper(fun, tim)
+                if I != None:
+                    PrintViews(I, dim)
+                R = reversion_wrapper(fun, tim)
+                PrintViews(R, dim)
+                R = revinv_wrapper(fun, tim)
+                if R != None:
+                    PrintViews(R, dim)
+                R = invrev_wrapper(fun, tim)
+                if R != None:
+                    PrintViews(R, dim)
+
+
+def SaveExtendedTables(dim: int = 7) -> None:
+    tim: int = dim + dim
+    path = GetMdPath()
+    for fun in tabl_fun:
+        tblfile = fun.id + ".md"
+        tablpath = (path / tblfile).resolve()
+        with open(tablpath, "w+") as dest:
+            with contextlib.redirect_stdout(dest):
                 PrintViews(fun, dim)
                 I = inversion_wrapper(fun, tim)
                 if I != None:
@@ -2188,15 +2216,13 @@ def SaveExtendedProfiles(path: str, dim: int = 10, seqonly: bool = True) -> None
     dest.close()
 
 
-def CrossReferences(path="xrefs.md") -> None:
-    """Writes a table in markdown style (for readme.md)
+def CrossReferences(path="crossrefs.md") -> None:
+    """Writes a table in markdown style.
     Uses stored data from fun.sim (no searching)
-
     """
     with open(path, "w+") as xrefs:
-
-        xrefs.write("Tables |  Src   | Traits   |  OEIS  SIMILARS |\n")
-        xrefs.write("| :--- | :---   | :---     |    :---         |\n")
+        xrefs.write("Table  |  Source | Traits   |  OEIS similars |\n")
+        xrefs.write("| :--- | :---    | :---     |  :---          |\n")
         for fun in tabl_fun:
             id = fun.id
             similars = fun.sim
@@ -2205,7 +2231,7 @@ def CrossReferences(path="xrefs.md") -> None:
             for sim in similars:
                 anum += "%7Cid%3A" + sim
             xrefs.write(
-                f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/tables.md#{id}) | [src](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://oeis.org/search?q={anum}) |\n"
+                f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/data/md/{id}.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://oeis.org/search?q={anum}) |\n"
             )
 
 

@@ -187,10 +187,13 @@ data_path: list[str] = [
     "allcsvpath = (path / allcsvfile).resolve()\n",
     "relhtmlpath = 'data/html'\n",
     "htmlpath = (path / relhtmlpath).resolve()\n",
+    "relmdpath = 'data/md'\n",
+    "mdpath = (path / relmdpath).resolve()\n",
     "def GetDataPath() -> Path: return datapath\n",
     "def GetCsvPath() -> Path: return csvpath\n",
     "def GetAllCsvPath() -> Path: return allcsvpath\n",
     "def GetHtmlPath() -> Path: return htmlpath\n",
+    "def GetMdPath() -> Path: return mdpath\n",
 ]
 
 def make() -> None:

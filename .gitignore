@@ -1,6 +1,10 @@
 local/
 docs/
-data/
+data/html
+data/misc
+data/stripped
+data/oeis.csv
+data/oeis_data.csv
 __pycache__/
 _pycache_/
 .vscode

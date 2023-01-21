@@ -28,7 +28,7 @@ def _compo(n: int) -> list[int]:
 
 @set_attributes(
     _compo,
-    "Compositions",
+    "Composition",
     ['A048004'],
     True)
 def compo(n: int, k: int = -1) -> list[int] | int:
