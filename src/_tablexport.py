@@ -181,8 +181,8 @@ def CrossReferences(path="crossrefs.md") -> None:
 
     with open(path, "w+") as xrefs:
 
-        xrefs.write("Table  |  Source | Traits   |  OEIS similars |\n")
-        xrefs.write("| :--- | :---    | :---     |  :---          |\n")
+        xrefs.write("| Table |  Source | Traits   |  OEIS similars |\n")
+        xrefs.write("| :---  | :---    | :---     |  :---          |\n")
 
         for fun in tabl_fun:
             id = fun.id
