@@ -96,7 +96,7 @@ def SaveExtendedTablesOneFile(dim: int = 7) -> None:
                     PrintViews(R, dim)
 
 
-def SaveExtendedTables(dim: int = 7) -> None:
+def SaveExtendedTables(dim: int = 9) -> None:
 
     tim: int = dim + dim
     path = GetMdPath()
@@ -176,7 +176,6 @@ def SaveExtendedProfiles(path: str, dim: int = 10, seqonly: bool = True) -> None
 def CrossReferences(path="crossrefs.md") -> None:
     """Writes a table in markdown style.
     Uses stored data from fun.sim (no searching)
-
     """
 
     with open(path, "w+") as xrefs:
@@ -202,6 +201,6 @@ if __name__ == "__main__":
     # GenerateCsvFile(abel, 12)
 
     # GenerateAllCsvFiles()
-    # SaveExtendedTables()
-    CrossReferences()
+    SaveExtendedTables()
+    # CrossReferences()
     print("Done")

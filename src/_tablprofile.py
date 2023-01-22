@@ -114,5 +114,6 @@ if __name__ == "__main__":
     #PrintProfile(leibniz, dim, 'twolines')
     #PrintProfile(motzkin, dim, format)
     PrintExtendedProfile(chebyshevS, dim, 'twolines')
+    PrintExtendedProfile(chebyshevS, dim, 'oneline')
     #PrintExtendedProfile(motzkin, dim, format)
 

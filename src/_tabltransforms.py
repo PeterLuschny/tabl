@@ -77,6 +77,11 @@ def transbin_val(f: tri, lg: int) -> trow:
     return [row[-1] for row in T]
 
 
+def transbinval(T: tabl) -> trow:
+    R = [trans_seq(binomial, lambda k: T[n][k], n + 1) for n in range(len(T))]
+    return [row[-1] for row in R]
+
+
 def invtrans_seq(T: tri, a: seq, lg: int) -> trow:
     return [ sum((-1) ** (n - k) * T(n, k) * a(k) for k in range(n + 1))
         for n in range(lg) ]
@@ -95,6 +100,11 @@ def invtransbin_val(f: tri, lg: int) -> trow:
     return [row[-1] for row in T]
 
 
+def invtransbinval(T: tabl) -> trow:
+    R = [trans_seq(binomial, lambda k: (-1) ** (n - k) * T[n][k], n + 1) for n in range(len(T))]
+    return [row[-1] for row in R]
+
+
 def row_diag(T: tri, j: int, leng: int) -> trow:
     return [T(j + k, k) for k in range(leng)]
 
@@ -109,45 +119,89 @@ def row_lcm(f: tri, n: int) -> int:
     return reduce(lcm, Z) if Z != [] else 1
 
 
+def tabl_lcm(f: tri, leng: int) -> trow:
+    return [row_lcm(f, n) for n in range(leng)]
+
+
+def rowlcm(t: trow) -> int:
+    Z = [v for v in t if not v in [-1, 0, 1]]
+    return reduce(lcm, Z) if Z != [] else 1
+
+
+def tabllcm(t: tabl) -> trow:
+    return [rowlcm(row) for row in t]
+
+
 # Note our convention to exclude 0 and 1.
 def row_gcd(f: tri, n: int) -> int:
     Z = [v for v in f(n) if not v in [-1, 0, 1]]
     return reduce(gcd, Z) if Z != [] else 1
 
 
-def tabl_lcm(f: tri, leng: int) -> list[int]:
-    return [row_lcm(f, n) for n in range(leng)]
-
-
-def tabl_gcd(f: tri, leng: int) -> list[int]:
+def tabl_gcd(f: tri, leng: int) -> trow:
     return [row_gcd(f, n) for n in range(leng)]
 
 
+def rowgcd(t: trow) -> int:
+    Z = [v for v in t if not v in [-1, 0, 1]]
+    return reduce(gcd, Z) if Z != [] else 1
+
+
+def tablgcd(t: tabl) -> trow:
+    return [rowgcd(row) for row in t]
+
+
+# Note our convention to use the abs value.
 def row_max(f: tri, n: int) -> int:
     absf =[abs(t) for t in f(n)]
     return reduce(max, absf) 
 
 
-def tabl_max(f: tri, leng: int) -> list[int]:
+def tabl_max(f: tri, leng: int) -> trow:
     return [row_max(f, n) for n in range(leng)]
+
+
+def rowmax(t: trow) -> int:
+    absrow = [abs(i) for i in t]
+    return reduce(max, absrow) 
+
+
+def tablmax(t: tabl) -> trow:
+    return [rowmax(row) for row in t]
 
 
 ################################################
 
-def trans(M: tri, V: Callable, leng: int) -> list[int]:
+def trans(M: tri, V: Callable, leng: int) -> trow:
     return [sum(M(n, k) * V(k) for k in range(n + 1)) for n in range(leng)]
 
 
-def trans_sqrs(f: tri, n:int) -> list[int]: 
+def trans_sqrs(f: tri, n:int) -> trow: 
     return trans(f, lambda k: k * k, n)
 
 
-def trans_nat0(f: tri, n:int) -> list[int]: 
+def trans_nat0(f: tri, n:int) -> trow: 
     return trans(f, lambda k: k, n)
 
 
-def trans_nat1(f: tri, n:int) -> list[int]: 
+def trans_nat1(f: tri, n:int) -> trow: 
     return trans(f, lambda k: k + 1, n)
+
+
+def transT(M: tabl, V: Callable) -> trow:
+    return [sum(M[n][k] * V(k) for k in range(n + 1)) for n in range(len(M))]
+
+
+def transsqrs(T: tabl) -> trow: 
+    return transT(T, lambda k: k * k)
+
+
+def transnat0(T: tabl) -> trow: 
+    return transT(T, lambda k: k)
+
+
+def transnat1(T: tabl) -> trow: 
+    return transT(T, lambda k: k + 1)
 
 
 def diag_tabl(t: tabl) -> tabl:
@@ -204,19 +258,19 @@ def flat_accrev(t: tabl) -> trow:
     return [i for row in accrev_tabl(t) for i in row]
 
 
-def middle(t: tabl) -> list[int]:
+def middle(t: tabl) -> trow:
     return [row[n // 2] for n, row in enumerate(t)]
 
 
-def central(t: tabl) -> list[int]:
+def central(t: tabl) -> trow:
     return [row[n // 2] for n, row in enumerate(t) if n % 2 == 0]
 
 
-def left_side(t: tabl) -> list[int]:
+def left_side(t: tabl) -> trow:
     return [row[0] for row in t]
 
 
-def right_side(t: tabl)  -> list[int]:
+def right_side(t: tabl)  -> trow:
     return [row[-1] for row in t]
 
 
@@ -226,7 +280,7 @@ if __name__ == "__main__":
     from Binomial import binomial
     from StirlingSet import stirling_set
     from StirlingCyc import stirling_cycle
-    from MotzkinGF import motzkin
+    from Motzkin import motzkin
 
     #col_poly
     #print(col_poly(stirling_set, 0, 12))

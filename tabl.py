@@ -308,6 +308,11 @@ def transbin_val(f: tri, lg: int) -> trow:
     return [row[-1] for row in T]
 
 
+def transbinval(T: tabl) -> trow:
+    R = [trans_seq(binomial, lambda k: T[n][k], n + 1) for n in range(len(T))]
+    return [row[-1] for row in R]
+
+
 def invtrans_seq(T: tri, a: seq, lg: int) -> trow:
     return [
         sum((-1) ** (n - k) * T(n, k) * a(k) for k in range(n + 1)) for n in range(lg)
@@ -327,6 +332,14 @@ def invtransbin_val(f: tri, lg: int) -> trow:
     return [row[-1] for row in T]
 
 
+def invtransbinval(T: tabl) -> trow:
+    R = [
+        trans_seq(binomial, lambda k: (-1) ** (n - k) * T[n][k], n + 1)
+        for n in range(len(T))
+    ]
+    return [row[-1] for row in R]
+
+
 def row_diag(T: tri, j: int, leng: int) -> trow:
     return [T(j + k, k) for k in range(leng)]
 
@@ -340,17 +353,35 @@ def row_lcm(f: tri, n: int) -> int:
     return reduce(lcm, Z) if Z != [] else 1
 
 
+def tabl_lcm(f: tri, leng: int) -> trow:
+    return [row_lcm(f, n) for n in range(leng)]
+
+
+def rowlcm(t: trow) -> int:
+    Z = [v for v in t if not v in [-1, 0, 1]]
+    return reduce(lcm, Z) if Z != [] else 1
+
+
+def tabllcm(t: tabl) -> trow:
+    return [rowlcm(row) for row in t]
+
+
 def row_gcd(f: tri, n: int) -> int:
     Z = [v for v in f(n) if not v in [-1, 0, 1]]
     return reduce(gcd, Z) if Z != [] else 1
 
 
-def tabl_lcm(f: tri, leng: int) -> list[int]:
-    return [row_lcm(f, n) for n in range(leng)]
-
-
-def tabl_gcd(f: tri, leng: int) -> list[int]:
+def tabl_gcd(f: tri, leng: int) -> trow:
     return [row_gcd(f, n) for n in range(leng)]
+
+
+def rowgcd(t: trow) -> int:
+    Z = [v for v in t if not v in [-1, 0, 1]]
+    return reduce(gcd, Z) if Z != [] else 1
+
+
+def tablgcd(t: tabl) -> trow:
+    return [rowgcd(row) for row in t]
 
 
 def row_max(f: tri, n: int) -> int:
@@ -358,24 +389,49 @@ def row_max(f: tri, n: int) -> int:
     return reduce(max, absf)
 
 
-def tabl_max(f: tri, leng: int) -> list[int]:
+def tabl_max(f: tri, leng: int) -> trow:
     return [row_max(f, n) for n in range(leng)]
 
 
-def trans(M: tri, V: Callable, leng: int) -> list[int]:
+def rowmax(t: trow) -> int:
+    absrow = [abs(i) for i in t]
+    return reduce(max, absrow)
+
+
+def tablmax(t: tabl) -> trow:
+    return [rowmax(row) for row in t]
+
+
+def trans(M: tri, V: Callable, leng: int) -> trow:
     return [sum(M(n, k) * V(k) for k in range(n + 1)) for n in range(leng)]
 
 
-def trans_sqrs(f: tri, n: int) -> list[int]:
+def trans_sqrs(f: tri, n: int) -> trow:
     return trans(f, lambda k: k * k, n)
 
 
-def trans_nat0(f: tri, n: int) -> list[int]:
+def trans_nat0(f: tri, n: int) -> trow:
     return trans(f, lambda k: k, n)
 
 
-def trans_nat1(f: tri, n: int) -> list[int]:
+def trans_nat1(f: tri, n: int) -> trow:
     return trans(f, lambda k: k + 1, n)
+
+
+def transT(M: tabl, V: Callable) -> trow:
+    return [sum(M[n][k] * V(k) for k in range(n + 1)) for n in range(len(M))]
+
+
+def transsqrs(T: tabl) -> trow:
+    return transT(T, lambda k: k * k)
+
+
+def transnat0(T: tabl) -> trow:
+    return transT(T, lambda k: k)
+
+
+def transnat1(T: tabl) -> trow:
+    return transT(T, lambda k: k + 1)
 
 
 def diag_tabl(t: tabl) -> tabl:
@@ -432,19 +488,19 @@ def flat_accrev(t: tabl) -> trow:
     return [i for row in accrev_tabl(t) for i in row]
 
 
-def middle(t: tabl) -> list[int]:
+def middle(t: tabl) -> trow:
     return [row[n // 2] for n, row in enumerate(t)]
 
 
-def central(t: tabl) -> list[int]:
+def central(t: tabl) -> trow:
     return [row[n // 2] for n, row in enumerate(t) if n % 2 == 0]
 
 
-def left_side(t: tabl) -> list[int]:
+def left_side(t: tabl) -> trow:
     return [row[0] for row in t]
 
 
-def right_side(t: tabl) -> list[int]:
+def right_side(t: tabl) -> trow:
     return [row[-1] for row in t]
 
 
@@ -505,10 +561,10 @@ def PrintFlat(t: tabl) -> None:
 
 
 def PrintRows(t: tabl) -> None:
-    print("| trow  |  list  |")
-    print("| :---  |  :---  |")
+    print("|  Row   |  Seq   |")
+    print("| :---   |  :---  |")
     for n, row in enumerate(t):
-        print(f"| trow{n} | {row} |")
+        print(f"| Row{n} | {row} |")
 
 
 def PrintTerms(t: tabl) -> None:
@@ -520,54 +576,74 @@ def PrintTerms(t: tabl) -> None:
 
 
 def PrintRowArray(T: tri, rows: int, cols: int) -> None:
-    print("| rdiag  |   seq  |")
-    print("| :---   |  :---  |")
+    print("| DiagRow  |   Seq  |")
+    print("| :---     |  :---  |")
     for j in range(rows):
-        print(f"| rdiag{j} | {[T(j + k, k) for k in range(cols)]}|")
+        print(f"| DiagRow{j} | {[T(j + k, k) for k in range(cols)]}|")
 
 
 def PrintColArray(T: tri, rows: int, cols: int) -> None:
-    print("| cdiag  |   seq  |")
-    print("| :---   |  :---  |")
+    print("| DiagCol  |   Seq  |")
+    print("| :---     |  :---  |")
     for j in range(cols):
-        print(f"| cdiag{j} | {[T(j + k, j) for k in range(rows)]} |")
+        print(f"| DiagCol{j} | {[T(j + k, j) for k in range(rows)]} |")
 
 
-def PrintRowPolyArray(T: tri, rows: int, cols: int) -> None:
-    print("| rpdiag  |   seq  |")
-    print("| :---    |  :---  |")
+def PrintPolyRowArray(T: tri, rows: int, cols: int) -> None:
+    print("| PolyRow  |   Seq  |")
+    print("| :---     |  :---  |")
     for n in range(rows):
-        print(f"| rpdiag{n} | {row_poly(T, n, cols)} |")
+        print(f"| PolyRow{n} | {row_poly(T, n, cols)} |")
 
 
-def PrintColPolyArray(T: tri, rows: int, cols: int) -> None:
-    print("| cpdiag  |   seq  |")
-    print("| :---    |  :---  |")
+def PrintPolyColArray(T: tri, rows: int, cols: int) -> None:
+    print("| PolyCol  |   Seq  |")
+    print("| :---     |  :---  |")
     for n in range(rows):
-        print(f"| cpdiag{n} | {col_poly(T, n, cols)} |")
+        print(f"| PolyCol{n} | {col_poly(T, n, cols)} |")
 
 
 def PrintSums(t: tabl) -> None:
-    print("| sum        |   seq  |")
-    print("| :---       |  :---  |")
-    print(f"| sum       | {tabl_sum(t)} |")
-    print(f"| evensum   | {tabl_evensum(t)} |")
-    print(f"| oddsum    | {tabl_oddsum(t)} |")
-    print(f"| altsum    | {tabl_altsum(t)} |")
-    print(f"| diagsum   | {tabl_diagsum(t)} |")
-    print(f"| accusum   | {tabl_accsum(t)} |")
-    print(f"| revaccusum | {tabl_revaccsum(t)} |")
+    print("| Sum       |   Seq  |")
+    print("| :---      |  :---  |")
+    print(f"| Sum       | {tabl_sum(t)} |")
+    print(f"| EvenSum   | {tabl_evensum(t)} |")
+    print(f"| OddSum    | {tabl_oddsum(t)} |")
+    print(f"| AltSum    | {tabl_altsum(t)} |")
+    print(f"| AccSum    | {tabl_accsum(t)} |")
+    print(f"| AccRevSum | {tabl_accrevsum(t)} |")
+    print(f"| RevAccSum | {tabl_revaccsum(t)} |")
+    print(f"| DiagSum   | {tabl_diagsum(t)} |")
 
 
 def PrintFlats(t: tabl) -> None:
-    print("| flat      |   seq  |")
+    print("| Flat      |  Seq  |")
+    print("| :---      | :---  |")
+    print(f"| Triangle  | {flat_tabl(t)} |")
+    print(f"| TriRev    | {flat_rev(t)} |")
+    print(f"| TriAcc    | {flat_acc(t)} |")
+    print(f"| TriRevAcc | {flat_revacc(t)} |")
+    print(f"| TriAccRev | {flat_accrev(t)} |")
+    print(f"| TriDiag   | {flat_diag(t)} |")
+
+
+def PrintTrans(t: tabl) -> None:
+    print("| Trans     |   Seq  |")
     print("| :---      |  :---  |")
-    print(f"| tabl     | {flat_tabl(t)} |")
-    print(f"| rev      | {flat_rev(t)} |")
-    print(f"| accu     | {flat_acc(t)} |")
-    print(f"| revaccu  | {flat_revacc(t)} |")
-    print(f"| accurev  | {flat_accrev(t)} |")
-    print(f"| diag     | {flat_diag(t)} |")
+    print(f"| RowLcm    | {tabllcm(t)} |")
+    print(f"| RowGcd    | {tablgcd(t)} |")
+    print(f"| RowMax    | {tablmax(t)} |")
+    print(f"| Middle    | {middle(t)} |")
+    print(f"| Central   | {central(t)} |")
+    print(f"| LeftSide  | {left_side(t)} |")
+    print(f"| RightSide | {right_side(t)} |")
+    print(f"| PosHalf   | {pos_half(t)} |")
+    print(f"| NegHalf   | {neg_half(t)} |")
+    print(f"| Bin       | {transbinval(t)} |")
+    print(f"| InvBin    | {invtransbinval(t)} |")
+    print(f"| TransSqrs | {transsqrs(t)} |")
+    print(f"| TransNat0 | {transnat0(t)} |")
+    print(f"| TransNat1 | {transnat1(t)} |")
 
 
 def PrintViews(T: tri, rows: int = 7, verbose: bool = True) -> None:
@@ -581,12 +657,16 @@ def PrintViews(T: tri, rows: int = 7, verbose: bool = True) -> None:
     PrintRows(t)
     print()
     if verbose:
-        print(T.id, "Flattened seqs")
+        print(T.id, "Flattened triangles")
     PrintFlats(t)
     print()
     if verbose:
         print(T.id, "Row sums")
     PrintSums(t)
+    print()
+    if verbose:
+        print(T.id, "Transforms")
+    PrintTrans(t)
     print()
     if verbose:
         print(T.id, "Diagonals as rows")
@@ -598,11 +678,11 @@ def PrintViews(T: tri, rows: int = 7, verbose: bool = True) -> None:
     print()
     if verbose:
         print(T.id, "Polynomial values as rows")
-    PrintRowPolyArray(T, rows, cols)
+    PrintPolyRowArray(T, rows, cols)
     print()
     if verbose:
         print(T.id, "Polynomial values as columns")
-    PrintColPolyArray(T, rows, cols)
+    PrintPolyColArray(T, rows, cols)
     print()
 
 
@@ -2156,7 +2236,7 @@ def SaveExtendedTablesOneFile(dim: int = 7) -> None:
                     PrintViews(R, dim)
 
 
-def SaveExtendedTables(dim: int = 7) -> None:
+def SaveExtendedTables(dim: int = 9) -> None:
     tim: int = dim + dim
     path = GetMdPath()
     for fun in tabl_fun:
@@ -2221,8 +2301,8 @@ def CrossReferences(path="crossrefs.md") -> None:
     Uses stored data from fun.sim (no searching)
     """
     with open(path, "w+") as xrefs:
-        xrefs.write("Table  |  Source | Traits   |  OEIS similars |\n")
-        xrefs.write("| :--- | :---    | :---     |  :---          |\n")
+        xrefs.write("| Table |  Source | Traits   |  OEIS similars |\n")
+        xrefs.write("| :---  | :---    | :---     |  :---          |\n")
         for fun in tabl_fun:
             id = fun.id
             similars = fun.sim
