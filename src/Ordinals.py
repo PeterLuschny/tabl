@@ -15,24 +15,22 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _ordinals(n: int) -> list[int]:
-    if n == 0:
-        return [0]
-
-    return _ordinals(n - 1) + [n]
+def ordinals(n: int) -> list[int]:
+    
+    if n == 0: return [0]
+    return ordinals(n - 1) + [n]
 
 
 @set_attributes(
-    _ordinals, 
+    ordinals, 
     "Ordinals", 
     ['A002260', 'A002262', 'A004736', 'A025581'], 
     False)
-def ordinals(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _ordinals(n).copy()
-    return _ordinals(n)[k]
+def Ordinals(n: int, k: int) -> int: 
+    return ordinals(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(ordinals)
+    TablTest(Ordinals)

@@ -4,7 +4,6 @@ from _tabltypes import set_attributes
 
 
 """Abel polynomials (unsigned coefficients).
-
 [0] [1]
 [1] [0,        1]
 [2] [0,        2,       1]
@@ -18,25 +17,24 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _abel(n: int) -> list[int]:
+def abel(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    return [binomial(n - 1, k - 1) * n ** (n - k) if k > 0 else 0 for k in range(n + 1)]
+    b = binomial(n - 1)
+    return [b[k - 1] * n ** (n - k) if k > 0 else 0 for k in range(n + 1)]
 
 
 @set_attributes(
-    _abel, 
+    abel, 
     "Abel", 
     ['A061356', 'A137452', 'A139526'], 
     True)
-def abel(n: int, k: int = -1) -> list[int] | int:
-    if k == -1:
-        return _abel(n).copy()
-    return _abel(n)[k]
+def Abel(n: int, k: int) -> int:
+    return abel(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(abel, short=True)
+    TablTest(Abel, short=True)

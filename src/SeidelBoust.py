@@ -1,6 +1,6 @@
 from functools import cache
 from _tabltypes import set_attributes
-from Seidel import _seidel
+from Seidel import seidel
 
 
 """Seidel boustrophedon:
@@ -17,21 +17,20 @@ from Seidel import _seidel
 
 # #@
 
-def _seidel_boust(n: int) -> list[int]:
-    return _seidel(n) if n % 2 else _seidel(n)[::-1]
+def seidel_boust(n: int) -> list[int]:
+    return seidel(n) if n % 2 else seidel(n)[::-1]
 
 
 @set_attributes(
-    _seidel_boust, 
+    seidel_boust, 
     "SeidelBoust", 
     ['A008280', 'A108040', 'A236935', 'A239005'], 
     False)
-def seidel_boust(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _seidel_boust(n).copy()
-    return _seidel_boust(n)[k]
+def SeidelBoust(n: int, k: int) -> int: 
+    return seidel_boust(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(seidel_boust)
+    TablTest(SeidelBoust)

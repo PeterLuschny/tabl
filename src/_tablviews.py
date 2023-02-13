@@ -1,6 +1,9 @@
-from _tabltypes import tri, tabl
-from _tablsums import tabl_sum, tabl_evensum, tabl_oddsum, tabl_altsum, tabl_accsum, tabl_revaccsum, tabl_accrevsum, tabl_diagsum
-from _tabltransforms import flat_tabl, flat_rev, flat_diag, row_poly,  col_poly, middle, central, left_side, right_side, pos_half, neg_half,  flat_acc, flat_revacc, flat_accrev, tabllcm, tablgcd, tablmax,  transbinval, invtransbinval, transsqrs,transnat0, transnat1 
+from _tabltypes import  rgen, tgen, tabl
+from _tablpoly import PolyCol, PolyRow, PosHalf, NegHalf
+from _tabltabls import AccTabl, RevAccTabl, AccRevTabl, RevTabl, AntiDiagTabl
+from _tablsums import PrintSums
+from _tabltransforms import RowLcm, RowGcd, RowMax, ColMiddle,ColECentral, ColLeft,ColRight, PrintTransforms 
+
 
 # #@
 
@@ -9,7 +12,8 @@ def PrintTabl(t: tabl) -> None:
 
 
 def PrintFlat(t: tabl) -> None:
-    print(flat_tabl(t))
+    #print(flat(t))
+    print(t)
 
 
 def PrintRows(t: tabl) -> None:
@@ -27,123 +31,114 @@ def PrintTerms(t: tabl) -> None:
             count += 1
 
 
-def PrintRowArray(T: tri, rows: int, cols: int) -> None:
+def PrintRowArray(T: rgen, rows: int, cols: int) -> None:
     print("| DiagRow  |   Seq  |")
     print("| :---     |  :---  |")
     for j in range(rows):
-        print(f'| DiagRow{j} | {[T(j + k, k) for k in range(cols)]}|')
+        print(f'| DiagRow{j} | {[T(j + k)[k] for k in range(cols)]}|')
 
 
-def PrintColArray(T: tri, rows: int, cols: int) -> None:
+def PrintColArray(T: rgen, rows: int, cols: int) -> None:
     print("| DiagCol  |   Seq  |")
     print("| :---     |  :---  |")
     for j in range(cols):
-        print(f'| DiagCol{j} | {[T(j + k, j) for k in range(rows)]} |')
+        print(f'| DiagCol{j} | {[T(j + k)[j] for k in range(rows)]} |')
 
 
-def PrintPolyRowArray(T: tri, rows: int, cols: int) -> None:
+def PrintPolyRowArray(T: rgen, rows: int, cols: int) -> None:
     print("| PolyRow  |   Seq  |")
     print("| :---     |  :---  |")
+    ########### broken? Motzkin PolyRow0, []
     for n in range(rows):
-        print(f'| PolyRow{n} | {row_poly(T, n, cols)} |')
+        print(f'| PolyRow{n} | {PolyRow(T, n, cols)} |')
 
 
-def PrintPolyColArray(T: tri, rows: int, cols: int) -> None:
+def PrintPolyColArray(T: rgen, rows: int, cols: int) -> None:
     print("| PolyCol  |   Seq  |")
     print("| :---     |  :---  |")
+    ########### broken? Motzkin PolyCol0, []
     for n in range(rows):
-        print(f'| PolyCol{n} | {col_poly(T, n, cols)} |')
-
-
-def PrintSums(t: tabl) -> None:
-    print( "| Sum       |   Seq  |")
-    print( "| :---      |  :---  |")
-    print(f'| Sum       | {tabl_sum(t)} |')
-    print(f'| EvenSum   | {tabl_evensum(t)} |')
-    print(f'| OddSum    | {tabl_oddsum(t)} |')
-    print(f'| AltSum    | {tabl_altsum(t)} |')
-    print(f'| AccSum    | {tabl_accsum(t)} |')
-    print(f'| AccRevSum | {tabl_accrevsum(t)} |')
-    print(f'| RevAccSum | {tabl_revaccsum(t)} |')
-    print(f'| DiagSum   | {tabl_diagsum(t)} |')
+        print(f'| PolyCol{n} | {PolyCol(T, n, cols)} |')
 
 
 def PrintFlats(t: tabl) -> None:
-    print( "| Flat      |  Seq  |")
-    print( "| :---      | :---  |")
-    print(f'| Triangle  | {flat_tabl(t)} |')
-    print(f'| TriRev    | {flat_rev(t)} |')
-    print(f'| TriAcc    | {flat_acc(t)} |')
-    print(f'| TriRevAcc | {flat_revacc(t)} |')
-    print(f'| TriAccRev | {flat_accrev(t)} |')
-    print(f'| TriDiag   | {flat_diag(t)} |')
+    print( "| Flat       |  Seq  |")
+    print( "| :---       | :---  |")
+    print(f'| Tabl       | {t} |')
+    print(f'| RevTabl    | {RevTabl(t)} |')
+    print(f'| AntiDiag   | {AntiDiagTabl(t)} |')
+    print(f'| AccTabl    | {AccTabl(t)} |')
+    print(f'| RevAccTabl | {RevAccTabl(t)} |')
+    print(f'| AccRevTabl | {AccRevTabl(t)} |')
 
 
 def PrintTrans(t: tabl) -> None:
-    print( "| Trans     |   Seq  |")
-    print( "| :---      |  :---  |")
-    print(f'| RowLcm    | {tabllcm(t)} |')
-    print(f'| RowGcd    | {tablgcd(t)} |')
-    print(f'| RowMax    | {tablmax(t)} |')
-    print(f'| Middle    | {middle(t)} |')
-    print(f'| Central   | {central(t)} |')
-    print(f'| LeftSide  | {left_side(t)} |')
-    print(f'| RightSide | {right_side(t)} |')
-    print(f'| PosHalf   | {pos_half(t)} |')
-    print(f'| NegHalf   | {neg_half(t)} |')
-    print(f'| Bin       | {transbinval(t)} |')
-    print(f'| InvBin    | {invtransbinval(t)} |')
-    print(f'| TransSqrs | {transsqrs(t)} |')
-    print(f'| TransNat0 | {transnat0(t)} |')
-    print(f'| TransNat1 | {transnat1(t)} |')
+    print( "| Trans      |   Seq  |")
+    print( "| :---       |  :---  |")
+    print(f'| RowLcm     | {RowLcm(t)} |')
+    print(f'| RowGcd     | {RowGcd(t)} |')
+    print(f'| RowMax     | {RowMax(t)} |')
+    print(f'| ColMiddle  | {ColMiddle(t)} |')
+    print(f'| ColCentral | {ColECentral(t)} |')
+    print(f'| ColLefte   | {ColLeft(t)} |')
+    print(f'| ColRight   | {ColRight(t)} |')
+    
+  #  print(f'| PosHalf   | {PosHalf(t)} |')
+  #  print(f'| NegHalf   | {NegHalf(t)} |')
+  #  print(f'| Bin       | {transbinval(t)} |')
+  #  print(f'| InvBin    | {invtransbinval(t)} |')
+  #  print(f'| TransSqrs | {TransSqrs(t)} |')
+  #  print(f'| TransNat0 | {TransNat0(t)} |')
+  #  print(f'| TransNat1 | {TransNat1(t)} |')
 
 
-def PrintViews(T: tri, rows: int = 7, verbose: bool = True) -> None:
+def PrintViews(g: tgen, rows: int = 7, verbose: bool = True) -> None:
 
-    print("# " + T.id)
-    print(T.sim)
+    print("# " + g.id)
+    print(g.sim)
 
     cols: int = rows 
     print()
 
-    t: tabl = T.tab(rows)
+    T: tabl = g.tab(rows)
 
-    if verbose: print(T.id, "Triangle view")
-    PrintRows(t)
+    if verbose: print(g.id, "Triangle view")
+    PrintRows(T)
     print()
 
-    if verbose: print(T.id, "Flattened triangles")
-    PrintFlats(t)
+    if verbose: print(g.id, "Triangles")
+    PrintFlats(T)
     print()
 
-    if verbose: print(T.id, "Row sums")
-    PrintSums(t)
+    if verbose: print(g.id, "Row sums")
+    PrintSums(T, g.id) 
     print()
 
-    if verbose: print(T.id, "Transforms")
-    PrintTrans(t)
+    if verbose: print(g.id, "Transforms")
+    PrintTrans(T)
+    PrintTransforms(g)
     print()
 
-    if verbose: print(T.id, "Diagonals as rows")
-    PrintRowArray(T, rows, cols)
+    if verbose: print(g.id, "Diagonals as rows")
+    PrintRowArray(g.gen, rows, cols)
     print()
 
-    if verbose: print(T.id, "Diagonals as columns")
-    PrintColArray(T, rows, cols)
+    if verbose: print(g.id, "Diagonals as columns")
+    PrintColArray(g.gen, rows, cols)
     print()
 
-    if verbose: print(T.id, "Polynomial values as rows")
-    PrintPolyRowArray(T, rows, cols)
+    if verbose: print(g.id, "Polynomial values as rows")
+    PrintPolyRowArray(g.gen, rows, cols)
     print()
 
-    if verbose: print(T.id, "Polynomial values as columns")
-    PrintPolyColArray(T, rows, cols)
+    if verbose: print(g.id, "Polynomial values as columns")
+    PrintPolyColArray(g.gen, rows, cols)
     print()
 
 
 if __name__ == "__main__":
 
-    from Abel import abel
-    from Bell import bell
+    from Abel import Abel
+    from Bell import Bell
 
-    PrintViews(abel, 9)
+    PrintViews(Abel, 6)

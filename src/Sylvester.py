@@ -1,6 +1,6 @@
 from functools import cache
-from Binomial import binomial
-from StirlingCyc import stirling_cycle
+from Binomial import Binomial
+from StirlingCyc import StirlingCycle
 from _tabltypes import set_attributes
 
 """Sylvester polynomials.
@@ -17,22 +17,21 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _sylvester(n: int) -> list[int]:
-    return [sum(binomial(n, k - j) * stirling_cycle(n - k + j, j)
-            for j in range(k + 1)) for k in range(n + 1)]
+def sylvester(n: int) -> list[int]:
+    s = lambda n, k: sum(Binomial(n, k - j) * StirlingCycle(n - k + j, j) for j in range(k + 1))
+    return [s(n, k) for k in range(n + 1)]
 
 
 @set_attributes(
-    _sylvester, 
+    sylvester, 
     "Sylvester", 
     ['A341101'], 
     False)
-def sylvester(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _sylvester(n).copy()
-    return _sylvester(n)[k]
+def Sylvester(n: int, k: int) -> int: 
+    return sylvester(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(sylvester)
+    TablTest(Sylvester)

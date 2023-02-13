@@ -15,13 +15,12 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _central_cycle(n: int) -> list[int]:
-    if n == 0:
-        return [1]
-    if n == 1:
-        return [0, 1]
+def central_cycle(n: int) -> list[int]:
+    
+    if n == 0: return [1]
+    if n == 1: return [0, 1]
 
-    row: list[int] = _central_cycle(n - 1) + [0]
+    row: list[int] = central_cycle(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = (n + k - 1) * (row[k] + row[k - 1])
 
@@ -29,16 +28,15 @@ def _central_cycle(n: int) -> list[int]:
 
 
 @set_attributes(
-    _central_cycle, 
-    "CentralCyc", 
+    central_cycle, 
+    "CentralCycle", 
     ['A111999', 'A259456', 'A269940'], 
     False)
-def central_cycle(n: int, k: int = -1) -> list[int] | int:
-    if k == -1: return _central_cycle(n).copy()
-    return _central_cycle(n)[k]
+def CentralCycle(n: int, k: int) -> int:
+    return central_cycle(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(central_cycle)
+    TablTest(CentralCycle)

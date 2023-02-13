@@ -17,30 +17,28 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _delannoy(n: int) -> list[int]:
-    if n == 0:
-        return [1]
-    if n == 1:
-        return [1, 1]
+def delannoy(n: int) -> list[int]:
 
-    rov: list[int] = _delannoy(n - 2)
-    row: list[int] = _delannoy(n - 1) + [1]
+    if n == 0: return [1]
+    if n == 1: return [1, 1]
+
+    rov: list[int] = delannoy(n - 2)
+    row: list[int] = delannoy(n - 1) + [1]
     for k in range(n - 1, 0, -1):
         row[k] += row[k - 1] + rov[k - 1]
     return row
 
 
 @set_attributes(
-    _delannoy, 
+    delannoy, 
     "Delannoy", 
     ['A008288'], 
     False)
-def delannoy(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _delannoy(n).copy()
-    return _delannoy(n)[k]
+def Delannoy(n: int, k: int) -> int: 
+    return delannoy(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(delannoy)
+    TablTest(Delannoy)

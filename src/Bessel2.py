@@ -17,11 +17,11 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _bessel2(n: int) -> list[int]:
+def bessel2(n: int) -> list[int]:
     if n == 0: return [1]
     if n == 1: return [1, 0]
 
-    row = _bessel2(n - 1) + [0]
+    row = bessel2(n - 1) + [0]
     row[n] = 0 if n % 2 else row[n - 2]
     for k in range(2, n, 2):
         row[k] = (n * row[k]) // (n - k)
@@ -29,16 +29,15 @@ def _bessel2(n: int) -> list[int]:
 
 
 @set_attributes(
-    _bessel2, 
+    bessel2, 
     "Bessel2", 
     ['A359760', 'A073278', 'A066325', 'A099174', 'A111924', 'A144299', 'A104556'],
     True)
-def bessel2(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _bessel2(n).copy()
-    return _bessel2(n)[k]
+def Bessel2(n: int, k: int) -> int: 
+    return bessel2(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(bessel2)
+    TablTest(Bessel2)

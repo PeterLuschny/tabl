@@ -19,31 +19,31 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _narayana(n: int) -> list[int]:
-    if n < 3:
-        return ([1], [0, 1], [0, 1, 1])[n]
+def narayana(n: int) -> list[int]:
+    
+    if n < 3: return ([1], [0, 1], [0, 1, 1])[n]
 
-    a: list[int] = _narayana(n - 2) + [0, 0]
-    row: list[int] = _narayana(n - 1) + [1]
+    a: list[int] = narayana(n - 2) + [0, 0]
+    row: list[int] = narayana(n - 1) + [1]
     for k in range(n - 1, 1, -1):
         row[k] = (
             (row[k] + row[k - 1]) * (2 * n - 1)
             - (a[k] - 2 * a[k - 1] + a[k - 2]) * (n - 2)
         ) // (n + 1)
+
     return row
 
 
 @set_attributes(
-    _narayana, 
+    narayana, 
     "Narayana", 
     ['A001263', 'A090181', 'A131198'], 
     True)
-def narayana(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _narayana(n).copy()
-    return _narayana(n)[k]
+def Narayana(n: int, k: int) -> int: 
+    return narayana(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(narayana)
+    TablTest(Narayana)

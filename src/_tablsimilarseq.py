@@ -1,6 +1,5 @@
 import csv
 from pathlib import Path
-from _tabltransforms import SeqToFixlenString
 
 # #@
 
@@ -50,7 +49,7 @@ def ess_equal(s: list[int], tt: list[int]) -> tuple[int, int, int]:
     return (-1, -1, 0)
 
 
-def read_seqdata(datapath: str) -> list[list]:
+def read_seqdata(datapath: Path) -> list[list]:
 
     seq_list = []
     with open(datapath, "r") as oeisdata:
@@ -88,12 +87,34 @@ if __name__ == "__main__":
     # [],STIRLING2SET,TransNat1,
     e = [ 1,2,5,15,52,203,877,4140,21147,115975,678570,4213597,27644437,190899322,]
 
-    search = e
-    print(search)
-    print("Similar sequences are:")
+    def test():
+        search = e
+        print(search)
+        print("Similar sequences are:")
 
-    seqs = read_seqdata(GetDataPath())
-    anums = SimilarSequences(seqs, search)
-    for anum in anums: 
-        print(anum)
+        seqs = read_seqdata(GetDataPath())
+        anums = SimilarSequences(seqs, search)
+        for anum in anums: 
+            print(anum)
+
+    def test1():
+        #datapath = GetDataPath()
+        #csvpath = 'data/csv/Abel.csv'
+        #filepath = (datapath / csvpath).resolve()
+    
+        filepath = Path("C:\\Users\\User\\PythonTabl\\IntegerTriangles.py\\data\\csv\\Abel.csv")
+        seq_list = []
+        with open(filepath, "r") as oeisdata:
+            reader = csv.reader(oeisdata)
+            # Abel,Triangle  ,A137452,[1 0 1 0 
+            seq_list = [[seq[0], seq[1], seq[2]] for seq in reader]
+
+        return seq_list
+        
+    seqs = test1()
+    for s in seqs:
+        print(s)
+
+    test1()
+
     print("... done")

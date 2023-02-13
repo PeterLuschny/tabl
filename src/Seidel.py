@@ -15,12 +15,12 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _seidel(n: int) -> list[int]:
-    if n == 0:
-        return [1]
+def seidel(n: int) -> list[int]:
 
-    rowA: list[int] = _seidel(n - 1)
-    row: list[int] = [0] + _seidel(n - 1)
+    if n == 0: return [1]
+
+    rowA: list[int] = seidel(n - 1)
+    row: list[int] = [0] + seidel(n - 1)
     row[1] = row[n]
     for k in range(2, n + 1):
         row[k] = row[k - 1] + rowA[n - k]
@@ -28,16 +28,15 @@ def _seidel(n: int) -> list[int]:
 
 
 @set_attributes(
-    _seidel, 
+    seidel, 
     "Seidel", 
     ['A008281', 'A008282', 'A010094'], 
     False)
-def seidel(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _seidel(n).copy()
-    return _seidel(n)[k]
+def Seidel(n: int, k: int) -> int: 
+    return seidel(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(seidel)
+    TablTest(Seidel)

@@ -15,11 +15,11 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _genocchi(n: int) -> list[int]:
-    if n == 0:
-        return [1]
+def genocchi(n: int) -> list[int]:
 
-    row: list[int] = [0] + _genocchi(n - 1) + [0]
+    if n == 0: return [1]
+
+    row: list[int] = [0] + genocchi(n - 1) + [0]
 
     for k in range(n, 0, -1):
         row[k] += row[k + 1]
@@ -31,16 +31,15 @@ def _genocchi(n: int) -> list[int]:
 
 
 @set_attributes(
-    _genocchi, 
+    genocchi, 
     "Genocchi", 
     ['A297703'], 
     False)
-def genocchi(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _genocchi(n).copy()
-    return _genocchi(n)[k]
+def Genocchi(n: int, k: int) -> int: 
+    return genocchi(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(genocchi)
+    TablTest(Genocchi)

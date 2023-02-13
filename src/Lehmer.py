@@ -25,22 +25,21 @@ def t(n: int, k: int, m: int) -> int:
     return m * t(n, k - 1, m) + t(n - 1, k, m + 1)
 
 @cache
-def _lehmer(n: int) -> list[int]:
+def lehmer(n: int) -> list[int]:
     return [t(k - 1, n - k, n - k) if n != k else 1 for k in range(n + 1)]
 
 
 @set_attributes(
-    _lehmer, 
+    lehmer, 
     "Lehmer", 
     ['A039621', 'A354794'], 
     True)
-def lehmer(n: int, k: int = -1) -> list[int] | int:
-    if k == -1: return _lehmer(n).copy()
-    return _lehmer(n)[k]
+def Lehmer(n: int, k: int) -> int:
+    return lehmer(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
     # TODO Needs a more efficient implementation.
-    TablTest(lehmer, short=True)
+    TablTest(Lehmer, short=True)

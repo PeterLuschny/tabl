@@ -14,8 +14,8 @@ from _tablinverse import InverseTriangle, InverseTabl
 #
 # A subtriangle of the standard triangle T as indexed above
 # is given by a new root node [N, K].
-# For some dimension dim > 0 it is defined as
-# T[N, K, dim] = [[T(n, k) for k in range(K, K - N + n + 1)] for n in range(N, N + dim)]
+# For some dimension size > 0 it is defined as
+# T[N, K, size] = [[T(n, k) for k in range(K, K - N + n + 1)] for n in range(N, N + size)]
 
 
 """Type: table row"""
@@ -31,121 +31,123 @@ seq: TypeAlias = Callable[[int], int]
 rgen: TypeAlias = Callable[[int], trow]
 
 """Type: table generator"""
-tgen: TypeAlias = Callable[[int], tabl]
+#tgen: TypeAlias = Callable[[int, int], list[int] | int]  | Callable[[int], list[int] | int] 
+tgen: TypeAlias = Callable[[int, int], int]
 
 """Type: triangle"""
-tri: TypeAlias = Callable[[int, int], trow | int]
+tri: TypeAlias = Callable[[int, int], int]
+
+#   Two types of traits:
+#   print(signature(EvenSum))
+#   (t: list[list[int]]) -> list[int]
+#   print(signature(DiagRow0))
+#   (g: Callable[[int], list[int]], size: int) -> list[int]
 
 
-def inversion_wrapper(T: tri, dim: int) -> tri | None:
+def inversion_wrapper(T: tgen, size: int) -> tgen | None:
 
-    t = T.inv(dim)
+    t = T.inv(size)
     if t == []: return None
-    def _psgen(n: int) -> trow: return list(t[n])
+    def psgen(n: int) -> trow: return list(t[n])
 
-    @set_attributes(_psgen, T.id + "Inv", True)
-    def psgen(n: int, k: int = -1) -> list[int] | int:
-        if k == -1: return _psgen(n)
-        return _psgen(n)[k]
+    @set_attributes(psgen, T.id + ":Inv", [], True)
+    def Psgen(n: int, k: int) ->  int:
+        return psgen(n)[k]
 
-    return psgen
-
-
-def reversion_wrapper(T: tri, dim: int) -> tri:
-
-    t = T.rev(dim)
-    def _rsgen(n: int) -> trow: return list(t[n]) 
-
-    @set_attributes(_rsgen, T.id + "Rev", True)
-    def rsgen(n: int, k: int = -1) -> list[int] | int:
-        if k == -1: return _rsgen(n)
-        return _rsgen(n)[k]
-
-    return rsgen
+    return Psgen
 
 
-def revinv_wrapper(T: tri, dim: int) -> tri | None:
+def reversion_wrapper(T: tgen, size: int) -> tgen:
 
-    I = inversion_wrapper(T, dim)
+    t = T.rev(size)
+    def rsgen(n: int) -> trow: return list(t[n]) 
+
+    @set_attributes(rsgen, T.id + ":Rev", [], True)
+    def Rsgen(n: int, k: int) -> int:
+        return rsgen(n)[k]
+
+    return Rsgen
+
+
+def revinv_wrapper(T: tgen, size: int) -> tgen | None:
+
+    I = inversion_wrapper(T, size)
     if I == None: return None
-    T = reversion_wrapper(I, dim)
+    J = reversion_wrapper(I, size)
 
-    def _rigen(n: int) -> trow: return list(T(n))
+    def rigen(n: int) -> trow: return list(J.gen(n))
 
-    @set_attributes(_rigen, T.id, True)
-    def rigen(n: int, k: int = -1) -> list[int] | int:
-        if k == -1: return _rigen(n)
-        return _rigen(n)[k]
+    @set_attributes(rigen, J.id, [], True)
+    def Rigen(n: int, k: int) -> int:
+        return rigen(n)[k]
 
-    return rigen
-
-
-def invrev_wrapper(T: tri, dim: int) -> tri | None:
-
-    R = reversion_wrapper(T, dim)
-    T = inversion_wrapper(R, dim)
-    if T == None: return None
-
-    def _tigen(n: int) -> trow: return list(T(n))
-
-    @set_attributes(_tigen, T.id, True)
-    def tigen(n: int, k: int = -1) -> list[int] | int:
-        if k == -1: return _tigen(n)
-        return _tigen(n)[k]
-
-    return tigen
+    return Rigen
 
 
-def SubTriangle(T: tri, N: int, K: int, dim: int) -> tabl:
-    return [[T(n, k) for k in range(K, K - N + n + 1)] for n in range(N, N + dim)]
+def invrev_wrapper(T: tgen, size: int) -> tgen | None:
+
+    R = reversion_wrapper(T, size)
+    S = inversion_wrapper(R, size)
+    if S == None: return None
+
+    def tigen(n: int) -> trow: return list(S.gen(n))
+
+    @set_attributes(tigen, S.id, [], True)
+    def Tigen(n: int, k: int) -> int:
+        return tigen(n)[k]
+
+    return Tigen
 
 
-def AbsSubTriangle(T: tri, N: int, K: int, dim: int) -> tabl:
-    return [[abs(T(n, k)) for k in range(K, K - N + n + 1)] for n in range(N, N + dim)]
+def SubTriangle(g: rgen, N: int, K: int, size: int) -> tabl:
+    return [[g(n)[k] for k in range(K, K - N + n + 1)] for n in range(N, N + size)]
 
 
+def AbsSubTriangle(g: rgen, N: int, K: int, size: int) -> tabl:
+    return [[abs(g(n)[k]) for k in range(K, K - N + n + 1)] for n in range(N, N + size)]
 
-def set_attributes(r: rgen, id: str, sim: list, vert: bool=False) -> Callable[[tri], tri]:
 
-    def maketab(dim: int) -> tabl:
-        return [list(r(n)) for n in range(dim)]
+def set_attributes(gen: rgen, id: str, sim: list, vert: bool=False) -> Callable[..., Callable[[int,int], int]]:
 
-    def makerev(dim: int) -> tabl:
-        return [list(reversed(r(n))) for n in range(dim)]
+    def maketab(size: int) -> tabl:
+        return [list(gen(n)) for n in range(size)]
 
-    def makemat(dim: int) -> tabl:
-        return [[r(n)[k] if k <= n else 0 for k in range(dim)] for n in range(dim)]
+    def makerev(size: int) -> tabl:
+        return [list(reversed(gen(n))) for n in range(size)]
 
-    def makeflat(dim: int) -> tabl:
-        return [r(n)[k] for n in range(dim) for k in range(n + 1)]
+    def makemat(size: int) -> tabl:
+        return [[gen(n)[k] if k <= n else 0 for k in range(size)] for n in range(size)]
 
-    def makeinv(dim: int) -> tabl:
+    def makeflat(size: int) -> list[int]:
+        return [gen(n)[k] for n in range(size) for k in range(n + 1)]
+
+    def makeinv(size: int) -> tabl:
         if not vert: return []
-        return InverseTriangle(r, dim)
+        return InverseTriangle(gen, size)
 
-    def makerevinv(dim: int) -> tabl:
+    def makerevinv(size: int) -> tabl:
         if not vert: return []
-        I = InverseTriangle(r, dim)
+        I = InverseTriangle(gen, size)
         if I == []: return []
-        return [[I[n][n - k] for k in range(n + 1)] for n in range(dim)]
+        return [[I[n][n - k] for k in range(n + 1)] for n in range(size)]
 
-    def makeinvrev(dim: int) -> tabl:
-        R = [list(reversed(r(n))) for n in range(dim)]
-        M = [[R[n][k] if k <= n else 0 for k in range(dim)] for n in range(dim)]
+    def makeinvrev(size: int) -> tabl:
+        R = [list(reversed(gen(n))) for n in range(size)]
+        M = [[R[n][k] if k <= n else 0 for k in range(size)] for n in range(size)]
         return InverseTabl(M)
 
     def sub(N: int, K: int) -> Callable[[int], tabl]:
-        def gsub(dim: int) -> tabl:
-            return [[r(n)[k] for k in range(K, K - N + n + 1)] for n in range(N, N + dim)]
+        def gsub(size: int) -> tabl:
+            return [[gen(n)[k] for k in range(K, K - N + n + 1)] for n in range(N, N + size)]
         return gsub
 
     def abssub(N: int, K: int) -> Callable[[int], tabl]:
-        def gabssub(dim: int) -> tabl:
-            return [[abs(r(n)[k]) for k in range(K, K - N + n + 1)] for n in range(N, N + dim)]
+        def gabssub(size: int) -> tabl:
+            return [[abs(gen(n)[k]) for k in range(K, K - N + n + 1)] for n in range(N, N + size)]
         return gabssub
 
 
-    def wrapper(f: tri) -> tri:
+    def wrapper(f: Callable[[int, int], int]) -> Callable[[int, int], int]:
         f.tab = maketab
         f.rev = makerev
         f.mat = makemat
@@ -157,92 +159,112 @@ def set_attributes(r: rgen, id: str, sim: list, vert: bool=False) -> Callable[[t
         f.abssub = abssub
         f.sim = sim
         f.id = id
+        f.gen = gen
         return f
+
     return wrapper
 
 
 if __name__ == "__main__":
 
-    from Abel import abel
-    from Bell import bell
-    from StirlingSet import stirling_set
-    from Delannoy import delannoy
-    from ChebyshevT import chebyshevT
+    from Abel import Abel
+    from Bell import Bell
+    from StirlingSet import StirlingSet
+    from Delannoy import Delannoy
+    from ChebyshevT import ChebyshevT
 
-    f = chebyshevT # stirling_set
-    g = delannoy
-    dim = 6
+    F = StirlingSet 
+    G = Delannoy
+    size = 6
 
 
-    T = f.tab(dim)
-    print("TRI    ", T)
+    T = F.tab(size)
+    print("tgen    ", T)
 
-    T = f.flat(dim)
+    T = F.flat(size)
     print("FLAT   ", T)
 
-    i = reversion_wrapper(f, dim)
-    T = i.tab(dim)
+    i = reversion_wrapper(F, size)
+    T = i.tab(size)
     print("REV    ", T)
 
-    i = inversion_wrapper(f, dim)
+    i = inversion_wrapper(F, size)
     if i != None:
-        T = i.tab(dim)
+        T = i.tab(size)
         print("INV    ", T)
 
 
     print("Stirling +++++++++++++++++")
 
-    i = revinv_wrapper(f, dim)
+    i = revinv_wrapper(F, size)
     if i != None:
-        T = i.tab(dim)
+        T = i.tab(size)
         print("INV|REV", T)
     else:
         print("None")
 
-    print("#", f.revinv(dim))
+    print("#", F.revinv(size))
 
     print("---")
 
-    i = invrev_wrapper(f, dim)
+    i = invrev_wrapper(F, size)
     if i != None:
-        T = i.tab(dim)
+        T = i.tab(size)
         print("REV|INV", T)
     else:
         print("None")
 
-    print("#", f.invrev(dim))
+    print("#", F.invrev(size))
 
     print("Delannoy +++++++++++++++++")
 
-    i = revinv_wrapper(g, dim)
+    i = revinv_wrapper(G, size)
     if i != None:
-        T = i.tab(dim)
+        T = i.tab(size)
         print("INV|REV", T)
     else:
         print("None")
 
-    print("#", g.revinv(dim))
+    print("#", G.revinv(size))
 
     print("---")
 
-    i = invrev_wrapper(g, dim)
+    i = invrev_wrapper(G, size)
     if i != None:
-        T = i.tab(dim)
+        T = i.tab(size)
         print("REV|INV", T)
     else:
         print("None")
 
-    print("#", g.invrev(dim))
+    print("#", G.invrev(size))
 
     print("xxxxx")
-    print(abel.sim)
+    print(Abel.sim)
     print("===")
-    print(abel.tab(6))
-    print(abel.sub(0,0)(6))
-    print(abel.sub(1,0)(6))
-    print(abel.sub(1,1)(6))
+    print(Abel.tab(6))
+    print(Abel.sub(0,0)(6))
+    print(Abel.sub(1,0)(6))
+    print(Abel.sub(1,1)(6))
     print("===")
-    print(bell.tab(6))
-    print(bell.sub(0,0)(6))
-    print(bell.sub(1,0)(6))
-    print(bell.sub(1,1)(6))
+    print(Bell.tab(6))
+    print(Bell.sub(0,0)(6))
+    print(Bell.sub(1,0)(6))
+    print(Bell.sub(1,1)(6))
+
+
+'''
+    print(Abel.tab(6))
+    print()
+
+    abel11 = lambda n: Abel.sub(1,1)(n)
+
+    @set_attributes(
+    abel11, 
+    "Abel11", 
+    ['A359', 'A05'],
+    False)
+    def Abel11(n: int, k: int) -> int: 
+        return abel11(n)[k]
+    
+    print(Abel11(3,2))
+'''

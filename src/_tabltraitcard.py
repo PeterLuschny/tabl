@@ -1,13 +1,40 @@
 from itertools import count
 from math import floor
-from pathlib import Path
+from typing import Callable
 from _tablpaths import GetDataPath
-from _tabltypes import tri, tabl
+from _tabltypes import rgen, tgen, tabl, trow
 from _tablsimilartri import GetSimilarTriangles
-from _tablsums import tabl_accsum, tabl_altsum, tabl_diagsum, tabl_evensum, tabl_oddsum, tabl_revaccsum, tabl_sum, diag_tabl, tabl_accrevsum
-from _tabltransforms import row_diag, row_poly, col_diag, col_poly, middle, central, left_side, right_side, pos_half, neg_half, trans_self, diag_tabl, poly_tabl, flat_acc, flat_revacc, flat_accrev, poly_diag, transbin_tabl, tabl_lcm, tabl_gcd, tabl_max, invtransbin_tabl, transbin_val, invtransbin_val, trans_sqrs, trans_nat0, trans_nat1, SeqToFixlenString
+from _tablpoly import PolyRow0, PolyRow1, PolyRow2, PolyRow3, PolyCol0, PolyCol1, PolyCol2, PolyCol3, PolyDiag, PosHalf, NegHalf, FlatPoly
+from _tablsums import RowSum, EvenSum, OddSum, AltSum, AccSum, AccRevSum, AntiDiagSum
+from _tabltabls import FlatTabl, FlatAccTabl, FlatRevAccTabl, FlatAccRevTabl, FlatAntiDiagTabl, FlatRevTabl, FlatInvTabl, FlatInvRevTabl, FlatRevInvTabl, FlatDiffx 
+from _tabltransforms import FlatBinTabl, FlatInvBinTabl, BinConv, InvBinConv,  RowLcm, RowGcd, RowMax, DiagRow0, DiagRow1, DiagRow2, DiagRow3, DiagCol0, DiagCol1, DiagCol2, DiagCol3, TransSqrs, TransNat0, TransNat1, ColMiddle, ColECentral, ColOCentral, ColLeft, ColRight 
+
+"""
+Pretty printing of triangles trait cards.
+
+| A-number | Triangle   | Form | Function  | Sequence                                    |
+|----------|------------|------|-----------|---------------------------------------------|
+| A000302  | Binomial   | Std  | PolyVal3  | 1, 4, 16, 64, 256, 1024, 4096, 16384        |
+| A001333  | SchroederB | Inv  | AltSum    | 1, -1, 3, -7, 17, -41, 99, -239             |
+| A006012  | SchroederL | Inv  | AltSum    | 1, -2, 6, -20, 68, -232, 792, -2704         |
+| A026302  | Motzkin    | Rev  | Central   | 1, 2, 9, 44, 230, 1242, 6853, 38376         |
+| A103194  | Laguerre   | Std  | TransNat0 | 0, 1, 6, 39, 292, 2505, 24306, 263431       |
+| A111884  | Lah        | Std  | TransAlts | 1, -1, -1, -1, 1, 19, 151, 1091             |
+| A000000  | Laguerre   | Rev  | TransNat1 | 1, 3, 15, 97, 753, 6771, 68983, 783945      |
+"""
 
 # #@
+
+
+def SeqToFixlenString(seq: list[int], maxlen:int=90, separator=',') -> str:
+    stri = "["
+    maxl = 3
+    for trm in seq:
+        s = str(trm) + separator
+        maxl += len(s)
+        if maxl > maxlen: break
+        stri += s
+    return stri + "]"
 
 
 def FindSequence(seq: str) -> str:
@@ -45,7 +72,7 @@ def GetAnumber(seq: list[int]) -> str:
         if anum != "": 
             return anum
 
-    zerofree = [t for t in seq if t != 0]
+    zerofree = [t for t in seq[1:] if t != 0]
     if zerofree != seq:
         seqstr = SeqToFixlenString(zerofree, 100, ',')
         abstr = seqstr.replace("-", "").replace(" ", "")[1:-1]
@@ -69,143 +96,458 @@ def flat(t: tabl) -> list[int]:
     return [i for row in t for i in row] 
 
 
-def Traits(f: tri, dim: int, seqnum: bool = False, csvfile = None) -> None: 
-    """Generate the traits of a triangle and look them up
-    in the database, then write the result in a csv file.
 
-    Args:
-        f (tri): Triangle (function)
-        dim (int): Length of triangle table to generate
-        seqnum (bool, optional): Look up the oeis A-number. Defaults to False.
-        csvfile (TextIOWrapper, optional): Open csv file. Defaults to None.
-    """
-    T  = f.tab(dim) 
-    R  = f.rev(dim) 
-    I  = f.inv(dim) 
-    RI = f.revinv(dim) 
-    IR = f.invrev(dim) 
-    # funname = f.id
-    funname = f.__name__
+#########################################################
 
-    maxlen = (dim * (dim + 1)) // 2
+TRAIT: dict[str, Callable] = {}
+def RegisterTrait(f: Callable[[tabl], trow]) -> None: 
+    TRAIT[f.__name__] = f
 
-    count_all_traits = count()
-    count_traits_with_anum = count()
-    no_oeis = []
+TRAIT2: dict[str, Callable] = {}
+def RegisterTrait2(f: Callable[[rgen, int], trow]) -> None:
+    TRAIT2[f.__name__] = f
 
-    def printer(seq: list[int], traitname: str, tria: bool=False) -> None:
-        """Writes to the csv file if given or prints otherwise.
+def register() -> None:
 
-        Args:
-            seq (list[int]): sequence
-            traitname (str): trait
-            tria (bool, optional): Is seq a triangle?. Defaults to False.
-        """    
-        next(count_all_traits)
+    RegisterTrait(FlatTabl)
+    RegisterTrait(FlatRevTabl)
+    RegisterTrait(FlatInvTabl)
+    RegisterTrait(FlatInvRevTabl)
+    RegisterTrait(FlatRevInvTabl)
 
-        seqstr = SeqToFixlenString(seq, 70, ' ')
-        line = ""
+    RegisterTrait(FlatAccTabl)
+    RegisterTrait(FlatRevAccTabl) # rarely found
+    RegisterTrait(FlatAccRevTabl)
+    RegisterTrait(FlatAntiDiagTabl)
+    RegisterTrait(FlatDiffx)
 
-        if seqnum:
-            #if tria:  # needs function, not tabl
-            #    anum = GetSimilarTriangles()
-            #else:
-            anum = GetAnumber(seq)
-            if anum == "": 
-                sanum = "nothing"
-                no_oeis.append(traitname) 
-            else:
-                next(count_traits_with_anum)
-                sanum = anum
+    RegisterTrait(FlatBinTabl)    # rarely found
+    RegisterTrait(FlatInvBinTabl) # rarely found
 
-            line = f"{funname},{traitname},{sanum},{seqstr}"
-            if csvfile != None:
-                csvfile.write(line + '\n')
+    RegisterTrait(RowSum)
+    RegisterTrait(EvenSum)
+    RegisterTrait(OddSum)
+    RegisterTrait(AltSum)
+    RegisterTrait(AccSum)
+    RegisterTrait(AccRevSum)
+    RegisterTrait(AntiDiagSum)
+
+    RegisterTrait(RowLcm)
+    RegisterTrait(RowGcd)
+    RegisterTrait(RowMax)
+    RegisterTrait(ColMiddle)
+    RegisterTrait(ColECentral)
+    RegisterTrait(ColOCentral)
+    RegisterTrait(ColLeft)
+    RegisterTrait(ColRight)
+    
+    RegisterTrait(BinConv)
+    RegisterTrait(InvBinConv)
+
+    RegisterTrait2(TransSqrs)
+    RegisterTrait2(TransNat0)
+    RegisterTrait2(TransNat1)
+    # RegisterTrait2(DiagRow0) same as ColRight
+    RegisterTrait2(DiagRow1)
+    RegisterTrait2(DiagRow2)
+    RegisterTrait2(DiagRow3)
+    # RegisterTrait2(DiagCol0) same as ColLeft
+    RegisterTrait2(DiagCol1)
+    RegisterTrait2(DiagCol2)
+    RegisterTrait2(DiagCol3)
+
+    RegisterTrait2(FlatPoly)
+    # RegisterTrait2(PolyRow0) same as ColRight
+    RegisterTrait2(PolyRow1)
+    RegisterTrait2(PolyRow2)
+    RegisterTrait2(PolyRow3)
+    # RegisterTrait2(PolyCol0) same as ColLeft
+    # RegisterTrait2(PolyCol1) same as RowSum
+    RegisterTrait2(PolyCol2) 
+    RegisterTrait2(PolyCol3)
+    RegisterTrait2(PolyDiag)
+    RegisterTrait2(PosHalf)
+    RegisterTrait2(NegHalf)
+
+
+def PrintTraits(g: tgen, size: int, 
+                withanum = False, 
+                markdown: bool = True,
+                onlythefound: bool = True) -> None:
+
+    trianglename = g.id
+    T = g.tab(size)
+    gen = g.gen
+
+    if markdown:
+
+        if withanum:
+            print( "| Triangle    | Anum    | Trait    |  Sequence   |")
+            print( "| :---        | :---    |  :---    |  :---  |")
         else:
-            line = f"{funname},{traitname},{seqstr}"
-            if csvfile != None:
-                csvfile.write(line + '\n')
-        print(line)
+            print( "| Triangle    | Trait   |  Sequence  |")
+            print( "| :---        | :---    |  :---      |")
+
+        for traitname, trait in TRAIT.items():
+            name = traitname[4:] if traitname.startswith("Flat") else traitname
+            TT = trait(T)
+            if withanum:
+                anum = '' if TT == [] else GetAnumber(TT)
+                if anum != "": 
+                    print(traitname)
+                    if onlythefound: continue
+                seqstr = SeqToFixlenString(TT, 70, ' ')    
+                print(f'| {trianglename} | {anum:7} | {name:<12} | {seqstr} |')
+            else:
+                seqstr = SeqToFixlenString(TT, 70, ' ')
+                print(f'| {trianglename} | {name:<12} | {seqstr} |')
+
+    else: # TXT simple dictionary, no options, no anums 
+
+        for traitname, trait in TRAIT.items():
+            name = traitname[4:] if traitname.startswith("Flat") else traitname
+            seqstr = SeqToFixlenString(trait(T), 70, ' ')
+            print(f'{trianglename}:{name:<14} {seqstr}')
+
+    if markdown:
+
+        for traitname, trait in TRAIT2.items():
+            TT = trait(gen, size)
+            if withanum:
+                anum = '' if TT == [] else GetAnumber(TT)
+                if anum != "": 
+                    print(traitname)
+                    if onlythefound: continue
+                seqstr = SeqToFixlenString(TT, 70, ' ')    
+                print(f'| {trianglename} | {anum:7} | {traitname:<12} | {seqstr} |')
+            else:
+                seqstr = SeqToFixlenString(TT, 70, ' ')
+                print(f'| {trianglename} | {traitname:<12} | {seqstr} |')
+
+    else:  # TXT simple dictionary, no options, no anums 
+
+        for traitname, trait in TRAIT2.items():
+            seqstr = SeqToFixlenString(trait(gen, size), 70, ' ')
+            print(f'{trianglename}:{traitname:<14} {seqstr}')
 
 
-    printer(flat(T), "Triangle ")
-    printer(flat(R), "TriRev   ")
+from _tablpaths import GetCsvPath, GetMdPath
 
-    if I != []:
-        printer(flat(I),  "TriInv   ")
-        printer(flat(RI), "TriRevInv")
+def SaveTraitsToFile(g: tgen, size: int, 
+                     withanum = False, 
+                     markdown: bool = True,
+                     onlythefound: bool = True) -> None:
 
-    if IR != []:
-        printer(flat(IR), "TriInvRev")
+    trianglename = g.id
+    T = g.tab(size)
+    gen = g.gen
 
-    printer(flat_acc(T),                    "TriAcc   ", True)
-    printer(flat_revacc(T),                 "TriRevAcc", True)
-    printer(flat_accrev(T),                 "TriAccRev", True)
-    printer(flat(diag_tabl(T)),             "TriDiag  ", True)
-    printer(flat(poly_tabl(f, dim)),        "TriPoly  ", True)
-    printer(flat(trans_self(f, dim)),       "TriConv  ", True)
-    printer(flat(transbin_tabl(f, dim)),    "TriBin   ", True)
-    printer(flat(invtransbin_tabl(f, dim)), "TriInvBin", True)
+    if markdown:
+        filepath = (GetMdPath() / f"{trianglename}.md").resolve()    
+    else:
+        filepath = (GetCsvPath() / f"{trianglename}.csv").resolve()
 
-    printer(tabl_sum(T),       "Sum      ")
-    printer(tabl_evensum(T),   "EvenSum  ")
-    printer(tabl_oddsum(T),    "OddSum   ")
-    printer(tabl_altsum(T),    "AltSum   ")
-    printer(tabl_accsum(T),    "AccSum   ")
-    printer(tabl_accrevsum(T), "AccRevSum")
-    printer(tabl_revaccsum(T), "RevAccSum")
-    printer(tabl_diagsum(T),   "DiagSum  ")
-    printer(tabl_lcm(f, dim),  "RowLcm   ")
-    printer(tabl_gcd(f, dim),  "RowGcd   ")
-    printer(tabl_max(f, dim),  "RowMax   ")
-    printer(middle(T),         "Middle   ")
-    printer(central(T),        "Central  ")
-    printer(left_side(T),      "LeftSide ")
-    printer(right_side(T),     "RightSide")
-    printer(pos_half(T),       "PosHalf  ")
-    printer(neg_half(T),       "NegHalf  ")
-    printer(transbin_val(f, maxlen),    "Bin      ")
-    printer(invtransbin_val(f, maxlen), "InvBin   ")
+    with open(filepath, "w") as target:
 
-    printer(trans_sqrs(f, maxlen),  "TransSqrs")
-    printer(trans_nat0(f, maxlen),  "TransNat0")
-    printer(trans_nat1(f, maxlen),  "TransNat1")
-    printer(row_diag(f, 0, maxlen), "DiagRow0 ")
-    printer(row_diag(f, 1, maxlen), "DiagRow1 ")
-    printer(row_diag(f, 2, maxlen), "DiagRow2 ")
-    printer(row_diag(f, 3, maxlen), "DiagRow3 ")
-    printer(col_diag(f, 0, maxlen), "DiagCol0 ")
-    printer(col_diag(f, 1, maxlen), "DiagCol1 ")
-    printer(col_diag(f, 2, maxlen), "DiagCol2 ")
-    printer(col_diag(f, 3, maxlen), "DiagCol3 ")
-    printer(row_poly(f, 0, maxlen), "PolyRow0 ")
-    printer(row_poly(f, 1, maxlen), "PolyRow1 ")
-    printer(row_poly(f, 2, maxlen), "PolyRow2 ")
-    printer(row_poly(f, 3, maxlen), "PolyRow3 ")
-    printer(col_poly(f, 0, maxlen), "PolyCol0 ")
-    printer(col_poly(f, 1, maxlen), "PolyCol1 ")
-    printer(col_poly(f, 2, maxlen), "PolyCol2 ")
-    printer(col_poly(f, 3, maxlen), "PolyCol3 ")
-    printer(poly_diag(f, maxlen),   "PolyDiag ")
+        if markdown:
 
-    if seqnum:
-        atraits = next(count_all_traits)
-        ntraits = next(count_traits_with_anum)
-        perc = floor(100 * ntraits / atraits)
-        w = f"# {f.__name__}, {atraits} traits, {ntraits} A-numbers,{perc}%"
-        if csvfile != None: csvfile.write(w)
-        print(w)
-        print(f"Not found in the OEIS: {no_oeis}\n")
+            if withanum:
+                target.write( "| Triangle    | Anum    | Trait    |  Seq   |\n")
+                target.write( "| :---        | :---    |  :---    |  :---  |\n")
+            else:
+                target.write( "| Triangle    | Trait   |  Seq       |\n")
+                target.write( "| :---        | :---    |  :---      |\n")
+
+        else: # CSV
+            
+            if withanum:
+                target.write( "Triangle,Anum,Trait,Sequence\n")
+            else:
+                target.write( "Triangle,Trait,Sequence\n")
+
+        if markdown:
+
+            for traitname, trait in TRAIT.items():
+                name = traitname[4:] if traitname.startswith("Flat") else traitname
+                TT = trait(T)
+                if withanum:
+                    anum = '' if TT == [] else GetAnumber(TT)
+                    if anum != "": 
+                        print(traitname) 
+                        if onlythefound: continue
+                    seqstr = SeqToFixlenString(TT, 70, ' ')    
+                    target.write(f'| {trianglename} | {anum:7} | {name:<12} | {seqstr} |\n')
+                else:
+                    seqstr = SeqToFixlenString(TT, 70, ' ')
+                    target.write(f'| {trianglename} | {name:<12} | {seqstr} |\n')
+
+        else: # CSV
+
+            for traitname, trait in TRAIT.items():
+                name = traitname[4:] if traitname.startswith("Flat") else traitname
+                
+                TT = trait(T)
+                if withanum:
+                    anum = '' if TT == [] else GetAnumber(TT)
+                    if anum == "": 
+                        print(traitname) 
+                        if onlythefound: continue
+                    seqstr = SeqToFixlenString(TT, 70, ' ')
+                    target.write(f'{trianglename},{anum},{name},{seqstr}\n')
+                else:
+                    seqstr = SeqToFixlenString(TT, 70, ' ')
+                    target.write(f'{trianglename},{name},{seqstr}\n')
+
+        if markdown:
+
+            for traitname, trait in TRAIT2.items():
+                TT = trait(gen, size)
+                if withanum:
+                    anum = '' if TT == [] else GetAnumber(TT)
+                    if anum != "": 
+                        print(traitname)
+                        if onlythefound: continue
+                    seqstr = SeqToFixlenString(TT, 70, ' ')    
+                    target.write(f'| {trianglename} | {anum:7} | {traitname:<12} | {seqstr} |\n')
+                else:
+                    seqstr = SeqToFixlenString(TT, 70, ' ')
+                    target.write(f'| {trianglename} | {traitname:<12} | {seqstr} |\n')
+
+        else: # CSV
+
+            for traitname, trait in TRAIT2.items():
+                TT = trait(gen, size)
+                if withanum:
+                    anum = '' if TT == [] else GetAnumber(TT)
+                    if anum == "": 
+                        print(traitname) 
+                        if onlythefound: continue
+                    seqstr = SeqToFixlenString(TT, 70, ' ')
+                    target.write(f'{trianglename},{anum},{traitname},{seqstr}\n')
+                else:
+                    seqstr = SeqToFixlenString(TT, 70, ' ')
+                    target.write(f'{trianglename},{traitname},{seqstr}\n')
+
+
+from _tabltypes import inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
+
+def PrintExtendedTraits(T: tgen, size: int, withanum = False, markdown: bool = True) -> None:
+
+    tim: int = size + size // 2
+
+    print("\n# Normal.")
+    Tid = T.id; T.id = T.id + ":Std"
+    PrintTraits(T, size, withanum, markdown)
+    T.id = Tid 
+
+    print("\n# Reverse.")
+    R = reversion_wrapper(T, tim)
+    PrintTraits(R, size, withanum, markdown)
+
+    I = inversion_wrapper(T, tim)
+    if I != None:
+        print("\n# Inverse.")
+        PrintTraits(I, size, withanum, markdown)
+
+    R = revinv_wrapper(T, tim)
+    if R != None:
+        print("\n# Reverse of inverse.")
+        PrintTraits(R, size, withanum, markdown)
+
+    R = invrev_wrapper(T, tim)
+    if R != None:
+        print("\n# Inverse of reverse.")
+        PrintTraits(R, size, withanum, markdown)
+
+
+def SaveExtendedTraitsToCSV(G: tgen, size: int) -> None:
+
+    # register()
+
+    tim: int = size + size // 2
+    R = reversion_wrapper(G, tim)
+    I = inversion_wrapper(G, tim)
+    cases = [G, R]
+    
+    if I != None:
+        cases.append(I)
+
+    filepath = (GetCsvPath() / f"{G.id}X.csv").resolve()
+    savedid = G.id
+    G.id = G.id + ":Std"
+    
+
+    with open(filepath, "w") as target:
+
+        target.write( "Triangle,Anum,Trait,Sequence\n")
+
+        for g in cases: 
+            
+            trianglename = g.id
+            T = g.tab(size)
+            gen = g.gen
+            print('#', trianglename)
+
+            for traitname, trait in TRAIT.items():
+                name = traitname[4:] if traitname.startswith("Flat") else traitname
+                TT = trait(T)
+                anum = '' if TT == [] else GetAnumber(TT)
+                if anum == "": 
+                    print(traitname) 
+                    continue
+                seqstr = SeqToFixlenString(TT, 70, ' ')
+                target.write(f'{trianglename},{anum},{name},{seqstr}\n')
+
+            for traitname, trait in TRAIT2.items():
+                TT = trait(gen, size)
+                anum = '' if TT == [] else GetAnumber(TT)
+                if anum == "": 
+                    print(traitname) 
+                    continue
+                seqstr = SeqToFixlenString(TT, 70, ' ')
+                target.write(f'{trianglename},{anum},{traitname},{seqstr}\n')
+
+    G.id = savedid
+
+
+def PrintAllTraitsWithAnumber(size: int) -> None:
+    for fun in tabl_fun:
+        PrintTraits(fun, size, withanum = True)
+
+
+def PrintAllTraits(size: int) -> None:
+    for fun in tabl_fun:
+        PrintTraits(fun, size, withanum = False)
+
+
+def SaveAllFoundTraitsToCSV() -> None:
+    register()
+    for fun in tabl_fun:
+        print("#", fun.id)
+        SaveTraitsToFile(fun, 20, 
+                         withanum = True,
+                         markdown = False,
+                         onlythefound = True)
+
+
+def SaveAllTraitsToCSV() -> None:
+    register()
+    for fun in tabl_fun:
+        print("#", fun.id)
+        SaveTraitsToFile(fun, 20,
+                         withanum = True,
+                         markdown = False,
+                         onlythefound = False)
+
+
+def SaveAllExtendedTraitsToCSV() -> None:
+    register()
+    for fun in tabl_fun:
+        print("##", fun.id)
+        SaveExtendedTraitsToCSV(fun, 20)
+
 
 
 if __name__ == "__main__":
 
-    from Abel import abel
-    from Bell import bell
-    from Lah import lah
-    
-    # Quick ckeck without A-numbers, recommended.
-    Traits(lah, 12)
+    from tabl import tabl_fun
+    from inspect import signature
+    from Abel import Abel
+    from Bell import Bell
+    from Lah import Lah
+    from StirlingSet import StirlingSet
+    from Motzkin import Motzkin
+    from Binomial import Binomial
 
-    # With A-numbers, much slower:
-    # Traits(abel, 20, True)
+    # SaveExtendedTraitsToCSV(StirlingSet, 20) 
+    # SaveAllExtendedTraitsToCSV()
+
+    # SaveAllFoundTraitsToCSV()
+    SaveAllTraitsToCSV()
+
+    # SEQ = StirlingSet
+    #PrintTraits(SEQ, 12, withanum = False, markdown = False)
+    # With A-numbers, but slower:
+    #PrintTraits(SEQ, 12, withanum = False, markdown = True)
+
+    # Greater size increases the precision of the anumber.
+    # Creates a md file which saves all sequences.
+    # SaveTraitsToFile(SEQ, 20, withanum = True, markdown = True)
+
+    # Creates a csv file which saves only the sequences found.
+    # SaveTraitsToFile(SEQ, 20, withanum = True, markdown = False)
+
+    # PrintExtendedTraits(SEQ, 12, withanum = False, markdown = True)
+
+    #for fun in tabl_fun:
+    #    PrintExtendedTraits(fun, 12, False)
+   
+    print("Done")
+
+'''
+for fun in tabl_fun:
+        PrintTraits(fun, 20, True)
+
+for traitname, hits in HITS.items():
+    print(f'| {hits} | {traitname:<16} |')
+
+
+[ 0]  6  FlatDiffx
+[ 1]  7  RevAccTabl
+[ 2] 11  AccRevTabl
+[ 3] 12  InvRevTabl
+[ 4] 13  AccTabl
+[ 5] 14  RowLcm
+[ 6] 15  Poly
+#------------------- 
+[ 7] 19  TransSqrs
+[ 8] 22  RevInvTabl
+[ 9] 28  AntiDiagTabl
+[10] 28  PolyDiag
+[11] 29  ColMiddle
+[12] 29  InvTabl
+[13] 32  AccSum
+[14] 32  BinConv
+[15] 32  InvBinConv
+[16] 34  AccRevSum
+[17] 34  TransNat1
+[18] 35  PolyRow3
+[19] 36  PolyCol3
+[20] 40  AntiDiagSum
+[21] 40  TransNat0
+[22] 42  OddSum
+[23] 45  EvenSum
+[24] 45  RowMax
+[25] 46  NegHalf
+[26] 47  PosHalf
+[27] 48  PolyCol2
+[28] 51  ColCentral
+[29] 53  RowGcd
+[30] 54  RevTabl
+[31] 55  DiagRow3
+[32] 57  AltSum
+[33] 58  DiagCol3
+[34] 60  DiagCol2
+[35] 61  DiagRow2
+[36] 65  DiagCol1
+[37] 65  PolyRow2
+[38] 66  DiagRow1
+--
+[39] 67  ColLeft
+[40] 67  ColRight
+[41] 67  * DiagCol0
+[42] 67  * DiagRow0
+[43] 67  Tabl
+[44] 67  * PolyCol0
+[45] 67  * PolyCol1
+[46] 67  * PolyRow0
+[47] 67  PolyRow1
+[48] 67  RowSum
+
+DiagCol0 = PolyCol0 = ColLeft
+DiagRow0 = PolyRow0 = ColRight
+RowSum   = PolyCol1
+
+'''
+
+

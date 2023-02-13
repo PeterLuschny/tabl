@@ -16,27 +16,26 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _eulerianB(n: int) -> list[int]:
-    if n == 0:
-        return [1]
+def eulerianB(n: int) -> list[int]:
 
-    row: list[int] = _eulerianB(n - 1) + [1]
+    if n == 0: return [1]
+
+    row: list[int] = eulerianB(n - 1) + [1]
     for k in range(n - 1, 0, -1):
         row[k] = (2 * (n - k) + 1) * row[k - 1] + (2 * k + 1) * row[k]
     return row
 
 
 @set_attributes(
-    _eulerianB, 
+    eulerianB, 
     "EulerianB", 
     ['A060187', 'A138076'],
     True)
-def eulerianB(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _eulerianB(n).copy()
-    return _eulerianB(n)[k]
+def EulerianB(n: int, k: int) -> int: 
+    return eulerianB(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(eulerianB)
+    TablTest(EulerianB)

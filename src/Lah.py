@@ -18,11 +18,11 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _lah(n: int) -> list[int]:
-    if n == 0:
-        return [1]
+def lah(n: int) -> list[int]:
 
-    row: list[int] = _lah(n - 1) + [1]
+    if n == 0: return [1]
+
+    row: list[int] = lah(n - 1) + [1]
     row[0] = 0
     for k in range(n - 1, 0, -1):
         row[k] = row[k] * (n + k - 1) + row[k - 1]
@@ -30,16 +30,15 @@ def _lah(n: int) -> list[int]:
 
 
 @set_attributes(
-    _lah, 
+    lah, 
     "Lah", 
     ['A008297', 'A066667', 'A089231', 'A105278', 'A111596', 'A271703'], 
     True)
-def lah(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _lah(n).copy()
-    return _lah(n)[k]
+def Lah(n: int, k: int) -> int: 
+    return lah(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(lah)
+    TablTest(Lah)

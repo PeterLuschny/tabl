@@ -1,70 +1,84 @@
-from _tabltransforms import row_poly, col_poly, flat_tabl
-from _tablsums import tabl_sum, tabl_evensum, tabl_oddsum, tabl_altsum, tabl_accsum, tabl_revaccsum, tabl_diagsum
-from _tabltypes import tri, tabl, inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
+
+from _tablpoly import PolyRow0,PolyRow1,PolyRow2,PolyRow3,PolyCol0,PolyCol1,PolyCol2,PolyCol3, PolyDiag,PosHalf,NegHalf,PolyRow,PolyCol
+from _tablsums import RowSum,EvenSum, OddSum,AltSum,AccSum,AccRevSum,AntiDiagSum
+from _tabltypes import rgen, tgen, tabl, inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
+
+def flat(t: tabl) -> list[int]: 
+    """Flatten table to sequence
+
+    Args:
+        t (tabl): table
+
+    Returns:
+        list[int]: sequence
+    """
+    if t == [] or t == None: return []
+    return [i for row in t for i in row] 
+
 
 # #@
 
-def Profile(T: tri, hor: int = 10) -> dict[str, list[int]]:
+def Profile(T: tgen, hor: int = 10) -> dict[str, list[int]]:
 
     d: dict[str, list[int]] = {}
     t: tabl = T.tab(hor)
     ver: int = hor // 2
 
     # Triangle flattened
-    d["tabflt"] = flat_tabl(T.tab(6))
+    d["Triangle"] = flat(T.tab(6))
 
     # Row sums
-    d["rowsum"] = tabl_sum(t)
-    d["evesum"] = tabl_evensum(t)
-    d["oddsum"] = tabl_oddsum(t)
-    d["altsum"] = tabl_altsum(t)
-    d["accusum"] = tabl_accsum(t)
-    d["revaccu"] = tabl_revaccsum(t)
-    d["diasum"] = tabl_diagsum(t)
+    d["RowSum"] = RowSum(t)
+    d["EvenSum"] = EvenSum(t)
+    d["OddSum"] = OddSum(t)
+    d["AltSum"] = AltSum(t)
+    d["AccSum"] = AccSum(t)
+    d["AccRevSum"] = AccRevSum(t)
+    d["AntiDiagSum"] = AntiDiagSum(t)
 
     # DiagsAsRowArray
     rows: int = ver
     cols: int = hor
     for j in range(rows):
-        d["dirow" + str(j)] = [T(j + k, k) for k in range(cols)]
+        d["DiagRow" + str(j)] = [T.gen(j + k)[k] for k in range(cols)]
 
     # DiagsAsColArray
-    rows: int = hor
-    cols: int = ver
+    rows = hor
+    cols = ver
     for j in range(cols):
-        d["dicol" + str(j)] = [T(j + k, j) for k in range(rows)]
+        d["DiagCol" + str(j)] = [T.gen(j + k)[j] for k in range(rows)]
 
     # RowPolyArray
-    rows: int = ver
-    cols: int = hor
+    rows = ver
+    cols = hor
     for j in range(rows):
-        d["porow" + str(j)] = row_poly(T, j, cols)
+        d["PolyRow" + str(j)] = PolyRow(T.gen, j, cols)
 
     # ColPolyArray
-    rows: int = ver
-    cols: int = hor
+    rows = ver
+    cols = hor
     for j in range(rows):
         if j == 1:
             continue
-        d["pocol" + str(j)] = col_poly(T, j, cols)
+        d["PolyCol" + str(j)] = PolyCol(T.gen, j, cols)
 
     return d
 
 
 counter: int = 0
 
-def PrintProfile(T: tri, dim: int, format: str) -> None:
+def PrintProfile(T: tgen, dim: int, format: str) -> None:
 
     d: dict[str, list[int]] = Profile(T, dim)
 
     if format == 'twolines':
         for seq in d.items():
-            print(f"{T.id}|{seq[0]}\n{seq[1]}")
+            print(f"{T.id}:{seq[0]}\n{seq[1]}")
 
     if format == 'oneline':
         print(T.id)
         for seq in d.items():
-            print(f"|{seq[0]}, {seq[1]}")
+            print(f"{seq[0]}, {seq[1]}")
         print()
 
     if format == 'nonames':
@@ -74,7 +88,7 @@ def PrintProfile(T: tri, dim: int, format: str) -> None:
             print(seq[1])
 
 
-def PrintExtendedProfile(T: tri, dim: int, format: str) -> None:
+def PrintExtendedProfile(T: tgen, dim: int, format: str) -> None:
 
     tim: int = dim + dim // 2
 
@@ -100,20 +114,19 @@ def PrintExtendedProfile(T: tri, dim: int, format: str) -> None:
         print(counter, "sequences generated.")
 
 
-
 if __name__ == "__main__":
 
-    from Rencontres import rencontres
-    from Motzkin import motzkin
-    from Leibniz import leibniz
-    from ChebyshevS import chebyshevS
+    from Rencontres import Rencontres
+    from Motzkin import Motzkin
+    from Leibniz import Leibniz
+    from ChebyshevS import ChebyshevS
 
     dim = 14
     format = 'nonames' # 'twolines' #
 
-    #PrintProfile(leibniz, dim, 'twolines')
-    #PrintProfile(motzkin, dim, format)
-    PrintExtendedProfile(chebyshevS, dim, 'twolines')
-    PrintExtendedProfile(chebyshevS, dim, 'oneline')
-    #PrintExtendedProfile(motzkin, dim, format)
-
+    F = Motzkin
+    #PrintProfile(Leibniz, dim, 'twolines')
+    #PrintProfile(Motzkin, dim, format)
+    PrintProfile(F, dim, 'twolines')
+    PrintExtendedProfile(F, dim, 'oneline')
+    #PrintExtendedProfile(Motzkin, dim, format)

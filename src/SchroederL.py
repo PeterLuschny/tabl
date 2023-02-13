@@ -16,14 +16,13 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _schroederL(n: int) -> list[int]:
-    if n == 0:
-        return [1]
-    if n == 1:
-        return [1, 1]
+def schroederL(n: int) -> list[int]:
 
-    arow: list[int] = _schroederL(n - 1) + [0] 
-    row: list[int]  = _schroederL(n - 1) + [1]
+    if n == 0: return [1]
+    if n == 1: return [1, 1]
+
+    arow: list[int] = schroederL(n - 1) + [0] 
+    row: list[int]  = schroederL(n - 1) + [1]
 
     row[0] = row[0] + 2 * row[1]
     for k in range(1, n):
@@ -33,16 +32,15 @@ def _schroederL(n: int) -> list[int]:
 
 
 @set_attributes(
-    _schroederL, 
+    schroederL, 
     "schroederL", 
     ['A172094'], 
     True)
-def schroederL(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _schroederL(n).copy()
-    return _schroederL(n)[k]
+def SchroederL(n: int, k: int) -> int: 
+    return schroederL(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(schroederL)
+    TablTest(SchroederL)

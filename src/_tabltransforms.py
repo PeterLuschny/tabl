@@ -1,337 +1,342 @@
 from typing import Callable
-from itertools import accumulate
-from fractions import Fraction as frac
 from Binomial import binomial
 from math import lcm, gcd
 from functools import reduce
-from _tablinverse import InverseTabl
-from _tabltypes import seq, tri, tabl, trow
+from _tabltypes import seq, tabl, trow, rgen, tgen
+from itertools import accumulate
+#import operator
 
+
+'''
+Note the convention:
+    def RowLcm(t: trow) -> int:
+    def RowLcm_(f: rgen, n: int) -> int:
+called 'multidispatch on trailing underscore'.
+
+Similar:
+    def TransBinomial(T: tabl) -> trow:
+    def TransBinomial_(g: rgen, size: int) -> trow:
+'''
 
 # #@
 
-def SeqToFixlenString(seq: list[int], maxlen:int=90, separator=',') -> str:
-    stri = "["
-    maxl = 3
-    for trm in seq:
-        s = str(trm) + separator
-        maxl += len(s)
-        if maxl > maxlen: break
-        stri += s
-    return stri + "]"
+
+def LinMap_(g: rgen, V: seq, size: int) -> trow:
+    return [sum(g(n)[k] * V(k) for k in range(n + 1)) for n in range(size)]
 
 
-def poly(T: tri, n: int, x: int) -> int:
-    row: trow = T(n)
-    return sum(c * (x ** j) for (j, c) in enumerate(row))
+def LinMap(M: tabl, V: seq) -> trow:
+    return [sum(M[n][k] * V(k) for k in range(n + 1)) for n in range(len(M))]
 
 
-def poly_frac(T: tabl, x: frac) -> list[frac]:
-    return [sum(c * (x ** k) for (k, c) in enumerate(row)) for row in T]
+def BinMap(V: seq, size: int) -> trow:
+    return [sum(binomial(n)[k] * V(k) for k in range(n + 1)) for n in range(size)]
 
 
-def row_poly(T: tri, n: int, leng: int) -> trow:
-    return [poly(T, n, k) for k in range(leng)]
+def BinTabl_(g: rgen, size: int) -> tabl:
+    return [BinMap(lambda k: g(n)[k], n + 1) for n in range(size)]
 
 
-def col_poly(T: tri, n: int, leng: int) -> trow:
-    return [poly(T, k, n) for k in range(leng)]
+def BinTabl(M: tabl) -> tabl:
+    return [BinMap(lambda k: M[n][k], n + 1) for n in range(len(M))]
 
 
-def diag_poly(T: tri, n: int) -> trow:
-    return [poly(T, n - k, k) for k in range(n + 1)]
+def FlatBinTabl(t: tabl) -> trow:
+    return [i for row in BinTabl(t) for i in row]
 
 
-def poly_diag(T: tri, leng: int) -> trow:
-    return [poly(T, n, n) for n in range(leng)]
-
-
-def poly_tabl(T: tri, leng: int) -> tabl:
-    return [diag_poly(T, n) for n in range(leng)]
-
-
-def pos_half(T: tabl) -> list[int]:
-    R = poly_frac(T, frac(1, 2))
-    return [((2 ** n) * r).numerator for n, r in enumerate(R)]
-
-
-def neg_half(T: tabl) -> list[int]:
-    R = poly_frac(T, frac(-1, 2))
-    return [(((-2) ** n) * r).numerator for n, r in enumerate(R)]
-
-
-def trans_seq(T: tri, a: seq, lg: int) -> trow:
-    return [sum(T(n, k) * a(k) for k in range(n + 1)) for n in range(lg)]
-
-
-def trans_self(T: tri, lg: int) -> tabl:
-    return [trans_seq(T, lambda k: T(n, k), n + 1) for n in range(lg)]
-
-
-def transbin_tabl(T: tri, lg: int) -> tabl:
-    return [trans_seq(binomial, lambda k: T(n, k), n + 1) for n in range(lg)]
-
-
-def transbin_val(f: tri, lg: int) -> trow:
-    T = transbin_tabl(f, lg)
-    return [row[-1] for row in T]
-
-
-def transbinval(T: tabl) -> trow:
-    R = [trans_seq(binomial, lambda k: T[n][k], n + 1) for n in range(len(T))]
+def BinConv(T: tabl) -> trow:
+    R = [LinMap_(binomial, lambda k: T[n][k], n + 1) for n in range(len(T))]
     return [row[-1] for row in R]
 
 
-def invtrans_seq(T: tri, a: seq, lg: int) -> trow:
-    return [ sum((-1) ** (n - k) * T(n, k) * a(k) for k in range(n + 1))
-        for n in range(lg) ]
-
-
-def invtrans_self(T: tri, lg: int) -> tabl:
-    return [invtrans_seq(T, lambda k: T(n, k), n + 1) for n in range(lg)]
-
-
-def invtransbin_tabl(T: tri, lg: int) -> tabl:
-    return [invtrans_seq(binomial, lambda k: T(n, k), n + 1) for n in range(lg)]
-
-
-def invtransbin_val(f: tri, lg: int) -> trow:
-    T = invtransbin_tabl(f, lg)
+def BinConv_(g: rgen, size: int) -> trow:
+    T = BinTabl_(g, size)
     return [row[-1] for row in T]
 
 
-def invtransbinval(T: tabl) -> trow:
-    R = [trans_seq(binomial, lambda k: (-1) ** (n - k) * T[n][k], n + 1) for n in range(len(T))]
+def ConvTabl_(g: rgen, size: int) -> tabl:
+    return [LinMap_(g, lambda k: g(n)[k], n + 1) for n in range(size)]
+
+
+def ConvTabl(t: tabl) -> tabl:
+    g = lambda n: [t[n][k] for k in range(n + 1)]
+    return [LinMap_(g, lambda k: g(n)[k], n + 1) for n in range(len(t))]
+
+
+def FlatConvTabl(t: tabl) -> trow:
+    return [i for row in ConvTabl(t) for i in row]
+
+
+def InvLinMap(g: rgen, V: seq, size: int) -> trow:
+    return [ sum((-1) ** (n - k) * g(n)[k] * V(k) for k in range(n + 1))
+                 for n in range(size) ]
+
+
+def InvConvTabl(g: rgen, size: int) -> tabl:
+    return [InvLinMap(g, lambda k: g(n)[k], n + 1) for n in range(size)]
+
+
+def InvBinMap(V: seq, size: int) -> trow:
+    return [sum((-1) ** (n - k) * binomial(n)[k] * V(k) 
+                for k in range(n + 1)) for n in range(size)]
+
+
+def InvBinTabl(M: tabl) -> tabl:
+    return [InvBinMap(lambda k: M[n][k], n + 1) for n in range(len(M))]
+
+
+def InvBinTabl_(g: rgen, size: int) -> tabl: 
+    return [InvBinMap(lambda k: g(n)[k], n + 1) for n in range(size)]
+
+
+def FlatInvBinTabl(t: tabl) -> trow:
+    return [i for row in InvBinTabl(t) for i in row]
+
+
+def InvBinConv(T: tabl) -> trow:
+    R = [LinMap_(binomial, lambda k: (-1) ** (n - k) * T[n][k], n + 1) for n in range(len(T))]
     return [row[-1] for row in R]
 
 
-def row_diag(T: tri, j: int, leng: int) -> trow:
-    return [T(j + k, k) for k in range(leng)]
+def InvBinConv_(g: rgen, size: int) -> trow:
+    T = InvBinTabl_(g, size)
+    return [row[-1] for row in T]
 
 
-def col_diag(T: tri, j: int, leng: int) -> trow:
-    return [T(j + k, j) for k in range(leng)]
+def DiagRow(g: rgen, size: int, j: int) -> trow:
+    return [g(j + k)[k] for k in range(size)]
+
+def DiagRow0(g: rgen, size: int) -> trow: return DiagRow(g, size, 0)
+def DiagRow1(g: rgen, size: int) -> trow: return DiagRow(g, size, 1)
+def DiagRow2(g: rgen, size: int) -> trow: return DiagRow(g, size, 2)
+def DiagRow3(g: rgen, size: int) -> trow: return DiagRow(g, size, 3)
+
+
+def DiagCol(g: rgen, size: int, j: int) -> trow:
+    return [g(j + k)[j] for k in range(size)]
+
+def DiagCol0(g: rgen, size: int) -> trow: return DiagCol(g, size, 0)
+def DiagCol1(g: rgen, size: int) -> trow: return DiagCol(g, size, 1)
+def DiagCol2(g: rgen, size: int) -> trow: return DiagCol(g, size, 2)
+def DiagCol3(g: rgen, size: int) -> trow: return DiagCol(g, size, 3)
 
 
 # Note our convention to exclude 0 and 1.
-def row_lcm(f: tri, n: int) -> int:
-    Z = [v for v in f(n) if not v in [-1, 0, 1]]
+def Lcm_(g: rgen, row: int) -> int:
+    Z = [v for v in g(row) if not v in [-1, 0, 1]]
     return reduce(lcm, Z) if Z != [] else 1
 
 
-def tabl_lcm(f: tri, leng: int) -> trow:
-    return [row_lcm(f, n) for n in range(leng)]
+def TabLcm_(g: rgen, size: int) -> trow:
+    return [Lcm_(g, row) for row in range(size)]
 
 
-def rowlcm(t: trow) -> int:
+def Lcm(t: trow) -> int:
     Z = [v for v in t if not v in [-1, 0, 1]]
     return reduce(lcm, Z) if Z != [] else 1
 
 
-def tabllcm(t: tabl) -> trow:
-    return [rowlcm(row) for row in t]
+def RowLcm(t: tabl) -> trow:
+    return [Lcm(row) for row in t]
 
 
 # Note our convention to exclude 0 and 1.
-def row_gcd(f: tri, n: int) -> int:
-    Z = [v for v in f(n) if not v in [-1, 0, 1]]
+def Gcd_(g: rgen, row: int) -> int:
+    Z = [v for v in g(row) if not v in [-1, 0, 1]]
     return reduce(gcd, Z) if Z != [] else 1
 
 
-def tabl_gcd(f: tri, leng: int) -> trow:
-    return [row_gcd(f, n) for n in range(leng)]
+def RowGcd_(g: rgen, size: int) -> trow:
+    return [Gcd_(g, row) for row in range(size)]
 
 
-def rowgcd(t: trow) -> int:
+def Gcd(t: trow) -> int:
     Z = [v for v in t if not v in [-1, 0, 1]]
     return reduce(gcd, Z) if Z != [] else 1
 
 
-def tablgcd(t: tabl) -> trow:
-    return [rowgcd(row) for row in t]
+def RowGcd(t: tabl) -> trow:
+    return [Gcd(row) for row in t]
 
 
 # Note our convention to use the abs value.
-def row_max(f: tri, n: int) -> int:
-    absf =[abs(t) for t in f(n)]
+def Max_(g: rgen, row: int) -> int:
+    absf =[abs(t) for t in g(row)]
     return reduce(max, absf) 
 
 
-def tabl_max(f: tri, leng: int) -> trow:
-    return [row_max(f, n) for n in range(leng)]
+def RowMax_(g: rgen, size: int) -> trow:
+    return [Max_(g, row) for row in range(size)]
 
 
-def rowmax(t: trow) -> int:
-    absrow = [abs(i) for i in t]
+def Max(t: trow) -> int:
+    absrow = [abs(n) for n in t]
     return reduce(max, absrow) 
 
 
-def tablmax(t: tabl) -> trow:
-    return [rowmax(row) for row in t]
+def RowMax(t: tabl) -> trow:
+    return [Max(row) for row in t]
 
 
 ################################################
 
-def trans(M: tri, V: Callable, leng: int) -> trow:
-    return [sum(M(n, k) * V(k) for k in range(n + 1)) for n in range(leng)]
+def Trans(g: rgen, V: Callable, size: int) -> trow:
+    return [sum(g(n)[k] * V(k) for k in range(n + 1)) 
+            for n in range(size)]
 
 
-def trans_sqrs(f: tri, n:int) -> trow: 
-    return trans(f, lambda k: k * k, n)
+def TransSqrs(f: rgen, size: int) -> trow: 
+    return Trans(f, lambda k: k * k, size)
 
 
-def trans_nat0(f: tri, n:int) -> trow: 
-    return trans(f, lambda k: k, n)
+def TransNat0(f: rgen, size: int) -> trow: 
+    return Trans(f, lambda k: k, size)
 
 
-def trans_nat1(f: tri, n:int) -> trow: 
-    return trans(f, lambda k: k + 1, n)
+def TransNat1(f: rgen, size: int) -> trow: 
+    return Trans(f, lambda k: k + 1, size)
 
 
-def transT(M: tabl, V: Callable) -> trow:
-    return [sum(M[n][k] * V(k) for k in range(n + 1)) for n in range(len(M))]
+def trans(T: tabl, V: Callable) -> trow:
+    return [sum(T[n][k] * V(k) for k in range(n + 1)) 
+            for n in range(len(T))]
 
 
 def transsqrs(T: tabl) -> trow: 
-    return transT(T, lambda k: k * k)
+    return trans(T, lambda k: k * k)
 
 
 def transnat0(T: tabl) -> trow: 
-    return transT(T, lambda k: k)
+    return trans(T, lambda k: k)
 
 
 def transnat1(T: tabl) -> trow: 
-    return transT(T, lambda k: k + 1)
+    return trans(T, lambda k: k + 1)
 
 
-def diag_tabl(t: tabl) -> tabl:
-    U: tabl = []
-    for n in range(1, len(t)):
-        R: trow = []
-        for k in range((n + 1) // 2):
-            R.append(t[n - k - 1][k])
-        U.append(R)
-    return U
-
-
-def acc_tabl(t: tabl) -> tabl:
-    return [list(accumulate(row)) for row in t]
-
-
-def rev_tabl(t: tabl) -> tabl:
-    return [list(reversed(row)) for row in t]
-
-
-def inv_tabl(t: tabl) -> tabl:
-    return InverseTabl(t)
-
-
-def revacc_tabl(t: tabl) -> tabl:
-    return rev_tabl(acc_tabl(t))
-
-
-def accrev_tabl(t: tabl) -> tabl:
-    return acc_tabl(rev_tabl(t))
-
-
-def flat_tabl(t: tabl) -> trow:
-    return [i for row in t for i in row]
-
-
-def flat_rev(t: tabl) -> trow:
-    return [i for row in rev_tabl(t) for i in row]
-
-
-def flat_diag(t: tabl) -> trow:
-    return [i for row in diag_tabl(t) for i in row]
-
-
-def flat_acc(t: tabl) -> trow:
-    return [i for row in acc_tabl(t) for i in row]
-
-
-def flat_revacc(t: tabl) -> trow:
-    return [i for row in revacc_tabl(t) for i in row]
-
-
-def flat_accrev(t: tabl) -> trow:
-    return [i for row in accrev_tabl(t) for i in row]
-
-
-def middle(t: tabl) -> trow:
+def ColMiddle(t: tabl) -> trow:
     return [row[n // 2] for n, row in enumerate(t)]
 
 
-def central(t: tabl) -> trow:
+def ColECentral(t: tabl) -> trow:
     return [row[n // 2] for n, row in enumerate(t) if n % 2 == 0]
 
 
-def left_side(t: tabl) -> trow:
+def ColOCentral(t: tabl) -> trow:
+    return [row[n // 2] for n, row in enumerate(t) if n % 2 == 1]
+
+
+def ColLeft(t: tabl) -> trow:
     return [row[0] for row in t]
 
 
-def right_side(t: tabl)  -> trow:
+def ColRight(t: tabl)  -> trow:
     return [row[-1] for row in t]
+
+
+#def Det(t: tabl) -> trow:
+#    return list(accumulate(ColRight(t), operator.mul))
+
+
+def PrintTransforms(t: tgen, size: int = 8, mdformat: bool = True) -> None:
+
+    TRANSTRAIT: dict[str, Callable] = {}
+    def RegisterTransTrait(f: Callable[[t.gen, int], trow]) -> None: 
+        TRANSTRAIT[f.__name__] = f
+
+    RegisterTransTrait(TransSqrs)
+    RegisterTransTrait(TransNat0)
+    RegisterTransTrait(TransNat1)
+
+    RegisterTransTrait(DiagRow0)
+    RegisterTransTrait(DiagRow1)
+    RegisterTransTrait(DiagRow2)
+    RegisterTransTrait(DiagRow3)
+
+    RegisterTransTrait(DiagCol0)
+    RegisterTransTrait(DiagCol1)
+    RegisterTransTrait(DiagCol2)
+    RegisterTransTrait(DiagCol3)
+
+    trianglename = t.id
+    gen = t.gen
+    if mdformat:
+        print("#", trianglename, ": Transforms")
+        print( "| Trait     |   Seq  |")
+        print( "| :---      |  :---  |")
+        for traitname, trait in TRANSTRAIT.items():
+            print(f'| {traitname:<8} | {trait(gen, size)} |')
+        print()
+    else:
+        for traitname, trait in TRANSTRAIT.items():
+            print(f'{trianglename + ":" + traitname:<14} {trait(gen, size)}')
+
+
+def PrintMiscTraits(T: tabl, trianglename: str, mdformat: bool = True) -> None:
+
+    MISCTRAIT: dict[str, Callable] = {}
+    def RegisterMiscTrait(f: Callable[[tabl], trow]) -> None: 
+        MISCTRAIT[f.__name__] = f
+
+    RegisterMiscTrait(RowLcm)
+    RegisterMiscTrait(RowGcd)
+    RegisterMiscTrait(RowMax)
+
+    RegisterMiscTrait(ColMiddle)
+    RegisterMiscTrait(ColECentral)
+    RegisterMiscTrait(ColLeft)
+    RegisterMiscTrait(ColRight)
+
+    RegisterMiscTrait(BinConv)
+    RegisterMiscTrait(InvBinConv)
+
+    if mdformat:
+        print("#", trianglename, ": Transforms")
+        print( "| Trait        |   Seq  |")
+        print( "| :---         |  :---  |")
+        for traitname, trait in MISCTRAIT.items():
+            print(f'| {traitname:<12} | {trait(T)} |')
+        print()
+    else:
+        for traitname, trait in MISCTRAIT.items():
+            print(f'{trianglename + ":" + traitname:<18} {trait(T)}')
 
 
 
 if __name__ == "__main__":
 
-    from Binomial import binomial
-    from StirlingSet import stirling_set
-    from StirlingCyc import stirling_cycle
-    from Motzkin import motzkin
+    from Abel import Abel, abel
+    from Bell import Bell
+    from StirlingCyc import StirlingCycle
+    from CompositionMax import CompoMax
 
-    #col_poly
-    #print(col_poly(stirling_set, 0, 12))
+    T = StirlingCycle.tab(9)
+    print(T)
 
-    T = invtransbin_tabl(binomial, 16)
-    print([sum((v) for v in t) for t in T])
-    for t in T: print(t)
+    #PrintTransforms(Abel)
+    #PrintTransforms(CompoMax, 7, False)
 
-'''
+    #PrintMiscTraits(Abel.tab(8), Abel.id)
+    #PrintMiscTraits(CompoMax.tab(8), CompoMax.id, False)
 
-    nums = [0, 1, 15, 117, 627, 2565, 8379, 21945, 43263]
-    print([c*k for c,k in enumerate(nums)])
+    '''
+    print(BinTabl_(abel, 6))
+    print(BinTabl(Abel.tab(6)))
 
+    print(InvBinTabl_(abel, 6))
+    print(InvBinTabl(Abel.tab(6)))
 
-    T: tabl = [
-        [1],
-        [0, 1],
-        [0, 1, 3],
-        [0, 1, 5, 12],
-        [0, 1, 7, 25, 55],
-        [0, 1, 9, 42, 130, 273],
-        [0, 1, 11, 63, 245, 700, 1428],
-        [0, 1, 13, 88, 408, 1428, 3876, 7752],
-        [0, 1, 15, 117, 627, 2565, 8379, 21945, 43263],
-        [0, 1, 17, 150, 910, 4235, 15939, 49588, 126500, 246675],
-        [0, 1, 19, 187, 1265, 6578, 27830, 98670, 296010, 740025, 1430715],
-        [0, 1, 21, 228, 1700, 9750, 45630, 180180, 610740, 1781325, 4382625, 8414640],
-    ]
+    print(FlatBinTabl(Abel.tab(6)))
 
-    def catalan_number(n: int) -> int:
-        return binomial(2 * n, n) // (n + 1)
+    print(BinConv(Abel.tab(6))) 
+    print(BinConv_(abel, 6))
 
-    S: tabl = motzkin.tab(7)
+    print(InvBinConv(Abel.tab(6))) 
+    print(InvBinConv_(abel, 6))
 
-    print(diag_tabl(T))
-    print("---")
-    print(diag_tabl(S))
-    print("--- acctabl")
-    print(acc_tabl(T))
-    print("--- acctabl")
-    print(acc_tabl(S))
-    print("---")
-    print(rev_tabl(T))
-    print("---")
-    print(rev_tabl(S))
-    print("---")
+    print(ConvTabl_(abel, 6))
+    print(ConvTabl(Abel.tab(6))) 
 
-    print(flat_tabl(T))
-    print(flat_rev(T))
-    print(flat_diag(T))
-    print(flat_acc(T))
-    print(flat_revacc(T))
-    print(flat_accrev(T))
-'''
+    print(InvConvTabl(abel, 6))
+    '''

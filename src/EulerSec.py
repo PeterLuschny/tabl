@@ -17,34 +17,33 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _euler_sec(n: int) -> list[int]:
-    if n == 0:
-        return [1]
+def euler_sec(n: int) -> list[int]:
 
-    row: list[int] = [binomial(n, k) * _euler_sec(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  
-    if n % 2 == 0:
-        row[0] = -sum(row[2::2])
+    if n == 0: return [1]
+
+    b = binomial(n)
+    row = [b[k] * euler_sec(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  
+    if n % 2 == 0: row[0] = -sum(row[2::2])
     return row
 
 
 @set_attributes(
-    _euler_sec, 
+    euler_sec, 
     "EulerSec", 
     ['A119879', 'A081658', 'A153641'], 
     True)
-def euler_sec(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _euler_sec(n).copy()
-    return _euler_sec(n)[k]
+def EulerSec(n: int, k: int) -> int: 
+    return euler_sec(n)[k]
 
 
 def eulerS(n: int) -> int:
-    return 0 if n % 2 == 1 else _euler_sec(n)[0]
+    return 0 if n % 2 == 1 else euler_sec(n)[0]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(euler_sec, short=True)
+    TablTest(EulerSec, short=True)
 
     print("Bonus:")
     print([eulerS(n) for n in range(30)])

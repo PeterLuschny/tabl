@@ -17,27 +17,26 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _laguerre(n: int) -> list[int]:
-    if n == 0:
-        return [1]
+def laguerre(n: int) -> list[int]:
 
-    row: list[int] = [0] + _laguerre(n - 1)
+    if n == 0: return [1]
+
+    row: list[int] = [0] + laguerre(n - 1)
     for k in range(0, n):
         row[k] += (n + k) * row[k + 1]
     return row
 
 
 @set_attributes(
-    _laguerre, 
+    laguerre, 
     "Laguerre", 
     ['A021009', 'A021010', 'A144084'], 
     True)
-def laguerre(n: int, k: int = -1) -> list[int] | int:
-    if k == -1: return _laguerre(n).copy()
-    return _laguerre(n)[k]
+def Laguerre(n: int, k: int) -> int:
+    return laguerre(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(laguerre)
+    TablTest(Laguerre)

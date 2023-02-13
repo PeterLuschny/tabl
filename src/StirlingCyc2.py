@@ -17,30 +17,28 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _stirling_cycle2(n: int) -> list[int]:
-    if n == 0:
-        return [1]
-    if n == 1:
-        return [0, 0]
+def stirling_cycle2(n: int) -> list[int]:
 
-    rov: list[int] = _stirling_cycle2(n - 2)
-    row: list[int] = _stirling_cycle2(n - 1) + [0]
+    if n == 0: return [1]
+    if n == 1: return [0, 0]
+
+    rov: list[int] = stirling_cycle2(n - 2)
+    row: list[int] = stirling_cycle2(n - 1) + [0]
     for k in range(1, n // 2 + 1):
         row[k] = (n - 1) * (rov[k - 1] + row[k])
     return row
 
 
 @set_attributes(
-    _stirling_cycle2, 
+    stirling_cycle2, 
     "StirlingCyc2", 
     ['A358622', 'A008306', 'A106828'], 
     False)
-def stirling_cycle2(n: int, k: int = -1) -> list[int] | int:
-    if k == -1: return _stirling_cycle2(n).copy()
-    return _stirling_cycle2(n)[k]
+def StirlingCycle2(n: int, k: int) -> int:
+    return stirling_cycle2(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
     
-    TablTest(stirling_cycle2)
+    TablTest(StirlingCycle2)

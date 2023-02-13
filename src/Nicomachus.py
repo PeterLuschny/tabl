@@ -15,27 +15,26 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _nicomachus(n: int) -> list[int]:
-    if n == 0:
-        return [1]
+def nicomachus(n: int) -> list[int]:
 
-    row: list[int] = _nicomachus(n - 1) + [3 * _nicomachus(n - 1)[n - 1]]
+    if n == 0: return [1]
+
+    row: list[int] = nicomachus(n - 1) + [3 * nicomachus(n - 1)[n - 1]]
     for k in range(0, n):
         row[k] *= 2
     return row
 
 
 @set_attributes(
-    _nicomachus, 
+    nicomachus, 
     "Nicomachus", 
     ['A036561', 'A081954', 'A175840'], 
     False)
-def nicomachus(n: int, k: int = -1) -> list[int] | int:
-    if k == -1: return _nicomachus(n).copy()
-    return _nicomachus(n)[k]
+def Nicomachus(n: int, k: int) -> int:
+    return nicomachus(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(nicomachus)
+    TablTest(Nicomachus)

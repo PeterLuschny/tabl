@@ -16,27 +16,26 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _worpitzky(n: int) -> list[int]:
-    if n == 0:
-        return [1]
+def worpitzky(n: int) -> list[int]:
 
-    row: list[int] = _worpitzky(n - 1) + [0]
+    if n == 0: return [1]
+
+    row: list[int] = worpitzky(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = k * row[k - 1] + (k + 1) * row[k]
     return row
 
 
 @set_attributes(
-    _worpitzky, 
+    worpitzky, 
     "Worpitzki", 
     ['A028246', 'A053440', 'A075263', 'A130850', 'A163626'],
     False)
-def worpitzky(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _worpitzky(n).copy()
-    return _worpitzky(n)[k]
+def Worpitzky(n: int, k: int) -> int: 
+    return worpitzky(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(worpitzky)
+    TablTest(Worpitzky)

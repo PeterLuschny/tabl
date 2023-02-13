@@ -18,27 +18,26 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _binomial(n: int) -> list[int]:
+def binomial(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = [1] + _binomial(n - 1)
+    row: list[int] = [1] + binomial(n - 1)
     for k in range(1, n):
         row[k] += row[k + 1]
     return row
 
 
 @set_attributes(
-    _binomial, 
+    binomial, 
     "Binomial", 
     ['A007318', 'A074909', 'A108086', 'A117440', 'A118433', 'A130595', 'A135278', 'A154926'], 
     True)
-def binomial(n: int, k: int = -1) -> list[int] | int:
-    if k == -1: return _binomial(n).copy()
-    return _binomial(n)[k]
+def Binomial(n: int, k: int) -> int:
+    return binomial(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(binomial)
+    TablTest(Binomial)

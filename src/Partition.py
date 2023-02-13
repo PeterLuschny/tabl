@@ -18,31 +18,29 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _part(n: int, k: int) -> int:
-    if k < 0 or n < 0:
-        return 0
-    if k == 0:
-        return 1 if n == 0 else 0
+def part(n: int, k: int) -> int:
 
-    return _part(n - 1, k - 1) + _part(n - k, k)
+    if k < 0 or n < 0: return 0
+    if k == 0: return 1 if n == 0 else 0
+
+    return part(n - 1, k - 1) + part(n - k, k)
 
 
 @cache
-def _partnum_exact(n: int) -> list[int]:
-    return [_part(n, k) for k in range(n + 1)]
+def partnum_exact(n: int) -> list[int]:
+    return [part(n, k) for k in range(n + 1)]
 
 
 @set_attributes(
-    _partnum_exact, 
+    partnum_exact, 
     "Partition", 
     ['A008284', 'A058398', 'A072233'], 
     True)
-def partnum_exact(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _partnum_exact(n).copy()
-    return _partnum_exact(n)[k]
+def PartnumExact(n: int, k: int) -> int: 
+    return partnum_exact(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(partnum_exact)
+    TablTest(PartnumExact)

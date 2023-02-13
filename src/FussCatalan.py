@@ -16,27 +16,25 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _fuss_catalan(n: int) -> list[int]:
-    if n == 0:
-        return [1]
-    if n == 1:
-        return [0, 1]
+def fuss_catalan(n: int) -> list[int]:
 
-    row: list[int] = _fuss_catalan(n - 1) + [_fuss_catalan(n - 1)[n - 1]]
+    if n == 0: return [1]
+    if n == 1: return [0, 1]
+
+    row: list[int] = fuss_catalan(n - 1) + [fuss_catalan(n - 1)[n - 1]]
     return list(accumulate(row))
 
 
 @set_attributes(
-    _fuss_catalan, 
+    fuss_catalan, 
     "FussCatalan", 
     ['A030237', 'A054445', 'A355173'], 
     False)
-def fuss_catalan(n: int, k:int = -1) -> list[int] | int:
-    if k == -1: return _fuss_catalan(n).copy()
-    return _fuss_catalan(n)[k]
+def FussCatalan(n: int, k: int) -> int:
+    return fuss_catalan(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(fuss_catalan)
+    TablTest(FussCatalan)

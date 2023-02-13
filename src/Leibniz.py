@@ -18,11 +18,11 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _leibniz(n: int) -> list[int]:
-    if n == 0:
-        return [1]
+def leibniz(n: int) -> list[int]:
 
-    row: list[int] = _leibniz(n - 1) + [n + 1] 
+    if n == 0: return [1]
+
+    row: list[int] = leibniz(n - 1) + [n + 1] 
     row[0] = row[n] = n + 1
     for k in range(1, n):
         row[k] = ((n - k + 1) * row[k - 1]) // k
@@ -30,16 +30,15 @@ def _leibniz(n: int) -> list[int]:
 
 
 @set_attributes(
-    _leibniz, 
+    leibniz, 
     "Leibniz", 
     ['A003506'], 
     False)
-def leibniz(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _leibniz(n).copy()
-    return _leibniz(n)[k]
+def Leibniz(n: int, k: int) -> int: 
+    return leibniz(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(leibniz)
+    TablTest(Leibniz)

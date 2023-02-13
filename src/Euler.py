@@ -17,11 +17,11 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _euler(n: int) -> list[int]:
-    if n == 0:
-        return [1]
+def euler(n: int) -> list[int]:
 
-    row: list[int] = _euler(n - 1) + [1]
+    if n == 0: return [1]
+
+    row: list[int] = euler(n - 1) + [1]
     for k in range(n, 0, -1):
         row[k] = (row[k - 1] * n) // (k)
     row[0] = -sum((-1) ** (j // 2) * row[j] for j in range(n, 0, -2))
@@ -30,22 +30,21 @@ def _euler(n: int) -> list[int]:
 
 
 @set_attributes(
-    _euler, 
+    euler, 
     "Euler", 
     ['A109449', 'A247453'], 
     True)
-def euler(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _euler(n).copy()
-    return _euler(n)[k]
+def Euler(n: int, k: int) -> int: 
+    return euler(n)[k]
 
 
 def euler_num(n: int) -> int:
-    return _euler(n)[0]
+    return euler(n)[0]
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(euler)
+    TablTest(Euler)
 
     print("Bonus:")
     print([euler_num(n) for n in range(30)])

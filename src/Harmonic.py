@@ -15,13 +15,12 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _harmonic(n: int) -> list[int]:
-    if n == 0:
-        return [1]
-    if n == 1:
-        return [0, 1]
+def harmonic(n: int) -> list[int]:
 
-    row: list[int] = _harmonic(n - 1) + [1]
+    if n == 0: return [1]
+    if n == 1: return [0, 1]
+
+    row: list[int] = harmonic(n - 1) + [1]
     sav: int = row[1]
 
     for k in range(n - 1, 0, -1):
@@ -32,17 +31,16 @@ def _harmonic(n: int) -> list[int]:
 
 
 @set_attributes(
-    _harmonic, 
+    harmonic, 
     "Harmonic", 
     ['A109822', 'A358694'], 
     True)
-def harmonic(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _harmonic(n).copy()
-    return _harmonic(n)[k]
+def Harmonic(n: int, k: int) -> int: 
+    return harmonic(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(harmonic)
+    TablTest(Harmonic)
 

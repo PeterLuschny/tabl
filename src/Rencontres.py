@@ -17,29 +17,27 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _rencontres(n: int) -> list[int]:
-    if n == 0:
-        return [1]
-    if n == 1:
-        return [0, 1]
+def rencontres(n: int) -> list[int]:
 
-    row: list[int] = [(n - 1) * (_rencontres(n - 1)[0] + _rencontres(n - 2)[0])] + _rencontres(n - 1)
+    if n == 0: return [1]
+    if n == 1: return [0, 1]
+
+    row: list[int] = [(n - 1) * (rencontres(n - 1)[0] + rencontres(n - 2)[0])] + rencontres(n - 1)
     for k in range(1, n - 1):
         row[k] = (n * row[k]) // k
     return row
 
 
 @set_attributes(
-    _rencontres, 
+    rencontres, 
     "Rencontres", 
     ['A008290', 'A098825'], 
     True)
-def rencontres(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _rencontres(n).copy()
-    return _rencontres(n)[k]
+def Rencontres(n: int, k: int) -> int: 
+    return rencontres(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(rencontres)
+    TablTest(Rencontres)

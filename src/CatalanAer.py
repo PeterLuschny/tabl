@@ -17,30 +17,29 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _catalan_aerated(n: int) -> list[int]:
-    if n == 0:
-        return [1]
+def catalan_aer(n: int) -> list[int]:
+    
+    if n == 0: return [1]
 
     def r(k: int) -> int:
-        return _catalan_aerated(n - 1)[k] if k >= 0 and k < n else 0
+        return catalan_aer(n - 1)[k] if k >= 0 and k < n else 0
 
-    row: list[int] = _catalan_aerated(n - 1) + [1]
+    row: list[int] = catalan_aer(n - 1) + [1]
     for k in range(0, n):
         row[k] = r(k - 1) + r(k + 1)
     return row
 
 
 @set_attributes(
-    _catalan_aerated, 
+    catalan_aer, 
     "CatalanAer", 
     ['A052173', 'A053121', 'A112554', 'A322378'], 
     True)
-def catalan_aerated(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _catalan_aerated(n).copy()
-    return _catalan_aerated(n)[k]
+def CatalanAer(n: int, k: int) -> int: 
+    return catalan_aer(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(catalan_aerated)
+    TablTest(CatalanAer)

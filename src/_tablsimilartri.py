@@ -1,6 +1,7 @@
 import csv
-from _tabltypes import tri, tabl, SubTriangle, AbsSubTriangle
-# from tabl import tabl_fun
+from pathlib import Path
+from _tabltypes import rgen, tgen, tabl, SubTriangle, AbsSubTriangle
+from tabl import tabl_fun
 
 # #@
 
@@ -18,14 +19,14 @@ def search_db(database: list[list[int]], wanted: list[int]) -> list:
     similars = []
     count = 0
     for seq in database:
-        if wanted == seq[1][:28]:
+        if wanted == seq[1:28]:
             similars.append(seq[0])
             count += 1
             if count > 6: break
     return similars
 
 
-def lookup_similar_triangles(database: list[list[int]], T: tri) -> list:
+def lookup_similar_triangles(database: list[list[int]], T: rgen) -> list:
     """Tries to identify triangles similar to the given one.
     Assumes database is given with absulute terms!
     Let AT = abs(T) and AS = abs(S).  We say a triangle S is 'similar' 
@@ -36,7 +37,7 @@ def lookup_similar_triangles(database: list[list[int]], T: tri) -> list:
 
     Args:
         database (list[list[int]]): oeis_data
-        T (tri): generator of the triangle
+        T (tgen): generator of the triangle
 
     Returns:
         list: oeis A-numbers of similar triangles
@@ -64,12 +65,12 @@ def lookup_similar_triangles(database: list[list[int]], T: tri) -> list:
     return sorted(set(similars))
 
 
-def GetSimilarTriangles(datapath: str, fun: tri) -> list:
+def GetSimilarTriangles(datapath: Path, fun: tgen) -> list:
     """Assumes the database in csv-format.
 
     Args:
         datapath (str): location of the database
-        fun (tri): generator of the reference triangle
+        fun (tgen): generator of the reference triangle
 
     Returns:
         list: oeis A-numbers of similar triangles
@@ -84,12 +85,12 @@ def GetSimilarTriangles(datapath: str, fun: tri) -> list:
         reader = csv.reader(oeisdata)
         seq_list = [[seq[0], [int(t) for t in seq[1:-1]]] for seq in reader]
 
-        similars = lookup_similar_triangles(seq_list, fun)
+        similars = lookup_similar_triangles(seq_list, fun.row)
         print(fun.id, "similars:", similars)
         return similars
 
 
-def SimilarTriangles(datapath: str, md: bool = True) -> None:
+def SimilarTriangles(datapath: Path, md: bool = True) -> None:
     """Searches the database for all similar triangles for all
     triangles defined in this package (listed in tabl_fun).
 
@@ -107,7 +108,7 @@ def SimilarTriangles(datapath: str, md: bool = True) -> None:
         print("| :---:  |  :---:          |")
 
     for fun in tabl_fun:
-        similars = lookup_similar_triangles(seq_list, fun)[:10]
+        similars = lookup_similar_triangles(seq_list, fun.row)[:10]
         if md:
             anum = ""
             for sim in similars:
@@ -125,9 +126,9 @@ def SimilarTriangles(datapath: str, md: bool = True) -> None:
 if __name__ == "__main__":
 
     from _tablpaths import GetDataPath
-    from Lah import lah
+    from Lah import Lah, lah
 
     # Essentially equal triangles are:
     # Lah similars: ['A008297', 'A066667', 'A089231',
     #                'A105278', 'A111596', 'A271703']
-    GetSimilarTriangles(GetDataPath(), lah)
+    GetSimilarTriangles(GetDataPath(), Lah)

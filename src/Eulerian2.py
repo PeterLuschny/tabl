@@ -16,31 +16,29 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _eulerian2(n: int) -> list[int]:
-    if n == 0:
-        return [1]
-    if n == 1:
-        return [0, 1]
+def eulerian2(n: int) -> list[int]:
 
-    row: list[int] = _eulerian2(n - 1) + [0]
+    if n == 0: return [1]
+    if n == 1: return [0, 1]
+
+    row: list[int] = eulerian2(n - 1) + [0]
     for k in range(n, 1, -1):
         row[k] = (2 * n - k) * row[k - 1] + k * row[k]
     return row
 
 
 @set_attributes(
-    _eulerian2, 
+    eulerian2, 
     "Eulerian2", 
     ['A008517', 'A112007', 'A163936', 'A340556'], 
     False)
-def eulerian2(n: int, k: int = -1) -> list[int] | int:
-    if k == -1: return _eulerian2(n).copy()
-    return _eulerian2(n)[k]
+def Eulerian2(n: int, k: int) -> int:
+    return eulerian2(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(eulerian2)
+    TablTest(Eulerian2)
 
 # See also http://luschny.de/math/oeis/A340556.html

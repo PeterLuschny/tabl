@@ -17,11 +17,11 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _powlag(n: int) -> list[int]:
-    if n == 0:
-        return [1]
+def powlag(n: int) -> list[int]:
 
-    row: list[int] = _powlag(n - 1) + [1] 
+    if n == 0: return [1]
+
+    row: list[int] = powlag(n - 1) + [1] 
     row[0] = row[n] = row[0] * n
     for k in range(1, n):
         row[k] = ((n - k + 1) * row[k - 1]) // k
@@ -29,16 +29,15 @@ def _powlag(n: int) -> list[int]:
 
 
 @set_attributes(
-    _powlag, 
+    powlag, 
     "PowLaguerre", 
     ['A021012', 'A196347'], 
     False)
-def powlag(n: int, k: int = -1) -> list[int] | int:
-    if k == -1: return _powlag(n).copy()
-    return _powlag(n)[k]
+def PowLaguerre(n: int, k: int) -> int:
+    return powlag(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(powlag)
+    TablTest(PowLaguerre)

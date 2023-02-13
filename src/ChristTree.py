@@ -17,23 +17,23 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _ctree(n: int) -> list[int]:
-    if n % 2 == 1:
-        return [1] * (n + 1)
+def ctree(n: int) -> list[int]:
+    
+    if n % 2 == 1: return [1] * (n + 1)
+
     return [1, 0] * (n // 2) + [1]
 
 
 @set_attributes(
-    _ctree, 
+    ctree, 
     "ChristTree", 
     ['A106465', 'A106470'], 
     True)
-def ctree(n: int, k: int = -1) -> list[int] | int:
-    if k == -1: return _ctree(n).copy()
-    return _ctree(n)[k]
+def Ctree(n: int, k: int) -> int:
+    return ctree(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(ctree)
+    TablTest(Ctree)

@@ -28,14 +28,13 @@ Triangle view:
 
 
 @cache
-def _polygonal(n: int) -> list[int]:
-    if n == 0:
-        return [0]
-    if n == 1:
-        return [0, 1]
+def polygonal(n: int) -> list[int]:
 
-    rov: list[int] = _polygonal(n - 2)
-    row: list[int] = _polygonal(n - 1) + [n]
+    if n == 0: return [0]
+    if n == 1: return [0, 1]
+
+    rov: list[int] = polygonal(n - 2)
+    row: list[int] = polygonal(n - 1) + [n]
     row[n - 1] += row[n - 2]
     for k in range(2, n - 1):
         row[k] += row[k] - rov[k]
@@ -43,16 +42,15 @@ def _polygonal(n: int) -> list[int]:
 
 
 @set_attributes(
-    _polygonal, 
+    polygonal, 
     "Polygonal", 
     ['A057145', 'A134394', 'A139600', 'A139601'], 
     False)
-def polygonal(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _polygonal(n).copy()
-    return _polygonal(n)[k]
+def Polygonal(n: int, k: int) -> int: 
+    return polygonal(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(polygonal)
+    TablTest(Polygonal)

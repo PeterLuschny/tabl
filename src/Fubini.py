@@ -16,30 +16,29 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _fubini(n: int) -> list[int]:
-    if n == 0:
-        return [1]
+def fubini(n: int) -> list[int]:
+    
+    if n == 0: return [1]
 
     def r(k: int) -> int:
-        return _fubini(n - 1)[k] if k <= n - 1 else 0
+        return fubini(n - 1)[k] if k <= n - 1 else 0
 
-    row: list[int] = [0] + _fubini(n - 1)
+    row: list[int] = [0] + fubini(n - 1)
     for k in range(1, n + 1):
         row[k] = k * (r(k - 1) + r(k))
     return row
 
 
 @set_attributes(
-    _fubini, 
+    fubini, 
     "Fubini", 
     ['A019538', 'A090582', 'A131689', 'A278075'], 
     False)
-def fubini(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _fubini(n).copy()
-    return _fubini(n)[k]
+def Fubini(n: int, k: int) -> int: 
+    return fubini(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(fubini)
+    TablTest(Fubini)

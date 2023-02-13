@@ -19,34 +19,33 @@ from Binomial import binomial
 
 
 @cache
-def _lozanic(n: int) -> list[int]:
-    if n == 0:
-        return [1]
+def lozanic(n: int) -> list[int]:
 
-    row: list[int] =  [1] + _lozanic(n - 1)  
+    if n == 0: return [1]
+
+    row = [1] + lozanic(n - 1)  
     for k in range(1, n):
         row[k] += row[k + 1]
 
-    if n % 2 != 0:
-        return row
+    if n % 2 != 0: return row
 
+    b = binomial(n // 2 - 1)
     for k in range(1, n, 2):
-        row[k] -= binomial(n // 2 - 1, (k - 1) // 2)
+        row[k] -= b[(k - 1) // 2]
 
     return row
 
 
 @set_attributes(
-    _lozanic, 
+    lozanic, 
     "Lozanic", 
     ['A034851'], 
     True)
-def lozanic(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _lozanic(n).copy()
-    return _lozanic(n)[k]
+def Lozanic(n: int, k: int) -> int: 
+    return lozanic(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(lozanic)
+    TablTest(Lozanic)

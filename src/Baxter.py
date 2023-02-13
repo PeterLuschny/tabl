@@ -23,25 +23,24 @@ def F(n: int) -> int:
 
 
 @cache
-def _baxter(n: int) -> list[int]:
+def baxter(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = [0] + [(2 * F(n - 1)) // (F(k - 1) * F(n - k)) for k in range(1, n + 1)]
-    return row
+    return [0] + [(2 * F(n - 1)) // (F(k - 1) * F(n - k)) 
+                 for k in range(1, n + 1)]
 
 
 @set_attributes(
-    _baxter, 
+    baxter, 
     "Baxter", 
     ['A359363', 'A056939'],
     False)
-def baxter(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _baxter(n).copy()
-    return _baxter(n)[k]
+def Baxter(n: int, k: int) -> int: 
+    return baxter(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(baxter)
+    TablTest(Baxter)

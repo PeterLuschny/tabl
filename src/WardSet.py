@@ -17,29 +17,28 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _ward_set(n: int) -> list[int]:
-    if n == 0:
-        return [1]
-    if n == 1:
-        return [0, 1]
+def ward_set(n: int) -> list[int]:
 
-    row: list[int] = _ward_set(n - 1) + [0]
+    if n == 0: return [1]
+    if n == 1: return [0, 1]
+
+    row: list[int] = ward_set(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = k * row[k] + (n + k - 1) * row[k - 1]
+
     return row
 
 
 @set_attributes(
-    _ward_set, 
+    ward_set, 
     "WardSet", 
     ['A134991', 'A269939'], 
     False)
-def ward_set(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _ward_set(n).copy()
-    return _ward_set(n)[k]
+def WardSet(n: int, k: int) -> int: 
+    return ward_set(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(ward_set)
+    TablTest(WardSet)

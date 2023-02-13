@@ -16,24 +16,22 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _one(n: int) -> list[int]:
-    if n == 0:
-        return [1]
+def one(n: int) -> list[int]:
 
-    return _one(n - 1) + [1]
+    if n == 0: return [1]
+    return one(n - 1) + [1]
 
 
 @set_attributes(
-    _one, 
+    one, 
     "One", 
     ['A000012', 'A008836', 'A014077'], 
     True)
-def one(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _one(n).copy()
-    return _one(n)[k]
+def One(n: int, k: int) -> int: 
+    return one(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(one)
+    TablTest(One)

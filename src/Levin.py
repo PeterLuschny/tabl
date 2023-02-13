@@ -18,11 +18,11 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _levin(n: int) -> list[int]:
-    if n == 0:
-        return [1]
+def levin(n: int) -> list[int]:
 
-    row: list[int] = _levin(n - 1) + [1] 
+    if n == 0: return [1]
+
+    row: list[int] = levin(n - 1) + [1] 
     row[0] = row[n] = (row[n - 1] * (4 * n - 2)) // n
     for k in range(1, n):
         row[k] = ((n - k + 1) * row[k - 1]) // k
@@ -30,16 +30,15 @@ def _levin(n: int) -> list[int]:
 
 
 @set_attributes(
-    _levin, 
+    levin, 
     "Levin", 
     ['A356546'], 
     False)
-def levin(n: int, k: int = -1) -> list[int] | int:
-    if k == -1: return _levin(n).copy()
-    return _levin(n)[k]
+def Levin(n: int, k: int) -> int:
+    return levin(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(levin)
+    TablTest(Levin)

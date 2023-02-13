@@ -18,13 +18,12 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _catalan(n: int) -> list[int]:
-    if n == 0:
-        return [1]
-    if n == 1:
-        return [0, 1]
+def catalan(n: int) -> list[int]:
+    
+    if n == 0: return [1]
+    if n == 1: return [0, 1]
 
-    pow: list[int] = _catalan(n - 1) + [0]
+    pow: list[int] = catalan(n - 1) + [0]
     row: list[int] = pow.copy() 
     for k in range(n - 1, 0, -1):
         row[k] = pow[k - 1] + 2 * pow[k] + pow[k + 1]
@@ -34,16 +33,15 @@ def _catalan(n: int) -> list[int]:
 
 
 @set_attributes(
-    _catalan, 
-    "Catalan", 
-    ['A128899', 'A039598'], 
+    catalan,
+    "Catalan",
+    ['A128899', 'A039598'],
     False)
-def catalan(n: int, k:int = -1) -> list[int] | int:
-    if k == -1: return _catalan(n).copy()
-    return _catalan(n)[k]
+def Catalan(n: int, k: int) -> int:
+    return catalan(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(catalan)
+    TablTest(Catalan)

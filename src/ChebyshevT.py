@@ -17,14 +17,13 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _chebyshevT(n: int) -> list[int]:
-    if n == 0:
-        return [1]
-    if n == 1:
-        return [0, 1]
+def chebyshevT(n: int) -> list[int]:
 
-    rov: list[int] = _chebyshevT(n - 2)
-    row: list[int] = [0] + _chebyshevT(n - 1) 
+    if n == 0: return [1]
+    if n == 1: return [0, 1]
+
+    rov: list[int] = chebyshevT(n - 2)
+    row: list[int] = [0] + chebyshevT(n - 1) 
     row[n] = 2 * row[n]
     for k in range(0, n - 1):
         row[k] =  2 * row[k] - rov[k]
@@ -32,16 +31,15 @@ def _chebyshevT(n: int) -> list[int]:
 
 
 @set_attributes(
-    _chebyshevT, 
+    chebyshevT, 
     "ChebyshevT", 
     ['A039991', 'A053120', 'A081265'], 
     True)
-def chebyshevT(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _chebyshevT(n).copy()
-    return _chebyshevT(n)[k]
+def ChebyshevT(n: int, k: int) -> int: 
+    return chebyshevT(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(chebyshevT)
+    TablTest(ChebyshevT)

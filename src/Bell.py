@@ -17,27 +17,26 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _bell(n: int) -> list[int]:
+def bell(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = [_bell(n - 1)[n - 1]] + _bell(n - 1)
+    row: list[int] = [bell(n - 1)[n - 1]] + bell(n - 1)
     for k in range(1, n + 1):
         row[k] += row[k - 1]
     return row
 
 
 @set_attributes(
-    _bell, 
+    bell, 
     "Bell", 
     ['A011971', 'A011972', 'A123346'],
     False)
-def bell(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _bell(n).copy()
-    return _bell(n)[k]
+def Bell(n: int, k: int) -> int: 
+    return bell(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(bell)
+    TablTest(Bell)

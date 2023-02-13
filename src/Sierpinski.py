@@ -18,21 +18,22 @@ from Binomial import binomial
 
 
 @cache
-def _sierpinski(n: int) -> list[int]:
-    return [binomial(n, k) % 2 for k in range(n + 1)]
+def sierpinski(n: int) -> list[int]:
+
+    b = binomial(n)
+    return [b[k] % 2 for k in range(n + 1)]
 
 
 @set_attributes(
-    _sierpinski, 
+    sierpinski, 
     "Sierpinski", 
     ['A047999', 'A090971', 'A114700', 'A143200', 'A166282'], 
     True)
-def sierpinski(n: int, k: int = -1) -> list[int] | int:
-    if k == -1: return _sierpinski(n).copy()
-    return _sierpinski(n)[k]
+def Sierpinski(n: int, k: int) -> int:
+    return sierpinski(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(sierpinski)
+    TablTest(Sierpinski)

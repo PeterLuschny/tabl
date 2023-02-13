@@ -1,7 +1,7 @@
 from functools import cache
 from itertools import accumulate
 from _tabltypes import set_attributes
-from Partition import _partnum_exact
+from Partition import partnum_exact
 
 """Partition numbers at most.
 
@@ -19,21 +19,20 @@ from Partition import _partnum_exact
 
 
 @cache
-def _partnum_max(n: int) -> list[int]:
-    return list(accumulate(_partnum_exact(n)))
+def partnum_max(n: int) -> list[int]:
+    return list(accumulate(partnum_exact(n)))
 
 
 @set_attributes(
-    _partnum_max, 
+    partnum_max, 
     "PartitionMax", 
     ['A008284', 'A058398', 'A072233'], 
     False)
-def partnum_max(n: int, k: int = -1) -> list[int] | int:
-    if k == -1: return _partnum_max(n).copy()
-    return _partnum_max(n)[k]
+def PartnumMax(n: int, k: int) -> int:
+    return partnum_max(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(partnum_max)
+    TablTest(PartnumMax)

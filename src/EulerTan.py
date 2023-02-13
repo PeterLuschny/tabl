@@ -18,33 +18,32 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _euler_tan(n: int) -> list[int]:
+def euler_tan(n: int) -> list[int]:
 
-    row: list[int] = [binomial(n, k) * _euler_tan(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  
+    b = binomial(n)
+    row = [b[k] * euler_tan(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  
+    if n % 2 == 1: row[0] = -sum(row[2::2]) + 1
 
-    if n % 2 == 1:
-        row[0] = -sum(row[2::2]) + 1
     return row
 
 
 @set_attributes(
-    _euler_tan, 
+    euler_tan, 
     "EulerTan", 
     ['A162660', 'A350972', 'A155585', 'A009006', 'A000182'], 
     False)
-def euler_tan(n: int, k: int = -1) -> list[int] | int:
-    if k == -1: return _euler_tan(n).copy()
-    return _euler_tan(n)[k]
+def EulerTan(n: int, k: int) -> int:
+    return euler_tan(n)[k]
 
 
 def eulerT(n: int) -> int:
-    return 0 if n % 2 == 0 else _euler_tan(n)[0]
+    return 0 if n % 2 == 0 else euler_tan(n)[0]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(euler_tan, short=True)
+    TablTest(EulerTan, short=True)
 
     print("Bonus:")
     print([eulerT(n) for n in range(30)])

@@ -16,29 +16,27 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _central_set(n: int) -> list[int]:
-    if n == 0:
-        return [1]
-    if n == 1:
-        return [0, 1]
+def central_set(n: int) -> list[int]:
 
-    row: list[int] = _central_set(n - 1) + [1]
+    if n == 0: return [1]
+    if n == 1: return [0, 1]
+
+    row: list[int] = central_set(n - 1) + [1]
     for k in range(n - 1, 1, -1):
         row[k] = k ** 2 * row[k] + row[k - 1]
     return row
 
 
 @set_attributes(
-    _central_set, 
+    central_set, 
     "CentralSet", 
     ['A008957', 'A036969', 'A269945'], 
     True)
-def central_set(n: int, k: int = -1) -> list[int] | int:
-    if k == -1: return _central_set(n).copy()
-    return _central_set(n)[k]
+def CentralSet(n: int, k: int) -> int:
+    return central_set(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(central_set)
+    TablTest(CentralSet)

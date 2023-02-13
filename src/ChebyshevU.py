@@ -18,14 +18,13 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _chebyshevU(n: int) -> list[int]:
-    if n == 0:
-        return [1]
-    if n == 1:
-        return [0, 2]
+def chebyshevU(n: int) -> list[int]:
 
-    rov: list[int] = _chebyshevU(n - 2)
-    row: list[int] = [0] + _chebyshevU(n - 1)
+    if n == 0: return [1]
+    if n == 1: return [0, 2]
+
+    rov: list[int] = chebyshevU(n - 2)
+    row: list[int] = [0] + chebyshevU(n - 1)
     row[n] = 2 * row[n]
     for k in range(0, n - 1):
         row[k] = 2 * row[k] - rov[k]
@@ -33,16 +32,15 @@ def _chebyshevU(n: int) -> list[int]:
 
 
 @set_attributes(
-    _chebyshevU, 
+    chebyshevU, 
     "ChebyshevU", 
     ['A053117', 'A053118', 'A115322'], 
     True)
-def chebyshevU(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _chebyshevU(n).copy()
-    return _chebyshevU(n)[k]
+def ChebyshevU(n: int, k: int) -> int: 
+    return chebyshevU(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(chebyshevU)
+    TablTest(ChebyshevU)

@@ -15,7 +15,7 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _hermiteE(n: int) -> list[int]:
+def hermiteE(n: int) -> list[int]:
     row: list[int] = [0] * (n + 1) 
     row[n] = 1
     for k in range(n - 2, -1, -2):
@@ -24,16 +24,15 @@ def _hermiteE(n: int) -> list[int]:
 
 
 @set_attributes(
-    _hermiteE, 
+    hermiteE, 
     "HermiteE", 
     ['A066325', 'A073278', 'A099174'], 
     True)
-def hermiteE(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _hermiteE(n).copy()
-    return _hermiteE(n)[k]
+def HermiteE(n: int, k: int) -> int: 
+    return hermiteE(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(hermiteE)
+    TablTest(HermiteE)

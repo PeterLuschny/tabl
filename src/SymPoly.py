@@ -15,29 +15,29 @@ from _tabltypes import set_attributes
 
 
 @cache
-def _sympoly(n: int) -> list[int]:
-    if n == 0:
-        return [1]
+def sympoly(n: int) -> list[int]:
 
-    row: list[int] = _sympoly(n - 1) + [1]
+    if n == 0: return [1]
+
+    row: list[int] = sympoly(n - 1) + [1]
 
     for m in range(n - 1, 0, -1):
         row[m] = (n - m + 1) * row[m] + row[m - 1]
     row[0] *= n
+
     return row
 
 
 @set_attributes(
-    _sympoly, 
-    "SymPoly", 
+    sympoly, 
+    "Sympoly", 
     ['A093905', 'A105954', 'A165674', 'A165675'], 
     True)
-def sympoly(n: int, k: int = -1) -> list[int] | int: 
-    if k == -1: return _sympoly(n).copy()
-    return _sympoly(n)[k]
+def Sympoly(n: int, k: int) -> int: 
+    return sympoly(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(sympoly)
+    TablTest(Sympoly)
