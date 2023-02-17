@@ -32,7 +32,7 @@ def bessel2(n: int) -> list[int]:
     bessel2, 
     "Bessel2", 
     ['A359760', 'A073278', 'A066325', 'A099174', 'A111924', 'A144299', 'A104556'],
-    True)
+    False)
 def Bessel2(n: int, k: int) -> int: 
     return bessel2(n)[k]
 

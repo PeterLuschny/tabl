@@ -33,7 +33,7 @@ def delannoy(n: int) -> list[int]:
     delannoy, 
     "Delannoy", 
     ['A008288'], 
-    False)
+    True)
 def Delannoy(n: int, k: int) -> int: 
     return delannoy(n)[k]
 

@@ -36,6 +36,7 @@ def GetOEISdata() -> None:
 
 if __name__ == "__main__":
 
-    get_compressed()
-    oeisabsdata()
+    #get_compressed()
+    #oeisabsdata()
+    GetOEISdata()
     print("Done")

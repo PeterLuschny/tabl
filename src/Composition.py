@@ -1,6 +1,6 @@
 from functools import cache
 from _tabltypes import set_attributes
-from CompositionMax import compo_max
+from CompositionMax import compomax
 
 """Compositions of n with exact k parts.
 [0]  1;
@@ -21,7 +21,7 @@ def composition(n: int) -> list[int]:
 
     if n == 0: return [1] 
 
-    cm = compo_max(n)
+    cm = compomax(n)
     return [cm[k] - cm[k - 1] if k > 0 else 0 for k in range(n + 1) ]
 
 
@@ -37,4 +37,4 @@ def Composition(n: int, k: int) -> int:
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(Composition)
+    TablTest(Composition, 8, True)

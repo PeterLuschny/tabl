@@ -17,7 +17,7 @@ from _tabltypes import set_attributes
 
 
 @cache
-def compo_max(n: int) -> list[int]:
+def compomax(n: int) -> list[int]:
 
     @cache
     def t(n: int, k: int) -> int:
@@ -28,15 +28,15 @@ def compo_max(n: int) -> list[int]:
 
 
 @set_attributes(
-    compo_max, 
-    "CompoMax", 
+    compomax, 
+    "CompositionMax", 
     ['A126198'], 
-    True)
+    False)
 def CompoMax(n: int, k: int) -> int:
-    return compo_max(n)[k]
+    return compomax(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(CompoMax)
+    TablTest(CompoMax, 8, True)

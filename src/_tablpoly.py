@@ -101,4 +101,4 @@ if __name__ == "__main__":
     from Bell import Bell
 
     PrintPolys(Abel)
-    PrintPolys(Bell, 6, False)
+    #PrintPolys(Bell, 6, False)

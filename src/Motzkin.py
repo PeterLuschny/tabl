@@ -33,7 +33,7 @@ def motzkin(n: int) -> list[int]:
     motzkin,
     "Motzkin",
     ['A359364'],
-    True)
+    False)
 def Motzkin(n: int, k: int) -> int:
     return motzkin(n)[k]
 

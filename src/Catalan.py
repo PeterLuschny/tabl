@@ -36,7 +36,7 @@ def catalan(n: int) -> list[int]:
     catalan,
     "Catalan",
     ['A128899', 'A039598'],
-    False)
+    True)
 def Catalan(n: int, k: int) -> int:
     return catalan(n)[k]
 

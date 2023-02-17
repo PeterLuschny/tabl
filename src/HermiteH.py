@@ -30,7 +30,7 @@ def hermiteH(n: int) -> list[int]:
     hermiteH, 
     "HermiteH", 
     ['A060821'], 
-    True)
+    False)
 def HermiteH(n: int, k: int) -> int: 
     return hermiteH(n)[k]
 

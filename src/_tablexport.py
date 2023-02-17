@@ -65,3 +65,6 @@ def SaveExtendedTables(dim: int = 9) -> None:
                 if R != None:
                     PrintViews(R, dim)
 
+if __name__ == "__main__":
+
+    CrossReferences()

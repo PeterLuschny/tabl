@@ -1155,7 +1155,7 @@ def bessel2(n: int) -> list[int]:
     bessel2,
     "Bessel2",
     ["A359760", "A073278", "A066325", "A099174", "A111924", "A144299", "A104556"],
-    True,
+    False,
 )
 def Bessel2(n: int, k: int) -> int:
     return bessel2(n)[k]
@@ -1204,7 +1204,7 @@ def catalan(n: int) -> list[int]:
     return row
 
 
-@set_attributes(catalan, "Catalan", ["A128899", "A039598"], False)
+@set_attributes(catalan, "Catalan", ["A128899", "A039598"], True)
 def Catalan(n: int, k: int) -> int:
     return catalan(n)[k]
 
@@ -1228,6 +1228,24 @@ def catalan_aer(n: int) -> list[int]:
 )
 def CatalanAer(n: int, k: int) -> int:
     return catalan_aer(n)[k]
+
+
+@cache
+def catalansqr(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    pow = catalansqr(n - 1) + [0]
+    row = pow.copy()
+    row[0] += row[1]
+    row[n] = 1
+    for k in range(n - 1, 0, -1):
+        row[k] = pow[k - 1] + 2 * pow[k] + pow[k + 1]
+    return row
+
+
+@set_attributes(catalansqr, "CatalanSqr", ["A039599", "A050155"], True)
+def CatalanSqr(n: int, k: int) -> int:
+    return catalansqr(n)[k]
 
 
 @cache
@@ -1338,7 +1356,7 @@ def Ctree(n: int, k: int) -> int:
 def composition(n: int) -> list[int]:
     if n == 0:
         return [1]
-    cm = compo_max(n)
+    cm = compomax(n)
     return [cm[k] - cm[k - 1] if k > 0 else 0 for k in range(n + 1)]
 
 
@@ -1348,7 +1366,7 @@ def Composition(n: int, k: int) -> int:
 
 
 @cache
-def compo_max(n: int) -> list[int]:
+def compomax(n: int) -> list[int]:
     @cache
     def t(n: int, k: int) -> int:
         if n == 0 or k == 1:
@@ -1358,9 +1376,9 @@ def compo_max(n: int) -> list[int]:
     return [t(n, k) for k in range(n + 1)]
 
 
-@set_attributes(compo_max, "CompoMax", ["A126198"], True)
+@set_attributes(compomax, "CompositionMax", ["A126198"], False)
 def CompoMax(n: int, k: int) -> int:
-    return compo_max(n)[k]
+    return compomax(n)[k]
 
 
 @cache
@@ -1376,7 +1394,7 @@ def delannoy(n: int) -> list[int]:
     return row
 
 
-@set_attributes(delannoy, "Delannoy", ["A008288"], False)
+@set_attributes(delannoy, "Delannoy", ["A008288"], True)
 def Delannoy(n: int, k: int) -> int:
     return delannoy(n)[k]
 
@@ -1644,7 +1662,7 @@ def hermiteH(n: int) -> list[int]:
     return row
 
 
-@set_attributes(hermiteH, "HermiteH", ["A060821"], True)
+@set_attributes(hermiteH, "HermiteH", ["A060821"], False)
 def HermiteH(n: int, k: int) -> int:
     return hermiteH(n)[k]
 
@@ -1766,7 +1784,7 @@ def motzkin(n: int) -> list[int]:
     return row
 
 
-@set_attributes(motzkin, "Motzkin", ["A359364"], True)
+@set_attributes(motzkin, "Motzkin", ["A359364"], False)
 def Motzkin(n: int, k: int) -> int:
     return motzkin(n)[k]
 
@@ -2256,7 +2274,7 @@ def worpitzky(n: int) -> list[int]:
 
 @set_attributes(
     worpitzky,
-    "Worpitzki",
+    "Worpitzky",
     ["A028246", "A053440", "A075263", "A130850", "A163626"],
     False,
 )
@@ -2273,6 +2291,7 @@ tabl_fun: list[tgen] = [
     Binomial,
     Catalan,
     CatalanAer,
+    CatalanSqr,
     CentralCycle,
     CentralSet,
     ChebyshevS,
@@ -2376,27 +2395,86 @@ def SaveExtendedTables(dim: int = 9) -> None:
                     PrintViews(R, dim)
 
 
+def GetFormulas() -> dict[str, str]:
+    FORMULA: dict[str, str] = {}
+    FORMULA["Tabl"] = "T(n, k), 0 &le; k &le; n"
+    FORMULA["RevTabl"] = "T(n, n - k), 0 &le; k &le; n"
+    FORMULA["InvTabl"] = ""
+    FORMULA["InvRevTabl"] = ""
+    FORMULA["RevInvTabl"] = ""
+    FORMULA["AccTabl"] = ""
+    FORMULA["RevAccTabl"] = ""
+    FORMULA["AccRevTabl"] = ""
+    FORMULA["AntiDiagTabl"] = ""
+    FORMULA["Diffx"] = ""
+    FORMULA["BinTabl"] = ""
+    FORMULA["InvBinTabl"] = ""
+    FORMULA["RowSum"] = "&sum;<sub> k=0..n </sub> T(n, k)"
+    FORMULA["EvenSum"] = "&sum;<sub> k=0..n </sub> T(n, k) even(k)"
+    FORMULA["OddSum"] = "&sum;<sub> k=0..n </sub> T(n, k) odd(k)"
+    FORMULA["AltSum"] = "&sum;<sub> k=0..n </sub> T(n, k) (-1)^k"
+    FORMULA["AntiDiagSum"] = "&sum;<sub> k=0..n//2 </sub> T(n - k, k)"
+    FORMULA["AccSum"] = "&sum;<sub> k=0..n </sub>&sum;<sub> j=0..k </sub> T(n, j)"
+    FORMULA["AccRevSum"] = "&sum;<sub> k=0..n </sub>&sum;<sub> j=0..k </sub> T(n, n - j)"
+    FORMULA["RowLcm"] = "Lcm<sub> k=0..n </sub> T(n, k)"
+    FORMULA["RowGcd"] = "Gcd<sub> k=0..n </sub> T(n, k)"
+    FORMULA["RowMax"] = "Max<sub> k=0..n </sub> T(n, k)"
+    FORMULA["ColMiddle"] = "T(n, n // 2)"
+    FORMULA["ColECentral"] = "T(2 n, n)"
+    FORMULA["ColOCentral"] = "T(2 n + 1, n)"
+    FORMULA["ColLeft"] = "T(n, 0)"
+    FORMULA["ColRight"] = "T(n, n)"
+    FORMULA["BinConv"] = "&sum;<sub> k=0..n </sub> C(n, k) T(n, k)"
+    FORMULA["InvBinConv"] = "&sum;<sub> k=0..n </sub> C(n, k) T(n, n - k) (-1)^k"
+    FORMULA["TransSqrs"] = "&sum;<sub> k=0..n </sub> T(n, k) k^2"
+    FORMULA["TransNat0"] = "&sum;<sub> k=0..n </sub> T(n, k) k"
+    FORMULA["TransNat1"] = "&sum;<sub> k=0..n </sub> T(n, k) (k + 1)^k"
+    FORMULA["DiagRow1"] = "T(n + 1, n)"
+    FORMULA["DiagRow2"] = "T(n + 2, n)"
+    FORMULA["DiagRow3"] = "T(n + 3, n)"
+    FORMULA["DiagCol1"] = "T(n + 1, 1)"
+    FORMULA["DiagCol2"] = "T(n + 2, 2)"
+    FORMULA["DiagCol3"] = "T(n + 3, 3)"
+    FORMULA["FlatPoly"] = ""
+    FORMULA["PolyRow1"] = "&sum;<sub> j=0..1 </sub>T(1, j) n^j"
+    FORMULA["PolyRow2"] = "&sum;<sub> j=0..2 </sub>T(2, j) n^j"
+    FORMULA["PolyRow3"] = "&sum;<sub> j=0..3 </sub>T(3, j) n^j"
+    FORMULA["PolyCol2"] = "&sum;<sub> j=0..n </sub>T(n, j) 2^j"
+    FORMULA["PolyCol3"] = "&sum;<sub> j=0..n </sub>T(n, j) 3^j"
+    FORMULA["PolyDiag"] = "&sum;<sub> j=0..n </sub>T(n, j) n^j"
+    FORMULA["PosHalf"] = "&sum;<sub> j=0..n </sub>2^n T(n, j) (1/2)^j"
+    FORMULA["NegHalf"] = "&sum;<sub> j=0..n </sub>(-2)^n T(n, j) (-1/2)^j"
+    return FORMULA
+
+
 Header = [
     "<!DOCTYPE html>",
     "<html lang='en'><head><meta charset='UTF-8'/>",
     "<meta name='viewport' content='width=device-width, initial-scale=1.0'/>",
+    "<link rel='preconnect' href='https://fonts.googleapis.com'>",
+    "<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>",
+    "<link href='https://fonts.googleapis.com/css2?family=Sofia+Sans+Condensed:wght@300;600;700&display=swap' rel='stylesheet'>",
 ]
 CSS = [
-    "<head><style> table, td, th, p {border-collapse: collapse; font-family: sans-serif; color: blue;}",
-    "td, th {border-bottom: 0; padding: 4px}",
-    "td {text-align: left}",
-    "tr:nth-child(odd) {background: #eee;}",
-    "tr:nth-child(even) {background: #fff;}",
-    "tr.header {background: orange !important; color: white; font-weight: bold;}",
-    "tr.subheader {background: lightgray !important; color: black;}",
-    "tr.headerLastRow {border-bottom: 2px solid black;}",
-    "th.rowNumber, td.rowNumber {text-align: right;}",
-    "a {text-decoration: none; color:brown;}",
-    "a:hover {background-color: #AFE1AF;}",
-    "#rcor1 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 40px; height: 0px;}",
-    "#rcor2 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 550px; height: 0px;}",
-    "#rcor3 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 88px; height: 20px; font-weight: bold; text-align: center;}",
-    ".center {margin-top: 1em;}",
+    "<head><style> body {font-family: 'Sofia Sans Condensed', sans-serif;} ",
+    "table, td, th, p { border-collapse: collapse; font-family: sans-serif; color: blue;} ",
+    "td, th { border-bottom: 0; padding: 4px} ",
+    "td { text-align: left} ",
+    "tr:nth-child(odd) { background: #eee;} ",
+    "tr:nth-child(even) { background: #fff;} ",
+    "tr.header { background: orange !important; color: white; font-weight: 700;} ",
+    "tr.subheader { background: lightgray !important; color: black;} ",
+    "tr.headerLastRow { border-bottom: 2px solid black;} ",
+    "th.rowNumber, td.rowNumber { text-align: right;} ",
+    "a {text-decoration: none; color:brown;} ",
+    "a:hover {background-color: #AFE1AF;} ",
+    "#rcor1 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 40px; height: 0px;} ",
+    "#rcor2 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 550px; height: 0px;} ",
+    "#rcor3 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 88px; height: 20px; font-weight: 700; text-align: center;} ",
+    ".center {margin-top: 1em;} ",
+    ".tooltip { position: relative; display: inline-block; font-weight: 600;} ",
+    ".tooltip .formula { visibility: hidden; width: 200px; background-color: lightgray; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; top: -5px; left: 105%;} ",
+    ".tooltip:hover .formula { visibility: visible; } ",
     "</style></head><body>",
 ]
 
@@ -2440,7 +2518,8 @@ SCRIPT = [
 ]
 Footer = [
     "<p style='margin-left:8px'>Note: The A-numbers are based on a finite number of numerical comparisons.<br>",
-    "They ignore the offset and sign, and might differ in the first few values.</p>",
+    "They ignore the sign and the OEIS-offset, and might differ in the first few values.<br>"
+    "Here the offset of all triangles and sequences is 0.</p>",
 ]
 funnames = [fun.id for fun in tabl_fun]
 
@@ -2461,10 +2540,10 @@ def navbar(fun) -> list[str]:
     for s in fun.sim:
         anums += "%7Cid%3A" + s
     prevnext = getprevnext(fun.id)
-    rc = "style='border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 108px; height: 20px; font-weight: bold; text-align: center; margin-left: 8px; margin-right: 8px;'"
+    rc = "style='border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 108px; height: 20px; font-weight: 700; text-align: center; margin-left: 8px; margin-right: 8px;'"
     NAVBAR = ["<table class='center'><tr>"]
     NAVBAR.append(
-        f"<td {rc};><a style='color:white' href='https://luschny.de/math/oeis/{prevnext[0]}.html'>&#171;</a></td>"
+        f"<td {rc};><a style='color:white' href='https://luschny.de/math/oeis/{prevnext[0]}.html'>&nbsp;<<&nbsp;</a></td>"
     )
     NAVBAR.append(
         f"<td {rc};><a style='color:white' href='https://github.com/PeterLuschny/tabl/blob/main/data/md/{fun.id}.md'>Table</a></td>"
@@ -2479,7 +2558,7 @@ def navbar(fun) -> list[str]:
         f"<td {rc};><a style='color:white' href='https://luschny.de/math/oeis/index.html'>Index</a></td>"
     )
     NAVBAR.append(
-        f"<td {rc};><a style='color:white' href='https://luschny.de/math/oeis/{prevnext[1]}.html'>&#187;</a></td>"
+        f"<td {rc};><a style='color:white' href='https://luschny.de/math/oeis/{prevnext[1]}.html'>&nbsp;>>&nbsp;</a></td>"
     )
     NAVBAR.append("</tr></table>")
     return NAVBAR
@@ -2490,7 +2569,7 @@ def CsvToHtml(fun: tgen, csvpath: Path, outpath: Path) -> None:
     # csvfile = (csvpath / (name + "X.csv")).resolve()
     csvfile = (csvpath / (name + ".csv")).resolve()
     outfile = (outpath / (name + ".html")).resolve()
-
+    FORMULA = GetFormulas()
     with open(csvfile, "r") as csvfile:
         reader = csv.reader(csvfile)
         with open(outfile, "w") as outfile:
@@ -2501,7 +2580,9 @@ def CsvToHtml(fun: tgen, csvpath: Path, outpath: Path) -> None:
                 outfile.write(l)
             l = next(reader)  # column names
             sim = str(fun.sim).replace("'", "").replace("[", "").replace("]", "")
-            outfile.write(f"<p id='rcor3'>{name.upper()}</p>")
+            outfile.write(
+                f"<p style='border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 160px; height: 20px; font-weight: 700; text-align: center;'>{name.upper()}</p>"
+            )
             outfile.write(
                 f"<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OEIS Similars: {sim}\n</p>"
             )
@@ -2513,7 +2594,13 @@ def CsvToHtml(fun: tgen, csvpath: Path, outpath: Path) -> None:
                 if line[3] == "[]":
                     continue
                 # trait
-                outfile.write(f"<tr><td><b>{line[2]}</b></td>")
+                tip = FORMULA[line[2]]
+                if tip != "":
+                    outfile.write(
+                        f"<tr><td class='tooltip'>{line[2]}<span class='formula'>{tip}</span></td>"
+                    )
+                else:
+                    outfile.write(f"<tr><td class='tooltip'>{line[2]}</td>")
                 seq = line[3].replace("[", "").replace(" ]", "")
                 # Anum
                 if line[1] == "":
@@ -2526,7 +2613,6 @@ def CsvToHtml(fun: tgen, csvpath: Path, outpath: Path) -> None:
                     outfile.write(
                         f"<td><a href='https://oeis.org/{line[1]}'>{line[1]}</a></td>"
                     )
-
                 # seq
                 outfile.write(f"<td>{seq}</td></tr>")
             outfile.write("</tbody></table>")
@@ -2804,9 +2890,9 @@ def register() -> None:
     RegisterTrait(EvenSum)
     RegisterTrait(OddSum)
     RegisterTrait(AltSum)
+    RegisterTrait(AntiDiagSum)
     RegisterTrait(AccSum)
     RegisterTrait(AccRevSum)
-    RegisterTrait(AntiDiagSum)
     RegisterTrait(RowLcm)
     RegisterTrait(RowGcd)
     RegisterTrait(RowMax)
@@ -2830,7 +2916,7 @@ def register() -> None:
     RegisterTrait2(DiagCol2)
     RegisterTrait2(DiagCol3)
     RegisterTrait2(FlatPoly)
-    # RegisterTrait2(PolyRow0) same as ColRight
+    # RegisterTrait2(PolyRow0)
     RegisterTrait2(PolyRow1)
     RegisterTrait2(PolyRow2)
     RegisterTrait2(PolyRow3)

@@ -311,7 +311,7 @@ if __name__ == "__main__":
     from StirlingCyc import StirlingCycle
     from CompositionMax import CompoMax
 
-    T = StirlingCycle.tab(9)
+    T = Abel.tab(9)
     print(T)
 
     #PrintTransforms(Abel)
@@ -320,23 +320,24 @@ if __name__ == "__main__":
     #PrintMiscTraits(Abel.tab(8), Abel.id)
     #PrintMiscTraits(CompoMax.tab(8), CompoMax.id, False)
 
+    print("BinConv    ", BinConv(T)) 
+    #print(BinConv_(abel, 6))
+
+    print("InvBinConv ", InvBinConv(T)) 
+    #print(InvBinConv_(abel, 6))
+
     '''
-    print(BinTabl_(abel, 6))
-    print(BinTabl(Abel.tab(6)))
+    #print(BinTabl_(abel, 6))
+    print("BinTabl    ", BinTabl(T))
 
-    print(InvBinTabl_(abel, 6))
-    print(InvBinTabl(Abel.tab(6)))
+    #print(InvBinTabl_(abel, 6))
+    print("BinTabl    ", InvBinTabl(T))
 
-    print(FlatBinTabl(Abel.tab(6)))
+    # print(FlatBinTabl(Abel.tab(6)))
 
-    print(BinConv(Abel.tab(6))) 
-    print(BinConv_(abel, 6))
+    #print(ConvTabl_(abel, 6))
+    print("ConvTabl    ", ConvTabl(T)) 
 
-    print(InvBinConv(Abel.tab(6))) 
-    print(InvBinConv_(abel, 6))
+    print("InvConvTabl", InvConvTabl(abel, 6))
 
-    print(ConvTabl_(abel, 6))
-    print(ConvTabl(Abel.tab(6))) 
-
-    print(InvConvTabl(abel, 6))
     '''

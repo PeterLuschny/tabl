@@ -1,7 +1,7 @@
 from itertools import count
 from math import floor
 from typing import Callable
-from _tablpaths import GetDataPath
+from _tablpaths import GetDataPath, GetCsvPath, GetMdPath
 from _tabltypes import rgen, tgen, tabl, trow
 from _tablsimilartri import GetSimilarTriangles
 from _tablpoly import PolyRow0, PolyRow1, PolyRow2, PolyRow3, PolyCol0, PolyCol1, PolyCol2, PolyCol3, PolyDiag, PosHalf, NegHalf, FlatPoly
@@ -128,9 +128,9 @@ def register() -> None:
     RegisterTrait(EvenSum)
     RegisterTrait(OddSum)
     RegisterTrait(AltSum)
+    RegisterTrait(AntiDiagSum)
     RegisterTrait(AccSum)
     RegisterTrait(AccRevSum)
-    RegisterTrait(AntiDiagSum)
 
     RegisterTrait(RowLcm)
     RegisterTrait(RowGcd)
@@ -143,6 +143,8 @@ def register() -> None:
     
     RegisterTrait(BinConv)
     RegisterTrait(InvBinConv)
+
+# -------------------------------------------
 
     RegisterTrait2(TransSqrs)
     RegisterTrait2(TransNat0)
@@ -157,7 +159,7 @@ def register() -> None:
     RegisterTrait2(DiagCol3)
 
     RegisterTrait2(FlatPoly)
-    # RegisterTrait2(PolyRow0) same as ColRight
+    # RegisterTrait2(PolyRow0)
     RegisterTrait2(PolyRow1)
     RegisterTrait2(PolyRow2)
     RegisterTrait2(PolyRow3)
@@ -229,9 +231,6 @@ def PrintTraits(g: tgen, size: int,
         for traitname, trait in TRAIT2.items():
             seqstr = SeqToFixlenString(trait(gen, size), 70, ' ')
             print(f'{trianglename}:{traitname:<14} {seqstr}')
-
-
-from _tablpaths import GetCsvPath, GetMdPath
 
 def SaveTraitsToFile(g: tgen, size: int, 
                      withanum = False, 
@@ -458,12 +457,21 @@ if __name__ == "__main__":
     from StirlingSet import StirlingSet
     from Motzkin import Motzkin
     from Binomial import Binomial
+    from CatalanSqr import CatalanSqr
+    from PowLaguerre import PowLaguerre
 
     # SaveExtendedTraitsToCSV(StirlingSet, 20) 
     # SaveAllExtendedTraitsToCSV()
 
     # SaveAllFoundTraitsToCSV()
+
+    register()
     SaveAllTraitsToCSV()
+
+    # SaveTraitsToFile(PowLaguerre, 20,
+    #                     withanum = True,
+    #                     markdown = False,
+    #                     onlythefound = False)
 
     # SEQ = StirlingSet
     #PrintTraits(SEQ, 12, withanum = False, markdown = False)

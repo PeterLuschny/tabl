@@ -28,7 +28,7 @@ def worpitzky(n: int) -> list[int]:
 
 @set_attributes(
     worpitzky, 
-    "Worpitzki", 
+    "Worpitzky", 
     ['A028246', 'A053440', 'A075263', 'A130850', 'A163626'],
     False)
 def Worpitzky(n: int, k: int) -> int: 
