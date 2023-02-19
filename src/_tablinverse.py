@@ -2,7 +2,7 @@ from sympy import Matrix, Rational
 
 # #@
 
-def isintegerinv(T: list[list[int]]) -> bool:
+def isintegerinv(T: list[list[int] | list[Rational]]) -> bool:
     for row in T:
         for k in row:
             if type(k) == Rational:
@@ -15,7 +15,7 @@ def InverseTriangle(r, dim: int) -> list[list[int]]:
     M = [[r(n)[k] if k <= n else 0 for k in range(dim)] for n in range(dim)]
     try:
         I = Matrix(M) ** -1
-    except: # NonInvertibleMatrixError 
+    except:
         # print("Not invertible")
         return []
 
@@ -31,15 +31,15 @@ def InverseTabl(T: list[list[int]]) -> list[list[int]]:
 
     try:
         I = Matrix(M) ** -1
-    except: # NonInvertibleMatrixError 
+    except: 
         # print("Not invertible")
         return []
 
-    T = [[I[n, k] for k in range(n + 1)] for n in range(len(M))]
-    if not isintegerinv(T): 
+    t = [[I[n, k] for k in range(n + 1)] for n in range(len(M))]
+    if not isintegerinv(t): 
         # print("Inverse not integer matrix")
         return []
-    return T
+    return t
 
 
 if __name__ == "__main__":

@@ -1,4 +1,3 @@
-from functools import cache
 from _tabltypes import set_attributes
 from Seidel import seidel
 

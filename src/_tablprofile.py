@@ -1,7 +1,7 @@
 
 from _tablpoly import PolyRow0,PolyRow1,PolyRow2,PolyRow3,PolyCol0,PolyCol1,PolyCol2,PolyCol3, PolyDiag,PosHalf,NegHalf,PolyRow,PolyCol
 from _tablsums import RowSum,EvenSum, OddSum,AltSum,AccSum,AccRevSum,AntiDiagSum
-from _tabltypes import rgen, tgen, tabl, inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
+from _tabltypes import tgen, tabl, inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
 
 def flat(t: tabl) -> list[int]: 
     """Flatten table to sequence
@@ -12,7 +12,7 @@ def flat(t: tabl) -> list[int]:
     Returns:
         list[int]: sequence
     """
-    if t == [] or t == None: return []
+    if t == []: return []
     return [i for row in t for i in row] 
 
 
@@ -101,13 +101,13 @@ def PrintExtendedProfile(T: tgen, dim: int, format: str) -> None:
     R = reversion_wrapper(T, tim)
     PrintProfile(R, dim, format)
 
-    R = revinv_wrapper(T, tim)
-    if R != None:
-        PrintProfile(R, dim, format)
+    r = revinv_wrapper(T, tim)
+    if r != None:
+        PrintProfile(r, dim, format)
 
-    R = invrev_wrapper(T, tim)
-    if R != None:
-        PrintProfile(R, dim, format)
+    r = invrev_wrapper(T, tim)
+    if r != None:
+        PrintProfile(r, dim, format)
 
     if format == 'nonames':
         global counter

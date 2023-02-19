@@ -107,7 +107,7 @@ def AbsSubTriangle(g: rgen, N: int, K: int, size: int) -> tabl:
     return [[abs(g(n)[k]) for k in range(K, K - N + n + 1)] for n in range(N, N + size)]
 
 
-def set_attributes(gen: rgen, id: str, sim: list, vert: bool=False) -> Callable[..., Callable[[int,int], int]]:
+def set_attributes(gen: rgen, id: str, sim: list[str], vert: bool=False) -> Callable[..., Callable[[int,int], int]]:
 
     def maketab(size: int) -> tabl:
         return [list(gen(n)) for n in range(size)]

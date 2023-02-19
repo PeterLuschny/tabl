@@ -1,12 +1,9 @@
-from itertools import count
-from math import floor
 from typing import Callable
 from _tablpaths import GetDataPath, GetCsvPath, GetMdPath
 from _tabltypes import rgen, tgen, tabl, trow
-from _tablsimilartri import GetSimilarTriangles
-from _tablpoly import PolyRow0, PolyRow1, PolyRow2, PolyRow3, PolyCol0, PolyCol1, PolyCol2, PolyCol3, PolyDiag, PosHalf, NegHalf, FlatPoly
+from _tablpoly import PolyRow0, PolyRow1, PolyRow2, PolyRow3, PolyCol0, PolyCol1, PolyCol2, PolyCol3, PolyDiag, PosHalf, NegHalf, PolyTabl
 from _tablsums import RowSum, EvenSum, OddSum, AltSum, AccSum, AccRevSum, AntiDiagSum
-from _tabltabls import FlatTabl, FlatAccTabl, FlatRevAccTabl, FlatAccRevTabl, FlatAntiDiagTabl, FlatRevTabl, FlatInvTabl, FlatInvRevTabl, FlatRevInvTabl, FlatDiffx 
+from _tabltabls import FlatTabl, FlatAccTabl, FlatRevAccTabl, FlatAccRevTabl, FlatAntiDiagTabl, FlatRevTabl, FlatInvTabl, FlatInvRevTabl, FlatRevInvTabl, FlatDiffxTabl 
 from _tabltransforms import FlatBinTabl, FlatInvBinTabl, BinConv, InvBinConv,  RowLcm, RowGcd, RowMax, DiagRow0, DiagRow1, DiagRow2, DiagRow3, DiagCol0, DiagCol1, DiagCol2, DiagCol3, TransSqrs, TransNat0, TransNat1, ColMiddle, ColECentral, ColOCentral, ColLeft, ColRight 
 
 """
@@ -26,7 +23,7 @@ Pretty printing of triangles trait cards.
 # #@
 
 
-def SeqToFixlenString(seq: list[int], maxlen:int=90, separator=',') -> str:
+def SeqToFixlenString(seq:list[int], maxlen:int=90, separator:str=',') -> str:
     stri = "["
     maxl = 3
     for trm in seq:
@@ -92,18 +89,18 @@ def flat(t: tabl) -> list[int]:
     Returns:
         list[int]: sequence
     """
-    if t == [] or t == None: return []
+    if t == []: return []
     return [i for row in t for i in row] 
 
 
 
 #########################################################
 
-TRAIT: dict[str, Callable] = {}
+TRAIT: dict[str, Callable[[tabl], trow]] = {}
 def RegisterTrait(f: Callable[[tabl], trow]) -> None: 
     TRAIT[f.__name__] = f
 
-TRAIT2: dict[str, Callable] = {}
+TRAIT2: dict[str, Callable[[rgen, int], trow]] = {}
 def RegisterTrait2(f: Callable[[rgen, int], trow]) -> None:
     TRAIT2[f.__name__] = f
 
@@ -112,17 +109,16 @@ def register() -> None:
     RegisterTrait(FlatTabl)
     RegisterTrait(FlatRevTabl)
     RegisterTrait(FlatInvTabl)
-    RegisterTrait(FlatInvRevTabl)
     RegisterTrait(FlatRevInvTabl)
+    RegisterTrait(FlatInvRevTabl)
 
     RegisterTrait(FlatAccTabl)
     RegisterTrait(FlatRevAccTabl) # rarely found
     RegisterTrait(FlatAccRevTabl)
     RegisterTrait(FlatAntiDiagTabl)
-    RegisterTrait(FlatDiffx)
-
     RegisterTrait(FlatBinTabl)    # rarely found
     RegisterTrait(FlatInvBinTabl) # rarely found
+    RegisterTrait(FlatDiffxTabl)
 
     RegisterTrait(RowSum)
     RegisterTrait(EvenSum)
@@ -146,9 +142,9 @@ def register() -> None:
 
 # -------------------------------------------
 
-    RegisterTrait2(TransSqrs)
     RegisterTrait2(TransNat0)
     RegisterTrait2(TransNat1)
+    RegisterTrait2(TransSqrs)
     # RegisterTrait2(DiagRow0) same as ColRight
     RegisterTrait2(DiagRow1)
     RegisterTrait2(DiagRow2)
@@ -158,7 +154,7 @@ def register() -> None:
     RegisterTrait2(DiagCol2)
     RegisterTrait2(DiagCol3)
 
-    RegisterTrait2(FlatPoly)
+    RegisterTrait2(PolyTabl)
     # RegisterTrait2(PolyRow0)
     RegisterTrait2(PolyRow1)
     RegisterTrait2(PolyRow2)
@@ -173,7 +169,7 @@ def register() -> None:
 
 
 def PrintTraits(g: tgen, size: int, 
-                withanum = False, 
+                withanum: bool = False, 
                 markdown: bool = True,
                 onlythefound: bool = True) -> None:
 
@@ -192,16 +188,16 @@ def PrintTraits(g: tgen, size: int,
 
         for traitname, trait in TRAIT.items():
             name = traitname[4:] if traitname.startswith("Flat") else traitname
-            TT = trait(T)
+            tt = trait(T)
             if withanum:
-                anum = '' if TT == [] else GetAnumber(TT)
+                anum = '' if tt == [] else GetAnumber(tt)
                 if anum != "": 
                     print(traitname)
                     if onlythefound: continue
-                seqstr = SeqToFixlenString(TT, 70, ' ')    
+                seqstr = SeqToFixlenString(tt, 70, ' ')    
                 print(f'| {trianglename} | {anum:7} | {name:<12} | {seqstr} |')
             else:
-                seqstr = SeqToFixlenString(TT, 70, ' ')
+                seqstr = SeqToFixlenString(tt, 70, ' ')
                 print(f'| {trianglename} | {name:<12} | {seqstr} |')
 
     else: # TXT simple dictionary, no options, no anums 
@@ -214,16 +210,16 @@ def PrintTraits(g: tgen, size: int,
     if markdown:
 
         for traitname, trait in TRAIT2.items():
-            TT = trait(gen, size)
+            tt = trait(gen, size)
             if withanum:
-                anum = '' if TT == [] else GetAnumber(TT)
+                anum = '' if tt == [] else GetAnumber(tt)
                 if anum != "": 
                     print(traitname)
                     if onlythefound: continue
-                seqstr = SeqToFixlenString(TT, 70, ' ')    
+                seqstr = SeqToFixlenString(tt, 70, ' ')    
                 print(f'| {trianglename} | {anum:7} | {traitname:<12} | {seqstr} |')
             else:
-                seqstr = SeqToFixlenString(TT, 70, ' ')
+                seqstr = SeqToFixlenString(tt, 70, ' ')
                 print(f'| {trianglename} | {traitname:<12} | {seqstr} |')
 
     else:  # TXT simple dictionary, no options, no anums 
@@ -233,7 +229,7 @@ def PrintTraits(g: tgen, size: int,
             print(f'{trianglename}:{traitname:<14} {seqstr}')
 
 def SaveTraitsToFile(g: tgen, size: int, 
-                     withanum = False, 
+                     withanum: bool = False, 
                      markdown: bool = True,
                      onlythefound: bool = True) -> None:
 
@@ -268,16 +264,16 @@ def SaveTraitsToFile(g: tgen, size: int,
 
             for traitname, trait in TRAIT.items():
                 name = traitname[4:] if traitname.startswith("Flat") else traitname
-                TT = trait(T)
+                tt = trait(T)
                 if withanum:
-                    anum = '' if TT == [] else GetAnumber(TT)
+                    anum = '' if tt == [] else GetAnumber(tt)
                     if anum != "": 
                         print(traitname) 
                         if onlythefound: continue
-                    seqstr = SeqToFixlenString(TT, 70, ' ')    
+                    seqstr = SeqToFixlenString(tt, 70, ' ')    
                     target.write(f'| {trianglename} | {anum:7} | {name:<12} | {seqstr} |\n')
                 else:
-                    seqstr = SeqToFixlenString(TT, 70, ' ')
+                    seqstr = SeqToFixlenString(tt, 70, ' ')
                     target.write(f'| {trianglename} | {name:<12} | {seqstr} |\n')
 
         else: # CSV
@@ -285,52 +281,52 @@ def SaveTraitsToFile(g: tgen, size: int,
             for traitname, trait in TRAIT.items():
                 name = traitname[4:] if traitname.startswith("Flat") else traitname
                 
-                TT = trait(T)
+                tt = trait(T)
                 if withanum:
-                    anum = '' if TT == [] else GetAnumber(TT)
+                    anum = '' if tt == [] else GetAnumber(tt)
                     if anum == "": 
                         print(traitname) 
                         if onlythefound: continue
-                    seqstr = SeqToFixlenString(TT, 70, ' ')
+                    seqstr = SeqToFixlenString(tt, 70, ' ')
                     target.write(f'{trianglename},{anum},{name},{seqstr}\n')
                 else:
-                    seqstr = SeqToFixlenString(TT, 70, ' ')
+                    seqstr = SeqToFixlenString(tt, 70, ' ')
                     target.write(f'{trianglename},{name},{seqstr}\n')
 
         if markdown:
 
             for traitname, trait in TRAIT2.items():
-                TT = trait(gen, size)
+                tt = trait(gen, size)
                 if withanum:
-                    anum = '' if TT == [] else GetAnumber(TT)
+                    anum = '' if tt == [] else GetAnumber(tt)
                     if anum != "": 
                         print(traitname)
                         if onlythefound: continue
-                    seqstr = SeqToFixlenString(TT, 70, ' ')    
+                    seqstr = SeqToFixlenString(tt, 70, ' ')    
                     target.write(f'| {trianglename} | {anum:7} | {traitname:<12} | {seqstr} |\n')
                 else:
-                    seqstr = SeqToFixlenString(TT, 70, ' ')
+                    seqstr = SeqToFixlenString(tt, 70, ' ')
                     target.write(f'| {trianglename} | {traitname:<12} | {seqstr} |\n')
 
         else: # CSV
 
             for traitname, trait in TRAIT2.items():
-                TT = trait(gen, size)
+                tt = trait(gen, size)
                 if withanum:
-                    anum = '' if TT == [] else GetAnumber(TT)
+                    anum = '' if tt == [] else GetAnumber(tt)
                     if anum == "": 
                         print(traitname) 
                         if onlythefound: continue
-                    seqstr = SeqToFixlenString(TT, 70, ' ')
+                    seqstr = SeqToFixlenString(tt, 70, ' ')
                     target.write(f'{trianglename},{anum},{traitname},{seqstr}\n')
                 else:
-                    seqstr = SeqToFixlenString(TT, 70, ' ')
+                    seqstr = SeqToFixlenString(tt, 70, ' ')
                     target.write(f'{trianglename},{traitname},{seqstr}\n')
 
 
 from _tabltypes import inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
 
-def PrintExtendedTraits(T: tgen, size: int, withanum = False, markdown: bool = True) -> None:
+def PrintExtendedTraits(T: tgen, size: int, withanum: bool = False, markdown: bool = True) -> None:
 
     tim: int = size + size // 2
 
@@ -340,23 +336,23 @@ def PrintExtendedTraits(T: tgen, size: int, withanum = False, markdown: bool = T
     T.id = Tid 
 
     print("\n# Reverse.")
-    R = reversion_wrapper(T, tim)
-    PrintTraits(R, size, withanum, markdown)
+    r = reversion_wrapper(T, tim)
+    PrintTraits(r, size, withanum, markdown)
 
     I = inversion_wrapper(T, tim)
     if I != None:
         print("\n# Inverse.")
         PrintTraits(I, size, withanum, markdown)
 
-    R = revinv_wrapper(T, tim)
-    if R != None:
+    r = revinv_wrapper(T, tim)
+    if r != None:
         print("\n# Reverse of inverse.")
-        PrintTraits(R, size, withanum, markdown)
+        PrintTraits(r, size, withanum, markdown)
 
-    R = invrev_wrapper(T, tim)
-    if R != None:
+    r = invrev_wrapper(T, tim)
+    if r != None:
         print("\n# Inverse of reverse.")
-        PrintTraits(R, size, withanum, markdown)
+        PrintTraits(r, size, withanum, markdown)
 
 
 def SaveExtendedTraitsToCSV(G: tgen, size: int) -> None:
@@ -389,21 +385,21 @@ def SaveExtendedTraitsToCSV(G: tgen, size: int) -> None:
 
             for traitname, trait in TRAIT.items():
                 name = traitname[4:] if traitname.startswith("Flat") else traitname
-                TT = trait(T)
-                anum = '' if TT == [] else GetAnumber(TT)
+                tt = trait(T)
+                anum = '' if tt == [] else GetAnumber(tt)
                 if anum == "": 
                     print(traitname) 
                     continue
-                seqstr = SeqToFixlenString(TT, 70, ' ')
+                seqstr = SeqToFixlenString(tt, 70, ' ')
                 target.write(f'{trianglename},{anum},{name},{seqstr}\n')
 
             for traitname, trait in TRAIT2.items():
-                TT = trait(gen, size)
-                anum = '' if TT == [] else GetAnumber(TT)
+                tt = trait(gen, size)
+                anum = '' if tt == [] else GetAnumber(tt)
                 if anum == "": 
                     print(traitname) 
                     continue
-                seqstr = SeqToFixlenString(TT, 70, ' ')
+                seqstr = SeqToFixlenString(tt, 70, ' ')
                 target.write(f'{trianglename},{anum},{traitname},{seqstr}\n')
 
     G.id = savedid
@@ -450,7 +446,6 @@ def SaveAllExtendedTraitsToCSV() -> None:
 if __name__ == "__main__":
 
     from tabl import tabl_fun
-    from inspect import signature
     from Abel import Abel
     from Bell import Bell
     from Lah import Lah

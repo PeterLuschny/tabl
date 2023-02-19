@@ -54,16 +54,16 @@ def SaveExtendedTables(dim: int = 9) -> None:
                 if I != None:
                     PrintViews(I, dim)
 
-                R = reversion_wrapper(fun, tim)
-                PrintViews(R, dim)
+                r = reversion_wrapper(fun, tim)
+                PrintViews(r, dim)
 
-                R = revinv_wrapper(fun, tim)
-                if R != None:
-                    PrintViews(R, dim)
+                r = revinv_wrapper(fun, tim)
+                if r != None:
+                    PrintViews(r, dim)
 
-                R = invrev_wrapper(fun, tim)
-                if R != None:
-                    PrintViews(R, dim)
+                r = invrev_wrapper(fun, tim)
+                if r != None:
+                    PrintViews(r, dim)
 
 if __name__ == "__main__":
 

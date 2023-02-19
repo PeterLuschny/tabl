@@ -37,12 +37,13 @@ def antidiag_poly(g: rgen, n: int) -> trow:
     return [Poly(g, n - k, k) for k in range(n + 1)]
 
 
-def PolyTabl_(g: rgen, size: int) -> tabl:
+def PolyDiagTabl(g: rgen, size: int) -> tabl:
     return [antidiag_poly(g, n) for n in range(size)]
 
 
-def FlatPoly(g: rgen, size: int) -> trow:
-    return [i for row in PolyTabl_(g, size) for i in row]
+# PolyTablDiagTabl
+def PolyTabl(g: rgen, size: int) -> trow:
+    return [i for row in PolyDiagTabl(g, size) for i in row]
 
 
 def PolyFrac(T: tabl, x: frac)  -> list[frac | int]:
@@ -63,11 +64,11 @@ def NegHalf(g: rgen, size: int) -> trow:
 
 def PrintPolys(t: tgen, size: int = 8, mdformat: bool = True) -> None:
 
-    POLYTRAIT: dict[str, Callable] = {}
+    POLYTRAIT: dict[str, Callable[[t.gen, int], trow]] = {}
     def RegisterPolyTrait(f: Callable[[t.gen, int], trow]) -> None: 
         POLYTRAIT[f.__name__] = f
 
-    RegisterPolyTrait(FlatPoly)
+    RegisterPolyTrait(PolyTabl)
     RegisterPolyTrait(PolyRow0)
     RegisterPolyTrait(PolyRow1)
     RegisterPolyTrait(PolyRow2)

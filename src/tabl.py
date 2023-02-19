@@ -1,9 +1,8 @@
 from functools import cache, reduce
-from itertools import accumulate, count
-from math import lcm, gcd, floor, factorial
+from itertools import accumulate
+from math import lcm, gcd, factorial
 from sys import setrecursionlimit, set_int_max_str_digits
 from typing import Callable, TypeAlias
-from io import TextIOWrapper
 import contextlib
 import csv
 import requests
@@ -53,7 +52,7 @@ setrecursionlimit(3000)
 set_int_max_str_digits(5000)
 
 
-def isintegerinv(T: list[list[int]]) -> bool:
+def isintegerinv(T: list[list[int] | list[Rational]]) -> bool:
     for row in T:
         for k in row:
             if type(k) == Rational:
@@ -65,7 +64,7 @@ def InverseTriangle(r, dim: int) -> list[list[int]]:
     M = [[r(n)[k] if k <= n else 0 for k in range(dim)] for n in range(dim)]
     try:
         I = Matrix(M) ** -1
-    except:  # NonInvertibleMatrixError
+    except:
         # print("Not invertible")
         return []
     T = [[I[n, k] for k in range(n + 1)] for n in range(dim)]
@@ -79,14 +78,14 @@ def InverseTabl(T: list[list[int]]) -> list[list[int]]:
     M = [[T[n][k] if k <= n else 0 for k in range(len(T))] for n in range(len(T))]
     try:
         I = Matrix(M) ** -1
-    except:  # NonInvertibleMatrixError
+    except:
         # print("Not invertible")
         return []
-    T = [[I[n, k] for k in range(n + 1)] for n in range(len(M))]
-    if not isintegerinv(T):
+    t = [[I[n, k] for k in range(n + 1)] for n in range(len(M))]
+    if not isintegerinv(t):
         # print("Inverse not integer matrix")
         return []
-    return T
+    return t
 
 
 """Type: table row"""
@@ -172,7 +171,7 @@ def AbsSubTriangle(g: rgen, N: int, K: int, size: int) -> tabl:
 
 
 def set_attributes(
-    gen: rgen, id: str, sim: list, vert: bool = False
+    gen: rgen, id: str, sim: list[str], vert: bool = False
 ) -> Callable[..., Callable[[int, int], int]]:
     def maketab(size: int) -> tabl:
         return [list(gen(n)) for n in range(size)]
@@ -306,12 +305,12 @@ def FlatAccRevTabl(t: tabl) -> trow:
     return [i for row in AccRevTabl(t) for i in row]
 
 
-def FlatDiffx(t: tabl) -> trow:
+def FlatDiffxTabl(t: tabl) -> trow:
     return [(k + 1) * c for row in t for k, c in enumerate(row)]
 
 
 def PrintTabls(t: tgen, size: int = 8, mdformat: bool = True) -> None:
-    TABLSTRAIT: dict[str, Callable] = {}
+    TABLSTRAIT: dict[str, Callable[[tabl], trow]] = {}
 
     def RegisterTablsTrait(f: Callable[[tabl], trow]) -> None:
         TABLSTRAIT[f.__name__] = f
@@ -327,14 +326,12 @@ def PrintTabls(t: tgen, size: int = 8, mdformat: bool = True) -> None:
     RegisterTablsTrait(FlatAccRevTabl)
     RegisterTablsTrait(FlatAntiDiagTabl)
     trianglename = t.id
-    gen = t.gen
     if mdformat:
         print("#", trianglename, ": Tables")
         print("| Trait    |   Seq  |")
         print("| :---     |  :---  |")
         for traitname, trait in TABLSTRAIT.items():
             print(f"| {traitname:<15} | {trait(T)} |")
-        print()
     else:
         for traitname, trait in TABLSTRAIT.items():
             print(f'{trianglename+":"+traitname:<21} {trait(T)}')
@@ -393,12 +390,12 @@ def antidiag_poly(g: rgen, n: int) -> trow:
     return [Poly(g, n - k, k) for k in range(n + 1)]
 
 
-def PolyTabl_(g: rgen, size: int) -> tabl:
+def PolyDiagTabl(g: rgen, size: int) -> tabl:
     return [antidiag_poly(g, n) for n in range(size)]
 
 
-def FlatPoly(g: rgen, size: int) -> trow:
-    return [i for row in PolyTabl_(g, size) for i in row]
+def PolyTabl(g: rgen, size: int) -> trow:
+    return [i for row in PolyDiagTabl(g, size) for i in row]
 
 
 def PolyFrac(T: tabl, x: frac) -> list[frac | int]:
@@ -418,12 +415,12 @@ def NegHalf(g: rgen, size: int) -> trow:
 
 
 def PrintPolys(t: tgen, size: int = 8, mdformat: bool = True) -> None:
-    POLYTRAIT: dict[str, Callable] = {}
+    POLYTRAIT: dict[str, Callable[[t.gen, int], trow]] = {}
 
     def RegisterPolyTrait(f: Callable[[t.gen, int], trow]) -> None:
         POLYTRAIT[f.__name__] = f
 
-    RegisterPolyTrait(FlatPoly)
+    RegisterPolyTrait(PolyTabl)
     RegisterPolyTrait(PolyRow0)
     RegisterPolyTrait(PolyRow1)
     RegisterPolyTrait(PolyRow2)
@@ -489,7 +486,9 @@ def ConvTabl_(g: rgen, size: int) -> tabl:
 
 
 def ConvTabl(t: tabl) -> tabl:
-    g = lambda n: [t[n][k] for k in range(n + 1)]
+    def g(n: int) -> list[int]:
+        return [t[n][k] for k in range(n + 1)]
+
     return [LinMap_(g, lambda k: g(n)[k], n + 1) for n in range(len(t))]
 
 
@@ -581,7 +580,7 @@ def DiagCol3(g: rgen, size: int) -> trow:
 
 def Lcm_(g: rgen, row: int) -> int:
     Z = [v for v in g(row) if not v in [-1, 0, 1]]
-    return reduce(lcm, Z) if Z != [] else 1
+    return lcm(*Z) if Z != [] else 1
 
 
 def TabLcm_(g: rgen, size: int) -> trow:
@@ -590,7 +589,7 @@ def TabLcm_(g: rgen, size: int) -> trow:
 
 def Lcm(t: trow) -> int:
     Z = [v for v in t if not v in [-1, 0, 1]]
-    return reduce(lcm, Z) if Z != [] else 1
+    return lcm(*Z) if Z != [] else 1
 
 
 def RowLcm(t: tabl) -> trow:
@@ -599,7 +598,7 @@ def RowLcm(t: tabl) -> trow:
 
 def Gcd_(g: rgen, row: int) -> int:
     Z = [v for v in g(row) if not v in [-1, 0, 1]]
-    return reduce(gcd, Z) if Z != [] else 1
+    return gcd(*Z) if Z != [] else 1
 
 
 def RowGcd_(g: rgen, size: int) -> trow:
@@ -608,7 +607,17 @@ def RowGcd_(g: rgen, size: int) -> trow:
 
 def Gcd(t: trow) -> int:
     Z = [v for v in t if not v in [-1, 0, 1]]
-    return reduce(gcd, Z) if Z != [] else 1
+    return gcd(*Z) if Z != [] else 1
+
+
+def GcdReducedRow(t: trow) -> trow:
+    Z = [v for v in t if not v in [-1, 0, 1]]
+    cd = gcd(*Z) if Z != [] else 1
+    return [v // cd if not v in [-1, 0, 1] else v for v in t]
+
+
+def GcdReduced(t: tabl) -> tabl:
+    return [GcdReducedRow(row) for row in t]
 
 
 def RowGcd(t: tabl) -> trow:
@@ -633,7 +642,7 @@ def RowMax(t: tabl) -> trow:
     return [Max(row) for row in t]
 
 
-def Trans(g: rgen, V: Callable, size: int) -> trow:
+def Trans(g: rgen, V: Callable[[int], int], size: int) -> trow:
     return [sum(g(n)[k] * V(k) for k in range(n + 1)) for n in range(size)]
 
 
@@ -649,7 +658,7 @@ def TransNat1(f: rgen, size: int) -> trow:
     return Trans(f, lambda k: k + 1, size)
 
 
-def trans(T: tabl, V: Callable) -> trow:
+def trans(T: tabl, V: Callable[[int], int]) -> trow:
     return [sum(T[n][k] * V(k) for k in range(n + 1)) for n in range(len(T))]
 
 
@@ -686,7 +695,7 @@ def ColRight(t: tabl) -> trow:
 
 
 def PrintTransforms(t: tgen, size: int = 8, mdformat: bool = True) -> None:
-    TRANSTRAIT: dict[str, Callable] = {}
+    TRANSTRAIT: dict[str, Callable[[t.gen, int], trow]] = {}
 
     def RegisterTransTrait(f: Callable[[t.gen, int], trow]) -> None:
         TRANSTRAIT[f.__name__] = f
@@ -717,7 +726,7 @@ def PrintTransforms(t: tgen, size: int = 8, mdformat: bool = True) -> None:
 
 
 def PrintMiscTraits(T: tabl, trianglename: str, mdformat: bool = True) -> None:
-    MISCTRAIT: dict[str, Callable] = {}
+    MISCTRAIT: dict[str, Callable[[tabl], trow]] = {}
 
     def RegisterMiscTrait(f: Callable[[tabl], trow]) -> None:
         MISCTRAIT[f.__name__] = f
@@ -840,7 +849,9 @@ def AccRevSum_(g: rgen, size: int) -> trow:
 
 
 def AntiDiagSum(t: tabl) -> trow:
-    row = lambda n: [t[n - k - 1][k] for k in range((n + 1) // 2)]
+    def row(n: int) -> list[int]:
+        return [t[n - k - 1][k] for k in range((n + 1) // 2)]
+
     return [sum(row(n)) for n in range(1, len(t) + 1)]
 
 
@@ -849,7 +860,7 @@ def AntiDiagSum_(g: rgen, size: int) -> trow:
 
 
 def PrintSums(T: tabl, trianglename: str, mdformat: bool = True) -> None:
-    SUMTRAIT: dict[str, Callable] = {}
+    SUMTRAIT: dict[str, Callable[[tabl], trow]] = {}
 
     def RegisterSumTrait(f: Callable[[tabl], trow]) -> None:
         SUMTRAIT[f.__name__] = f
@@ -862,12 +873,11 @@ def PrintSums(T: tabl, trianglename: str, mdformat: bool = True) -> None:
     RegisterSumTrait(AccRevSum)
     RegisterSumTrait(AntiDiagSum)
     if mdformat:
-        print("#", trianglename, ": Sums")
+        # print("#", trianglename, ": Sums")
         print("| Trait        |   Seq  |")
         print("| :---         |  :---  |")
         for traitname, trait in SUMTRAIT.items():
             print(f"| {traitname:<12} | {trait(T)} |")
-        print()
     else:
         for traitname, trait in SUMTRAIT.items():
             print(f'{trianglename + ":" + traitname:<18} {trait(T)}')
@@ -914,17 +924,15 @@ def PrintColArray(T: rgen, rows: int, cols: int) -> None:
 def PrintPolyRowArray(T: rgen, rows: int, cols: int) -> None:
     print("| PolyRow  |   Seq  |")
     print("| :---     |  :---  |")
-    ########### broken? Motzkin PolyRow0, []
     for n in range(rows):
-        print(f"| PolyRow{n} | {PolyRow(T, n, cols)} |")
+        print(f"| PolyRow{n} | {PolyRow(T, cols, n)} |")
 
 
 def PrintPolyColArray(T: rgen, rows: int, cols: int) -> None:
     print("| PolyCol  |   Seq  |")
     print("| :---     |  :---  |")
-    ########### broken? Motzkin PolyCol0, []
     for n in range(rows):
-        print(f"| PolyCol{n} | {PolyCol(T, n, cols)} |")
+        print(f"| PolyCol{n} | {PolyCol(T, cols, n)} |")
 
 
 def PrintFlats(t: tabl) -> None:
@@ -945,18 +953,15 @@ def PrintTrans(t: tabl) -> None:
     print(f"| RowGcd     | {RowGcd(t)} |")
     print(f"| RowMax     | {RowMax(t)} |")
     print(f"| ColMiddle  | {ColMiddle(t)} |")
-    print(f"| ColCentral | {ColECentral(t)} |")
-    print(f"| ColLefte   | {ColLeft(t)} |")
+    print(f"| ColECenter | {ColECentral(t)} |")
+    print(f"| ColOCenter | {ColOCentral(t)} |")
+    print(f"| ColLeft    | {ColLeft(t)} |")
     print(f"| ColRight   | {ColRight(t)} |")
+    print(f"| TransSqrs  | {transsqrs(t)} |")
+    print(f"| TransNat0  | {transnat0(t)} |")
+    print(f"| TransNat1  | {transnat1(t)} |")
 
 
-#  print(f'| PosHalf   | {PosHalf(t)} |')
-#  print(f'| NegHalf   | {NegHalf(t)} |')
-#  print(f'| Bin       | {transbinval(t)} |')
-#  print(f'| InvBin    | {invtransbinval(t)} |')
-#  print(f'| TransSqrs | {TransSqrs(t)} |')
-#  print(f'| TransNat0 | {TransNat0(t)} |')
-#  print(f'| TransNat1 | {TransNat1(t)} |')
 def PrintViews(g: tgen, rows: int = 7, verbose: bool = True) -> None:
     print("# " + g.id)
     print(g.sim)
@@ -978,7 +983,6 @@ def PrintViews(g: tgen, rows: int = 7, verbose: bool = True) -> None:
     if verbose:
         print(g.id, "Transforms")
     PrintTrans(T)
-    PrintTransforms(g)
     print()
     if verbose:
         print(g.id, "Diagonals as rows")
@@ -1065,12 +1069,12 @@ def PrintExtendedProfile(T: tgen, dim: int, format: str) -> None:
         PrintProfile(I, dim, format)
     R = reversion_wrapper(T, tim)
     PrintProfile(R, dim, format)
-    R = revinv_wrapper(T, tim)
-    if R != None:
-        PrintProfile(R, dim, format)
-    R = invrev_wrapper(T, tim)
-    if R != None:
-        PrintProfile(R, dim, format)
+    r = revinv_wrapper(T, tim)
+    if r != None:
+        PrintProfile(r, dim, format)
+    r = invrev_wrapper(T, tim)
+    if r != None:
+        PrintProfile(r, dim, format)
     if format == "nonames":
         global counter
         print(counter, "sequences generated.")
@@ -1811,7 +1815,7 @@ def MotzkinGF(n: int, k: int) -> int:
 @cache
 def narayana(n: int) -> list[int]:
     if n < 3:
-        return ([1], [0, 1], [0, 1, 1])[n]
+        return [[1], [0, 1], [0, 1, 1]][n]
     a: list[int] = narayana(n - 2) + [0, 0]
     row: list[int] = narayana(n - 1) + [1]
     for k in range(n - 1, 1, -1):
@@ -2018,7 +2022,6 @@ def schroeder_paths(n: int) -> list[int]:
     if n == 0:
         return [1]
     row: list[int] = schroeder_paths(n - 1) + [1]
-
     for k in range(n, 0, -1):
         row[k] = (row[k - 1] * (2 * n - k)) // k
     row[0] = (row[0] * (4 * n - 2)) // n
@@ -2203,9 +2206,11 @@ def StirlingSetB(n: int, k: int) -> int:
 
 @cache
 def sylvester(n: int) -> list[int]:
-    s = lambda n, k: sum(
-        Binomial(n, k - j) * StirlingCycle(n - k + j, j) for j in range(k + 1)
-    )
+    def s(n: int, k: int) -> int:
+        return sum(
+            Binomial(n, k - j) * StirlingCycle(n - k + j, j) for j in range(k + 1)
+        )
+
     return [s(n, k) for k in range(n + 1)]
 
 
@@ -2225,7 +2230,7 @@ def sympoly(n: int) -> list[int]:
     return row
 
 
-@set_attributes(sympoly, "Sympoly", ["A093905", "A105954", "A165674", "A165675"], True)
+@set_attributes(sympoly, "SymPoly", ["A093905", "A105954", "A165674", "A165675"], True)
 def Sympoly(n: int, k: int) -> int:
     return sympoly(n)[k]
 
@@ -2385,40 +2390,42 @@ def SaveExtendedTables(dim: int = 9) -> None:
                 I = inversion_wrapper(fun, tim)
                 if I != None:
                     PrintViews(I, dim)
-                R = reversion_wrapper(fun, tim)
-                PrintViews(R, dim)
-                R = revinv_wrapper(fun, tim)
-                if R != None:
-                    PrintViews(R, dim)
-                R = invrev_wrapper(fun, tim)
-                if R != None:
-                    PrintViews(R, dim)
+                r = reversion_wrapper(fun, tim)
+                PrintViews(r, dim)
+                r = revinv_wrapper(fun, tim)
+                if r != None:
+                    PrintViews(r, dim)
+                r = invrev_wrapper(fun, tim)
+                if r != None:
+                    PrintViews(r, dim)
 
 
 def GetFormulas() -> dict[str, str]:
     FORMULA: dict[str, str] = {}
     FORMULA["Tabl"] = "T(n, k), 0 &le; k &le; n"
     FORMULA["RevTabl"] = "T(n, n - k), 0 &le; k &le; n"
-    FORMULA["InvTabl"] = ""
-    FORMULA["InvRevTabl"] = ""
-    FORMULA["RevInvTabl"] = ""
-    FORMULA["AccTabl"] = ""
-    FORMULA["RevAccTabl"] = ""
-    FORMULA["AccRevTabl"] = ""
-    FORMULA["AntiDiagTabl"] = ""
-    FORMULA["Diffx"] = ""
-    FORMULA["BinTabl"] = ""
-    FORMULA["InvBinTabl"] = ""
+    FORMULA["InvTabl"] = "T<sup>-1</sup>(n, k), 0 &le; k &le; n"
+    FORMULA["RevInvTabl"] = "T<sup>-1</sup>(n, n - k), 0 &le; k &le; n"
+    FORMULA["InvRevTabl"] = "(T(n, n - k))<sup>-1</sup>, 0 &le; k &le; n"
+    FORMULA["AccTabl"] = "see docs"
+    FORMULA["RevAccTabl"] = "see docs"
+    FORMULA["AccRevTabl"] = "see docs"
+    FORMULA["AntiDiagTabl"] = "see docs"
+    FORMULA["BinTabl"] = "see docs"
+    FORMULA["InvBinTabl"] = "see docs"
+    FORMULA["DiffxTabl"] = "T(n, k) (k+1)"
     FORMULA["RowSum"] = "&sum;<sub> k=0..n </sub> T(n, k)"
     FORMULA["EvenSum"] = "&sum;<sub> k=0..n </sub> T(n, k) even(k)"
     FORMULA["OddSum"] = "&sum;<sub> k=0..n </sub> T(n, k) odd(k)"
     FORMULA["AltSum"] = "&sum;<sub> k=0..n </sub> T(n, k) (-1)^k"
-    FORMULA["AntiDiagSum"] = "&sum;<sub> k=0..n//2 </sub> T(n - k, k)"
+    FORMULA["AntiDiagSum"] = "&sum;<sub> k=0..n // 2 </sub> T(n - k, k)"
     FORMULA["AccSum"] = "&sum;<sub> k=0..n </sub>&sum;<sub> j=0..k </sub> T(n, j)"
-    FORMULA["AccRevSum"] = "&sum;<sub> k=0..n </sub>&sum;<sub> j=0..k </sub> T(n, n - j)"
-    FORMULA["RowLcm"] = "Lcm<sub> k=0..n </sub> T(n, k)"
-    FORMULA["RowGcd"] = "Gcd<sub> k=0..n </sub> T(n, k)"
-    FORMULA["RowMax"] = "Max<sub> k=0..n </sub> T(n, k)"
+    FORMULA[
+        "AccRevSum"
+    ] = "&sum;<sub> k=0..n </sub>&sum;<sub> j=0..k </sub> T(n, n - j)"
+    FORMULA["RowLcm"] = "Lcm<sub> k=0..n </sub> | T(n, k) | &gt; 1"
+    FORMULA["RowGcd"] = "Gcd<sub> k=0..n </sub> | T(n, k) | &gt; 1"
+    FORMULA["RowMax"] = "Max<sub> k=0..n </sub> | T(n, k) |"
     FORMULA["ColMiddle"] = "T(n, n // 2)"
     FORMULA["ColECentral"] = "T(2 n, n)"
     FORMULA["ColOCentral"] = "T(2 n + 1, n)"
@@ -2435,15 +2442,15 @@ def GetFormulas() -> dict[str, str]:
     FORMULA["DiagCol1"] = "T(n + 1, 1)"
     FORMULA["DiagCol2"] = "T(n + 2, 2)"
     FORMULA["DiagCol3"] = "T(n + 3, 3)"
-    FORMULA["FlatPoly"] = ""
-    FORMULA["PolyRow1"] = "&sum;<sub> j=0..1 </sub>T(1, j) n^j"
-    FORMULA["PolyRow2"] = "&sum;<sub> j=0..2 </sub>T(2, j) n^j"
-    FORMULA["PolyRow3"] = "&sum;<sub> j=0..3 </sub>T(3, j) n^j"
-    FORMULA["PolyCol2"] = "&sum;<sub> j=0..n </sub>T(n, j) 2^j"
-    FORMULA["PolyCol3"] = "&sum;<sub> j=0..n </sub>T(n, j) 3^j"
-    FORMULA["PolyDiag"] = "&sum;<sub> j=0..n </sub>T(n, j) n^j"
-    FORMULA["PosHalf"] = "&sum;<sub> j=0..n </sub>2^n T(n, j) (1/2)^j"
-    FORMULA["NegHalf"] = "&sum;<sub> j=0..n </sub>(-2)^n T(n, j) (-1/2)^j"
+    FORMULA["PolyTabl"] = "see docs"
+    FORMULA["PolyRow1"] = "&sum;<sub> k=0..1 </sub>T(1, k) n^k"
+    FORMULA["PolyRow2"] = "&sum;<sub> k=0..2 </sub>T(2, k) n^k"
+    FORMULA["PolyRow3"] = "&sum;<sub> k=0..3 </sub>T(3, k) n^k"
+    FORMULA["PolyCol2"] = "&sum;<sub> k=0..n </sub>T(n, k) 2^k"
+    FORMULA["PolyCol3"] = "&sum;<sub> k=0..n </sub>T(n, k) 3^k"
+    FORMULA["PolyDiag"] = "&sum;<sub> k=0..n </sub>T(n, k) n^k"
+    FORMULA["PosHalf"] = "&sum;<sub> k=0..n </sub>2^n T(n, k) (1/2)^k"
+    FORMULA["NegHalf"] = "&sum;<sub> k=0..n </sub>(-2)^n T(n, k) (-1/2)^k"
     return FORMULA
 
 
@@ -2451,13 +2458,10 @@ Header = [
     "<!DOCTYPE html>",
     "<html lang='en'><head><meta charset='UTF-8'/>",
     "<meta name='viewport' content='width=device-width, initial-scale=1.0'/>",
-    "<link rel='preconnect' href='https://fonts.googleapis.com'>",
-    "<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>",
-    "<link href='https://fonts.googleapis.com/css2?family=Sofia+Sans+Condensed:wght@300;600;700&display=swap' rel='stylesheet'>",
 ]
 CSS = [
-    "<head><style> body {font-family: 'Sofia Sans Condensed', sans-serif;} ",
-    "table, td, th, p { border-collapse: collapse; font-family: sans-serif; color: blue;} ",
+    "<style> body {font-family: 'Segoe UI', sans-serif;} ",
+    "table, td, th, p { border-collapse: collapse; color: blue;} ",
     "td, th { border-bottom: 0; padding: 4px} ",
     "td { text-align: left} ",
     "tr:nth-child(odd) { background: #eee;} ",
@@ -2473,7 +2477,7 @@ CSS = [
     "#rcor3 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 88px; height: 20px; font-weight: 700; text-align: center;} ",
     ".center {margin-top: 1em;} ",
     ".tooltip { position: relative; display: inline-block; font-weight: 600;} ",
-    ".tooltip .formula { visibility: hidden; width: 200px; background-color: lightgray; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; top: -5px; left: 105%;} ",
+    ".tooltip .formula { visibility: hidden; width: 200px; background-color: lightgray; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; top: +2px; left: 105%;} ",
     ".tooltip:hover .formula { visibility: visible; } ",
     "</style></head><body>",
 ]
@@ -2519,12 +2523,21 @@ SCRIPT = [
 Footer = [
     "<p style='margin-left:8px'>Note: The A-numbers are based on a finite number of numerical comparisons.<br>",
     "They ignore the sign and the OEIS-offset, and might differ in the first few values.<br>"
-    "Here the offset of all triangles and sequences is 0.</p>",
+    "Here the offset of all triangles is 0 and consequently also the offset of all sequences.</p>",
 ]
+
+
+def HtmlTriangle(fun: tgen) -> str:
+    s = ""
+    for n in range(6):
+        s += "[{n}] " + str(fun.gen(n)).replace("[", "").replace("]", "") + "<br>"
+    return s
+
+
 funnames = [fun.id for fun in tabl_fun]
 
 
-def getprevnext(funname) -> tuple[str, str]:
+def getprevnext(funname: list[str]) -> tuple[str, str]:
     idx = funnames.index(funname)
     prev = idx - 1
     succ = idx + 1
@@ -2535,7 +2548,7 @@ def getprevnext(funname) -> tuple[str, str]:
     return (funnames[prev], funnames[succ])
 
 
-def navbar(fun) -> list[str]:
+def navbar(fun: tgen) -> list[str]:
     anums = ""
     for s in fun.sim:
         anums += "%7Cid%3A" + s
@@ -2543,7 +2556,7 @@ def navbar(fun) -> list[str]:
     rc = "style='border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 108px; height: 20px; font-weight: 700; text-align: center; margin-left: 8px; margin-right: 8px;'"
     NAVBAR = ["<table class='center'><tr>"]
     NAVBAR.append(
-        f"<td {rc};><a style='color:white' href='https://luschny.de/math/oeis/{prevnext[0]}.html'>&nbsp;<<&nbsp;</a></td>"
+        f"<td {rc};><a style='color:white' href='https://luschny.de/math/oeis/{prevnext[0]}.html'>&nbsp;&lt;&lt;&nbsp;</a></td>"
     )
     NAVBAR.append(
         f"<td {rc};><a style='color:white' href='https://github.com/PeterLuschny/tabl/blob/main/data/md/{fun.id}.md'>Table</a></td>"
@@ -2558,7 +2571,7 @@ def navbar(fun) -> list[str]:
         f"<td {rc};><a style='color:white' href='https://luschny.de/math/oeis/index.html'>Index</a></td>"
     )
     NAVBAR.append(
-        f"<td {rc};><a style='color:white' href='https://luschny.de/math/oeis/{prevnext[1]}.html'>&nbsp;>>&nbsp;</a></td>"
+        f"<td {rc};><a style='color:white' href='https://luschny.de/math/oeis/{prevnext[1]}.html'>&nbsp;&gt;&gt;&nbsp;</a></td>"
     )
     NAVBAR.append("</tr></table>")
     return NAVBAR
@@ -2581,7 +2594,7 @@ def CsvToHtml(fun: tgen, csvpath: Path, outpath: Path) -> None:
             l = next(reader)  # column names
             sim = str(fun.sim).replace("'", "").replace("[", "").replace("]", "")
             outfile.write(
-                f"<p style='border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 160px; height: 20px; font-weight: 700; text-align: center;'>{name.upper()}</p>"
+                f"<div class='tooltip' style='border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 160px; height: 20px; font-weight: 700; text-align: center;'>{name.upper()}<span class='formula' style=' background: #73AD21; font-weight:600; width: 220px;'>{HtmlTriangle(fun)}</span></div>"
             )
             outfile.write(
                 f"<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OEIS Similars: {sim}\n</p>"
@@ -2594,20 +2607,20 @@ def CsvToHtml(fun: tgen, csvpath: Path, outpath: Path) -> None:
                 if line[3] == "[]":
                     continue
                 # trait
-                tip = FORMULA[line[2]]
-                if tip != "":
-                    outfile.write(
-                        f"<tr><td class='tooltip'>{line[2]}<span class='formula'>{tip}</span></td>"
-                    )
-                else:
-                    outfile.write(f"<tr><td class='tooltip'>{line[2]}</td>")
+                l2 = line[2]
+                tip = FORMULA[l2]
+                if "Tabl" in l2:
+                    l2 = "&#916;" + l2.replace("Tabl", "")
+                outfile.write(
+                    f"<tr><td class='tooltip'>{l2}<span class='formula'>{tip}</span></td>"
+                )
                 seq = line[3].replace("[", "").replace(" ]", "")
                 # Anum
                 if line[1] == "":
                     sep = seq.replace(" ", "+")
-                    # outfile.write(f"<td><a href='https://oeis.org/?q={seq}&sort=&#language=&go=Search' target='_blank'>search </a></td>")
+                    # outfile.write(f"<td><a href='https://oeis.org/?q={seq}&sort=&#language=&go=search' target='_blank'>search</a></td>")
                     outfile.write(
-                        f"<td><a href='http://sequencedb.net/index.html?s={sep}' target='_blank'>search </a></td>"
+                        f"<td style='text-align:center;'><a href='http://sequencedb.net/index.html?s={sep}' target='_blank'>search</a></td>"
                     )
                 else:
                     outfile.write(
@@ -2624,7 +2637,7 @@ def CsvToHtml(fun: tgen, csvpath: Path, outpath: Path) -> None:
                 outfile.write(l)
 
 
-def AllCsvToHtml(csvpath=GetCsvPath(), outpath=GetHtmlPath()) -> None:
+def AllCsvToHtml(csvpath: Path = GetCsvPath(), outpath: Path = GetHtmlPath()) -> None:
     for fun in tabl_fun:
         CsvToHtml(fun, csvpath, outpath)
 
@@ -2655,147 +2668,7 @@ def GetOEISdata() -> None:
     oeisabsdata()
 
 
-def ess_equal(s: list[int], tt: list[int]) -> tuple[int, int, int]:
-    t = [abs(x) for x in tt]
-    K = min(len(t), len(s)) // 2
-    for i in range(K):
-        for k in range(K):
-            L = len(s[i : i + K])
-            if s[i : i + K] == t[k : k + L]:
-                j = 0
-                while i + j < len(s) and k + j < len(t) and s[i + j] == t[k + j]:
-                    j += 1
-                return (i, k, j)
-    return (-1, -1, 0)
-
-
-def read_seqdata(datapath: Path) -> list[list]:
-    seq_list = []
-    with open(datapath, "r") as oeisdata:
-        reader = csv.reader(oeisdata)
-        seq_list = [[seq[0], [int(t) for t in seq[1:-1]]] for seq in reader]
-    return seq_list
-
-
-def SimilarSequences(Seqs: list[list], A: list[int]) -> list:
-    candidates = []
-    count = 0
-    Abs = [abs(x) for x in A]
-    for seq in Seqs:
-        a, b, size = ess_equal(Abs, seq[1])
-        if size > min(16, len(A) // 2):
-            candidates.append([seq[0], (a, b, size)])
-            count += 1
-        if count > 9:
-            break
-    return candidates
-
-
-def search_db(database: list[list[int]], wanted: list[int]) -> list:
-    """Runs through the database looking for the given triangle.
-    Uses only the first 28 terms of the sequences.
-    Args:
-        database (list[list[int]]): oeis_data
-        wanted (list[int]): sequence looked for
-    Returns:
-        list: oeis A-numbers of similar triangles
-    """
-    similars = []
-    count = 0
-    for seq in database:
-        if wanted == seq[1:28]:
-            similars.append(seq[0])
-            count += 1
-            if count > 6:
-                break
-    return similars
-
-
-def lookup_similar_triangles(database: list[list[int]], T: rgen) -> list:
-    """Tries to identify triangles similar to the given one.
-    Assumes database is given with absulute terms!
-    Let AT = abs(T) and AS = abs(S).  We say a triangle S is 'similar'
-    to the triangle T iff
-    * AS = AT                        or AS = reversed(AT)
-    * or AS = AT.AbsSubTriangle(1,0) or AS = reversed(AT.AbsSubTriangle(1,0))
-    * or AS = AT.AbsSubTriangle(1,1) or AS = reversed(AT.AbsSubTriangle(1,1))
-    Args:
-        database (list[list[int]]): oeis_data
-        T (tgen): generator of the triangle
-    Returns:
-        list: oeis A-numbers of similar triangles
-    """
-    dim = 7  # do not change! It corresponds to the short data file.
-    similars = []
-    T00 = AbsSubTriangle(T, 0, 0, dim)
-    T10 = AbsSubTriangle(T, 1, 0, dim)
-    T11 = AbsSubTriangle(T, 1, 1, dim)
-    variants = [
-        [k for row in T00 for k in row],
-        [k for row in T00 for k in list(reversed(row))],
-        [k for row in T10 for k in row],
-        [k for row in T10 for k in list(reversed(row))],
-        [k for row in T11 for k in row],
-        [k for row in T11 for k in list(reversed(row))],
-    ]
-    for var in variants:
-        R = search_db(database, var)
-        similars.extend(R)
-    return sorted(set(similars))
-
-
-def GetSimilarTriangles(datapath: Path, fun: tgen) -> list:
-    """Assumes the database in csv-format.
-    Args:
-        datapath (str): location of the database
-        fun (tgen): generator of the reference triangle
-    Returns:
-        list: oeis A-numbers of similar triangles
-    Examples:
-        in>  GetSimilarTriangles(GetShortDataPath(), lah)
-        out> lah similars: ['A008297', 'A066667', 'A089231',
-            'A105278', 'A111596', 'A271703']
-    """
-    seq_list = []
-    with open(datapath, "r") as oeisdata:
-        reader = csv.reader(oeisdata)
-        seq_list = [[seq[0], [int(t) for t in seq[1:-1]]] for seq in reader]
-        similars = lookup_similar_triangles(seq_list, fun.row)
-        print(fun.id, "similars:", similars)
-        return similars
-
-
-def SimilarTriangles(datapath: Path, md: bool = True) -> None:
-    """Searches the database for all similar triangles for all
-    triangles defined in this package (listed in tabl_fun).
-    Args:
-        datapath (str): location of the database
-        md (bool, optional): format option markdown. Defaults to True.
-    """
-    seq_list = []
-    with open(datapath, "r") as oeisdata:
-        reader = csv.reader(oeisdata)
-        seq_list = [[seq[0], [int(t) for t in seq[1:-1]]] for seq in reader]
-    if md:
-        print("|  ID    |  OEIS  SIMILARS |")
-        print("| :---:  |  :---:          |")
-    for fun in tabl_fun:
-        similars = lookup_similar_triangles(seq_list, fun.row)[:10]
-        if md:
-            anum = ""
-            for sim in similars:
-                anum += "%7Cid%3A" + sim
-            s = str(similars).replace("[", "").replace("]", "").replace("'", "")
-            id = fun.id
-            print(
-                f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/tables.md#{id}) | [{s}](https://oeis.org/search?q={anum}) |"
-            )
-        else:
-            print(fun.id, "Similars:", similars)
-    return
-
-
-def SeqToFixlenString(seq: list[int], maxlen: int = 90, separator=",") -> str:
+def SeqToFixlenString(seq: list[int], maxlen: int = 90, separator: str = ",") -> str:
     stri = "["
     maxl = 3
     for trm in seq:
@@ -2854,19 +2727,19 @@ def flat(t: tabl) -> list[int]:
     Returns:
         list[int]: sequence
     """
-    if t == [] or t == None:
+    if t == []:
         return []
     return [i for row in t for i in row]
 
 
-TRAIT: dict[str, Callable] = {}
+TRAIT: dict[str, Callable[[tabl], trow]] = {}
 
 
 def RegisterTrait(f: Callable[[tabl], trow]) -> None:
     TRAIT[f.__name__] = f
 
 
-TRAIT2: dict[str, Callable] = {}
+TRAIT2: dict[str, Callable[[rgen, int], trow]] = {}
 
 
 def RegisterTrait2(f: Callable[[rgen, int], trow]) -> None:
@@ -2877,15 +2750,15 @@ def register() -> None:
     RegisterTrait(FlatTabl)
     RegisterTrait(FlatRevTabl)
     RegisterTrait(FlatInvTabl)
-    RegisterTrait(FlatInvRevTabl)
     RegisterTrait(FlatRevInvTabl)
+    RegisterTrait(FlatInvRevTabl)
     RegisterTrait(FlatAccTabl)
     RegisterTrait(FlatRevAccTabl)  # rarely found
     RegisterTrait(FlatAccRevTabl)
     RegisterTrait(FlatAntiDiagTabl)
-    RegisterTrait(FlatDiffx)
     RegisterTrait(FlatBinTabl)  # rarely found
     RegisterTrait(FlatInvBinTabl)  # rarely found
+    RegisterTrait(FlatDiffxTabl)
     RegisterTrait(RowSum)
     RegisterTrait(EvenSum)
     RegisterTrait(OddSum)
@@ -2904,9 +2777,9 @@ def register() -> None:
 
     RegisterTrait(BinConv)
     RegisterTrait(InvBinConv)
-    RegisterTrait2(TransSqrs)
     RegisterTrait2(TransNat0)
     RegisterTrait2(TransNat1)
+    RegisterTrait2(TransSqrs)
     # RegisterTrait2(DiagRow0) same as ColRight
     RegisterTrait2(DiagRow1)
     RegisterTrait2(DiagRow2)
@@ -2915,7 +2788,7 @@ def register() -> None:
     RegisterTrait2(DiagCol1)
     RegisterTrait2(DiagCol2)
     RegisterTrait2(DiagCol3)
-    RegisterTrait2(FlatPoly)
+    RegisterTrait2(PolyTabl)
     # RegisterTrait2(PolyRow0)
     RegisterTrait2(PolyRow1)
     RegisterTrait2(PolyRow2)
@@ -2930,7 +2803,11 @@ def register() -> None:
 
 
 def PrintTraits(
-    g: tgen, size: int, withanum=False, markdown: bool = True, onlythefound: bool = True
+    g: tgen,
+    size: int,
+    withanum: bool = False,
+    markdown: bool = True,
+    onlythefound: bool = True,
 ) -> None:
     trianglename = g.id
     T = g.tab(size)
@@ -2944,17 +2821,17 @@ def PrintTraits(
             print("| :---        | :---    |  :---      |")
         for traitname, trait in TRAIT.items():
             name = traitname[4:] if traitname.startswith("Flat") else traitname
-            TT = trait(T)
+            tt = trait(T)
             if withanum:
-                anum = "" if TT == [] else GetAnumber(TT)
+                anum = "" if tt == [] else GetAnumber(tt)
                 if anum != "":
                     print(traitname)
                     if onlythefound:
                         continue
-                seqstr = SeqToFixlenString(TT, 70, " ")
+                seqstr = SeqToFixlenString(tt, 70, " ")
                 print(f"| {trianglename} | {anum:7} | {name:<12} | {seqstr} |")
             else:
-                seqstr = SeqToFixlenString(TT, 70, " ")
+                seqstr = SeqToFixlenString(tt, 70, " ")
                 print(f"| {trianglename} | {name:<12} | {seqstr} |")
     else:  # TXT simple dictionary, no options, no anums
         for traitname, trait in TRAIT.items():
@@ -2963,17 +2840,17 @@ def PrintTraits(
             print(f"{trianglename}:{name:<14} {seqstr}")
     if markdown:
         for traitname, trait in TRAIT2.items():
-            TT = trait(gen, size)
+            tt = trait(gen, size)
             if withanum:
-                anum = "" if TT == [] else GetAnumber(TT)
+                anum = "" if tt == [] else GetAnumber(tt)
                 if anum != "":
                     print(traitname)
                     if onlythefound:
                         continue
-                seqstr = SeqToFixlenString(TT, 70, " ")
+                seqstr = SeqToFixlenString(tt, 70, " ")
                 print(f"| {trianglename} | {anum:7} | {traitname:<12} | {seqstr} |")
             else:
-                seqstr = SeqToFixlenString(TT, 70, " ")
+                seqstr = SeqToFixlenString(tt, 70, " ")
                 print(f"| {trianglename} | {traitname:<12} | {seqstr} |")
     else:  # TXT simple dictionary, no options, no anums
         for traitname, trait in TRAIT2.items():
@@ -2982,7 +2859,11 @@ def PrintTraits(
 
 
 def SaveTraitsToFile(
-    g: tgen, size: int, withanum=False, markdown: bool = True, onlythefound: bool = True
+    g: tgen,
+    size: int,
+    withanum: bool = False,
+    markdown: bool = True,
+    onlythefound: bool = True,
 ) -> None:
     trianglename = g.id
     T = g.tab(size)
@@ -3007,70 +2888,70 @@ def SaveTraitsToFile(
         if markdown:
             for traitname, trait in TRAIT.items():
                 name = traitname[4:] if traitname.startswith("Flat") else traitname
-                TT = trait(T)
+                tt = trait(T)
                 if withanum:
-                    anum = "" if TT == [] else GetAnumber(TT)
+                    anum = "" if tt == [] else GetAnumber(tt)
                     if anum != "":
                         print(traitname)
                         if onlythefound:
                             continue
-                    seqstr = SeqToFixlenString(TT, 70, " ")
+                    seqstr = SeqToFixlenString(tt, 70, " ")
                     target.write(
                         f"| {trianglename} | {anum:7} | {name:<12} | {seqstr} |\n"
                     )
                 else:
-                    seqstr = SeqToFixlenString(TT, 70, " ")
+                    seqstr = SeqToFixlenString(tt, 70, " ")
                     target.write(f"| {trianglename} | {name:<12} | {seqstr} |\n")
         else:  # CSV
             for traitname, trait in TRAIT.items():
                 name = traitname[4:] if traitname.startswith("Flat") else traitname
 
-                TT = trait(T)
+                tt = trait(T)
                 if withanum:
-                    anum = "" if TT == [] else GetAnumber(TT)
+                    anum = "" if tt == [] else GetAnumber(tt)
                     if anum == "":
                         print(traitname)
                         if onlythefound:
                             continue
-                    seqstr = SeqToFixlenString(TT, 70, " ")
+                    seqstr = SeqToFixlenString(tt, 70, " ")
                     target.write(f"{trianglename},{anum},{name},{seqstr}\n")
                 else:
-                    seqstr = SeqToFixlenString(TT, 70, " ")
+                    seqstr = SeqToFixlenString(tt, 70, " ")
                     target.write(f"{trianglename},{name},{seqstr}\n")
         if markdown:
             for traitname, trait in TRAIT2.items():
-                TT = trait(gen, size)
+                tt = trait(gen, size)
                 if withanum:
-                    anum = "" if TT == [] else GetAnumber(TT)
+                    anum = "" if tt == [] else GetAnumber(tt)
                     if anum != "":
                         print(traitname)
                         if onlythefound:
                             continue
-                    seqstr = SeqToFixlenString(TT, 70, " ")
+                    seqstr = SeqToFixlenString(tt, 70, " ")
                     target.write(
                         f"| {trianglename} | {anum:7} | {traitname:<12} | {seqstr} |\n"
                     )
                 else:
-                    seqstr = SeqToFixlenString(TT, 70, " ")
+                    seqstr = SeqToFixlenString(tt, 70, " ")
                     target.write(f"| {trianglename} | {traitname:<12} | {seqstr} |\n")
         else:  # CSV
             for traitname, trait in TRAIT2.items():
-                TT = trait(gen, size)
+                tt = trait(gen, size)
                 if withanum:
-                    anum = "" if TT == [] else GetAnumber(TT)
+                    anum = "" if tt == [] else GetAnumber(tt)
                     if anum == "":
                         print(traitname)
                         if onlythefound:
                             continue
-                    seqstr = SeqToFixlenString(TT, 70, " ")
+                    seqstr = SeqToFixlenString(tt, 70, " ")
                     target.write(f"{trianglename},{anum},{traitname},{seqstr}\n")
                 else:
-                    seqstr = SeqToFixlenString(TT, 70, " ")
+                    seqstr = SeqToFixlenString(tt, 70, " ")
                     target.write(f"{trianglename},{traitname},{seqstr}\n")
 
 
 def PrintExtendedTraits(
-    T: tgen, size: int, withanum=False, markdown: bool = True
+    T: tgen, size: int, withanum: bool = False, markdown: bool = True
 ) -> None:
     tim: int = size + size // 2
     print("\n# Normal.")
@@ -3079,20 +2960,20 @@ def PrintExtendedTraits(
     PrintTraits(T, size, withanum, markdown)
     T.id = Tid
     print("\n# Reverse.")
-    R = reversion_wrapper(T, tim)
-    PrintTraits(R, size, withanum, markdown)
+    r = reversion_wrapper(T, tim)
+    PrintTraits(r, size, withanum, markdown)
     I = inversion_wrapper(T, tim)
     if I != None:
         print("\n# Inverse.")
         PrintTraits(I, size, withanum, markdown)
-    R = revinv_wrapper(T, tim)
-    if R != None:
+    r = revinv_wrapper(T, tim)
+    if r != None:
         print("\n# Reverse of inverse.")
-        PrintTraits(R, size, withanum, markdown)
-    R = invrev_wrapper(T, tim)
-    if R != None:
+        PrintTraits(r, size, withanum, markdown)
+    r = invrev_wrapper(T, tim)
+    if r != None:
         print("\n# Inverse of reverse.")
-        PrintTraits(R, size, withanum, markdown)
+        PrintTraits(r, size, withanum, markdown)
 
 
 def SaveExtendedTraitsToCSV(G: tgen, size: int) -> None:
@@ -3117,20 +2998,20 @@ def SaveExtendedTraitsToCSV(G: tgen, size: int) -> None:
             print("#", trianglename)
             for traitname, trait in TRAIT.items():
                 name = traitname[4:] if traitname.startswith("Flat") else traitname
-                TT = trait(T)
-                anum = "" if TT == [] else GetAnumber(TT)
+                tt = trait(T)
+                anum = "" if tt == [] else GetAnumber(tt)
                 if anum == "":
                     print(traitname)
                     continue
-                seqstr = SeqToFixlenString(TT, 70, " ")
+                seqstr = SeqToFixlenString(tt, 70, " ")
                 target.write(f"{trianglename},{anum},{name},{seqstr}\n")
             for traitname, trait in TRAIT2.items():
-                TT = trait(gen, size)
-                anum = "" if TT == [] else GetAnumber(TT)
+                tt = trait(gen, size)
+                anum = "" if tt == [] else GetAnumber(tt)
                 if anum == "":
                     print(traitname)
                     continue
-                seqstr = SeqToFixlenString(TT, 70, " ")
+                seqstr = SeqToFixlenString(tt, 70, " ")
                 target.write(f"{trianglename},{anum},{traitname},{seqstr}\n")
     G.id = savedid
 

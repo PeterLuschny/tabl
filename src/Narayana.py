@@ -20,8 +20,8 @@ from _tabltypes import set_attributes
 
 @cache
 def narayana(n: int) -> list[int]:
-    
-    if n < 3: return ([1], [0, 1], [0, 1, 1])[n]
+
+    if n < 3: return [[1], [0, 1], [0, 1, 1]][n]
 
     a: list[int] = narayana(n - 2) + [0, 0]
     row: list[int] = narayana(n - 1) + [1]

@@ -83,8 +83,6 @@ tabl_files: list[str] = [
     "_tablexport.py",
     "_tablhtml.py",
     "_tabldata.py",
-    "_tablsimilarseq.py",
-    "_tablsimilartri.py",
     "_tabltraitcard.py",
 ]
 
@@ -163,11 +161,10 @@ tabl_fun: list[tgen] = [
 
 import_header: list[str] = [
     "from functools import cache, reduce\n",
-    "from itertools import accumulate, count\n",
-    "from math import lcm, gcd, floor, factorial\n",
+    "from itertools import accumulate\n",
+    "from math import lcm, gcd, factorial\n",
     "from sys import setrecursionlimit, set_int_max_str_digits\n",
     "from typing import Callable, TypeAlias\n",
-    "from io import TextIOWrapper\n",
     "import contextlib\n",
     "import csv\n",
     "import requests\n",

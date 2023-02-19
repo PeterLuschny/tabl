@@ -3,8 +3,6 @@ from Binomial import binomial
 from math import lcm, gcd
 from functools import reduce
 from _tabltypes import seq, tabl, trow, rgen, tgen
-from itertools import accumulate
-#import operator
 
 
 '''
@@ -60,7 +58,7 @@ def ConvTabl_(g: rgen, size: int) -> tabl:
 
 
 def ConvTabl(t: tabl) -> tabl:
-    g = lambda n: [t[n][k] for k in range(n + 1)]
+    def g(n: int) ->list[int]: return [t[n][k] for k in range(n + 1)]
     return [LinMap_(g, lambda k: g(n)[k], n + 1) for n in range(len(t))]
 
 
@@ -69,8 +67,8 @@ def FlatConvTabl(t: tabl) -> trow:
 
 
 def InvLinMap(g: rgen, V: seq, size: int) -> trow:
-    return [ sum((-1) ** (n - k) * g(n)[k] * V(k) for k in range(n + 1))
-                 for n in range(size) ]
+    return [sum((-1) ** (n - k) * g(n)[k] * V(k) for k in range(n + 1))
+               for n in range(size) ]
 
 
 def InvConvTabl(g: rgen, size: int) -> tabl:
@@ -79,7 +77,7 @@ def InvConvTabl(g: rgen, size: int) -> tabl:
 
 def InvBinMap(V: seq, size: int) -> trow:
     return [sum((-1) ** (n - k) * binomial(n)[k] * V(k) 
-                for k in range(n + 1)) for n in range(size)]
+               for k in range(n + 1)) for n in range(size)]
 
 
 def InvBinTabl(M: tabl) -> tabl:
@@ -125,7 +123,7 @@ def DiagCol3(g: rgen, size: int) -> trow: return DiagCol(g, size, 3)
 # Note our convention to exclude 0 and 1.
 def Lcm_(g: rgen, row: int) -> int:
     Z = [v for v in g(row) if not v in [-1, 0, 1]]
-    return reduce(lcm, Z) if Z != [] else 1
+    return lcm(*Z) if Z != [] else 1
 
 
 def TabLcm_(g: rgen, size: int) -> trow:
@@ -134,7 +132,7 @@ def TabLcm_(g: rgen, size: int) -> trow:
 
 def Lcm(t: trow) -> int:
     Z = [v for v in t if not v in [-1, 0, 1]]
-    return reduce(lcm, Z) if Z != [] else 1
+    return lcm(*Z) if Z != [] else 1
 
 
 def RowLcm(t: tabl) -> trow:
@@ -144,7 +142,7 @@ def RowLcm(t: tabl) -> trow:
 # Note our convention to exclude 0 and 1.
 def Gcd_(g: rgen, row: int) -> int:
     Z = [v for v in g(row) if not v in [-1, 0, 1]]
-    return reduce(gcd, Z) if Z != [] else 1
+    return gcd(*Z) if Z != [] else 1
 
 
 def RowGcd_(g: rgen, size: int) -> trow:
@@ -153,7 +151,17 @@ def RowGcd_(g: rgen, size: int) -> trow:
 
 def Gcd(t: trow) -> int:
     Z = [v for v in t if not v in [-1, 0, 1]]
-    return reduce(gcd, Z) if Z != [] else 1
+    return gcd(*Z) if Z != [] else 1
+
+
+def GcdReducedRow(t: trow) -> trow:
+    Z = [v for v in t if not v in [-1, 0, 1]]
+    cd = gcd(*Z) if Z != [] else 1
+    return [v // cd if not v in [-1, 0, 1] else v for v in t]
+
+
+def GcdReduced(t: tabl) -> tabl:
+    return [GcdReducedRow(row) for row in t]
 
 
 def RowGcd(t: tabl) -> trow:
@@ -181,7 +189,8 @@ def RowMax(t: tabl) -> trow:
 
 ################################################
 
-def Trans(g: rgen, V: Callable, size: int) -> trow:
+
+def Trans(g: rgen, V: Callable[[int], int], size: int) -> trow:
     return [sum(g(n)[k] * V(k) for k in range(n + 1)) 
             for n in range(size)]
 
@@ -198,7 +207,7 @@ def TransNat1(f: rgen, size: int) -> trow:
     return Trans(f, lambda k: k + 1, size)
 
 
-def trans(T: tabl, V: Callable) -> trow:
+def trans(T: tabl, V: Callable[[int], int]) -> trow:
     return [sum(T[n][k] * V(k) for k in range(n + 1)) 
             for n in range(len(T))]
 
@@ -241,7 +250,7 @@ def ColRight(t: tabl)  -> trow:
 
 def PrintTransforms(t: tgen, size: int = 8, mdformat: bool = True) -> None:
 
-    TRANSTRAIT: dict[str, Callable] = {}
+    TRANSTRAIT: dict[str, Callable[[t.gen, int], trow]] = {}
     def RegisterTransTrait(f: Callable[[t.gen, int], trow]) -> None: 
         TRANSTRAIT[f.__name__] = f
 
@@ -275,7 +284,7 @@ def PrintTransforms(t: tgen, size: int = 8, mdformat: bool = True) -> None:
 
 def PrintMiscTraits(T: tabl, trianglename: str, mdformat: bool = True) -> None:
 
-    MISCTRAIT: dict[str, Callable] = {}
+    MISCTRAIT: dict[str, Callable[[tabl], trow]] = {}
     def RegisterMiscTrait(f: Callable[[tabl], trow]) -> None: 
         MISCTRAIT[f.__name__] = f
 
@@ -303,14 +312,28 @@ def PrintMiscTraits(T: tabl, trianglename: str, mdformat: bool = True) -> None:
             print(f'{trianglename + ":" + traitname:<18} {trait(T)}')
 
 
-
 if __name__ == "__main__":
+    
+    from tabl import tabl_fun
+
+    def ReduceAll() -> None:
+        for fun in tabl_fun:
+            t = fun.tab(9)
+            r = GcdReduced(t)
+            if t[3:] != r[3:]:
+                print(fun.id)
+                print(t)
+                print(r)
+                print()
+    # ReduceAll()
 
     from Abel import Abel, abel
-    from Bell import Bell
+    from Bell import Bell, bell
     from StirlingCyc import StirlingCycle
     from CompositionMax import CompoMax
 
+    
+    '''
     T = Abel.tab(9)
     print(T)
 
@@ -326,7 +349,6 @@ if __name__ == "__main__":
     print("InvBinConv ", InvBinConv(T)) 
     #print(InvBinConv_(abel, 6))
 
-    '''
     #print(BinTabl_(abel, 6))
     print("BinTabl    ", BinTabl(T))
 

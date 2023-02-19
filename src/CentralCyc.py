@@ -16,7 +16,7 @@ from _tabltypes import set_attributes
 
 @cache
 def central_cycle(n: int) -> list[int]:
-    
+
     if n == 0: return [1]
     if n == 1: return [0, 1]
 

@@ -1,5 +1,4 @@
 from functools import cache
-from itertools import accumulate
 from _tabltypes import set_attributes
 
 """The Riordan square of the Catalan numbers in the sense of A321620. 

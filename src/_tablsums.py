@@ -1,6 +1,6 @@
 from typing import Callable
 from itertools import accumulate
-from _tabltypes import tabl, trow, tgen, rgen
+from _tabltypes import tabl, trow, rgen
 
 '''Naming convention for 'g composed with f': (g o f)(x):= g(f(x))
 
@@ -85,7 +85,8 @@ def AccRevSum_(g: rgen, size: int) -> trow:
     return [accrev_sum(g(n)) for n in range(size)]
 
 def AntiDiagSum(t: tabl) -> trow:
-    row = lambda n: [t[n - k - 1][k] for k in range((n + 1) // 2)]
+    def row(n: int)->list[int]: 
+        return [t[n - k - 1][k] for k in range((n + 1) // 2)]
     return [sum(row(n)) for n in range(1, len(t) + 1)]
 
 def AntiDiagSum_(g: rgen, size: int) -> trow:
@@ -94,7 +95,7 @@ def AntiDiagSum_(g: rgen, size: int) -> trow:
 
 def PrintSums(T: tabl, trianglename: str, mdformat: bool = True) -> None:
 
-    SUMTRAIT: dict[str, Callable] = {}
+    SUMTRAIT: dict[str, Callable[[tabl], trow]] = {}
     def RegisterSumTrait(f: Callable[[tabl], trow]) -> None: 
         SUMTRAIT[f.__name__] = f
 
@@ -107,12 +108,11 @@ def PrintSums(T: tabl, trianglename: str, mdformat: bool = True) -> None:
     RegisterSumTrait(AntiDiagSum)
 
     if mdformat:
-        print("#", trianglename, ": Sums")
+        # print("#", trianglename, ": Sums")
         print( "| Trait        |   Seq  |")
         print( "| :---         |  :---  |")
         for traitname, trait in SUMTRAIT.items():
             print(f'| {traitname:<12} | {trait(T)} |')
-        print()
     else:
         for traitname, trait in SUMTRAIT.items():
             print(f'{trianglename + ":" + traitname:<18} {trait(T)}')

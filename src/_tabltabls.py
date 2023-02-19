@@ -1,6 +1,6 @@
 from typing import Callable
 from itertools import accumulate
-from _tabltypes import tabl, trow, tgen, rgen
+from _tabltypes import tabl, trow, tgen
 from _tablinverse import InverseTabl
 
 def flat(t: tabl) -> list[int]: 
@@ -12,7 +12,7 @@ def flat(t: tabl) -> list[int]:
     Returns:
         list[int]: sequence
     """
-    if t == [] or t == None: return []
+    if t == []: return []
     return [i for row in t for i in row] 
 
 # #@
@@ -85,13 +85,13 @@ def FlatAccRevTabl(t: tabl) -> trow:
     return [i for row in AccRevTabl(t) for i in row]
 
 
-def FlatDiffx(t: tabl) -> trow:
+def FlatDiffxTabl(t: tabl) -> trow:
     return [(k + 1) * c for row in t for k,c in enumerate(row)]
 
 
 def PrintTabls(t: tgen, size: int = 8, mdformat: bool = True) -> None:
 
-    TABLSTRAIT: dict[str, Callable] = {}
+    TABLSTRAIT: dict[str, Callable[[tabl], trow]] = {}
     def RegisterTablsTrait(f: Callable[[tabl], trow]) -> None: 
         TABLSTRAIT[f.__name__] = f
 
@@ -110,14 +110,13 @@ def PrintTabls(t: tgen, size: int = 8, mdformat: bool = True) -> None:
 
 
     trianglename = t.id
-    gen = t.gen
+
     if mdformat:
         print("#", trianglename, ": Tables")
         print( "| Trait    |   Seq  |")
         print( "| :---     |  :---  |")
         for traitname, trait in TABLSTRAIT.items():
             print(f'| {traitname:<15} | {trait(T)} |')
-        print()
     else:
         for traitname, trait in TABLSTRAIT.items():
             print(f'{trianglename+":"+traitname:<21} {trait(T)}')

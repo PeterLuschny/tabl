@@ -30,7 +30,7 @@ def sympoly(n: int) -> list[int]:
 
 @set_attributes(
     sympoly, 
-    "Sympoly", 
+    "SymPoly", 
     ['A093905', 'A105954', 'A165674', 'A165675'], 
     True)
 def Sympoly(n: int, k: int) -> int: 

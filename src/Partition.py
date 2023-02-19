@@ -1,5 +1,4 @@
 from functools import cache
-from itertools import accumulate
 from _tabltypes import set_attributes
 
 """Partition numbers (Euler's table), see also A026820, A000041.
