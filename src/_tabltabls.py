@@ -113,6 +113,7 @@ def PrintTabls(t: tgen, size: int = 8, mdformat: bool = True) -> None:
 
     if mdformat:
         print("#", trianglename, ": Tables")
+        print() # reqiured!
         print( "| Trait    |   Seq  |")
         print( "| :---     |  :---  |")
         for traitname, trait in TABLSTRAIT.items():
