@@ -1,7 +1,7 @@
-# Worpitzki
+# Worpitzky
 ['A028246', 'A053440', 'A075263', 'A130850', 'A163626']
 
-Worpitzki Triangle view
+Worpitzky Triangle view
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -14,7 +14,7 @@ Worpitzki Triangle view
 | Row7 | [1, 127, 1932, 10206, 25200, 31920, 20160, 5040] |
 | Row8 | [1, 255, 6050, 46620, 166824, 317520, 332640, 181440, 40320] |
 
-Worpitzki Flattened triangles
+Worpitzky Flattened triangles
 | Flat      |  Seq  |
 | :---      | :---  |
 | Triangle  | [1, 1, 1, 1, 3, 2, 1, 7, 12, 6, 1, 15, 50, 60, 24, 1, 31, 180, 390, 360, 120, 1, 63, 602, 2100, 3360, 2520, 720, 1, 127, 1932, 10206, 25200, 31920, 20160, 5040, 1, 255, 6050, 46620, 166824, 317520, 332640, 181440, 40320] |
@@ -24,7 +24,7 @@ Worpitzki Flattened triangles
 | TriAccRev | [1, 1, 2, 2, 5, 6, 6, 18, 25, 26, 24, 84, 134, 149, 150, 120, 480, 870, 1050, 1081, 1082, 720, 3240, 6600, 8700, 9302, 9365, 9366, 5040, 25200, 57120, 82320, 92526, 94458, 94585, 94586, 40320, 221760, 554400, 871920, 1038744, 1085364, 1091414, 1091669, 1091670] |
 | TriDiag   | [1, 1, 1, 1, 1, 3, 1, 7, 2, 1, 15, 12, 1, 31, 50, 6, 1, 63, 180, 60] |
 
-Worpitzki Row sums
+Worpitzky Row sums
 | Sum       |   Seq  |
 | :---      |  :---  |
 | Sum       | [1, 2, 6, 26, 150, 1082, 9366, 94586, 1091670] |
@@ -36,7 +36,7 @@ Worpitzki Row sums
 | RevAccSum | [1, 3, 13, 75, 541, 4683, 47293, 545835, 7087261] |
 | DiagSum   | [1, 1, 2, 4, 10, 28, 88, 304] |
 
-Worpitzki Transforms
+Worpitzky Transforms
 | Trans     |   Seq  |
 | :---      |  :---  |
 | RowLcm    | [1, 1, 6, 84, 600, 145080, 2167200, 453138235200, 319959556963200] |
@@ -54,7 +54,7 @@ Worpitzki Transforms
 | TransNat0 | [0, 1, 7, 49, 391, 3601, 37927, 451249, 5995591] |
 | TransNat1 | [1, 3, 13, 75, 541, 4683, 47293, 545835, 7087261] |
 
-Worpitzki Diagonals as rows
+Worpitzky Diagonals as rows
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 2, 6, 24, 120, 720, 5040, 40320]|
@@ -67,7 +67,7 @@ Worpitzki Diagonals as rows
 | DiagRow7 | [1, 255, 18660, 874500, 33105600, 1118557440, 35517081600, 1091804313600, 33094020960000]|
 | DiagRow8 | [1, 511, 57002, 3669006, 180204024, 7612364760, 294293759760, 10794490827120, 384202115256960]|
 
-Worpitzki Diagonals as columns
+Worpitzky Diagonals as columns
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -80,7 +80,7 @@ Worpitzki Diagonals as columns
 | DiagCol7 | [5040, 181440, 3780000, 59875200, 801496080, 9574044480, 105398092800, 1091804313600, 10794490827120] |
 | DiagCol8 | [40320, 1814400, 46569600, 898128000, 14495120640, 207048441600, 2706620716800, 33094020960000, 384202115256960] |
 
-Worpitzki Polynomial values as rows
+Worpitzky Polynomial values as rows
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -93,7 +93,7 @@ Worpitzki Polynomial values as rows
 | PolyRow7 | [1, 94586, 3449631, 35810212, 204972605, 825574686, 2634606331, 7123041416, 17008993017] |
 | PolyRow8 | [1, 1091670, 68062695, 995827420, 7348546845, 36224995026, 136728885475, 426748573560, 1155276253305] |
 
-Worpitzki Polynomial values as columns
+Worpitzky Polynomial values as columns
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -106,10 +106,10 @@ Worpitzki Polynomial values as columns
 | PolyCol7 | [1, 8, 120, 2696, 80760, 3024008, 135878520, 7123041416, 426748573560] |
 | PolyCol8 | [1, 9, 153, 3897, 132345, 5618169, 286195833, 17008993017, 1155276253305] |
 
-# WorpitzkiRev
+# WorpitzkyRev
 True
 
-WorpitzkiRev Triangle view
+WorpitzkyRev Triangle view
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -122,7 +122,7 @@ WorpitzkiRev Triangle view
 | Row7 | [5040, 20160, 31920, 25200, 10206, 1932, 127, 1] |
 | Row8 | [40320, 181440, 332640, 317520, 166824, 46620, 6050, 255, 1] |
 
-WorpitzkiRev Flattened triangles
+WorpitzkyRev Flattened triangles
 | Flat      |  Seq  |
 | :---      | :---  |
 | Triangle  | [1, 1, 1, 2, 3, 1, 6, 12, 7, 1, 24, 60, 50, 15, 1, 120, 360, 390, 180, 31, 1, 720, 2520, 3360, 2100, 602, 63, 1, 5040, 20160, 31920, 25200, 10206, 1932, 127, 1, 40320, 181440, 332640, 317520, 166824, 46620, 6050, 255, 1] |
@@ -132,7 +132,7 @@ WorpitzkiRev Flattened triangles
 | TriAccRev | [1, 1, 2, 1, 4, 6, 1, 8, 20, 26, 1, 16, 66, 126, 150, 1, 32, 212, 602, 962, 1082, 1, 64, 666, 2766, 6126, 8646, 9366, 1, 128, 2060, 12266, 37466, 69386, 89546, 94586, 1, 256, 6306, 52926, 219750, 537270, 869910, 1051350, 1091670] |
 | TriDiag   | [1, 1, 2, 1, 6, 3, 24, 12, 1, 120, 60, 7, 720, 360, 50, 1, 5040, 2520, 390, 15] |
 
-WorpitzkiRev Row sums
+WorpitzkyRev Row sums
 | Sum       |   Seq  |
 | :---      |  :---  |
 | Sum       | [1, 2, 6, 26, 150, 1082, 9366, 94586, 1091670] |
@@ -144,7 +144,7 @@ WorpitzkiRev Row sums
 | RevAccSum | [1, 3, 11, 55, 359, 2891, 27635, 305439, 3829439] |
 | DiagSum   | [1, 1, 3, 9, 37, 187, 1131, 7965] |
 
-WorpitzkiRev Transforms
+WorpitzkyRev Transforms
 | Trans     |   Seq  |
 | :---      |  :---  |
 | RowLcm    | [1, 1, 6, 84, 600, 145080, 2167200, 453138235200, 319959556963200] |
@@ -162,7 +162,7 @@ WorpitzkiRev Transforms
 | TransNat0 | [0, 1, 5, 29, 209, 1809, 18269, 210853, 2737769] |
 | TransNat1 | [1, 3, 11, 55, 359, 2891, 27635, 305439, 3829439] |
 
-WorpitzkiRev Diagonals as rows
+WorpitzkyRev Diagonals as rows
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -175,7 +175,7 @@ WorpitzkiRev Diagonals as rows
 | DiagRow7 | [5040, 181440, 3780000, 59875200, 801496080, 9574044480, 105398092800, 1091804313600, 10794490827120]|
 | DiagRow8 | [40320, 1814400, 46569600, 898128000, 14495120640, 207048441600, 2706620716800, 33094020960000, 384202115256960]|
 
-WorpitzkiRev Diagonals as columns
+WorpitzkyRev Diagonals as columns
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 2, 6, 24, 120, 720, 5040, 40320] |
@@ -188,7 +188,7 @@ WorpitzkiRev Diagonals as columns
 | DiagCol7 | [1, 255, 18660, 874500, 33105600, 1118557440, 35517081600, 1091804313600, 33094020960000] |
 | DiagCol8 | [1, 511, 57002, 3669006, 180204024, 7612364760, 294293759760, 10794490827120, 384202115256960] |
 
-WorpitzkiRev Polynomial values as rows
+WorpitzkyRev Polynomial values as rows
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -201,7 +201,7 @@ WorpitzkiRev Polynomial values as rows
 | PolyRow7 | [5040, 94586, 608016, 2424132, 7336880, 18532590, 41173776, 83094536, 155612592] |
 | PolyRow8 | [40320, 1091670, 8855040, 41967540, 145879680, 413749770, 1015741440, 2238150600, 4533828480] |
 
-WorpitzkiRev Polynomial values as columns
+WorpitzkyRev Polynomial values as columns
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 2, 6, 24, 120, 720, 5040, 40320] |
