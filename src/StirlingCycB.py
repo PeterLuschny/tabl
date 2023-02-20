@@ -15,11 +15,11 @@ from _tabltypes import set_attributes
 
 
 @cache
-def stirling_cycleB(n: int) -> list[int]:
+def stirlingcycleb(n: int) -> list[int]:
 
     if n == 0: return [1]
 
-    row: list[int] = stirling_cycleB(n - 1) + [1]
+    row: list[int] = stirlingcycleb(n - 1) + [1]
 
     m = 2 * n - 1
     for k in range(n - 1, 0, -1):
@@ -30,12 +30,12 @@ def stirling_cycleB(n: int) -> list[int]:
 
 
 @set_attributes(
-    stirling_cycleB, 
+    stirlingcycleb, 
     "StirlingCycB", 
     ['A028338', 'A039757', 'A039758', 'A109692'], 
     True)
 def StirlingCycleB(n: int, k: int) -> int:
-    return stirling_cycleB(n)[k]
+    return stirlingcycleb(n)[k]
 
 
 if __name__ == "__main__":

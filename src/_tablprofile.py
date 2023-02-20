@@ -1,5 +1,5 @@
 
-from _tablpoly import PolyRow0,PolyRow1,PolyRow2,PolyRow3,PolyCol0,PolyCol1,PolyCol2,PolyCol3, PolyDiag,PosHalf,NegHalf,PolyRow,PolyCol
+from _tablpoly import PolyRow,PolyCol
 from _tablsums import RowSum,EvenSum, OddSum,AltSum,AccSum,AccRevSum,AntiDiagSum
 from _tabltypes import tgen, tabl, inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
 

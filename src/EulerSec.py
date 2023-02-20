@@ -17,27 +17,27 @@ from _tabltypes import set_attributes
 
 
 @cache
-def euler_sec(n: int) -> list[int]:
+def eulersec(n: int) -> list[int]:
 
     if n == 0: return [1]
 
     b = binomial(n)
-    row = [b[k] * euler_sec(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  
+    row = [b[k] * eulersec(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  
     if n % 2 == 0: row[0] = -sum(row[2::2])
     return row
 
 
 @set_attributes(
-    euler_sec, 
+    eulersec, 
     "EulerSec", 
     ['A119879', 'A081658', 'A153641'], 
     True)
 def EulerSec(n: int, k: int) -> int: 
-    return euler_sec(n)[k]
+    return eulersec(n)[k]
 
 
 def eulerS(n: int) -> int:
-    return 0 if n % 2 == 1 else euler_sec(n)[0]
+    return 0 if n % 2 == 1 else eulersec(n)[0]
 
 
 if __name__ == "__main__":

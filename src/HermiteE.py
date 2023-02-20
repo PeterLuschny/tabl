@@ -15,7 +15,7 @@ from _tabltypes import set_attributes
 
 
 @cache
-def hermiteE(n: int) -> list[int]:
+def hermitee(n: int) -> list[int]:
     row: list[int] = [0] * (n + 1) 
     row[n] = 1
     for k in range(n - 2, -1, -2):
@@ -24,12 +24,12 @@ def hermiteE(n: int) -> list[int]:
 
 
 @set_attributes(
-    hermiteE, 
+    hermitee, 
     "HermiteE", 
     ['A066325', 'A073278', 'A099174'], 
     True)
 def HermiteE(n: int, k: int) -> int: 
-    return hermiteE(n)[k]
+    return hermitee(n)[k]
 
 
 if __name__ == "__main__":

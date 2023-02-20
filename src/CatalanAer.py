@@ -17,26 +17,26 @@ from _tabltypes import set_attributes
 
 
 @cache
-def catalan_aer(n: int) -> list[int]:
+def catalanaer(n: int) -> list[int]:
     
     if n == 0: return [1]
 
     def r(k: int) -> int:
-        return catalan_aer(n - 1)[k] if k >= 0 and k < n else 0
+        return catalanaer(n - 1)[k] if k >= 0 and k < n else 0
 
-    row: list[int] = catalan_aer(n - 1) + [1]
+    row: list[int] = catalanaer(n - 1) + [1]
     for k in range(0, n):
         row[k] = r(k - 1) + r(k + 1)
     return row
 
 
 @set_attributes(
-    catalan_aer, 
+    catalanaer, 
     "CatalanAer", 
     ['A052173', 'A053121', 'A112554', 'A322378'], 
     True)
 def CatalanAer(n: int, k: int) -> int: 
-    return catalan_aer(n)[k]
+    return catalanaer(n)[k]
 
 
 if __name__ == "__main__":

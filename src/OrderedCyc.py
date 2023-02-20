@@ -16,12 +16,12 @@ from _tabltypes import set_attributes
 
 
 @cache
-def ordered_cycle(n: int) -> list[int]:
+def orderedcycle(n: int) -> list[int]:
 
     if n == 0: return [1]
     if n == 1: return [0, 1]
 
-    row: list[int] = ordered_cycle(n - 1) + [0]
+    row: list[int] = orderedcycle(n - 1) + [0]
     row[n] = row[n] * n
     for k in range(n, 0, -1):
         row[k] = (n - 1) * row[k] + k * row[k - 1]
@@ -29,12 +29,12 @@ def ordered_cycle(n: int) -> list[int]:
 
 
 @set_attributes(
-    ordered_cycle, 
+    orderedcycle, 
     "OrderedCycle", 
     ['A048594', 'A075181', 'A225479'], 
     False)
 def OrderedCycle(n: int, k: int) -> int:
-    return ordered_cycle(n)[k]
+    return orderedcycle(n)[k]
 
 
 if __name__ == "__main__":

@@ -14,23 +14,23 @@ from _tabltypes import set_attributes
 
 
 @cache
-def falling_factorial(n: int) -> list[int]:
+def fallingfactorial(n: int) -> list[int]:
 
     if n == 0: return [1]
 
-    r: list[int] = falling_factorial(n - 1)
+    r: list[int] = fallingfactorial(n - 1)
     row: list[int] = [n * r[k] for k in range(-1, n)]
     row[0] = 1
     return row
 
 
 @set_attributes(
-    falling_factorial, 
+    fallingfactorial, 
     "FallingFact", 
     ['A008279', 'A068424', 'A094587', 'A173333', 'A181511'],
     False)
 def FallingFactorial(n: int, k: int) -> int:
-    return falling_factorial(n)[k]
+    return fallingfactorial(n)[k]
 
 
 if __name__ == "__main__":

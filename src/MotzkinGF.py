@@ -17,26 +17,26 @@ from _tabltypes import set_attributes
 
 
 @cache
-def motzkin_gf(n: int) -> list[int]:
+def motzkingf(n: int) -> list[int]:
 
     if n == 0: return [1]
 
     def r(k: int) -> int:
-        return motzkin_gf(n - 1)[k] if k >= 0 and k < n else 0
+        return motzkingf(n - 1)[k] if k >= 0 and k < n else 0
 
-    row: list[int] = motzkin_gf(n - 1) + [1]
+    row: list[int] = motzkingf(n - 1) + [1]
     for k in range(0, n):
         row[k] += r(k - 1) + r(k + 1)
     return row
 
 
 @set_attributes(
-    motzkin_gf, 
+    motzkingf, 
     "MotzkinGF", 
     ['A026300', 'A064189', 'A009766'], 
     True)
 def MotzkinGF(n: int, k: int) -> int:
-    return motzkin_gf(n)[k]
+    return motzkingf(n)[k]
 
 
 if __name__ == "__main__":

@@ -17,11 +17,11 @@ from _tabltypes import set_attributes
 
 
 @cache
-def schroeder_paths(n: int) -> list[int]:
+def schroederpaths(n: int) -> list[int]:
 
     if n == 0: return [1]
 
-    row: list[int] = schroeder_paths(n - 1) + [1]
+    row: list[int] = schroederpaths(n - 1) + [1]
 
     for k in range(n, 0, -1):
         row[k] = (row[k - 1] * (2 * n - k)) // k
@@ -31,12 +31,12 @@ def schroeder_paths(n: int) -> list[int]:
 
 
 @set_attributes(
-    schroeder_paths, 
+    schroederpaths, 
     "SchroederP", 
     ['A063007', 'A104684'], 
     True)
 def SchroederPaths(n: int, k: int) -> int: 
-    return schroeder_paths(n)[k]
+    return schroederpaths(n)[k]
 
 
 if __name__ == "__main__":

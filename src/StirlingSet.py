@@ -17,23 +17,23 @@ from _tabltypes import set_attributes
 
 
 @cache
-def stirling_set(n: int) -> list[int]:
+def stirlingset(n: int) -> list[int]:
 
     if n == 0: return [1]
 
-    row: list[int] = [0] + stirling_set(n - 1)
+    row: list[int] = [0] + stirlingset(n - 1)
     for k in range(1, n):
         row[k] = row[k] + k * row[k + 1]
     return row
 
 
 @set_attributes(
-    stirling_set, 
+    stirlingset, 
     "StirlingSet", 
     ['A008277', 'A008278', 'A048993', 'A080417', 'A106800', 'A151511', 'A151512', 'A154959', 'A213735'], 
     True)
 def StirlingSet(n: int, k: int) -> int:
-    return stirling_set(n)[k]
+    return stirlingset(n)[k]
 
 
 if __name__ == "__main__":

@@ -16,13 +16,13 @@ from _tabltypes import set_attributes
 
 
 @cache
-def stirling_setB(n: int) -> list[int]:
+def stirlingsetb(n: int) -> list[int]:
 
     if n == 0: return [1]
     if n == 1: return [1, 1]
 
-    pow: list[int] = stirling_setB(n - 1)
-    row: list[int] = stirling_setB(n - 1) + [1]
+    pow: list[int] = stirlingsetb(n - 1)
+    row: list[int] = stirlingsetb(n - 1) + [1]
 
     row[0] += 2 * row[1]
 
@@ -34,12 +34,12 @@ def stirling_setB(n: int) -> list[int]:
 
 
 @set_attributes(
-    stirling_setB, 
+    stirlingsetb, 
     "StirlingSetB", 
     ['A154602'], 
     True)
 def StirlingSetB(n: int, k: int) -> int:
-        return stirling_setB(n)[k]
+        return stirlingsetb(n)[k]
 
 
 if __name__ == "__main__":

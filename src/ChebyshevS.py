@@ -17,25 +17,25 @@ from _tabltypes import set_attributes
 
 
 @cache
-def chebyshevS(n: int) -> list[int]:
+def chebyshevs(n: int) -> list[int]:
 
     if n == 0: return [1]
     if n == 1: return [0, 1]
 
-    rov: list[int] = chebyshevS(n - 2)
-    row: list[int] = [0] + chebyshevS(n - 1)
+    rov: list[int] = chebyshevs(n - 2)
+    row: list[int] = [0] + chebyshevs(n - 1)
     for k in range(0, n - 1):
         row[k] -= rov[k]
     return row
 
 
 @set_attributes(
-    chebyshevS, 
+    chebyshevs, 
     "ChebyshevS", 
     ['A049310', 'A053119', 'A112552', 'A168561'], 
     True)
 def ChebyshevS(n: int, k: int) -> int: 
-    return chebyshevS(n)[k]
+    return chebyshevs(n)[k]
 
 
 if __name__ == "__main__":

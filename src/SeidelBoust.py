@@ -16,17 +16,17 @@ from Seidel import seidel
 
 # #@
 
-def seidel_boust(n: int) -> list[int]:
+def seidelboust(n: int) -> list[int]:
     return seidel(n) if n % 2 else seidel(n)[::-1]
 
 
 @set_attributes(
-    seidel_boust, 
+    seidelboust, 
     "SeidelBoust", 
     ['A008280', 'A108040', 'A236935', 'A239005'], 
     False)
 def SeidelBoust(n: int, k: int) -> int: 
-    return seidel_boust(n)[k]
+    return seidelboust(n)[k]
 
 
 if __name__ == "__main__":

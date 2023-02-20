@@ -26,17 +26,17 @@ def part(n: int, k: int) -> int:
 
 
 @cache
-def partnum_exact(n: int) -> list[int]:
+def partnumexact(n: int) -> list[int]:
     return [part(n, k) for k in range(n + 1)]
 
 
 @set_attributes(
-    partnum_exact, 
+    partnumexact, 
     "Partition", 
     ['A008284', 'A058398', 'A072233'], 
     True)
 def PartnumExact(n: int, k: int) -> int: 
-    return partnum_exact(n)[k]
+    return partnumexact(n)[k]
 
 
 if __name__ == "__main__":

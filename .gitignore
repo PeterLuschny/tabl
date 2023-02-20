@@ -1,6 +1,7 @@
 local/
 docs/
 data/html
+data/csv
 data/misc
 data/stripped
 data/oeis.csv

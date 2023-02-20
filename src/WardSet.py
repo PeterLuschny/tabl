@@ -17,12 +17,12 @@ from _tabltypes import set_attributes
 
 
 @cache
-def ward_set(n: int) -> list[int]:
+def wardset(n: int) -> list[int]:
 
     if n == 0: return [1]
     if n == 1: return [0, 1]
 
-    row: list[int] = ward_set(n - 1) + [0]
+    row: list[int] = wardset(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = k * row[k] + (n + k - 1) * row[k - 1]
 
@@ -30,12 +30,12 @@ def ward_set(n: int) -> list[int]:
 
 
 @set_attributes(
-    ward_set, 
+    wardset, 
     "WardSet", 
     ['A134991', 'A269939'], 
     False)
 def WardSet(n: int, k: int) -> int: 
-    return ward_set(n)[k]
+    return wardset(n)[k]
 
 
 if __name__ == "__main__":

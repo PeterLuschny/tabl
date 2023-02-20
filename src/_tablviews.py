@@ -9,7 +9,8 @@ from _tabltransforms import transsqrs, transnat0, transnat1
 # #@
 
 def PrintTabl(t: tabl) -> None:
-    print(t)
+    for row in t:
+        print(row)
 
 
 def PrintFlat(t: tabl) -> None:
