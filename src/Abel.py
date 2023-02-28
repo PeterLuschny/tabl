@@ -28,7 +28,7 @@ def abel(n: int) -> list[int]:
 @set_attributes(
     abel, 
     "Abel", 
-    ['A061356', 'A137452', 'A139526'], 
+    ['A137452', 'A061356', 'A139526'], 
     True)
 def Abel(n: int, k: int) -> int:
     return abel(n)[k]

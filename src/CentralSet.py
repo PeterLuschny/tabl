@@ -30,7 +30,7 @@ def centralset(n: int) -> list[int]:
 @set_attributes(
     centralset, 
     "CentralSet", 
-    ['A008957', 'A036969', 'A269945'], 
+    ['A269945', 'A008957', 'A036969'], 
     True)
 def CentralSet(n: int, k: int) -> int:
     return centralset(n)[k]

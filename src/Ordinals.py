@@ -24,7 +24,7 @@ def ordinals(n: int) -> list[int]:
 @set_attributes(
     ordinals, 
     "Ordinals", 
-    ['A002260', 'A002262', 'A004736', 'A025581'], 
+    ['A002262', 'A002260', 'A004736', 'A025581'], 
     False)
 def Ordinals(n: int, k: int) -> int: 
     return ordinals(n)[k]

@@ -4,6 +4,18 @@ from _tablpaths import strippedpath, datapath, oeispath
 
 # #@
 
+def fnv(data) -> int:
+    """
+    FNV-1a hash algorithm.
+    """
+    assert isinstance(data, bytes)
+
+    hval = 0xCBF29CE484222325
+    for byte in data:
+        hval = hval ^ byte
+        hval = (hval * 0x100000001B3) % 0x10000000000000000
+    return hval
+
 
 def get_compressed() -> None:
     oeisstripped = "https://oeis.org/stripped.gz"
@@ -32,11 +44,17 @@ def oeisabsdata() -> None:
 def GetOEISdata() -> None:
     get_compressed()
     oeisabsdata()
+    print("OEIS data updated!")
 
 
 if __name__ == "__main__":
 
-    #get_compressed()
-    #oeisabsdata()
     GetOEISdata()
     print("Done")
+
+    '''
+    data = b"1 1 1 3 30 630 3780 207900 8108100 56756700 1929727800 "
+    print(hex(fnv(data)))
+    data = b"[1 1 6 84 600 145080 2167200 453138235200 319959556963200 "
+    print(hex(fnv(data)))
+    '''

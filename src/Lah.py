@@ -32,7 +32,7 @@ def lah(n: int) -> list[int]:
 @set_attributes(
     lah, 
     "Lah", 
-    ['A008297', 'A066667', 'A089231', 'A105278', 'A111596', 'A271703'], 
+    ['A271703', 'A008297', 'A066667', 'A089231', 'A105278', 'A111596'], 
     True)
 def Lah(n: int, k: int) -> int: 
     return lah(n)[k]

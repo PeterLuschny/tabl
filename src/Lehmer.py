@@ -32,7 +32,7 @@ def lehmer(n: int) -> list[int]:
 @set_attributes(
     lehmer, 
     "Lehmer", 
-    ['A039621', 'A354794'], 
+    ['A354794', 'A039621'], 
     True)
 def Lehmer(n: int, k: int) -> int:
     return lehmer(n)[k]

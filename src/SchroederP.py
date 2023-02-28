@@ -33,7 +33,7 @@ def schroederpaths(n: int) -> list[int]:
 @set_attributes(
     schroederpaths, 
     "SchroederP", 
-    ['A063007', 'A104684'], 
+    ['A104684', 'A063007'], 
     True)
 def SchroederPaths(n: int, k: int) -> int: 
     return schroederpaths(n)[k]

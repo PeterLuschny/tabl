@@ -33,7 +33,7 @@ def partnumexact(n: int) -> list[int]:
 @set_attributes(
     partnumexact, 
     "Partition", 
-    ['A008284', 'A058398', 'A072233'], 
+    ['A072233', 'A008284', 'A058398'], 
     True)
 def PartnumExact(n: int, k: int) -> int: 
     return partnumexact(n)[k]

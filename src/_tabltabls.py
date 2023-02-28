@@ -127,6 +127,15 @@ if __name__ == "__main__":
 
     from Abel import Abel
     from StirlingSet import StirlingSet
+    from LabeledGraphs import LabeledGraphs
 
-    PrintTabls(Abel, 4)
-    PrintTabls(StirlingSet, 6, False)
+    #PrintTabls(Abel, 4)
+    #PrintTabls(StirlingSet, 6, False)
+    #PrintTabls(LabeledGraphs, 6)
+
+    T = LabeledGraphs.tab(9)
+    print(T)
+    print(AccTabl(T))
+    print(FlatAccTabl(T))
+    #print(InvTabl(T))
+    #print(AntiDiagTabl(T))

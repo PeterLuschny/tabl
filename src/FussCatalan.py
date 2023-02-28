@@ -28,7 +28,7 @@ def fusscatalan(n: int) -> list[int]:
 @set_attributes(
     fusscatalan, 
     "FussCatalan", 
-    ['A030237', 'A054445', 'A355173'], 
+    ['A355173', 'A030237', 'A054445'], 
     False)
 def FussCatalan(n: int, k: int) -> int:
     return fusscatalan(n)[k]

@@ -30,7 +30,7 @@ def stirlingset(n: int) -> list[int]:
 @set_attributes(
     stirlingset, 
     "StirlingSet", 
-    ['A008277', 'A008278', 'A048993', 'A080417', 'A106800', 'A151511', 'A151512', 'A154959', 'A213735'], 
+    ['A048993', 'A008277', 'A008278', 'A080417', 'A106800', 'A151511', 'A151512', 'A154959', 'A213735'], 
     True)
 def StirlingSet(n: int, k: int) -> int:
     return stirlingset(n)[k]

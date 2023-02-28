@@ -32,7 +32,7 @@ def stirlingcycle(n: int) -> list[int]:
 @set_attributes(
     stirlingcycle, 
     "StirlingCyc", 
-    ['A008275', 'A008276', 'A048994', 'A054654', 'A094638', 'A130534', 'A132393'], 
+    ['A132393', 'A008275', 'A008276', 'A048994', 'A054654', 'A094638', 'A130534'], 
     True)
 def StirlingCycle(n: int, k: int) -> int: 
     return stirlingcycle(n)[k]

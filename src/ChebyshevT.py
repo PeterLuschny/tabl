@@ -33,7 +33,7 @@ def chebyshevt(n: int) -> list[int]:
 @set_attributes(
     chebyshevt, 
     "ChebyshevT", 
-    ['A039991', 'A053120', 'A081265'], 
+    ['A053120', 'A039991', 'A081265'], 
     True)
 def ChebyshevT(n: int, k: int) -> int: 
     return chebyshevt(n)[k]

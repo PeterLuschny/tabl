@@ -44,7 +44,7 @@ def polygonal(n: int) -> list[int]:
 @set_attributes(
     polygonal, 
     "Polygonal", 
-    ['A057145', 'A134394', 'A139600', 'A139601'], 
+    ['A139600', 'A057145', 'A134394', 'A139601'], 
     False)
 def Polygonal(n: int, k: int) -> int: 
     return polygonal(n)[k]

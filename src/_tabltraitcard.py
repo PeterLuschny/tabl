@@ -1,10 +1,12 @@
 from typing import Callable
 from _tablpaths import GetDataPath, GetCsvPath, GetMdPath
 from _tabltypes import rgen, tgen, tabl, trow
+from _tabltypes import inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
 from _tablpoly import PolyRow0, PolyRow1, PolyRow2, PolyRow3, PolyCol0, PolyCol1, PolyCol2, PolyCol3, PolyDiag, PosHalf, NegHalf, PolyTabl
 from _tablsums import RowSum, EvenSum, OddSum, AltSum, AccSum, AccRevSum, AntiDiagSum
 from _tabltabls import FlatTabl, FlatAccTabl, FlatRevAccTabl, FlatAccRevTabl, FlatAntiDiagTabl, FlatRevTabl, FlatInvTabl, FlatInvRevTabl, FlatRevInvTabl, FlatDiffxTabl 
 from _tabltransforms import FlatBinTabl, FlatInvBinTabl, BinConv, InvBinConv,  RowLcm, RowGcd, RowMax, DiagRow0, DiagRow1, DiagRow2, DiagRow3, DiagCol0, DiagCol1, DiagCol2, DiagCol3, TransSqrs, TransNat0, TransNat1, ColMiddle, ColECentral, ColOCentral, ColLeft, ColRight 
+
 
 """
 Pretty printing of triangles trait cards.
@@ -106,7 +108,7 @@ def RegisterTrait2(f: Callable[[rgen, int], trow]) -> None:
 
 def register() -> None:
 
-    RegisterTrait(FlatTabl)
+    RegisterTrait(FlatTabl)   # must always come first!
     RegisterTrait(FlatRevTabl)
     RegisterTrait(FlatInvTabl)
     RegisterTrait(FlatRevInvTabl)
@@ -176,6 +178,7 @@ def PrintTraits(g: tgen, size: int,
     trianglename = g.id
     T = g.tab(size)
     gen = g.gen
+    anum = g.sim[0]  # Note that the similars are ordered!
 
     if markdown:
 
@@ -190,12 +193,15 @@ def PrintTraits(g: tgen, size: int,
             name = traitname[4:] if traitname.startswith("Flat") else traitname
             tt = trait(T)
             if withanum:
-                anum = '' if tt == [] else GetAnumber(tt)
-                if anum != "": 
-                    print(traitname)
-                    if onlythefound: continue
+                if anum == '': # which is always the case exept in the first loop
+                    if tt != []:
+                        anum = GetAnumber(tt)
+                        if anum == "": 
+                            # print(traitname)
+                            if onlythefound: continue
                 seqstr = SeqToFixlenString(tt, 70, ' ')    
                 print(f'| {trianglename} | {anum:7} | {name:<12} | {seqstr} |')
+                anum = '' 
             else:
                 seqstr = SeqToFixlenString(tt, 70, ' ')
                 print(f'| {trianglename} | {name:<12} | {seqstr} |')
@@ -212,12 +218,15 @@ def PrintTraits(g: tgen, size: int,
         for traitname, trait in TRAIT2.items():
             tt = trait(gen, size)
             if withanum:
-                anum = '' if tt == [] else GetAnumber(tt)
-                if anum != "": 
-                    print(traitname)
-                    if onlythefound: continue
+                if anum == '': # which is always the case exept in the first loop
+                    if tt != []:
+                        anum = GetAnumber(tt)
+                        if anum == "": 
+                            # print(traitname)
+                            if onlythefound: continue
                 seqstr = SeqToFixlenString(tt, 70, ' ')    
                 print(f'| {trianglename} | {anum:7} | {traitname:<12} | {seqstr} |')
+                anum = '' 
             else:
                 seqstr = SeqToFixlenString(tt, 70, ' ')
                 print(f'| {trianglename} | {traitname:<12} | {seqstr} |')
@@ -228,6 +237,7 @@ def PrintTraits(g: tgen, size: int,
             seqstr = SeqToFixlenString(trait(gen, size), 70, ' ')
             print(f'{trianglename}:{traitname:<14} {seqstr}')
 
+
 def SaveTraitsToFile(g: tgen, size: int, 
                      withanum: bool = False, 
                      markdown: bool = True,
@@ -236,6 +246,8 @@ def SaveTraitsToFile(g: tgen, size: int,
     trianglename = g.id
     T = g.tab(size)
     gen = g.gen
+    anum = g.sim[0]  # Note that the similars are ordered!
+    print(anum)
 
     if markdown:
         filepath = (GetMdPath() / f"{trianglename}.md").resolve()    
@@ -266,12 +278,16 @@ def SaveTraitsToFile(g: tgen, size: int,
                 name = traitname[4:] if traitname.startswith("Flat") else traitname
                 tt = trait(T)
                 if withanum:
-                    anum = '' if tt == [] else GetAnumber(tt)
-                    if anum != "": 
-                        print(traitname) 
-                        if onlythefound: continue
+                    if anum == '': # which is always the case exept in the first loop
+                        if tt != []:
+                            anum = GetAnumber(tt)
+                            if anum == "": 
+                                print(traitname)
+                                if onlythefound: continue
+                    print(anum)
                     seqstr = SeqToFixlenString(tt, 70, ' ')    
                     target.write(f'| {trianglename} | {anum:7} | {name:<12} | {seqstr} |\n')
+                    anum = '' 
                 else:
                     seqstr = SeqToFixlenString(tt, 70, ' ')
                     target.write(f'| {trianglename} | {name:<12} | {seqstr} |\n')
@@ -283,12 +299,15 @@ def SaveTraitsToFile(g: tgen, size: int,
                 
                 tt = trait(T)
                 if withanum:
-                    anum = '' if tt == [] else GetAnumber(tt)
-                    if anum == "": 
-                        print(traitname) 
-                        if onlythefound: continue
-                    seqstr = SeqToFixlenString(tt, 70, ' ')
+                    if anum == '': # which is always the case exept in the first loop
+                        if tt != []:
+                            anum = GetAnumber(tt)
+                            if anum == "": 
+                                print(traitname)
+                                if onlythefound: continue
+                    seqstr = SeqToFixlenString(tt, 70, ' ')    
                     target.write(f'{trianglename},{anum},{name},{seqstr}\n')
+                    anum = '' 
                 else:
                     seqstr = SeqToFixlenString(tt, 70, ' ')
                     target.write(f'{trianglename},{name},{seqstr}\n')
@@ -298,12 +317,15 @@ def SaveTraitsToFile(g: tgen, size: int,
             for traitname, trait in TRAIT2.items():
                 tt = trait(gen, size)
                 if withanum:
-                    anum = '' if tt == [] else GetAnumber(tt)
-                    if anum != "": 
-                        print(traitname)
-                        if onlythefound: continue
+                    if anum == '': # which is always the case exept in the first loop
+                        if tt != []:
+                            anum = GetAnumber(tt)
+                            if anum == "": 
+                                print(traitname)
+                                if onlythefound: continue
                     seqstr = SeqToFixlenString(tt, 70, ' ')    
                     target.write(f'| {trianglename} | {anum:7} | {traitname:<12} | {seqstr} |\n')
+                    anum = '' 
                 else:
                     seqstr = SeqToFixlenString(tt, 70, ' ')
                     target.write(f'| {trianglename} | {traitname:<12} | {seqstr} |\n')
@@ -323,8 +345,6 @@ def SaveTraitsToFile(g: tgen, size: int,
                     seqstr = SeqToFixlenString(tt, 70, ' ')
                     target.write(f'{trianglename},{traitname},{seqstr}\n')
 
-
-from _tabltypes import inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
 
 def PrintExtendedTraits(T: tgen, size: int, withanum: bool = False, markdown: bool = True) -> None:
 
@@ -454,19 +474,31 @@ if __name__ == "__main__":
     from Binomial import Binomial
     from CatalanSqr import CatalanSqr
     from PowLaguerre import PowLaguerre
+    from LabeledGraphs import LabeledGraphs
+
+    register()
+
+    # SaveAllTraitsToCSV()
 
     # SaveExtendedTraitsToCSV(StirlingSet, 20) 
     # SaveAllExtendedTraitsToCSV()
-
     # SaveAllFoundTraitsToCSV()
 
-    register()
-    SaveAllTraitsToCSV()
-
-    # SaveTraitsToFile(PowLaguerre, 20,
-    #                     withanum = True,
-    #                     markdown = False,
-    #                     onlythefound = False)
+    
+    #SaveTraitsToFile(LabGraphs, 20,
+    #                    withanum = True,
+    #                    markdown = False,
+    #                    onlythefound = False)
+    
+    #PrintTraits(Lah, 20,
+    #            withanum = True,
+    #            markdown = True,
+    #            onlythefound = False)
+    
+    SaveTraitsToFile(Lah, 20, 
+                    withanum = True, 
+                    markdown = False,
+                    onlythefound = False)
 
     # SEQ = StirlingSet
     #PrintTraits(SEQ, 12, withanum = False, markdown = False)

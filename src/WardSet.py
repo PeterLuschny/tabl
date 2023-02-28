@@ -32,7 +32,7 @@ def wardset(n: int) -> list[int]:
 @set_attributes(
     wardset, 
     "WardSet", 
-    ['A134991', 'A269939'], 
+    ['A269939', 'A134991'], 
     False)
 def WardSet(n: int, k: int) -> int: 
     return wardset(n)[k]

@@ -32,7 +32,7 @@ def euler(n: int) -> list[int]:
 @set_attributes(
     euler, 
     "Euler", 
-    ['A109449', 'A247453'], 
+    ['A247453', 'A109449'], 
     True)
 def Euler(n: int, k: int) -> int: 
     return euler(n)[k]

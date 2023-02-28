@@ -30,7 +30,7 @@ def centralcycle(n: int) -> list[int]:
 @set_attributes(
     centralcycle, 
     "CentralCycle", 
-    ['A111999', 'A259456', 'A269940'], 
+    ['A269940', 'A111999', 'A259456'], 
     False)
 def CentralCycle(n: int, k: int) -> int:
     return centralcycle(n)[k]

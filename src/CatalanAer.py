@@ -33,7 +33,7 @@ def catalanaer(n: int) -> list[int]:
 @set_attributes(
     catalanaer, 
     "CatalanAer", 
-    ['A052173', 'A053121', 'A112554', 'A322378'], 
+    ['A053121', 'A052173', 'A112554', 'A322378'], 
     True)
 def CatalanAer(n: int, k: int) -> int: 
     return catalanaer(n)[k]

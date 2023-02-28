@@ -29,7 +29,7 @@ def bessel(n: int) -> list[int]:
 @set_attributes(
     bessel, 
     "Bessel", 
-    ['A001497', 'A001498', 'A122850', 'A132062'],
+    ['A132062', 'A001497', 'A001498', 'A122850'],
     True)
 def Bessel(n: int, k: int) -> int: 
     return bessel(n)[k]

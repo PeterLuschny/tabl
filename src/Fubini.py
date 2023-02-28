@@ -32,7 +32,7 @@ def fubini(n: int) -> list[int]:
 @set_attributes(
     fubini, 
     "Fubini", 
-    ['A019538', 'A090582', 'A131689', 'A278075'], 
+    ['A131689', 'A019538', 'A090582', 'A278075'], 
     False)
 def Fubini(n: int, k: int) -> int: 
     return fubini(n)[k]

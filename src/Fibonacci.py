@@ -33,7 +33,7 @@ def fibonacci(n: int) -> list[int]:
 @set_attributes(
     fibonacci, 
     "Fibonacci", 
-    ['A105809', 'A228074', 'A354267'], 
+    ['A354267', 'A105809', 'A228074'], 
     False)
 def Fibonacci(n: int, k: int) -> int: 
     return fibonacci(n)[k]

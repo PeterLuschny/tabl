@@ -1090,7 +1090,7 @@ def abel(n: int) -> list[int]:
     return [b[k - 1] * n ** (n - k) if k > 0 else 0 for k in range(n + 1)]
 
 
-@set_attributes(abel, "Abel", ["A061356", "A137452", "A139526"], True)
+@set_attributes(abel, "Abel", ["A137452", "A061356", "A139526"], True)
 def Abel(n: int, k: int) -> int:
     return abel(n)[k]
 
@@ -1139,7 +1139,7 @@ def bessel(n: int) -> list[int]:
     return row
 
 
-@set_attributes(bessel, "Bessel", ["A001497", "A001498", "A122850", "A132062"], True)
+@set_attributes(bessel, "Bessel", ["A132062", "A001497", "A001498", "A122850"], True)
 def Bessel(n: int, k: int) -> int:
     return bessel(n)[k]
 
@@ -1230,7 +1230,7 @@ def catalanaer(n: int) -> list[int]:
 
 
 @set_attributes(
-    catalanaer, "CatalanAer", ["A052173", "A053121", "A112554", "A322378"], True
+    catalanaer, "CatalanAer", ["A053121", "A052173", "A112554", "A322378"], True
 )
 def CatalanAer(n: int, k: int) -> int:
     return catalanaer(n)[k]
@@ -1266,7 +1266,7 @@ def centralcycle(n: int) -> list[int]:
     return row
 
 
-@set_attributes(centralcycle, "CentralCycle", ["A111999", "A259456", "A269940"], False)
+@set_attributes(centralcycle, "CentralCycle", ["A269940", "A111999", "A259456"], False)
 def CentralCycle(n: int, k: int) -> int:
     return centralcycle(n)[k]
 
@@ -1283,7 +1283,7 @@ def centralset(n: int) -> list[int]:
     return row
 
 
-@set_attributes(centralset, "CentralSet", ["A008957", "A036969", "A269945"], True)
+@set_attributes(centralset, "CentralSet", ["A269945", "A008957", "A036969"], True)
 def CentralSet(n: int, k: int) -> int:
     return centralset(n)[k]
 
@@ -1322,7 +1322,7 @@ def chebyshevt(n: int) -> list[int]:
     return row
 
 
-@set_attributes(chebyshevt, "ChebyshevT", ["A039991", "A053120", "A081265"], True)
+@set_attributes(chebyshevt, "ChebyshevT", ["A053120", "A039991", "A081265"], True)
 def ChebyshevT(n: int, k: int) -> int:
     return chebyshevt(n)[k]
 
@@ -1416,7 +1416,7 @@ def euler(n: int) -> list[int]:
     return row
 
 
-@set_attributes(euler, "Euler", ["A109449", "A247453"], True)
+@set_attributes(euler, "Euler", ["A247453", "A109449"], True)
 def Euler(n: int, k: int) -> int:
     return euler(n)[k]
 
@@ -1435,7 +1435,7 @@ def eulerian(n: int) -> list[int]:
     return row
 
 
-@set_attributes(eulerian, "Eulerian", ["A008292", "A123125", "A173018"], False)
+@set_attributes(eulerian, "Eulerian", ["A173018", "A008292", "A123125"], False)
 def Eulerian(n: int, k: int) -> int:
     return eulerian(n)[k]
 
@@ -1453,7 +1453,7 @@ def eulerian2(n: int) -> list[int]:
 
 
 @set_attributes(
-    eulerian2, "Eulerian2", ["A008517", "A112007", "A163936", "A340556"], False
+    eulerian2, "Eulerian2", ["A340556", "A008517", "A112007", "A163936"], False
 )
 def Eulerian2(n: int, k: int) -> int:
     return eulerian2(n)[k]
@@ -1548,7 +1548,7 @@ def fibonacci(n: int) -> list[int]:
     return row
 
 
-@set_attributes(fibonacci, "Fibonacci", ["A105809", "A228074", "A354267"], False)
+@set_attributes(fibonacci, "Fibonacci", ["A354267", "A105809", "A228074"], False)
 def Fibonacci(n: int, k: int) -> int:
     return fibonacci(n)[k]
 
@@ -1567,7 +1567,7 @@ def fubini(n: int) -> list[int]:
     return row
 
 
-@set_attributes(fubini, "Fubini", ["A019538", "A090582", "A131689", "A278075"], False)
+@set_attributes(fubini, "Fubini", ["A131689", "A019538", "A090582", "A278075"], False)
 def Fubini(n: int, k: int) -> int:
     return fubini(n)[k]
 
@@ -1582,7 +1582,7 @@ def fusscatalan(n: int) -> list[int]:
     return list(accumulate(row))
 
 
-@set_attributes(fusscatalan, "FussCatalan", ["A030237", "A054445", "A355173"], False)
+@set_attributes(fusscatalan, "FussCatalan", ["A355173", "A030237", "A054445"], False)
 def FussCatalan(n: int, k: int) -> int:
     return fusscatalan(n)[k]
 
@@ -1637,7 +1637,7 @@ def harmonic(n: int) -> list[int]:
     return row
 
 
-@set_attributes(harmonic, "Harmonic", ["A109822", "A358694"], True)
+@set_attributes(harmonic, "Harmonic", ["A358694", "A109822"], True)
 def Harmonic(n: int, k: int) -> int:
     return harmonic(n)[k]
 
@@ -1651,7 +1651,7 @@ def hermitee(n: int) -> list[int]:
     return row
 
 
-@set_attributes(hermitee, "HermiteE", ["A066325", "A073278", "A099174"], True)
+@set_attributes(hermitee, "HermiteE", ["A099174", "A066325", "A073278"], True)
 def HermiteE(n: int, k: int) -> int:
     return hermitee(n)[k]
 
@@ -1668,6 +1668,26 @@ def hermiteh(n: int) -> list[int]:
 @set_attributes(hermiteh, "HermiteH", ["A060821"], False)
 def HermiteH(n: int, k: int) -> int:
     return hermiteh(n)[k]
+
+
+@cache
+def labeledgraphs(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    s = [
+        2 ** (((k - n + 1) * (k - n)) // 2)
+        * Binomial(n - 1, k - 1)
+        * labeledgraphs(k)[k]
+        for k in range(1, n)
+    ]
+    b = 2 ** (((n - 1) * n) // 2) - sum(s)
+
+    return [0] + s + [b]
+
+
+@set_attributes(labeledgraphs, "LabeledGraphs", ["A360603"], True)
+def LabeledGraphs(n: int, k: int) -> int:
+    return labeledgraphs(n)[k]
 
 
 @cache
@@ -1697,7 +1717,7 @@ def lah(n: int) -> list[int]:
 
 
 @set_attributes(
-    lah, "Lah", ["A008297", "A066667", "A089231", "A105278", "A111596", "A271703"], True
+    lah, "Lah", ["A271703", "A008297", "A066667", "A089231", "A105278", "A111596"], True
 )
 def Lah(n: int, k: int) -> int:
     return lah(n)[k]
@@ -1717,7 +1737,7 @@ def lehmer(n: int) -> list[int]:
     return [t(k - 1, n - k, n - k) if n != k else 1 for k in range(n + 1)]
 
 
-@set_attributes(lehmer, "Lehmer", ["A039621", "A354794"], True)
+@set_attributes(lehmer, "Lehmer", ["A354794", "A039621"], True)
 def Lehmer(n: int, k: int) -> int:
     return lehmer(n)[k]
 
@@ -1806,7 +1826,7 @@ def motzkingf(n: int) -> list[int]:
     return row
 
 
-@set_attributes(motzkingf, "MotzkinGF", ["A026300", "A064189", "A009766"], True)
+@set_attributes(motzkingf, "MotzkinGF", ["A064189", "A026300", "A009766"], True)
 def MotzkinGF(n: int, k: int) -> int:
     return motzkingf(n)[k]
 
@@ -1825,7 +1845,7 @@ def narayana(n: int) -> list[int]:
     return row
 
 
-@set_attributes(narayana, "Narayana", ["A001263", "A090181", "A131198"], True)
+@set_attributes(narayana, "Narayana", ["A090181", "A001263", "A131198"], True)
 def Narayana(n: int, k: int) -> int:
     return narayana(n)[k]
 
@@ -1865,7 +1885,7 @@ def ordinals(n: int) -> list[int]:
 
 
 @set_attributes(
-    ordinals, "Ordinals", ["A002260", "A002262", "A004736", "A025581"], False
+    ordinals, "Ordinals", ["A002262", "A002260", "A004736", "A025581"], False
 )
 def Ordinals(n: int, k: int) -> int:
     return ordinals(n)[k]
@@ -1884,7 +1904,7 @@ def orderedcycle(n: int) -> list[int]:
     return row
 
 
-@set_attributes(orderedcycle, "OrderedCycle", ["A048594", "A075181", "A225479"], False)
+@set_attributes(orderedcycle, "OrderedCycle", ["A225479", "A048594", "A075181"], False)
 def OrderedCycle(n: int, k: int) -> int:
     return orderedcycle(n)[k]
 
@@ -1903,7 +1923,7 @@ def partnumexact(n: int) -> list[int]:
     return [part(n, k) for k in range(n + 1)]
 
 
-@set_attributes(partnumexact, "Partition", ["A008284", "A058398", "A072233"], True)
+@set_attributes(partnumexact, "Partition", ["A072233", "A008284", "A058398"], True)
 def PartnumExact(n: int, k: int) -> int:
     return partnumexact(n)[k]
 
@@ -1913,7 +1933,7 @@ def partnummax(n: int) -> list[int]:
     return list(accumulate(partnumexact(n)))
 
 
-@set_attributes(partnummax, "PartitionMax", ["A008284", "A058398", "A072233"], False)
+@set_attributes(partnummax, "PartitionMax", ["A026820"], False)
 def PartnumMax(n: int, k: int) -> int:
     return partnummax(n)[k]
 
@@ -1933,7 +1953,7 @@ def polygonal(n: int) -> list[int]:
 
 
 @set_attributes(
-    polygonal, "Polygonal", ["A057145", "A134394", "A139600", "A139601"], False
+    polygonal, "Polygonal", ["A139600", "A057145", "A134394", "A139601"], False
 )
 def Polygonal(n: int, k: int) -> int:
     return polygonal(n)[k]
@@ -1950,7 +1970,7 @@ def powlaguerre(n: int) -> list[int]:
     return row
 
 
-@set_attributes(powlaguerre, "PowLaguerre", ["A021012", "A196347"], False)
+@set_attributes(powlaguerre, "PowLaguerre", ["A196347", "A021012"], False)
 def PowLaguerre(n: int, k: int) -> int:
     return powlaguerre(n)[k]
 
@@ -2009,7 +2029,7 @@ def schroeder(n: int) -> list[int]:
 @set_attributes(
     schroeder,
     "Schroeder",
-    ["A033877", "A080245", "A080247", "A122538", "A106579"],
+    ["A122538", "A033877", "A080245", "A080247", "A106579"],
     True,
 )
 def Schroeder(n: int, k: int) -> int:
@@ -2027,9 +2047,28 @@ def schroederpaths(n: int) -> list[int]:
     return row
 
 
-@set_attributes(schroederpaths, "SchroederP", ["A063007", "A104684"], True)
+@set_attributes(schroederpaths, "SchroederP", ["A104684", "A063007"], True)
 def SchroederPaths(n: int, k: int) -> int:
     return schroederpaths(n)[k]
+
+
+@cache
+def schroederl(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [1, 1]
+    arow: list[int] = schroederl(n - 1) + [0]
+    row: list[int] = schroederl(n - 1) + [1]
+    row[0] = row[0] + 2 * row[1]
+    for k in range(1, n):
+        row[k] = arow[k - 1] + 3 * arow[k] + 2 * arow[k + 1]
+    return row
+
+
+@set_attributes(schroederl, "SchroederL", ["A172094"], True)
+def SchroederL(n: int, k: int) -> int:
+    return schroederl(n)[k]
 
 
 @cache
@@ -2089,7 +2128,7 @@ def stirlingcycle(n: int) -> list[int]:
 @set_attributes(
     stirlingcycle,
     "StirlingCyc",
-    ["A008275", "A008276", "A048994", "A054654", "A094638", "A130534", "A132393"],
+    ["A132393", "A008275", "A008276", "A048994", "A054654", "A094638", "A130534"],
     True,
 )
 def StirlingCycle(n: int, k: int) -> int:
@@ -2149,9 +2188,9 @@ def stirlingset(n: int) -> list[int]:
     stirlingset,
     "StirlingSet",
     [
+        "A048993",
         "A008277",
         "A008278",
-        "A048993",
         "A080417",
         "A106800",
         "A151511",
@@ -2229,7 +2268,7 @@ def sympoly(n: int) -> list[int]:
     return row
 
 
-@set_attributes(sympoly, "SymPoly", ["A093905", "A105954", "A165674", "A165675"], True)
+@set_attributes(sympoly, "SymPoly", ["A165675", "A093905", "A105954", "A165674"], True)
 def Sympoly(n: int, k: int) -> int:
     return sympoly(n)[k]
 
@@ -2261,7 +2300,7 @@ def wardset(n: int) -> list[int]:
     return row
 
 
-@set_attributes(wardset, "WardSet", ["A134991", "A269939"], False)
+@set_attributes(wardset, "WardSet", ["A269939", "A134991"], False)
 def WardSet(n: int, k: int) -> int:
     return wardset(n)[k]
 
@@ -2320,6 +2359,7 @@ tabl_fun: list[tgen] = [
     Harmonic,
     HermiteE,
     HermiteH,
+    LabeledGraphs,
     Laguerre,
     Lah,
     Lehmer,
@@ -2340,6 +2380,7 @@ tabl_fun: list[tgen] = [
     Rencontres,
     RisingFactorial,
     Schroeder,
+    SchroederL,
     SchroederPaths,
     Seidel,
     SeidelBoust,
@@ -2641,6 +2682,18 @@ def AllCsvToHtml(csvpath: Path = GetCsvPath(), outpath: Path = GetHtmlPath()) ->
         CsvToHtml(fun, csvpath, outpath)
 
 
+def fnv(data) -> int:
+    """
+    FNV-1a hash algorithm.
+    """
+    assert isinstance(data, bytes)
+    hval = 0xCBF29CE484222325
+    for byte in data:
+        hval = hval ^ byte
+        hval = (hval * 0x100000001B3) % 0x10000000000000000
+    return hval
+
+
 def get_compressed() -> None:
     oeisstripped = "https://oeis.org/stripped.gz"
     r = requests.get(oeisstripped, stream=True)
@@ -2746,7 +2799,7 @@ def RegisterTrait2(f: Callable[[rgen, int], trow]) -> None:
 
 
 def register() -> None:
-    RegisterTrait(FlatTabl)
+    RegisterTrait(FlatTabl)  # must always come first!
     RegisterTrait(FlatRevTabl)
     RegisterTrait(FlatInvTabl)
     RegisterTrait(FlatRevInvTabl)
@@ -2811,6 +2864,7 @@ def PrintTraits(
     trianglename = g.id
     T = g.tab(size)
     gen = g.gen
+    anum = g.sim[0]  # Note that the similars are ordered!
     if markdown:
         if withanum:
             print("| Triangle    | Anum    | Trait    |  Sequence   |")
@@ -2822,13 +2876,16 @@ def PrintTraits(
             name = traitname[4:] if traitname.startswith("Flat") else traitname
             tt = trait(T)
             if withanum:
-                anum = "" if tt == [] else GetAnumber(tt)
-                if anum != "":
-                    print(traitname)
-                    if onlythefound:
-                        continue
+                if anum == "":  # which is always the case exept in the first loop
+                    if tt != []:
+                        anum = GetAnumber(tt)
+                        if anum == "":
+                            # print(traitname)
+                            if onlythefound:
+                                continue
                 seqstr = SeqToFixlenString(tt, 70, " ")
                 print(f"| {trianglename} | {anum:7} | {name:<12} | {seqstr} |")
+                anum = ""
             else:
                 seqstr = SeqToFixlenString(tt, 70, " ")
                 print(f"| {trianglename} | {name:<12} | {seqstr} |")
@@ -2841,13 +2898,16 @@ def PrintTraits(
         for traitname, trait in TRAIT2.items():
             tt = trait(gen, size)
             if withanum:
-                anum = "" if tt == [] else GetAnumber(tt)
-                if anum != "":
-                    print(traitname)
-                    if onlythefound:
-                        continue
+                if anum == "":  # which is always the case exept in the first loop
+                    if tt != []:
+                        anum = GetAnumber(tt)
+                        if anum == "":
+                            # print(traitname)
+                            if onlythefound:
+                                continue
                 seqstr = SeqToFixlenString(tt, 70, " ")
                 print(f"| {trianglename} | {anum:7} | {traitname:<12} | {seqstr} |")
+                anum = ""
             else:
                 seqstr = SeqToFixlenString(tt, 70, " ")
                 print(f"| {trianglename} | {traitname:<12} | {seqstr} |")
@@ -2867,6 +2927,8 @@ def SaveTraitsToFile(
     trianglename = g.id
     T = g.tab(size)
     gen = g.gen
+    anum = g.sim[0]  # Note that the similars are ordered!
+    print(anum)
     if markdown:
         filepath = (GetMdPath() / f"{trianglename}.md").resolve()
     else:
@@ -2889,15 +2951,19 @@ def SaveTraitsToFile(
                 name = traitname[4:] if traitname.startswith("Flat") else traitname
                 tt = trait(T)
                 if withanum:
-                    anum = "" if tt == [] else GetAnumber(tt)
-                    if anum != "":
-                        print(traitname)
-                        if onlythefound:
-                            continue
+                    if anum == "":  # which is always the case exept in the first loop
+                        if tt != []:
+                            anum = GetAnumber(tt)
+                            if anum == "":
+                                print(traitname)
+                                if onlythefound:
+                                    continue
+                    print(anum)
                     seqstr = SeqToFixlenString(tt, 70, " ")
                     target.write(
                         f"| {trianglename} | {anum:7} | {name:<12} | {seqstr} |\n"
                     )
+                    anum = ""
                 else:
                     seqstr = SeqToFixlenString(tt, 70, " ")
                     target.write(f"| {trianglename} | {name:<12} | {seqstr} |\n")
@@ -2907,13 +2973,16 @@ def SaveTraitsToFile(
 
                 tt = trait(T)
                 if withanum:
-                    anum = "" if tt == [] else GetAnumber(tt)
-                    if anum == "":
-                        print(traitname)
-                        if onlythefound:
-                            continue
+                    if anum == "":  # which is always the case exept in the first loop
+                        if tt != []:
+                            anum = GetAnumber(tt)
+                            if anum == "":
+                                print(traitname)
+                                if onlythefound:
+                                    continue
                     seqstr = SeqToFixlenString(tt, 70, " ")
                     target.write(f"{trianglename},{anum},{name},{seqstr}\n")
+                    anum = ""
                 else:
                     seqstr = SeqToFixlenString(tt, 70, " ")
                     target.write(f"{trianglename},{name},{seqstr}\n")
@@ -2921,15 +2990,18 @@ def SaveTraitsToFile(
             for traitname, trait in TRAIT2.items():
                 tt = trait(gen, size)
                 if withanum:
-                    anum = "" if tt == [] else GetAnumber(tt)
-                    if anum != "":
-                        print(traitname)
-                        if onlythefound:
-                            continue
+                    if anum == "":  # which is always the case exept in the first loop
+                        if tt != []:
+                            anum = GetAnumber(tt)
+                            if anum == "":
+                                print(traitname)
+                                if onlythefound:
+                                    continue
                     seqstr = SeqToFixlenString(tt, 70, " ")
                     target.write(
                         f"| {trianglename} | {anum:7} | {traitname:<12} | {seqstr} |\n"
                     )
+                    anum = ""
                 else:
                     seqstr = SeqToFixlenString(tt, 70, " ")
                     target.write(f"| {trianglename} | {traitname:<12} | {seqstr} |\n")

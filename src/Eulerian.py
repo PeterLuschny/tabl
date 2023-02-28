@@ -29,7 +29,7 @@ def eulerian(n: int) -> list[int]:
 @set_attributes(
     eulerian, 
     "Eulerian", 
-    ['A008292', 'A123125', 'A173018'], 
+    ['A173018', 'A008292', 'A123125'], 
     False)
 def Eulerian(n: int, k: int) -> int: 
     return eulerian(n)[k]

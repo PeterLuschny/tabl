@@ -31,7 +31,7 @@ def powlaguerre(n: int) -> list[int]:
 @set_attributes(
     powlaguerre, 
     "PowLaguerre", 
-    ['A021012', 'A196347'], 
+    ['A196347', 'A021012'], 
     False)
 def PowLaguerre(n: int, k: int) -> int:
     return powlaguerre(n)[k]

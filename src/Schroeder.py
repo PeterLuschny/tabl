@@ -32,7 +32,7 @@ def schroeder(n: int) -> list[int]:
 @set_attributes(
     schroeder, 
     "Schroeder", 
-    ['A033877', 'A080245', 'A080247', 'A122538', 'A106579'], 
+    ['A122538', 'A033877', 'A080245', 'A080247', 'A106579'], 
     True)
 def Schroeder(n: int, k: int) -> int: 
     return schroeder(n)[k]

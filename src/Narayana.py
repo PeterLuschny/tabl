@@ -37,7 +37,7 @@ def narayana(n: int) -> list[int]:
 @set_attributes(
     narayana, 
     "Narayana", 
-    ['A001263', 'A090181', 'A131198'], 
+    ['A090181', 'A001263', 'A131198'], 
     True)
 def Narayana(n: int, k: int) -> int: 
     return narayana(n)[k]

@@ -3,7 +3,7 @@ from itertools import accumulate
 from _tabltypes import set_attributes
 from Partition import partnumexact
 
-"""Partition numbers at most.
+"""Euler's table, partition numbers at most.
 
 [0] 1
 [1] 0, 1
@@ -26,7 +26,7 @@ def partnummax(n: int) -> list[int]:
 @set_attributes(
     partnummax, 
     "PartitionMax", 
-    ['A008284', 'A058398', 'A072233'], 
+    ['A026820'], 
     False)
 def PartnumMax(n: int, k: int) -> int:
     return partnummax(n)[k]

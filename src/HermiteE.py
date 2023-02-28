@@ -26,7 +26,7 @@ def hermitee(n: int) -> list[int]:
 @set_attributes(
     hermitee, 
     "HermiteE", 
-    ['A066325', 'A073278', 'A099174'], 
+    ['A099174', 'A066325', 'A073278'], 
     True)
 def HermiteE(n: int, k: int) -> int: 
     return hermitee(n)[k]

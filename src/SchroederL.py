@@ -33,7 +33,7 @@ def schroederl(n: int) -> list[int]:
 
 @set_attributes(
     schroederl, 
-    "schroederL", 
+    "SchroederL", 
     ['A172094'], 
     True)
 def SchroederL(n: int, k: int) -> int: 

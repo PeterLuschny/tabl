@@ -33,7 +33,7 @@ def motzkingf(n: int) -> list[int]:
 @set_attributes(
     motzkingf, 
     "MotzkinGF", 
-    ['A026300', 'A064189', 'A009766'], 
+    ['A064189', 'A026300', 'A009766'], 
     True)
 def MotzkinGF(n: int, k: int) -> int:
     return motzkingf(n)[k]

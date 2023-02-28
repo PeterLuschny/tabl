@@ -33,7 +33,7 @@ def harmonic(n: int) -> list[int]:
 @set_attributes(
     harmonic, 
     "Harmonic", 
-    ['A109822', 'A358694'], 
+    ['A358694', 'A109822'], 
     True)
 def Harmonic(n: int, k: int) -> int: 
     return harmonic(n)[k]

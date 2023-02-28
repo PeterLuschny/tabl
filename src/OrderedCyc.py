@@ -31,7 +31,7 @@ def orderedcycle(n: int) -> list[int]:
 @set_attributes(
     orderedcycle, 
     "OrderedCycle", 
-    ['A048594', 'A075181', 'A225479'], 
+    ['A225479', 'A048594', 'A075181'], 
     False)
 def OrderedCycle(n: int, k: int) -> int:
     return orderedcycle(n)[k]
