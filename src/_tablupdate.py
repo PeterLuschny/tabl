@@ -31,4 +31,4 @@ def update() -> None:
 if __name__ == "__main__":
 
     '''Update project.'''
-    update()
+    # update()
