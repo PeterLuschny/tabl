@@ -1,4 +1,4 @@
-from io import TextIOWrapper
+# from io import TextIOWrapper
 from os import getcwd
 from os.path import join, isfile
 
@@ -17,6 +17,7 @@ tabl_files: list[str] = [
     "Bessel.py",
     "Bessel2.py",
     "Binomial.py",
+    "BinomialCatalan.py",
     "Catalan.py",
     "CatalanAer.py",
     "CatalanSqr.py",
@@ -81,6 +82,13 @@ tabl_files: list[str] = [
     "TernaryTrees.py",
     "WardSet.py",
     "Worpitzky.py",
+    "NumBell.py",
+    "NumBernoulli.py",
+    "NumEuler.py",
+    "NumMotzkin.py",
+    "NumPartLists.py",
+    "NumParts.py",
+    "NumRiordan.py",
     "_tablmake.py",
     "_tablexport.py",
     "_tablhtml.py",
@@ -97,6 +105,7 @@ tabl_fun: list[tgen] = [
     Bessel,
     Bessel2,
     Binomial,
+    BinomialCatalan,
     Catalan,
     CatalanAer,
     CatalanSqr,
@@ -203,7 +212,7 @@ data_path: list[str] = [
 
 def make() -> None:
     dir: str = join(getcwd(), "src")
-    dest: TextIOWrapper = open("tabl.py", "w+")
+    dest = open("tabl.py", "w+")
 
     dest.writelines(import_header)
     dest.writelines(data_path)
@@ -218,7 +227,7 @@ def make() -> None:
         file_path: str = join(dir, src)
         if isfile(file_path):
             start: bool = False
-            src_file: TextIOWrapper = open(file_path, "r")
+            src_file = open(file_path, "r")
 
             for line in src_file:
                 if line.startswith("from"):

@@ -1,6 +1,7 @@
 ***La sélection du Chef***
 # Tables à la carte
 
+INTEGER SEQUENCES ARE ONLY THE SHADOWS OF INTEGER TRIANGLES
 
 Python implementations of integer sequences dubbed tabl in the OEIS.
 The notebook gives a first introduction for the user.

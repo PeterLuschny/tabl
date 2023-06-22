@@ -475,6 +475,7 @@ if __name__ == "__main__":
     from CatalanSqr import CatalanSqr
     from PowLaguerre import PowLaguerre
     from LabeledGraphs import LabeledGraphs
+    from BinomialCatalan import BinomialCatalan
 
     register()
 
@@ -490,15 +491,15 @@ if __name__ == "__main__":
     #                    markdown = False,
     #                    onlythefound = False)
     
-    #PrintTraits(Lah, 20,
-    #            withanum = True,
-    #            markdown = True,
-    #            onlythefound = False)
+    PrintTraits(BinomialCatalan, 20,
+                withanum = True,
+                markdown = True,
+                onlythefound = False)
     
-    SaveTraitsToFile(Lah, 20, 
-                    withanum = True, 
-                    markdown = False,
-                    onlythefound = False)
+    #SaveTraitsToFile(Lah, 20, 
+    #                withanum = True, 
+    #                markdown = False,
+    #                onlythefound = False)
 
     # SEQ = StirlingSet
     #PrintTraits(SEQ, 12, withanum = False, markdown = False)

@@ -972,34 +972,35 @@ def PrintViews(g: tgen, rows: int = 7, verbose: bool = True) -> None:
     T: tabl = g.tab(rows)
     if verbose:
         print(g.id, "Triangle view")
+        print()
     PrintRows(T)
     print()
     if verbose:
-        print(g.id, "Triangles")
+        print(g.id, "Triangles\n")
     PrintFlats(T)
     print()
     if verbose:
-        print(g.id, "Row sums")
+        print(g.id, "Row sums\n")
     PrintSums(T, g.id)
     print()
     if verbose:
-        print(g.id, "Transforms")
+        print(g.id, "Transforms\n")
     PrintTrans(T)
     print()
     if verbose:
-        print(g.id, "Diagonals as rows")
+        print(g.id, "Diagonals as rows\n")
     PrintRowArray(g.gen, rows, cols)
     print()
     if verbose:
-        print(g.id, "Diagonals as columns")
+        print(g.id, "Diagonals as columns\n")
     PrintColArray(g.gen, rows, cols)
     print()
     if verbose:
-        print(g.id, "Polynomial values as rows")
+        print(g.id, "Polynomial values as rows\n")
     PrintPolyRowArray(g.gen, rows, cols)
     print()
     if verbose:
-        print(g.id, "Polynomial values as columns")
+        print(g.id, "Polynomial values as columns\n")
     PrintPolyColArray(g.gen, rows, cols)
     print()
 
@@ -1194,6 +1195,24 @@ def binomial(n: int) -> list[int]:
 )
 def Binomial(n: int, k: int) -> int:
     return binomial(n)[k]
+
+
+@cache
+def binomialcatalan(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    a = binomialcatalan(n - 1) + [0]
+    row = [0] * (n + 1)
+    row[0] = 1
+    row[1] = n
+    for k in range(2, n + 1):
+        row[k] = (a[k] * (n + k + 1) + a[k - 1] * (4 * k - 2)) // (n + 1)
+    return row
+
+
+@set_attributes(binomialcatalan, "BinomialCatalan", ["A124644", "A098474"], True)
+def BinomialCatalan(n: int, k: int) -> int:
+    return binomialcatalan(n)[k]
 
 
 @cache
@@ -1419,10 +1438,6 @@ def euler(n: int) -> list[int]:
 @set_attributes(euler, "Euler", ["A247453", "A109449"], True)
 def Euler(n: int, k: int) -> int:
     return euler(n)[k]
-
-
-def euler_num(n: int) -> int:
-    return euler(n)[0]
 
 
 @cache
@@ -2325,6 +2340,45 @@ def Worpitzky(n: int, k: int) -> int:
     return worpitzky(n)[k]
 
 
+def bell_num(n: int) -> int:
+    if n == 0:
+        return 1
+    return bell(n - 1)[-1]
+
+
+def Bernoulli(n: int) -> frac:
+    if n == 0:
+        return frac(1, 1)
+    if n == 1:
+        return frac(1, 2)
+    if n % 2 == 1:
+        return frac(0, 1)
+    q = 2 ** (n + 1) - 2
+    g = genocchi(n // 2 - 1)[-1]
+    f = frac(g, q)
+    return -f if n % 4 == 0 else f
+
+
+def euler_num(n: int) -> int:
+    return euler(n)[0]
+
+
+def motzkin_num(n: int) -> int:
+    return sum(motzkin(n))
+
+
+def partlist_num(n: int) -> int:
+    return sum(lah(n))
+
+
+def part_num(n: int) -> int:
+    return sum(partnumexact(n))
+
+
+def riordan_num(n: int) -> int:
+    return sum((-1) ** (n - k) * BinomialCatalan(n, k) for k in range(n + 1))
+
+
 tabl_fun: list[tgen] = [
     Abel,
     Baxter,
@@ -2332,6 +2386,7 @@ tabl_fun: list[tgen] = [
     Bessel,
     Bessel2,
     Binomial,
+    BinomialCatalan,
     Catalan,
     CatalanAer,
     CatalanSqr,
@@ -2718,6 +2773,7 @@ def oeisabsdata() -> None:
 def GetOEISdata() -> None:
     get_compressed()
     oeisabsdata()
+    print("OEIS data updated!")
 
 
 def SeqToFixlenString(seq: list[int], maxlen: int = 90, separator: str = ",") -> str:

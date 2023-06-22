@@ -38,15 +38,9 @@ def Euler(n: int, k: int) -> int:
     return euler(n)[k]
 
 
-def euler_num(n: int) -> int:
-    return euler(n)[0]
-
 if __name__ == "__main__":
     from _tabltest import TablTest
 
     TablTest(Euler)
-
-    print("Bonus:")
-    print([euler_num(n) for n in range(30)])
 
 # See also: https://oeis.org/wiki/User:Peter_Luschny/SwissKnifePolynomials

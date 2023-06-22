@@ -100,35 +100,35 @@ def PrintViews(g: tgen, rows: int = 7, verbose: bool = True) -> None:
 
     T: tabl = g.tab(rows)
 
-    if verbose: print(g.id, "Triangle view")
+    if verbose: print(g.id, "Triangle view"); print()
     PrintRows(T)
     print()
 
-    if verbose: print(g.id, "Triangles")
+    if verbose: print(g.id, "Triangles\n")
     PrintFlats(T)
     print()
 
-    if verbose: print(g.id, "Row sums")
+    if verbose: print(g.id, "Row sums\n")
     PrintSums(T, g.id) 
     print()
 
-    if verbose: print(g.id, "Transforms")
+    if verbose: print(g.id, "Transforms\n")
     PrintTrans(T)
     print()
 
-    if verbose: print(g.id, "Diagonals as rows")
+    if verbose: print(g.id, "Diagonals as rows\n")
     PrintRowArray(g.gen, rows, cols)
     print()
 
-    if verbose: print(g.id, "Diagonals as columns")
+    if verbose: print(g.id, "Diagonals as columns\n")
     PrintColArray(g.gen, rows, cols)
     print()
 
-    if verbose: print(g.id, "Polynomial values as rows")
+    if verbose: print(g.id, "Polynomial values as rows\n")
     PrintPolyRowArray(g.gen, rows, cols)
     print()
 
-    if verbose: print(g.id, "Polynomial values as columns")
+    if verbose: print(g.id, "Polynomial values as columns\n")
     PrintPolyColArray(g.gen, rows, cols)
     print()
 
