@@ -1,6 +1,8 @@
+# First copy this file up to the project folder.
+
 from pathlib import Path
 path = Path(__file__).parent
-#mkpath = (path / "_tablmake.py").resolve()
+#mkpath = (path / "src/_tablmake.py").resolve()
 
 '''Make sure to reference tabl.py in its current state.'''
 #exec(open(mkpath).read())
@@ -22,8 +24,8 @@ crossreferences. This will take a considerably amount of time.
 Normally this is done only when preparing a new release.
 '''
 def update() -> None:
-    #GetOEISdata()
-    SaveAllTraitsToCSV(GetAllCsvPath())
+    GetOEISdata()
+    SaveAllTraitsToCSV()
     AllCsvToHtml()
     SaveExtendedTables()
     CrossReferences()
@@ -32,4 +34,4 @@ def update() -> None:
 if __name__ == "__main__":
 
     '''Update project.'''
-    update()
+    # update()

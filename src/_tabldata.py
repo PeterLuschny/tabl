@@ -49,7 +49,7 @@ def GetOEISdata() -> None:
 
 if __name__ == "__main__":
 
-    GetOEISdata()
+    #GetOEISdata()
     print("Done")
 
     '''
