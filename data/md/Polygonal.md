@@ -2,6 +2,7 @@
 ['A139600', 'A057145', 'A134394', 'A139601']
 
 Polygonal Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [0] |
@@ -15,6 +16,7 @@ Polygonal Triangle view
 | Row8 | [0, 1, 8, 18, 28, 35, 36, 28, 8] |
 
 Polygonal Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[0], [0, 1], [0, 1, 2], [0, 1, 3, 3], [0, 1, 4, 6, 4], [0, 1, 5, 9, 10, 5], [0, 1, 6, 12, 16, 15, 6], [0, 1, 7, 15, 22, 25, 21, 7], [0, 1, 8, 18, 28, 35, 36, 28, 8]] |
@@ -25,6 +27,7 @@ Polygonal Triangles
 | AccRevTabl | [[0], [1, 1], [2, 3, 3], [3, 6, 7, 7], [4, 10, 14, 15, 15], [5, 15, 24, 29, 30, 30], [6, 21, 37, 49, 55, 56, 56], [7, 28, 53, 75, 90, 97, 98, 98], [8, 36, 72, 107, 135, 153, 161, 162, 162]] |
 
 Polygonal Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [0, 1, 3, 7, 15, 30, 56, 98, 162] |
@@ -36,6 +39,7 @@ Polygonal Row sums
 | AntiDiagSum  | [0, 0, 1, 1, 3, 4, 8, 12, 20] |
 
 Polygonal Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 3, 12, 90, 240, 11550, 2520] |
@@ -51,6 +55,7 @@ Polygonal Transforms
 | TransNat1  | [0, 2, 8, 23, 58, 133, 280, 546, 996] |
 
 Polygonal Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [0, 1, 2, 3, 4, 5, 6, 7, 8]|
@@ -64,6 +69,7 @@ Polygonal Diagonals as rows
 | DiagRow8 | [0, 1, 10, 27, 52, 85, 126, 175, 232]|
 
 Polygonal Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [0, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -77,6 +83,7 @@ Polygonal Diagonals as columns
 | DiagCol8 | [8, 36, 64, 92, 120, 148, 176, 204, 232] |
 
 Polygonal Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [0, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -90,6 +97,7 @@ Polygonal Polynomial values as rows
 | PolyRow8 | [0, 162, 9682, 151302, 1174788, 6004330, 23267382, 74075022, 203646472] |
 
 Polygonal Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [0, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -106,6 +114,7 @@ Polygonal Polynomial values as columns
 []
 
 Polygonal:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [0] |
@@ -119,6 +128,7 @@ Polygonal:Rev Triangle view
 | Row8 | [8, 28, 36, 35, 28, 18, 8, 1, 0] |
 
 Polygonal:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[0], [1, 0], [2, 1, 0], [3, 3, 1, 0], [4, 6, 4, 1, 0], [5, 10, 9, 5, 1, 0], [6, 15, 16, 12, 6, 1, 0], [7, 21, 25, 22, 15, 7, 1, 0], [8, 28, 36, 35, 28, 18, 8, 1, 0]] |
@@ -129,6 +139,7 @@ Polygonal:Rev Triangles
 | AccRevTabl | [[0], [0, 1], [0, 1, 3], [0, 1, 4, 7], [0, 1, 5, 11, 15], [0, 1, 6, 15, 25, 30], [0, 1, 7, 19, 35, 50, 56], [0, 1, 8, 23, 45, 70, 91, 98], [0, 1, 9, 27, 55, 90, 126, 154, 162]] |
 
 Polygonal:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [0, 1, 3, 7, 15, 30, 56, 98, 162] |
@@ -140,6 +151,7 @@ Polygonal:Rev Row sums
 | AntiDiagSum  | [0, 1, 2, 4, 7, 12, 20, 32, 50] |
 
 Polygonal:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 3, 12, 90, 240, 11550, 2520] |
@@ -155,6 +167,7 @@ Polygonal:Rev Transforms
 | TransNat1  | [0, 1, 4, 12, 32, 77, 168, 336, 624] |
 
 Polygonal:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [0, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -168,6 +181,7 @@ Polygonal:Rev Diagonals as rows
 | DiagRow8 | [8, 36, 64, 92, 120, 148, 176, 204, 232]|
 
 Polygonal:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [0, 1, 2, 3, 4, 5, 6, 7, 8] |
@@ -181,6 +195,7 @@ Polygonal:Rev Diagonals as columns
 | DiagCol8 | [0, 1, 10, 27, 52, 85, 126, 175, 232] |
 
 Polygonal:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [0, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -194,6 +209,7 @@ Polygonal:Rev Polynomial values as rows
 | PolyRow8 | [8, 162, 2152, 16022, 77688, 282298, 838472, 2148462, 4919272] |
 
 Polygonal:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [0, 1, 2, 3, 4, 5, 6, 7, 8] |

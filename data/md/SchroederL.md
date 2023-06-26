@@ -2,6 +2,7 @@
 ['A172094']
 
 SchroederL Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ SchroederL Triangle view
 | Row8 | [20793, 41128, 31864, 15932, 5558, 1356, 222, 22, 1] |
 
 SchroederL Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [3, 4, 1], [11, 17, 7, 1], [45, 76, 40, 10, 1], [197, 353, 216, 72, 13, 1], [903, 1688, 1145, 458, 113, 16, 1], [4279, 8257, 6039, 2745, 829, 163, 19, 1], [20793, 41128, 31864, 15932, 5558, 1356, 222, 22, 1]] |
@@ -25,6 +27,7 @@ SchroederL Triangles
 | AccRevTabl | [[1], [1, 2], [1, 5, 8], [1, 8, 25, 36], [1, 11, 51, 127, 172], [1, 14, 86, 302, 655, 852], [1, 17, 130, 588, 1733, 3421, 4324], [1, 20, 183, 1012, 3757, 9796, 18053, 22332], [1, 23, 245, 1601, 7159, 23091, 54955, 96083, 116876]] |
 
 SchroederL Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 8, 36, 172, 852, 4324, 22332, 116876] |
@@ -36,6 +39,7 @@ SchroederL Row sums
 | AntiDiagSum  | [1, 1, 4, 15, 63, 280, 1297, 6193, 30268] |
 
 SchroederL Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 12, 1309, 6840, 195271128, 394433795280, 249001897016460555, 62191124612870563464] |
@@ -51,6 +55,7 @@ SchroederL Transforms
 | TransNat1  | [1, 3, 14, 70, 362, 1910, 10214, 55154, 300034] |
 
 SchroederL Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ SchroederL Diagonals as rows
 | DiagRow8 | [20793, 207905, 895209, 2863593, 7687119, 18266831, 39595413, 79811017, 151605142]|
 
 SchroederL Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 3, 11, 45, 197, 903, 4279, 20793] |
@@ -77,6 +83,7 @@ SchroederL Diagonals as columns
 | DiagCol8 | [1, 25, 367, 4143, 39875, 344835, 2762981, 20916909, 151605142] |
 
 SchroederL Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ SchroederL Polynomial values as rows
 | PolyRow8 | [20793, 116876, 507561, 1857336, 5861465, 16303908, 40799241, 93470576, 198855801] |
 
 SchroederL Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 3, 11, 45, 197, 903, 4279, 20793] |
@@ -106,6 +114,7 @@ SchroederL Polynomial values as columns
 []
 
 SchroederL:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ SchroederL:Inv Triangle view
 | Row8 | [1, -502, 2116, -3178, 2310, -906, 196, -22, 1] |
 
 SchroederL:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [-1, 1], [1, -4, 1], [-1, 11, -7, 1], [1, -26, 30, -10, 1], [-1, 57, -102, 58, -13, 1], [1, -120, 303, -256, 95, -16, 1], [-1, 247, -825, 955, -515, 141, -19, 1], [1, -502, 2116, -3178, 2310, -906, 196, -22, 1]] |
@@ -129,6 +139,7 @@ SchroederL:Inv Triangles
 | AccRevTabl | [[1], [1, 0], [1, -3, -2], [1, -6, 5, 4], [1, -9, 21, -5, -4], [1, -12, 46, -56, 1, 0], [1, -15, 80, -176, 127, 7, 8], [1, -18, 123, -392, 563, -262, -15, -16], [1, -21, 175, -731, 1579, -1599, 517, 15, 16]] |
 
 SchroederL:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, -2, 4, -4, 0, 8, -16, 16] |
@@ -140,6 +151,7 @@ SchroederL:Inv Row sums
 | AntiDiagSum  | [1, -1, 2, -5, 13, -34, 89, -233, 610] |
 
 SchroederL:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 4, 77, 390, 730626, 7368960, 188416682025, 147187935422220] |
@@ -155,6 +167,7 @@ SchroederL:Inv Transforms
 | TransNat1  | [1, 1, -4, 4, 4, -20, 32, -16, -48] |
 
 SchroederL:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ SchroederL:Inv Diagonals as rows
 | DiagRow8 | [1, 1013, 12381, 77093, 333295, 1136799, 3275931, 8316627, 19122246]|
 
 SchroederL:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, -1, 1, -1, 1, -1, 1, -1, 1] |
@@ -181,6 +195,7 @@ SchroederL:Inv Diagonals as columns
 | DiagCol8 | [1, -25, 333, -3141, 23535, -149031, 828795, -4154403, 19122246] |
 
 SchroederL:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ SchroederL:Inv Polynomial values as rows
 | PolyRow8 | [1, 16, -11, 16, -23, 16, 1021, 35344, 298321] |
 
 SchroederL:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, -1, 1, -1, 1, -1, 1, -1, 1] |
@@ -210,6 +226,7 @@ SchroederL:Inv Polynomial values as columns
 []
 
 SchroederL:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ SchroederL:Rev Triangle view
 | Row8 | [1, 22, 222, 1356, 5558, 15932, 31864, 41128, 20793] |
 
 SchroederL:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [1, 4, 3], [1, 7, 17, 11], [1, 10, 40, 76, 45], [1, 13, 72, 216, 353, 197], [1, 16, 113, 458, 1145, 1688, 903], [1, 19, 163, 829, 2745, 6039, 8257, 4279], [1, 22, 222, 1356, 5558, 15932, 31864, 41128, 20793]] |
@@ -233,6 +251,7 @@ SchroederL:Rev Triangles
 | AccRevTabl | [[1], [1, 2], [3, 7, 8], [11, 28, 35, 36], [45, 121, 161, 171, 172], [197, 550, 766, 838, 851, 852], [903, 2591, 3736, 4194, 4307, 4323, 4324], [4279, 12536, 18575, 21320, 22149, 22312, 22331, 22332], [20793, 61921, 93785, 109717, 115275, 116631, 116853, 116875, 116876]] |
 
 SchroederL:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 8, 36, 172, 852, 4324, 22332, 116876] |
@@ -244,6 +263,7 @@ SchroederL:Rev Row sums
 | AntiDiagSum  | [1, 1, 2, 5, 11, 28, 65, 165, 394] |
 
 SchroederL:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 12, 1309, 6840, 195271128, 394433795280, 249001897016460555, 62191124612870563464] |
@@ -259,6 +279,7 @@ SchroederL:Rev Transforms
 | TransNat1  | [1, 3, 18, 110, 670, 4054, 24378, 145834, 868726] |
 
 SchroederL:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 3, 11, 45, 197, 903, 4279, 20793]|
@@ -272,6 +293,7 @@ SchroederL:Rev Diagonals as rows
 | DiagRow8 | [1, 25, 367, 4143, 39875, 344835, 2762981, 20916909, 151605142]|
 
 SchroederL:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -285,6 +307,7 @@ SchroederL:Rev Diagonals as columns
 | DiagCol8 | [20793, 207905, 895209, 2863593, 7687119, 18266831, 39595413, 79811017, 151605142] |
 
 SchroederL:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ SchroederL:Rev Polynomial values as rows
 | PolyRow8 | [1, 116876, 13237221, 253959016, 2184873785, 11886702036, 48055501501, 157768541456, 443998810161] |
 
 SchroederL:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -314,6 +338,7 @@ SchroederL:Rev Polynomial values as columns
 []
 
 SchroederL:Inv:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -327,6 +352,7 @@ SchroederL:Inv:Rev Triangle view
 | Row8 | [1, -22, 196, -906, 2310, -3178, 2116, -502, 1] |
 
 SchroederL:Inv:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, -1], [1, -4, 1], [1, -7, 11, -1], [1, -10, 30, -26, 1], [1, -13, 58, -102, 57, -1], [1, -16, 95, -256, 303, -120, 1], [1, -19, 141, -515, 955, -825, 247, -1], [1, -22, 196, -906, 2310, -3178, 2116, -502, 1]] |
@@ -337,6 +363,7 @@ SchroederL:Inv:Rev Triangles
 | AccRevTabl | [[1], [-1, 0], [1, -3, -2], [-1, 10, 3, 4], [1, -25, 5, -5, -4], [-1, 56, -46, 12, -1, 0], [1, -119, 184, -72, 23, 7, 8], [-1, 246, -579, 376, -139, 2, -17, -16], [1, -501, 1615, -1563, 747, -159, 37, 15, 16]] |
 
 SchroederL:Inv:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, -2, 4, -4, 0, 8, -16, 16] |
@@ -348,6 +375,7 @@ SchroederL:Inv:Rev Row sums
 | AntiDiagSum  | [1, 1, 0, -3, -5, 2, 17, 17, -24] |
 
 SchroederL:Inv:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 4, 77, 390, 730626, 7368960, 188416682025, 147187935422220] |
@@ -363,6 +391,7 @@ SchroederL:Inv:Rev Transforms
 | TransNat1  | [1, -1, -4, 16, -28, 20, 32, -128, 208] |
 
 SchroederL:Inv:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, -1, 1, -1, 1, -1, 1, -1, 1]|
@@ -376,6 +405,7 @@ SchroederL:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, -25, 333, -3141, 23535, -149031, 828795, -4154403, 19122246]|
 
 SchroederL:Inv:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -389,6 +419,7 @@ SchroederL:Inv:Rev Diagonals as columns
 | DiagCol8 | [1, 1013, 12381, 77093, 333295, 1136799, 3275931, 8316627, 19122246] |
 
 SchroederL:Inv:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -402,6 +433,7 @@ SchroederL:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, 16, 181, -156656, -2209943, -14361584, -62031299, -206876144, -576422831] |
 
 SchroederL:Inv:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |

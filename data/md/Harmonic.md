@@ -2,6 +2,7 @@
 ['A358694', 'A109822']
 
 Harmonic Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ Harmonic Triangle view
 | Row8 | [0, 40320, 35280, 22212, 9080, 2311, 351, 29, 1] |
 
 Harmonic Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, 2, 1], [0, 6, 4, 1], [0, 24, 18, 7, 1], [0, 120, 96, 46, 11, 1], [0, 720, 600, 326, 101, 16, 1], [0, 5040, 4320, 2556, 932, 197, 22, 1], [0, 40320, 35280, 22212, 9080, 2311, 351, 29, 1]] |
@@ -25,6 +27,7 @@ Harmonic Triangles
 | AccRevTabl | [[1], [1, 1], [1, 3, 3], [1, 5, 11, 11], [1, 8, 26, 50, 50], [1, 12, 58, 154, 274, 274], [1, 17, 118, 444, 1044, 1764, 1764], [1, 23, 220, 1152, 3708, 8028, 13068, 13068], [1, 30, 381, 2692, 11772, 33984, 69264, 109584, 109584]] |
 
 Harmonic Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 3, 11, 50, 274, 1764, 13068, 109584] |
@@ -36,6 +39,7 @@ Harmonic Row sums
 | AntiDiagSum  | [1, 0, 1, 2, 7, 28, 139, 823, 5687] |
 
 Harmonic Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 12, 504, 121440, 59266800, 1084064113440, 103321840810930560] |
@@ -51,6 +55,7 @@ Harmonic Transforms
 | TransNat1  | [1, 2, 7, 28, 135, 773, 5152, 39268, 337292] |
 
 Harmonic Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ Harmonic Diagonals as rows
 | DiagRow8 | [0, 362880, 3265920, 25659360, 167622984, 916001880, 4280337452, 17499398776, 63850536496]|
 
 Harmonic Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -77,6 +83,7 @@ Harmonic Diagonals as columns
 | DiagCol8 | [1, 37, 916, 19526, 392085, 7734663, 153275513, 3090075848, 63850536496] |
 
 Harmonic Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ Harmonic Polynomial values as rows
 | PolyRow8 | [0, 109584, 645120, 2661120, 8816640, 24897600, 62221824, 141214080, 296478720] |
 
 Harmonic Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -106,6 +114,7 @@ Harmonic Polynomial values as columns
 []
 
 Harmonic:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ Harmonic:Inv Triangle view
 | Row8 | [0, -2, 190, -1267, 2051, -1190, 287, -29, 1] |
 
 Harmonic:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, -2, 1], [0, 2, -4, 1], [0, -2, 10, -7, 1], [0, 2, -22, 31, -11, 1], [0, -2, 46, -115, 75, -16, 1], [0, 2, -94, 391, -415, 155, -22, 1], [0, -2, 190, -1267, 2051, -1190, 287, -29, 1]] |
@@ -129,6 +139,7 @@ Harmonic:Inv Triangles
 | AccRevTabl | [[1], [1, 1], [1, -1, -1], [1, -3, -1, -1], [1, -6, 4, 2, 2], [1, -10, 21, -1, 1, 1], [1, -15, 60, -55, -9, -11, -11], [1, -21, 134, -281, 110, 16, 18, 18], [1, -28, 259, -931, 1120, -147, 43, 41, 41]] |
 
 Harmonic:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, -1, -1, 2, 1, -11, 18, 41] |
@@ -140,6 +151,7 @@ Harmonic:Inv Row sums
 | AntiDiagSum  | [1, 0, 1, -2, 3, -6, 13, -31, 80] |
 
 Harmonic:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 4, 70, 682, 27600, 5201242310, 1425701518570] |
@@ -155,6 +167,7 @@ Harmonic:Inv Transforms
 | TransNat1  | [1, 2, -1, -4, 3, 13, -40, -5, 399] |
 
 Harmonic:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ Harmonic:Inv Diagonals as rows
 | DiagRow8 | [0, 2, 766, 37831, 757251, 8887901, 72757685, 458070613, 2358391893]|
 
 Harmonic:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -181,6 +195,7 @@ Harmonic:Inv Diagonals as columns
 | DiagCol8 | [1, -37, 786, -12630, 170907, -2058639, 22811932, -237540160, 2358391893] |
 
 Harmonic:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ Harmonic:Inv Polynomial values as rows
 | PolyRow8 | [0, 41, 268, -3183, -5608, 18865, 89556, 146153, -34448] |
 
 Harmonic:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -210,6 +226,7 @@ Harmonic:Inv Polynomial values as columns
 []
 
 Harmonic:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ Harmonic:Rev Triangle view
 | Row8 | [1, 29, 351, 2311, 9080, 22212, 35280, 40320, 0] |
 
 Harmonic:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [1, 2, 0], [1, 4, 6, 0], [1, 7, 18, 24, 0], [1, 11, 46, 96, 120, 0], [1, 16, 101, 326, 600, 720, 0], [1, 22, 197, 932, 2556, 4320, 5040, 0], [1, 29, 351, 2311, 9080, 22212, 35280, 40320, 0]] |
@@ -233,6 +251,7 @@ Harmonic:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [0, 2, 3], [0, 6, 10, 11], [0, 24, 42, 49, 50], [0, 120, 216, 262, 273, 274], [0, 720, 1320, 1646, 1747, 1763, 1764], [0, 5040, 9360, 11916, 12848, 13045, 13067, 13068], [0, 40320, 75600, 97812, 106892, 109203, 109554, 109583, 109584]] |
 
 Harmonic:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 3, 11, 50, 274, 1764, 13068, 109584] |
@@ -244,6 +263,7 @@ Harmonic:Rev Row sums
 | AntiDiagSum  | [1, 1, 1, 3, 5, 14, 30, 87, 220] |
 
 Harmonic:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 12, 504, 121440, 59266800, 1084064113440, 103321840810930560] |
@@ -259,6 +279,7 @@ Harmonic:Rev Transforms
 | TransNat1  | [1, 1, 5, 27, 165, 1145, 8960, 78344, 758548] |
 
 Harmonic:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -272,6 +293,7 @@ Harmonic:Rev Diagonals as rows
 | DiagRow8 | [1, 37, 916, 19526, 392085, 7734663, 153275513, 3090075848, 63850536496]|
 
 Harmonic:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -285,6 +307,7 @@ Harmonic:Rev Diagonals as columns
 | DiagCol8 | [0, 362880, 3265920, 25659360, 167622984, 916001880, 4280337452, 17499398776, 63850536496] |
 
 Harmonic:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ Harmonic:Rev Polynomial values as rows
 | PolyRow8 | [1, 109584, 8294895, 120097600, 830332965, 3776635296, 13118043379, 37751838720, 94571849385] |
 
 Harmonic:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -314,6 +338,7 @@ Harmonic:Rev Polynomial values as columns
 []
 
 Harmonic:Inv:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -327,6 +352,7 @@ Harmonic:Inv:Rev Triangle view
 | Row8 | [1, -29, 287, -1190, 2051, -1267, 190, -2, 0] |
 
 Harmonic:Inv:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [1, -2, 0], [1, -4, 2, 0], [1, -7, 10, -2, 0], [1, -11, 31, -22, 2, 0], [1, -16, 75, -115, 46, -2, 0], [1, -22, 155, -415, 391, -94, 2, 0], [1, -29, 287, -1190, 2051, -1267, 190, -2, 0]] |
@@ -337,6 +363,7 @@ Harmonic:Inv:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [0, -2, -1], [0, 2, -2, -1], [0, -2, 8, 1, 2], [0, 2, -20, 11, 0, 1], [0, -2, 44, -71, 4, -12, -11], [0, 2, -92, 299, -116, 39, 17, 18], [0, -2, 188, -1079, 972, -218, 69, 40, 41]] |
 
 Harmonic:Inv:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, -1, -1, 2, 1, -11, 18, 41] |
@@ -348,6 +375,7 @@ Harmonic:Inv:Rev Row sums
 | AntiDiagSum  | [1, 1, 1, -1, -3, -4, 0, 14, 32] |
 
 Harmonic:Inv:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 4, 70, 682, 27600, 5201242310, 1425701518570] |
@@ -363,6 +391,7 @@ Harmonic:Inv:Rev Transforms
 | TransNat1  | [1, 1, -3, -1, 9, -6, -48, 167, 11] |
 
 Harmonic:Inv:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -376,6 +405,7 @@ Harmonic:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, -37, 786, -12630, 170907, -2058639, 22811932, -237540160, 2358391893]|
 
 Harmonic:Inv:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -389,6 +419,7 @@ Harmonic:Inv:Rev Diagonals as columns
 | DiagCol8 | [0, 2, 766, 37831, 757251, 8887901, 72757685, 458070613, 2358391893] |
 
 Harmonic:Inv:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -402,6 +433,7 @@ Harmonic:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, 41, -4253, -37247, -98563, -6719, 863791, 3941897, 11905753] |
 
 Harmonic:Inv:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |

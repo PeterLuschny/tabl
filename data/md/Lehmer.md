@@ -2,6 +2,7 @@
 ['A354794', 'A039621']
 
 Lehmer Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ Lehmer Triangle view
 | Row8 | [0, 823543, 543607, 170898, 33621, 4550, 434, 28, 1] |
 
 Lehmer Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, 1, 1], [0, 4, 3, 1], [0, 27, 19, 6, 1], [0, 256, 175, 55, 10, 1], [0, 3125, 2101, 660, 125, 15, 1], [0, 46656, 31031, 9751, 1890, 245, 21, 1], [0, 823543, 543607, 170898, 33621, 4550, 434, 28, 1]] |
@@ -25,6 +27,7 @@ Lehmer Triangles
 | AccRevTabl | [[1], [1, 1], [1, 2, 2], [1, 4, 8, 8], [1, 7, 26, 53, 53], [1, 11, 66, 241, 497, 497], [1, 16, 141, 801, 2902, 6027, 6027], [1, 22, 267, 2157, 11908, 42939, 89595, 89595], [1, 29, 463, 5013, 38634, 209532, 753139, 1576682, 1576682]] |
 
 Lehmer Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 8, 53, 497, 6027, 89595, 1576682] |
@@ -36,6 +39,7 @@ Lehmer Row sums
 | AntiDiagSum  | [1, 0, 1, 1, 5, 30, 276, 3306, 48813] |
 
 Lehmer Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 12, 1026, 492800, 78787500, 10083803970240, 27122723143943517881700] |
@@ -51,6 +55,7 @@ Lehmer Transforms
 | TransNat1  | [1, 2, 5, 21, 140, 1313, 15915, 236484, 4160175] |
 
 Lehmer Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ Lehmer Diagonals as rows
 | DiagRow8 | [0, 16777216, 253202761, 2050086511, 11810819141, 54224511341, 210798120533, 720369582933, 2219237925333]|
 
 Lehmer Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -77,6 +83,7 @@ Lehmer Diagonals as columns
 | DiagCol8 | [1, 36, 1110, 34320, 1109427, 38011116, 1385956000, 53791898160, 2219237925333] |
 
 Lehmer Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ Lehmer Polynomial values as rows
 | PolyRow8 | [0, 1576682, 5903850, 16190472, 38497484, 83661390, 170145222, 328099100, 604952952] |
 
 Lehmer Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -106,6 +114,7 @@ Lehmer Polynomial values as columns
 []
 
 Lehmer:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ Lehmer:Inv Triangle view
 | Row8 | [0, -720, 188, 196, 49, 0, 154, -28, 1] |
 
 Lehmer:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, -1, 1], [0, -1, -3, 1], [0, -2, -1, -6, 1], [0, -6, 0, 5, -10, 1], [0, -24, 4, 15, 25, -15, 1], [0, -120, 28, 49, 35, 70, -21, 1], [0, -720, 188, 196, 49, 0, 154, -28, 1]] |
@@ -129,6 +139,7 @@ Lehmer:Inv Triangles
 | AccRevTabl | [[1], [1, 1], [1, 0, 0], [1, -2, -3, -3], [1, -5, -6, -8, -8], [1, -9, -4, -4, -10, -10], [1, -14, 11, 26, 30, 6, 6], [1, -20, 50, 85, 134, 162, 42, 42], [1, -27, 127, 127, 176, 372, 560, -160, -160]] |
 
 Lehmer:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 0, -3, -8, -10, 6, 42, -160] |
@@ -140,6 +151,7 @@ Lehmer:Inv Row sums
 | AntiDiagSum  | [1, 0, 1, -1, 0, -5, -6, -30, -110] |
 
 Lehmer:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 3, 6, 30, 600, 5880, 18239760] |
@@ -155,6 +167,7 @@ Lehmer:Inv Transforms
 | TransNat1  | [1, 2, 1, -7, -26, -36, 66, 496, 1016] |
 
 Lehmer:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ Lehmer:Inv Diagonals as rows
 | DiagRow8 | [0, -5040, 11016, 34716, -87164, -300014, 296296, 2475473, 2475473]|
 
 Lehmer:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -181,6 +195,7 @@ Lehmer:Inv Diagonals as columns
 | DiagCol8 | [1, -36, 510, -2970, 1023, 24882, 141713, 667095, 2475473] |
 
 Lehmer:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ Lehmer:Inv Polynomial values as rows
 | PolyRow8 | [0, -160, 8192, 66384, 262784, 665600, 1134720, 1012592, -1265536] |
 
 Lehmer:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -210,6 +226,7 @@ Lehmer:Inv Polynomial values as columns
 []
 
 Lehmer:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ Lehmer:Rev Triangle view
 | Row8 | [1, 28, 434, 4550, 33621, 170898, 543607, 823543, 0] |
 
 Lehmer:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [1, 1, 0], [1, 3, 4, 0], [1, 6, 19, 27, 0], [1, 10, 55, 175, 256, 0], [1, 15, 125, 660, 2101, 3125, 0], [1, 21, 245, 1890, 9751, 31031, 46656, 0], [1, 28, 434, 4550, 33621, 170898, 543607, 823543, 0]] |
@@ -233,6 +251,7 @@ Lehmer:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [0, 1, 2], [0, 4, 7, 8], [0, 27, 46, 52, 53], [0, 256, 431, 486, 496, 497], [0, 3125, 5226, 5886, 6011, 6026, 6027], [0, 46656, 77687, 87438, 89328, 89573, 89594, 89595], [0, 823543, 1367150, 1538048, 1571669, 1576219, 1576653, 1576681, 1576682]] |
 
 Lehmer:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 8, 53, 497, 6027, 89595, 1576682] |
@@ -244,6 +263,7 @@ Lehmer:Rev Row sums
 | AntiDiagSum  | [1, 1, 1, 2, 4, 11, 30, 98, 322] |
 
 Lehmer:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 12, 1026, 492800, 78787500, 10083803970240, 27122723143943517881700] |
@@ -259,6 +279,7 @@ Lehmer:Rev Transforms
 | TransNat1  | [1, 1, 3, 19, 178, 2166, 32301, 569871, 11606645] |
 
 Lehmer:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -272,6 +293,7 @@ Lehmer:Rev Diagonals as rows
 | DiagRow8 | [1, 36, 1110, 34320, 1109427, 38011116, 1385956000, 53791898160, 2219237925333]|
 
 Lehmer:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -285,6 +307,7 @@ Lehmer:Rev Diagonals as columns
 | DiagCol8 | [0, 16777216, 253202761, 2050086511, 11810819141, 54224511341, 210798120533, 720369582933, 2219237925333] |
 
 Lehmer:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ Lehmer:Rev Polynomial values as rows
 | PolyRow8 | [1, 1576682, 146249217, 2241756400, 15903447569, 73388805366, 257275335697, 745132481612, 1875338217825] |
 
 Lehmer:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -314,6 +338,7 @@ Lehmer:Rev Polynomial values as columns
 []
 
 Lehmer:Inv:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -327,6 +352,7 @@ Lehmer:Inv:Rev Triangle view
 | Row8 | [1, -28, 154, 0, 49, 196, 188, -720, 0] |
 
 Lehmer:Inv:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [1, -1, 0], [1, -3, -1, 0], [1, -6, -1, -2, 0], [1, -10, 5, 0, -6, 0], [1, -15, 25, 15, 4, -24, 0], [1, -21, 70, 35, 49, 28, -120, 0], [1, -28, 154, 0, 49, 196, 188, -720, 0]] |
@@ -337,6 +363,7 @@ Lehmer:Inv:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [0, -1, 0], [0, -1, -4, -3], [0, -2, -3, -9, -8], [0, -6, -6, -1, -11, -10], [0, -24, -20, -5, 20, 5, 6], [0, -120, -92, -43, -8, 62, 41, 42], [0, -720, -532, -336, -287, -287, -133, -161, -160]] |
 
 Lehmer:Inv:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 0, -3, -8, -10, 6, 42, -160] |
@@ -348,6 +375,7 @@ Lehmer:Inv:Rev Row sums
 | AntiDiagSum  | [1, 1, 1, 0, -2, -6, -10, -11, 5] |
 
 Lehmer:Inv:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 3, 6, 30, 600, 5880, 18239760] |
@@ -363,6 +391,7 @@ Lehmer:Inv:Rev Transforms
 | TransNat1  | [1, 1, -1, -8, -22, -34, -18, -118, -2616] |
 
 Lehmer:Inv:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -376,6 +405,7 @@ Lehmer:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, -36, 510, -2970, 1023, 24882, 141713, 667095, 2475473]|
 
 Lehmer:Inv:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -389,6 +419,7 @@ Lehmer:Inv:Rev Diagonals as columns
 | DiagCol8 | [0, -5040, 11016, 34716, -87164, -300014, 296296, 2475473, 2475473] |
 
 Lehmer:Inv:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -402,6 +433,7 @@ Lehmer:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, -160, -72511, -1384688, -10810831, -52665664, -191189615, -567413776, -1454033503] |
 
 Lehmer:Inv:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |

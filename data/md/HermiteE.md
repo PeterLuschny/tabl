@@ -2,6 +2,7 @@
 ['A099174', 'A066325', 'A073278']
 
 HermiteE Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ HermiteE Triangle view
 | Row8 | [105, 0, 420, 0, 210, 0, 28, 0, 1] |
 
 HermiteE Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [1, 0, 1], [0, 3, 0, 1], [3, 0, 6, 0, 1], [0, 15, 0, 10, 0, 1], [15, 0, 45, 0, 15, 0, 1], [0, 105, 0, 105, 0, 21, 0, 1], [105, 0, 420, 0, 210, 0, 28, 0, 1]] |
@@ -25,6 +27,7 @@ HermiteE Triangles
 | AccRevTabl | [[1], [1, 1], [1, 1, 2], [1, 1, 4, 4], [1, 1, 7, 7, 10], [1, 1, 11, 11, 26, 26], [1, 1, 16, 16, 61, 61, 76], [1, 1, 22, 22, 127, 127, 232, 232], [1, 1, 29, 29, 239, 239, 659, 659, 764]] |
 
 HermiteE Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 4, 10, 26, 76, 232, 764] |
@@ -36,6 +39,7 @@ HermiteE Row sums
 | AntiDiagSum  | [1, 0, 2, 0, 7, 0, 37, 0, 266] |
 
 HermiteE Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 3, 6, 30, 45, 105, 420] |
@@ -51,6 +55,7 @@ HermiteE Transforms
 | TransNat1  | [1, 2, 4, 10, 26, 76, 232, 764, 2620] |
 
 HermiteE Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ HermiteE Diagonals as rows
 | DiagRow8 | [105, 945, 4725, 17325, 51975, 135135, 315315, 675675, 1351350]|
 
 HermiteE Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 1, 0, 3, 0, 15, 0, 105] |
@@ -77,6 +83,7 @@ HermiteE Diagonals as columns
 | DiagCol8 | [1, 0, 45, 0, 1485, 0, 45045, 0, 1351350] |
 
 HermiteE Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ HermiteE Polynomial values as rows
 | PolyRow8 | [105, 764, 7193, 47868, 240809, 969980, 3273369, 9583868, 25004393] |
 
 HermiteE Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 1, 0, 3, 0, 15, 0, 105] |
@@ -106,6 +114,7 @@ HermiteE Polynomial values as columns
 []
 
 HermiteE:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ HermiteE:Inv Triangle view
 | Row8 | [105, 0, -420, 0, 210, 0, -28, 0, 1] |
 
 HermiteE:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [-1, 0, 1], [0, -3, 0, 1], [3, 0, -6, 0, 1], [0, 15, 0, -10, 0, 1], [-15, 0, 45, 0, -15, 0, 1], [0, -105, 0, 105, 0, -21, 0, 1], [105, 0, -420, 0, 210, 0, -28, 0, 1]] |
@@ -129,6 +139,7 @@ HermiteE:Inv Triangles
 | AccRevTabl | [[1], [1, 1], [1, 1, 0], [1, 1, -2, -2], [1, 1, -5, -5, -2], [1, 1, -9, -9, 6, 6], [1, 1, -14, -14, 31, 31, 16], [1, 1, -20, -20, 85, 85, -20, -20], [1, 1, -27, -27, 183, 183, -237, -237, -132]] |
 
 HermiteE:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 0, -2, -2, 6, 16, -20, -132] |
@@ -140,6 +151,7 @@ HermiteE:Inv Row sums
 | AntiDiagSum  | [1, 0, 0, 0, 1, 0, -5, 0, 36] |
 
 HermiteE:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 3, 6, 30, 45, 105, 420] |
@@ -155,6 +167,7 @@ HermiteE:Inv Transforms
 | TransNat1  | [1, 2, 2, -2, -10, -4, 52, 92, -292] |
 
 HermiteE:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ HermiteE:Inv Diagonals as rows
 | DiagRow8 | [105, 945, 4725, 17325, 51975, 135135, 315315, 675675, 1351350]|
 
 HermiteE:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, -1, 0, 3, 0, -15, 0, 105] |
@@ -181,6 +195,7 @@ HermiteE:Inv Diagonals as columns
 | DiagCol8 | [1, 0, -45, 0, 1485, 0, -45045, 0, 1351350] |
 
 HermiteE:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ HermiteE:Inv Polynomial values as rows
 | PolyRow8 | [105, -132, 249, -516, -2007, 73980, 630393, 2954364, 10270569] |
 
 HermiteE:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, -1, 0, 3, 0, -15, 0, 105] |
@@ -210,6 +226,7 @@ HermiteE:Inv Polynomial values as columns
 []
 
 HermiteE:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ HermiteE:Rev Triangle view
 | Row8 | [1, 0, 28, 0, 210, 0, 420, 0, 105] |
 
 HermiteE:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [1, 0, 1], [1, 0, 3, 0], [1, 0, 6, 0, 3], [1, 0, 10, 0, 15, 0], [1, 0, 15, 0, 45, 0, 15], [1, 0, 21, 0, 105, 0, 105, 0], [1, 0, 28, 0, 210, 0, 420, 0, 105]] |
@@ -233,6 +251,7 @@ HermiteE:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [1, 1, 2], [0, 3, 3, 4], [3, 3, 9, 9, 10], [0, 15, 15, 25, 25, 26], [15, 15, 60, 60, 75, 75, 76], [0, 105, 105, 210, 210, 231, 231, 232], [105, 105, 525, 525, 735, 735, 763, 763, 764]] |
 
 HermiteE:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 4, 10, 26, 76, 232, 764] |
@@ -244,6 +263,7 @@ HermiteE:Rev Row sums
 | AntiDiagSum  | [1, 1, 1, 1, 2, 4, 7, 11, 19] |
 
 HermiteE:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 3, 6, 30, 45, 105, 420] |
@@ -259,6 +279,7 @@ HermiteE:Rev Transforms
 | TransNat1  | [1, 1, 4, 10, 34, 106, 376, 1324, 5020] |
 
 HermiteE:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 1, 0, 3, 0, 15, 0, 105]|
@@ -272,6 +293,7 @@ HermiteE:Rev Diagonals as rows
 | DiagRow8 | [1, 0, 45, 0, 1485, 0, 45045, 0, 1351350]|
 
 HermiteE:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -285,6 +307,7 @@ HermiteE:Rev Diagonals as columns
 | DiagCol8 | [105, 945, 4725, 17325, 51975, 135135, 315315, 675675, 1351350] |
 
 HermiteE:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ HermiteE:Rev Polynomial values as rows
 | PolyRow8 | [1, 764, 57233, 1012348, 8655809, 47710076, 196228369, 655222268, 1872570113] |
 
 HermiteE:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -314,6 +338,7 @@ HermiteE:Rev Polynomial values as columns
 []
 
 HermiteE:Inv:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -327,6 +352,7 @@ HermiteE:Inv:Rev Triangle view
 | Row8 | [1, 0, -28, 0, 210, 0, -420, 0, 105] |
 
 HermiteE:Inv:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [1, 0, -1], [1, 0, -3, 0], [1, 0, -6, 0, 3], [1, 0, -10, 0, 15, 0], [1, 0, -15, 0, 45, 0, -15], [1, 0, -21, 0, 105, 0, -105, 0], [1, 0, -28, 0, 210, 0, -420, 0, 105]] |
@@ -337,6 +363,7 @@ HermiteE:Inv:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [-1, -1, 0], [0, -3, -3, -2], [3, 3, -3, -3, -2], [0, 15, 15, 5, 5, 6], [-15, -15, 30, 30, 15, 15, 16], [0, -105, -105, 0, 0, -21, -21, -20], [105, 105, -315, -315, -105, -105, -133, -133, -132]] |
 
 HermiteE:Inv:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 0, -2, -2, 6, 16, -20, -132] |
@@ -348,6 +375,7 @@ HermiteE:Inv:Rev Row sums
 | AntiDiagSum  | [1, 1, 1, 1, 0, -2, -5, -9, -11] |
 
 HermiteE:Inv:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 3, 6, 30, 45, 105, 420] |
@@ -363,6 +391,7 @@ HermiteE:Inv:Rev Transforms
 | TransNat1  | [1, 1, -2, -8, -2, 46, 76, -272, -1028] |
 
 HermiteE:Inv:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, -1, 0, 3, 0, -15, 0, 105]|
@@ -376,6 +405,7 @@ HermiteE:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, 0, -45, 0, 1485, 0, -45045, 0, 1351350]|
 
 HermiteE:Inv:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -389,6 +419,7 @@ HermiteE:Inv:Rev Diagonals as columns
 | DiagCol8 | [105, 945, 4725, 17325, 51975, 135135, 315315, 675675, 1351350] |
 
 HermiteE:Inv:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -402,6 +433,7 @@ HermiteE:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, -132, 3249, 399484, 5214273, 34583676, 157035313, 556394364, 1652365569] |
 
 HermiteE:Inv:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |

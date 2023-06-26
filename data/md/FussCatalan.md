@@ -2,6 +2,7 @@
 ['A355173', 'A030237', 'A054445']
 
 FussCatalan Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ FussCatalan Triangle view
 | Row8 | [0, 1, 8, 35, 110, 275, 572, 1001, 1430] |
 
 FussCatalan Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, 1, 2], [0, 1, 3, 5], [0, 1, 4, 9, 14], [0, 1, 5, 14, 28, 42], [0, 1, 6, 20, 48, 90, 132], [0, 1, 7, 27, 75, 165, 297, 429], [0, 1, 8, 35, 110, 275, 572, 1001, 1430]] |
@@ -25,6 +27,7 @@ FussCatalan Triangles
 | AccRevTabl | [[1], [1, 1], [2, 3, 3], [5, 8, 9, 9], [14, 23, 27, 28, 28], [42, 70, 84, 89, 90, 90], [132, 222, 270, 290, 296, 297, 297], [429, 726, 891, 966, 993, 1000, 1001, 1001], [1430, 2431, 3003, 3278, 3388, 3423, 3431, 3432, 3432]] |
 
 FussCatalan Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 3, 9, 28, 90, 297, 1001, 3432] |
@@ -36,6 +39,7 @@ FussCatalan Row sums
 | AntiDiagSum  | [1, 0, 1, 1, 3, 4, 10, 15, 35] |
 
 FussCatalan Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 15, 252, 420, 7920, 675675, 200200] |
@@ -51,6 +55,7 @@ FussCatalan Transforms
 | TransNat1  | [1, 2, 8, 31, 120, 465, 1804, 7007, 27248] |
 
 FussCatalan Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 2, 5, 14, 42, 132, 429, 1430]|
@@ -64,6 +69,7 @@ FussCatalan Diagonals as rows
 | DiagRow8 | [0, 1, 10, 65, 350, 1700, 7752, 33915, 144210]|
 
 FussCatalan Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -77,6 +83,7 @@ FussCatalan Diagonals as columns
 | DiagCol8 | [1430, 3432, 7072, 13260, 23256, 38760, 62016, 95931, 144210] |
 
 FussCatalan Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ FussCatalan Polynomial values as rows
 | PolyRow8 | [0, 3432, 541690, 12065160, 112771908, 646667080, 2711042862, 9140225640, 26250094600] |
 
 FussCatalan Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -106,6 +114,7 @@ FussCatalan Polynomial values as columns
 []
 
 FussCatalan:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ FussCatalan:Rev Triangle view
 | Row8 | [1430, 1001, 572, 275, 110, 35, 8, 1, 0] |
 
 FussCatalan:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [2, 1, 0], [5, 3, 1, 0], [14, 9, 4, 1, 0], [42, 28, 14, 5, 1, 0], [132, 90, 48, 20, 6, 1, 0], [429, 297, 165, 75, 27, 7, 1, 0], [1430, 1001, 572, 275, 110, 35, 8, 1, 0]] |
@@ -129,6 +139,7 @@ FussCatalan:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [0, 1, 3], [0, 1, 4, 9], [0, 1, 5, 14, 28], [0, 1, 6, 20, 48, 90], [0, 1, 7, 27, 75, 165, 297], [0, 1, 8, 35, 110, 275, 572, 1001], [0, 1, 9, 44, 154, 429, 1001, 2002, 3432]] |
 
 FussCatalan:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 3, 9, 28, 90, 297, 1001, 3432] |
@@ -140,6 +151,7 @@ FussCatalan:Rev Row sums
 | AntiDiagSum  | [1, 1, 2, 6, 17, 52, 164, 534, 1780] |
 
 FussCatalan:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 15, 252, 420, 7920, 675675, 200200] |
@@ -155,6 +167,7 @@ FussCatalan:Rev Transforms
 | TransNat1  | [1, 1, 4, 14, 48, 165, 572, 2002, 7072] |
 
 FussCatalan:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -168,6 +181,7 @@ FussCatalan:Rev Diagonals as rows
 | DiagRow8 | [1430, 3432, 7072, 13260, 23256, 38760, 62016, 95931, 144210]|
 
 FussCatalan:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 2, 5, 14, 42, 132, 429, 1430] |
@@ -181,6 +195,7 @@ FussCatalan:Rev Diagonals as columns
 | DiagCol8 | [0, 1, 10, 65, 350, 1700, 7752, 33915, 144210] |
 
 FussCatalan:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ FussCatalan:Rev Polynomial values as rows
 | PolyRow8 | [1430, 3432, 11440, 42440, 145338, 436360, 1155332, 2747880, 5978590] |
 
 FussCatalan:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 2, 5, 14, 42, 132, 429, 1430] |

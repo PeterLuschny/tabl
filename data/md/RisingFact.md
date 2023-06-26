@@ -2,6 +2,7 @@
 ['A008279', 'A068424', 'A094587', 'A173333', 'A181511']
 
 RisingFact Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ RisingFact Triangle view
 | Row8 | [40320, 40320, 20160, 6720, 1680, 336, 56, 8, 1] |
 
 RisingFact Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [2, 2, 1], [6, 6, 3, 1], [24, 24, 12, 4, 1], [120, 120, 60, 20, 5, 1], [720, 720, 360, 120, 30, 6, 1], [5040, 5040, 2520, 840, 210, 42, 7, 1], [40320, 40320, 20160, 6720, 1680, 336, 56, 8, 1]] |
@@ -25,6 +27,7 @@ RisingFact Triangles
 | AccRevTabl | [[1], [1, 2], [1, 3, 5], [1, 4, 10, 16], [1, 5, 17, 41, 65], [1, 6, 26, 86, 206, 326], [1, 7, 37, 157, 517, 1237, 1957], [1, 8, 50, 260, 1100, 3620, 8660, 13700], [1, 9, 65, 401, 2081, 8801, 28961, 69281, 109601]] |
 
 RisingFact Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 5, 16, 65, 326, 1957, 13700, 109601] |
@@ -36,6 +39,7 @@ RisingFact Row sums
 | AntiDiagSum  | [1, 1, 3, 8, 31, 147, 853, 5824, 45741] |
 
 RisingFact Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 6, 24, 120, 720, 5040, 40320] |
@@ -51,6 +55,7 @@ RisingFact Transforms
 | TransNat1  | [1, 3, 9, 31, 129, 651, 3913, 27399, 219201] |
 
 RisingFact Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ RisingFact Diagonals as rows
 | DiagRow8 | [40320, 362880, 1814400, 6652800, 19958400, 51891840, 121080960, 259459200, 518918400]|
 
 RisingFact Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 2, 6, 24, 120, 720, 5040, 40320] |
@@ -77,6 +83,7 @@ RisingFact Diagonals as columns
 | DiagCol8 | [1, 9, 90, 990, 11880, 154440, 2162160, 32432400, 518918400] |
 
 RisingFact Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ RisingFact Polynomial values as rows
 | PolyRow8 | [40320, 109601, 297856, 806769, 2154368, 5576545, 13781376, 32237681, 71219584] |
 
 RisingFact Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 2, 6, 24, 120, 720, 5040, 40320] |
@@ -106,6 +114,7 @@ RisingFact Polynomial values as columns
 []
 
 RisingFact:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ RisingFact:Inv Triangle view
 | Row8 | [0, 0, 0, 0, 0, 0, 0, -8, 1] |
 
 RisingFact:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [-1, 1], [0, -2, 1], [0, 0, -3, 1], [0, 0, 0, -4, 1], [0, 0, 0, 0, -5, 1], [0, 0, 0, 0, 0, -6, 1], [0, 0, 0, 0, 0, 0, -7, 1], [0, 0, 0, 0, 0, 0, 0, -8, 1]] |
@@ -129,6 +139,7 @@ RisingFact:Inv Triangles
 | AccRevTabl | [[1], [1, 0], [1, -1, -1], [1, -2, -2, -2], [1, -3, -3, -3, -3], [1, -4, -4, -4, -4, -4], [1, -5, -5, -5, -5, -5, -5], [1, -6, -6, -6, -6, -6, -6, -6], [1, -7, -7, -7, -7, -7, -7, -7, -7]] |
 
 RisingFact:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, -1, -2, -3, -4, -5, -6, -7] |
@@ -140,6 +151,7 @@ RisingFact:Inv Row sums
 | AntiDiagSum  | [1, -1, 1, -2, 1, -3, 1, -4, 1] |
 
 RisingFact:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 3, 4, 5, 6, 7, 8] |
@@ -155,6 +167,7 @@ RisingFact:Inv Transforms
 | TransNat1  | [1, 1, -1, -5, -11, -19, -29, -41, -55] |
 
 RisingFact:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ RisingFact:Inv Diagonals as rows
 | DiagRow8 | [0, 0, 0, 0, 0, 0, 0, 0, 0]|
 
 RisingFact:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, -1, 0, 0, 0, 0, 0, 0, 0] |
@@ -181,6 +195,7 @@ RisingFact:Inv Diagonals as columns
 | DiagCol8 | [1, -9, 0, 0, 0, 0, 0, 0, 0] |
 
 RisingFact:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ RisingFact:Inv Polynomial values as rows
 | PolyRow8 | [0, -7, -768, -10935, -65536, -234375, -559872, -823543, 0] |
 
 RisingFact:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, -1, 0, 0, 0, 0, 0, 0, 0] |
@@ -210,6 +226,7 @@ RisingFact:Inv Polynomial values as columns
 []
 
 RisingFact:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ RisingFact:Rev Triangle view
 | Row8 | [1, 8, 56, 336, 1680, 6720, 20160, 40320, 40320] |
 
 RisingFact:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [1, 2, 2], [1, 3, 6, 6], [1, 4, 12, 24, 24], [1, 5, 20, 60, 120, 120], [1, 6, 30, 120, 360, 720, 720], [1, 7, 42, 210, 840, 2520, 5040, 5040], [1, 8, 56, 336, 1680, 6720, 20160, 40320, 40320]] |
@@ -233,6 +251,7 @@ RisingFact:Rev Triangles
 | AccRevTabl | [[1], [1, 2], [2, 4, 5], [6, 12, 15, 16], [24, 48, 60, 64, 65], [120, 240, 300, 320, 325, 326], [720, 1440, 1800, 1920, 1950, 1956, 1957], [5040, 10080, 12600, 13440, 13650, 13692, 13699, 13700], [40320, 80640, 100800, 107520, 109200, 109536, 109592, 109600, 109601]] |
 
 RisingFact:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 5, 16, 65, 326, 1957, 13700, 109601] |
@@ -244,6 +263,7 @@ RisingFact:Rev Row sums
 | AntiDiagSum  | [1, 1, 2, 3, 6, 11, 24, 51, 122] |
 
 RisingFact:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 6, 24, 120, 720, 5040, 40320] |
@@ -259,6 +279,7 @@ RisingFact:Rev Transforms
 | TransNat1  | [1, 3, 11, 49, 261, 1631, 11743, 95901, 876809] |
 
 RisingFact:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 2, 6, 24, 120, 720, 5040, 40320]|
@@ -272,6 +293,7 @@ RisingFact:Rev Diagonals as rows
 | DiagRow8 | [1, 9, 90, 990, 11880, 154440, 2162160, 32432400, 518918400]|
 
 RisingFact:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -285,6 +307,7 @@ RisingFact:Rev Diagonals as columns
 | DiagCol8 | [40320, 362880, 1814400, 6652800, 19958400, 51891840, 121080960, 259459200, 518918400] |
 
 RisingFact:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ RisingFact:Rev Polynomial values as rows
 | PolyRow8 | [1, 109601, 17017969, 369194641, 3392923553, 19237093441, 80004228241, 268130928689, 766526598721] |
 
 RisingFact:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -314,6 +338,7 @@ RisingFact:Rev Polynomial values as columns
 []
 
 RisingFact:Inv:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -327,6 +352,7 @@ RisingFact:Inv:Rev Triangle view
 | Row8 | [1, -8, 0, 0, 0, 0, 0, 0, 0] |
 
 RisingFact:Inv:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, -1], [1, -2, 0], [1, -3, 0, 0], [1, -4, 0, 0, 0], [1, -5, 0, 0, 0, 0], [1, -6, 0, 0, 0, 0, 0], [1, -7, 0, 0, 0, 0, 0, 0], [1, -8, 0, 0, 0, 0, 0, 0, 0]] |
@@ -337,6 +363,7 @@ RisingFact:Inv:Rev Triangles
 | AccRevTabl | [[1], [-1, 0], [0, -2, -1], [0, 0, -3, -2], [0, 0, 0, -4, -3], [0, 0, 0, 0, -5, -4], [0, 0, 0, 0, 0, -6, -5], [0, 0, 0, 0, 0, 0, -7, -6], [0, 0, 0, 0, 0, 0, 0, -8, -7]] |
 
 RisingFact:Inv:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, -1, -2, -3, -4, -5, -6, -7] |
@@ -348,6 +375,7 @@ RisingFact:Inv:Rev Row sums
 | AntiDiagSum  | [1, 1, 0, -1, -2, -3, -4, -5, -6] |
 
 RisingFact:Inv:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 3, 4, 5, 6, 7, 8] |
@@ -363,6 +391,7 @@ RisingFact:Inv:Rev Transforms
 | TransNat1  | [1, -1, -3, -5, -7, -9, -11, -13, -15] |
 
 RisingFact:Inv:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, -1, 0, 0, 0, 0, 0, 0, 0]|
@@ -376,6 +405,7 @@ RisingFact:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, -9, 0, 0, 0, 0, 0, 0, 0]|
 
 RisingFact:Inv:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -389,6 +419,7 @@ RisingFact:Inv:Rev Diagonals as columns
 | DiagCol8 | [0, 0, 0, 0, 0, 0, 0, 0, 0] |
 
 RisingFact:Inv:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -402,6 +433,7 @@ RisingFact:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, -7, -15, -23, -31, -39, -47, -55, -63] |
 
 RisingFact:Inv:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |

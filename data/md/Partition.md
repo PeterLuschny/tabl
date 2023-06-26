@@ -2,6 +2,7 @@
 ['A072233', 'A008284', 'A058398']
 
 Partition Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ Partition Triangle view
 | Row8 | [0, 1, 4, 5, 5, 3, 2, 1, 1] |
 
 Partition Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, 1, 1], [0, 1, 1, 1], [0, 1, 2, 1, 1], [0, 1, 2, 2, 1, 1], [0, 1, 3, 3, 2, 1, 1], [0, 1, 3, 4, 3, 2, 1, 1], [0, 1, 4, 5, 5, 3, 2, 1, 1]] |
@@ -25,6 +27,7 @@ Partition Triangles
 | AccRevTabl | [[1], [1, 1], [1, 2, 2], [1, 2, 3, 3], [1, 2, 4, 5, 5], [1, 2, 4, 6, 7, 7], [1, 2, 4, 7, 10, 11, 11], [1, 2, 4, 7, 11, 14, 15, 15], [1, 2, 4, 7, 12, 17, 21, 22, 22]] |
 
 Partition Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 3, 5, 7, 11, 15, 22] |
@@ -36,6 +39,7 @@ Partition Row sums
 | AntiDiagSum  | [1, 0, 1, 1, 2, 2, 4, 4, 7] |
 
 Partition Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 1, 2, 2, 6, 12, 60] |
@@ -51,6 +55,7 @@ Partition Transforms
 | TransNat1  | [1, 2, 5, 9, 17, 27, 46, 69, 108] |
 
 Partition Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ Partition Diagonals as rows
 | DiagRow8 | [0, 1, 5, 10, 15, 18, 20, 21, 22]|
 
 Partition Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -77,6 +83,7 @@ Partition Diagonals as columns
 | DiagCol8 | [1, 1, 2, 3, 5, 7, 11, 15, 22] |
 
 Partition Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ Partition Polynomial values as rows
 | PolyRow8 | [0, 22, 746, 11514, 94852, 513230, 2083902, 6887986, 19520264] |
 
 Partition Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -106,6 +114,7 @@ Partition Polynomial values as columns
 []
 
 Partition:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ Partition:Inv Triangle view
 | Row8 | [0, -1, 0, 2, 0, 0, -1, -1, 1] |
 
 Partition:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, -1, 1], [0, 0, -1, 1], [0, 1, -1, -1, 1], [0, 0, 1, -1, -1, 1], [0, 0, 1, 0, -1, -1, 1], [0, -1, 1, 1, 0, -1, -1, 1], [0, -1, 0, 2, 0, 0, -1, -1, 1]] |
@@ -129,6 +139,7 @@ Partition:Inv Triangles
 | AccRevTabl | [[1], [1, 1], [1, 0, 0], [1, 0, 0, 0], [1, 0, -1, 0, 0], [1, 0, -1, 0, 0, 0], [1, 0, -1, -1, 0, 0, 0], [1, 0, -1, -1, 0, 1, 0, 0], [1, 0, -1, -1, -1, 1, 1, 0, 0]] |
 
 Partition:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 0, 0, 0, 0, 0, 0, 0] |
@@ -140,6 +151,7 @@ Partition:Inv Row sums
 | AntiDiagSum  | [1, 0, 1, -1, 1, 0, 0, 0, 0] |
 
 Partition:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 1, 1, 1, 1, 1, 2] |
@@ -155,6 +167,7 @@ Partition:Inv Transforms
 | TransNat1  | [1, 2, 1, 1, 0, 0, -1, 0, 0] |
 
 Partition:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ Partition:Inv Diagonals as rows
 | DiagRow8 | [0, 0, -2, -1, 0, 0, 1, 1, 0]|
 
 Partition:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -181,6 +195,7 @@ Partition:Inv Diagonals as columns
 | DiagCol8 | [1, -1, -1, 0, 0, 1, 0, 1, 0] |
 
 Partition:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ Partition:Inv Polynomial values as rows
 | PolyRow8 | [0, 0, 78, 3696, 45180, 297120, 1353450, 4824288, 14418936] |
 
 Partition:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -210,6 +226,7 @@ Partition:Inv Polynomial values as columns
 []
 
 Partition:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ Partition:Rev Triangle view
 | Row8 | [1, 1, 2, 3, 5, 5, 4, 1, 0] |
 
 Partition:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [1, 1, 0], [1, 1, 1, 0], [1, 1, 2, 1, 0], [1, 1, 2, 2, 1, 0], [1, 1, 2, 3, 3, 1, 0], [1, 1, 2, 3, 4, 3, 1, 0], [1, 1, 2, 3, 5, 5, 4, 1, 0]] |
@@ -233,6 +251,7 @@ Partition:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [0, 1, 2], [0, 1, 2, 3], [0, 1, 3, 4, 5], [0, 1, 3, 5, 6, 7], [0, 1, 4, 7, 9, 10, 11], [0, 1, 4, 8, 11, 13, 14, 15], [0, 1, 5, 10, 15, 18, 20, 21, 22]] |
 
 Partition:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 3, 5, 7, 11, 15, 22] |
@@ -244,6 +263,7 @@ Partition:Rev Row sums
 | AntiDiagSum  | [1, 1, 1, 2, 2, 3, 4, 5, 6] |
 
 Partition:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 1, 2, 2, 6, 12, 60] |
@@ -259,6 +279,7 @@ Partition:Rev Transforms
 | TransNat1  | [1, 1, 3, 6, 13, 22, 42, 66, 112] |
 
 Partition:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -272,6 +293,7 @@ Partition:Rev Diagonals as rows
 | DiagRow8 | [1, 1, 2, 3, 5, 7, 11, 15, 22]|
 
 Partition:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -285,6 +307,7 @@ Partition:Rev Diagonals as columns
 | DiagCol8 | [0, 1, 5, 10, 15, 18, 20, 21, 22] |
 
 Partition:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ Partition:Rev Polynomial values as rows
 | PolyRow8 | [1, 22, 659, 6826, 39397, 159806, 512647, 1391314, 3331721] |
 
 Partition:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -314,6 +338,7 @@ Partition:Rev Polynomial values as columns
 []
 
 Partition:Inv:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -327,6 +352,7 @@ Partition:Inv:Rev Triangle view
 | Row8 | [1, -1, -1, 0, 0, 2, 0, -1, 0] |
 
 Partition:Inv:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [1, -1, 0], [1, -1, 0, 0], [1, -1, -1, 1, 0], [1, -1, -1, 1, 0, 0], [1, -1, -1, 0, 1, 0, 0], [1, -1, -1, 0, 1, 1, -1, 0], [1, -1, -1, 0, 0, 2, 0, -1, 0]] |
@@ -337,6 +363,7 @@ Partition:Inv:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [0, -1, 0], [0, 0, -1, 0], [0, 1, 0, -1, 0], [0, 0, 1, 0, -1, 0], [0, 0, 1, 1, 0, -1, 0], [0, -1, 0, 1, 1, 0, -1, 0], [0, -1, -1, 1, 1, 1, 0, -1, 0]] |
 
 Partition:Inv:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 0, 0, 0, 0, 0, 0, 0] |
@@ -348,6 +375,7 @@ Partition:Inv:Rev Row sums
 | AntiDiagSum  | [1, 1, 1, 0, 0, 0, -1, 0, 0] |
 
 Partition:Inv:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 1, 1, 1, 1, 1, 2] |
@@ -363,6 +391,7 @@ Partition:Inv:Rev Transforms
 | TransNat1  | [1, 1, -1, -1, 0, 0, 1, 0, 0] |
 
 Partition:Inv:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -376,6 +405,7 @@ Partition:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, -1, -1, 0, 0, 1, 0, 1, 0]|
 
 Partition:Inv:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -389,6 +419,7 @@ Partition:Inv:Rev Diagonals as columns
 | DiagCol8 | [0, 0, -2, -1, 0, 0, 1, 1, 0] |
 
 Partition:Inv:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -402,6 +433,7 @@ Partition:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, 0, -69, -1712, -14355, -71904, -264425, -789984, -2031687] |
 
 Partition:Inv:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |

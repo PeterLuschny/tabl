@@ -2,6 +2,7 @@
 ['A002262', 'A002260', 'A004736', 'A025581']
 
 Ordinals Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [0] |
@@ -15,6 +16,7 @@ Ordinals Triangle view
 | Row8 | [0, 1, 2, 3, 4, 5, 6, 7, 8] |
 
 Ordinals Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[0], [0, 1], [0, 1, 2], [0, 1, 2, 3], [0, 1, 2, 3, 4], [0, 1, 2, 3, 4, 5], [0, 1, 2, 3, 4, 5, 6], [0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 2, 3, 4, 5, 6, 7, 8]] |
@@ -25,6 +27,7 @@ Ordinals Triangles
 | AccRevTabl | [[0], [1, 1], [2, 3, 3], [3, 5, 6, 6], [4, 7, 9, 10, 10], [5, 9, 12, 14, 15, 15], [6, 11, 15, 18, 20, 21, 21], [7, 13, 18, 22, 25, 27, 28, 28], [8, 15, 21, 26, 30, 33, 35, 36, 36]] |
 
 Ordinals Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [0, 1, 3, 6, 10, 15, 21, 28, 36] |
@@ -36,6 +39,7 @@ Ordinals Row sums
 | AntiDiagSum  | [0, 0, 1, 1, 3, 3, 6, 6, 10] |
 
 Ordinals Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 6, 12, 60, 60, 420, 840] |
@@ -51,6 +55,7 @@ Ordinals Transforms
 | TransNat1  | [0, 2, 8, 20, 40, 70, 112, 168, 240] |
 
 Ordinals Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [0, 1, 2, 3, 4, 5, 6, 7, 8]|
@@ -64,6 +69,7 @@ Ordinals Diagonals as rows
 | DiagRow8 | [0, 1, 2, 3, 4, 5, 6, 7, 8]|
 
 Ordinals Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [0, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -77,6 +83,7 @@ Ordinals Diagonals as columns
 | DiagCol8 | [8, 8, 8, 8, 8, 8, 8, 8, 8] |
 
 Ordinals Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [0, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -90,6 +97,7 @@ Ordinals Polynomial values as rows
 | PolyRow8 | [0, 36, 3586, 73812, 669924, 3784180, 15721206, 52683876, 150652552] |
 
 Ordinals Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [0, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -106,6 +114,7 @@ Ordinals Polynomial values as columns
 []
 
 Ordinals:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [0] |
@@ -119,6 +128,7 @@ Ordinals:Rev Triangle view
 | Row8 | [8, 7, 6, 5, 4, 3, 2, 1, 0] |
 
 Ordinals:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[0], [1, 0], [2, 1, 0], [3, 2, 1, 0], [4, 3, 2, 1, 0], [5, 4, 3, 2, 1, 0], [6, 5, 4, 3, 2, 1, 0], [7, 6, 5, 4, 3, 2, 1, 0], [8, 7, 6, 5, 4, 3, 2, 1, 0]] |
@@ -129,6 +139,7 @@ Ordinals:Rev Triangles
 | AccRevTabl | [[0], [0, 1], [0, 1, 3], [0, 1, 3, 6], [0, 1, 3, 6, 10], [0, 1, 3, 6, 10, 15], [0, 1, 3, 6, 10, 15, 21], [0, 1, 3, 6, 10, 15, 21, 28], [0, 1, 3, 6, 10, 15, 21, 28, 36]] |
 
 Ordinals:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [0, 1, 3, 6, 10, 15, 21, 28, 36] |
@@ -140,6 +151,7 @@ Ordinals:Rev Row sums
 | AntiDiagSum  | [0, 1, 2, 4, 6, 9, 12, 16, 20] |
 
 Ordinals:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 6, 12, 60, 60, 420, 840] |
@@ -155,6 +167,7 @@ Ordinals:Rev Transforms
 | TransNat1  | [0, 1, 4, 10, 20, 35, 56, 84, 120] |
 
 Ordinals:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [0, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -168,6 +181,7 @@ Ordinals:Rev Diagonals as rows
 | DiagRow8 | [8, 8, 8, 8, 8, 8, 8, 8, 8]|
 
 Ordinals:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [0, 1, 2, 3, 4, 5, 6, 7, 8] |
@@ -181,6 +195,7 @@ Ordinals:Rev Diagonals as columns
 | DiagCol8 | [0, 1, 2, 3, 4, 5, 6, 7, 8] |
 
 Ordinals:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [0, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -194,6 +209,7 @@ Ordinals:Rev Polynomial values as rows
 | PolyRow8 | [8, 36, 502, 4916, 29124, 122068, 403106, 1120932, 2739136] |
 
 Ordinals:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [0, 1, 2, 3, 4, 5, 6, 7, 8] |

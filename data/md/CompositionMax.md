@@ -2,6 +2,7 @@
 ['A126198']
 
 CompositionMax Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ CompositionMax Triangle view
 | Row8 | [0, 1, 34, 81, 108, 120, 125, 127, 128] |
 
 CompositionMax Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, 1, 2], [0, 1, 3, 4], [0, 1, 5, 7, 8], [0, 1, 8, 13, 15, 16], [0, 1, 13, 24, 29, 31, 32], [0, 1, 21, 44, 56, 61, 63, 64], [0, 1, 34, 81, 108, 120, 125, 127, 128]] |
@@ -25,6 +27,7 @@ CompositionMax Triangles
 | AccRevTabl | [[1], [1, 1], [2, 3, 3], [4, 7, 8, 8], [8, 15, 20, 21, 21], [16, 31, 44, 52, 53, 53], [32, 63, 92, 116, 129, 130, 130], [64, 127, 188, 244, 288, 309, 310, 310], [128, 255, 380, 500, 608, 689, 723, 724, 724]] |
 
 CompositionMax Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 3, 8, 21, 53, 130, 310, 724] |
@@ -36,6 +39,7 @@ CompositionMax Row sums
 | AntiDiagSum  | [1, 0, 1, 1, 3, 4, 10, 16, 35] |
 
 CompositionMax Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 12, 280, 3120, 1121952, 2705472, 2798064000] |
@@ -51,6 +55,7 @@ CompositionMax Transforms
 | TransNat1  | [1, 2, 8, 27, 85, 249, 692, 1840, 4731] |
 
 CompositionMax Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 2, 4, 8, 16, 32, 64, 128]|
@@ -64,6 +69,7 @@ CompositionMax Diagonals as rows
 | DiagRow8 | [0, 1, 89, 504, 1490, 3525, 7617, 15808, 32192]|
 
 CompositionMax Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -77,6 +83,7 @@ CompositionMax Diagonals as columns
 | DiagCol8 | [128, 255, 509, 1016, 2028, 4048, 8080, 16128, 32192] |
 
 CompositionMax Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ CompositionMax Polynomial values as rows
 | PolyRow8 | [0, 724, 63378, 1249086, 11137636, 62328480, 257466534, 859496218, 2451008136] |
 
 CompositionMax Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -106,6 +114,7 @@ CompositionMax Polynomial values as columns
 []
 
 CompositionMax:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ CompositionMax:Rev Triangle view
 | Row8 | [128, 127, 125, 120, 108, 81, 34, 1, 0] |
 
 CompositionMax:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [2, 1, 0], [4, 3, 1, 0], [8, 7, 5, 1, 0], [16, 15, 13, 8, 1, 0], [32, 31, 29, 24, 13, 1, 0], [64, 63, 61, 56, 44, 21, 1, 0], [128, 127, 125, 120, 108, 81, 34, 1, 0]] |
@@ -129,6 +139,7 @@ CompositionMax:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [0, 1, 3], [0, 1, 4, 8], [0, 1, 6, 13, 21], [0, 1, 9, 22, 37, 53], [0, 1, 14, 38, 67, 98, 130], [0, 1, 22, 66, 122, 183, 246, 310], [0, 1, 35, 116, 224, 344, 469, 596, 724]] |
 
 CompositionMax:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 3, 8, 21, 53, 130, 310, 724] |
@@ -140,6 +151,7 @@ CompositionMax:Rev Row sums
 | AntiDiagSum  | [1, 1, 2, 5, 11, 24, 52, 109, 228] |
 
 CompositionMax:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 12, 280, 3120, 1121952, 2705472, 2798064000] |
@@ -155,6 +167,7 @@ CompositionMax:Rev Transforms
 | TransNat1  | [1, 1, 4, 13, 41, 122, 348, 950, 2509] |
 
 CompositionMax:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -168,6 +181,7 @@ CompositionMax:Rev Diagonals as rows
 | DiagRow8 | [128, 255, 509, 1016, 2028, 4048, 8080, 16128, 32192]|
 
 CompositionMax:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 2, 4, 8, 16, 32, 64, 128] |
@@ -181,6 +195,7 @@ CompositionMax:Rev Diagonals as columns
 | DiagCol8 | [0, 1, 89, 504, 1490, 3525, 7617, 15808, 32192] |
 
 CompositionMax:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ CompositionMax:Rev Polynomial values as rows
 | PolyRow8 | [128, 724, 8466, 60278, 276556, 948888, 2667374, 6492586, 14177208] |
 
 CompositionMax:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 2, 4, 8, 16, 32, 64, 128] |

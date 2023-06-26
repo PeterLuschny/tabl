@@ -2,6 +2,7 @@
 ['A173018', 'A008292', 'A123125']
 
 Eulerian Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ Eulerian Triangle view
 | Row8 | [1, 247, 4293, 15619, 15619, 4293, 247, 1, 0] |
 
 Eulerian Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [1, 1, 0], [1, 4, 1, 0], [1, 11, 11, 1, 0], [1, 26, 66, 26, 1, 0], [1, 57, 302, 302, 57, 1, 0], [1, 120, 1191, 2416, 1191, 120, 1, 0], [1, 247, 4293, 15619, 15619, 4293, 247, 1, 0]] |
@@ -25,6 +27,7 @@ Eulerian Triangles
 | AccRevTabl | [[1], [0, 1], [0, 1, 2], [0, 1, 5, 6], [0, 1, 12, 23, 24], [0, 1, 27, 93, 119, 120], [0, 1, 58, 360, 662, 719, 720], [0, 1, 121, 1312, 3728, 4919, 5039, 5040], [0, 1, 248, 4541, 20160, 35779, 40072, 40319, 40320]] |
 
 Eulerian Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 6, 24, 120, 720, 5040, 40320] |
@@ -36,6 +39,7 @@ Eulerian Row sums
 | AntiDiagSum  | [1, 1, 1, 2, 5, 13, 38, 125, 449] |
 
 Eulerian Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 4, 11, 858, 17214, 14387280, 16561934649] |
@@ -51,6 +55,7 @@ Eulerian Transforms
 | TransNat1  | [1, 1, 3, 12, 60, 360, 2520, 20160, 181440] |
 
 Eulerian Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -64,6 +69,7 @@ Eulerian Diagonals as rows
 | DiagRow8 | [1, 502, 47840, 2203488, 66318474, 1505621508, 27971176092, 447538817472, 6382798925475]|
 
 Eulerian Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -77,6 +83,7 @@ Eulerian Diagonals as columns
 | DiagCol8 | [0, 1, 1013, 152637, 10187685, 423281535, 12843262863, 311387598411, 6382798925475] |
 
 Eulerian Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ Eulerian Polynomial values as rows
 | PolyRow8 | [1, 40320, 545835, 2951680, 10491885, 29175936, 68958295, 145105920, 279768825] |
 
 Eulerian Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -106,6 +114,7 @@ Eulerian Polynomial values as columns
 []
 
 Eulerian:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ Eulerian:Rev Triangle view
 | Row8 | [0, 1, 247, 4293, 15619, 15619, 4293, 247, 1] |
 
 Eulerian:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, 1, 1], [0, 1, 4, 1], [0, 1, 11, 11, 1], [0, 1, 26, 66, 26, 1], [0, 1, 57, 302, 302, 57, 1], [0, 1, 120, 1191, 2416, 1191, 120, 1], [0, 1, 247, 4293, 15619, 15619, 4293, 247, 1]] |
@@ -129,6 +139,7 @@ Eulerian:Rev Triangles
 | AccRevTabl | [[1], [1, 1], [1, 2, 2], [1, 5, 6, 6], [1, 12, 23, 24, 24], [1, 27, 93, 119, 120, 120], [1, 58, 360, 662, 719, 720, 720], [1, 121, 1312, 3728, 4919, 5039, 5040, 5040], [1, 248, 4541, 20160, 35779, 40072, 40319, 40320, 40320]] |
 
 Eulerian:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 6, 24, 120, 720, 5040, 40320] |
@@ -140,6 +151,7 @@ Eulerian:Rev Row sums
 | AntiDiagSum  | [1, 0, 1, 1, 2, 5, 13, 38, 125] |
 
 Eulerian:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 4, 11, 858, 17214, 14387280, 16561934649] |
@@ -155,6 +167,7 @@ Eulerian:Rev Transforms
 | TransNat1  | [1, 2, 5, 18, 84, 480, 3240, 25200, 221760] |
 
 Eulerian:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ Eulerian:Rev Diagonals as rows
 | DiagRow8 | [0, 1, 1013, 152637, 10187685, 423281535, 12843262863, 311387598411, 6382798925475]|
 
 Eulerian:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -181,6 +195,7 @@ Eulerian:Rev Diagonals as columns
 | DiagCol8 | [1, 502, 47840, 2203488, 66318474, 1505621508, 27971176092, 447538817472, 6382798925475] |
 
 Eulerian:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ Eulerian:Rev Polynomial values as rows
 | PolyRow8 | [0, 40320, 1091670, 8855040, 41967540, 145879680, 413749770, 1015741440, 2238150600] |
 
 Eulerian:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -210,6 +226,7 @@ Eulerian:Rev Polynomial values as columns
 []
 
 Eulerian:Rev:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ Eulerian:Rev:Inv Triangle view
 | Row8 | [0, -353654167, 517670461, -186123259, 23248085, -1166221, 25347, -247, 1] |
 
 Eulerian:Rev:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, -1, 1], [0, 3, -4, 1], [0, -23, 33, -11, 1], [0, 425, -620, 220, -26, 1], [0, -18129, 26525, -9520, 1180, -57, 1], [0, 1721419, -2519664, 905765, -113050, 5649, -120, 1], [0, -353654167, 517670461, -186123259, 23248085, -1166221, 25347, -247, 1]] |
@@ -233,6 +251,7 @@ Eulerian:Rev:Inv Triangles
 | AccRevTabl | [[1], [1, 1], [1, 0, 0], [1, -3, 0, 0], [1, -10, 23, 0, 0], [1, -25, 195, -425, 0, 0], [1, -56, 1124, -8396, 18129, 0, 0], [1, -119, 5530, -107520, 798245, -1721419, 0, 0], [1, -246, 25101, -1141120, 22106965, -164016294, 353654167, 0, 0]] |
 
 Eulerian:Rev:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 0, 0, 0, 0, 0, 0, 0] |
@@ -244,6 +263,7 @@ Eulerian:Rev:Inv Row sums
 | AntiDiagSum  | [1, 0, 1, -1, 4, -27, 459, -18760, 1748165] |
 
 Eulerian:Rev:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 12, 759, 7536100, 1026364915892400, 261891765713181433200, 7458125553629805584118669563264684517615] |
@@ -259,6 +279,7 @@ Eulerian:Rev:Inv Transforms
 | TransNat1  | [1, 2, 1, -2, 14, -254, 10802, -1025282, 210628574] |
 
 Eulerian:Rev:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -272,6 +293,7 @@ Eulerian:Rev:Inv Diagonals as rows
 | DiagRow8 | [0, 153923102577, 204586385695065, 137800821538668585, 65989560146841989625, 25824118117025730219003, 8884259623968929185879179, 2804781888582977542701824505, 834753222582690830220723149085]|
 
 Eulerian:Rev:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -285,6 +307,7 @@ Eulerian:Rev:Inv Diagonals as columns
 | DiagCol8 | [1, -502, 460686, -863536410, 3310534307520, -25816517930312538, 407739804931874000586, -13000182161456131108373478, 834753222582690830220723149085] |
 
 Eulerian:Rev:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ Eulerian:Rev:Inv Polynomial values as rows
 | PolyRow8 | [0, 0, 210628574, 190391172, -186638412, -829163560, -1512303630, -1947629796, -1840661368] |
 
 Eulerian:Rev:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |

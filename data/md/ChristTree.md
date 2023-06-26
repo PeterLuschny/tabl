@@ -2,6 +2,7 @@
 ['A106465', 'A106470']
 
 ChristTree Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ ChristTree Triangle view
 | Row8 | [1, 0, 1, 0, 1, 0, 1, 0, 1] |
 
 ChristTree Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [1, 0, 1], [1, 1, 1, 1], [1, 0, 1, 0, 1], [1, 1, 1, 1, 1, 1], [1, 0, 1, 0, 1, 0, 1], [1, 1, 1, 1, 1, 1, 1, 1], [1, 0, 1, 0, 1, 0, 1, 0, 1]] |
@@ -25,6 +27,7 @@ ChristTree Triangles
 | AccRevTabl | [[1], [1, 2], [1, 1, 2], [1, 2, 3, 4], [1, 1, 2, 2, 3], [1, 2, 3, 4, 5, 6], [1, 1, 2, 2, 3, 3, 4], [1, 2, 3, 4, 5, 6, 7, 8], [1, 1, 2, 2, 3, 3, 4, 4, 5]] |
 
 ChristTree Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 2, 4, 3, 6, 4, 8, 5] |
@@ -36,6 +39,7 @@ ChristTree Row sums
 | AntiDiagSum  | [1, 1, 2, 1, 3, 2, 4, 2, 5] |
 
 ChristTree Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -51,6 +55,7 @@ ChristTree Transforms
 | TransNat1  | [1, 3, 4, 10, 9, 21, 16, 36, 25] |
 
 ChristTree Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ ChristTree Diagonals as rows
 | DiagRow8 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
 
 ChristTree Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -77,6 +83,7 @@ ChristTree Diagonals as columns
 | DiagCol8 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
 
 ChristTree Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ ChristTree Polynomial values as rows
 | PolyRow8 | [1, 5, 341, 7381, 69905, 406901, 1727605, 5884901, 17043521] |
 
 ChristTree Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -106,6 +114,7 @@ ChristTree Polynomial values as columns
 []
 
 ChristTree:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ ChristTree:Inv Triangle view
 | Row8 | [0, 0, 0, 0, 0, 0, -1, 0, 1] |
 
 ChristTree:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [-1, 1], [-1, 0, 1], [1, -1, -1, 1], [0, 0, -1, 0, 1], [0, 0, 1, -1, -1, 1], [0, 0, 0, 0, -1, 0, 1], [0, 0, 0, 0, 1, -1, -1, 1], [0, 0, 0, 0, 0, 0, -1, 0, 1]] |
@@ -129,6 +139,7 @@ ChristTree:Inv Triangles
 | AccRevTabl | [[1], [1, 0], [1, 1, 0], [1, 0, -1, 0], [1, 1, 0, 0, 0], [1, 0, -1, 0, 0, 0], [1, 1, 0, 0, 0, 0, 0], [1, 0, -1, 0, 0, 0, 0, 0], [1, 1, 0, 0, 0, 0, 0, 0, 0]] |
 
 ChristTree:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -140,6 +151,7 @@ ChristTree:Inv Row sums
 | AntiDiagSum  | [1, -1, 0, 1, 0, -1, 0, 1, 0] |
 
 ChristTree:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -155,6 +167,7 @@ ChristTree:Inv Transforms
 | TransNat1  | [1, 1, 2, 0, 2, 0, 2, 0, 2] |
 
 ChristTree:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ ChristTree:Inv Diagonals as rows
 | DiagRow8 | [0, 0, 0, 0, 0, 0, 0, 0, 0]|
 
 ChristTree:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, -1, -1, 1, 0, 0, 0, 0, 0] |
@@ -181,6 +195,7 @@ ChristTree:Inv Diagonals as columns
 | DiagCol8 | [1, -1, -1, 1, 0, 0, 0, 0, 0] |
 
 ChristTree:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ ChristTree:Inv Polynomial values as rows
 | PolyRow8 | [0, 0, 192, 5832, 61440, 375000, 1632960, 5647152, 16515072] |
 
 ChristTree:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, -1, -1, 1, 0, 0, 0, 0, 0] |
@@ -210,6 +226,7 @@ ChristTree:Inv Polynomial values as columns
 []
 
 ChristTree:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ ChristTree:Rev Triangle view
 | Row8 | [1, 0, 1, 0, 1, 0, 1, 0, 1] |
 
 ChristTree:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [1, 0, 1], [1, 1, 1, 1], [1, 0, 1, 0, 1], [1, 1, 1, 1, 1, 1], [1, 0, 1, 0, 1, 0, 1], [1, 1, 1, 1, 1, 1, 1, 1], [1, 0, 1, 0, 1, 0, 1, 0, 1]] |
@@ -233,6 +251,7 @@ ChristTree:Rev Triangles
 | AccRevTabl | [[1], [1, 2], [1, 1, 2], [1, 2, 3, 4], [1, 1, 2, 2, 3], [1, 2, 3, 4, 5, 6], [1, 1, 2, 2, 3, 3, 4], [1, 2, 3, 4, 5, 6, 7, 8], [1, 1, 2, 2, 3, 3, 4, 4, 5]] |
 
 ChristTree:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 2, 4, 3, 6, 4, 8, 5] |
@@ -244,6 +263,7 @@ ChristTree:Rev Row sums
 | AntiDiagSum  | [1, 1, 2, 1, 3, 2, 4, 2, 5] |
 
 ChristTree:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -259,6 +279,7 @@ ChristTree:Rev Transforms
 | TransNat1  | [1, 3, 4, 10, 9, 21, 16, 36, 25] |
 
 ChristTree:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -272,6 +293,7 @@ ChristTree:Rev Diagonals as rows
 | DiagRow8 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
 
 ChristTree:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -285,6 +307,7 @@ ChristTree:Rev Diagonals as columns
 | DiagCol8 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
 
 ChristTree:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ ChristTree:Rev Polynomial values as rows
 | PolyRow8 | [1, 5, 341, 7381, 69905, 406901, 1727605, 5884901, 17043521] |
 
 ChristTree:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -314,6 +338,7 @@ ChristTree:Rev Polynomial values as columns
 []
 
 ChristTree:Inv:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -327,6 +352,7 @@ ChristTree:Inv:Rev Triangle view
 | Row8 | [1, 0, -1, 0, 0, 0, 0, 0, 0] |
 
 ChristTree:Inv:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, -1], [1, 0, -1], [1, -1, -1, 1], [1, 0, -1, 0, 0], [1, -1, -1, 1, 0, 0], [1, 0, -1, 0, 0, 0, 0], [1, -1, -1, 1, 0, 0, 0, 0], [1, 0, -1, 0, 0, 0, 0, 0, 0]] |
@@ -337,6 +363,7 @@ ChristTree:Inv:Rev Triangles
 | AccRevTabl | [[1], [-1, 0], [-1, -1, 0], [1, 0, -1, 0], [0, 0, -1, -1, 0], [0, 0, 1, 0, -1, 0], [0, 0, 0, 0, -1, -1, 0], [0, 0, 0, 0, 1, 0, -1, 0], [0, 0, 0, 0, 0, 0, -1, -1, 0]] |
 
 ChristTree:Inv:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -348,6 +375,7 @@ ChristTree:Inv:Rev Row sums
 | AntiDiagSum  | [1, 1, 0, 1, -1, 0, 0, 0, 0] |
 
 ChristTree:Inv:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -363,6 +391,7 @@ ChristTree:Inv:Rev Transforms
 | TransNat1  | [1, -1, -2, 0, -2, 0, -2, 0, -2] |
 
 ChristTree:Inv:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, -1, -1, 1, 0, 0, 0, 0, 0]|
@@ -376,6 +405,7 @@ ChristTree:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, -1, -1, 1, 0, 0, 0, 0, 0]|
 
 ChristTree:Inv:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -389,6 +419,7 @@ ChristTree:Inv:Rev Diagonals as columns
 | DiagCol8 | [0, 0, 0, 0, 0, 0, 0, 0, 0] |
 
 ChristTree:Inv:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -402,6 +433,7 @@ ChristTree:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, 0, -3, -8, -15, -24, -35, -48, -63] |
 
 ChristTree:Inv:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -418,6 +450,7 @@ ChristTree:Inv:Rev Polynomial values as columns
 []
 
 ChristTree:Rev:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -431,6 +464,7 @@ ChristTree:Rev:Inv Triangle view
 | Row8 | [0, 0, 0, 0, 0, 0, -1, 0, 1] |
 
 ChristTree:Rev:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [-1, 1], [-1, 0, 1], [1, -1, -1, 1], [0, 0, -1, 0, 1], [0, 0, 1, -1, -1, 1], [0, 0, 0, 0, -1, 0, 1], [0, 0, 0, 0, 1, -1, -1, 1], [0, 0, 0, 0, 0, 0, -1, 0, 1]] |
@@ -441,6 +475,7 @@ ChristTree:Rev:Inv Triangles
 | AccRevTabl | [[1], [1, 0], [1, 1, 0], [1, 0, -1, 0], [1, 1, 0, 0, 0], [1, 0, -1, 0, 0, 0], [1, 1, 0, 0, 0, 0, 0], [1, 0, -1, 0, 0, 0, 0, 0], [1, 1, 0, 0, 0, 0, 0, 0, 0]] |
 
 ChristTree:Rev:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -452,6 +487,7 @@ ChristTree:Rev:Inv Row sums
 | AntiDiagSum  | [1, -1, 0, 1, 0, -1, 0, 1, 0] |
 
 ChristTree:Rev:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -467,6 +503,7 @@ ChristTree:Rev:Inv Transforms
 | TransNat1  | [1, 1, 2, 0, 2, 0, 2, 0, 2] |
 
 ChristTree:Rev:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -480,6 +517,7 @@ ChristTree:Rev:Inv Diagonals as rows
 | DiagRow8 | [0, 0, 0, 0, 0, 0, 0, 0, 0]|
 
 ChristTree:Rev:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, -1, -1, 1, 0, 0, 0, 0, 0] |
@@ -493,6 +531,7 @@ ChristTree:Rev:Inv Diagonals as columns
 | DiagCol8 | [1, -1, -1, 1, 0, 0, 0, 0, 0] |
 
 ChristTree:Rev:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -506,6 +545,7 @@ ChristTree:Rev:Inv Polynomial values as rows
 | PolyRow8 | [0, 0, 192, 5832, 61440, 375000, 1632960, 5647152, 16515072] |
 
 ChristTree:Rev:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, -1, -1, 1, 0, 0, 0, 0, 0] |

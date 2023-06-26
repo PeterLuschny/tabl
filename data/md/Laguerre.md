@@ -2,6 +2,7 @@
 ['A021009', 'A021010', 'A144084']
 
 Laguerre Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ Laguerre Triangle view
 | Row8 | [40320, 322560, 564480, 376320, 117600, 18816, 1568, 64, 1] |
 
 Laguerre Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [2, 4, 1], [6, 18, 9, 1], [24, 96, 72, 16, 1], [120, 600, 600, 200, 25, 1], [720, 4320, 5400, 2400, 450, 36, 1], [5040, 35280, 52920, 29400, 7350, 882, 49, 1], [40320, 322560, 564480, 376320, 117600, 18816, 1568, 64, 1]] |
@@ -25,6 +27,7 @@ Laguerre Triangles
 | AccRevTabl | [[1], [1, 2], [1, 5, 7], [1, 10, 28, 34], [1, 17, 89, 185, 209], [1, 26, 226, 826, 1426, 1546], [1, 37, 487, 2887, 8287, 12607, 13327], [1, 50, 932, 8282, 37682, 90602, 125882, 130922], [1, 65, 1633, 20449, 138049, 514369, 1078849, 1401409, 1441729]] |
 
 Laguerre Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 7, 34, 209, 1546, 13327, 130922, 1441729] |
@@ -36,6 +39,7 @@ Laguerre Row sums
 | AntiDiagSum  | [1, 1, 3, 10, 43, 225, 1393, 9976, 81201] |
 
 Laguerre Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 4, 18, 288, 600, 21600, 529200, 11289600] |
@@ -51,6 +55,7 @@ Laguerre Transforms
 | TransNat1  | [1, 3, 13, 73, 501, 4051, 37633, 394353, 4596553] |
 
 Laguerre Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ Laguerre Diagonals as rows
 | DiagRow8 | [40320, 3265920, 81648000, 1097712000, 9879408000, 66784798080, 363606122880, 1669619952000, 6678479808000]|
 
 Laguerre Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 2, 6, 24, 120, 720, 5040, 40320] |
@@ -77,6 +83,7 @@ Laguerre Diagonals as columns
 | DiagCol8 | [1, 81, 4050, 163350, 5880600, 198764280, 6492966480, 208702494000, 6678479808000] |
 
 Laguerre Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ Laguerre Polynomial values as rows
 | PolyRow8 | [40320, 1441729, 8546432, 31636449, 91356544, 224995745, 495057024, 1000578817, 1891712384] |
 
 Laguerre Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 2, 6, 24, 120, 720, 5040, 40320] |
@@ -106,6 +114,7 @@ Laguerre Polynomial values as columns
 []
 
 Laguerre:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ Laguerre:Inv Triangle view
 | Row8 | [40320, -322560, 564480, -376320, 117600, -18816, 1568, -64, 1] |
 
 Laguerre:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [-1, 1], [2, -4, 1], [-6, 18, -9, 1], [24, -96, 72, -16, 1], [-120, 600, -600, 200, -25, 1], [720, -4320, 5400, -2400, 450, -36, 1], [-5040, 35280, -52920, 29400, -7350, 882, -49, 1], [40320, -322560, 564480, -376320, 117600, -18816, 1568, -64, 1]] |
@@ -129,6 +139,7 @@ Laguerre:Inv Triangles
 | AccRevTabl | [[1], [1, 0], [1, -3, -1], [1, -8, 10, 4], [1, -15, 57, -39, -15], [1, -24, 176, -424, 176, 56], [1, -35, 415, -1985, 3415, -905, -185], [1, -48, 834, -6516, 22884, -30036, 5244, 204], [1, -63, 1505, -17311, 100289, -276031, 288449, -34111, 6209]] |
 
 Laguerre:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, -1, 4, -15, 56, -185, 204, 6209] |
@@ -140,6 +151,7 @@ Laguerre:Inv Row sums
 | AntiDiagSum  | [1, -1, 3, -10, 43, -225, 1393, -9976, 81201] |
 
 Laguerre:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 4, 18, 288, 600, 21600, 529200, 11289600] |
@@ -155,6 +167,7 @@ Laguerre:Inv Transforms
 | TransNat1  | [1, 1, -3, 7, -11, -39, 721, -7433, 68937] |
 
 Laguerre:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ Laguerre:Inv Diagonals as rows
 | DiagRow8 | [40320, 3265920, 81648000, 1097712000, 9879408000, 66784798080, 363606122880, 1669619952000, 6678479808000]|
 
 Laguerre:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, -1, 2, -6, 24, -120, 720, -5040, 40320] |
@@ -181,6 +195,7 @@ Laguerre:Inv Diagonals as columns
 | DiagCol8 | [1, -81, 4050, -163350, 5880600, -198764280, 6492966480, -208702494000, 6678479808000] |
 
 Laguerre:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ Laguerre:Inv Polynomial values as rows
 | PolyRow8 | [40320, 6209, 14464, -44703, -25216, 90145, 157824, 12929, -361088] |
 
 Laguerre:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, -1, 2, -6, 24, -120, 720, -5040, 40320] |
@@ -210,6 +226,7 @@ Laguerre:Inv Polynomial values as columns
 []
 
 Laguerre:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ Laguerre:Rev Triangle view
 | Row8 | [1, 64, 1568, 18816, 117600, 376320, 564480, 322560, 40320] |
 
 Laguerre:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [1, 4, 2], [1, 9, 18, 6], [1, 16, 72, 96, 24], [1, 25, 200, 600, 600, 120], [1, 36, 450, 2400, 5400, 4320, 720], [1, 49, 882, 7350, 29400, 52920, 35280, 5040], [1, 64, 1568, 18816, 117600, 376320, 564480, 322560, 40320]] |
@@ -233,6 +251,7 @@ Laguerre:Rev Triangles
 | AccRevTabl | [[1], [1, 2], [2, 6, 7], [6, 24, 33, 34], [24, 120, 192, 208, 209], [120, 720, 1320, 1520, 1545, 1546], [720, 5040, 10440, 12840, 13290, 13326, 13327], [5040, 40320, 93240, 122640, 129990, 130872, 130921, 130922], [40320, 362880, 927360, 1303680, 1421280, 1440096, 1441664, 1441728, 1441729]] |
 
 Laguerre:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 7, 34, 209, 1546, 13327, 130922, 1441729] |
@@ -244,6 +263,7 @@ Laguerre:Rev Row sums
 | AntiDiagSum  | [1, 1, 2, 5, 12, 35, 104, 333, 1124] |
 
 Laguerre:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 4, 18, 288, 600, 21600, 529200, 11289600] |
@@ -259,6 +279,7 @@ Laguerre:Rev Transforms
 | TransNat1  | [1, 3, 15, 97, 753, 6771, 68983, 783945, 9820737] |
 
 Laguerre:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 2, 6, 24, 120, 720, 5040, 40320]|
@@ -272,6 +293,7 @@ Laguerre:Rev Diagonals as rows
 | DiagRow8 | [1, 81, 4050, 163350, 5880600, 198764280, 6492966480, 208702494000, 6678479808000]|
 
 Laguerre:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -285,6 +307,7 @@ Laguerre:Rev Diagonals as columns
 | DiagCol8 | [40320, 3265920, 81648000, 1097712000, 9879408000, 66784798080, 363606122880, 1669619952000, 6678479808000] |
 
 Laguerre:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ Laguerre:Rev Polynomial values as rows
 | PolyRow8 | [1, 1441729, 101817089, 1482977857, 10656031489, 51021891521, 187437447169, 571103012929, 1513712421377] |
 
 Laguerre:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -314,6 +338,7 @@ Laguerre:Rev Polynomial values as columns
 []
 
 Laguerre:Inv:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -327,6 +352,7 @@ Laguerre:Inv:Rev Triangle view
 | Row8 | [1, -64, 1568, -18816, 117600, -376320, 564480, -322560, 40320] |
 
 Laguerre:Inv:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, -1], [1, -4, 2], [1, -9, 18, -6], [1, -16, 72, -96, 24], [1, -25, 200, -600, 600, -120], [1, -36, 450, -2400, 5400, -4320, 720], [1, -49, 882, -7350, 29400, -52920, 35280, -5040], [1, -64, 1568, -18816, 117600, -376320, 564480, -322560, 40320]] |
@@ -337,6 +363,7 @@ Laguerre:Inv:Rev Triangles
 | AccRevTabl | [[1], [-1, 0], [2, -2, -1], [-6, 12, 3, 4], [24, -72, 0, -16, -15], [-120, 480, -120, 80, 55, 56], [720, -3600, 1800, -600, -150, -186, -185], [-5040, 30240, -22680, 6720, -630, 252, 203, 204], [40320, -282240, 282240, -94080, 23520, 4704, 6272, 6208, 6209]] |
 
 Laguerre:Inv:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, -1, 4, -15, 56, -185, 204, 6209] |
@@ -348,6 +375,7 @@ Laguerre:Inv:Rev Row sums
 | AntiDiagSum  | [1, 1, 0, -3, -6, 3, 42, 69, -174] |
 
 Laguerre:Inv:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 4, 18, 288, 600, 21600, 529200, 11289600] |
@@ -363,6 +391,7 @@ Laguerre:Inv:Rev Transforms
 | TransNat1  | [1, -1, -1, 13, -79, 431, -2201, 9269, -6847] |
 
 Laguerre:Inv:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, -1, 2, -6, 24, -120, 720, -5040, 40320]|
@@ -376,6 +405,7 @@ Laguerre:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, -81, 4050, -163350, 5880600, -198764280, 6492966480, -208702494000, 6678479808000]|
 
 Laguerre:Inv:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -389,6 +419,7 @@ Laguerre:Inv:Rev Diagonals as columns
 | DiagCol8 | [40320, 3265920, 81648000, 1097712000, 9879408000, 66784798080, 363606122880, 1669619952000, 6678479808000] |
 
 Laguerre:Inv:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -402,6 +433,7 @@ Laguerre:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, 6209, -5144063, -111807551, -686726911, -1734813119, 984476929, 27156423617, 136115947009] |
 
 Laguerre:Inv:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |

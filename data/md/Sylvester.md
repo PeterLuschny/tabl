@@ -2,6 +2,7 @@
 ['A341101']
 
 Sylvester Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ Sylvester Triangle view
 | Row8 | [0, 5040, 18828, 30604, 28777, 17360, 6944, 1792, 256] |
 
 Sylvester Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 2], [0, 1, 4], [0, 2, 6, 8], [0, 6, 19, 24, 16], [0, 24, 80, 110, 80, 32], [0, 120, 418, 615, 500, 240, 64], [0, 720, 2604, 4046, 3570, 1960, 672, 128], [0, 5040, 18828, 30604, 28777, 17360, 6944, 1792, 256]] |
@@ -25,6 +27,7 @@ Sylvester Triangles
 | AccRevTabl | [[1], [2, 2], [4, 5, 5], [8, 14, 16, 16], [16, 40, 59, 65, 65], [32, 112, 222, 302, 326, 326], [64, 304, 804, 1419, 1837, 1957, 1957], [128, 800, 2760, 6330, 10376, 12980, 13700, 13700], [256, 2048, 8992, 26352, 55129, 85733, 104561, 109601, 109601]] |
 
 Sylvester Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 5, 16, 65, 326, 1957, 13700, 109601] |
@@ -36,6 +39,7 @@ Sylvester Row sums
 | AntiDiagSum  | [1, 0, 2, 1, 6, 12, 51, 224, 1264] |
 
 Sylvester Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 2, 4, 24, 912, 5280, 205656000, 2528588160, 5874643821231360] |
@@ -51,6 +55,7 @@ Sylvester Transforms
 | TransNat1  | [1, 4, 14, 54, 245, 1320, 8342, 60774, 502273] |
 
 Sylvester Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 2, 4, 8, 16, 32, 64, 128, 256]|
@@ -64,6 +69,7 @@ Sylvester Diagonals as rows
 | DiagRow8 | [0, 40320, 1429776, 26263512, 334925404, 3342770288, 27866124286, 202043487646, 1309509778577]|
 
 Sylvester Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -77,6 +83,7 @@ Sylvester Diagonals as columns
 | DiagCol8 | [256, 4608, 71040, 1066560, 16274544, 256844016, 4225162084, 72692509890, 1309509778577] |
 
 Sylvester Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ Sylvester Polynomial values as rows
 | PolyRow8 | [0, 109601, 2085504, 18221193, 102003584, 425057025, 1435211136, 4140850889, 10577029248] |
 
 Sylvester Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -106,6 +114,7 @@ Sylvester Polynomial values as columns
 []
 
 Sylvester:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ Sylvester:Rev Triangle view
 | Row8 | [256, 1792, 6944, 17360, 28777, 30604, 18828, 5040, 0] |
 
 Sylvester:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [2, 0], [4, 1, 0], [8, 6, 2, 0], [16, 24, 19, 6, 0], [32, 80, 110, 80, 24, 0], [64, 240, 500, 615, 418, 120, 0], [128, 672, 1960, 3570, 4046, 2604, 720, 0], [256, 1792, 6944, 17360, 28777, 30604, 18828, 5040, 0]] |
@@ -129,6 +139,7 @@ Sylvester:Rev Triangles
 | AccRevTabl | [[1], [0, 2], [0, 1, 5], [0, 2, 8, 16], [0, 6, 25, 49, 65], [0, 24, 104, 214, 294, 326], [0, 120, 538, 1153, 1653, 1893, 1957], [0, 720, 3324, 7370, 10940, 12900, 13572, 13700], [0, 5040, 23868, 54472, 83249, 100609, 107553, 109345, 109601]] |
 
 Sylvester:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 5, 16, 65, 326, 1957, 13700, 109601] |
@@ -140,6 +151,7 @@ Sylvester:Rev Row sums
 | AntiDiagSum  | [1, 2, 4, 9, 22, 58, 163, 484, 1508] |
 
 Sylvester:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 2, 4, 24, 912, 5280, 205656000, 2528588160, 5874643821231360] |
@@ -155,6 +167,7 @@ Sylvester:Rev Transforms
 | TransNat1  | [1, 2, 6, 26, 145, 962, 7314, 62526, 593737] |
 
 Sylvester:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -168,6 +181,7 @@ Sylvester:Rev Diagonals as rows
 | DiagRow8 | [256, 4608, 71040, 1066560, 16274544, 256844016, 4225162084, 72692509890, 1309509778577]|
 
 Sylvester:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 2, 4, 8, 16, 32, 64, 128, 256] |
@@ -181,6 +195,7 @@ Sylvester:Rev Diagonals as columns
 | DiagCol8 | [0, 40320, 1429776, 26263512, 334925404, 3342770288, 27866124286, 202043487646, 1309509778577] |
 
 Sylvester:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ Sylvester:Rev Polynomial values as rows
 | PolyRow8 | [256, 109601, 3460368, 35052649, 199629824, 803913441, 2568599056, 6955514633, 16635343104] |
 
 Sylvester:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 2, 4, 8, 16, 32, 64, 128, 256] |

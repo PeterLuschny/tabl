@@ -2,6 +2,7 @@
 ['A165675', 'A093905', 'A105954', 'A165674']
 
 SymPoly Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ SymPoly Triangle view
 | Row8 | [40320, 109584, 69264, 24552, 5944, 1066, 146, 15, 1] |
 
 SymPoly Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [2, 3, 1], [6, 11, 5, 1], [24, 50, 26, 7, 1], [120, 274, 154, 47, 9, 1], [720, 1764, 1044, 342, 74, 11, 1], [5040, 13068, 8028, 2754, 638, 107, 13, 1], [40320, 109584, 69264, 24552, 5944, 1066, 146, 15, 1]] |
@@ -25,6 +27,7 @@ SymPoly Triangles
 | AccRevTabl | [[1], [1, 2], [1, 4, 6], [1, 6, 17, 23], [1, 8, 34, 84, 108], [1, 10, 57, 211, 485, 605], [1, 12, 86, 428, 1472, 3236, 3956], [1, 14, 121, 759, 3513, 11541, 24609, 29649], [1, 16, 162, 1228, 7172, 31724, 100988, 210572, 250892]] |
 
 SymPoly Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 6, 23, 108, 605, 3956, 29649, 250892] |
@@ -36,6 +39,7 @@ SymPoly Row sums
 | AntiDiagSum  | [1, 1, 3, 9, 36, 175, 1021, 6965, 54480] |
 
 SymPoly Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 6, 330, 54600, 178489080, 7911786960, 839338855795440, 11191805812769662080] |
@@ -51,6 +55,7 @@ SymPoly Transforms
 | TransNat1  | [1, 3, 11, 47, 235, 1369, 9191, 70207, 602755] |
 
 SymPoly Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ SymPoly Diagonals as rows
 | DiagRow8 | [40320, 1026576, 6999840, 30334320, 101378880, 284574960, 703404576, 1576890000, 3270729600]|
 
 SymPoly Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 2, 6, 24, 120, 720, 5040, 40320] |
@@ -77,6 +83,7 @@ SymPoly Diagonals as columns
 | DiagCol8 | [1, 17, 242, 3382, 48504, 725592, 11393808, 188204400, 3270729600] |
 
 SymPoly Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ SymPoly Polynomial values as rows
 | PolyRow8 | [40320, 250892, 873696, 2541654, 6680768, 16278840, 37177632, 80105186, 163705344] |
 
 SymPoly Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 2, 6, 24, 120, 720, 5040, 40320] |
@@ -106,6 +114,7 @@ SymPoly Polynomial values as columns
 []
 
 SymPoly:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ SymPoly:Inv Triangle view
 | Row8 | [0, 0, 0, 0, 0, 0, 49, -15, 1] |
 
 SymPoly:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [-1, 1], [1, -3, 1], [0, 4, -5, 1], [0, 0, 9, -7, 1], [0, 0, 0, 16, -9, 1], [0, 0, 0, 0, 25, -11, 1], [0, 0, 0, 0, 0, 36, -13, 1], [0, 0, 0, 0, 0, 0, 49, -15, 1]] |
@@ -129,6 +139,7 @@ SymPoly:Inv Triangles
 | AccRevTabl | [[1], [1, 0], [1, -2, -1], [1, -4, 0, 0], [1, -6, 3, 3, 3], [1, -8, 8, 8, 8, 8], [1, -10, 15, 15, 15, 15, 15], [1, -12, 24, 24, 24, 24, 24, 24], [1, -14, 35, 35, 35, 35, 35, 35, 35]] |
 
 SymPoly:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, -1, 0, 3, 8, 15, 24, 35] |
@@ -140,6 +151,7 @@ SymPoly:Inv Row sums
 | AntiDiagSum  | [1, -1, 2, -3, 5, -5, 10, -7, 17] |
 
 SymPoly:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 3, 20, 63, 144, 275, 468, 735] |
@@ -155,6 +167,7 @@ SymPoly:Inv Transforms
 | TransNat1  | [1, 1, -2, -3, 4, 25, 66, 133, 232] |
 
 SymPoly:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ SymPoly:Inv Diagonals as rows
 | DiagRow8 | [0, 0, 0, 0, 0, 0, 0, 0, 0]|
 
 SymPoly:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, -1, 1, 0, 0, 0, 0, 0, 0] |
@@ -181,6 +195,7 @@ SymPoly:Inv Diagonals as columns
 | DiagCol8 | [1, -17, 81, 0, 0, 0, 0, 0, 0] |
 
 SymPoly:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ SymPoly:Inv Polynomial values as rows
 | PolyRow8 | [0, 35, 1472, 9477, 20480, -15625, -233280, -823543, -1835008] |
 
 SymPoly:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, -1, 1, 0, 0, 0, 0, 0, 0] |
@@ -210,6 +226,7 @@ SymPoly:Inv Polynomial values as columns
 []
 
 SymPoly:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ SymPoly:Rev Triangle view
 | Row8 | [1, 15, 146, 1066, 5944, 24552, 69264, 109584, 40320] |
 
 SymPoly:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [1, 3, 2], [1, 5, 11, 6], [1, 7, 26, 50, 24], [1, 9, 47, 154, 274, 120], [1, 11, 74, 342, 1044, 1764, 720], [1, 13, 107, 638, 2754, 8028, 13068, 5040], [1, 15, 146, 1066, 5944, 24552, 69264, 109584, 40320]] |
@@ -233,6 +251,7 @@ SymPoly:Rev Triangles
 | AccRevTabl | [[1], [1, 2], [2, 5, 6], [6, 17, 22, 23], [24, 74, 100, 107, 108], [120, 394, 548, 595, 604, 605], [720, 2484, 3528, 3870, 3944, 3955, 3956], [5040, 18108, 26136, 28890, 29528, 29635, 29648, 29649], [40320, 149904, 219168, 243720, 249664, 250730, 250876, 250891, 250892]] |
 
 SymPoly:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 6, 23, 108, 605, 3956, 29649, 250892] |
@@ -244,6 +263,7 @@ SymPoly:Rev Row sums
 | AntiDiagSum  | [1, 1, 2, 4, 8, 19, 42, 109, 266] |
 
 SymPoly:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 6, 330, 54600, 178489080, 7911786960, 839338855795440, 11191805812769662080] |
@@ -259,6 +279,7 @@ SymPoly:Rev Transforms
 | TransNat1  | [1, 3, 13, 68, 413, 2866, 22457, 196634, 1906165] |
 
 SymPoly:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 2, 6, 24, 120, 720, 5040, 40320]|
@@ -272,6 +293,7 @@ SymPoly:Rev Diagonals as rows
 | DiagRow8 | [1, 17, 242, 3382, 48504, 725592, 11393808, 188204400, 3270729600]|
 
 SymPoly:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -285,6 +307,7 @@ SymPoly:Rev Diagonals as columns
 | DiagCol8 | [40320, 1026576, 6999840, 30334320, 101378880, 284574960, 703404576, 1576890000, 3270729600] |
 
 SymPoly:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ SymPoly:Rev Polynomial values as rows
 | PolyRow8 | [1, 250892, 29671479, 561170926, 4748274653, 25474076976, 101829060307, 331260042674, 925258217721] |
 
 SymPoly:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -314,6 +338,7 @@ SymPoly:Rev Polynomial values as columns
 []
 
 SymPoly:Inv:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -327,6 +352,7 @@ SymPoly:Inv:Rev Triangle view
 | Row8 | [1, -15, 49, 0, 0, 0, 0, 0, 0] |
 
 SymPoly:Inv:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, -1], [1, -3, 1], [1, -5, 4, 0], [1, -7, 9, 0, 0], [1, -9, 16, 0, 0, 0], [1, -11, 25, 0, 0, 0, 0], [1, -13, 36, 0, 0, 0, 0, 0], [1, -15, 49, 0, 0, 0, 0, 0, 0]] |
@@ -337,6 +363,7 @@ SymPoly:Inv:Rev Triangles
 | AccRevTabl | [[1], [-1, 0], [1, -2, -1], [0, 4, -1, 0], [0, 0, 9, 2, 3], [0, 0, 0, 16, 7, 8], [0, 0, 0, 0, 25, 14, 15], [0, 0, 0, 0, 0, 36, 23, 24], [0, 0, 0, 0, 0, 0, 49, 34, 35]] |
 
 SymPoly:Inv:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, -1, 0, 3, 8, 15, 24, 35] |
@@ -348,6 +375,7 @@ SymPoly:Inv:Rev Row sums
 | AntiDiagSum  | [1, 1, 0, -2, -3, -2, 1, 6, 13] |
 
 SymPoly:Inv:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 3, 20, 63, 144, 275, 468, 735] |
@@ -363,6 +391,7 @@ SymPoly:Inv:Rev Transforms
 | TransNat1  | [1, -1, -2, 3, 14, 31, 54, 83, 118] |
 
 SymPoly:Inv:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, -1, 1, 0, 0, 0, 0, 0, 0]|
@@ -376,6 +405,7 @@ SymPoly:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, -17, 81, 0, 0, 0, 0, 0, 0]|
 
 SymPoly:Inv:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -389,6 +419,7 @@ SymPoly:Inv:Rev Diagonals as columns
 | DiagCol8 | [0, 0, 0, 0, 0, 0, 0, 0, 0] |
 
 SymPoly:Inv:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -402,6 +433,7 @@ SymPoly:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, 35, 167, 397, 725, 1151, 1675, 2297, 3017] |
 
 SymPoly:Inv:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |

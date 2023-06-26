@@ -2,6 +2,7 @@
 ['A048004']
 
 Composition Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ Composition Triangle view
 | Row8 | [0, 1, 33, 47, 27, 12, 5, 2, 1] |
 
 Composition Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, 1, 1], [0, 1, 2, 1], [0, 1, 4, 2, 1], [0, 1, 7, 5, 2, 1], [0, 1, 12, 11, 5, 2, 1], [0, 1, 20, 23, 12, 5, 2, 1], [0, 1, 33, 47, 27, 12, 5, 2, 1]] |
@@ -25,6 +27,7 @@ Composition Triangles
 | AccRevTabl | [[1], [1, 1], [1, 2, 2], [1, 3, 4, 4], [1, 3, 7, 8, 8], [1, 3, 8, 15, 16, 16], [1, 3, 8, 19, 31, 32, 32], [1, 3, 8, 20, 43, 63, 64, 64], [1, 3, 8, 20, 47, 94, 127, 128, 128]] |
 
 Composition Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 4, 8, 16, 32, 64, 128] |
@@ -36,6 +39,7 @@ Composition Row sums
 | AntiDiagSum  | [1, 0, 1, 1, 2, 3, 6, 10, 19] |
 
 Composition Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 2, 4, 70, 660, 1380, 279180] |
@@ -51,6 +55,7 @@ Composition Transforms
 | TransNat1  | [1, 2, 5, 12, 27, 59, 126, 266, 556] |
 
 Composition Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ Composition Diagonals as rows
 | DiagRow8 | [0, 1, 88, 360, 563, 653, 687, 699, 703]|
 
 Composition Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -77,6 +83,7 @@ Composition Diagonals as columns
 | DiagCol8 | [1, 2, 5, 12, 28, 64, 144, 320, 703] |
 
 Composition Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ Composition Polynomial values as rows
 | PolyRow8 | [0, 128, 2158, 21252, 141524, 686080, 2612418, 8284388, 22812232] |
 
 Composition Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -106,6 +114,7 @@ Composition Polynomial values as columns
 []
 
 Composition:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ Composition:Inv Triangle view
 | Row8 | [0, -5, -1, 6, 2, 0, -1, -2, 1] |
 
 Composition:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, -1, 1], [0, 1, -2, 1], [0, 1, 0, -2, 1], [0, -1, 3, -1, -2, 1], [0, -3, 4, 1, -1, -2, 1], [0, -5, 3, 4, 0, -1, -2, 1], [0, -5, -1, 6, 2, 0, -1, -2, 1]] |
@@ -129,6 +139,7 @@ Composition:Inv Triangles
 | AccRevTabl | [[1], [1, 1], [1, 0, 0], [1, -1, 0, 0], [1, -1, -1, 0, 0], [1, -1, -2, 1, 0, 0], [1, -1, -2, -1, 3, 0, 0], [1, -1, -2, -2, 2, 5, 0, 0], [1, -1, -2, -2, 0, 6, 5, 0, 0]] |
 
 Composition:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 0, 0, 0, 0, 0, 0, 0] |
@@ -140,6 +151,7 @@ Composition:Inv Row sums
 | AntiDiagSum  | [1, 0, 1, -1, 2, -1, 0, -2, -1] |
 
 Composition:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 2, 2, 6, 12, 60, 30] |
@@ -155,6 +167,7 @@ Composition:Inv Transforms
 | TransNat1  | [1, 2, 1, 0, -1, -1, 0, 3, 7] |
 
 Composition:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ Composition:Inv Diagonals as rows
 | DiagRow8 | [0, -1, -28, 9, 15, 11, 9, 8, 6]|
 
 Composition:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -181,6 +195,7 @@ Composition:Inv Diagonals as columns
 | DiagCol8 | [1, -2, -1, 0, 1, 2, 3, 4, 6] |
 
 Composition:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ Composition:Inv Polynomial values as rows
 | PolyRow8 | [0, 0, 2, 1758, 29532, 220700, 1076910, 4006842, 12331928] |
 
 Composition:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -210,6 +226,7 @@ Composition:Inv Polynomial values as columns
 []
 
 Composition:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ Composition:Rev Triangle view
 | Row8 | [1, 2, 5, 12, 27, 47, 33, 1, 0] |
 
 Composition:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [1, 1, 0], [1, 2, 1, 0], [1, 2, 4, 1, 0], [1, 2, 5, 7, 1, 0], [1, 2, 5, 11, 12, 1, 0], [1, 2, 5, 12, 23, 20, 1, 0], [1, 2, 5, 12, 27, 47, 33, 1, 0]] |
@@ -233,6 +251,7 @@ Composition:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [0, 1, 2], [0, 1, 3, 4], [0, 1, 5, 7, 8], [0, 1, 8, 13, 15, 16], [0, 1, 13, 24, 29, 31, 32], [0, 1, 21, 44, 56, 61, 63, 64], [0, 1, 34, 81, 108, 120, 125, 127, 128]] |
 
 Composition:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 4, 8, 16, 32, 64, 128] |
@@ -244,6 +263,7 @@ Composition:Rev Row sums
 | AntiDiagSum  | [1, 1, 1, 2, 3, 4, 7, 9, 15] |
 
 Composition:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 2, 4, 70, 660, 1380, 279180] |
@@ -259,6 +279,7 @@ Composition:Rev Transforms
 | TransNat1  | [1, 1, 3, 8, 21, 53, 130, 310, 724] |
 
 Composition:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -272,6 +293,7 @@ Composition:Rev Diagonals as rows
 | DiagRow8 | [1, 2, 5, 12, 28, 64, 144, 320, 703]|
 
 Composition:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -285,6 +307,7 @@ Composition:Rev Diagonals as columns
 | DiagCol8 | [0, 1, 88, 360, 563, 653, 687, 699, 703] |
 
 Composition:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ Composition:Rev Polynomial values as rows
 | PolyRow8 | [1, 128, 4297, 40228, 207449, 759136, 2222833, 5565092, 12405073] |
 
 Composition:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -314,6 +338,7 @@ Composition:Rev Polynomial values as columns
 []
 
 Composition:Inv:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -327,6 +352,7 @@ Composition:Inv:Rev Triangle view
 | Row8 | [1, -2, -1, 0, 2, 6, -1, -5, 0] |
 
 Composition:Inv:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [1, -1, 0], [1, -2, 1, 0], [1, -2, 0, 1, 0], [1, -2, -1, 3, -1, 0], [1, -2, -1, 1, 4, -3, 0], [1, -2, -1, 0, 4, 3, -5, 0], [1, -2, -1, 0, 2, 6, -1, -5, 0]] |
@@ -337,6 +363,7 @@ Composition:Inv:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [0, -1, 0], [0, 1, -1, 0], [0, 1, 1, -1, 0], [0, -1, 2, 1, -1, 0], [0, -3, 1, 2, 1, -1, 0], [0, -5, -2, 2, 2, 1, -1, 0], [0, -5, -6, 0, 2, 2, 1, -1, 0]] |
 
 Composition:Inv:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 0, 0, 0, 0, 0, 0, 0] |
@@ -348,6 +375,7 @@ Composition:Inv:Rev Row sums
 | AntiDiagSum  | [1, 1, 1, 0, -1, 0, -1, -1, 1] |
 
 Composition:Inv:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 2, 2, 6, 12, 60, 30] |
@@ -363,6 +391,7 @@ Composition:Inv:Rev Transforms
 | TransNat1  | [1, 1, -1, 0, 1, 1, 0, -3, -7] |
 
 Composition:Inv:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -376,6 +405,7 @@ Composition:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, -2, -1, 0, 1, 2, 3, 4, 6]|
 
 Composition:Inv:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -389,6 +419,7 @@ Composition:Inv:Rev Diagonals as columns
 | DiagCol8 | [0, -1, -28, 9, 15, 11, 9, 8, 6] |
 
 Composition:Inv:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -402,6 +433,7 @@ Composition:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, 0, -487, -10058, -79383, -386284, -1397135, -4129782, -10543183] |
 
 Composition:Inv:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |

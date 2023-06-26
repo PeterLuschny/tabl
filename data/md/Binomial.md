@@ -2,6 +2,7 @@
 ['A007318', 'A074909', 'A108086', 'A117440', 'A118433', 'A130595', 'A135278', 'A154926']
 
 Binomial Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ Binomial Triangle view
 | Row8 | [1, 8, 28, 56, 70, 56, 28, 8, 1] |
 
 Binomial Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1], [1, 5, 10, 10, 5, 1], [1, 6, 15, 20, 15, 6, 1], [1, 7, 21, 35, 35, 21, 7, 1], [1, 8, 28, 56, 70, 56, 28, 8, 1]] |
@@ -25,6 +27,7 @@ Binomial Triangles
 | AccRevTabl | [[1], [1, 2], [1, 3, 4], [1, 4, 7, 8], [1, 5, 11, 15, 16], [1, 6, 16, 26, 31, 32], [1, 7, 22, 42, 57, 63, 64], [1, 8, 29, 64, 99, 120, 127, 128], [1, 9, 37, 93, 163, 219, 247, 255, 256]] |
 
 Binomial Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 4, 8, 16, 32, 64, 128, 256] |
@@ -36,6 +39,7 @@ Binomial Row sums
 | AntiDiagSum  | [1, 1, 2, 3, 5, 8, 13, 21, 34] |
 
 Binomial Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 3, 12, 10, 60, 105, 280] |
@@ -51,6 +55,7 @@ Binomial Transforms
 | TransNat1  | [1, 3, 8, 20, 48, 112, 256, 576, 1280] |
 
 Binomial Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ Binomial Diagonals as rows
 | DiagRow8 | [1, 9, 45, 165, 495, 1287, 3003, 6435, 12870]|
 
 Binomial Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -77,6 +83,7 @@ Binomial Diagonals as columns
 | DiagCol8 | [1, 9, 45, 165, 495, 1287, 3003, 6435, 12870] |
 
 Binomial Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ Binomial Polynomial values as rows
 | PolyRow8 | [1, 256, 6561, 65536, 390625, 1679616, 5764801, 16777216, 43046721] |
 
 Binomial Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -106,6 +114,7 @@ Binomial Polynomial values as columns
 []
 
 Binomial:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ Binomial:Inv Triangle view
 | Row8 | [1, -8, 28, -56, 70, -56, 28, -8, 1] |
 
 Binomial:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [-1, 1], [1, -2, 1], [-1, 3, -3, 1], [1, -4, 6, -4, 1], [-1, 5, -10, 10, -5, 1], [1, -6, 15, -20, 15, -6, 1], [-1, 7, -21, 35, -35, 21, -7, 1], [1, -8, 28, -56, 70, -56, 28, -8, 1]] |
@@ -129,6 +139,7 @@ Binomial:Inv Triangles
 | AccRevTabl | [[1], [1, 0], [1, -1, 0], [1, -2, 1, 0], [1, -3, 3, -1, 0], [1, -4, 6, -4, 1, 0], [1, -5, 10, -10, 5, -1, 0], [1, -6, 15, -20, 15, -6, 1, 0], [1, -7, 21, -35, 35, -21, 7, -1, 0]] |
 
 Binomial:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -140,6 +151,7 @@ Binomial:Inv Row sums
 | AntiDiagSum  | [1, -1, 2, -3, 5, -8, 13, -21, 34] |
 
 Binomial:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 3, 12, 10, 60, 105, 280] |
@@ -155,6 +167,7 @@ Binomial:Inv Transforms
 | TransNat1  | [1, 1, 0, 0, 0, 0, 0, 0, 0] |
 
 Binomial:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ Binomial:Inv Diagonals as rows
 | DiagRow8 | [1, 9, 45, 165, 495, 1287, 3003, 6435, 12870]|
 
 Binomial:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, -1, 1, -1, 1, -1, 1, -1, 1] |
@@ -181,6 +195,7 @@ Binomial:Inv Diagonals as columns
 | DiagCol8 | [1, -9, 45, -165, 495, -1287, 3003, -6435, 12870] |
 
 Binomial:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ Binomial:Inv Polynomial values as rows
 | PolyRow8 | [1, 0, 1, 256, 6561, 65536, 390625, 1679616, 5764801] |
 
 Binomial:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, -1, 1, -1, 1, -1, 1, -1, 1] |
@@ -210,6 +226,7 @@ Binomial:Inv Polynomial values as columns
 []
 
 Binomial:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ Binomial:Rev Triangle view
 | Row8 | [1, 8, 28, 56, 70, 56, 28, 8, 1] |
 
 Binomial:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1], [1, 5, 10, 10, 5, 1], [1, 6, 15, 20, 15, 6, 1], [1, 7, 21, 35, 35, 21, 7, 1], [1, 8, 28, 56, 70, 56, 28, 8, 1]] |
@@ -233,6 +251,7 @@ Binomial:Rev Triangles
 | AccRevTabl | [[1], [1, 2], [1, 3, 4], [1, 4, 7, 8], [1, 5, 11, 15, 16], [1, 6, 16, 26, 31, 32], [1, 7, 22, 42, 57, 63, 64], [1, 8, 29, 64, 99, 120, 127, 128], [1, 9, 37, 93, 163, 219, 247, 255, 256]] |
 
 Binomial:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 4, 8, 16, 32, 64, 128, 256] |
@@ -244,6 +263,7 @@ Binomial:Rev Row sums
 | AntiDiagSum  | [1, 1, 2, 3, 5, 8, 13, 21, 34] |
 
 Binomial:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 3, 12, 10, 60, 105, 280] |
@@ -259,6 +279,7 @@ Binomial:Rev Transforms
 | TransNat1  | [1, 3, 8, 20, 48, 112, 256, 576, 1280] |
 
 Binomial:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -272,6 +293,7 @@ Binomial:Rev Diagonals as rows
 | DiagRow8 | [1, 9, 45, 165, 495, 1287, 3003, 6435, 12870]|
 
 Binomial:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -285,6 +307,7 @@ Binomial:Rev Diagonals as columns
 | DiagCol8 | [1, 9, 45, 165, 495, 1287, 3003, 6435, 12870] |
 
 Binomial:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ Binomial:Rev Polynomial values as rows
 | PolyRow8 | [1, 256, 6561, 65536, 390625, 1679616, 5764801, 16777216, 43046721] |
 
 Binomial:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -314,6 +338,7 @@ Binomial:Rev Polynomial values as columns
 []
 
 Binomial:Inv:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -327,6 +352,7 @@ Binomial:Inv:Rev Triangle view
 | Row8 | [1, -8, 28, -56, 70, -56, 28, -8, 1] |
 
 Binomial:Inv:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, -1], [1, -2, 1], [1, -3, 3, -1], [1, -4, 6, -4, 1], [1, -5, 10, -10, 5, -1], [1, -6, 15, -20, 15, -6, 1], [1, -7, 21, -35, 35, -21, 7, -1], [1, -8, 28, -56, 70, -56, 28, -8, 1]] |
@@ -337,6 +363,7 @@ Binomial:Inv:Rev Triangles
 | AccRevTabl | [[1], [-1, 0], [1, -1, 0], [-1, 2, -1, 0], [1, -3, 3, -1, 0], [-1, 4, -6, 4, -1, 0], [1, -5, 10, -10, 5, -1, 0], [-1, 6, -15, 20, -15, 6, -1, 0], [1, -7, 21, -35, 35, -21, 7, -1, 0]] |
 
 Binomial:Inv:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -348,6 +375,7 @@ Binomial:Inv:Rev Row sums
 | AntiDiagSum  | [1, 1, 0, -1, -1, 0, 1, 1, 0] |
 
 Binomial:Inv:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 3, 12, 10, 60, 105, 280] |
@@ -363,6 +391,7 @@ Binomial:Inv:Rev Transforms
 | TransNat1  | [1, -1, 0, 0, 0, 0, 0, 0, 0] |
 
 Binomial:Inv:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, -1, 1, -1, 1, -1, 1, -1, 1]|
@@ -376,6 +405,7 @@ Binomial:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, -9, 45, -165, 495, -1287, 3003, -6435, 12870]|
 
 Binomial:Inv:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -389,6 +419,7 @@ Binomial:Inv:Rev Diagonals as columns
 | DiagCol8 | [1, 9, 45, 165, 495, 1287, 3003, 6435, 12870] |
 
 Binomial:Inv:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -402,6 +433,7 @@ Binomial:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, 0, 1, 256, 6561, 65536, 390625, 1679616, 5764801] |
 
 Binomial:Inv:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -418,6 +450,7 @@ Binomial:Inv:Rev Polynomial values as columns
 []
 
 Binomial:Rev:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -431,6 +464,7 @@ Binomial:Rev:Inv Triangle view
 | Row8 | [1, -8, 28, -56, 70, -56, 28, -8, 1] |
 
 Binomial:Rev:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [-1, 1], [1, -2, 1], [-1, 3, -3, 1], [1, -4, 6, -4, 1], [-1, 5, -10, 10, -5, 1], [1, -6, 15, -20, 15, -6, 1], [-1, 7, -21, 35, -35, 21, -7, 1], [1, -8, 28, -56, 70, -56, 28, -8, 1]] |
@@ -441,6 +475,7 @@ Binomial:Rev:Inv Triangles
 | AccRevTabl | [[1], [1, 0], [1, -1, 0], [1, -2, 1, 0], [1, -3, 3, -1, 0], [1, -4, 6, -4, 1, 0], [1, -5, 10, -10, 5, -1, 0], [1, -6, 15, -20, 15, -6, 1, 0], [1, -7, 21, -35, 35, -21, 7, -1, 0]] |
 
 Binomial:Rev:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -452,6 +487,7 @@ Binomial:Rev:Inv Row sums
 | AntiDiagSum  | [1, -1, 2, -3, 5, -8, 13, -21, 34] |
 
 Binomial:Rev:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 3, 12, 10, 60, 105, 280] |
@@ -467,6 +503,7 @@ Binomial:Rev:Inv Transforms
 | TransNat1  | [1, 1, 0, 0, 0, 0, 0, 0, 0] |
 
 Binomial:Rev:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -480,6 +517,7 @@ Binomial:Rev:Inv Diagonals as rows
 | DiagRow8 | [1, 9, 45, 165, 495, 1287, 3003, 6435, 12870]|
 
 Binomial:Rev:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, -1, 1, -1, 1, -1, 1, -1, 1] |
@@ -493,6 +531,7 @@ Binomial:Rev:Inv Diagonals as columns
 | DiagCol8 | [1, -9, 45, -165, 495, -1287, 3003, -6435, 12870] |
 
 Binomial:Rev:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -506,6 +545,7 @@ Binomial:Rev:Inv Polynomial values as rows
 | PolyRow8 | [1, 0, 1, 256, 6561, 65536, 390625, 1679616, 5764801] |
 
 Binomial:Rev:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, -1, 1, -1, 1, -1, 1, -1, 1] |

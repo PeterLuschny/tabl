@@ -2,6 +2,7 @@
 ['A008280', 'A108040', 'A236935', 'A239005']
 
 SeidelBoust Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ SeidelBoust Triangle view
 | Row8 | [1385, 1385, 1324, 1202, 1024, 800, 544, 272, 0] |
 
 SeidelBoust Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [1, 1, 0], [0, 1, 2, 2], [5, 5, 4, 2, 0], [0, 5, 10, 14, 16, 16], [61, 61, 56, 46, 32, 16, 0], [0, 61, 122, 178, 224, 256, 272, 272], [1385, 1385, 1324, 1202, 1024, 800, 544, 272, 0]] |
@@ -25,6 +27,7 @@ SeidelBoust Triangles
 | AccRevTabl | [[1], [1, 1], [0, 1, 2], [2, 4, 5, 5], [0, 2, 6, 11, 16], [16, 32, 46, 56, 61, 61], [0, 16, 48, 94, 150, 211, 272], [272, 544, 800, 1024, 1202, 1324, 1385, 1385], [0, 272, 816, 1616, 2640, 3842, 5166, 6551, 7936]] |
 
 SeidelBoust Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 5, 16, 61, 272, 1385, 7936] |
@@ -36,6 +39,7 @@ SeidelBoust Row sums
 | AntiDiagSum  | [1, 0, 2, 1, 6, 7, 72, 73, 1516] |
 
 SeidelBoust Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 2, 20, 560, 314272, 165389056, 23981211622400] |
@@ -51,6 +55,7 @@ SeidelBoust Transforms
 | TransNat1  | [1, 2, 3, 16, 35, 272, 791, 7936, 28839] |
 
 SeidelBoust Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 0, 2, 0, 16, 0, 272, 0]|
@@ -64,6 +69,7 @@ SeidelBoust Diagonals as rows
 | DiagRow8 | [1385, 1385, 49136, 150178, 2401024, 13010000, 159575936, 1301989648, 13997185024]|
 
 SeidelBoust Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 1, 0, 5, 0, 61, 0, 1385] |
@@ -77,6 +83,7 @@ SeidelBoust Diagonals as columns
 | DiagCol8 | [0, 7936, 15872, 329984, 1383424, 18870016, 127181312, 1446351104, 13997185024] |
 
 SeidelBoust Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ SeidelBoust Polynomial values as rows
 | PolyRow8 | [1385, 7936, 130683, 1318694, 7871053, 33081660, 109388351, 304397218, 744153009] |
 
 SeidelBoust Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 1, 0, 5, 0, 61, 0, 1385] |
@@ -106,6 +114,7 @@ SeidelBoust Polynomial values as columns
 []
 
 SeidelBoust:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ SeidelBoust:Rev Triangle view
 | Row8 | [0, 272, 544, 800, 1024, 1202, 1324, 1385, 1385] |
 
 SeidelBoust:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [0, 1, 1], [2, 2, 1, 0], [0, 2, 4, 5, 5], [16, 16, 14, 10, 5, 0], [0, 16, 32, 46, 56, 61, 61], [272, 272, 256, 224, 178, 122, 61, 0], [0, 272, 544, 800, 1024, 1202, 1324, 1385, 1385]] |
@@ -129,6 +139,7 @@ SeidelBoust:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [1, 2, 2], [0, 1, 3, 5], [5, 10, 14, 16, 16], [0, 5, 15, 29, 45, 61], [61, 122, 178, 224, 256, 272, 272], [0, 61, 183, 361, 585, 841, 1113, 1385], [1385, 2770, 4094, 5296, 6320, 7120, 7664, 7936, 7936]] |
 
 SeidelBoust:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 5, 16, 61, 272, 1385, 7936] |
@@ -140,6 +151,7 @@ SeidelBoust:Rev Row sums
 | AntiDiagSum  | [1, 1, 0, 3, 3, 19, 20, 307, 319] |
 
 SeidelBoust:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 2, 20, 560, 314272, 165389056, 23981211622400] |
@@ -155,6 +167,7 @@ SeidelBoust:Rev Transforms
 | TransNat1  | [1, 1, 5, 9, 61, 155, 1385, 4529, 50521] |
 
 SeidelBoust:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 1, 0, 5, 0, 61, 0, 1385]|
@@ -168,6 +181,7 @@ SeidelBoust:Rev Diagonals as rows
 | DiagRow8 | [0, 7936, 15872, 329984, 1383424, 18870016, 127181312, 1446351104, 13997185024]|
 
 SeidelBoust:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 0, 2, 0, 16, 0, 272, 0] |
@@ -181,6 +195,7 @@ SeidelBoust:Rev Diagonals as columns
 | DiagCol8 | [1385, 1385, 49136, 150178, 2401024, 13010000, 159575936, 1301989648, 13997185024] |
 
 SeidelBoust:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ SeidelBoust:Rev Polynomial values as rows
 | PolyRow8 | [0, 7936, 680544, 13483518, 120436288, 674417460, 2786619936, 9303587314, 26532106368] |
 
 SeidelBoust:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 0, 2, 0, 16, 0, 272, 0] |

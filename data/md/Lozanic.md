@@ -2,6 +2,7 @@
 ['A034851']
 
 Lozanic Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ Lozanic Triangle view
 | Row8 | [1, 4, 16, 28, 38, 28, 16, 4, 1] |
 
 Lozanic Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [1, 1, 1], [1, 2, 2, 1], [1, 2, 4, 2, 1], [1, 3, 6, 6, 3, 1], [1, 3, 9, 10, 9, 3, 1], [1, 4, 12, 19, 19, 12, 4, 1], [1, 4, 16, 28, 38, 28, 16, 4, 1]] |
@@ -25,6 +27,7 @@ Lozanic Triangles
 | AccRevTabl | [[1], [1, 2], [1, 2, 3], [1, 3, 5, 6], [1, 3, 7, 9, 10], [1, 4, 10, 16, 19, 20], [1, 4, 13, 23, 32, 35, 36], [1, 5, 17, 36, 55, 67, 71, 72], [1, 5, 21, 49, 87, 115, 131, 135, 136]] |
 
 Lozanic Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 3, 6, 10, 20, 36, 72, 136] |
@@ -36,6 +39,7 @@ Lozanic Row sums
 | AntiDiagSum  | [1, 1, 2, 2, 4, 5, 9, 12, 21] |
 
 Lozanic Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 2, 4, 6, 90, 228, 2128] |
@@ -51,6 +55,7 @@ Lozanic Transforms
 | TransNat1  | [1, 3, 6, 15, 30, 70, 144, 324, 680] |
 
 Lozanic Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ Lozanic Diagonals as rows
 | DiagRow8 | [1, 5, 25, 85, 255, 651, 1519, 3235, 6470]|
 
 Lozanic Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -77,6 +83,7 @@ Lozanic Diagonals as columns
 | DiagCol8 | [1, 5, 25, 85, 255, 651, 1519, 3235, 6470] |
 
 Lozanic Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ Lozanic Polynomial values as rows
 | PolyRow8 | [1, 136, 3593, 37768, 237073, 1068296, 3819481, 11513608, 30448673] |
 
 Lozanic Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -106,6 +114,7 @@ Lozanic Polynomial values as columns
 []
 
 Lozanic:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ Lozanic:Inv Triangle view
 | Row8 | [-19, -4, 56, -28, -22, 20, 0, -4, 1] |
 
 Lozanic:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [-1, 1], [0, -1, 1], [1, 0, -2, 1], [-1, 2, 0, -2, 1], [-1, -3, 6, 0, -3, 1], [4, -3, -7, 8, 0, -3, 1], [-1, 18, -18, -13, 17, 0, -4, 1], [-19, -4, 56, -28, -22, 20, 0, -4, 1]] |
@@ -129,6 +139,7 @@ Lozanic:Inv Triangles
 | AccRevTabl | [[1], [1, 0], [1, 0, 0], [1, -1, -1, 0], [1, -1, -1, 1, 0], [1, -2, -2, 4, 1, 0], [1, -2, -2, 6, -1, -4, 0], [1, -3, -3, 14, 1, -17, 1, 0], [1, -3, -3, 17, -5, -33, 23, 19, 0]] |
 
 Lozanic:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -140,6 +151,7 @@ Lozanic:Inv Row sums
 | AntiDiagSum  | [1, -1, 1, 0, 0, -1, 2, 0, -7] |
 
 Lozanic:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 2, 2, 6, 168, 7956, 58520] |
@@ -155,6 +167,7 @@ Lozanic:Inv Transforms
 | TransNat1  | [1, 1, 1, -1, 0, 2, -2, -6, 16] |
 
 Lozanic:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ Lozanic:Inv Diagonals as rows
 | DiagRow8 | [-19, -127, -511, -1603, -4157, -9633, -20121, -39301, -71858]|
 
 Lozanic:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, -1, 0, 1, -1, -1, 4, -1, -19] |
@@ -181,6 +195,7 @@ Lozanic:Inv Diagonals as columns
 | DiagCol8 | [1, -5, 0, 65, -95, -891, 2548, 15777, -71858] |
 
 Lozanic:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ Lozanic:Inv Polynomial values as rows
 | PolyRow8 | [-19, 0, 5, 608, 13917, 124736, 682805, 2747040, 8943053] |
 
 Lozanic:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, -1, 0, 1, -1, -1, 4, -1, -19] |
@@ -210,6 +226,7 @@ Lozanic:Inv Polynomial values as columns
 []
 
 Lozanic:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ Lozanic:Rev Triangle view
 | Row8 | [1, 4, 16, 28, 38, 28, 16, 4, 1] |
 
 Lozanic:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [1, 1, 1], [1, 2, 2, 1], [1, 2, 4, 2, 1], [1, 3, 6, 6, 3, 1], [1, 3, 9, 10, 9, 3, 1], [1, 4, 12, 19, 19, 12, 4, 1], [1, 4, 16, 28, 38, 28, 16, 4, 1]] |
@@ -233,6 +251,7 @@ Lozanic:Rev Triangles
 | AccRevTabl | [[1], [1, 2], [1, 2, 3], [1, 3, 5, 6], [1, 3, 7, 9, 10], [1, 4, 10, 16, 19, 20], [1, 4, 13, 23, 32, 35, 36], [1, 5, 17, 36, 55, 67, 71, 72], [1, 5, 21, 49, 87, 115, 131, 135, 136]] |
 
 Lozanic:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 3, 6, 10, 20, 36, 72, 136] |
@@ -244,6 +263,7 @@ Lozanic:Rev Row sums
 | AntiDiagSum  | [1, 1, 2, 2, 4, 5, 9, 12, 21] |
 
 Lozanic:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 2, 4, 6, 90, 228, 2128] |
@@ -259,6 +279,7 @@ Lozanic:Rev Transforms
 | TransNat1  | [1, 3, 6, 15, 30, 70, 144, 324, 680] |
 
 Lozanic:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -272,6 +293,7 @@ Lozanic:Rev Diagonals as rows
 | DiagRow8 | [1, 5, 25, 85, 255, 651, 1519, 3235, 6470]|
 
 Lozanic:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -285,6 +307,7 @@ Lozanic:Rev Diagonals as columns
 | DiagCol8 | [1, 5, 25, 85, 255, 651, 1519, 3235, 6470] |
 
 Lozanic:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ Lozanic:Rev Polynomial values as rows
 | PolyRow8 | [1, 136, 3593, 37768, 237073, 1068296, 3819481, 11513608, 30448673] |
 
 Lozanic:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -314,6 +338,7 @@ Lozanic:Rev Polynomial values as columns
 []
 
 Lozanic:Inv:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -327,6 +352,7 @@ Lozanic:Inv:Rev Triangle view
 | Row8 | [1, -4, 0, 20, -22, -28, 56, -4, -19] |
 
 Lozanic:Inv:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, -1], [1, -1, 0], [1, -2, 0, 1], [1, -2, 0, 2, -1], [1, -3, 0, 6, -3, -1], [1, -3, 0, 8, -7, -3, 4], [1, -4, 0, 17, -13, -18, 18, -1], [1, -4, 0, 20, -22, -28, 56, -4, -19]] |
@@ -337,6 +363,7 @@ Lozanic:Inv:Rev Triangles
 | AccRevTabl | [[1], [-1, 0], [0, -1, 0], [1, 1, -1, 0], [-1, 1, 1, -1, 0], [-1, -4, 2, 2, -1, 0], [4, 1, -6, 2, 2, -1, 0], [-1, 17, -1, -14, 3, 3, -1, 0], [-19, -23, 33, 5, -17, 3, 3, -1, 0]] |
 
 Lozanic:Inv:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -348,6 +375,7 @@ Lozanic:Inv:Rev Row sums
 | AntiDiagSum  | [1, 1, 0, 0, -1, -1, -1, 0, 2] |
 
 Lozanic:Inv:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 2, 2, 6, 168, 7956, 58520] |
@@ -363,6 +391,7 @@ Lozanic:Inv:Rev Transforms
 | TransNat1  | [1, -1, -1, 1, 0, -2, 2, 6, -16] |
 
 Lozanic:Inv:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, -1, 0, 1, -1, -1, 4, -1, -19]|
@@ -376,6 +405,7 @@ Lozanic:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, -5, 0, 65, -95, -891, 2548, 15777, -71858]|
 
 Lozanic:Inv:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -389,6 +419,7 @@ Lozanic:Inv:Rev Diagonals as columns
 | DiagCol8 | [-19, -127, -511, -1603, -4157, -9633, -20121, -39301, -71858] |
 
 Lozanic:Inv:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -402,6 +433,7 @@ Lozanic:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, 0, -2887, -100640, -1114383, -6958144, -30661655, -106753632, -313473055] |
 
 Lozanic:Inv:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -418,6 +450,7 @@ Lozanic:Inv:Rev Polynomial values as columns
 []
 
 Lozanic:Rev:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -431,6 +464,7 @@ Lozanic:Rev:Inv Triangle view
 | Row8 | [-19, -4, 56, -28, -22, 20, 0, -4, 1] |
 
 Lozanic:Rev:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [-1, 1], [0, -1, 1], [1, 0, -2, 1], [-1, 2, 0, -2, 1], [-1, -3, 6, 0, -3, 1], [4, -3, -7, 8, 0, -3, 1], [-1, 18, -18, -13, 17, 0, -4, 1], [-19, -4, 56, -28, -22, 20, 0, -4, 1]] |
@@ -441,6 +475,7 @@ Lozanic:Rev:Inv Triangles
 | AccRevTabl | [[1], [1, 0], [1, 0, 0], [1, -1, -1, 0], [1, -1, -1, 1, 0], [1, -2, -2, 4, 1, 0], [1, -2, -2, 6, -1, -4, 0], [1, -3, -3, 14, 1, -17, 1, 0], [1, -3, -3, 17, -5, -33, 23, 19, 0]] |
 
 Lozanic:Rev:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -452,6 +487,7 @@ Lozanic:Rev:Inv Row sums
 | AntiDiagSum  | [1, -1, 1, 0, 0, -1, 2, 0, -7] |
 
 Lozanic:Rev:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 2, 2, 6, 168, 7956, 58520] |
@@ -467,6 +503,7 @@ Lozanic:Rev:Inv Transforms
 | TransNat1  | [1, 1, 1, -1, 0, 2, -2, -6, 16] |
 
 Lozanic:Rev:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -480,6 +517,7 @@ Lozanic:Rev:Inv Diagonals as rows
 | DiagRow8 | [-19, -127, -511, -1603, -4157, -9633, -20121, -39301, -71858]|
 
 Lozanic:Rev:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, -1, 0, 1, -1, -1, 4, -1, -19] |
@@ -493,6 +531,7 @@ Lozanic:Rev:Inv Diagonals as columns
 | DiagCol8 | [1, -5, 0, 65, -95, -891, 2548, 15777, -71858] |
 
 Lozanic:Rev:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -506,6 +545,7 @@ Lozanic:Rev:Inv Polynomial values as rows
 | PolyRow8 | [-19, 0, 5, 608, 13917, 124736, 682805, 2747040, 8943053] |
 
 Lozanic:Rev:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, -1, 0, 1, -1, -1, 4, -1, -19] |

@@ -2,6 +2,7 @@
 ['A359363', 'A056939']
 
 Baxter Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ Baxter Triangle view
 | Row8 | [0, 1, 84, 1176, 4116, 4116, 1176, 84, 1] |
 
 Baxter Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, 1, 1], [0, 1, 4, 1], [0, 1, 10, 10, 1], [0, 1, 20, 50, 20, 1], [0, 1, 35, 175, 175, 35, 1], [0, 1, 56, 490, 980, 490, 56, 1], [0, 1, 84, 1176, 4116, 4116, 1176, 84, 1]] |
@@ -25,6 +27,7 @@ Baxter Triangles
 | AccRevTabl | [[1], [1, 1], [1, 2, 2], [1, 5, 6, 6], [1, 11, 21, 22, 22], [1, 21, 71, 91, 92, 92], [1, 36, 211, 386, 421, 422, 422], [1, 57, 547, 1527, 2017, 2073, 2074, 2074], [1, 85, 1261, 5377, 9493, 10669, 10753, 10754, 10754]] |
 
 Baxter Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 6, 22, 92, 422, 2074, 10754] |
@@ -36,6 +39,7 @@ Baxter Row sums
 | AntiDiagSum  | [1, 0, 1, 1, 2, 5, 12, 31, 87] |
 
 Baxter Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 4, 10, 100, 175, 1960, 8232] |
@@ -51,6 +55,7 @@ Baxter Transforms
 | TransNat1  | [1, 2, 5, 18, 77, 368, 1899, 10370, 59147] |
 
 Baxter Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ Baxter Diagonals as rows
 | DiagRow8 | [0, 1, 165, 9075, 259545, 4723719, 61408347, 614083470, 4971151900]|
 
 Baxter Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -77,6 +83,7 @@ Baxter Diagonals as columns
 | DiagCol8 | [1, 120, 4950, 108900, 1557270, 16195608, 131589315, 877262100, 4971151900] |
 
 Baxter Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ Baxter Polynomial values as rows
 | PolyRow8 | [0, 10754, 293586, 2413668, 11603780, 40912230, 117659094, 292765256, 653559048] |
 
 Baxter Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -106,6 +114,7 @@ Baxter Polynomial values as columns
 []
 
 Baxter:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ Baxter:Rev Triangle view
 | Row8 | [1, 84, 1176, 4116, 4116, 1176, 84, 1, 0] |
 
 Baxter:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [1, 1, 0], [1, 4, 1, 0], [1, 10, 10, 1, 0], [1, 20, 50, 20, 1, 0], [1, 35, 175, 175, 35, 1, 0], [1, 56, 490, 980, 490, 56, 1, 0], [1, 84, 1176, 4116, 4116, 1176, 84, 1, 0]] |
@@ -129,6 +139,7 @@ Baxter:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [0, 1, 2], [0, 1, 5, 6], [0, 1, 11, 21, 22], [0, 1, 21, 71, 91, 92], [0, 1, 36, 211, 386, 421, 422], [0, 1, 57, 547, 1527, 2017, 2073, 2074], [0, 1, 85, 1261, 5377, 9493, 10669, 10753, 10754]] |
 
 Baxter:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 6, 22, 92, 422, 2074, 10754] |
@@ -140,6 +151,7 @@ Baxter:Rev Row sums
 | AntiDiagSum  | [1, 1, 1, 2, 5, 12, 31, 87, 252] |
 
 Baxter:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 4, 10, 100, 175, 1960, 8232] |
@@ -155,6 +167,7 @@ Baxter:Rev Transforms
 | TransNat1  | [1, 1, 3, 12, 55, 276, 1477, 8296, 48393] |
 
 Baxter:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -168,6 +181,7 @@ Baxter:Rev Diagonals as rows
 | DiagRow8 | [1, 120, 4950, 108900, 1557270, 16195608, 131589315, 877262100, 4971151900]|
 
 Baxter:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -181,6 +195,7 @@ Baxter:Rev Diagonals as columns
 | DiagCol8 | [0, 1, 165, 9075, 259545, 4723719, 61408347, 614083470, 4971151900] |
 
 Baxter:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ Baxter:Rev Polynomial values as rows
 | PolyRow8 | [1, 10754, 146793, 804556, 2900945, 8182446, 19609849, 41823608, 81694881] |
 
 Baxter:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |

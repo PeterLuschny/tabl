@@ -2,6 +2,7 @@
 ['A162660', 'A350972', 'A155585', 'A009006', 'A000182']
 
 EulerTan Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [0] |
@@ -15,6 +16,7 @@ EulerTan Triangle view
 | Row8 | [0, -2176, 0, 896, 0, -112, 0, 8, 0] |
 
 EulerTan Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[0], [1, 0], [0, 2, 0], [-2, 0, 3, 0], [0, -8, 0, 4, 0], [16, 0, -20, 0, 5, 0], [0, 96, 0, -40, 0, 6, 0], [-272, 0, 336, 0, -70, 0, 7, 0], [0, -2176, 0, 896, 0, -112, 0, 8, 0]] |
@@ -25,6 +27,7 @@ EulerTan Triangles
 | AccRevTabl | [[0], [0, 1], [0, 2, 2], [0, 3, 3, 1], [0, 4, 4, -4, -4], [0, 5, 5, -15, -15, 1], [0, 6, 6, -34, -34, 62, 62], [0, 7, 7, -63, -63, 273, 273, 1], [0, 8, 8, -104, -104, 792, 792, -1384, -1384]] |
 
 EulerTan Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [0, 1, 2, 1, -4, 1, 62, 1, -1384] |
@@ -36,6 +39,7 @@ EulerTan Row sums
 | AntiDiagSum  | [0, 1, 0, 0, 0, 11, 0, -192, 0] |
 
 EulerTan Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 6, 8, 80, 480, 28560, 15232] |
@@ -51,6 +55,7 @@ EulerTan Transforms
 | TransNat1  | [0, 1, 4, 7, 0, -19, 68, 435, -1376] |
 
 EulerTan Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [0, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -64,6 +69,7 @@ EulerTan Diagonals as rows
 | DiagRow8 | [0, 0, 0, 0, 0, 0, 0, 0, 0]|
 
 EulerTan Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [0, 1, 0, -2, 0, 16, 0, -272, 0] |
@@ -77,6 +83,7 @@ EulerTan Diagonals as columns
 | DiagCol8 | [0, 9, 0, -330, 0, 20592, 0, -1750320, 0] |
 
 EulerTan Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [0, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -90,6 +97,7 @@ EulerTan Polynomial values as rows
 | PolyRow8 | [0, -1384, 256, 7944, 65024, 376120, 1549056, 4998056, 13548544] |
 
 EulerTan Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [0, 1, 0, -2, 0, 16, 0, -272, 0] |
@@ -106,6 +114,7 @@ EulerTan Polynomial values as columns
 []
 
 EulerTan:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [0] |
@@ -119,6 +128,7 @@ EulerTan:Rev Triangle view
 | Row8 | [0, 8, 0, -112, 0, 896, 0, -2176, 0] |
 
 EulerTan:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[0], [0, 1], [0, 2, 0], [0, 3, 0, -2], [0, 4, 0, -8, 0], [0, 5, 0, -20, 0, 16], [0, 6, 0, -40, 0, 96, 0], [0, 7, 0, -70, 0, 336, 0, -272], [0, 8, 0, -112, 0, 896, 0, -2176, 0]] |
@@ -129,6 +139,7 @@ EulerTan:Rev Triangles
 | AccRevTabl | [[0], [1, 1], [0, 2, 2], [-2, -2, 1, 1], [0, -8, -8, -4, -4], [16, 16, -4, -4, 1, 1], [0, 96, 96, 56, 56, 62, 62], [-272, -272, 64, 64, -6, -6, 1, 1], [0, -2176, -2176, -1280, -1280, -1392, -1392, -1384, -1384]] |
 
 EulerTan:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [0, 1, 2, 1, -4, 1, 62, 1, -1384] |
@@ -140,6 +151,7 @@ EulerTan:Rev Row sums
 | AntiDiagSum  | [0, 0, 1, 2, 3, 4, 3, -2, -13] |
 
 EulerTan:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 6, 8, 80, 480, 28560, 15232] |
@@ -155,6 +167,7 @@ EulerTan:Rev Transforms
 | TransNat1  | [0, 2, 4, -2, -24, 26, 428, -426, -12464] |
 
 EulerTan:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [0, 1, 0, -2, 0, 16, 0, -272, 0]|
@@ -168,6 +181,7 @@ EulerTan:Rev Diagonals as rows
 | DiagRow8 | [0, 9, 0, -330, 0, 20592, 0, -1750320, 0]|
 
 EulerTan:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [0, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -181,6 +195,7 @@ EulerTan:Rev Diagonals as columns
 | DiagCol8 | [0, 0, 0, 0, 0, 0, 0, 0, 0] |
 
 EulerTan:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [0, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -194,6 +209,7 @@ EulerTan:Rev Polynomial values as rows
 | PolyRow8 | [0, -1384, -250736, -4544184, -34741216, -167213960, -602197584, -1777008856, -4534099904] |
 
 EulerTan:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [0, 0, 0, 0, 0, 0, 0, 0, 0] |

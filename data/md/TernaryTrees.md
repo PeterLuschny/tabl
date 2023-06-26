@@ -2,6 +2,7 @@
 ['A355172']
 
 TernaryTrees Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ TernaryTrees Triangle view
 | Row8 | [0, 1, 15, 117, 627, 2565, 8379, 21945, 43263] |
 
 TernaryTrees Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, 1, 3], [0, 1, 5, 12], [0, 1, 7, 25, 55], [0, 1, 9, 42, 130, 273], [0, 1, 11, 63, 245, 700, 1428], [0, 1, 13, 88, 408, 1428, 3876, 7752], [0, 1, 15, 117, 627, 2565, 8379, 21945, 43263]] |
@@ -25,6 +27,7 @@ TernaryTrees Triangles
 | AccRevTabl | [[1], [1, 1], [3, 4, 4], [12, 17, 18, 18], [55, 80, 87, 88, 88], [273, 403, 445, 454, 455, 455], [1428, 2128, 2373, 2436, 2447, 2448, 2448], [7752, 11628, 13056, 13464, 13552, 13565, 13566, 13566], [43263, 65208, 73587, 76152, 76779, 76896, 76911, 76912, 76912]] |
 
 TernaryTrees Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 4, 18, 88, 455, 2448, 13566, 76912] |
@@ -36,6 +39,7 @@ TernaryTrees Row sums
 | AntiDiagSum  | [1, 0, 1, 1, 4, 6, 20, 35, 109] |
 
 TernaryTrees Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 3, 60, 1925, 8190, 8246700, 7759752, 413377965] |
@@ -51,6 +55,7 @@ TernaryTrees Transforms
 | TransNat1  | [1, 2, 11, 65, 398, 2485, 15708, 100149, 642620] |
 
 TernaryTrees Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 3, 12, 55, 273, 1428, 7752, 43263]|
@@ -64,6 +69,7 @@ TernaryTrees Diagonals as rows
 | DiagRow8 | [0, 1, 19, 228, 2223, 19285, 155496, 1193808, 8855691]|
 
 TernaryTrees Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -77,6 +83,7 @@ TernaryTrees Diagonals as columns
 | DiagCol8 | [43263, 126500, 296010, 610740, 1157013, 2056912, 3478200, 5645904, 8855691] |
 
 TernaryTrees Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ TernaryTrees Polynomial values as rows
 | PolyRow8 | [0, 76912, 14513654, 338627928, 3231946036, 18753406880, 79220137002, 268505674024, 774137880008] |
 
 TernaryTrees Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -106,6 +114,7 @@ TernaryTrees Polynomial values as columns
 []
 
 TernaryTrees:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ TernaryTrees:Rev Triangle view
 | Row8 | [43263, 21945, 8379, 2565, 627, 117, 15, 1, 0] |
 
 TernaryTrees:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [3, 1, 0], [12, 5, 1, 0], [55, 25, 7, 1, 0], [273, 130, 42, 9, 1, 0], [1428, 700, 245, 63, 11, 1, 0], [7752, 3876, 1428, 408, 88, 13, 1, 0], [43263, 21945, 8379, 2565, 627, 117, 15, 1, 0]] |
@@ -129,6 +139,7 @@ TernaryTrees:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [0, 1, 4], [0, 1, 6, 18], [0, 1, 8, 33, 88], [0, 1, 10, 52, 182, 455], [0, 1, 12, 75, 320, 1020, 2448], [0, 1, 14, 102, 510, 1938, 5814, 13566], [0, 1, 16, 133, 760, 3325, 11704, 33649, 76912]] |
 
 TernaryTrees:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 4, 18, 88, 455, 2448, 13566, 76912] |
@@ -140,6 +151,7 @@ TernaryTrees:Rev Row sums
 | AntiDiagSum  | [1, 1, 3, 13, 60, 299, 1565, 8495, 47393] |
 
 TernaryTrees:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 3, 60, 1925, 8190, 8246700, 7759752, 413377965] |
@@ -155,6 +167,7 @@ TernaryTrees:Rev Transforms
 | TransNat1  | [1, 1, 5, 25, 130, 700, 3876, 21945, 126500] |
 
 TernaryTrees:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -168,6 +181,7 @@ TernaryTrees:Rev Diagonals as rows
 | DiagRow8 | [43263, 126500, 296010, 610740, 1157013, 2056912, 3478200, 5645904, 8855691]|
 
 TernaryTrees:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 3, 12, 55, 273, 1428, 7752, 43263] |
@@ -181,6 +195,7 @@ TernaryTrees:Rev Diagonals as columns
 | DiagCol8 | [0, 1, 19, 228, 2223, 19285, 155496, 1193808, 8855691] |
 
 TernaryTrees:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ TernaryTrees:Rev Polynomial values as rows
 | PolyRow8 | [43263, 76912, 156053, 346104, 787411, 1753088, 3732777, 7547368, 14499719] |
 
 TernaryTrees:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 3, 12, 55, 273, 1428, 7752, 43263] |

@@ -2,6 +2,7 @@
 ['A269945', 'A008957', 'A036969']
 
 CentralSet Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ CentralSet Triangle view
 | Row8 | [0, 1, 5461, 118482, 196053, 61490, 5278, 140, 1] |
 
 CentralSet Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, 1, 1], [0, 1, 5, 1], [0, 1, 21, 14, 1], [0, 1, 85, 147, 30, 1], [0, 1, 341, 1408, 627, 55, 1], [0, 1, 1365, 13013, 11440, 2002, 91, 1], [0, 1, 5461, 118482, 196053, 61490, 5278, 140, 1]] |
@@ -25,6 +27,7 @@ CentralSet Triangles
 | AccRevTabl | [[1], [1, 1], [1, 2, 2], [1, 6, 7, 7], [1, 15, 36, 37, 37], [1, 31, 178, 263, 264, 264], [1, 56, 683, 2091, 2432, 2433, 2433], [1, 92, 2094, 13534, 26547, 27912, 27913, 27913], [1, 141, 5419, 66909, 262962, 381444, 386905, 386906, 386906]] |
 
 CentralSet Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 7, 37, 264, 2433, 27913, 386906] |
@@ -36,6 +39,7 @@ CentralSet Row sums
 | AntiDiagSum  | [1, 0, 1, 1, 2, 6, 23, 100, 490] |
 
 CentralSet Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 5, 42, 24990, 12439680, 3123120, 943260039381660] |
@@ -51,6 +55,7 @@ CentralSet Transforms
 | TransNat1  | [1, 2, 5, 21, 126, 1001, 10129, 126006, 1877593] |
 
 CentralSet Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ CentralSet Diagonals as rows
 | DiagRow8 | [0, 1, 87381, 87099705, 13850000505, 796513723005, 23793900258765, 448016038000965, 5974284925007685]|
 
 CentralSet Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -77,6 +83,7 @@ CentralSet Diagonals as columns
 | DiagCol8 | [1, 204, 25194, 2458676, 209609235, 16410363840, 1213911823620, 86347951359480, 5974284925007685] |
 
 CentralSet Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ CentralSet Polynomial values as rows
 | PolyRow8 | [0, 386906, 6430198, 38230932, 144803540, 423433030, 1045140666, 2287104848, 4572924232] |
 
 CentralSet Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -106,6 +114,7 @@ CentralSet Polynomial values as columns
 []
 
 CentralSet:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ CentralSet:Inv Triangle view
 | Row8 | [0, -25401600, 38402064, -15291640, 2475473, -191620, 7462, -140, 1] |
 
 CentralSet:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, -1, 1], [0, 4, -5, 1], [0, -36, 49, -14, 1], [0, 576, -820, 273, -30, 1], [0, -14400, 21076, -7645, 1023, -55, 1], [0, 518400, -773136, 296296, -44473, 3003, -91, 1], [0, -25401600, 38402064, -15291640, 2475473, -191620, 7462, -140, 1]] |
@@ -129,6 +139,7 @@ CentralSet:Inv Triangles
 | AccRevTabl | [[1], [1, 1], [1, 0, 0], [1, -4, 0, 0], [1, -13, 36, 0, 0], [1, -29, 244, -576, 0, 0], [1, -54, 969, -6676, 14400, 0, 0], [1, -90, 2913, -41560, 254736, -518400, 0, 0], [1, -139, 7323, -184297, 2291176, -13000464, 25401600, 0, 0]] |
 
 CentralSet:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 0, 0, 0, 0, 0, 0, 0] |
@@ -140,6 +151,7 @@ CentralSet:Inv Row sums
 | AntiDiagSum  | [1, 0, 1, -1, 5, -41, 626, -15234, 539750] |
 
 CentralSet:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 20, 1764, 10745280, 326939342400, 352300447699200, 27645512323747439317996800] |
@@ -155,6 +167,7 @@ CentralSet:Inv Transforms
 | TransNat1  | [1, 2, 1, -3, 24, -360, 8640, -302400, 14515200] |
 
 CentralSet:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ CentralSet:Inv Diagonals as rows
 | DiagRow8 | [0, 1625702400, 202759531776, 8689315795776, 201529405816816, 3076822378767280, 34475213865472380, 303626807076050640, 2202549127844351265]|
 
 CentralSet:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -181,6 +195,7 @@ CentralSet:Inv Diagonals as columns
 | DiagCol8 | [1, -204, 32946, -5293970, 909450751, -171757365650, 36053226248115, -8439654758970225, 2202549127844351265] |
 
 CentralSet:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ CentralSet:Inv Polynomial values as rows
 | PolyRow8 | [0, 0, 14407568, 15629328, 0, -24006400, -44118000, -49723632, -34972672] |
 
 CentralSet:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -210,6 +226,7 @@ CentralSet:Inv Polynomial values as columns
 []
 
 CentralSet:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ CentralSet:Rev Triangle view
 | Row8 | [1, 140, 5278, 61490, 196053, 118482, 5461, 1, 0] |
 
 CentralSet:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [1, 1, 0], [1, 5, 1, 0], [1, 14, 21, 1, 0], [1, 30, 147, 85, 1, 0], [1, 55, 627, 1408, 341, 1, 0], [1, 91, 2002, 11440, 13013, 1365, 1, 0], [1, 140, 5278, 61490, 196053, 118482, 5461, 1, 0]] |
@@ -233,6 +251,7 @@ CentralSet:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [0, 1, 2], [0, 1, 6, 7], [0, 1, 22, 36, 37], [0, 1, 86, 233, 263, 264], [0, 1, 342, 1750, 2377, 2432, 2433], [0, 1, 1366, 14379, 25819, 27821, 27912, 27913], [0, 1, 5462, 123944, 319997, 381487, 386765, 386905, 386906]] |
 
 CentralSet:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 7, 37, 264, 2433, 27913, 386906] |
@@ -244,6 +263,7 @@ CentralSet:Rev Row sums
 | AntiDiagSum  | [1, 1, 1, 2, 6, 16, 52, 204, 804] |
 
 CentralSet:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 5, 42, 24990, 12439680, 3123120, 943260039381660] |
@@ -259,6 +279,7 @@ CentralSet:Rev Transforms
 | TransNat1  | [1, 1, 3, 14, 96, 847, 9335, 125211, 1991467] |
 
 CentralSet:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -272,6 +293,7 @@ CentralSet:Rev Diagonals as rows
 | DiagRow8 | [1, 204, 25194, 2458676, 209609235, 16410363840, 1213911823620, 86347951359480, 5974284925007685]|
 
 CentralSet:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -285,6 +307,7 @@ CentralSet:Rev Diagonals as columns
 | DiagCol8 | [0, 1, 87381, 87099705, 13850000505, 796513723005, 23793900258765, 448016038000965, 5974284925007685] |
 
 CentralSet:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ CentralSet:Rev Polynomial values as rows
 | PolyRow8 | [1, 386906, 7791217, 50362828, 197920145, 586014526, 1443941761, 3126705632, 6150938593] |
 
 CentralSet:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -314,6 +338,7 @@ CentralSet:Rev Polynomial values as columns
 []
 
 CentralSet:Inv:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -327,6 +352,7 @@ CentralSet:Inv:Rev Triangle view
 | Row8 | [1, -140, 7462, -191620, 2475473, -15291640, 38402064, -25401600, 0] |
 
 CentralSet:Inv:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [1, -1, 0], [1, -5, 4, 0], [1, -14, 49, -36, 0], [1, -30, 273, -820, 576, 0], [1, -55, 1023, -7645, 21076, -14400, 0], [1, -91, 3003, -44473, 296296, -773136, 518400, 0], [1, -140, 7462, -191620, 2475473, -15291640, 38402064, -25401600, 0]] |
@@ -337,6 +363,7 @@ CentralSet:Inv:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [0, -1, 0], [0, 4, -1, 0], [0, -36, 13, -1, 0], [0, 576, -244, 29, -1, 0], [0, -14400, 6676, -969, 54, -1, 0], [0, 518400, -254736, 41560, -2913, 90, -1, 0], [0, -25401600, 13000464, -2291176, 184297, -7323, 139, -1, 0]] |
 
 CentralSet:Inv:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 0, 0, 0, 0, 0, 0, 0] |
@@ -348,6 +375,7 @@ CentralSet:Inv:Rev Row sums
 | AntiDiagSum  | [1, 1, 1, 0, -4, -9, 20, 183, 113] |
 
 CentralSet:Inv:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 20, 1764, 10745280, 326939342400, 352300447699200, 27645512323747439317996800] |
@@ -363,6 +391,7 @@ CentralSet:Inv:Rev Transforms
 | TransNat1  | [1, 1, -1, 3, -24, 360, -8640, 302400, -14515200] |
 
 CentralSet:Inv:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -376,6 +405,7 @@ CentralSet:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, -204, 32946, -5293970, 909450751, -171757365650, 36053226248115, -8439654758970225, 2202549127844351265]|
 
 CentralSet:Inv:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -389,6 +419,7 @@ CentralSet:Inv:Rev Diagonals as columns
 | DiagCol8 | [0, 1625702400, 202759531776, 8689315795776, 201529405816816, 3076822378767280, 34475213865472380, 303626807076050640, 2202549127844351265] |
 
 CentralSet:Inv:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -402,6 +433,7 @@ CentralSet:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, 0, -1244901007, -31078656752, -273922023375, -1430730721024, -5434876301375, -16652473785072, -43695180133087] |
 
 CentralSet:Inv:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |

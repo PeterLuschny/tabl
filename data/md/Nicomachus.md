@@ -2,6 +2,7 @@
 ['A036561', 'A081954', 'A175840']
 
 Nicomachus Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ Nicomachus Triangle view
 | Row8 | [256, 384, 576, 864, 1296, 1944, 2916, 4374, 6561] |
 
 Nicomachus Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [2, 3], [4, 6, 9], [8, 12, 18, 27], [16, 24, 36, 54, 81], [32, 48, 72, 108, 162, 243], [64, 96, 144, 216, 324, 486, 729], [128, 192, 288, 432, 648, 972, 1458, 2187], [256, 384, 576, 864, 1296, 1944, 2916, 4374, 6561]] |
@@ -25,6 +27,7 @@ Nicomachus Triangles
 | AccRevTabl | [[1], [3, 5], [9, 15, 19], [27, 45, 57, 65], [81, 135, 171, 195, 211], [243, 405, 513, 585, 633, 665], [729, 1215, 1539, 1755, 1899, 1995, 2059], [2187, 3645, 4617, 5265, 5697, 5985, 6177, 6305], [6561, 10935, 13851, 15795, 17091, 17955, 18531, 18915, 19171]] |
 
 Nicomachus Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 5, 19, 65, 211, 665, 2059, 6305, 19171] |
@@ -36,6 +39,7 @@ Nicomachus Row sums
 | AntiDiagSum  | [1, 2, 7, 14, 37, 74, 175, 350, 781] |
 
 Nicomachus Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 6, 36, 216, 1296, 7776, 46656, 279936, 1679616] |
@@ -51,6 +55,7 @@ Nicomachus Transforms
 | TransNat1  | [1, 8, 43, 194, 793, 3044, 11191, 39878, 138805] |
 
 Nicomachus Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 3, 9, 27, 81, 243, 729, 2187, 6561]|
@@ -64,6 +69,7 @@ Nicomachus Diagonals as rows
 | DiagRow8 | [256, 768, 2304, 6912, 20736, 62208, 186624, 559872, 1679616]|
 
 Nicomachus Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 2, 4, 8, 16, 32, 64, 128, 256] |
@@ -77,6 +83,7 @@ Nicomachus Diagonals as columns
 | DiagCol8 | [6561, 13122, 26244, 52488, 104976, 209952, 419904, 839808, 1679616] |
 
 Nicomachus Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ Nicomachus Polynomial values as rows
 | PolyRow8 | [256, 19171, 2519296, 55345711, 515977984, 2957181451, 12397455616, 41804212951, 120082160896] |
 
 Nicomachus Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 2, 4, 8, 16, 32, 64, 128, 256] |
@@ -106,6 +114,7 @@ Nicomachus Polynomial values as columns
 []
 
 Nicomachus:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ Nicomachus:Rev Triangle view
 | Row8 | [6561, 4374, 2916, 1944, 1296, 864, 576, 384, 256] |
 
 Nicomachus:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [3, 2], [9, 6, 4], [27, 18, 12, 8], [81, 54, 36, 24, 16], [243, 162, 108, 72, 48, 32], [729, 486, 324, 216, 144, 96, 64], [2187, 1458, 972, 648, 432, 288, 192, 128], [6561, 4374, 2916, 1944, 1296, 864, 576, 384, 256]] |
@@ -129,6 +139,7 @@ Nicomachus:Rev Triangles
 | AccRevTabl | [[1], [2, 5], [4, 10, 19], [8, 20, 38, 65], [16, 40, 76, 130, 211], [32, 80, 152, 260, 422, 665], [64, 160, 304, 520, 844, 1330, 2059], [128, 320, 608, 1040, 1688, 2660, 4118, 6305], [256, 640, 1216, 2080, 3376, 5320, 8236, 12610, 19171]] |
 
 Nicomachus:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 5, 19, 65, 211, 665, 2059, 6305, 19171] |
@@ -140,6 +151,7 @@ Nicomachus:Rev Row sums
 | AntiDiagSum  | [1, 3, 11, 33, 103, 309, 935, 2805, 8431] |
 
 Nicomachus:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 6, 36, 216, 1296, 7776, 46656, 279936, 1679616] |
@@ -155,6 +167,7 @@ Nicomachus:Rev Transforms
 | TransNat1  | [1, 7, 33, 131, 473, 1611, 5281, 16867, 52905] |
 
 Nicomachus:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 2, 4, 8, 16, 32, 64, 128, 256]|
@@ -168,6 +181,7 @@ Nicomachus:Rev Diagonals as rows
 | DiagRow8 | [6561, 13122, 26244, 52488, 104976, 209952, 419904, 839808, 1679616]|
 
 Nicomachus:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 3, 9, 27, 81, 243, 729, 2187, 6561] |
@@ -181,6 +195,7 @@ Nicomachus:Rev Diagonals as columns
 | DiagCol8 | [256, 768, 2304, 6912, 20736, 62208, 186624, 559872, 1679616] |
 
 Nicomachus:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ Nicomachus:Rev Polynomial values as rows
 | PolyRow8 | [6561, 19171, 242461, 3352671, 26839609, 142854331, 573306741, 1878275191, 5286112081] |
 
 Nicomachus:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 3, 9, 27, 81, 243, 729, 2187, 6561] |

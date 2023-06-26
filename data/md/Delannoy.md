@@ -2,6 +2,7 @@
 ['A008288']
 
 Delannoy Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ Delannoy Triangle view
 | Row8 | [1, 15, 85, 231, 321, 231, 85, 15, 1] |
 
 Delannoy Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [1, 3, 1], [1, 5, 5, 1], [1, 7, 13, 7, 1], [1, 9, 25, 25, 9, 1], [1, 11, 41, 63, 41, 11, 1], [1, 13, 61, 129, 129, 61, 13, 1], [1, 15, 85, 231, 321, 231, 85, 15, 1]] |
@@ -25,6 +27,7 @@ Delannoy Triangles
 | AccRevTabl | [[1], [1, 2], [1, 4, 5], [1, 6, 11, 12], [1, 8, 21, 28, 29], [1, 10, 35, 60, 69, 70], [1, 12, 53, 116, 157, 168, 169], [1, 14, 75, 204, 333, 394, 407, 408], [1, 16, 101, 332, 653, 884, 969, 984, 985]] |
 
 Delannoy Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 5, 12, 29, 70, 169, 408, 985] |
@@ -36,6 +39,7 @@ Delannoy Row sums
 | AntiDiagSum  | [1, 1, 2, 4, 7, 13, 24, 44, 81] |
 
 Delannoy Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 3, 5, 91, 225, 28413, 102297, 2100945] |
@@ -51,6 +55,7 @@ Delannoy Transforms
 | TransNat1  | [1, 3, 10, 30, 87, 245, 676, 1836, 4925] |
 
 Delannoy Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ Delannoy Diagonals as rows
 | DiagRow8 | [1, 17, 145, 833, 3649, 13073, 40081, 108545, 265729]|
 
 Delannoy Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -77,6 +83,7 @@ Delannoy Diagonals as columns
 | DiagCol8 | [1, 17, 145, 833, 3649, 13073, 40081, 108545, 265729] |
 
 Delannoy Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ Delannoy Polynomial values as rows
 | PolyRow8 | [1, 985, 22363, 190513, 994381, 3844201, 12109735, 32854753, 79524793] |
 
 Delannoy Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -106,6 +114,7 @@ Delannoy Polynomial values as columns
 []
 
 Delannoy:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ Delannoy:Inv Triangle view
 | Row8 | [8558, -15310, 10286, -4942, 1838, -526, 110, -15, 1] |
 
 Delannoy:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [-1, 1], [2, -3, 1], [-6, 10, -5, 1], [22, -38, 22, -7, 1], [-90, 158, -98, 38, -9, 1], [394, -698, 450, -194, 58, -11, 1], [-1806, 3218, -2126, 978, -334, 82, -13, 1], [8558, -15310, 10286, -4942, 1838, -526, 110, -15, 1]] |
@@ -129,6 +139,7 @@ Delannoy:Inv Triangles
 | AccRevTabl | [[1], [1, 0], [1, -2, 0], [1, -4, 6, 0], [1, -6, 16, -22, 0], [1, -8, 30, -68, 90, 0], [1, -10, 48, -146, 304, -394, 0], [1, -12, 70, -264, 714, -1412, 1806, 0], [1, -14, 96, -430, 1408, -3534, 6752, -8558, 0]] |
 
 Delannoy:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -140,6 +151,7 @@ Delannoy:Inv Row sums
 | AntiDiagSum  | [1, -1, 3, -9, 33, -133, 575, -2609, 12265] |
 
 Delannoy:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 6, 30, 2926, 6619410, 957340835550, 44816541527197986, 603669538270861563270] |
@@ -155,6 +167,7 @@ Delannoy:Inv Transforms
 | TransNat1  | [1, 1, -1, 3, -11, 45, -197, 903, -4279] |
 
 Delannoy:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ Delannoy:Inv Diagonals as rows
 | DiagRow8 | [8558, 74614, 254410, 667610, 1519910, 3145790, 6065410, 11058466, 19258078]|
 
 Delannoy:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, -1, 2, -6, 22, -90, 394, -1806, 8558] |
@@ -181,6 +195,7 @@ Delannoy:Inv Diagonals as columns
 | DiagCol8 | [1, -17, 178, -1494, 11078, -76074, 496634, -3131166, 19258078] |
 
 Delannoy:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ Delannoy:Inv Polynomial values as rows
 | PolyRow8 | [8558, 0, -2502, -3226, -2154, 13908, 124130, 635898, 2462334] |
 
 Delannoy:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, -1, 2, -6, 22, -90, 394, -1806, 8558] |
@@ -210,6 +226,7 @@ Delannoy:Inv Polynomial values as columns
 []
 
 Delannoy:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ Delannoy:Rev Triangle view
 | Row8 | [1, 15, 85, 231, 321, 231, 85, 15, 1] |
 
 Delannoy:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [1, 3, 1], [1, 5, 5, 1], [1, 7, 13, 7, 1], [1, 9, 25, 25, 9, 1], [1, 11, 41, 63, 41, 11, 1], [1, 13, 61, 129, 129, 61, 13, 1], [1, 15, 85, 231, 321, 231, 85, 15, 1]] |
@@ -233,6 +251,7 @@ Delannoy:Rev Triangles
 | AccRevTabl | [[1], [1, 2], [1, 4, 5], [1, 6, 11, 12], [1, 8, 21, 28, 29], [1, 10, 35, 60, 69, 70], [1, 12, 53, 116, 157, 168, 169], [1, 14, 75, 204, 333, 394, 407, 408], [1, 16, 101, 332, 653, 884, 969, 984, 985]] |
 
 Delannoy:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 5, 12, 29, 70, 169, 408, 985] |
@@ -244,6 +263,7 @@ Delannoy:Rev Row sums
 | AntiDiagSum  | [1, 1, 2, 4, 7, 13, 24, 44, 81] |
 
 Delannoy:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 3, 5, 91, 225, 28413, 102297, 2100945] |
@@ -259,6 +279,7 @@ Delannoy:Rev Transforms
 | TransNat1  | [1, 3, 10, 30, 87, 245, 676, 1836, 4925] |
 
 Delannoy:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -272,6 +293,7 @@ Delannoy:Rev Diagonals as rows
 | DiagRow8 | [1, 17, 145, 833, 3649, 13073, 40081, 108545, 265729]|
 
 Delannoy:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -285,6 +307,7 @@ Delannoy:Rev Diagonals as columns
 | DiagCol8 | [1, 17, 145, 833, 3649, 13073, 40081, 108545, 265729] |
 
 Delannoy:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ Delannoy:Rev Polynomial values as rows
 | PolyRow8 | [1, 985, 22363, 190513, 994381, 3844201, 12109735, 32854753, 79524793] |
 
 Delannoy:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -314,6 +338,7 @@ Delannoy:Rev Polynomial values as columns
 []
 
 Delannoy:Inv:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -327,6 +352,7 @@ Delannoy:Inv:Rev Triangle view
 | Row8 | [1, -15, 110, -526, 1838, -4942, 10286, -15310, 8558] |
 
 Delannoy:Inv:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, -1], [1, -3, 2], [1, -5, 10, -6], [1, -7, 22, -38, 22], [1, -9, 38, -98, 158, -90], [1, -11, 58, -194, 450, -698, 394], [1, -13, 82, -334, 978, -2126, 3218, -1806], [1, -15, 110, -526, 1838, -4942, 10286, -15310, 8558]] |
@@ -337,6 +363,7 @@ Delannoy:Inv:Rev Triangles
 | AccRevTabl | [[1], [-1, 0], [2, -1, 0], [-6, 4, -1, 0], [22, -16, 6, -1, 0], [-90, 68, -30, 8, -1, 0], [394, -304, 146, -48, 10, -1, 0], [-1806, 1412, -714, 264, -70, 12, -1, 0], [8558, -6752, 3534, -1408, 430, -96, 14, -1, 0]] |
 
 Delannoy:Inv:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -348,6 +375,7 @@ Delannoy:Inv:Rev Row sums
 | AntiDiagSum  | [1, 1, 0, -2, -2, 4, 8, -10, -30] |
 
 Delannoy:Inv:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 6, 30, 2926, 6619410, 957340835550, 44816541527197986, 603669538270861563270] |
@@ -363,6 +391,7 @@ Delannoy:Inv:Rev Transforms
 | TransNat1  | [1, -1, 1, -3, 11, -45, 197, -903, 4279] |
 
 Delannoy:Inv:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, -1, 2, -6, 22, -90, 394, -1806, 8558]|
@@ -376,6 +405,7 @@ Delannoy:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, -17, 178, -1494, 11078, -76074, 496634, -3131166, 19258078]|
 
 Delannoy:Inv:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -389,6 +419,7 @@ Delannoy:Inv:Rev Diagonals as columns
 | DiagCol8 | [8558, 74614, 254410, 667610, 1519910, 3145790, 6065410, 11058466, 19258078] |
 
 Delannoy:Inv:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -402,6 +433,7 @@ Delannoy:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, 0, 756939, 29099278, 347527461, 2293235676, 10532080495, 37858038954, 114013757193] |
 
 Delannoy:Inv:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -418,6 +450,7 @@ Delannoy:Inv:Rev Polynomial values as columns
 []
 
 Delannoy:Rev:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -431,6 +464,7 @@ Delannoy:Rev:Inv Triangle view
 | Row8 | [8558, -15310, 10286, -4942, 1838, -526, 110, -15, 1] |
 
 Delannoy:Rev:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [-1, 1], [2, -3, 1], [-6, 10, -5, 1], [22, -38, 22, -7, 1], [-90, 158, -98, 38, -9, 1], [394, -698, 450, -194, 58, -11, 1], [-1806, 3218, -2126, 978, -334, 82, -13, 1], [8558, -15310, 10286, -4942, 1838, -526, 110, -15, 1]] |
@@ -441,6 +475,7 @@ Delannoy:Rev:Inv Triangles
 | AccRevTabl | [[1], [1, 0], [1, -2, 0], [1, -4, 6, 0], [1, -6, 16, -22, 0], [1, -8, 30, -68, 90, 0], [1, -10, 48, -146, 304, -394, 0], [1, -12, 70, -264, 714, -1412, 1806, 0], [1, -14, 96, -430, 1408, -3534, 6752, -8558, 0]] |
 
 Delannoy:Rev:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -452,6 +487,7 @@ Delannoy:Rev:Inv Row sums
 | AntiDiagSum  | [1, -1, 3, -9, 33, -133, 575, -2609, 12265] |
 
 Delannoy:Rev:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 6, 30, 2926, 6619410, 957340835550, 44816541527197986, 603669538270861563270] |
@@ -467,6 +503,7 @@ Delannoy:Rev:Inv Transforms
 | TransNat1  | [1, 1, -1, 3, -11, 45, -197, 903, -4279] |
 
 Delannoy:Rev:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -480,6 +517,7 @@ Delannoy:Rev:Inv Diagonals as rows
 | DiagRow8 | [8558, 74614, 254410, 667610, 1519910, 3145790, 6065410, 11058466, 19258078]|
 
 Delannoy:Rev:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, -1, 2, -6, 22, -90, 394, -1806, 8558] |
@@ -493,6 +531,7 @@ Delannoy:Rev:Inv Diagonals as columns
 | DiagCol8 | [1, -17, 178, -1494, 11078, -76074, 496634, -3131166, 19258078] |
 
 Delannoy:Rev:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -506,6 +545,7 @@ Delannoy:Rev:Inv Polynomial values as rows
 | PolyRow8 | [8558, 0, -2502, -3226, -2154, 13908, 124130, 635898, 2462334] |
 
 Delannoy:Rev:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, -1, 2, -6, 22, -90, 394, -1806, 8558] |

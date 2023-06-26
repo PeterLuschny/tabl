@@ -2,6 +2,7 @@
 ['A003506']
 
 Leibniz Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ Leibniz Triangle view
 | Row8 | [9, 72, 252, 504, 630, 504, 252, 72, 9] |
 
 Leibniz Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [2, 2], [3, 6, 3], [4, 12, 12, 4], [5, 20, 30, 20, 5], [6, 30, 60, 60, 30, 6], [7, 42, 105, 140, 105, 42, 7], [8, 56, 168, 280, 280, 168, 56, 8], [9, 72, 252, 504, 630, 504, 252, 72, 9]] |
@@ -25,6 +27,7 @@ Leibniz Triangles
 | AccRevTabl | [[1], [2, 4], [3, 9, 12], [4, 16, 28, 32], [5, 25, 55, 75, 80], [6, 36, 96, 156, 186, 192], [7, 49, 154, 294, 399, 441, 448], [8, 64, 232, 512, 792, 960, 1016, 1024], [9, 81, 333, 837, 1467, 1971, 2223, 2295, 2304]] |
 
 Leibniz Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 4, 12, 32, 80, 192, 448, 1024, 2304] |
@@ -36,6 +39,7 @@ Leibniz Row sums
 | AntiDiagSum  | [1, 2, 5, 10, 20, 38, 71, 130, 235] |
 
 Leibniz Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 2, 6, 12, 60, 60, 420, 840, 2520] |
@@ -51,6 +55,7 @@ Leibniz Transforms
 | TransNat1  | [1, 6, 24, 80, 240, 672, 1792, 4608, 11520] |
 
 Leibniz Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 2, 3, 4, 5, 6, 7, 8, 9]|
@@ -64,6 +69,7 @@ Leibniz Diagonals as rows
 | DiagRow8 | [9, 90, 495, 1980, 6435, 18018, 45045, 102960, 218790]|
 
 Leibniz Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 2, 3, 4, 5, 6, 7, 8, 9] |
@@ -77,6 +83,7 @@ Leibniz Diagonals as columns
 | DiagCol8 | [9, 90, 495, 1980, 6435, 18018, 45045, 102960, 218790] |
 
 Leibniz Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ Leibniz Polynomial values as rows
 | PolyRow8 | [9, 2304, 59049, 589824, 3515625, 15116544, 51883209, 150994944, 387420489] |
 
 Leibniz Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 2, 3, 4, 5, 6, 7, 8, 9] |
@@ -106,6 +114,7 @@ Leibniz Polynomial values as columns
 []
 
 Leibniz:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ Leibniz:Rev Triangle view
 | Row8 | [9, 72, 252, 504, 630, 504, 252, 72, 9] |
 
 Leibniz:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [2, 2], [3, 6, 3], [4, 12, 12, 4], [5, 20, 30, 20, 5], [6, 30, 60, 60, 30, 6], [7, 42, 105, 140, 105, 42, 7], [8, 56, 168, 280, 280, 168, 56, 8], [9, 72, 252, 504, 630, 504, 252, 72, 9]] |
@@ -129,6 +139,7 @@ Leibniz:Rev Triangles
 | AccRevTabl | [[1], [2, 4], [3, 9, 12], [4, 16, 28, 32], [5, 25, 55, 75, 80], [6, 36, 96, 156, 186, 192], [7, 49, 154, 294, 399, 441, 448], [8, 64, 232, 512, 792, 960, 1016, 1024], [9, 81, 333, 837, 1467, 1971, 2223, 2295, 2304]] |
 
 Leibniz:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 4, 12, 32, 80, 192, 448, 1024, 2304] |
@@ -140,6 +151,7 @@ Leibniz:Rev Row sums
 | AntiDiagSum  | [1, 2, 5, 10, 20, 38, 71, 130, 235] |
 
 Leibniz:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 2, 6, 12, 60, 60, 420, 840, 2520] |
@@ -155,6 +167,7 @@ Leibniz:Rev Transforms
 | TransNat1  | [1, 6, 24, 80, 240, 672, 1792, 4608, 11520] |
 
 Leibniz:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 2, 3, 4, 5, 6, 7, 8, 9]|
@@ -168,6 +181,7 @@ Leibniz:Rev Diagonals as rows
 | DiagRow8 | [9, 90, 495, 1980, 6435, 18018, 45045, 102960, 218790]|
 
 Leibniz:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 2, 3, 4, 5, 6, 7, 8, 9] |
@@ -181,6 +195,7 @@ Leibniz:Rev Diagonals as columns
 | DiagCol8 | [9, 90, 495, 1980, 6435, 18018, 45045, 102960, 218790] |
 
 Leibniz:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ Leibniz:Rev Polynomial values as rows
 | PolyRow8 | [9, 2304, 59049, 589824, 3515625, 15116544, 51883209, 150994944, 387420489] |
 
 Leibniz:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 2, 3, 4, 5, 6, 7, 8, 9] |

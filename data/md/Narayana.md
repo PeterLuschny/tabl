@@ -2,6 +2,7 @@
 ['A090181', 'A001263', 'A131198']
 
 Narayana Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ Narayana Triangle view
 | Row8 | [0, 1, 28, 196, 490, 490, 196, 28, 1] |
 
 Narayana Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, 1, 1], [0, 1, 3, 1], [0, 1, 6, 6, 1], [0, 1, 10, 20, 10, 1], [0, 1, 15, 50, 50, 15, 1], [0, 1, 21, 105, 175, 105, 21, 1], [0, 1, 28, 196, 490, 490, 196, 28, 1]] |
@@ -25,6 +27,7 @@ Narayana Triangles
 | AccRevTabl | [[1], [1, 1], [1, 2, 2], [1, 4, 5, 5], [1, 7, 13, 14, 14], [1, 11, 31, 41, 42, 42], [1, 16, 66, 116, 131, 132, 132], [1, 22, 127, 302, 407, 428, 429, 429], [1, 29, 225, 715, 1205, 1401, 1429, 1430, 1430]] |
 
 Narayana Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 5, 14, 42, 132, 429, 1430] |
@@ -36,6 +39,7 @@ Narayana Row sums
 | AntiDiagSum  | [1, 0, 1, 1, 2, 4, 8, 17, 37] |
 
 Narayana Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 3, 6, 20, 150, 525, 980] |
@@ -51,6 +55,7 @@ Narayana Transforms
 | TransNat1  | [1, 2, 5, 15, 49, 168, 594, 2145, 7865] |
 
 Narayana Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ Narayana Diagonals as rows
 | DiagRow8 | [0, 1, 45, 825, 9075, 70785, 429429, 2147145, 9202050]|
 
 Narayana Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -77,6 +83,7 @@ Narayana Diagonals as columns
 | DiagCol8 | [1, 36, 540, 4950, 32670, 169884, 736164, 2760615, 9202050] |
 
 Narayana Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ Narayana Polynomial values as rows
 | PolyRow8 | [0, 1430, 41586, 374988, 1967300, 7503330, 23151030, 61363736, 145043208] |
 
 Narayana Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -106,6 +114,7 @@ Narayana Polynomial values as columns
 []
 
 Narayana:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ Narayana:Inv Triangle view
 | Row8 | [0, -56197, 103068, -62916, 19110, -3430, 392, -28, 1] |
 
 Narayana:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, -1, 1], [0, 2, -3, 1], [0, -7, 12, -6, 1], [0, 39, -70, 40, -10, 1], [0, -321, 585, -350, 100, -15, 1], [0, 3681, -6741, 4095, -1225, 210, -21, 1], [0, -56197, 103068, -62916, 19110, -3430, 392, -28, 1]] |
@@ -129,6 +139,7 @@ Narayana:Inv Triangles
 | AccRevTabl | [[1], [1, 1], [1, 0, 0], [1, -2, 0, 0], [1, -5, 7, 0, 0], [1, -9, 31, -39, 0, 0], [1, -14, 86, -264, 321, 0, 0], [1, -20, 190, -1035, 3060, -3681, 0, 0], [1, -27, 365, -3065, 16045, -46871, 56197, 0, 0]] |
 
 Narayana:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 0, 0, 0, 0, 0, 0, 0] |
@@ -140,6 +151,7 @@ Narayana:Inv Row sums
 | AntiDiagSum  | [1, 0, 1, -1, 3, -10, 52, -397, 4307] |
 
 Narayana:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 6, 84, 10920, 8763300, 12544663950, 3947845887989640] |
@@ -155,6 +167,7 @@ Narayana:Inv Transforms
 | TransNat1  | [1, 2, 1, -1, 3, -16, 130, -1485, 22645] |
 
 Narayana:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ Narayana:Inv Diagonals as rows
 | DiagRow8 | [0, 1102571, 49615695, 909621075, 10005831825, 78045488235, 473475961959, 2367379809795, 10145913470550]|
 
 Narayana:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -181,6 +195,7 @@ Narayana:Inv Diagonals as columns
 | DiagCol8 | [1, -36, 1080, -34650, 1274130, -54532764, 2709819684, -155138281155, 10145913470550] |
 
 Narayana:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ Narayana:Inv Polynomial values as rows
 | PolyRow8 | [0, 0, 14310, 5802, -10068, -15660, 8850, 135870, 631512] |
 
 Narayana:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -210,6 +226,7 @@ Narayana:Inv Polynomial values as columns
 []
 
 Narayana:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ Narayana:Rev Triangle view
 | Row8 | [1, 28, 196, 490, 490, 196, 28, 1, 0] |
 
 Narayana:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [1, 1, 0], [1, 3, 1, 0], [1, 6, 6, 1, 0], [1, 10, 20, 10, 1, 0], [1, 15, 50, 50, 15, 1, 0], [1, 21, 105, 175, 105, 21, 1, 0], [1, 28, 196, 490, 490, 196, 28, 1, 0]] |
@@ -233,6 +251,7 @@ Narayana:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [0, 1, 2], [0, 1, 4, 5], [0, 1, 7, 13, 14], [0, 1, 11, 31, 41, 42], [0, 1, 16, 66, 116, 131, 132], [0, 1, 22, 127, 302, 407, 428, 429], [0, 1, 29, 225, 715, 1205, 1401, 1429, 1430]] |
 
 Narayana:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 5, 14, 42, 132, 429, 1430] |
@@ -244,6 +263,7 @@ Narayana:Rev Row sums
 | AntiDiagSum  | [1, 1, 1, 2, 4, 8, 17, 37, 82] |
 
 Narayana:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 3, 6, 20, 150, 525, 980] |
@@ -259,6 +279,7 @@ Narayana:Rev Transforms
 | TransNat1  | [1, 1, 3, 10, 35, 126, 462, 1716, 6435] |
 
 Narayana:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -272,6 +293,7 @@ Narayana:Rev Diagonals as rows
 | DiagRow8 | [1, 36, 540, 4950, 32670, 169884, 736164, 2760615, 9202050]|
 
 Narayana:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -285,6 +307,7 @@ Narayana:Rev Diagonals as columns
 | DiagCol8 | [0, 1, 45, 825, 9075, 70785, 429429, 2147145, 9202050] |
 
 Narayana:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ Narayana:Rev Polynomial values as rows
 | PolyRow8 | [1, 1430, 20793, 124996, 491825, 1500666, 3858505, 8766248, 18130401] |
 
 Narayana:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -314,6 +338,7 @@ Narayana:Rev Polynomial values as columns
 []
 
 Narayana:Inv:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -327,6 +352,7 @@ Narayana:Inv:Rev Triangle view
 | Row8 | [1, -28, 392, -3430, 19110, -62916, 103068, -56197, 0] |
 
 Narayana:Inv:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [1, -1, 0], [1, -3, 2, 0], [1, -6, 12, -7, 0], [1, -10, 40, -70, 39, 0], [1, -15, 100, -350, 585, -321, 0], [1, -21, 210, -1225, 4095, -6741, 3681, 0], [1, -28, 392, -3430, 19110, -62916, 103068, -56197, 0]] |
@@ -337,6 +363,7 @@ Narayana:Inv:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [0, -1, 0], [0, 2, -1, 0], [0, -7, 5, -1, 0], [0, 39, -31, 9, -1, 0], [0, -321, 264, -86, 14, -1, 0], [0, 3681, -3060, 1035, -190, 20, -1, 0], [0, -56197, 46871, -16045, 3065, -365, 27, -1, 0]] |
 
 Narayana:Inv:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 0, 0, 0, 0, 0, 0, 0] |
@@ -348,6 +375,7 @@ Narayana:Inv:Rev Row sums
 | AntiDiagSum  | [1, 1, 1, 0, -2, -3, 3, 19, 10] |
 
 Narayana:Inv:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 6, 84, 10920, 8763300, 12544663950, 3947845887989640] |
@@ -363,6 +391,7 @@ Narayana:Inv:Rev Transforms
 | TransNat1  | [1, 1, -1, 1, -3, 16, -130, 1485, -22645] |
 
 Narayana:Inv:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -376,6 +405,7 @@ Narayana:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, -36, 1080, -34650, 1274130, -54532764, 2709819684, -155138281155, 10145913470550]|
 
 Narayana:Inv:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -389,6 +419,7 @@ Narayana:Inv:Rev Diagonals as columns
 | DiagCol8 | [0, 1102571, 49615695, 909621075, 10005831825, 78045488235, 473475961959, 2367379809795, 10145913470550] |
 
 Narayana:Inv:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -402,6 +433,7 @@ Narayana:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, 0, -2330343, -61596110, -558312303, -2965040964, -11388017975, -35167502418, -92820081375] |
 
 Narayana:Inv:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |

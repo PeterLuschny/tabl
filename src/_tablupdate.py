@@ -1,11 +1,12 @@
 from pathlib import Path
 path = Path(__file__).parent
-mkpath = (path / "src/_tablmake.py").resolve()
+#mkpath = (path / "_tablmake.py").resolve()
 
 '''Make sure to reference tabl.py in its current state.'''
-exec(open(mkpath).read())
+#exec(open(mkpath).read())
 
 from tabl import GetOEISdata, SaveAllTraitsToCSV, AllCsvToHtml, SaveExtendedTables, CrossReferences 
+from _tablpaths import GetAllCsvPath
 
 '''
 DO NOT USE this function if you only want to update tabl.py.
@@ -21,8 +22,8 @@ crossreferences. This will take a considerably amount of time.
 Normally this is done only when preparing a new release.
 '''
 def update() -> None:
-    GetOEISdata()
-    SaveAllTraitsToCSV()
+    #GetOEISdata()
+    SaveAllTraitsToCSV(GetAllCsvPath())
     AllCsvToHtml()
     SaveExtendedTables()
     CrossReferences()
@@ -31,4 +32,4 @@ def update() -> None:
 if __name__ == "__main__":
 
     '''Update project.'''
-    # update()
+    update()

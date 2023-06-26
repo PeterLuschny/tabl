@@ -2,6 +2,7 @@
 ['A047999', 'A090971', 'A114700', 'A143200', 'A166282']
 
 Sierpinski Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ Sierpinski Triangle view
 | Row8 | [1, 0, 0, 0, 0, 0, 0, 0, 1] |
 
 Sierpinski Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [1, 0, 1], [1, 1, 1, 1], [1, 0, 0, 0, 1], [1, 1, 0, 0, 1, 1], [1, 0, 1, 0, 1, 0, 1], [1, 1, 1, 1, 1, 1, 1, 1], [1, 0, 0, 0, 0, 0, 0, 0, 1]] |
@@ -25,6 +27,7 @@ Sierpinski Triangles
 | AccRevTabl | [[1], [1, 2], [1, 1, 2], [1, 2, 3, 4], [1, 1, 1, 1, 2], [1, 2, 2, 2, 3, 4], [1, 1, 2, 2, 3, 3, 4], [1, 2, 3, 4, 5, 6, 7, 8], [1, 1, 1, 1, 1, 1, 1, 1, 2]] |
 
 Sierpinski Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 2, 4, 2, 4, 4, 8, 2] |
@@ -36,6 +39,7 @@ Sierpinski Row sums
 | AntiDiagSum  | [1, 1, 2, 1, 3, 2, 3, 1, 4] |
 
 Sierpinski Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -51,6 +55,7 @@ Sierpinski Transforms
 | TransNat1  | [1, 3, 4, 10, 6, 14, 16, 36, 10] |
 
 Sierpinski Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ Sierpinski Diagonals as rows
 | DiagRow8 | [1, 1, 1, 1, 1, 1, 1, 1, 0]|
 
 Sierpinski Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -77,6 +83,7 @@ Sierpinski Diagonals as columns
 | DiagCol8 | [1, 1, 1, 1, 1, 1, 1, 1, 0] |
 
 Sierpinski Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ Sierpinski Polynomial values as rows
 | PolyRow8 | [1, 2, 257, 6562, 65537, 390626, 1679617, 5764802, 16777217] |
 
 Sierpinski Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -106,6 +114,7 @@ Sierpinski Polynomial values as columns
 []
 
 Sierpinski:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ Sierpinski:Inv Triangle view
 | Row8 | [-1, 0, 0, 0, 0, 0, 0, 0, 1] |
 
 Sierpinski:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [-1, 1], [-1, 0, 1], [1, -1, -1, 1], [-1, 0, 0, 0, 1], [1, -1, 0, 0, -1, 1], [1, 0, -1, 0, -1, 0, 1], [-1, 1, 1, -1, 1, -1, -1, 1], [-1, 0, 0, 0, 0, 0, 0, 0, 1]] |
@@ -129,6 +139,7 @@ Sierpinski:Inv Triangles
 | AccRevTabl | [[1], [1, 0], [1, 1, 0], [1, 0, -1, 0], [1, 1, 1, 1, 0], [1, 0, 0, 0, -1, 0], [1, 1, 0, 0, -1, -1, 0], [1, 0, -1, 0, -1, 0, 1, 0], [1, 1, 1, 1, 1, 1, 1, 1, 0]] |
 
 Sierpinski:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -140,6 +151,7 @@ Sierpinski:Inv Row sums
 | AntiDiagSum  | [1, -1, 0, 1, -1, 0, 1, -1, 0] |
 
 Sierpinski:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -155,6 +167,7 @@ Sierpinski:Inv Transforms
 | TransNat1  | [1, 1, 2, 0, 4, 0, 0, 0, 8] |
 
 Sierpinski:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ Sierpinski:Inv Diagonals as rows
 | DiagRow8 | [-1, -1, -1, -1, -1, -1, -1, -1, 0]|
 
 Sierpinski:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, -1, -1, 1, -1, 1, 1, -1, -1] |
@@ -181,6 +195,7 @@ Sierpinski:Inv Diagonals as columns
 | DiagCol8 | [1, -1, -1, 1, -1, 1, 1, -1, 0] |
 
 Sierpinski:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ Sierpinski:Inv Polynomial values as rows
 | PolyRow8 | [-1, 0, 255, 6560, 65535, 390624, 1679615, 5764800, 16777215] |
 
 Sierpinski:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, -1, -1, 1, -1, 1, 1, -1, -1] |
@@ -210,6 +226,7 @@ Sierpinski:Inv Polynomial values as columns
 []
 
 Sierpinski:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ Sierpinski:Rev Triangle view
 | Row8 | [1, 0, 0, 0, 0, 0, 0, 0, 1] |
 
 Sierpinski:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [1, 0, 1], [1, 1, 1, 1], [1, 0, 0, 0, 1], [1, 1, 0, 0, 1, 1], [1, 0, 1, 0, 1, 0, 1], [1, 1, 1, 1, 1, 1, 1, 1], [1, 0, 0, 0, 0, 0, 0, 0, 1]] |
@@ -233,6 +251,7 @@ Sierpinski:Rev Triangles
 | AccRevTabl | [[1], [1, 2], [1, 1, 2], [1, 2, 3, 4], [1, 1, 1, 1, 2], [1, 2, 2, 2, 3, 4], [1, 1, 2, 2, 3, 3, 4], [1, 2, 3, 4, 5, 6, 7, 8], [1, 1, 1, 1, 1, 1, 1, 1, 2]] |
 
 Sierpinski:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 2, 4, 2, 4, 4, 8, 2] |
@@ -244,6 +263,7 @@ Sierpinski:Rev Row sums
 | AntiDiagSum  | [1, 1, 2, 1, 3, 2, 3, 1, 4] |
 
 Sierpinski:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -259,6 +279,7 @@ Sierpinski:Rev Transforms
 | TransNat1  | [1, 3, 4, 10, 6, 14, 16, 36, 10] |
 
 Sierpinski:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -272,6 +293,7 @@ Sierpinski:Rev Diagonals as rows
 | DiagRow8 | [1, 1, 1, 1, 1, 1, 1, 1, 0]|
 
 Sierpinski:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -285,6 +307,7 @@ Sierpinski:Rev Diagonals as columns
 | DiagCol8 | [1, 1, 1, 1, 1, 1, 1, 1, 0] |
 
 Sierpinski:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ Sierpinski:Rev Polynomial values as rows
 | PolyRow8 | [1, 2, 257, 6562, 65537, 390626, 1679617, 5764802, 16777217] |
 
 Sierpinski:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -314,6 +338,7 @@ Sierpinski:Rev Polynomial values as columns
 []
 
 Sierpinski:Inv:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -327,6 +352,7 @@ Sierpinski:Inv:Rev Triangle view
 | Row8 | [1, 0, 0, 0, 0, 0, 0, 0, -1] |
 
 Sierpinski:Inv:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, -1], [1, 0, -1], [1, -1, -1, 1], [1, 0, 0, 0, -1], [1, -1, 0, 0, -1, 1], [1, 0, -1, 0, -1, 0, 1], [1, -1, -1, 1, -1, 1, 1, -1], [1, 0, 0, 0, 0, 0, 0, 0, -1]] |
@@ -337,6 +363,7 @@ Sierpinski:Inv:Rev Triangles
 | AccRevTabl | [[1], [-1, 0], [-1, -1, 0], [1, 0, -1, 0], [-1, -1, -1, -1, 0], [1, 0, 0, 0, -1, 0], [1, 1, 0, 0, -1, -1, 0], [-1, 0, 1, 0, 1, 0, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, 0]] |
 
 Sierpinski:Inv:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -348,6 +375,7 @@ Sierpinski:Inv:Rev Row sums
 | AntiDiagSum  | [1, 1, 0, 1, -1, 0, 1, 1, -2] |
 
 Sierpinski:Inv:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -363,6 +391,7 @@ Sierpinski:Inv:Rev Transforms
 | TransNat1  | [1, -1, -2, 0, -4, 0, 0, 0, -8] |
 
 Sierpinski:Inv:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, -1, -1, 1, -1, 1, 1, -1, -1]|
@@ -376,6 +405,7 @@ Sierpinski:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, -1, -1, 1, -1, 1, 1, -1, 0]|
 
 Sierpinski:Inv:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -389,6 +419,7 @@ Sierpinski:Inv:Rev Diagonals as columns
 | DiagCol8 | [-1, -1, -1, -1, -1, -1, -1, -1, 0] |
 
 Sierpinski:Inv:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -402,6 +433,7 @@ Sierpinski:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, 0, -255, -6560, -65535, -390624, -1679615, -5764800, -16777215] |
 
 Sierpinski:Inv:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -418,6 +450,7 @@ Sierpinski:Inv:Rev Polynomial values as columns
 []
 
 Sierpinski:Rev:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -431,6 +464,7 @@ Sierpinski:Rev:Inv Triangle view
 | Row8 | [-1, 0, 0, 0, 0, 0, 0, 0, 1] |
 
 Sierpinski:Rev:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [-1, 1], [-1, 0, 1], [1, -1, -1, 1], [-1, 0, 0, 0, 1], [1, -1, 0, 0, -1, 1], [1, 0, -1, 0, -1, 0, 1], [-1, 1, 1, -1, 1, -1, -1, 1], [-1, 0, 0, 0, 0, 0, 0, 0, 1]] |
@@ -441,6 +475,7 @@ Sierpinski:Rev:Inv Triangles
 | AccRevTabl | [[1], [1, 0], [1, 1, 0], [1, 0, -1, 0], [1, 1, 1, 1, 0], [1, 0, 0, 0, -1, 0], [1, 1, 0, 0, -1, -1, 0], [1, 0, -1, 0, -1, 0, 1, 0], [1, 1, 1, 1, 1, 1, 1, 1, 0]] |
 
 Sierpinski:Rev:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -452,6 +487,7 @@ Sierpinski:Rev:Inv Row sums
 | AntiDiagSum  | [1, -1, 0, 1, -1, 0, 1, -1, 0] |
 
 Sierpinski:Rev:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -467,6 +503,7 @@ Sierpinski:Rev:Inv Transforms
 | TransNat1  | [1, 1, 2, 0, 4, 0, 0, 0, 8] |
 
 Sierpinski:Rev:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -480,6 +517,7 @@ Sierpinski:Rev:Inv Diagonals as rows
 | DiagRow8 | [-1, -1, -1, -1, -1, -1, -1, -1, 0]|
 
 Sierpinski:Rev:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, -1, -1, 1, -1, 1, 1, -1, -1] |
@@ -493,6 +531,7 @@ Sierpinski:Rev:Inv Diagonals as columns
 | DiagCol8 | [1, -1, -1, 1, -1, 1, 1, -1, 0] |
 
 Sierpinski:Rev:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -506,6 +545,7 @@ Sierpinski:Rev:Inv Polynomial values as rows
 | PolyRow8 | [-1, 0, 255, 6560, 65535, 390624, 1679615, 5764800, 16777215] |
 
 Sierpinski:Rev:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, -1, -1, 1, -1, 1, 1, -1, -1] |

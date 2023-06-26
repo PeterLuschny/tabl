@@ -2,6 +2,7 @@
 ['A039599', 'A050155']
 
 CatalanSqr Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ CatalanSqr Triangle view
 | Row8 | [1430, 3432, 3640, 2548, 1260, 440, 104, 15, 1] |
 
 CatalanSqr Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [2, 3, 1], [5, 9, 5, 1], [14, 28, 20, 7, 1], [42, 90, 75, 35, 9, 1], [132, 297, 275, 154, 54, 11, 1], [429, 1001, 1001, 637, 273, 77, 13, 1], [1430, 3432, 3640, 2548, 1260, 440, 104, 15, 1]] |
@@ -25,6 +27,7 @@ CatalanSqr Triangles
 | AccRevTabl | [[1], [1, 2], [1, 4, 6], [1, 6, 15, 20], [1, 8, 28, 56, 70], [1, 10, 45, 120, 210, 252], [1, 12, 66, 220, 495, 792, 924], [1, 14, 91, 364, 1001, 2002, 3003, 3432], [1, 16, 120, 560, 1820, 4368, 8008, 11440, 12870]] |
 
 CatalanSqr Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 6, 20, 70, 252, 924, 3432, 12870] |
@@ -36,6 +39,7 @@ CatalanSqr Row sums
 | AntiDiagSum  | [1, 1, 3, 8, 24, 75, 243, 808, 2742] |
 
 CatalanSqr Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 6, 45, 140, 3150, 207900, 21021, 2522520] |
@@ -51,6 +55,7 @@ CatalanSqr Transforms
 | TransNat1  | [1, 3, 11, 42, 163, 638, 2510, 9908, 39203] |
 
 CatalanSqr Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ CatalanSqr Diagonals as rows
 | DiagRow8 | [1430, 11934, 48450, 149226, 389367, 904475, 1924065, 3817125, 7152444]|
 
 CatalanSqr Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 2, 5, 14, 42, 132, 429, 1430] |
@@ -77,6 +83,7 @@ CatalanSqr Diagonals as columns
 | DiagCol8 | [1, 17, 170, 1309, 8602, 50830, 278460, 1442025, 7152444] |
 
 CatalanSqr Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ CatalanSqr Polynomial values as rows
 | PolyRow8 | [1430, 12870, 86310, 437444, 1746870, 5778090, 16488710, 41851560, 96642774] |
 
 CatalanSqr Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 2, 5, 14, 42, 132, 429, 1430] |
@@ -106,6 +114,7 @@ CatalanSqr Polynomial values as columns
 []
 
 CatalanSqr:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ CatalanSqr:Inv Triangle view
 | Row8 | [1, -36, 210, -462, 495, -286, 91, -15, 1] |
 
 CatalanSqr:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [-1, 1], [1, -3, 1], [-1, 6, -5, 1], [1, -10, 15, -7, 1], [-1, 15, -35, 28, -9, 1], [1, -21, 70, -84, 45, -11, 1], [-1, 28, -126, 210, -165, 66, -13, 1], [1, -36, 210, -462, 495, -286, 91, -15, 1]] |
@@ -129,6 +139,7 @@ CatalanSqr:Inv Triangles
 | AccRevTabl | [[1], [1, 0], [1, -2, -1], [1, -4, 2, 1], [1, -6, 9, -1, 0], [1, -8, 20, -15, 0, -1], [1, -10, 35, -49, 21, 0, 1], [1, -12, 54, -111, 99, -27, 1, 0], [1, -14, 77, -209, 286, -176, 34, -2, -1]] |
 
 CatalanSqr:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, -1, 1, 0, -1, 1, 0, -1] |
@@ -140,6 +151,7 @@ CatalanSqr:Inv Row sums
 | AntiDiagSum  | [1, -1, 2, -4, 8, -16, 32, -64, 128] |
 
 CatalanSqr:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 3, 30, 210, 1260, 13860, 180180, 180180] |
@@ -155,6 +167,7 @@ CatalanSqr:Inv Transforms
 | TransNat1  | [1, 1, -2, 0, 3, -3, -1, 5, -4] |
 
 CatalanSqr:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ CatalanSqr:Inv Diagonals as rows
 | DiagRow8 | [1, 45, 495, 3003, 12870, 43758, 125970, 319770, 735471]|
 
 CatalanSqr:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, -1, 1, -1, 1, -1, 1, -1, 1] |
@@ -181,6 +195,7 @@ CatalanSqr:Inv Diagonals as columns
 | DiagCol8 | [1, -17, 153, -969, 4845, -20349, 74613, -245157, 735471] |
 
 CatalanSqr:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ CatalanSqr:Inv Polynomial values as rows
 | PolyRow8 | [1, -1, 1, 1, 17, 3571, 51409, 350981, 1607521] |
 
 CatalanSqr:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, -1, 1, -1, 1, -1, 1, -1, 1] |
@@ -210,6 +226,7 @@ CatalanSqr:Inv Polynomial values as columns
 []
 
 CatalanSqr:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ CatalanSqr:Rev Triangle view
 | Row8 | [1, 15, 104, 440, 1260, 2548, 3640, 3432, 1430] |
 
 CatalanSqr:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [1, 3, 2], [1, 5, 9, 5], [1, 7, 20, 28, 14], [1, 9, 35, 75, 90, 42], [1, 11, 54, 154, 275, 297, 132], [1, 13, 77, 273, 637, 1001, 1001, 429], [1, 15, 104, 440, 1260, 2548, 3640, 3432, 1430]] |
@@ -233,6 +251,7 @@ CatalanSqr:Rev Triangles
 | AccRevTabl | [[1], [1, 2], [2, 5, 6], [5, 14, 19, 20], [14, 42, 62, 69, 70], [42, 132, 207, 242, 251, 252], [132, 429, 704, 858, 912, 923, 924], [429, 1430, 2431, 3068, 3341, 3418, 3431, 3432], [1430, 4862, 8502, 11050, 12310, 12750, 12854, 12869, 12870]] |
 
 CatalanSqr:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 6, 20, 70, 252, 924, 3432, 12870] |
@@ -244,6 +263,7 @@ CatalanSqr:Rev Row sums
 | AntiDiagSum  | [1, 1, 2, 4, 8, 17, 35, 75, 157] |
 
 CatalanSqr:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 6, 45, 140, 3150, 207900, 21021, 2522520] |
@@ -259,6 +279,7 @@ CatalanSqr:Rev Transforms
 | TransNat1  | [1, 3, 13, 58, 257, 1126, 4882, 20980, 89497] |
 
 CatalanSqr:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 2, 5, 14, 42, 132, 429, 1430]|
@@ -272,6 +293,7 @@ CatalanSqr:Rev Diagonals as rows
 | DiagRow8 | [1, 17, 170, 1309, 8602, 50830, 278460, 1442025, 7152444]|
 
 CatalanSqr:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -285,6 +307,7 @@ CatalanSqr:Rev Diagonals as columns
 | DiagCol8 | [1430, 11934, 48450, 149226, 389367, 904475, 1924065, 3817125, 7152444] |
 
 CatalanSqr:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ CatalanSqr:Rev Polynomial values as rows
 | PolyRow8 | [1, 12870, 1143999, 20275660, 167817405, 892401426, 3553964155, 11544312984, 32231934585] |
 
 CatalanSqr:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -314,6 +338,7 @@ CatalanSqr:Rev Polynomial values as columns
 []
 
 CatalanSqr:Inv:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -327,6 +352,7 @@ CatalanSqr:Inv:Rev Triangle view
 | Row8 | [1, -15, 91, -286, 495, -462, 210, -36, 1] |
 
 CatalanSqr:Inv:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, -1], [1, -3, 1], [1, -5, 6, -1], [1, -7, 15, -10, 1], [1, -9, 28, -35, 15, -1], [1, -11, 45, -84, 70, -21, 1], [1, -13, 66, -165, 210, -126, 28, -1], [1, -15, 91, -286, 495, -462, 210, -36, 1]] |
@@ -337,6 +363,7 @@ CatalanSqr:Inv:Rev Triangles
 | AccRevTabl | [[1], [-1, 0], [1, -2, -1], [-1, 5, 0, 1], [1, -9, 6, -1, 0], [-1, 14, -21, 7, -2, -1], [1, -20, 50, -34, 11, 0, 1], [-1, 27, -99, 111, -54, 12, -1, 0], [1, -35, 175, -287, 208, -78, 13, -2, -1]] |
 
 CatalanSqr:Inv:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, -1, 1, 0, -1, 1, 0, -1] |
@@ -348,6 +375,7 @@ CatalanSqr:Inv:Rev Row sums
 | AntiDiagSum  | [1, 1, 0, -2, -3, 0, 6, 8, -1] |
 
 CatalanSqr:Inv:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 3, 30, 210, 1260, 13860, 180180, 180180] |
@@ -363,6 +391,7 @@ CatalanSqr:Inv:Rev Transforms
 | TransNat1  | [1, -1, -2, 5, -3, -4, 9, -5, -6] |
 
 CatalanSqr:Inv:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, -1, 1, -1, 1, -1, 1, -1, 1]|
@@ -376,6 +405,7 @@ CatalanSqr:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, -17, 153, -969, 4845, -20349, 74613, -245157, 735471]|
 
 CatalanSqr:Inv:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -389,6 +419,7 @@ CatalanSqr:Inv:Rev Diagonals as columns
 | DiagCol8 | [1, 45, 495, 3003, 12870, 43758, 125970, 319770, 735471] |
 
 CatalanSqr:Inv:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -402,6 +433,7 @@ CatalanSqr:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, -1, 271, 1801, -27403, -308549, -1609901, -5846539, -16922039] |
 
 CatalanSqr:Inv:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |

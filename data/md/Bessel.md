@@ -2,6 +2,7 @@
 ['A132062', 'A001497', 'A001498', 'A122850']
 
 Bessel Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ Bessel Triangle view
 | Row8 | [0, 135135, 135135, 62370, 17325, 3150, 378, 28, 1] |
 
 Bessel Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, 1, 1], [0, 3, 3, 1], [0, 15, 15, 6, 1], [0, 105, 105, 45, 10, 1], [0, 945, 945, 420, 105, 15, 1], [0, 10395, 10395, 4725, 1260, 210, 21, 1], [0, 135135, 135135, 62370, 17325, 3150, 378, 28, 1]] |
@@ -25,6 +27,7 @@ Bessel Triangles
 | AccRevTabl | [[1], [1, 1], [1, 2, 2], [1, 4, 7, 7], [1, 7, 22, 37, 37], [1, 11, 56, 161, 266, 266], [1, 16, 121, 541, 1486, 2431, 2431], [1, 22, 232, 1492, 6217, 16612, 27007, 27007], [1, 29, 407, 3557, 20882, 83252, 218387, 353522, 353522]] |
 
 Bessel Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 7, 37, 266, 2431, 27007, 353522] |
@@ -36,6 +39,7 @@ Bessel Row sums
 | AntiDiagSum  | [1, 0, 1, 1, 4, 18, 121, 1056, 11386] |
 
 Bessel Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 3, 30, 630, 3780, 207900, 8108100] |
@@ -51,6 +55,7 @@ Bessel Transforms
 | TransNat1  | [1, 2, 5, 19, 104, 761, 7027, 78590, 1033559] |
 
 Bessel Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ Bessel Diagonals as rows
 | DiagRow8 | [0, 2027025, 34459425, 310134825, 1964187225, 9820936125, 41247931725, 151242416325, 496939367925]|
 
 Bessel Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -77,6 +83,7 @@ Bessel Diagonals as columns
 | DiagCol8 | [1, 36, 990, 25740, 675675, 18378360, 523783260, 15713497800, 496939367925] |
 
 Bessel Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ Bessel Polynomial values as rows
 | PolyRow8 | [0, 353522, 1715802, 5817744, 16427756, 41006550, 93248982, 196795172, 390433464] |
 
 Bessel Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -106,6 +114,7 @@ Bessel Polynomial values as columns
 []
 
 Bessel:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ Bessel:Inv Triangle view
 | Row8 | [0, 0, 0, 0, 105, -420, 210, -28, 1] |
 
 Bessel:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, -1, 1], [0, 0, -3, 1], [0, 0, 3, -6, 1], [0, 0, 0, 15, -10, 1], [0, 0, 0, -15, 45, -15, 1], [0, 0, 0, 0, -105, 105, -21, 1], [0, 0, 0, 0, 105, -420, 210, -28, 1]] |
@@ -129,6 +139,7 @@ Bessel:Inv Triangles
 | AccRevTabl | [[1], [1, 1], [1, 0, 0], [1, -2, -2, -2], [1, -5, -2, -2, -2], [1, -9, 6, 6, 6, 6], [1, -14, 31, 16, 16, 16, 16], [1, -20, 85, -20, -20, -20, -20, -20], [1, -27, 183, -237, -132, -132, -132, -132, -132]] |
 
 Bessel:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 0, -2, -2, 6, 16, -20, -132] |
@@ -140,6 +151,7 @@ Bessel:Inv Row sums
 | AntiDiagSum  | [1, 0, 1, -1, 1, -3, 4, -6, 16] |
 
 Bessel:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 3, 6, 30, 45, 105, 420] |
@@ -155,6 +167,7 @@ Bessel:Inv Transforms
 | TransNat1  | [1, 2, 1, -5, -10, 16, 82, -34, -740] |
 
 Bessel:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ Bessel:Inv Diagonals as rows
 | DiagRow8 | [0, 0, 0, 0, 0, 0, 0, 0, 2027025]|
 
 Bessel:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -181,6 +195,7 @@ Bessel:Inv Diagonals as columns
 | DiagCol8 | [1, -36, 630, -6930, 51975, -270270, 945945, -2027025, 2027025] |
 
 Bessel:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ Bessel:Inv Polynomial values as rows
 | PolyRow8 | [0, -132, -1648, 4860, 63744, 237500, 509328, 605052, -225280] |
 
 Bessel:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -210,6 +226,7 @@ Bessel:Inv Polynomial values as columns
 []
 
 Bessel:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ Bessel:Rev Triangle view
 | Row8 | [1, 28, 378, 3150, 17325, 62370, 135135, 135135, 0] |
 
 Bessel:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [1, 1, 0], [1, 3, 3, 0], [1, 6, 15, 15, 0], [1, 10, 45, 105, 105, 0], [1, 15, 105, 420, 945, 945, 0], [1, 21, 210, 1260, 4725, 10395, 10395, 0], [1, 28, 378, 3150, 17325, 62370, 135135, 135135, 0]] |
@@ -233,6 +251,7 @@ Bessel:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [0, 1, 2], [0, 3, 6, 7], [0, 15, 30, 36, 37], [0, 105, 210, 255, 265, 266], [0, 945, 1890, 2310, 2415, 2430, 2431], [0, 10395, 20790, 25515, 26775, 26985, 27006, 27007], [0, 135135, 270270, 332640, 349965, 353115, 353493, 353521, 353522]] |
 
 Bessel:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 7, 37, 266, 2431, 27007, 353522] |
@@ -244,6 +263,7 @@ Bessel:Rev Row sums
 | AntiDiagSum  | [1, 1, 1, 2, 4, 10, 26, 76, 232] |
 
 Bessel:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 3, 30, 630, 3780, 207900, 8108100] |
@@ -259,6 +279,7 @@ Bessel:Rev Transforms
 | TransNat1  | [1, 1, 3, 16, 118, 1101, 12421, 164473, 2501661] |
 
 Bessel:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -272,6 +293,7 @@ Bessel:Rev Diagonals as rows
 | DiagRow8 | [1, 36, 990, 25740, 675675, 18378360, 523783260, 15713497800, 496939367925]|
 
 Bessel:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -285,6 +307,7 @@ Bessel:Rev Diagonals as columns
 | DiagCol8 | [0, 2027025, 34459425, 310134825, 1964187225, 9820936125, 41247931725, 151242416325, 496939367925] |
 
 Bessel:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ Bessel:Rev Polynomial values as rows
 | PolyRow8 | [1, 353522, 28245729, 410701432, 2836074641, 12875043966, 44642146417, 128278930004, 320939805537] |
 
 Bessel:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -314,6 +338,7 @@ Bessel:Rev Polynomial values as columns
 []
 
 Bessel:Inv:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -327,6 +352,7 @@ Bessel:Inv:Rev Triangle view
 | Row8 | [1, -28, 210, -420, 105, 0, 0, 0, 0] |
 
 Bessel:Inv:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [1, -1, 0], [1, -3, 0, 0], [1, -6, 3, 0, 0], [1, -10, 15, 0, 0, 0], [1, -15, 45, -15, 0, 0, 0], [1, -21, 105, -105, 0, 0, 0, 0], [1, -28, 210, -420, 105, 0, 0, 0, 0]] |
@@ -337,6 +363,7 @@ Bessel:Inv:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [0, -1, 0], [0, 0, -3, -2], [0, 0, 3, -3, -2], [0, 0, 0, 15, 5, 6], [0, 0, 0, -15, 30, 15, 16], [0, 0, 0, 0, -105, 0, -21, -20], [0, 0, 0, 0, 105, -315, -105, -133, -132]] |
 
 Bessel:Inv:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 0, -2, -2, 6, 16, -20, -132] |
@@ -348,6 +375,7 @@ Bessel:Inv:Rev Row sums
 | AntiDiagSum  | [1, 1, 1, 0, -2, -5, -6, 1, 25] |
 
 Bessel:Inv:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 3, 6, 30, 45, 105, 420] |
@@ -363,6 +391,7 @@ Bessel:Inv:Rev Transforms
 | TransNat1  | [1, 1, -1, -5, -2, 26, 46, -146, -580] |
 
 Bessel:Inv:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -376,6 +405,7 @@ Bessel:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, -36, 630, -6930, 51975, -270270, 945945, -2027025, 2027025]|
 
 Bessel:Inv:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -389,6 +419,7 @@ Bessel:Inv:Rev Diagonals as columns
 | DiagCol8 | [0, 0, 0, 0, 0, 0, 0, 0, 2027025] |
 
 Bessel:Inv:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -402,6 +433,7 @@ Bessel:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, -132, -895, -1028, 3249, 18236, 52753, 118140, 228257] |
 
 Bessel:Inv:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |

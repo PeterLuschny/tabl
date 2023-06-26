@@ -2,6 +2,7 @@
 ['A053117', 'A053118', 'A115322']
 
 ChebyshevU Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ ChebyshevU Triangle view
 | Row8 | [1, 0, -40, 0, 240, 0, -448, 0, 256] |
 
 ChebyshevU Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 2], [-1, 0, 4], [0, -4, 0, 8], [1, 0, -12, 0, 16], [0, 6, 0, -32, 0, 32], [-1, 0, 24, 0, -80, 0, 64], [0, -8, 0, 80, 0, -192, 0, 128], [1, 0, -40, 0, 240, 0, -448, 0, 256]] |
@@ -25,6 +27,7 @@ ChebyshevU Triangles
 | AccRevTabl | [[1], [2, 2], [4, 4, 3], [8, 8, 4, 4], [16, 16, 4, 4, 5], [32, 32, 0, 0, 6, 6], [64, 64, -16, -16, 8, 8, 7], [128, 128, -64, -64, 16, 16, 8, 8], [256, 256, -192, -192, 48, 48, 8, 8, 9]] |
 
 ChebyshevU Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 3, 4, 5, 6, 7, 8, 9] |
@@ -36,6 +39,7 @@ ChebyshevU Row sums
 | AntiDiagSum  | [1, 0, 1, 0, 1, 0, 1, 0, 1] |
 
 ChebyshevU Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 2, 4, 8, 48, 96, 960, 1920, 26880] |
@@ -51,6 +55,7 @@ ChebyshevU Transforms
 | TransNat1  | [1, 4, 11, 24, 45, 76, 119, 176, 249] |
 
 ChebyshevU Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 2, 4, 8, 16, 32, 64, 128, 256]|
@@ -64,6 +69,7 @@ ChebyshevU Diagonals as rows
 | DiagRow8 | [1, 10, 60, 280, 1120, 4032, 13440, 42240, 126720]|
 
 ChebyshevU Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, -1, 0, 1, 0, -1, 0, 1] |
@@ -77,6 +83,7 @@ ChebyshevU Diagonals as columns
 | DiagCol8 | [256, 0, -2304, 0, 11520, 0, -42240, 0, 126720] |
 
 ChebyshevU Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ ChebyshevU Polynomial values as rows
 | PolyRow8 | [1, 9, 40545, 1372105, 15003009, 93149001, 409389409, 1423656585, 4178507265] |
 
 ChebyshevU Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, -1, 0, 1, 0, -1, 0, 1] |
@@ -106,6 +114,7 @@ ChebyshevU Polynomial values as columns
 []
 
 ChebyshevU:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ ChebyshevU:Rev Triangle view
 | Row8 | [256, 0, -448, 0, 240, 0, -40, 0, 1] |
 
 ChebyshevU:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [2, 0], [4, 0, -1], [8, 0, -4, 0], [16, 0, -12, 0, 1], [32, 0, -32, 0, 6, 0], [64, 0, -80, 0, 24, 0, -1], [128, 0, -192, 0, 80, 0, -8, 0], [256, 0, -448, 0, 240, 0, -40, 0, 1]] |
@@ -129,6 +139,7 @@ ChebyshevU:Rev Triangles
 | AccRevTabl | [[1], [0, 2], [-1, -1, 3], [0, -4, -4, 4], [1, 1, -11, -11, 5], [0, 6, 6, -26, -26, 6], [-1, -1, 23, 23, -57, -57, 7], [0, -8, -8, 72, 72, -120, -120, 8], [1, 1, -39, -39, 201, 201, -247, -247, 9]] |
 
 ChebyshevU:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 3, 4, 5, 6, 7, 8, 9] |
@@ -140,6 +151,7 @@ ChebyshevU:Rev Row sums
 | AntiDiagSum  | [1, 2, 4, 8, 15, 28, 52, 96, 177] |
 
 ChebyshevU:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 2, 4, 8, 48, 96, 960, 1920, 26880] |
@@ -155,6 +167,7 @@ ChebyshevU:Rev Transforms
 | TransNat1  | [1, 2, 1, -4, -15, -34, -63, -104, -159] |
 
 ChebyshevU:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, -1, 0, 1, 0, -1, 0, 1]|
@@ -168,6 +181,7 @@ ChebyshevU:Rev Diagonals as rows
 | DiagRow8 | [256, 0, -2304, 0, 11520, 0, -42240, 0, 126720]|
 
 ChebyshevU:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 2, 4, 8, 16, 32, 64, 128, 256] |
@@ -181,6 +195,7 @@ ChebyshevU:Rev Diagonals as columns
 | DiagCol8 | [1, 10, 60, 280, 1120, 4032, 13440, 42240, 126720] |
 
 ChebyshevU:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ ChebyshevU:Rev Polynomial values as rows
 | PolyRow8 | [256, 9, 0, -6935, -43776, -95319, 108544, 1613385, 7246080] |
 
 ChebyshevU:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 2, 4, 8, 16, 32, 64, 128, 256] |

@@ -2,6 +2,7 @@
 ['A000012', 'A008836', 'A014077']
 
 One Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ One Triangle view
 | Row8 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
 
 One Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1]] |
@@ -25,6 +27,7 @@ One Triangles
 | AccRevTabl | [[1], [1, 2], [1, 2, 3], [1, 2, 3, 4], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6, 7], [1, 2, 3, 4, 5, 6, 7, 8], [1, 2, 3, 4, 5, 6, 7, 8, 9]] |
 
 One Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 3, 4, 5, 6, 7, 8, 9] |
@@ -36,6 +39,7 @@ One Row sums
 | AntiDiagSum  | [1, 1, 2, 2, 3, 3, 4, 4, 5] |
 
 One Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -51,6 +55,7 @@ One Transforms
 | TransNat1  | [1, 3, 6, 10, 15, 21, 28, 36, 45] |
 
 One Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ One Diagonals as rows
 | DiagRow8 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
 
 One Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -77,6 +83,7 @@ One Diagonals as columns
 | DiagCol8 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
 
 One Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ One Polynomial values as rows
 | PolyRow8 | [1, 9, 511, 9841, 87381, 488281, 2015539, 6725601, 19173961] |
 
 One Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -106,6 +114,7 @@ One Polynomial values as columns
 []
 
 One:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ One:Inv Triangle view
 | Row8 | [0, 0, 0, 0, 0, 0, 0, -1, 1] |
 
 One:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [-1, 1], [0, -1, 1], [0, 0, -1, 1], [0, 0, 0, -1, 1], [0, 0, 0, 0, -1, 1], [0, 0, 0, 0, 0, -1, 1], [0, 0, 0, 0, 0, 0, -1, 1], [0, 0, 0, 0, 0, 0, 0, -1, 1]] |
@@ -129,6 +139,7 @@ One:Inv Triangles
 | AccRevTabl | [[1], [1, 0], [1, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0, 0, 0, 0]] |
 
 One:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -140,6 +151,7 @@ One:Inv Row sums
 | AntiDiagSum  | [1, -1, 1, -1, 1, -1, 1, -1, 1] |
 
 One:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -155,6 +167,7 @@ One:Inv Transforms
 | TransNat1  | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
 
 One:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ One:Inv Diagonals as rows
 | DiagRow8 | [0, 0, 0, 0, 0, 0, 0, 0, 0]|
 
 One:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, -1, 0, 0, 0, 0, 0, 0, 0] |
@@ -181,6 +195,7 @@ One:Inv Diagonals as columns
 | DiagCol8 | [1, -1, 0, 0, 0, 0, 0, 0, 0] |
 
 One:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ One:Inv Polynomial values as rows
 | PolyRow8 | [0, 0, 128, 4374, 49152, 312500, 1399680, 4941258, 14680064] |
 
 One:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, -1, 0, 0, 0, 0, 0, 0, 0] |
@@ -210,6 +226,7 @@ One:Inv Polynomial values as columns
 []
 
 One:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ One:Rev Triangle view
 | Row8 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
 
 One:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1]] |
@@ -233,6 +251,7 @@ One:Rev Triangles
 | AccRevTabl | [[1], [1, 2], [1, 2, 3], [1, 2, 3, 4], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6, 7], [1, 2, 3, 4, 5, 6, 7, 8], [1, 2, 3, 4, 5, 6, 7, 8, 9]] |
 
 One:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 3, 4, 5, 6, 7, 8, 9] |
@@ -244,6 +263,7 @@ One:Rev Row sums
 | AntiDiagSum  | [1, 1, 2, 2, 3, 3, 4, 4, 5] |
 
 One:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -259,6 +279,7 @@ One:Rev Transforms
 | TransNat1  | [1, 3, 6, 10, 15, 21, 28, 36, 45] |
 
 One:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -272,6 +293,7 @@ One:Rev Diagonals as rows
 | DiagRow8 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
 
 One:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -285,6 +307,7 @@ One:Rev Diagonals as columns
 | DiagCol8 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
 
 One:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ One:Rev Polynomial values as rows
 | PolyRow8 | [1, 9, 511, 9841, 87381, 488281, 2015539, 6725601, 19173961] |
 
 One:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -314,6 +338,7 @@ One:Rev Polynomial values as columns
 []
 
 One:Inv:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -327,6 +352,7 @@ One:Inv:Rev Triangle view
 | Row8 | [1, -1, 0, 0, 0, 0, 0, 0, 0] |
 
 One:Inv:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, -1], [1, -1, 0], [1, -1, 0, 0], [1, -1, 0, 0, 0], [1, -1, 0, 0, 0, 0], [1, -1, 0, 0, 0, 0, 0], [1, -1, 0, 0, 0, 0, 0, 0], [1, -1, 0, 0, 0, 0, 0, 0, 0]] |
@@ -337,6 +363,7 @@ One:Inv:Rev Triangles
 | AccRevTabl | [[1], [-1, 0], [0, -1, 0], [0, 0, -1, 0], [0, 0, 0, -1, 0], [0, 0, 0, 0, -1, 0], [0, 0, 0, 0, 0, -1, 0], [0, 0, 0, 0, 0, 0, -1, 0], [0, 0, 0, 0, 0, 0, 0, -1, 0]] |
 
 One:Inv:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -348,6 +375,7 @@ One:Inv:Rev Row sums
 | AntiDiagSum  | [1, 1, 0, 0, 0, 0, 0, 0, 0] |
 
 One:Inv:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -363,6 +391,7 @@ One:Inv:Rev Transforms
 | TransNat1  | [1, -1, -1, -1, -1, -1, -1, -1, -1] |
 
 One:Inv:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, -1, 0, 0, 0, 0, 0, 0, 0]|
@@ -376,6 +405,7 @@ One:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, -1, 0, 0, 0, 0, 0, 0, 0]|
 
 One:Inv:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -389,6 +419,7 @@ One:Inv:Rev Diagonals as columns
 | DiagCol8 | [0, 0, 0, 0, 0, 0, 0, 0, 0] |
 
 One:Inv:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -402,6 +433,7 @@ One:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, 0, -1, -2, -3, -4, -5, -6, -7] |
 
 One:Inv:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -418,6 +450,7 @@ One:Inv:Rev Polynomial values as columns
 []
 
 One:Rev:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -431,6 +464,7 @@ One:Rev:Inv Triangle view
 | Row8 | [0, 0, 0, 0, 0, 0, 0, -1, 1] |
 
 One:Rev:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [-1, 1], [0, -1, 1], [0, 0, -1, 1], [0, 0, 0, -1, 1], [0, 0, 0, 0, -1, 1], [0, 0, 0, 0, 0, -1, 1], [0, 0, 0, 0, 0, 0, -1, 1], [0, 0, 0, 0, 0, 0, 0, -1, 1]] |
@@ -441,6 +475,7 @@ One:Rev:Inv Triangles
 | AccRevTabl | [[1], [1, 0], [1, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0, 0, 0, 0]] |
 
 One:Rev:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -452,6 +487,7 @@ One:Rev:Inv Row sums
 | AntiDiagSum  | [1, -1, 1, -1, 1, -1, 1, -1, 1] |
 
 One:Rev:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -467,6 +503,7 @@ One:Rev:Inv Transforms
 | TransNat1  | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
 
 One:Rev:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -480,6 +517,7 @@ One:Rev:Inv Diagonals as rows
 | DiagRow8 | [0, 0, 0, 0, 0, 0, 0, 0, 0]|
 
 One:Rev:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, -1, 0, 0, 0, 0, 0, 0, 0] |
@@ -493,6 +531,7 @@ One:Rev:Inv Diagonals as columns
 | DiagCol8 | [1, -1, 0, 0, 0, 0, 0, 0, 0] |
 
 One:Rev:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -506,6 +545,7 @@ One:Rev:Inv Polynomial values as rows
 | PolyRow8 | [0, 0, 128, 4374, 49152, 312500, 1399680, 4941258, 14680064] |
 
 One:Rev:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, -1, 0, 0, 0, 0, 0, 0, 0] |

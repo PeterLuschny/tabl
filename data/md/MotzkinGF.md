@@ -2,6 +2,7 @@
 ['A064189', 'A026300', 'A009766']
 
 MotzkinGF Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ MotzkinGF Triangle view
 | Row8 | [323, 512, 518, 392, 230, 104, 35, 8, 1] |
 
 MotzkinGF Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [2, 2, 1], [4, 5, 3, 1], [9, 12, 9, 4, 1], [21, 30, 25, 14, 5, 1], [51, 76, 69, 44, 20, 6, 1], [127, 196, 189, 133, 70, 27, 7, 1], [323, 512, 518, 392, 230, 104, 35, 8, 1]] |
@@ -25,6 +27,7 @@ MotzkinGF Triangles
 | AccRevTabl | [[1], [1, 2], [1, 3, 5], [1, 4, 9, 13], [1, 5, 14, 26, 35], [1, 6, 20, 45, 75, 96], [1, 7, 27, 71, 140, 216, 267], [1, 8, 35, 105, 238, 427, 623, 750], [1, 9, 44, 148, 378, 770, 1288, 1800, 2123]] |
 
 MotzkinGF Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 5, 13, 35, 96, 267, 750, 2123] |
@@ -36,6 +39,7 @@ MotzkinGF Row sums
 | AntiDiagSum  | [1, 1, 3, 6, 15, 36, 91, 232, 603] |
 
 MotzkinGF Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 60, 36, 1050, 4903140, 63847980, 448240898560] |
@@ -51,6 +55,7 @@ MotzkinGF Transforms
 | TransNat1  | [1, 3, 9, 27, 81, 243, 729, 2187, 6561] |
 
 MotzkinGF Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ MotzkinGF Diagonals as rows
 | DiagRow8 | [323, 1353, 3915, 9438, 20240, 39897, 73710, 129285, 217242]|
 
 MotzkinGF Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 2, 4, 9, 21, 51, 127, 323] |
@@ -77,6 +83,7 @@ MotzkinGF Diagonals as columns
 | DiagCol8 | [1, 9, 54, 264, 1143, 4563, 17199, 62127, 217242] |
 
 MotzkinGF Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ MotzkinGF Polynomial values as rows
 | PolyRow8 | [323, 2123, 17083, 110579, 541091, 2096083, 6765563, 18934763, 47317699] |
 
 MotzkinGF Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 2, 4, 9, 21, 51, 127, 323] |
@@ -106,6 +114,7 @@ MotzkinGF Polynomial values as columns
 []
 
 MotzkinGF:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ MotzkinGF:Inv Triangle view
 | Row8 | [0, -6, 3, 24, -20, -14, 21, -8, 1] |
 
 MotzkinGF:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [-1, 1], [0, -2, 1], [1, 1, -3, 1], [-1, 2, 3, -4, 1], [0, -4, 2, 6, -5, 1], [1, 2, -9, 0, 10, -6, 1], [-1, 3, 9, -15, -5, 15, -7, 1], [0, -6, 3, 24, -20, -14, 21, -8, 1]] |
@@ -129,6 +139,7 @@ MotzkinGF:Inv Triangles
 | AccRevTabl | [[1], [1, 0], [1, -1, -1], [1, -2, -1, 0], [1, -3, 0, 2, 1], [1, -4, 2, 4, 0, 0], [1, -5, 5, 5, -4, -2, -1], [1, -6, 9, 4, -11, -2, 1, 0], [1, -7, 14, 0, -20, 4, 7, 1, 1]] |
 
 MotzkinGF:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, -1, 0, 1, 0, -1, 0, 1] |
@@ -140,6 +151,7 @@ MotzkinGF:Inv Row sums
 | AntiDiagSum  | [1, -1, 1, -1, 1, -1, 1, -1, 1] |
 
 MotzkinGF:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 3, 12, 60, 90, 315, 840] |
@@ -155,6 +167,7 @@ MotzkinGF:Inv Transforms
 | TransNat1  | [1, 1, -1, -2, 1, 3, -1, -4, 1] |
 
 MotzkinGF:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ MotzkinGF:Inv Diagonals as rows
 | DiagRow8 | [0, 3, 18, 60, 145, 279, 441, 561, 495]|
 
 MotzkinGF:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, -1, 0, 1, -1, 0, 1, -1, 0] |
@@ -181,6 +195,7 @@ MotzkinGF:Inv Diagonals as columns
 | DiagCol8 | [1, -9, 36, -75, 45, 198, -627, 693, 495] |
 
 MotzkinGF:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ MotzkinGF:Inv Polynomial values as rows
 | PolyRow8 | [0, 1, 0, 9, 2584, 40545, 290376, 1372105, 4976784] |
 
 MotzkinGF:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, -1, 0, 1, -1, 0, 1, -1, 0] |
@@ -210,6 +226,7 @@ MotzkinGF:Inv Polynomial values as columns
 []
 
 MotzkinGF:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ MotzkinGF:Rev Triangle view
 | Row8 | [1, 8, 35, 104, 230, 392, 518, 512, 323] |
 
 MotzkinGF:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [1, 2, 2], [1, 3, 5, 4], [1, 4, 9, 12, 9], [1, 5, 14, 25, 30, 21], [1, 6, 20, 44, 69, 76, 51], [1, 7, 27, 70, 133, 189, 196, 127], [1, 8, 35, 104, 230, 392, 518, 512, 323]] |
@@ -233,6 +251,7 @@ MotzkinGF:Rev Triangles
 | AccRevTabl | [[1], [1, 2], [2, 4, 5], [4, 9, 12, 13], [9, 21, 30, 34, 35], [21, 51, 76, 90, 95, 96], [51, 127, 196, 240, 260, 266, 267], [127, 323, 512, 645, 715, 742, 749, 750], [323, 835, 1353, 1745, 1975, 2079, 2114, 2122, 2123]] |
 
 MotzkinGF:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 5, 13, 35, 96, 267, 750, 2123] |
@@ -244,6 +263,7 @@ MotzkinGF:Rev Row sums
 | AntiDiagSum  | [1, 1, 2, 3, 6, 10, 19, 33, 62] |
 
 MotzkinGF:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 60, 36, 1050, 4903140, 63847980, 448240898560] |
@@ -259,6 +279,7 @@ MotzkinGF:Rev Transforms
 | TransNat1  | [1, 3, 11, 38, 129, 429, 1407, 4563, 14669] |
 
 MotzkinGF:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 2, 4, 9, 21, 51, 127, 323]|
@@ -272,6 +293,7 @@ MotzkinGF:Rev Diagonals as rows
 | DiagRow8 | [1, 9, 54, 264, 1143, 4563, 17199, 62127, 217242]|
 
 MotzkinGF:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -285,6 +307,7 @@ MotzkinGF:Rev Diagonals as columns
 | DiagCol8 | [323, 1353, 3915, 9438, 20240, 39897, 73710, 129285, 217242] |
 
 MotzkinGF:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ MotzkinGF:Rev Polynomial values as rows
 | PolyRow8 | [1, 2123, 198589, 3733603, 32146001, 175648291, 713381053, 2351804939, 6642415873] |
 
 MotzkinGF:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -314,6 +338,7 @@ MotzkinGF:Rev Polynomial values as columns
 []
 
 MotzkinGF:Inv:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -327,6 +352,7 @@ MotzkinGF:Inv:Rev Triangle view
 | Row8 | [1, -8, 21, -14, -20, 24, 3, -6, 0] |
 
 MotzkinGF:Inv:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, -1], [1, -2, 0], [1, -3, 1, 1], [1, -4, 3, 2, -1], [1, -5, 6, 2, -4, 0], [1, -6, 10, 0, -9, 2, 1], [1, -7, 15, -5, -15, 9, 3, -1], [1, -8, 21, -14, -20, 24, 3, -6, 0]] |
@@ -337,6 +363,7 @@ MotzkinGF:Inv:Rev Triangles
 | AccRevTabl | [[1], [-1, 0], [0, -2, -1], [1, 2, -1, 0], [-1, 1, 4, 0, 1], [0, -4, -2, 4, -1, 0], [1, 3, -6, -6, 4, -2, -1], [-1, 2, 11, -4, -9, 6, -1, 0], [0, -6, -3, 21, 1, -13, 8, 0, 1]] |
 
 MotzkinGF:Inv:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, -1, 0, 1, 0, -1, 0, 1] |
@@ -348,6 +375,7 @@ MotzkinGF:Inv:Rev Row sums
 | AntiDiagSum  | [1, 1, 0, -1, -2, -2, 0, 3, 5] |
 
 MotzkinGF:Inv:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 3, 12, 60, 90, 315, 840] |
@@ -363,6 +391,7 @@ MotzkinGF:Inv:Rev Transforms
 | TransNat1  | [1, -1, -3, 2, 5, -3, -7, 4, 9] |
 
 MotzkinGF:Inv:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, -1, 0, 1, -1, 0, 1, -1, 0]|
@@ -376,6 +405,7 @@ MotzkinGF:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, -9, 36, -75, 45, 198, -627, 693, 495]|
 
 MotzkinGF:Inv:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -389,6 +419,7 @@ MotzkinGF:Inv:Rev Diagonals as columns
 | DiagCol8 | [0, 3, 18, 60, 145, 279, 441, 561, 495] |
 
 MotzkinGF:Inv:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -402,6 +433,7 @@ MotzkinGF:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, 1, -171, -6935, -67151, -360639, -1381259, -4236791, -11097855] |
 
 MotzkinGF:Inv:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |

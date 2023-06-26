@@ -2,6 +2,7 @@
 ['A225479', 'A048594', 'A075181']
 
 OrderedCycle Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ OrderedCycle Triangle view
 | Row8 | [0, 5040, 26136, 78792, 162456, 235200, 231840, 141120, 40320] |
 
 OrderedCycle Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, 1, 2], [0, 2, 6, 6], [0, 6, 22, 36, 24], [0, 24, 100, 210, 240, 120], [0, 120, 548, 1350, 2040, 1800, 720], [0, 720, 3528, 9744, 17640, 21000, 15120, 5040], [0, 5040, 26136, 78792, 162456, 235200, 231840, 141120, 40320]] |
@@ -25,6 +27,7 @@ OrderedCycle Triangles
 | AccRevTabl | [[1], [1, 1], [2, 3, 3], [6, 12, 14, 14], [24, 60, 82, 88, 88], [120, 360, 570, 670, 694, 694], [720, 2520, 4560, 5910, 6458, 6578, 6578], [5040, 20160, 41160, 58800, 68544, 72072, 72792, 72792], [40320, 181440, 413280, 648480, 810936, 889728, 915864, 920904, 920904]] |
 
 OrderedCycle Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 3, 14, 88, 694, 6578, 72792, 920904] |
@@ -36,6 +39,7 @@ OrderedCycle Row sums
 | AntiDiagSum  | [1, 0, 1, 1, 4, 12, 52, 256, 1502] |
 
 OrderedCycle Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 6, 792, 8400, 25153200, 76734000, 763351047043200] |
@@ -51,6 +55,7 @@ OrderedCycle Transforms
 | TransNat1  | [1, 2, 8, 46, 342, 3108, 33324, 411360, 5741856] |
 
 OrderedCycle Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 2, 6, 24, 120, 720, 5040, 40320]|
@@ -64,6 +69,7 @@ OrderedCycle Diagonals as rows
 | DiagRow8 | [0, 40320, 2053152, 76521456, 2526193824, 78864820320, 2402005525920, 72622987557120, 2202727143576960]|
 
 OrderedCycle Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -77,6 +83,7 @@ OrderedCycle Diagonals as columns
 | DiagCol8 | [40320, 1451520, 35078400, 731808000, 14411295360, 279281882880, 5444670591360, 108116216208000, 2202727143576960] |
 
 OrderedCycle Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ OrderedCycle Polynomial values as rows
 | PolyRow8 | [0, 920904, 54093696, 814870584, 6192052800, 31244562600, 120100860864, 380302313496, 1041597412224] |
 
 OrderedCycle Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -106,6 +114,7 @@ OrderedCycle Polynomial values as columns
 []
 
 OrderedCycle:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ OrderedCycle:Rev Triangle view
 | Row8 | [40320, 141120, 231840, 235200, 162456, 78792, 26136, 5040, 0] |
 
 OrderedCycle:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [2, 1, 0], [6, 6, 2, 0], [24, 36, 22, 6, 0], [120, 240, 210, 100, 24, 0], [720, 1800, 2040, 1350, 548, 120, 0], [5040, 15120, 21000, 17640, 9744, 3528, 720, 0], [40320, 141120, 231840, 235200, 162456, 78792, 26136, 5040, 0]] |
@@ -129,6 +139,7 @@ OrderedCycle:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [0, 1, 3], [0, 2, 8, 14], [0, 6, 28, 64, 88], [0, 24, 124, 334, 574, 694], [0, 120, 668, 2018, 4058, 5858, 6578], [0, 720, 4248, 13992, 31632, 52632, 67752, 72792], [0, 5040, 31176, 109968, 272424, 507624, 739464, 880584, 920904]] |
 
 OrderedCycle:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 3, 14, 88, 694, 6578, 72792, 920904] |
@@ -140,6 +151,7 @@ OrderedCycle:Rev Row sums
 | AntiDiagSum  | [1, 1, 2, 7, 30, 158, 982, 7056, 57580] |
 
 OrderedCycle:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 6, 792, 8400, 25153200, 76734000, 763351047043200] |
@@ -155,6 +167,7 @@ OrderedCycle:Rev Transforms
 | TransNat1  | [1, 1, 4, 24, 186, 1750, 19300, 243768, 3467184] |
 
 OrderedCycle:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -168,6 +181,7 @@ OrderedCycle:Rev Diagonals as rows
 | DiagRow8 | [40320, 1451520, 35078400, 731808000, 14411295360, 279281882880, 5444670591360, 108116216208000, 2202727143576960]|
 
 OrderedCycle:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 2, 6, 24, 120, 720, 5040, 40320] |
@@ -181,6 +195,7 @@ OrderedCycle:Rev Diagonals as columns
 | DiagCol8 | [0, 40320, 2053152, 76521456, 2526193824, 78864820320, 2402005525920, 72622987557120, 2202727143576960] |
 
 OrderedCycle:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ OrderedCycle:Rev Polynomial values as rows
 | PolyRow8 | [40320, 920904, 10569984, 71281656, 331267200, 1185826920, 3513544704, 9032906904, 20804747136] |
 
 OrderedCycle:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 2, 6, 24, 120, 720, 5040, 40320] |

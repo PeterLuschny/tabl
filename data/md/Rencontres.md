@@ -2,6 +2,7 @@
 ['A008290', 'A098825']
 
 Rencontres Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ Rencontres Triangle view
 | Row8 | [14833, 14832, 7420, 2464, 630, 112, 28, 0, 1] |
 
 Rencontres Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [1, 0, 1], [2, 3, 0, 1], [9, 8, 6, 0, 1], [44, 45, 20, 10, 0, 1], [265, 264, 135, 40, 15, 0, 1], [1854, 1855, 924, 315, 70, 21, 0, 1], [14833, 14832, 7420, 2464, 630, 112, 28, 0, 1]] |
@@ -25,6 +27,7 @@ Rencontres Triangles
 | AccRevTabl | [[1], [1, 1], [1, 1, 2], [1, 1, 4, 6], [1, 1, 7, 15, 24], [1, 1, 11, 31, 76, 120], [1, 1, 16, 56, 191, 455, 720], [1, 1, 22, 92, 407, 1331, 3186, 5040], [1, 1, 29, 141, 771, 3235, 10655, 25487, 40320]] |
 
 Rencontres Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 6, 24, 120, 720, 5040, 40320] |
@@ -36,6 +39,7 @@ Rencontres Row sums
 | AntiDiagSum  | [1, 0, 2, 2, 13, 52, 317, 2138, 16834] |
 
 Rencontres Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 6, 72, 1980, 629640, 75661740, 1282617816480] |
@@ -51,6 +55,7 @@ Rencontres Transforms
 | TransNat1  | [1, 2, 4, 12, 48, 240, 1440, 10080, 80640] |
 
 Rencontres Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ Rencontres Diagonals as rows
 | DiagRow8 | [14833, 133497, 667485, 2447445, 7342335, 19090071, 44543499, 95450355, 190900710]|
 
 Rencontres Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 1, 2, 9, 44, 265, 1854, 14833] |
@@ -77,6 +83,7 @@ Rencontres Diagonals as columns
 | DiagCol8 | [1, 0, 45, 330, 4455, 56628, 795795, 11930490, 190900710] |
 
 Rencontres Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ Rencontres Polynomial values as rows
 | PolyRow8 | [14833, 40320, 109601, 297856, 806769, 2154368, 5576545, 13781376, 32237681] |
 
 Rencontres Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 1, 2, 9, 44, 265, 1854, 14833] |
@@ -106,6 +114,7 @@ Rencontres Polynomial values as columns
 []
 
 Rencontres:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ Rencontres:Inv Triangle view
 | Row8 | [-7, -48, -140, -224, -210, -112, -28, 0, 1] |
 
 Rencontres:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [-1, 0, 1], [-2, -3, 0, 1], [-3, -8, -6, 0, 1], [-4, -15, -20, -10, 0, 1], [-5, -24, -45, -40, -15, 0, 1], [-6, -35, -84, -105, -70, -21, 0, 1], [-7, -48, -140, -224, -210, -112, -28, 0, 1]] |
@@ -129,6 +139,7 @@ Rencontres:Inv Triangles
 | AccRevTabl | [[1], [1, 1], [1, 1, 0], [1, 1, -2, -4], [1, 1, -5, -13, -16], [1, 1, -9, -29, -44, -48], [1, 1, -14, -54, -99, -123, -128], [1, 1, -20, -90, -195, -279, -314, -320], [1, 1, -27, -139, -349, -573, -713, -761, -768]] |
 
 Rencontres:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 0, -4, -16, -48, -128, -320, -768] |
@@ -140,6 +151,7 @@ Rencontres:Inv Row sums
 | AntiDiagSum  | [1, 0, 0, -2, -5, -12, -25, -50, -96] |
 
 Rencontres:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 6, 24, 60, 360, 420, 3360] |
@@ -155,6 +167,7 @@ Rencontres:Inv Transforms
 | TransNat1  | [1, 2, 2, -4, -32, -128, -416, -1216, -3328] |
 
 Rencontres:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ Rencontres:Inv Diagonals as rows
 | DiagRow8 | [-7, -63, -315, -1155, -3465, -9009, -21021, -45045, -90090]|
 
 Rencontres:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, -1, -2, -3, -4, -5, -6, -7] |
@@ -181,6 +195,7 @@ Rencontres:Inv Diagonals as columns
 | DiagCol8 | [1, 0, -45, -330, -1485, -5148, -15015, -38610, -90090] |
 
 Rencontres:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ Rencontres:Inv Polynomial values as rows
 | PolyRow8 | [-7, -768, -10935, -65536, -234375, -559872, -823543, 0, 4782969] |
 
 Rencontres:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, -1, -2, -3, -4, -5, -6, -7] |
@@ -210,6 +226,7 @@ Rencontres:Inv Polynomial values as columns
 []
 
 Rencontres:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ Rencontres:Rev Triangle view
 | Row8 | [1, 0, 28, 112, 630, 2464, 7420, 14832, 14833] |
 
 Rencontres:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [1, 0, 1], [1, 0, 3, 2], [1, 0, 6, 8, 9], [1, 0, 10, 20, 45, 44], [1, 0, 15, 40, 135, 264, 265], [1, 0, 21, 70, 315, 924, 1855, 1854], [1, 0, 28, 112, 630, 2464, 7420, 14832, 14833]] |
@@ -233,6 +251,7 @@ Rencontres:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [1, 1, 2], [2, 5, 5, 6], [9, 17, 23, 23, 24], [44, 89, 109, 119, 119, 120], [265, 529, 664, 704, 719, 719, 720], [1854, 3709, 4633, 4948, 5018, 5039, 5039, 5040], [14833, 29665, 37085, 39549, 40179, 40291, 40319, 40319, 40320]] |
 
 Rencontres:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 6, 24, 120, 720, 5040, 40320] |
@@ -244,6 +263,7 @@ Rencontres:Rev Row sums
 | AntiDiagSum  | [1, 1, 1, 1, 2, 4, 9, 19, 45] |
 
 Rencontres:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 6, 72, 1980, 629640, 75661740, 1282617816480] |
@@ -259,6 +279,7 @@ Rencontres:Rev Transforms
 | TransNat1  | [1, 1, 4, 18, 96, 600, 4320, 35280, 322560] |
 
 Rencontres:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 1, 2, 9, 44, 265, 1854, 14833]|
@@ -272,6 +293,7 @@ Rencontres:Rev Diagonals as rows
 | DiagRow8 | [1, 0, 45, 330, 4455, 56628, 795795, 11930490, 190900710]|
 
 Rencontres:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -285,6 +307,7 @@ Rencontres:Rev Diagonals as columns
 | DiagCol8 | [14833, 133497, 667485, 2447445, 7342335, 19090071, 44543499, 95450355, 190900710] |
 
 Rencontres:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ Rencontres:Rev Polynomial values as rows
 | PolyRow8 | [1, 40320, 6260561, 135819136, 1248187329, 7076936576, 29431944145, 98640003456, 281989891841] |
 
 Rencontres:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -314,6 +338,7 @@ Rencontres:Rev Polynomial values as columns
 []
 
 Rencontres:Inv:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -327,6 +352,7 @@ Rencontres:Inv:Rev Triangle view
 | Row8 | [1, 0, -28, -112, -210, -224, -140, -48, -7] |
 
 Rencontres:Inv:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [1, 0, -1], [1, 0, -3, -2], [1, 0, -6, -8, -3], [1, 0, -10, -20, -15, -4], [1, 0, -15, -40, -45, -24, -5], [1, 0, -21, -70, -105, -84, -35, -6], [1, 0, -28, -112, -210, -224, -140, -48, -7]] |
@@ -337,6 +363,7 @@ Rencontres:Inv:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [-1, -1, 0], [-2, -5, -5, -4], [-3, -11, -17, -17, -16], [-4, -19, -39, -49, -49, -48], [-5, -29, -74, -114, -129, -129, -128], [-6, -41, -125, -230, -300, -321, -321, -320], [-7, -55, -195, -419, -629, -741, -769, -769, -768]] |
 
 Rencontres:Inv:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 0, -4, -16, -48, -128, -320, -768] |
@@ -348,6 +375,7 @@ Rencontres:Inv:Rev Row sums
 | AntiDiagSum  | [1, 1, 1, 1, 0, -2, -7, -17, -37] |
 
 Rencontres:Inv:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 6, 24, 60, 360, 420, 3360] |
@@ -363,6 +391,7 @@ Rencontres:Inv:Rev Transforms
 | TransNat1  | [1, 1, -2, -16, -64, -208, -608, -1664, -4352] |
 
 Rencontres:Inv:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, -1, -2, -3, -4, -5, -6, -7]|
@@ -376,6 +405,7 @@ Rencontres:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, 0, -45, -330, -1485, -5148, -15015, -38610, -90090]|
 
 Rencontres:Inv:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -389,6 +419,7 @@ Rencontres:Inv:Rev Diagonals as columns
 | DiagCol8 | [-7, -63, -315, -1155, -3465, -9009, -21021, -45045, -90090] |
 
 Rencontres:Inv:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -402,6 +433,7 @@ Rencontres:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, -768, -28431, -327680, -2109375, -9517824, -33765263, -100663296, -263063295] |
 
 Rencontres:Inv:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |

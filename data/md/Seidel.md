@@ -2,6 +2,7 @@
 ['A008281', 'A008282', 'A010094']
 
 Seidel Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ Seidel Triangle view
 | Row8 | [0, 272, 544, 800, 1024, 1202, 1324, 1385, 1385] |
 
 Seidel Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, 1, 1], [0, 1, 2, 2], [0, 2, 4, 5, 5], [0, 5, 10, 14, 16, 16], [0, 16, 32, 46, 56, 61, 61], [0, 61, 122, 178, 224, 256, 272, 272], [0, 272, 544, 800, 1024, 1202, 1324, 1385, 1385]] |
@@ -25,6 +27,7 @@ Seidel Triangles
 | AccRevTabl | [[1], [1, 1], [1, 2, 2], [2, 4, 5, 5], [5, 10, 14, 16, 16], [16, 32, 46, 56, 61, 61], [61, 122, 178, 224, 256, 272, 272], [272, 544, 800, 1024, 1202, 1324, 1385, 1385], [1385, 2770, 4094, 5296, 6320, 7120, 7664, 7936, 7936]] |
 
 Seidel Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 5, 16, 61, 272, 1385, 7936] |
@@ -36,6 +39,7 @@ Seidel Row sums
 | AntiDiagSum  | [1, 0, 1, 1, 2, 4, 11, 31, 112] |
 
 Seidel Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 2, 20, 560, 314272, 165389056, 23981211622400] |
@@ -51,6 +55,7 @@ Seidel Transforms
 | TransNat1  | [1, 2, 5, 16, 61, 272, 1385, 7936, 50521] |
 
 Seidel Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 2, 5, 16, 61, 272, 1385]|
@@ -64,6 +69,7 @@ Seidel Diagonals as rows
 | DiagRow8 | [0, 1385, 15872, 150178, 1383424, 13010000, 127181312, 1301989648, 13997185024]|
 
 Seidel Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -77,6 +83,7 @@ Seidel Diagonals as columns
 | DiagCol8 | [1385, 7936, 49136, 329984, 2401024, 18870016, 159575936, 1446351104, 13997185024] |
 
 Seidel Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ Seidel Polynomial values as rows
 | PolyRow8 | [0, 7936, 680544, 13483518, 120436288, 674417460, 2786619936, 9303587314, 26532106368] |
 
 Seidel Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -106,6 +114,7 @@ Seidel Polynomial values as columns
 []
 
 Seidel:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ Seidel:Rev Triangle view
 | Row8 | [1385, 1385, 1324, 1202, 1024, 800, 544, 272, 0] |
 
 Seidel:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [1, 1, 0], [2, 2, 1, 0], [5, 5, 4, 2, 0], [16, 16, 14, 10, 5, 0], [61, 61, 56, 46, 32, 16, 0], [272, 272, 256, 224, 178, 122, 61, 0], [1385, 1385, 1324, 1202, 1024, 800, 544, 272, 0]] |
@@ -129,6 +139,7 @@ Seidel:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [0, 1, 2], [0, 1, 3, 5], [0, 2, 6, 11, 16], [0, 5, 15, 29, 45, 61], [0, 16, 48, 94, 150, 211, 272], [0, 61, 183, 361, 585, 841, 1113, 1385], [0, 272, 816, 1616, 2640, 3842, 5166, 6551, 7936]] |
 
 Seidel:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 2, 5, 16, 61, 272, 1385, 7936] |
@@ -140,6 +151,7 @@ Seidel:Rev Row sums
 | AntiDiagSum  | [1, 1, 1, 3, 7, 22, 81, 349, 1723] |
 
 Seidel:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 2, 20, 560, 314272, 165389056, 23981211622400] |
@@ -155,6 +167,7 @@ Seidel:Rev Transforms
 | TransNat1  | [1, 1, 3, 9, 35, 155, 791, 4529, 28839] |
 
 Seidel:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -168,6 +181,7 @@ Seidel:Rev Diagonals as rows
 | DiagRow8 | [1385, 7936, 49136, 329984, 2401024, 18870016, 159575936, 1446351104, 13997185024]|
 
 Seidel:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 2, 5, 16, 61, 272, 1385] |
@@ -181,6 +195,7 @@ Seidel:Rev Diagonals as columns
 | DiagCol8 | [0, 1385, 15872, 150178, 1383424, 13010000, 127181312, 1301989648, 13997185024] |
 
 Seidel:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ Seidel:Rev Polynomial values as rows
 | PolyRow8 | [1385, 7936, 130683, 1318694, 7871053, 33081660, 109388351, 304397218, 744153009] |
 
 Seidel:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 2, 5, 16, 61, 272, 1385] |

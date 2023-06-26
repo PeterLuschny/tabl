@@ -2,6 +2,7 @@
 ['A026820']
 
 PartitionMax Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ PartitionMax Triangle view
 | Row8 | [0, 1, 5, 10, 15, 18, 20, 21, 22] |
 
 PartitionMax Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [0, 1, 2], [0, 1, 2, 3], [0, 1, 3, 4, 5], [0, 1, 3, 5, 6, 7], [0, 1, 4, 7, 9, 10, 11], [0, 1, 4, 8, 11, 13, 14, 15], [0, 1, 5, 10, 15, 18, 20, 21, 22]] |
@@ -25,6 +27,7 @@ PartitionMax Triangles
 | AccRevTabl | [[1], [1, 1], [2, 3, 3], [3, 5, 6, 6], [5, 9, 12, 13, 13], [7, 13, 18, 21, 22, 22], [11, 21, 30, 37, 41, 42, 42], [15, 29, 42, 53, 61, 65, 66, 66], [22, 43, 63, 81, 96, 106, 111, 112, 112]] |
 
 PartitionMax Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 3, 6, 13, 22, 42, 66, 112] |
@@ -36,6 +39,7 @@ PartitionMax Row sums
 | AntiDiagSum  | [1, 0, 1, 1, 3, 3, 7, 8, 15] |
 
 PartitionMax Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 6, 60, 210, 13860, 120120, 13860] |
@@ -51,6 +55,7 @@ PartitionMax Transforms
 | TransNat1  | [1, 2, 8, 20, 52, 103, 224, 397, 746] |
 
 PartitionMax Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 2, 3, 5, 7, 11, 15, 22]|
@@ -64,6 +69,7 @@ PartitionMax Diagonals as rows
 | DiagRow8 | [0, 1, 6, 16, 34, 57, 90, 131, 186]|
 
 PartitionMax Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -77,6 +83,7 @@ PartitionMax Diagonals as columns
 | DiagCol8 | [22, 29, 40, 52, 70, 89, 116, 146, 186] |
 
 PartitionMax Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ PartitionMax Polynomial values as rows
 | PolyRow8 | [0, 112, 10518, 210756, 1890772, 10613880, 43925082, 146815228, 419038536] |
 
 PartitionMax Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 0, 0, 0, 0, 0, 0, 0] |
@@ -106,6 +114,7 @@ PartitionMax Polynomial values as columns
 []
 
 PartitionMax:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ PartitionMax:Rev Triangle view
 | Row8 | [22, 21, 20, 18, 15, 10, 5, 1, 0] |
 
 PartitionMax:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [2, 1, 0], [3, 2, 1, 0], [5, 4, 3, 1, 0], [7, 6, 5, 3, 1, 0], [11, 10, 9, 7, 4, 1, 0], [15, 14, 13, 11, 8, 4, 1, 0], [22, 21, 20, 18, 15, 10, 5, 1, 0]] |
@@ -129,6 +139,7 @@ PartitionMax:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [0, 1, 3], [0, 1, 3, 6], [0, 1, 4, 8, 13], [0, 1, 4, 9, 15, 22], [0, 1, 5, 12, 21, 31, 42], [0, 1, 5, 13, 24, 37, 51, 66], [0, 1, 6, 16, 31, 49, 69, 90, 112]] |
 
 PartitionMax:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 3, 6, 13, 22, 42, 66, 112] |
@@ -140,6 +151,7 @@ PartitionMax:Rev Row sums
 | AntiDiagSum  | [1, 1, 2, 4, 7, 12, 20, 31, 48] |
 
 PartitionMax:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 2, 6, 60, 210, 13860, 120120, 13860] |
@@ -155,6 +167,7 @@ PartitionMax:Rev Transforms
 | TransNat1  | [1, 1, 4, 10, 26, 51, 112, 197, 374] |
 
 PartitionMax:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 0, 0, 0, 0, 0, 0, 0]|
@@ -168,6 +181,7 @@ PartitionMax:Rev Diagonals as rows
 | DiagRow8 | [22, 29, 40, 52, 70, 89, 116, 146, 186]|
 
 PartitionMax:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 2, 3, 5, 7, 11, 15, 22] |
@@ -181,6 +195,7 @@ PartitionMax:Rev Diagonals as columns
 | DiagCol8 | [0, 1, 6, 16, 34, 57, 90, 131, 186] |
 
 PartitionMax:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ PartitionMax:Rev Polynomial values as rows
 | PolyRow8 | [22, 112, 1296, 10228, 52522, 199752, 615172, 1623196, 3807678] |
 
 PartitionMax:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 2, 3, 5, 7, 11, 15, 22] |

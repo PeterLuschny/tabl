@@ -2,6 +2,7 @@
 ['A154602']
 
 StirlingSetB Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ StirlingSetB Triangle view
 | Row8 | [75905, 266768, 365324, 247072, 87206, 16016, 1484, 64, 1] |
 
 StirlingSetB Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [3, 4, 1], [11, 19, 9, 1], [49, 104, 70, 16, 1], [257, 641, 550, 190, 25, 1], [1539, 4380, 4531, 2080, 425, 36, 1], [10299, 32803, 39515, 22491, 6265, 833, 49, 1], [75905, 266768, 365324, 247072, 87206, 16016, 1484, 64, 1]] |
@@ -25,6 +27,7 @@ StirlingSetB Triangles
 | AccRevTabl | [[1], [1, 2], [1, 5, 8], [1, 10, 29, 40], [1, 17, 87, 191, 240], [1, 26, 216, 766, 1407, 1664], [1, 37, 462, 2542, 7073, 11453, 12992], [1, 50, 883, 7148, 29639, 69154, 101957, 112256], [1, 65, 1549, 17565, 104771, 351843, 717167, 983935, 1059840]] |
 
 StirlingSetB Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 8, 40, 240, 1664, 12992, 112256, 1059840] |
@@ -36,6 +39,7 @@ StirlingSetB Row sums
 | AntiDiagSum  | [1, 1, 4, 15, 69, 370, 2251, 15245, 113430] |
 
 StirlingSetB Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 12, 1881, 50960, 1721501650, 89999024637600, 2559252346698100095, 2696411135497225545898058560] |
@@ -51,6 +55,7 @@ StirlingSetB Transforms
 | TransNat1  | [1, 3, 14, 80, 536, 4080, 34560, 321088, 3236736] |
 
 StirlingSetB Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ StirlingSetB Diagonals as rows
 | DiagRow8 | [75905, 2337505, 36971461, 396255541, 3214789391, 20975230991, 114503039651, 538271502483, 2228251766598]|
 
 StirlingSetB Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 3, 11, 49, 257, 1539, 10299, 75905] |
@@ -77,6 +83,7 @@ StirlingSetB Diagonals as columns
 | DiagCol8 | [1, 81, 3855, 141735, 4477407, 128395839, 3453398377, 88980093345, 2228251766598] |
 
 StirlingSetB Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ StirlingSetB Polynomial values as rows
 | PolyRow8 | [75905, 1059840, 6058545, 23019008, 68718465, 174558720, 394588145, 816215040, 1574116353] |
 
 StirlingSetB Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 3, 11, 49, 257, 1539, 10299, 75905] |
@@ -106,6 +114,7 @@ StirlingSetB Polynomial values as columns
 []
 
 StirlingSetB:Inv Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ StirlingSetB:Inv Triangle view
 | Row8 | [1, -1146656, 1436532, -687232, 166054, -22176, 1652, -64, 1] |
 
 StirlingSetB:Inv Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [-1, 1], [1, -4, 1], [-1, 17, -9, 1], [1, -96, 74, -16, 1], [-1, 729, -690, 210, -25, 1], [1, -7060, 7579, -2840, 475, -36, 1], [-1, 83033, -97307, 41979, -8715, 931, -49, 1], [1, -1146656, 1436532, -687232, 166054, -22176, 1652, -64, 1]] |
@@ -129,6 +139,7 @@ StirlingSetB:Inv Triangles
 | AccRevTabl | [[1], [1, 0], [1, -3, -2], [1, -8, 9, 8], [1, -15, 59, -37, -36], [1, -24, 186, -504, 225, 224], [1, -35, 440, -2400, 5179, -1881, -1880], [1, -48, 883, -7832, 34147, -63160, 19873, 19872], [1, -63, 1589, -20587, 145467, -541765, 894767, -251889, -251888]] |
 
 StirlingSetB:Inv Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, -2, 8, -36, 224, -1880, 19872, -251888] |
@@ -140,6 +151,7 @@ StirlingSetB:Inv Row sums
 | AntiDiagSum  | [1, -1, 2, -5, 19, -106, 805, -7767, 90824] |
 
 StirlingSetB:Inv Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 4, 153, 3552, 5868450, 6496374713400, 2674413767201758365, 8381602311980946048] |
@@ -155,6 +167,7 @@ StirlingSetB:Inv Transforms
 | TransNat1  | [1, 1, -4, 10, -28, 108, -576, 3736, -24368] |
 
 StirlingSetB:Inv Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -168,6 +181,7 @@ StirlingSetB:Inv Diagonals as rows
 | DiagRow8 | [1, 18164625, 448512021, 5410685621, 43452161071, 264582272383, 1312610750451, 5551818806963, 20649462986438]|
 
 StirlingSetB:Inv Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, -1, 1, -1, 1, -1, 1, -1, 1] |
@@ -181,6 +195,7 @@ StirlingSetB:Inv Diagonals as columns
 | DiagCol8 | [1, -81, 4245, -187605, 7707183, -308369919, 12322357619, -498945642195, 20649462986438] |
 
 StirlingSetB:Inv Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ StirlingSetB:Inv Polynomial values as rows
 | PolyRow8 | [1, -251888, -15, 66064, 193, -37104, -2063, 40720, 17409] |
 
 StirlingSetB:Inv Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, -1, 1, -1, 1, -1, 1, -1, 1] |
@@ -210,6 +226,7 @@ StirlingSetB:Inv Polynomial values as columns
 []
 
 StirlingSetB:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -223,6 +240,7 @@ StirlingSetB:Rev Triangle view
 | Row8 | [1, 64, 1484, 16016, 87206, 247072, 365324, 266768, 75905] |
 
 StirlingSetB:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 1], [1, 4, 3], [1, 9, 19, 11], [1, 16, 70, 104, 49], [1, 25, 190, 550, 641, 257], [1, 36, 425, 2080, 4531, 4380, 1539], [1, 49, 833, 6265, 22491, 39515, 32803, 10299], [1, 64, 1484, 16016, 87206, 247072, 365324, 266768, 75905]] |
@@ -233,6 +251,7 @@ StirlingSetB:Rev Triangles
 | AccRevTabl | [[1], [1, 2], [3, 7, 8], [11, 30, 39, 40], [49, 153, 223, 239, 240], [257, 898, 1448, 1638, 1663, 1664], [1539, 5919, 10450, 12530, 12955, 12991, 12992], [10299, 43102, 82617, 105108, 111373, 112206, 112255, 112256], [75905, 342673, 707997, 955069, 1042275, 1058291, 1059775, 1059839, 1059840]] |
 
 StirlingSetB:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 2, 8, 40, 240, 1664, 12992, 112256, 1059840] |
@@ -244,6 +263,7 @@ StirlingSetB:Rev Row sums
 | AntiDiagSum  | [1, 1, 2, 5, 13, 36, 107, 331, 1074] |
 
 StirlingSetB:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 12, 1881, 50960, 1721501650, 89999024637600, 2559252346698100095, 2696411135497225545898058560] |
@@ -259,6 +279,7 @@ StirlingSetB:Rev Transforms
 | TransNat1  | [1, 3, 18, 120, 904, 7568, 69376, 689216, 7361664] |
 
 StirlingSetB:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 3, 11, 49, 257, 1539, 10299, 75905]|
@@ -272,6 +293,7 @@ StirlingSetB:Rev Diagonals as rows
 | DiagRow8 | [1, 81, 3855, 141735, 4477407, 128395839, 3453398377, 88980093345, 2228251766598]|
 
 StirlingSetB:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -285,6 +307,7 @@ StirlingSetB:Rev Diagonals as columns
 | DiagCol8 | [75905, 2337505, 36971461, 396255541, 3214789391, 20975230991, 114503039651, 538271502483, 2228251766598] |
 
 StirlingSetB:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -298,6 +321,7 @@ StirlingSetB:Rev Polynomial values as rows
 | PolyRow8 | [1, 1059840, 86394513, 1415303680, 11117979585, 57028471296, 221251539985, 704619629568, 1937156666625] |
 
 StirlingSetB:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -314,6 +338,7 @@ StirlingSetB:Rev Polynomial values as columns
 []
 
 StirlingSetB:Inv:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -327,6 +352,7 @@ StirlingSetB:Inv:Rev Triangle view
 | Row8 | [1, -64, 1652, -22176, 166054, -687232, 1436532, -1146656, 1] |
 
 StirlingSetB:Inv:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, -1], [1, -4, 1], [1, -9, 17, -1], [1, -16, 74, -96, 1], [1, -25, 210, -690, 729, -1], [1, -36, 475, -2840, 7579, -7060, 1], [1, -49, 931, -8715, 41979, -97307, 83033, -1], [1, -64, 1652, -22176, 166054, -687232, 1436532, -1146656, 1]] |
@@ -337,6 +363,7 @@ StirlingSetB:Inv:Rev Triangles
 | AccRevTabl | [[1], [-1, 0], [1, -3, -2], [-1, 16, 7, 8], [1, -95, -21, -37, -36], [-1, 728, 38, 248, 223, 224], [1, -7059, 520, -2320, -1845, -1881, -1880], [-1, 83032, -14275, 27704, 18989, 19920, 19871, 19872], [1, -1146655, 289877, -397355, -231301, -253477, -251825, -251889, -251888]] |
 
 StirlingSetB:Inv:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 0, -2, 8, -36, 224, -1880, 19872, -251888] |
@@ -348,6 +375,7 @@ StirlingSetB:Inv:Rev Row sums
 | AntiDiagSum  | [1, 1, 0, -3, -7, 2, 49, 79, -262] |
 
 StirlingSetB:Inv:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 4, 153, 3552, 5868450, 6496374713400, 2674413767201758365, 8381602311980946048] |
@@ -363,6 +391,7 @@ StirlingSetB:Inv:Rev Transforms
 | TransNat1  | [1, -1, -4, 30, -188, 1460, -14464, 175112, -2494512] |
 
 StirlingSetB:Inv:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, -1, 1, -1, 1, -1, 1, -1, 1]|
@@ -376,6 +405,7 @@ StirlingSetB:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, -81, 4245, -187605, 7707183, -308369919, 12322357619, -498945642195, 20649462986438]|
 
 StirlingSetB:Inv:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -389,6 +419,7 @@ StirlingSetB:Inv:Rev Diagonals as columns
 | DiagCol8 | [1, 18164625, 448512021, 5410685621, 43452161071, 264582272383, 1312610750451, 5551818806963, 20649462986438] |
 
 StirlingSetB:Inv:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -402,6 +433,7 @@ StirlingSetB:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, -251888, -74339151, -1614629360, -13565320127, -69182844144, -259099218383, -786467342576, -2049967211775] |
 
 StirlingSetB:Inv:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |

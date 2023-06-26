@@ -2,6 +2,7 @@
 ['A354267', 'A105809', 'A228074']
 
 Fibonacci Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -15,6 +16,7 @@ Fibonacci Triangle view
 | Row8 | [13, 21, 33, 46, 51, 41, 22, 7, 1] |
 
 Fibonacci Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [0, 1], [1, 1, 1], [1, 2, 2, 1], [2, 3, 4, 3, 1], [3, 5, 7, 7, 4, 1], [5, 8, 12, 14, 11, 5, 1], [8, 13, 20, 26, 25, 16, 6, 1], [13, 21, 33, 46, 51, 41, 22, 7, 1]] |
@@ -25,6 +27,7 @@ Fibonacci Triangles
 | AccRevTabl | [[1], [1, 1], [1, 2, 3], [1, 3, 5, 6], [1, 4, 8, 11, 13], [1, 5, 12, 19, 24, 27], [1, 6, 17, 31, 43, 51, 56], [1, 7, 23, 48, 74, 94, 107, 115], [1, 8, 30, 71, 122, 168, 201, 222, 235]] |
 
 Fibonacci Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 3, 6, 13, 27, 56, 115, 235] |
@@ -36,6 +39,7 @@ Fibonacci Row sums
 | AntiDiagSum  | [1, 0, 2, 2, 5, 8, 15, 26, 46] |
 
 Fibonacci Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 2, 12, 420, 9240, 15600, 96282186] |
@@ -51,6 +55,7 @@ Fibonacci Transforms
 | TransNat1  | [1, 2, 6, 15, 37, 88, 205, 469, 1058] |
 
 Fibonacci Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1]|
@@ -64,6 +69,7 @@ Fibonacci Diagonals as rows
 | DiagRow8 | [13, 34, 88, 221, 530, 1204, 2587, 5270, 10220]|
 
 Fibonacci Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 0, 1, 1, 2, 3, 5, 8, 13] |
@@ -77,6 +83,7 @@ Fibonacci Diagonals as columns
 | DiagCol8 | [1, 8, 37, 129, 376, 967, 2267, 4950, 10220] |
 
 Fibonacci Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -90,6 +97,7 @@ Fibonacci Polynomial values as rows
 | PolyRow8 | [13, 235, 5243, 53617, 328945, 1447943, 5061775, 14946973, 38802677] |
 
 Fibonacci Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 0, 1, 1, 2, 3, 5, 8, 13] |
@@ -106,6 +114,7 @@ Fibonacci Polynomial values as columns
 []
 
 Fibonacci:Rev Triangle view
+
 |  Row   |  Seq   |
 | :---   |  :---  |
 | Row0 | [1] |
@@ -119,6 +128,7 @@ Fibonacci:Rev Triangle view
 | Row8 | [1, 7, 22, 41, 51, 46, 33, 21, 13] |
 
 Fibonacci:Rev Triangles
+
 | Flat       |  Seq  |
 | :---       | :---  |
 | Tabl       | [[1], [1, 0], [1, 1, 1], [1, 2, 2, 1], [1, 3, 4, 3, 2], [1, 4, 7, 7, 5, 3], [1, 5, 11, 14, 12, 8, 5], [1, 6, 16, 25, 26, 20, 13, 8], [1, 7, 22, 41, 51, 46, 33, 21, 13]] |
@@ -129,6 +139,7 @@ Fibonacci:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [1, 2, 3], [1, 3, 5, 6], [2, 5, 9, 12, 13], [3, 8, 15, 22, 26, 27], [5, 13, 25, 39, 50, 55, 56], [8, 21, 41, 67, 92, 108, 114, 115], [13, 34, 67, 113, 164, 205, 227, 234, 235]] |
 
 Fibonacci:Rev Row sums
+
 | Trait        |   Seq  |
 | :---         |  :---  |
 | RowSum       | [1, 1, 3, 6, 13, 27, 56, 115, 235] |
@@ -140,6 +151,7 @@ Fibonacci:Rev Row sums
 | AntiDiagSum  | [1, 1, 1, 2, 4, 6, 10, 16, 27] |
 
 Fibonacci:Rev Transforms
+
 | Trans      |   Seq  |
 | :---       |  :---  |
 | RowLcm     | [1, 1, 1, 2, 12, 420, 9240, 15600, 96282186] |
@@ -155,6 +167,7 @@ Fibonacci:Rev Transforms
 | TransNat1  | [1, 1, 6, 15, 41, 101, 243, 566, 1292] |
 
 Fibonacci:Rev Diagonals as rows
+
 | DiagRow  |   Seq  |
 | :---     |  :---  |
 | DiagRow0 | [1, 0, 1, 1, 2, 3, 5, 8, 13]|
@@ -168,6 +181,7 @@ Fibonacci:Rev Diagonals as rows
 | DiagRow8 | [1, 8, 37, 129, 376, 967, 2267, 4950, 10220]|
 
 Fibonacci:Rev Diagonals as columns
+
 | DiagCol  |   Seq  |
 | :---     |  :---  |
 | DiagCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -181,6 +195,7 @@ Fibonacci:Rev Diagonals as columns
 | DiagCol8 | [13, 34, 88, 221, 530, 1204, 2587, 5270, 10220] |
 
 Fibonacci:Rev Polynomial values as rows
+
 | PolyRow  |   Seq  |
 | :---     |  :---  |
 | PolyRow0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
@@ -194,6 +209,7 @@ Fibonacci:Rev Polynomial values as rows
 | PolyRow8 | [1, 235, 10847, 171913, 1394365, 7415711, 29686795, 97029997, 272533433] |
 
 Fibonacci:Rev Polynomial values as columns
+
 | PolyCol  |   Seq  |
 | :---     |  :---  |
 | PolyCol0 | [1, 1, 1, 1, 1, 1, 1, 1, 1] |
