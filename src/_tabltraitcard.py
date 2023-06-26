@@ -476,6 +476,7 @@ if __name__ == "__main__":
     from PowLaguerre import PowLaguerre
     from LabeledGraphs import LabeledGraphs
     from BinomialCatalan import BinomialCatalan
+    from BinomialBell import BinomialBell
 
     register()
 
@@ -491,7 +492,12 @@ if __name__ == "__main__":
     #                    markdown = False,
     #                    onlythefound = False)
     
-    PrintTraits(BinomialCatalan, 20,
+    #PrintTraits(BinomialCatalan, 20,
+    #            withanum = True,
+    #            markdown = True,
+    #            onlythefound = False)
+    
+    PrintTraits(BinomialBell, 20,
                 withanum = True,
                 markdown = True,
                 onlythefound = False)

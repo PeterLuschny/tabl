@@ -1198,6 +1198,25 @@ def Binomial(n: int, k: int) -> int:
 
 
 @cache
+def binomialbell(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 1]
+    a = binomialbell(n - 1) + [1]
+    s = sum(a) - 1
+    for j in range(n - 2, 0, -1):
+        a[j + 1] = (a[j] * (n - 1)) // j
+    a[1] = s
+    return a
+
+
+@set_attributes(binomialbell, "BinomialBell", ["A056857", "A056860"], True)
+def BinomialBell(n: int, k: int) -> int:
+    return binomialbell(n)[k]
+
+
+@cache
 def binomialcatalan(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -2347,15 +2366,12 @@ def bell_num(n: int) -> int:
 
 
 def Bernoulli(n: int) -> frac:
-    if n == 0:
-        return frac(1, 1)
-    if n == 1:
-        return frac(1, 2)
+    if n < 2:
+        return frac(1, n + 1)
     if n % 2 == 1:
         return frac(0, 1)
-    q = 2 ** (n + 1) - 2
     g = genocchi(n // 2 - 1)[-1]
-    f = frac(g, q)
+    f = frac(g, 2 ** (n + 1) - 2)
     return -f if n % 4 == 0 else f
 
 
@@ -2386,6 +2402,7 @@ tabl_fun: list[tgen] = [
     Bessel,
     Bessel2,
     Binomial,
+    BinomialBell,
     BinomialCatalan,
     Catalan,
     CatalanAer,

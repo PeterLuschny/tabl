@@ -2,8 +2,8 @@ from functools import cache
 from _tabltypes import set_attributes
 
 """
-T(n,k) = T(n,k) = binomial(n, k) * Catalan(n - k).
-       = CatalanNumber[k] Pochhammer[-n, k] / k!
+T(n,k) = binomial(n, k) * Catalan(n - k).
+       = CatalanNumber(k) * Pochhammer(-n, k) / k!
 
 | 0 | [1] 
 | 1 | [1, 1] 

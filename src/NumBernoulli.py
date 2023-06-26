@@ -8,12 +8,10 @@ from fractions import Fraction as frac
 
 
 def Bernoulli(n: int) -> frac:
-    if n == 0: return frac(1, 1)
-    if n == 1: return frac(1, 2)
+    if n < 2: return frac(1, n + 1)
     if n % 2 == 1: return frac(0, 1)
-    q = 2 ** (n + 1) - 2
     g = genocchi(n // 2 - 1)[-1]
-    f = frac(g, q)
+    f = frac(g, 2 ** (n + 1) - 2)
     return -f if n % 4 == 0 else f
 
 
