@@ -1829,6 +1829,16 @@ def Lozanic(n: int, k: int) -> int:
 
 
 @cache
+def moebius(n: int) -> list[int]:
+    return [1 if k > 0 and n % k == 0 else int(n == 0) for k in range(n + 1)]
+
+
+@set_attributes(moebius, "Moebius", ["A051731"], True)
+def Moebius(n: int, k: int) -> int:
+    return moebius(n)[k]
+
+
+@cache
 def motzkin(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -2438,6 +2448,7 @@ tabl_fun: list[tgen] = [
     Leibniz,
     Levin,
     Lozanic,
+    Moebius,
     Motzkin,
     MotzkinGF,
     Narayana,
