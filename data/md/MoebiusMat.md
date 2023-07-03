@@ -1,7 +1,7 @@
-# Moebius
-['A051731']
+# MoebiusMat
+['A113704', 'A051731']
 
-Moebius Triangle view
+MoebiusMat Triangle view
 
 |  Row   |  Seq   |
 | :---   |  :---  |
@@ -15,7 +15,7 @@ Moebius Triangle view
 | Row7 | [0, 1, 0, 0, 0, 0, 0, 1] |
 | Row8 | [0, 1, 1, 0, 1, 0, 0, 0, 1] |
 
-Moebius Triangles
+MoebiusMat Triangles
 
 | Flat       |  Seq  |
 | :---       | :---  |
@@ -26,7 +26,7 @@ Moebius Triangles
 | RevAccTabl | [[1], [1, 0], [2, 1, 0], [2, 1, 1, 0], [3, 2, 2, 1, 0], [2, 1, 1, 1, 1, 0], [4, 3, 3, 3, 2, 1, 0], [2, 1, 1, 1, 1, 1, 1, 0], [4, 3, 3, 3, 3, 2, 2, 1, 0]] |
 | AccRevTabl | [[1], [1, 1], [1, 2, 2], [1, 1, 2, 2], [1, 1, 2, 3, 3], [1, 1, 1, 1, 2, 2], [1, 1, 1, 2, 3, 4, 4], [1, 1, 1, 1, 1, 1, 2, 2], [1, 1, 1, 1, 2, 2, 3, 4, 4]] |
 
-Moebius Row sums
+MoebiusMat Row sums
 
 | Trait        |   Seq  |
 | :---         |  :---  |
@@ -38,7 +38,7 @@ Moebius Row sums
 | AccRevSum    | [1, 2, 5, 6, 10, 8, 16, 10, 19] |
 | AntiDiagSum  | [1, 0, 1, 1, 2, 1, 3, 1, 3] |
 
-Moebius Transforms
+MoebiusMat Transforms
 
 | Trans      |   Seq  |
 | :---       |  :---  |
@@ -54,7 +54,7 @@ Moebius Transforms
 | TransNat0  | [0, 1, 3, 4, 7, 6, 12, 8, 15] |
 | TransNat1  | [1, 2, 5, 6, 10, 8, 16, 10, 19] |
 
-Moebius Diagonals as rows
+MoebiusMat Diagonals as rows
 
 | DiagRow  |   Seq  |
 | :---     |  :---  |
@@ -68,7 +68,7 @@ Moebius Diagonals as rows
 | DiagRow7 | [0, 1, 0, 0, 0, 0, 0, 1, 0]|
 | DiagRow8 | [0, 1, 1, 0, 1, 0, 0, 0, 1]|
 
-Moebius Diagonals as columns
+MoebiusMat Diagonals as columns
 
 | DiagCol  |   Seq  |
 | :---     |  :---  |
@@ -82,7 +82,7 @@ Moebius Diagonals as columns
 | DiagCol7 | [1, 0, 0, 0, 0, 0, 0, 1, 0] |
 | DiagCol8 | [1, 0, 0, 0, 0, 0, 0, 0, 1] |
 
-Moebius Polynomial values as rows
+MoebiusMat Polynomial values as rows
 
 | PolyRow  |   Seq  |
 | :---     |  :---  |
@@ -96,7 +96,7 @@ Moebius Polynomial values as rows
 | PolyRow7 | [0, 2, 130, 2190, 16388, 78130, 279942, 823550, 2097160] |
 | PolyRow8 | [0, 4, 278, 6654, 65812, 391280, 1680954, 5767258, 16781384] |
 
-Moebius Polynomial values as columns
+MoebiusMat Polynomial values as columns
 
 | PolyCol  |   Seq  |
 | :---     |  :---  |
@@ -110,10 +110,10 @@ Moebius Polynomial values as columns
 | PolyCol7 | [1, 7, 56, 350, 2457, 16814, 118048, 823550, 5767258] |
 | PolyCol8 | [1, 8, 72, 520, 4168, 32776, 262728, 2097160, 16781384] |
 
-# Moebius:Inv
+# MoebiusMat:Inv
 []
 
-Moebius:Inv Triangle view
+MoebiusMat:Inv Triangle view
 
 |  Row   |  Seq   |
 | :---   |  :---  |
@@ -127,7 +127,7 @@ Moebius:Inv Triangle view
 | Row7 | [0, -1, 0, 0, 0, 0, 0, 1] |
 | Row8 | [0, 0, 0, 0, -1, 0, 0, 0, 1] |
 
-Moebius:Inv Triangles
+MoebiusMat:Inv Triangles
 
 | Flat       |  Seq  |
 | :---       | :---  |
@@ -138,7 +138,7 @@ Moebius:Inv Triangles
 | RevAccTabl | [[1], [1, 0], [0, -1, 0], [0, -1, -1, 0], [0, -1, -1, 0, 0], [0, -1, -1, -1, -1, 0], [0, -1, -1, -1, 0, 1, 0], [0, -1, -1, -1, -1, -1, -1, 0], [0, -1, -1, -1, -1, 0, 0, 0, 0]] |
 | AccRevTabl | [[1], [1, 1], [1, 0, 0], [1, 1, 0, 0], [1, 1, 0, 0, 0], [1, 1, 1, 1, 0, 0], [1, 1, 1, 0, -1, 0, 0], [1, 1, 1, 1, 1, 1, 0, 0], [1, 1, 1, 1, 0, 0, 0, 0, 0]] |
 
-Moebius:Inv Row sums
+MoebiusMat:Inv Row sums
 
 | Trait        |   Seq  |
 | :---         |  :---  |
@@ -150,7 +150,7 @@ Moebius:Inv Row sums
 | AccRevSum    | [1, 2, 1, 2, 2, 4, 2, 6, 4] |
 | AntiDiagSum  | [1, 0, 1, -1, 0, 0, -1, 1, -1] |
 
-Moebius:Inv Transforms
+MoebiusMat:Inv Transforms
 
 | Trans      |   Seq  |
 | :---       |  :---  |
@@ -166,7 +166,7 @@ Moebius:Inv Transforms
 | TransNat0  | [0, 1, 1, 2, 2, 4, 2, 6, 4] |
 | TransNat1  | [1, 2, 1, 2, 2, 4, 2, 6, 4] |
 
-Moebius:Inv Diagonals as rows
+MoebiusMat:Inv Diagonals as rows
 
 | DiagRow  |   Seq  |
 | :---     |  :---  |
@@ -180,7 +180,7 @@ Moebius:Inv Diagonals as rows
 | DiagRow7 | [0, 0, 0, 0, 0, 0, 0, -1, 0]|
 | DiagRow8 | [0, 0, -1, 0, -1, 0, 0, 0, -1]|
 
-Moebius:Inv Diagonals as columns
+MoebiusMat:Inv Diagonals as columns
 
 | DiagCol  |   Seq  |
 | :---     |  :---  |
@@ -194,7 +194,7 @@ Moebius:Inv Diagonals as columns
 | DiagCol7 | [1, 0, 0, 0, 0, 0, 0, -1, 0] |
 | DiagCol8 | [1, 0, 0, 0, 0, 0, 0, 0, -1] |
 
-Moebius:Inv Polynomial values as rows
+MoebiusMat:Inv Polynomial values as rows
 
 | PolyRow  |   Seq  |
 | :---     |  :---  |
@@ -208,7 +208,7 @@ Moebius:Inv Polynomial values as rows
 | PolyRow7 | [0, 0, 126, 2184, 16380, 78120, 279930, 823536, 2097144] |
 | PolyRow8 | [0, 0, 240, 6480, 65280, 390000, 1678320, 5762400, 16773120] |
 
-Moebius:Inv Polynomial values as columns
+MoebiusMat:Inv Polynomial values as columns
 
 | PolyCol  |   Seq  |
 | :---     |  :---  |
@@ -222,10 +222,10 @@ Moebius:Inv Polynomial values as columns
 | PolyCol7 | [1, 7, 42, 336, 2352, 16800, 117264, 823536, 5762400] |
 | PolyCol8 | [1, 8, 56, 504, 4032, 32760, 261576, 2097144, 16773120] |
 
-# Moebius:Rev
+# MoebiusMat:Rev
 []
 
-Moebius:Rev Triangle view
+MoebiusMat:Rev Triangle view
 
 |  Row   |  Seq   |
 | :---   |  :---  |
@@ -239,7 +239,7 @@ Moebius:Rev Triangle view
 | Row7 | [1, 0, 0, 0, 0, 0, 1, 0] |
 | Row8 | [1, 0, 0, 0, 1, 0, 1, 1, 0] |
 
-Moebius:Rev Triangles
+MoebiusMat:Rev Triangles
 
 | Flat       |  Seq  |
 | :---       | :---  |
@@ -250,7 +250,7 @@ Moebius:Rev Triangles
 | RevAccTabl | [[1], [1, 1], [2, 2, 1], [2, 2, 1, 1], [3, 3, 2, 1, 1], [2, 2, 1, 1, 1, 1], [4, 4, 3, 2, 1, 1, 1], [2, 2, 1, 1, 1, 1, 1, 1], [4, 4, 3, 2, 2, 1, 1, 1, 1]] |
 | AccRevTabl | [[1], [0, 1], [0, 1, 2], [0, 1, 1, 2], [0, 1, 2, 2, 3], [0, 1, 1, 1, 1, 2], [0, 1, 2, 3, 3, 3, 4], [0, 1, 1, 1, 1, 1, 1, 2], [0, 1, 2, 2, 3, 3, 3, 3, 4]] |
 
-Moebius:Rev Row sums
+MoebiusMat:Rev Row sums
 
 | Trait        |   Seq  |
 | :---         |  :---  |
@@ -262,7 +262,7 @@ Moebius:Rev Row sums
 | AccRevSum    | [1, 1, 3, 4, 8, 6, 16, 8, 21] |
 | AntiDiagSum  | [1, 1, 1, 2, 1, 2, 2, 2, 1] |
 
-Moebius:Rev Transforms
+MoebiusMat:Rev Transforms
 
 | Trans      |   Seq  |
 | :---       |  :---  |
@@ -278,7 +278,7 @@ Moebius:Rev Transforms
 | TransNat0  | [0, 0, 1, 2, 5, 4, 12, 6, 17] |
 | TransNat1  | [1, 1, 3, 4, 8, 6, 16, 8, 21] |
 
-Moebius:Rev Diagonals as rows
+MoebiusMat:Rev Diagonals as rows
 
 | DiagRow  |   Seq  |
 | :---     |  :---  |
@@ -292,7 +292,7 @@ Moebius:Rev Diagonals as rows
 | DiagRow7 | [1, 0, 0, 0, 0, 0, 0, 1, 0]|
 | DiagRow8 | [1, 0, 0, 0, 0, 0, 0, 0, 1]|
 
-Moebius:Rev Diagonals as columns
+MoebiusMat:Rev Diagonals as columns
 
 | DiagCol  |   Seq  |
 | :---     |  :---  |
@@ -306,7 +306,7 @@ Moebius:Rev Diagonals as columns
 | DiagCol7 | [0, 1, 0, 0, 0, 0, 0, 1, 0] |
 | DiagCol8 | [0, 1, 1, 0, 1, 0, 0, 0, 1] |
 
-Moebius:Rev Polynomial values as rows
+MoebiusMat:Rev Polynomial values as rows
 
 | PolyRow  |   Seq  |
 | :---     |  :---  |
@@ -320,7 +320,7 @@ Moebius:Rev Polynomial values as rows
 | PolyRow7 | [1, 2, 65, 730, 4097, 15626, 46657, 117650, 262145] |
 | PolyRow8 | [1, 4, 209, 2998, 20737, 94376, 327889, 943594, 2363393] |
 
-Moebius:Rev Polynomial values as columns
+MoebiusMat:Rev Polynomial values as columns
 
 | PolyCol  |   Seq  |
 | :---     |  :---  |
@@ -334,10 +334,10 @@ Moebius:Rev Polynomial values as columns
 | PolyCol7 | [1, 1, 8, 50, 393, 2402, 19552, 117650, 943594] |
 | PolyCol8 | [1, 1, 9, 65, 577, 4097, 37377, 262145, 2363393] |
 
-# Moebius:Inv:Rev
+# MoebiusMat:Inv:Rev
 []
 
-Moebius:Inv:Rev Triangle view
+MoebiusMat:Inv:Rev Triangle view
 
 |  Row   |  Seq   |
 | :---   |  :---  |
@@ -351,7 +351,7 @@ Moebius:Inv:Rev Triangle view
 | Row7 | [1, 0, 0, 0, 0, 0, -1, 0] |
 | Row8 | [1, 0, 0, 0, -1, 0, 0, 0, 0] |
 
-Moebius:Inv:Rev Triangles
+MoebiusMat:Inv:Rev Triangles
 
 | Flat       |  Seq  |
 | :---       | :---  |
@@ -362,7 +362,7 @@ Moebius:Inv:Rev Triangles
 | RevAccTabl | [[1], [1, 1], [0, 0, 1], [0, 0, 1, 1], [0, 0, 0, 1, 1], [0, 0, 1, 1, 1, 1], [0, 0, -1, 0, 1, 1, 1], [0, 0, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 1, 1, 1, 1]] |
 | AccRevTabl | [[1], [0, 1], [0, -1, 0], [0, -1, -1, 0], [0, 0, -1, -1, 0], [0, -1, -1, -1, -1, 0], [0, 1, 0, -1, -1, -1, 0], [0, -1, -1, -1, -1, -1, -1, 0], [0, 0, 0, 0, -1, -1, -1, -1, 0]] |
 
-Moebius:Inv:Rev Row sums
+MoebiusMat:Inv:Rev Row sums
 
 | Trait        |   Seq  |
 | :---         |  :---  |
@@ -374,7 +374,7 @@ Moebius:Inv:Rev Row sums
 | AccRevSum    | [1, 1, -1, -2, -2, -4, -2, -6, -4] |
 | AntiDiagSum  | [1, 1, 1, 0, 1, 0, 0, 1, 1] |
 
-Moebius:Inv:Rev Transforms
+MoebiusMat:Inv:Rev Transforms
 
 | Trans      |   Seq  |
 | :---       |  :---  |
@@ -390,7 +390,7 @@ Moebius:Inv:Rev Transforms
 | TransNat0  | [0, 0, -1, -2, -2, -4, -2, -6, -4] |
 | TransNat1  | [1, 1, -1, -2, -2, -4, -2, -6, -4] |
 
-Moebius:Inv:Rev Diagonals as rows
+MoebiusMat:Inv:Rev Diagonals as rows
 
 | DiagRow  |   Seq  |
 | :---     |  :---  |
@@ -404,7 +404,7 @@ Moebius:Inv:Rev Diagonals as rows
 | DiagRow7 | [1, 0, 0, 0, 0, 0, 0, -1, 0]|
 | DiagRow8 | [1, 0, 0, 0, 0, 0, 0, 0, -1]|
 
-Moebius:Inv:Rev Diagonals as columns
+MoebiusMat:Inv:Rev Diagonals as columns
 
 | DiagCol  |   Seq  |
 | :---     |  :---  |
@@ -418,7 +418,7 @@ Moebius:Inv:Rev Diagonals as columns
 | DiagCol7 | [0, 0, 0, 0, 0, 0, 0, -1, 0] |
 | DiagCol8 | [0, 0, -1, 0, -1, 0, 0, 0, -1] |
 
-Moebius:Inv:Rev Polynomial values as rows
+MoebiusMat:Inv:Rev Polynomial values as rows
 
 | PolyRow  |   Seq  |
 | :---     |  :---  |
@@ -432,7 +432,7 @@ Moebius:Inv:Rev Polynomial values as rows
 | PolyRow7 | [1, 0, -63, -728, -4095, -15624, -46655, -117648, -262143] |
 | PolyRow8 | [1, 0, -15, -80, -255, -624, -1295, -2400, -4095] |
 
-Moebius:Inv:Rev Polynomial values as columns
+MoebiusMat:Inv:Rev Polynomial values as columns
 
 | PolyCol  |   Seq  |
 | :---     |  :---  |

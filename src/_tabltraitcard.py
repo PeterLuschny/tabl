@@ -477,8 +477,8 @@ if __name__ == "__main__":
     from LabeledGraphs import LabeledGraphs
     from BinomialCatalan import BinomialCatalan
     from BinomialBell import BinomialBell
-    from Moebius import Moebius
-
+    from MoebiusInv import MoebiusInv
+    
     register()
 
     # SaveAllTraitsToCSV()
@@ -498,7 +498,7 @@ if __name__ == "__main__":
     #            markdown = True,
     #            onlythefound = False)
     
-    PrintTraits(Moebius, 20,
+    PrintTraits(MoebiusInv, 20,
                 withanum = True,
                 markdown = True,
                 onlythefound = False)

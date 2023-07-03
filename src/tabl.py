@@ -1829,13 +1829,39 @@ def Lozanic(n: int, k: int) -> int:
 
 
 @cache
-def moebius(n: int) -> list[int]:
+def moebiusmat(n: int) -> list[int]:
     return [1 if k > 0 and n % k == 0 else int(n == 0) for k in range(n + 1)]
 
 
-@set_attributes(moebius, "Moebius", ["A051731"], True)
-def Moebius(n: int, k: int) -> int:
-    return moebius(n)[k]
+@set_attributes(moebiusmat, "MoebiusMat", ["A113704", "A051731"], True)
+def MoebiusMat(n: int, k: int) -> int:
+    return moebiusmat(n)[k]
+
+
+@cache
+def moebius(n: int) -> int:
+    if n == 1:
+        return 1
+    if n == 2:
+        return -1
+    return -sum(moebius(k) for k, i in enumerate(moebiusmat(n)[: n - 1]) if i != 0)
+
+
+@cache
+def moebiusinv(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    r = [0 for _ in range(n + 1)]
+    r[n] = 1
+    for k in range(1, n):
+        if n % k == 0:
+            r[k] = moebius(n // k)
+    return r
+
+
+@set_attributes(moebiusinv, "MoebiusInv", ["A363914"], True)
+def MoebiusInv(n: int, k: int) -> int:
+    return moebiusinv(n)[k]
 
 
 @cache
@@ -2389,6 +2415,11 @@ def euler_num(n: int) -> int:
     return euler(n)[0]
 
 
+@cache
+def eulerphi(n: int) -> int:
+    return sum(k * moebiusinv(n)[k] for k in range(n + 1))
+
+
 def motzkin_num(n: int) -> int:
     return sum(motzkin(n))
 
@@ -2448,7 +2479,8 @@ tabl_fun: list[tgen] = [
     Leibniz,
     Levin,
     Lozanic,
-    Moebius,
+    MoebiusMat,
+    MoebiusInv,
     Motzkin,
     MotzkinGF,
     Narayana,

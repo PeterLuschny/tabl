@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import set_attributes
 
 '''
-A051731  Moebius matrix.
+The Moebius matrix, the indicator function for divisibility.
 
 [ 0]  1
 [ 1]  0  1
@@ -18,21 +18,21 @@ A051731  Moebius matrix.
 '''
 
 @cache
-def moebius(n: int) -> list[int]:
+def moebiusmat(n: int) -> list[int]:
     return [1 if k > 0 and n % k == 0 else int(n == 0) 
             for k in range(n + 1)]
 
 
 @set_attributes(
-    moebius,
-    "Moebius",
-    ['A051731'],
+    moebiusmat,
+    "MoebiusMat",
+    ['A113704', 'A051731'],
     True)
-def Moebius(n: int, k: int) -> int:
-    return moebius(n)[k]
+def MoebiusMat(n: int, k: int) -> int:
+    return moebiusmat(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(Moebius)
+    TablTest(MoebiusMat)

@@ -51,3 +51,4 @@ def write_oeis_bfile(
         file.write(str(n) + " " + str(val) + "\n")
     file.write("\n")
     file.close()
+    print("Done!")

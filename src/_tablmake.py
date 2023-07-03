@@ -53,7 +53,9 @@ tabl_files: list[str] = [
     "Leibniz.py",
     "Levin.py",
     "Lozanic.py",
-    "Moebius.py",
+    "MoebiusMat.py", # has to be first
+    "NumMoebius.py", # has to be second
+    "MoebiusInv.py", # has to be third
     "Motzkin.py",
     "MotzkinGF.py",
     "Narayana.py",
@@ -86,7 +88,10 @@ tabl_files: list[str] = [
     "Worpitzky.py",
     "NumBell.py",
     "NumBernoulli.py",
+    "NumDivisors",
     "NumEuler.py",
+    "NumEulerPhi.py",
+#   "NumMoebius",  has to be where it is
     "NumMotzkin.py",
     "NumPartLists.py",
     "NumParts.py",
@@ -143,7 +148,8 @@ tabl_fun: list[tgen] = [
     Leibniz,
     Levin,
     Lozanic,
-    Moebius,
+    MoebiusMat,
+    MoebiusInv,
     Motzkin,
     MotzkinGF,
     Narayana,
