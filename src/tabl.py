@@ -1830,7 +1830,19 @@ def Lozanic(n: int, k: int) -> int:
 
 @cache
 def moebiusmat(n: int) -> list[int]:
-    return [1 if k > 0 and n % k == 0 else int(n == 0) for k in range(n + 1)]
+    if n == 0:
+        return [1]
+    L = [0 for _ in range(n + 1)]
+    L[1] = L[n] = 1
+    i = 1
+    div = n
+
+    while i < div:
+        div, mod = divmod(n, i)
+        if mod == 0:
+            L[i] = L[div] = 1
+        i += 1
+    return L
 
 
 @set_attributes(moebiusmat, "MoebiusMat", ["A113704", "A051731"], True)
@@ -1859,7 +1871,7 @@ def moebiusinv(n: int) -> list[int]:
     return r
 
 
-@set_attributes(moebiusinv, "MoebiusInv", ["A363914"], True)
+@set_attributes(moebiusinv, "MoebiusInv", ["A363914", "A054525"], True)
 def MoebiusInv(n: int, k: int) -> int:
     return moebiusinv(n)[k]
 

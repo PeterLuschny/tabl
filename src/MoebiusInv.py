@@ -32,7 +32,7 @@ def moebiusinv(n: int) -> list[int]:
 @set_attributes(
     moebiusinv,
     "MoebiusInv",
-    ['A363914'],
+    ['A363914', 'A054525'],
     True)
 def MoebiusInv(n: int, k: int) -> int:
     return moebiusinv(n)[k]
