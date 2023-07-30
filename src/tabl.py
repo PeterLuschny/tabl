@@ -1444,6 +1444,62 @@ def Delannoy(n: int, k: int) -> int:
 
 
 @cache
+def divisibility(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    L = [0 for _ in range(n + 1)]
+    L[1] = L[n] = 1
+    i = 1
+    div = n
+
+    while i < div:
+        div, mod = divmod(n, i)
+        if mod == 0:
+            L[i] = L[div] = 1
+        i += 1
+    return L
+
+
+@set_attributes(divisibility, "Divisibility", ["A113704", "A051731"], True)
+def Divisibility(n: int, k: int) -> int:
+    return divisibility(n)[k]
+
+
+@cache
+def _euclidX(n: int, k: int) -> int:
+    while k != 0:
+        t = k
+        k = n % k
+        n = t
+    return 1 if n == 1 else 0
+
+
+@cache
+def euclidX(n: int) -> list[int]:
+    return [_euclidX(i, n) for i in range(n + 1)]
+
+
+@cache
+def euclid(n: int) -> list[int]:
+    if n == 0:
+        return [0]
+    if n == 1:
+        return [1, 1]
+    row = [0 for _ in range(n + 1)]
+    row[1] = row[n - 1] = 1
+    for k in range(2, n // 2 + 2):
+        j = n % k
+        if j > 0:
+            row[k] = row[n - k] = euclid(n - j)[j]
+    return row
+
+
+@set_attributes(euclid, "Euclid", ["A217831"], False)
+def Euclid(n: int, k: int) -> int:
+    return euclid(n)[k]
+
+
+@cache
 def euler(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -1829,38 +1885,16 @@ def Lozanic(n: int, k: int) -> int:
 
 
 @cache
-def moebiusmat(n: int) -> list[int]:
-    if n == 0:
-        return [1]
-    L = [0 for _ in range(n + 1)]
-    L[1] = L[n] = 1
-    i = 1
-    div = n
-
-    while i < div:
-        div, mod = divmod(n, i)
-        if mod == 0:
-            L[i] = L[div] = 1
-        i += 1
-    return L
-
-
-@set_attributes(moebiusmat, "MoebiusMat", ["A113704", "A051731"], True)
-def MoebiusMat(n: int, k: int) -> int:
-    return moebiusmat(n)[k]
-
-
-@cache
 def moebius(n: int) -> int:
     if n == 1:
         return 1
     if n == 2:
         return -1
-    return -sum(moebius(k) for k, i in enumerate(moebiusmat(n)[: n - 1]) if i != 0)
+    return -sum(moebius(k) for k, i in enumerate(divisibility(n)[: n - 1]) if i != 0)
 
 
 @cache
-def moebiusinv(n: int) -> list[int]:
+def moebiusmat(n: int) -> list[int]:
     if n == 0:
         return [1]
     r = [0 for _ in range(n + 1)]
@@ -1871,9 +1905,9 @@ def moebiusinv(n: int) -> list[int]:
     return r
 
 
-@set_attributes(moebiusinv, "MoebiusInv", ["A363914", "A054525"], True)
-def MoebiusInv(n: int, k: int) -> int:
-    return moebiusinv(n)[k]
+@set_attributes(moebiusmat, "MoebiusMat", ["A363914", "A054525"], True)
+def MoebiusMat(n: int, k: int) -> int:
+    return moebiusmat(n)[k]
 
 
 @cache
@@ -2429,11 +2463,7 @@ def euler_num(n: int) -> int:
 
 @cache
 def eulerphi(n: int) -> int:
-    return sum(k * moebiusinv(n)[k] for k in range(n + 1))
-
-
-def motzkin_num(n: int) -> int:
-    return sum(motzkin(n))
+    return sum(k * moebiusmat(n)[k] for k in range(n + 1))
 
 
 def partlist_num(n: int) -> int:
@@ -2469,6 +2499,8 @@ tabl_fun: list[tgen] = [
     CompoMax,
     Ctree,
     Delannoy,
+    Divisibility,
+    Euclid,
     Euler,
     Eulerian,
     Eulerian2,
@@ -2492,7 +2524,6 @@ tabl_fun: list[tgen] = [
     Levin,
     Lozanic,
     MoebiusMat,
-    MoebiusInv,
     Motzkin,
     MotzkinGF,
     Narayana,

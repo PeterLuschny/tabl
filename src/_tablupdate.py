@@ -21,7 +21,8 @@ defined integer triangles (including downloading the latest
 compressed database from the OEIS), updates the corresponding 
 csv files and the corresponding html files as well as the 
 crossreferences. This will take a considerably amount of time.
-Normally this is done only when preparing a new release.
+Normally this is done only by the administrator when preparing
+a new release.
 '''
 def update() -> None:
     print("Updating OEIS data ...")
@@ -39,7 +40,7 @@ if __name__ == "__main__":
 
 '''
 Clean up: 
-* Deleted this file (the copy of _tablupdate) from the project folder.
+* Delete the copy of _tablupdate from the project folder.
 * Move tabl.py from the project folder to the src folder.
 * Format tabl.py.
 * Copy the header of README.md to crossrefs. md.

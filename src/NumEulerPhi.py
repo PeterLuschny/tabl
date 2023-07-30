@@ -1,10 +1,9 @@
 from functools import cache
-from MoebiusInv import moebiusinv
+from MoebiusMat import moebiusmat
 
 """Euler totient function phi, A000010,
 but with offset 0 and a(0) = 0,
 cardinality of numbers <= n and prime to n.
-
 
 [0, 1, 1, 2, 2, 4, 2, 6, 4, 6, 4, 10]
 """
@@ -12,7 +11,7 @@ cardinality of numbers <= n and prime to n.
 
 @cache
 def eulerphi(n: int) -> int:
-    return sum(k * moebiusinv(n)[k] for k in range(n + 1))
+    return sum(k * moebiusmat(n)[k] for k in range(n + 1))
 
 
 if __name__ == "__main__":

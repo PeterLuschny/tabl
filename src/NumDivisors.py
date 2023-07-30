@@ -1,5 +1,5 @@
 from functools import cache
-from MoebiusMat import moebiusmat
+from Divisibility import divisibility
 
 """Number of divisors (Sigma0 or tau) A000005, 0-based by prependig 1.
 Equivalently, d is a divisor of n iff d <= n and d divides n.
@@ -13,7 +13,7 @@ Here implemented as the row sums of the Moebius matrix (see Moebius.py).
 
 @cache
 def divisors_num(n: int) -> int:
-    return sum(moebiusmat(n))
+    return sum(divisibility(n))
 
 
 if __name__ == "__main__":

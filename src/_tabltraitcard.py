@@ -477,7 +477,8 @@ if __name__ == "__main__":
     from LabeledGraphs import LabeledGraphs
     from BinomialCatalan import BinomialCatalan
     from BinomialBell import BinomialBell
-    from MoebiusInv import MoebiusInv
+    from MoebiusMat import MoebiusMat
+    from Euclid import Euclid
     
     register()
 
@@ -498,7 +499,7 @@ if __name__ == "__main__":
     #            markdown = True,
     #            onlythefound = False)
     
-    PrintTraits(MoebiusInv, 20,
+    PrintTraits(Euclid, 28,
                 withanum = True,
                 markdown = True,
                 onlythefound = False)

@@ -31,6 +31,8 @@ tabl_files: list[str] = [
     "Composition.py",
     "CompositionMax.py",
     "Delannoy.py",
+    "Divisibility.py",
+    "Euclid.py",
     "Euler.py",
     "Eulerian.py",
     "Eulerian2.py",
@@ -53,9 +55,7 @@ tabl_files: list[str] = [
     "Leibniz.py",
     "Levin.py",
     "Lozanic.py",
-    "MoebiusMat.py", # has to be first
-    "NumMoebius.py", # has to be second
-    "MoebiusInv.py", # has to be third
+    "MoebiusMat.py",
     "Motzkin.py",
     "MotzkinGF.py",
     "Narayana.py",
@@ -91,8 +91,6 @@ tabl_files: list[str] = [
     "NumDivisors",
     "NumEuler.py",
     "NumEulerPhi.py",
-#   "NumMoebius",  has to be where it is
-    "NumMotzkin.py",
     "NumPartLists.py",
     "NumParts.py",
     "NumRiordan.py",
@@ -126,6 +124,8 @@ tabl_fun: list[tgen] = [
     CompoMax,
     Ctree,
     Delannoy,
+    Divisibility,
+    Euclid,
     Euler,
     Eulerian,
     Eulerian2,
@@ -149,7 +149,6 @@ tabl_fun: list[tgen] = [
     Levin,
     Lozanic,
     MoebiusMat,
-    MoebiusInv,
     Motzkin,
     MotzkinGF,
     Narayana,
