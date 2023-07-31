@@ -1466,7 +1466,7 @@ def Divisibility(n: int, k: int) -> int:
 
 
 @cache
-def _euclidX(n: int, k: int) -> int:
+def _euclid(n: int, k: int) -> int:
     while k != 0:
         t = k
         k = n % k
@@ -1475,23 +1475,8 @@ def _euclidX(n: int, k: int) -> int:
 
 
 @cache
-def euclidX(n: int) -> list[int]:
-    return [_euclidX(i, n) for i in range(n + 1)]
-
-
-@cache
 def euclid(n: int) -> list[int]:
-    if n == 0:
-        return [0]
-    if n == 1:
-        return [1, 1]
-    row = [0 for _ in range(n + 1)]
-    row[1] = row[n - 1] = 1
-    for k in range(2, n // 2 + 2):
-        j = n % k
-        if j > 0:
-            row[k] = row[n - k] = euclid(n - j)[j]
-    return row
+    return [_euclid(i, n) for i in range(n + 1)]
 
 
 @set_attributes(euclid, "Euclid", ["A217831"], False)
