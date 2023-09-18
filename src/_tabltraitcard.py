@@ -479,6 +479,7 @@ if __name__ == "__main__":
     from BinomialBell import BinomialBell
     from MoebiusMat import MoebiusMat
     from Euclid import Euclid
+    from PartitionDist import PartnumDist
     
     register()
 
@@ -499,7 +500,7 @@ if __name__ == "__main__":
     #            markdown = True,
     #            onlythefound = False)
     
-    PrintTraits(Euclid, 28,
+    PrintTraits(PartnumDist, 28,
                 withanum = True,
                 markdown = True,
                 onlythefound = False)

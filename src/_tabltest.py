@@ -14,6 +14,7 @@ def TablTest(T: tgen, dim: int = 8, short: bool = False) -> None:
 
     arg: int = 500 if short else 1000
     gen: rgen = T.gen
+
     eq: bool = T(arg, arg) == gen(arg)[-1]
 
     a1: str = str(arg)

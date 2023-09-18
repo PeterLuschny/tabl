@@ -2030,6 +2030,27 @@ def PartnumExact(n: int, k: int) -> int:
 
 
 @cache
+def _pdist(n: int, k: int, r: int) -> int:
+    if n == 0:
+        return 1 if k == 0 else 0
+    if k == 0 or r == 0:
+        return 0
+    return sum(_pdist(n - r * j, k - 1, r - 1) for j in range(1, n // r + 1)) + _pdist(
+        n, k, r - 1
+    )
+
+
+@cache
+def partnumdist(n) -> list[int]:
+    return [_pdist(n, k, n) for k in range(n + 1)]
+
+
+@set_attributes(partnumdist, "PartitionDist", ["A365676", "A116608", "A060177"], False)
+def PartnumDist(n: int, k: int) -> int:
+    return partnumdist(n)[k]
+
+
+@cache
 def partnummax(n: int) -> list[int]:
     return list(accumulate(partnumexact(n)))
 
@@ -2517,6 +2538,7 @@ tabl_fun: list[tgen] = [
     Ordinals,
     OrderedCycle,
     PartnumExact,
+    PartnumDist,
     PartnumMax,
     Polygonal,
     PowLaguerre,

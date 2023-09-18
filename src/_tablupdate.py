@@ -1,5 +1,6 @@
 ###############################################
 # * First copy this file to the project folder.
+###############################################
 
 from pathlib import Path
 path = Path(__file__).parent
@@ -46,6 +47,5 @@ Clean up by hand:
 * Copy the header of README.md to crossrefs. md.
 * Delete README.md
 * Rename crossrefs.md to README.md.
-* Convert README.md to html using the VS plugin
-* 'Markdown All in One'.
+* Convert README.md to html using a VS plugin
 '''
