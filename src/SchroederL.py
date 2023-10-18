@@ -17,12 +17,13 @@ from _tabltypes import set_attributes
 
 @cache
 def schroederl(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [1, 1]
 
-    if n == 0: return [1]
-    if n == 1: return [1, 1]
-
-    arow: list[int] = schroederl(n - 1) + [0] 
-    row: list[int]  = schroederl(n - 1) + [1]
+    arow: list[int] = schroederl(n - 1) + [0]
+    row: list[int] = schroederl(n - 1) + [1]
 
     row[0] = row[0] + 2 * row[1]
     for k in range(1, n):
@@ -31,12 +32,8 @@ def schroederl(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
-    schroederl, 
-    "SchroederL", 
-    ['A172094'], 
-    True)
-def SchroederL(n: int, k: int) -> int: 
+@set_attributes(schroederl, "SchroederL", ["A172094"], True)
+def SchroederL(n: int, k: int) -> int:
     return schroederl(n)[k]
 
 

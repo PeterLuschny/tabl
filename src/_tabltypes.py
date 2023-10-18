@@ -44,6 +44,35 @@ tri: TypeAlias = Callable[[int, int], int]
 #   (g: Callable[[int], list[int]], size: int) -> list[int]
 
 
+def fnv(data: bytes) -> int:
+    """
+    FNV-1a hash algorithm.
+    """
+    assert isinstance(data, bytes)
+
+    hval = 0xCBF29CE484222325
+    for byte in data:
+        hval = hval ^ byte
+        hval = (hval * 0x100000001B3) % 0x10000000000000000
+    return hval
+
+
+def fnv_hash(seq: list[int]) -> str:
+    if len(seq) < 28:
+        print("Warning:", seq, "is too short!")
+        return "0"
+    x = str(seq[0:28]).translate(str.maketrans("", "", "[],"))
+    return hex(fnv(bytes(x, encoding="ascii")))[2:]
+
+
+def fnv_abshash(seq: list[int]) -> str:
+    if len(seq) < 28:
+        print("Warning:", seq, "is too short!")
+        return "0"
+    x = str([abs(i) for i in seq[0:28]]).translate(str.maketrans("", "", "[],"))
+    return hex(fnv(bytes(x, encoding="ascii")))[2:]
+
+
 def inversion_wrapper(T: tgen, size: int) -> tgen | None:
 
     t = T.inv(size)
@@ -109,6 +138,9 @@ def AbsSubTriangle(g: rgen, N: int, K: int, size: int) -> tabl:
 
 def set_attributes(gen: rgen, id: str, sim: list[str], vert: bool=False) -> Callable[..., Callable[[int,int], int]]:
 
+    def makerow(n: int) -> trow:
+        return list(gen(n))
+    
     def maketab(size: int) -> tabl:
         return [list(gen(n)) for n in range(size)]
 
@@ -118,7 +150,7 @@ def set_attributes(gen: rgen, id: str, sim: list[str], vert: bool=False) -> Call
     def makemat(size: int) -> tabl:
         return [[gen(n)[k] if k <= n else 0 for k in range(size)] for n in range(size)]
 
-    def makeflat(size: int) -> list[int]:
+    def makeflat(size: int) -> trow:
         return [gen(n)[k] for n in range(size) for k in range(n + 1)]
 
     def makeinv(size: int) -> tabl:
@@ -146,13 +178,13 @@ def set_attributes(gen: rgen, id: str, sim: list[str], vert: bool=False) -> Call
             return [[abs(gen(n)[k]) for k in range(K, K - N + n + 1)] for n in range(N, N + size)]
         return gabssub
 
-
     def wrapper(f: Callable[[int, int], int]) -> Callable[[int, int], int]:
         f.tab = maketab
         f.rev = makerev
         f.mat = makemat
         f.inv = makeinv
         f.flat = makeflat
+        f.row = makerow
         f.revinv = makerevinv
         f.invrev = makeinvrev
         f.sub = sub
@@ -175,11 +207,10 @@ if __name__ == "__main__":
 
     F = StirlingSet 
     G = Delannoy
-    size = 6
-
+    size = 7
 
     T = F.tab(size)
-    print("tgen    ", T)
+    print("tgen   ", T)
 
     T = F.flat(size)
     print("FLAT   ", T)
@@ -251,20 +282,26 @@ if __name__ == "__main__":
     print(Bell.sub(1,0)(6))
     print(Bell.sub(1,1)(6))
 
-
-'''
-    print(Abel.tab(6))
+    print(Abel.tab(7))
     print()
 
     abel11 = lambda n: Abel.sub(1,1)(n)
 
     @set_attributes(
-    abel11, 
-    "Abel11", 
-    ['A359', 'A05'],
-    False)
+    abel11, "Abel11", ['A359', 'A05'], False)
     def Abel11(n: int, k: int) -> int: 
         return abel11(n)[k]
-    
     print(Abel11(3,2))
-'''
+
+    data = "1 1 1 3 30 630 3780 207900 8108100 56756700 1929727800"
+    print(hex(fnv(bytes(data, encoding="ascii"))))
+    data = "1 1 6 84 600 145080 2167200 453138235200 319959556963200"
+    print(hex(fnv(bytes(data, encoding="ascii"))))
+    data = "-1 1 6 84 600 145080 2167200 453138235200 319959556963200"
+    print(hex(fnv(bytes(data, encoding="ascii"))))
+
+
+    print(fnv_hash([i for i in range(28)]))
+    print(fnv_hash([(-1)**i*i for i in range(28)]))
+    print(fnv_abshash([i for i in range(28)]))
+    print(fnv_abshash([(-1)**i*i for i in range(28)]))

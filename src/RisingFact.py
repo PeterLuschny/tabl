@@ -19,8 +19,8 @@ from _tabltypes import set_attributes
 
 @cache
 def risingfactorial(n: int) -> list[int]:
-
-    if n == 0: return [1]
+    if n == 0:
+        return [1]
 
     row: list[int] = [0] + risingfactorial(n - 1)
     for k in range(0, n):
@@ -29,11 +29,12 @@ def risingfactorial(n: int) -> list[int]:
 
 
 @set_attributes(
-    risingfactorial, 
-    "RisingFact", 
-    ['A008279', 'A068424', 'A094587', 'A173333', 'A181511'], 
-    True)
-def RisingFactorial(n: int, k: int) -> int: 
+    risingfactorial,
+    "RisingFact",
+    ["A008279", "A068424", "A094587", "A173333", "A181511"],
+    True,
+)
+def RisingFactorial(n: int, k: int) -> int:
     return risingfactorial(n)[k]
 
 

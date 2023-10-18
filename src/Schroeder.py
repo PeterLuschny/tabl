@@ -18,9 +18,10 @@ from _tabltypes import set_attributes
 
 @cache
 def schroeder(n: int) -> list[int]:
-
-    if n == 0: return [1]
-    if n == 1: return [0, 1]
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 1]
 
     row: list[int] = schroeder(n - 1) + [1]
     for k in range(n - 1, 0, -1):
@@ -30,11 +31,12 @@ def schroeder(n: int) -> list[int]:
 
 
 @set_attributes(
-    schroeder, 
-    "Schroeder", 
-    ['A122538', 'A033877', 'A080245', 'A080247', 'A106579'], 
-    True)
-def Schroeder(n: int, k: int) -> int: 
+    schroeder,
+    "Schroeder",
+    ["A122538", "A033877", "A080245", "A080247", "A106579"],
+    True,
+)
+def Schroeder(n: int, k: int) -> int:
     return schroeder(n)[k]
 
 

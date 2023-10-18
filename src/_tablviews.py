@@ -14,8 +14,7 @@ def PrintTabl(t: tabl) -> None:
 
 
 def PrintFlat(t: tabl) -> None:
-    #print(flat(t))
-    print(t)
+    print([i for r in t for i in r])
 
 
 def PrintRows(t: tabl) -> None:

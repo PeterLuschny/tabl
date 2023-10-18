@@ -17,8 +17,8 @@ from _tabltypes import set_attributes
 
 @cache
 def eulerianb(n: int) -> list[int]:
-
-    if n == 0: return [1]
+    if n == 0:
+        return [1]
 
     row: list[int] = eulerianb(n - 1) + [1]
     for k in range(n - 1, 0, -1):
@@ -26,12 +26,8 @@ def eulerianb(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
-    eulerianb, 
-    "EulerianB", 
-    ['A060187', 'A138076'],
-    True)
-def EulerianB(n: int, k: int) -> int: 
+@set_attributes(eulerianb, "EulerianB", ["A060187", "A138076"], True)
+def EulerianB(n: int, k: int) -> int:
     return eulerianb(n)[k]
 
 

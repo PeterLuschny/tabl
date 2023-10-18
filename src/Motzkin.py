@@ -18,22 +18,19 @@ from _tabltypes import set_attributes
 
 @cache
 def motzkin(n: int) -> list[int]:
-
-    if n == 0: return [1]
-    if n == 1: return [1, 0]
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [1, 0]
 
     l = 0 if n % 2 else (motzkin(n - 2)[n - 2] * 2 * (n - 1)) // (n // 2 + 1)
     row = motzkin(n - 1) + [l]
     for k in range(2, n, 2):
         row[k] = (n * row[k]) // (n - k)
-    return row 
+    return row
 
 
-@set_attributes(
-    motzkin,
-    "Motzkin",
-    ['A359364'],
-    False)
+@set_attributes(motzkin, "Motzkin", ["A359364"], False)
 def Motzkin(n: int, k: int) -> int:
     return motzkin(n)[k]
 
@@ -44,7 +41,7 @@ if __name__ == "__main__":
     TablTest(Motzkin)
 
 
-''' Alternative:
+""" Alternative:
 from Binomial import Binomial
 @cache
 def motzkin(n: int) -> list[int]:
@@ -52,4 +49,4 @@ def motzkin(n: int) -> list[int]:
         return Binomial(2 * n, n) // (n + 1)
     
     return [Binomial(n, k) * Catalan(k // 2) if k % 2 == 0 else 0 for k in range(n + 1)]
-'''
+"""

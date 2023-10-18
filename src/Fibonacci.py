@@ -18,9 +18,10 @@ from _tabltypes import set_attributes
 
 @cache
 def fibonacci(n: int) -> list[int]:
-
-    if n == 0: return [1]
-    if n == 1: return [0, 1]
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 1]
 
     row: list[int] = fibonacci(n - 1) + [1]
     s: int = row[1]
@@ -30,12 +31,8 @@ def fibonacci(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
-    fibonacci, 
-    "Fibonacci", 
-    ['A354267', 'A105809', 'A228074'], 
-    False)
-def Fibonacci(n: int, k: int) -> int: 
+@set_attributes(fibonacci, "Fibonacci", ["A354267", "A105809", "A228074"], False)
+def Fibonacci(n: int, k: int) -> int:
     return fibonacci(n)[k]
 
 

@@ -17,19 +17,16 @@ from _tabltypes import set_attributes
 
 @cache
 def fusscatalan(n: int) -> list[int]:
-
-    if n == 0: return [1]
-    if n == 1: return [0, 1]
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 1]
 
     row: list[int] = fusscatalan(n - 1) + [fusscatalan(n - 1)[n - 1]]
     return list(accumulate(row))
 
 
-@set_attributes(
-    fusscatalan, 
-    "FussCatalan", 
-    ['A355173', 'A030237', 'A054445'], 
-    False)
+@set_attributes(fusscatalan, "FussCatalan", ["A355173", "A030237", "A054445"], False)
 def FussCatalan(n: int, k: int) -> int:
     return fusscatalan(n)[k]
 

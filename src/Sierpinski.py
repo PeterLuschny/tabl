@@ -19,16 +19,16 @@ from Binomial import binomial
 
 @cache
 def sierpinski(n: int) -> list[int]:
-
     b = binomial(n)
     return [b[k] % 2 for k in range(n + 1)]
 
 
 @set_attributes(
-    sierpinski, 
-    "Sierpinski", 
-    ['A047999', 'A090971', 'A114700', 'A143200', 'A166282'], 
-    True)
+    sierpinski,
+    "Sierpinski",
+    ["A047999", "A090971", "A114700", "A143200", "A166282"],
+    True,
+)
 def Sierpinski(n: int, k: int) -> int:
     return sierpinski(n)[k]
 

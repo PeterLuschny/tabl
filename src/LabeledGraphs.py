@@ -17,21 +17,22 @@ from _tabltypes import set_attributes
 
 @cache
 def labeledgraphs(n: int) -> list[int]:
+    if n == 0:
+        return [1]
 
-    if n == 0: return [1]
-
-    s = [2 ** (((k - n + 1) * (k - n)) // 2) * Binomial(n - 1, k - 1) * labeledgraphs(k)[k] for k in range(1, n)]
+    s = [
+        2 ** (((k - n + 1) * (k - n)) // 2)
+        * Binomial(n - 1, k - 1)
+        * labeledgraphs(k)[k]
+        for k in range(1, n)
+    ]
     b = 2 ** (((n - 1) * n) // 2) - sum(s)
-    
+
     return [0] + s + [b]
 
 
-@set_attributes(
-    labeledgraphs, 
-    "LabeledGraphs", 
-    ['A360603'], 
-    True)
-def LabeledGraphs(n: int, k: int) -> int: 
+@set_attributes(labeledgraphs, "LabeledGraphs", ["A360603"], True)
+def LabeledGraphs(n: int, k: int) -> int:
     return labeledgraphs(n)[k]
 
 

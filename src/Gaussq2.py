@@ -16,11 +16,11 @@ from _tabltypes import set_attributes
 
 @cache
 def gaussq2(n: int) -> list[int]:
+    if n == 0:
+        return [1]
 
-    if n == 0: return [1]
-    
-    row: list[int] = gaussq2(n - 1) 
-    pow: list[int] = [1] + gaussq2(n - 1) 
+    row: list[int] = gaussq2(n - 1)
+    pow: list[int] = [1] + gaussq2(n - 1)
     p = 2
     for k in range(1, n):
         pow[k] = row[k - 1] + p * row[k]
@@ -28,11 +28,7 @@ def gaussq2(n: int) -> list[int]:
     return pow
 
 
-@set_attributes(
-    gaussq2, 
-    "Gaussq2", 
-    ['A022166'], 
-    True)
+@set_attributes(gaussq2, "Gaussq2", ["A022166"], True)
 def Gaussq2(n: int, k: int) -> int:
     return gaussq2(n)[k]
 

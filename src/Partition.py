@@ -18,9 +18,10 @@ from _tabltypes import set_attributes
 
 @cache
 def part(n: int, k: int) -> int:
-
-    if k < 0 or n < 0: return 0
-    if k == 0: return 1 if n == 0 else 0
+    if k < 0 or n < 0:
+        return 0
+    if k == 0:
+        return 1 if n == 0 else 0
 
     return part(n - 1, k - 1) + part(n - k, k)
 
@@ -30,12 +31,8 @@ def partnumexact(n: int) -> list[int]:
     return [part(n, k) for k in range(n + 1)]
 
 
-@set_attributes(
-    partnumexact, 
-    "Partition", 
-    ['A072233', 'A008284', 'A058398'], 
-    True)
-def PartnumExact(n: int, k: int) -> int: 
+@set_attributes(partnumexact, "Partition", ["A072233", "A008284", "A058398"], True)
+def PartnumExact(n: int, k: int) -> int:
     return partnumexact(n)[k]
 
 

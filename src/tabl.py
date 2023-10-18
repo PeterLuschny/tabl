@@ -7,6 +7,7 @@ import contextlib
 import csv
 import requests
 import gzip
+import sqlite3
 from fractions import Fraction as frac
 from sympy import Matrix, Rational
 from pathlib import Path
@@ -16,6 +17,8 @@ reldatapath = "data/oeis_data.csv"
 datapath = (path / reldatapath).resolve()
 reloeispath = "data/oeis.csv"
 oeispath = (path / reloeispath).resolve()
+reldbpath = "data/oeis.db"
+dbpath = (path / reldbpath).resolve()
 relstrippedpath = "data/stripped"
 strippedpath = (path / relstrippedpath).resolve()
 relcsvpath = "data/csv"
@@ -102,6 +105,26 @@ tgen: TypeAlias = Callable[[int, int], int]
 tri: TypeAlias = Callable[[int, int], int]
 
 
+def fnv(data: bytes) -> int:
+    """
+    FNV-1a hash algorithm.
+    """
+    assert isinstance(data, bytes)
+    hval = 0xCBF29CE484222325
+    for byte in data:
+        hval = hval ^ byte
+        hval = (hval * 0x100000001B3) % 0x10000000000000000
+    return hval
+
+
+def fnv_hash(seq: list[int]) -> str:
+    if len(seq) < 28:
+        print("Warning:", seq, "is too short!")
+        return "0"
+    x = str(seq[0:28]).translate(str.maketrans("", "", "[],"))
+    return hex(fnv(bytes(x, encoding="ascii")))[2:]
+
+
 def inversion_wrapper(T: tgen, size: int) -> tgen | None:
     t = T.inv(size)
     if t == []:
@@ -173,6 +196,9 @@ def AbsSubTriangle(g: rgen, N: int, K: int, size: int) -> tabl:
 def set_attributes(
     gen: rgen, id: str, sim: list[str], vert: bool = False
 ) -> Callable[..., Callable[[int, int], int]]:
+    def makerow(n: int) -> trow:
+        return list(gen(n))
+
     def maketab(size: int) -> tabl:
         return [list(gen(n)) for n in range(size)]
 
@@ -182,7 +208,7 @@ def set_attributes(
     def makemat(size: int) -> tabl:
         return [[gen(n)[k] if k <= n else 0 for k in range(size)] for n in range(size)]
 
-    def makeflat(size: int) -> list[int]:
+    def makeflat(size: int) -> trow:
         return [gen(n)[k] for n in range(size) for k in range(n + 1)]
 
     def makeinv(size: int) -> tabl:
@@ -226,12 +252,14 @@ def set_attributes(
         f.mat = makemat
         f.inv = makeinv
         f.flat = makeflat
+        f.row = makerow
         f.revinv = makerevinv
         f.invrev = makeinvrev
         f.sub = sub
         f.abssub = abssub
         f.sim = sim
         f.id = id
+        f.hash = fnv_hash(makeflat(7))
         f.gen = gen
         return f
 
@@ -966,6 +994,7 @@ def PrintTrans(t: tabl) -> None:
 
 def PrintViews(g: tgen, rows: int = 7, verbose: bool = True) -> None:
     print("# " + g.id)
+    print("Hash " + g.hash)
     print(g.sim)
     cols: int = rows
     print()
@@ -1451,7 +1480,6 @@ def divisibility(n: int) -> list[int]:
     L[1] = L[n] = 1
     i = 1
     div = n
-
     while i < div:
         div, mod = divmod(n, i)
         if mod == 0:
@@ -1666,7 +1694,6 @@ def FussCatalan(n: int, k: int) -> int:
 def gaussq2(n: int) -> list[int]:
     if n == 0:
         return [1]
-
     row: list[int] = gaussq2(n - 1)
     pow: list[int] = [1] + gaussq2(n - 1)
     p = 2
@@ -1756,7 +1783,6 @@ def labeledgraphs(n: int) -> list[int]:
         for k in range(1, n)
     ]
     b = 2 ** (((n - 1) * n) // 2) - sum(s)
-
     return [0] + s + [b]
 
 
@@ -2847,18 +2873,6 @@ def AllCsvToHtml(csvpath: Path = GetCsvPath(), outpath: Path = GetHtmlPath()) ->
         CsvToHtml(fun, csvpath, outpath)
 
 
-def fnv(data) -> int:
-    """
-    FNV-1a hash algorithm.
-    """
-    assert isinstance(data, bytes)
-    hval = 0xCBF29CE484222325
-    for byte in data:
-        hval = hval ^ byte
-        hval = (hval * 0x100000001B3) % 0x10000000000000000
-    return hval
-
-
 def get_compressed() -> None:
     oeisstripped = "https://oeis.org/stripped.gz"
     r = requests.get(oeisstripped, stream=True)
@@ -2880,9 +2894,62 @@ def oeisabsdata() -> None:
                     absdata.write(seq.replace("-", ""))
 
 
+def oeisabsdatawithfnv() -> None:
+    """Make all terms absolute, take 28 terms, add fnv."""
+    with open(oeispath, "r") as oeisdata:
+        reader = csv.reader(oeisdata)
+        with open(datapath, "w") as cleandata:
+            seq_list = [[seq[0], [abs(int(s)) for s in seq[1:-1]]] for seq in reader]
+            for s in seq_list:
+                if len(s[1]) < 28:
+                    continue
+                x = str(s[1][0:28]).translate(str.maketrans("", "", "[],"))
+                f = hex(fnv(bytes(x, encoding="ascii")))[2:]
+                cleandata.write(f + "," + s[0] + "," + x + ",\n")
+
+
+def oeissql() -> None:
+    """Make all terms absolute, take 28 terms, add fnv.
+    Write (fnv, anum, seq) to oeis.db.
+    """
+    tabl = sqlite3.connect(dbpath)
+    cur = tabl.cursor()
+    cur.execute("CREATE TABLE sequences(hash, anum, seq)")
+    with open(oeispath, "r") as oeisdata:
+        reader = csv.reader(oeisdata)
+        with open(datapath, "w") as cleandata:
+            seq_list = [
+                [seq[0][0:6], [abs(int(s)) for s in seq[1:-1]]] for seq in reader
+            ]
+            for s in seq_list:
+                if len(s[1]) < 28:
+                    continue
+                x = str(s[1][0:28]).translate(str.maketrans("", "", "[],"))
+                f = hex(fnv(bytes(x, encoding="ascii")))[2:]
+                tup = (f, s[0], x)
+                cur.execute("INSERT INTO sequences VALUES(?, ?, ?)", tup)
+    tabl.commit()
+    tabl.close()
+
+
+def querydb(H: str) -> bool:
+    oeis_con = sqlite3.connect(dbpath)
+    oeis_cur = oeis_con.cursor()
+
+    sql = "SELECT EXISTS (SELECT hash FROM sequences WHERE hash=? LIMIT 1)"
+    res = oeis_cur.execute(sql, (H,))
+    record = res.fetchone()
+    return record[0] == 1
+    # print(f"Is sequence with hash {H} in the table? {found}!")
+    # return found
+
+
 def GetOEISdata() -> None:
+    print("Updating OEIS data!")
     get_compressed()
-    oeisabsdata()
+    # oeisabsdata()
+    # oeisabsdatawithfnv()
+    oeissql()
     print("OEIS data updated!")
 
 

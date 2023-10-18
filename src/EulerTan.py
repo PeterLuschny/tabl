@@ -19,19 +19,17 @@ from _tabltypes import set_attributes
 
 @cache
 def eulertan(n: int) -> list[int]:
-
     b = binomial(n)
-    row = [b[k] * eulertan(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  
-    if n % 2 == 1: row[0] = -sum(row[2::2]) + 1
+    row = [b[k] * eulertan(n - k)[0] if k > 0 else 0 for k in range(n + 1)]
+    if n % 2 == 1:
+        row[0] = -sum(row[2::2]) + 1
 
     return row
 
 
 @set_attributes(
-    eulertan, 
-    "EulerTan", 
-    ['A162660', 'A350972', 'A155585', 'A009006', 'A000182'], 
-    False)
+    eulertan, "EulerTan", ["A162660", "A350972", "A155585", "A009006", "A000182"], False
+)
 def EulerTan(n: int, k: int) -> int:
     return eulertan(n)[k]
 

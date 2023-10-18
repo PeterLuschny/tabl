@@ -18,20 +18,16 @@ from _tabltypes import set_attributes
 
 @cache
 def compomax(n: int) -> list[int]:
-
     @cache
     def t(n: int, k: int) -> int:
-        if n == 0 or k == 1: return 1
+        if n == 0 or k == 1:
+            return 1
         return sum(t(n - j, k) for j in range(1, min(n, k) + 1))
 
     return [t(n, k) for k in range(n + 1)]
 
 
-@set_attributes(
-    compomax, 
-    "CompositionMax", 
-    ['A126198'], 
-    False)
+@set_attributes(compomax, "CompositionMax", ["A126198"], False)
 def CompoMax(n: int, k: int) -> int:
     return compomax(n)[k]
 

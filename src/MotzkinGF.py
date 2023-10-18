@@ -18,8 +18,8 @@ from _tabltypes import set_attributes
 
 @cache
 def motzkingf(n: int) -> list[int]:
-
-    if n == 0: return [1]
+    if n == 0:
+        return [1]
 
     def r(k: int) -> int:
         return motzkingf(n - 1)[k] if k >= 0 and k < n else 0
@@ -30,11 +30,7 @@ def motzkingf(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
-    motzkingf, 
-    "MotzkinGF", 
-    ['A064189', 'A026300', 'A009766'], 
-    True)
+@set_attributes(motzkingf, "MotzkinGF", ["A064189", "A026300", "A009766"], True)
 def MotzkinGF(n: int, k: int) -> int:
     return motzkingf(n)[k]
 

@@ -18,11 +18,11 @@ from _tabltypes import set_attributes
 
 @cache
 def catalansqr(n: int) -> list[int]:
-
-    if n == 0: return [1]
+    if n == 0:
+        return [1]
 
     pow = catalansqr(n - 1) + [0]
-    row = pow.copy() 
+    row = pow.copy()
     row[0] += row[1]
     row[n] = 1
 
@@ -32,11 +32,7 @@ def catalansqr(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
-    catalansqr,
-    "CatalanSqr",
-    ['A039599', 'A050155'],
-    True)
+@set_attributes(catalansqr, "CatalanSqr", ["A039599", "A050155"], True)
 def CatalanSqr(n: int, k: int) -> int:
     return catalansqr(n)[k]
 

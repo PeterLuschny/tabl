@@ -29,10 +29,20 @@ def binomial(n: int) -> list[int]:
 
 
 @set_attributes(
-    binomial, 
-    "Binomial", 
-    ['A007318', 'A074909', 'A108086', 'A117440', 'A118433', 'A130595', 'A135278', 'A154926'], 
-    True)
+    binomial,
+    "Binomial",
+    [
+        "A007318",
+        "A074909",
+        "A108086",
+        "A117440",
+        "A118433",
+        "A130595",
+        "A135278",
+        "A154926",
+    ],
+    True,
+)
 def Binomial(n: int, k: int) -> int:
     return binomial(n)[k]
 

@@ -19,9 +19,10 @@ from _tabltypes import set_attributes
 
 @cache
 def stirlingset2(n: int) -> list[int]:
-
-    if n == 0: return [1]
-    if n == 1: return [0, 0]
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 0]
 
     rov: list[int] = stirlingset2(n - 2)
     row: list[int] = stirlingset2(n - 1) + [0]
@@ -31,16 +32,12 @@ def stirlingset2(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
-    stirlingset2, 
-    "StirlingSet2", 
-    ['A358623', 'A008299', 'A137375'], 
-    False)
-def StirlingSet2(n: int, k: int) -> int: 
+@set_attributes(stirlingset2, "StirlingSet2", ["A358623", "A008299", "A137375"], False)
+def StirlingSet2(n: int, k: int) -> int:
     return stirlingset2(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
-    
+
     TablTest(StirlingSet2)

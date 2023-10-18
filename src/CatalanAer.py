@@ -18,8 +18,8 @@ from _tabltypes import set_attributes
 
 @cache
 def catalanaer(n: int) -> list[int]:
-    
-    if n == 0: return [1]
+    if n == 0:
+        return [1]
 
     def r(k: int) -> int:
         return catalanaer(n - 1)[k] if k >= 0 and k < n else 0
@@ -31,11 +31,9 @@ def catalanaer(n: int) -> list[int]:
 
 
 @set_attributes(
-    catalanaer, 
-    "CatalanAer", 
-    ['A053121', 'A052173', 'A112554', 'A322378'], 
-    True)
-def CatalanAer(n: int, k: int) -> int: 
+    catalanaer, "CatalanAer", ["A053121", "A052173", "A112554", "A322378"], True
+)
+def CatalanAer(n: int, k: int) -> int:
     return catalanaer(n)[k]
 
 

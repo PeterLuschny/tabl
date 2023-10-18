@@ -18,21 +18,17 @@ from _tabltypes import set_attributes
 
 @cache
 def powlaguerre(n: int) -> list[int]:
+    if n == 0:
+        return [1]
 
-    if n == 0: return [1]
-
-    row: list[int] = powlaguerre(n - 1) + [1] 
+    row: list[int] = powlaguerre(n - 1) + [1]
     row[0] = row[n] = row[0] * n
     for k in range(1, n):
         row[k] = ((n - k + 1) * row[k - 1]) // k
     return row
 
 
-@set_attributes(
-    powlaguerre, 
-    "PowLaguerre", 
-    ['A196347', 'A021012'], 
-    False)
+@set_attributes(powlaguerre, "PowLaguerre", ["A196347", "A021012"], False)
 def PowLaguerre(n: int, k: int) -> int:
     return powlaguerre(n)[k]
 

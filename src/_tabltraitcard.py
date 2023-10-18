@@ -495,15 +495,15 @@ if __name__ == "__main__":
     #                    markdown = False,
     #                    onlythefound = False)
     
-    #PrintTraits(BinomialCatalan, 20,
-    #            withanum = True,
-    #            markdown = True,
-    #            onlythefound = False)
-    
-    PrintTraits(PartnumDist, 28,
+    PrintTraits(BinomialCatalan, 20,
                 withanum = True,
                 markdown = True,
                 onlythefound = False)
+    
+    #PrintTraits(PartnumDist, 28,
+     #           withanum = True,
+      #          markdown = True,
+       #         onlythefound = False)
     
     #SaveTraitsToFile(Lah, 20, 
     #                withanum = True, 

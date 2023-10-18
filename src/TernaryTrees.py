@@ -18,20 +18,17 @@ from _tabltypes import set_attributes
 
 @cache
 def ternarytree(n: int) -> list[int]:
-
-    if n == 0: return [1]
-    if n == 1: return [0, 1]
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 1]
 
     row: list[int] = ternarytree(n - 1) + [ternarytree(n - 1)[n - 1]]
 
     return list(accumulate(accumulate(row)))
 
 
-@set_attributes(
-    ternarytree, 
-    "TernaryTrees", 
-    ['A355172'], 
-    False)
+@set_attributes(ternarytree, "TernaryTrees", ["A355172"], False)
 def TernaryTree(n: int, k: int) -> int:
     return ternarytree(n)[k]
 

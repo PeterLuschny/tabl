@@ -18,9 +18,10 @@ from _tabltypes import set_attributes
 
 @cache
 def delannoy(n: int) -> list[int]:
-
-    if n == 0: return [1]
-    if n == 1: return [1, 1]
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [1, 1]
 
     rov: list[int] = delannoy(n - 2)
     row: list[int] = delannoy(n - 1) + [1]
@@ -29,12 +30,8 @@ def delannoy(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
-    delannoy, 
-    "Delannoy", 
-    ['A008288'], 
-    True)
-def Delannoy(n: int, k: int) -> int: 
+@set_attributes(delannoy, "Delannoy", ["A008288"], True)
+def Delannoy(n: int, k: int) -> int:
     return delannoy(n)[k]
 
 

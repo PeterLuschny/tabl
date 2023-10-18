@@ -18,9 +18,10 @@ from _tabltypes import set_attributes
 
 @cache
 def chebyshevs(n: int) -> list[int]:
-
-    if n == 0: return [1]
-    if n == 1: return [0, 1]
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 1]
 
     rov: list[int] = chebyshevs(n - 2)
     row: list[int] = [0] + chebyshevs(n - 1)
@@ -30,11 +31,9 @@ def chebyshevs(n: int) -> list[int]:
 
 
 @set_attributes(
-    chebyshevs, 
-    "ChebyshevS", 
-    ['A049310', 'A053119', 'A112552', 'A168561'], 
-    True)
-def ChebyshevS(n: int, k: int) -> int: 
+    chebyshevs, "ChebyshevS", ["A049310", "A053119", "A112552", "A168561"], True
+)
+def ChebyshevS(n: int, k: int) -> int:
     return chebyshevs(n)[k]
 
 

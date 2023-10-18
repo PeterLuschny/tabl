@@ -17,17 +17,13 @@ from _tabltypes import set_attributes
 
 @cache
 def one(n: int) -> list[int]:
-
-    if n == 0: return [1]
+    if n == 0:
+        return [1]
     return one(n - 1) + [1]
 
 
-@set_attributes(
-    one, 
-    "One", 
-    ['A000012', 'A008836', 'A014077'], 
-    True)
-def One(n: int, k: int) -> int: 
+@set_attributes(one, "One", ["A000012", "A008836", "A014077"], True)
+def One(n: int, k: int) -> int:
     return one(n)[k]
 
 

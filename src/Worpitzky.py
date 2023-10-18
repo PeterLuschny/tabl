@@ -17,8 +17,8 @@ from _tabltypes import set_attributes
 
 @cache
 def worpitzky(n: int) -> list[int]:
-
-    if n == 0: return [1]
+    if n == 0:
+        return [1]
 
     row: list[int] = worpitzky(n - 1) + [0]
     for k in range(n, 0, -1):
@@ -27,11 +27,12 @@ def worpitzky(n: int) -> list[int]:
 
 
 @set_attributes(
-    worpitzky, 
-    "Worpitzky", 
-    ['A028246', 'A053440', 'A075263', 'A130850', 'A163626'],
-    False)
-def Worpitzky(n: int, k: int) -> int: 
+    worpitzky,
+    "Worpitzky",
+    ["A028246", "A053440", "A075263", "A130850", "A163626"],
+    False,
+)
+def Worpitzky(n: int, k: int) -> int:
     return worpitzky(n)[k]
 
 

@@ -18,24 +18,21 @@ from _tabltypes import set_attributes
 
 @cache
 def chebyshevt(n: int) -> list[int]:
-
-    if n == 0: return [1]
-    if n == 1: return [0, 1]
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 1]
 
     rov: list[int] = chebyshevt(n - 2)
-    row: list[int] = [0] + chebyshevt(n - 1) 
+    row: list[int] = [0] + chebyshevt(n - 1)
     row[n] = 2 * row[n]
     for k in range(0, n - 1):
-        row[k] =  2 * row[k] - rov[k]
+        row[k] = 2 * row[k] - rov[k]
     return row
 
 
-@set_attributes(
-    chebyshevt, 
-    "ChebyshevT", 
-    ['A053120', 'A039991', 'A081265'], 
-    True)
-def ChebyshevT(n: int, k: int) -> int: 
+@set_attributes(chebyshevt, "ChebyshevT", ["A053120", "A039991", "A081265"], True)
+def ChebyshevT(n: int, k: int) -> int:
     return chebyshevt(n)[k]
 
 

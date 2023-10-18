@@ -1,7 +1,7 @@
 from functools import cache
 from _tabltypes import set_attributes
 
-'''
+"""
 The divisibility matrix, the indicator function for divisibility.
 
 [ 0]  1
@@ -15,15 +15,18 @@ The divisibility matrix, the indicator function for divisibility.
 [ 8]  0  1  1  0  1  0  0  0  1
 [ 9]  0  1  0  1  0  0  0  0  0  1
 [10]  0  1  1  0  0  1  0  0  0  0  1
-'''
+"""
+
 
 @cache
 def divisibility(n: int) -> list[int]:
-    if n == 0: return [1]
+    if n == 0:
+        return [1]
     L = [0 for _ in range(n + 1)]
     L[1] = L[n] = 1
-    i = 1; div = n
-    
+    i = 1
+    div = n
+
     while i < div:
         div, mod = divmod(n, i)
         if mod == 0:
@@ -32,11 +35,7 @@ def divisibility(n: int) -> list[int]:
     return L
 
 
-@set_attributes(
-    divisibility,
-    "Divisibility",
-    ['A113704', 'A051731'],
-    True)
+@set_attributes(divisibility, "Divisibility", ["A113704", "A051731"], True)
 def Divisibility(n: int, k: int) -> int:
     return divisibility(n)[k]
 

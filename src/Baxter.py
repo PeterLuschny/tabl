@@ -17,6 +17,7 @@ from _tabltypes import set_attributes
 [9] 0, 1, 120, 2520, 14112, 24696, 14112, 2520, 120, 1
 """
 
+
 @cache
 def F(n: int) -> int:
     return factorial(n) ** 3 * ((n + 1) * (n + 1) * (n + 2))
@@ -27,16 +28,11 @@ def baxter(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    return [0] + [(2 * F(n - 1)) // (F(k - 1) * F(n - k)) 
-                 for k in range(1, n + 1)]
+    return [0] + [(2 * F(n - 1)) // (F(k - 1) * F(n - k)) for k in range(1, n + 1)]
 
 
-@set_attributes(
-    baxter, 
-    "Baxter", 
-    ['A359363', 'A056939'],
-    False)
-def Baxter(n: int, k: int) -> int: 
+@set_attributes(baxter, "Baxter", ["A359363", "A056939"], False)
+def Baxter(n: int, k: int) -> int:
     return baxter(n)[k]
 
 

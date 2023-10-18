@@ -27,12 +27,8 @@ def bell(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
-    bell, 
-    "Bell", 
-    ['A011971', 'A011972', 'A123346'],
-    False)
-def Bell(n: int, k: int) -> int: 
+@set_attributes(bell, "Bell", ["A011971", "A011972", "A123346"], False)
+def Bell(n: int, k: int) -> int:
     return bell(n)[k]
 
 

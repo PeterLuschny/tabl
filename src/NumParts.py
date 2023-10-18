@@ -16,7 +16,8 @@ if __name__ == "__main__":
     print([part_num(n) for n in range(10)])
 
     from timeit import default_timer as timer
+
     start = timer()
     [part_num(n) for n in range(1000)]
     end = timer()
-    print(end - start) 
+    print(end - start)

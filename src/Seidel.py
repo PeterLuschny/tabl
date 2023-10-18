@@ -16,8 +16,8 @@ from _tabltypes import set_attributes
 
 @cache
 def seidel(n: int) -> list[int]:
-
-    if n == 0: return [1]
+    if n == 0:
+        return [1]
 
     rowA: list[int] = seidel(n - 1)
     row: list[int] = [0] + seidel(n - 1)
@@ -27,12 +27,8 @@ def seidel(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
-    seidel, 
-    "Seidel", 
-    ['A008281', 'A008282', 'A010094'], 
-    False)
-def Seidel(n: int, k: int) -> int: 
+@set_attributes(seidel, "Seidel", ["A008281", "A008282", "A010094"], False)
+def Seidel(n: int, k: int) -> int:
     return seidel(n)[k]
 
 

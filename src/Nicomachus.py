@@ -16,8 +16,8 @@ from _tabltypes import set_attributes
 
 @cache
 def nicomachus(n: int) -> list[int]:
-
-    if n == 0: return [1]
+    if n == 0:
+        return [1]
 
     row: list[int] = nicomachus(n - 1) + [3 * nicomachus(n - 1)[n - 1]]
     for k in range(0, n):
@@ -25,11 +25,7 @@ def nicomachus(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
-    nicomachus, 
-    "Nicomachus", 
-    ['A036561', 'A081954', 'A175840'], 
-    False)
+@set_attributes(nicomachus, "Nicomachus", ["A036561", "A081954", "A175840"], False)
 def Nicomachus(n: int, k: int) -> int:
     return nicomachus(n)[k]
 

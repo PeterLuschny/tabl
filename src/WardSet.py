@@ -18,9 +18,10 @@ from _tabltypes import set_attributes
 
 @cache
 def wardset(n: int) -> list[int]:
-
-    if n == 0: return [1]
-    if n == 1: return [0, 1]
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 1]
 
     row: list[int] = wardset(n - 1) + [0]
     for k in range(n, 0, -1):
@@ -29,12 +30,8 @@ def wardset(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
-    wardset, 
-    "WardSet", 
-    ['A269939', 'A134991'], 
-    False)
-def WardSet(n: int, k: int) -> int: 
+@set_attributes(wardset, "WardSet", ["A269939", "A134991"], False)
+def WardSet(n: int, k: int) -> int:
     return wardset(n)[k]
 
 

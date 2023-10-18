@@ -21,19 +21,16 @@ def t(n: int, k: int, m: int) -> int:
     if k < 0 or n < 0:
         return 0
     if k == 0:
-        return n ** k
+        return n**k
     return m * t(n, k - 1, m) + t(n - 1, k, m + 1)
+
 
 @cache
 def lehmer(n: int) -> list[int]:
     return [t(k - 1, n - k, n - k) if n != k else 1 for k in range(n + 1)]
 
 
-@set_attributes(
-    lehmer, 
-    "Lehmer", 
-    ['A354794', 'A039621'], 
-    True)
+@set_attributes(lehmer, "Lehmer", ["A354794", "A039621"], True)
 def Lehmer(n: int, k: int) -> int:
     return lehmer(n)[k]
 

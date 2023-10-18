@@ -16,17 +16,15 @@ from _tabltypes import set_attributes
 
 @cache
 def ordinals(n: int) -> list[int]:
-    
-    if n == 0: return [0]
+    if n == 0:
+        return [0]
     return ordinals(n - 1) + [n]
 
 
 @set_attributes(
-    ordinals, 
-    "Ordinals", 
-    ['A002262', 'A002260', 'A004736', 'A025581'], 
-    False)
-def Ordinals(n: int, k: int) -> int: 
+    ordinals, "Ordinals", ["A002262", "A002260", "A004736", "A025581"], False
+)
+def Ordinals(n: int, k: int) -> int:
     return ordinals(n)[k]
 
 

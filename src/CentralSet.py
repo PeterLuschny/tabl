@@ -17,21 +17,18 @@ from _tabltypes import set_attributes
 
 @cache
 def centralset(n: int) -> list[int]:
-
-    if n == 0: return [1]
-    if n == 1: return [0, 1]
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 1]
 
     row: list[int] = centralset(n - 1) + [1]
     for k in range(n - 1, 1, -1):
-        row[k] = k ** 2 * row[k] + row[k - 1]
+        row[k] = k**2 * row[k] + row[k - 1]
     return row
 
 
-@set_attributes(
-    centralset, 
-    "CentralSet", 
-    ['A269945', 'A008957', 'A036969'], 
-    True)
+@set_attributes(centralset, "CentralSet", ["A269945", "A008957", "A036969"], True)
 def CentralSet(n: int, k: int) -> int:
     return centralset(n)[k]
 

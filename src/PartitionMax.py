@@ -23,11 +23,7 @@ def partnummax(n: int) -> list[int]:
     return list(accumulate(partnumexact(n)))
 
 
-@set_attributes(
-    partnummax, 
-    "PartitionMax", 
-    ['A026820'], 
-    False)
+@set_attributes(partnummax, "PartitionMax", ["A026820"], False)
 def PartnumMax(n: int, k: int) -> int:
     return partnummax(n)[k]
 

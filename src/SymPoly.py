@@ -16,8 +16,8 @@ from _tabltypes import set_attributes
 
 @cache
 def sympoly(n: int) -> list[int]:
-
-    if n == 0: return [1]
+    if n == 0:
+        return [1]
 
     row: list[int] = sympoly(n - 1) + [1]
 
@@ -28,12 +28,8 @@ def sympoly(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
-    sympoly, 
-    "SymPoly", 
-    [ 'A165675', 'A093905', 'A105954', 'A165674'], 
-    True)
-def Sympoly(n: int, k: int) -> int: 
+@set_attributes(sympoly, "SymPoly", ["A165675", "A093905", "A105954", "A165674"], True)
+def Sympoly(n: int, k: int) -> int:
     return sympoly(n)[k]
 
 

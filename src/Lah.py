@@ -19,8 +19,8 @@ from _tabltypes import set_attributes
 
 @cache
 def lah(n: int) -> list[int]:
-
-    if n == 0: return [1]
+    if n == 0:
+        return [1]
 
     row: list[int] = lah(n - 1) + [1]
     row[0] = 0
@@ -30,11 +30,9 @@ def lah(n: int) -> list[int]:
 
 
 @set_attributes(
-    lah, 
-    "Lah", 
-    ['A271703', 'A008297', 'A066667', 'A089231', 'A105278', 'A111596'], 
-    True)
-def Lah(n: int, k: int) -> int: 
+    lah, "Lah", ["A271703", "A008297", "A066667", "A089231", "A105278", "A111596"], True
+)
+def Lah(n: int, k: int) -> int:
     return lah(n)[k]
 
 

@@ -16,8 +16,8 @@ from _tabltypes import set_attributes
 
 @cache
 def genocchi(n: int) -> list[int]:
-
-    if n == 0: return [1]
+    if n == 0:
+        return [1]
 
     row: list[int] = [0] + genocchi(n - 1) + [0]
 
@@ -30,12 +30,8 @@ def genocchi(n: int) -> list[int]:
     return row[1:]
 
 
-@set_attributes(
-    genocchi, 
-    "Genocchi", 
-    ['A297703'], 
-    False)
-def Genocchi(n: int, k: int) -> int: 
+@set_attributes(genocchi, "Genocchi", ["A297703"], False)
+def Genocchi(n: int, k: int) -> int:
     return genocchi(n)[k]
 
 

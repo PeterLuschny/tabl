@@ -18,8 +18,8 @@ from _tabltypes import set_attributes
 
 @cache
 def euler(n: int) -> list[int]:
-
-    if n == 0: return [1]
+    if n == 0:
+        return [1]
 
     row: list[int] = euler(n - 1) + [1]
     for k in range(n, 0, -1):
@@ -29,12 +29,8 @@ def euler(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
-    euler, 
-    "Euler", 
-    ['A247453', 'A109449'], 
-    True)
-def Euler(n: int, k: int) -> int: 
+@set_attributes(euler, "Euler", ["A247453", "A109449"], True)
+def Euler(n: int, k: int) -> int:
     return euler(n)[k]
 
 

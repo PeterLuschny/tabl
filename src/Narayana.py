@@ -20,8 +20,8 @@ from _tabltypes import set_attributes
 
 @cache
 def narayana(n: int) -> list[int]:
-
-    if n < 3: return [[1], [0, 1], [0, 1, 1]][n]
+    if n < 3:
+        return [[1], [0, 1], [0, 1, 1]][n]
 
     a: list[int] = narayana(n - 2) + [0, 0]
     row: list[int] = narayana(n - 1) + [1]
@@ -34,12 +34,8 @@ def narayana(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
-    narayana, 
-    "Narayana", 
-    ['A090181', 'A001263', 'A131198'], 
-    True)
-def Narayana(n: int, k: int) -> int: 
+@set_attributes(narayana, "Narayana", ["A090181", "A001263", "A131198"], True)
+def Narayana(n: int, k: int) -> int:
     return narayana(n)[k]
 
 

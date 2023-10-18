@@ -1,5 +1,5 @@
 from functools import cache
-from Binomial import binomial 
+from Binomial import binomial
 from _tabltypes import set_attributes
 
 """Euler secant polynomials.
@@ -18,21 +18,18 @@ from _tabltypes import set_attributes
 
 @cache
 def eulersec(n: int) -> list[int]:
-
-    if n == 0: return [1]
+    if n == 0:
+        return [1]
 
     b = binomial(n)
-    row = [b[k] * eulersec(n - k)[0] if k > 0 else 0 for k in range(n + 1)]  
-    if n % 2 == 0: row[0] = -sum(row[2::2])
+    row = [b[k] * eulersec(n - k)[0] if k > 0 else 0 for k in range(n + 1)]
+    if n % 2 == 0:
+        row[0] = -sum(row[2::2])
     return row
 
 
-@set_attributes(
-    eulersec, 
-    "EulerSec", 
-    ['A119879', 'A081658', 'A153641'], 
-    True)
-def EulerSec(n: int, k: int) -> int: 
+@set_attributes(eulersec, "EulerSec", ["A119879", "A081658", "A153641"], True)
+def EulerSec(n: int, k: int) -> int:
     return eulersec(n)[k]
 
 

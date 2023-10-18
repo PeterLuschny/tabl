@@ -25,11 +25,7 @@ def abel(n: int) -> list[int]:
     return [b[k - 1] * n ** (n - k) if k > 0 else 0 for k in range(n + 1)]
 
 
-@set_attributes(
-    abel, 
-    "Abel", 
-    ['A137452', 'A061356', 'A139526'], 
-    True)
+@set_attributes(abel, "Abel", ["A137452", "A061356", "A139526"], True)
 def Abel(n: int, k: int) -> int:
     return abel(n)[k]
 

@@ -17,9 +17,10 @@ from _tabltypes import set_attributes
 
 @cache
 def orderedcycle(n: int) -> list[int]:
-
-    if n == 0: return [1]
-    if n == 1: return [0, 1]
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 1]
 
     row: list[int] = orderedcycle(n - 1) + [0]
     row[n] = row[n] * n
@@ -28,11 +29,7 @@ def orderedcycle(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
-    orderedcycle, 
-    "OrderedCycle", 
-    ['A225479', 'A048594', 'A075181'], 
-    False)
+@set_attributes(orderedcycle, "OrderedCycle", ["A225479", "A048594", "A075181"], False)
 def OrderedCycle(n: int, k: int) -> int:
     return orderedcycle(n)[k]
 

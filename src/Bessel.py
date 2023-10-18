@@ -17,8 +17,10 @@ from _tabltypes import set_attributes
 
 @cache
 def bessel(n: int) -> list[int]:
-    if n == 0: return [1]
-    if n == 1: return [0, 1]
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 1]
 
     row: list[int] = bessel(n - 1) + [1]
     for k in range(n - 1, 0, -1):
@@ -26,12 +28,8 @@ def bessel(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
-    bessel, 
-    "Bessel", 
-    ['A132062', 'A001497', 'A001498', 'A122850'],
-    True)
-def Bessel(n: int, k: int) -> int: 
+@set_attributes(bessel, "Bessel", ["A132062", "A001497", "A001498", "A122850"], True)
+def Bessel(n: int, k: int) -> int:
     return bessel(n)[k]
 
 

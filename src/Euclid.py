@@ -17,6 +17,7 @@ from _tabltypes import set_attributes
 [11] [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0]
 """
 
+
 @cache
 def _euclid(n: int, k: int) -> int:
     while k != 0:
@@ -31,11 +32,7 @@ def euclid(n: int) -> list[int]:
     return [_euclid(i, n) for i in range(n + 1)]
 
 
-@set_attributes(
-    euclid,
-    "Euclid",
-    ['A217831'],
-    False)
+@set_attributes(euclid, "Euclid", ["A217831"], False)
 def Euclid(n: int, k: int) -> int:
     return euclid(n)[k]
 
@@ -44,5 +41,5 @@ if __name__ == "__main__":
     from _tabltest import TablTest
 
     TablTest(Euclid, 12)
-    #for n in range(22): print([n], euclid(n))
-    #print([sum(euclid(n)) for n in range(53)])
+    # for n in range(22): print([n], euclid(n))
+    # print([sum(euclid(n)) for n in range(53)])

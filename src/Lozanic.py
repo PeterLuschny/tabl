@@ -20,14 +20,15 @@ from Binomial import binomial
 
 @cache
 def lozanic(n: int) -> list[int]:
+    if n == 0:
+        return [1]
 
-    if n == 0: return [1]
-
-    row = [1] + lozanic(n - 1)  
+    row = [1] + lozanic(n - 1)
     for k in range(1, n):
         row[k] += row[k + 1]
 
-    if n % 2 != 0: return row
+    if n % 2 != 0:
+        return row
 
     b = binomial(n // 2 - 1)
     for k in range(1, n, 2):
@@ -36,12 +37,8 @@ def lozanic(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
-    lozanic, 
-    "Lozanic", 
-    ['A034851'], 
-    True)
-def Lozanic(n: int, k: int) -> int: 
+@set_attributes(lozanic, "Lozanic", ["A034851"], True)
+def Lozanic(n: int, k: int) -> int:
     return lozanic(n)[k]
 
 

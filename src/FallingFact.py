@@ -15,8 +15,8 @@ from _tabltypes import set_attributes
 
 @cache
 def fallingfactorial(n: int) -> list[int]:
-
-    if n == 0: return [1]
+    if n == 0:
+        return [1]
 
     r: list[int] = fallingfactorial(n - 1)
     row: list[int] = [n * r[k] for k in range(-1, n)]
@@ -25,10 +25,11 @@ def fallingfactorial(n: int) -> list[int]:
 
 
 @set_attributes(
-    fallingfactorial, 
-    "FallingFact", 
-    ['A008279', 'A068424', 'A094587', 'A173333', 'A181511'],
-    False)
+    fallingfactorial,
+    "FallingFact",
+    ["A008279", "A068424", "A094587", "A173333", "A181511"],
+    False,
+)
 def FallingFactorial(n: int, k: int) -> int:
     return fallingfactorial(n)[k]
 

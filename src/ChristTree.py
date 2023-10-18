@@ -18,17 +18,13 @@ from _tabltypes import set_attributes
 
 @cache
 def ctree(n: int) -> list[int]:
-    
-    if n % 2 == 1: return [1] * (n + 1)
+    if n % 2 == 1:
+        return [1] * (n + 1)
 
     return [1, 0] * (n // 2) + [1]
 
 
-@set_attributes(
-    ctree, 
-    "ChristTree", 
-    ['A106465', 'A106470'], 
-    True)
+@set_attributes(ctree, "ChristTree", ["A106465", "A106470"], True)
 def Ctree(n: int, k: int) -> int:
     return ctree(n)[k]
 

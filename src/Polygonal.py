@@ -29,9 +29,10 @@ Triangle view:
 
 @cache
 def polygonal(n: int) -> list[int]:
-
-    if n == 0: return [0]
-    if n == 1: return [0, 1]
+    if n == 0:
+        return [0]
+    if n == 1:
+        return [0, 1]
 
     rov: list[int] = polygonal(n - 2)
     row: list[int] = polygonal(n - 1) + [n]
@@ -42,11 +43,9 @@ def polygonal(n: int) -> list[int]:
 
 
 @set_attributes(
-    polygonal, 
-    "Polygonal", 
-    ['A139600', 'A057145', 'A134394', 'A139601'], 
-    False)
-def Polygonal(n: int, k: int) -> int: 
+    polygonal, "Polygonal", ["A139600", "A057145", "A134394", "A139601"], False
+)
+def Polygonal(n: int, k: int) -> int:
     return polygonal(n)[k]
 
 

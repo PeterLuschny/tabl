@@ -193,6 +193,7 @@ import_header: list[str] = [
     "import csv\n",
     "import requests\n",
     "import gzip\n",
+    "import sqlite3\n",
     "from fractions import Fraction as frac\n",
     "from sympy import Matrix, Rational\n",
 ]
@@ -204,8 +205,10 @@ data_path: list[str] = [
     "datapath = (path / reldatapath).resolve()\n",
     "reloeispath = 'data/oeis.csv'\n",
     "oeispath = (path / reloeispath).resolve()\n",
-    "relstrippedpath = 'data/stripped'\n"
-    "strippedpath = (path / relstrippedpath).resolve()\n"
+    "reldbpath = 'data/oeis.db'\n",
+    "dbpath = (path / reldbpath).resolve()\n",
+    "relstrippedpath = 'data/stripped'\n",
+    "strippedpath = (path / relstrippedpath).resolve()\n",
     "relcsvpath = 'data/csv'\n",
     "csvpath = (path / relcsvpath).resolve()\n",
     "allcsvfile = 'data/allcsv.csv'\n",

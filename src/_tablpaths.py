@@ -14,6 +14,9 @@ oeispath = (path / reloeispath).resolve()
 reldatapath = "data/oeis_data.csv"
 datapath = (path / reldatapath).resolve()
 
+reldbpath = "data/oeis.db"
+dbpath = (path / reldbpath).resolve()
+
 propath = (path / relprofpath).resolve()
 sorpath = (path / relsortpath).resolve()
 

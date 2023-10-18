@@ -18,22 +18,25 @@ from _tabltypes import set_attributes
 
 @cache
 def bessel2(n: int) -> list[int]:
-    if n == 0: return [1]
-    if n == 1: return [1, 0]
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [1, 0]
 
     row = bessel2(n - 1) + [0]
     row[n] = 0 if n % 2 else row[n - 2]
     for k in range(2, n, 2):
         row[k] = (n * row[k]) // (n - k)
-    return row 
+    return row
 
 
 @set_attributes(
-    bessel2, 
-    "Bessel2", 
-    ['A359760', 'A073278', 'A066325', 'A099174', 'A111924', 'A144299', 'A104556'],
-    False)
-def Bessel2(n: int, k: int) -> int: 
+    bessel2,
+    "Bessel2",
+    ["A359760", "A073278", "A066325", "A099174", "A111924", "A144299", "A104556"],
+    False,
+)
+def Bessel2(n: int, k: int) -> int:
     return bessel2(n)[k]
 
 

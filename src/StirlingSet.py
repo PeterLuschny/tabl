@@ -18,8 +18,8 @@ from _tabltypes import set_attributes
 
 @cache
 def stirlingset(n: int) -> list[int]:
-
-    if n == 0: return [1]
+    if n == 0:
+        return [1]
 
     row: list[int] = [0] + stirlingset(n - 1)
     for k in range(1, n):
@@ -28,10 +28,21 @@ def stirlingset(n: int) -> list[int]:
 
 
 @set_attributes(
-    stirlingset, 
-    "StirlingSet", 
-    ['A048993', 'A008277', 'A008278', 'A080417', 'A106800', 'A151511', 'A151512', 'A154959', 'A213735'], 
-    True)
+    stirlingset,
+    "StirlingSet",
+    [
+        "A048993",
+        "A008277",
+        "A008278",
+        "A080417",
+        "A106800",
+        "A151511",
+        "A151512",
+        "A154959",
+        "A213735",
+    ],
+    True,
+)
 def StirlingSet(n: int, k: int) -> int:
     return stirlingset(n)[k]
 

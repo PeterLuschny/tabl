@@ -18,20 +18,15 @@ from _tabltypes import set_attributes
 
 @cache
 def hermiteh(n: int) -> list[int]:
-
-    row: list[int] = [0] * (n + 1); 
-    row[n] = 2 ** n
+    row: list[int] = [0] * (n + 1)
+    row[n] = 2**n
     for k in range(n - 2, -1, -2):
-        row[k] = (row[k + 2] * (k + 2) * (k + 1)) // (2 * (n - k))  
+        row[k] = (row[k + 2] * (k + 2) * (k + 1)) // (2 * (n - k))
     return row
 
 
-@set_attributes(
-    hermiteh, 
-    "HermiteH", 
-    ['A060821'], 
-    False)
-def HermiteH(n: int, k: int) -> int: 
+@set_attributes(hermiteh, "HermiteH", ["A060821"], False)
+def HermiteH(n: int, k: int) -> int:
     return hermiteh(n)[k]
 
 

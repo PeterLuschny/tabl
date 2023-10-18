@@ -18,8 +18,8 @@ from _tabltypes import set_attributes
 
 @cache
 def schroederpaths(n: int) -> list[int]:
-
-    if n == 0: return [1]
+    if n == 0:
+        return [1]
 
     row: list[int] = schroederpaths(n - 1) + [1]
 
@@ -30,12 +30,8 @@ def schroederpaths(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
-    schroederpaths, 
-    "SchroederP", 
-    ['A104684', 'A063007'], 
-    True)
-def SchroederPaths(n: int, k: int) -> int: 
+@set_attributes(schroederpaths, "SchroederP", ["A104684", "A063007"], True)
+def SchroederPaths(n: int, k: int) -> int:
     return schroederpaths(n)[k]
 
 

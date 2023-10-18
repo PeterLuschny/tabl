@@ -19,9 +19,10 @@ T(n, k) = if k == 0 then 0^n else binomial(n-1, k-1) * Bell(n - k)
 
 @cache
 def binomialbell(n: int) -> list[int]:
-
-    if n == 0: return [1]
-    if n == 1: return [0, 1]
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 1]
 
     a = binomialbell(n - 1) + [1]
     s = sum(a) - 1
@@ -30,15 +31,11 @@ def binomialbell(n: int) -> list[int]:
         a[j + 1] = (a[j] * (n - 1)) // j
     a[1] = s
 
-    return a 
+    return a
 
 
-@set_attributes(
-    binomialbell, 
-    "BinomialBell", 
-    ['A056857', 'A056860'], 
-    True)
-def BinomialBell(n: int, k: int) -> int: 
+@set_attributes(binomialbell, "BinomialBell", ["A056857", "A056860"], True)
+def BinomialBell(n: int, k: int) -> int:
     return binomialbell(n)[k]
 
 

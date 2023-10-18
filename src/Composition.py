@@ -18,18 +18,14 @@ from CompositionMax import compomax
 
 @cache
 def composition(n: int) -> list[int]:
-
-    if n == 0: return [1] 
+    if n == 0:
+        return [1]
 
     cm = compomax(n)
-    return [cm[k] - cm[k - 1] if k > 0 else 0 for k in range(n + 1) ]
+    return [cm[k] - cm[k - 1] if k > 0 else 0 for k in range(n + 1)]
 
 
-@set_attributes(
-    composition,
-    "Composition",
-    ['A048004'],
-    True)
+@set_attributes(composition, "Composition", ["A048004"], True)
 def Composition(n: int, k: int) -> int:
     return composition(n)[k]
 
