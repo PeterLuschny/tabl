@@ -1,5 +1,6 @@
 from typing import Callable
 from _tablpaths import GetDataPath, GetCsvPath, GetMdPath
+from _tabldata import fnv_hash, querydbhash, querydbseq 
 from _tabltypes import rgen, tgen, tabl, trow
 from _tabltypes import inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
 from _tablpoly import PolyRow0, PolyRow1, PolyRow2, PolyRow3, PolyCol0, PolyCol1, PolyCol2, PolyCol3, PolyDiag, PosHalf, NegHalf, PolyTabl
@@ -24,16 +25,22 @@ Pretty printing of triangles trait cards.
 
 # #@
 
+STRINGLEN = 60
 
-def SeqToFixlenString(seq:list[int], maxlen:int=90, separator:str=',') -> str:
-    stri = "["
+def SeqToFixlenString(seq:list[int], maxlen:int=STRINGLEN, separator:str=',') -> str:
+    fnv = fnv_hash(seq, True)
+    isin = querydbhash(fnv)
+    if isin == "missing":
+        isin = querydbseq(seq[1:])
+        # print("*** Not in by hash, shift found by seq?", isin)
+    stri = isin + "  "
     maxl = 3
     for trm in seq:
         s = str(trm) + separator
         maxl += len(s)
         if maxl > maxlen: break
         stri += s
-    return stri + "]"
+    return stri 
 
 
 def FindSequence(seq: str) -> str:
@@ -109,18 +116,19 @@ def RegisterTrait2(f: Callable[[rgen, int], trow]) -> None:
 def register() -> None:
 
     RegisterTrait(FlatTabl)   # must always come first!
-    RegisterTrait(FlatRevTabl)
-    RegisterTrait(FlatInvTabl)
-    RegisterTrait(FlatRevInvTabl)
-    RegisterTrait(FlatInvRevTabl)
 
-    RegisterTrait(FlatAccTabl)
-    RegisterTrait(FlatRevAccTabl) # rarely found
-    RegisterTrait(FlatAccRevTabl)
-    RegisterTrait(FlatAntiDiagTabl)
-    RegisterTrait(FlatBinTabl)    # rarely found
-    RegisterTrait(FlatInvBinTabl) # rarely found
-    RegisterTrait(FlatDiffxTabl)
+    #RegisterTrait(FlatRevTabl)
+    #RegisterTrait(FlatInvTabl) ### BUG in sympy-inv? HANGS HERE sometimes !!!!!!!
+    #RegisterTrait(FlatRevInvTabl)
+    # RegisterTrait(FlatInvRevTabl)  ### BUG in sympy-inv? HANGS HERE !!!!!!!  Lah
+
+    #RegisterTrait(FlatAccTabl)
+    #RegisterTrait(FlatRevAccTabl) # rarely found
+    #RegisterTrait(FlatAccRevTabl)
+    #RegisterTrait(FlatAntiDiagTabl)
+    #RegisterTrait(FlatBinTabl)    # rarely found
+    #RegisterTrait(FlatInvBinTabl) # rarely found
+    #RegisterTrait(FlatDiffxTabl)
 
     RegisterTrait(RowSum)
     RegisterTrait(EvenSum)
@@ -169,6 +177,7 @@ def register() -> None:
     RegisterTrait2(PosHalf)
     RegisterTrait2(NegHalf)
 
+STRINGLEN = 100
 
 def PrintTraits(g: tgen, size: int, 
                 withanum: bool = False, 
@@ -199,18 +208,18 @@ def PrintTraits(g: tgen, size: int,
                         if anum == "": 
                             # print(traitname)
                             if onlythefound: continue
-                seqstr = SeqToFixlenString(tt, 70, ' ')    
+                seqstr = SeqToFixlenString(tt, STRINGLEN, ' ')    
                 print(f'| {trianglename} | {anum:7} | {name:<12} | {seqstr} |')
                 anum = '' 
             else:
-                seqstr = SeqToFixlenString(tt, 70, ' ')
+                seqstr = SeqToFixlenString(tt, STRINGLEN, ' ')
                 print(f'| {trianglename} | {name:<12} | {seqstr} |')
 
     else: # TXT simple dictionary, no options, no anums 
 
         for traitname, trait in TRAIT.items():
             name = traitname[4:] if traitname.startswith("Flat") else traitname
-            seqstr = SeqToFixlenString(trait(T), 70, ' ')
+            seqstr = SeqToFixlenString(trait(T), STRINGLEN, ' ')
             print(f'{trianglename}:{name:<14} {seqstr}')
 
     if markdown:
@@ -224,17 +233,17 @@ def PrintTraits(g: tgen, size: int,
                         if anum == "": 
                             # print(traitname)
                             if onlythefound: continue
-                seqstr = SeqToFixlenString(tt, 70, ' ')    
+                seqstr = SeqToFixlenString(tt, STRINGLEN, ' ')    
                 print(f'| {trianglename} | {anum:7} | {traitname:<12} | {seqstr} |')
                 anum = '' 
             else:
-                seqstr = SeqToFixlenString(tt, 70, ' ')
+                seqstr = SeqToFixlenString(tt, STRINGLEN, ' ')
                 print(f'| {trianglename} | {traitname:<12} | {seqstr} |')
 
     else:  # TXT simple dictionary, no options, no anums 
 
         for traitname, trait in TRAIT2.items():
-            seqstr = SeqToFixlenString(trait(gen, size), 70, ' ')
+            seqstr = SeqToFixlenString(trait(gen, size), STRINGLEN, ' ')
             print(f'{trianglename}:{traitname:<14} {seqstr}')
 
 
@@ -285,11 +294,11 @@ def SaveTraitsToFile(g: tgen, size: int,
                                 print(traitname)
                                 if onlythefound: continue
                     print(anum)
-                    seqstr = SeqToFixlenString(tt, 70, ' ')    
+                    seqstr = SeqToFixlenString(tt, STRINGLEN, ' ')    
                     target.write(f'| {trianglename} | {anum:7} | {name:<12} | {seqstr} |\n')
                     anum = '' 
                 else:
-                    seqstr = SeqToFixlenString(tt, 70, ' ')
+                    seqstr = SeqToFixlenString(tt, STRINGLEN, ' ')
                     target.write(f'| {trianglename} | {name:<12} | {seqstr} |\n')
 
         else: # CSV
@@ -305,11 +314,11 @@ def SaveTraitsToFile(g: tgen, size: int,
                             if anum == "": 
                                 print(traitname)
                                 if onlythefound: continue
-                    seqstr = SeqToFixlenString(tt, 70, ' ')    
+                    seqstr = SeqToFixlenString(tt, STRINGLEN, ' ')    
                     target.write(f'{trianglename},{anum},{name},{seqstr}\n')
                     anum = '' 
                 else:
-                    seqstr = SeqToFixlenString(tt, 70, ' ')
+                    seqstr = SeqToFixlenString(tt, STRINGLEN, ' ')
                     target.write(f'{trianglename},{name},{seqstr}\n')
 
         if markdown:
@@ -323,11 +332,11 @@ def SaveTraitsToFile(g: tgen, size: int,
                             if anum == "": 
                                 print(traitname)
                                 if onlythefound: continue
-                    seqstr = SeqToFixlenString(tt, 70, ' ')    
+                    seqstr = SeqToFixlenString(tt, STRINGLEN, ' ')    
                     target.write(f'| {trianglename} | {anum:7} | {traitname:<12} | {seqstr} |\n')
                     anum = '' 
                 else:
-                    seqstr = SeqToFixlenString(tt, 70, ' ')
+                    seqstr = SeqToFixlenString(tt, STRINGLEN, ' ')
                     target.write(f'| {trianglename} | {traitname:<12} | {seqstr} |\n')
 
         else: # CSV
@@ -339,10 +348,10 @@ def SaveTraitsToFile(g: tgen, size: int,
                     if anum == "": 
                         print(traitname) 
                         if onlythefound: continue
-                    seqstr = SeqToFixlenString(tt, 70, ' ')
+                    seqstr = SeqToFixlenString(tt, STRINGLEN, ' ')
                     target.write(f'{trianglename},{anum},{traitname},{seqstr}\n')
                 else:
-                    seqstr = SeqToFixlenString(tt, 70, ' ')
+                    seqstr = SeqToFixlenString(tt, STRINGLEN, ' ')
                     target.write(f'{trianglename},{traitname},{seqstr}\n')
 
 
@@ -410,7 +419,7 @@ def SaveExtendedTraitsToCSV(G: tgen, size: int) -> None:
                 if anum == "": 
                     print(traitname) 
                     continue
-                seqstr = SeqToFixlenString(tt, 70, ' ')
+                seqstr = SeqToFixlenString(tt, STRINGLEN, ' ')
                 target.write(f'{trianglename},{anum},{name},{seqstr}\n')
 
             for traitname, trait in TRAIT2.items():
@@ -419,7 +428,7 @@ def SaveExtendedTraitsToCSV(G: tgen, size: int) -> None:
                 if anum == "": 
                     print(traitname) 
                     continue
-                seqstr = SeqToFixlenString(tt, 70, ' ')
+                seqstr = SeqToFixlenString(tt, STRINGLEN, ' ')
                 target.write(f'{trianglename},{anum},{traitname},{seqstr}\n')
 
     G.id = savedid
@@ -470,6 +479,7 @@ if __name__ == "__main__":
     from Bell import Bell
     from Lah import Lah
     from StirlingSet import StirlingSet
+    from StirlingCyc import StirlingCycle
     from Motzkin import Motzkin
     from Binomial import Binomial
     from CatalanSqr import CatalanSqr
@@ -495,23 +505,18 @@ if __name__ == "__main__":
     #                    markdown = False,
     #                    onlythefound = False)
     
-    PrintTraits(BinomialCatalan, 20,
-                withanum = True,
-                markdown = True,
-                onlythefound = False)
+    # BUG PrintTraits(BinomialCatalan, 32, withanum = True, markdown = True, onlythefound = False)
+   
+    # PrintTraits(PartnumDist, 32, withanum = False, markdown = False, onlythefound = False)
     
-    #PrintTraits(PartnumDist, 28,
-     #           withanum = True,
-      #          markdown = True,
-       #         onlythefound = False)
-    
-    #SaveTraitsToFile(Lah, 20, 
-    #                withanum = True, 
-    #                markdown = False,
-    #                onlythefound = False)
+    # Minimum: 32 = 2 * 15 for hash + 2 for shift
+    PrintTraits(Lah, 32, withanum = False, markdown = False, onlythefound = False)
 
-    # SEQ = StirlingSet
-    #PrintTraits(SEQ, 12, withanum = False, markdown = False)
+    # PrintTraits(StirlingCycle, 32, withanum = False, markdown = False, onlythefound = False)
+
+    #SEQ = StirlingSet
+    #PrintTraits(SEQ, 32, withanum = False, markdown = False, onlythefound = False)
+
     # With A-numbers, but slower:
     #PrintTraits(SEQ, 12, withanum = False, markdown = True)
 
