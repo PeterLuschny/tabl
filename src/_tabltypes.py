@@ -48,7 +48,9 @@ def inversion_wrapper(T: tgen, size: int) -> tgen | None:
 
     t = T.inv(size)
     if t == []: return None
-    def psgen(n: int) -> trow: return list(t[n])
+
+    def psgen(n: int) -> trow: 
+        return list(t[n])
 
     @set_attributes(psgen, T.id + ":Inv", [], True)
     def Psgen(n: int, k: int) ->  int:
@@ -59,8 +61,10 @@ def inversion_wrapper(T: tgen, size: int) -> tgen | None:
 
 def reversion_wrapper(T: tgen, size: int) -> tgen:
 
-    t = T.rev(size)
-    def rsgen(n: int) -> trow: return list(t[n]) 
+    t = T.tab(size)
+    def rsgen(n: int) -> trow: 
+        row = t[n]
+        return [row[n - i] for i in range(n + 1)]
 
     @set_attributes(rsgen, T.id + ":Rev", [], True)
     def Rsgen(n: int, k: int) -> int:
@@ -75,7 +79,8 @@ def revinv_wrapper(T: tgen, size: int) -> tgen | None:
     if I == None: return None
     J = reversion_wrapper(I, size)
 
-    def rigen(n: int) -> trow: return list(J.gen(n))
+    def rigen(n: int) -> trow: 
+        return list(J.gen(n))
 
     @set_attributes(rigen, J.id, [], True)
     def Rigen(n: int, k: int) -> int:
@@ -85,12 +90,12 @@ def revinv_wrapper(T: tgen, size: int) -> tgen | None:
 
 
 def invrev_wrapper(T: tgen, size: int) -> tgen | None:
-
     R = reversion_wrapper(T, size)
-    S = inversion_wrapper(R, size)
+    S = inversion_wrapper(R, size) 
     if S == None: return None
 
-    def tigen(n: int) -> trow: return list(S.gen(n))
+    def tigen(n: int) -> trow: 
+        return list(S.gen(n))
 
     @set_attributes(tigen, S.id, [], True)
     def Tigen(n: int, k: int) -> int:
@@ -171,88 +176,7 @@ def set_attributes(gen: rgen, id: str, sim: list[str], vert: bool=False) -> Call
 if __name__ == "__main__":
 
     from Abel import Abel
-    from Bell import Bell
-    from StirlingSet import StirlingSet
-    from Delannoy import Delannoy
-    from ChebyshevT import ChebyshevT
-
-    F = StirlingSet 
-    G = Delannoy
-    size = 7
-
-    T = F.tab(size)
-    print("tgen   ", T)
-
-    T = F.flat(size)
-    print("FLAT   ", T)
-
-    i = reversion_wrapper(F, size)
-    T = i.tab(size)
-    print("REV    ", T)
-
-    i = inversion_wrapper(F, size)
-    if i != None:
-        T = i.tab(size)
-        print("INV    ", T)
-
-
-    print("Stirling +++++++++++++++++")
-
-    i = revinv_wrapper(F, size)
-    if i != None:
-        T = i.tab(size)
-        print("INV|REV", T)
-    else:
-        print("None")
-
-    print("#", F.revinv(size))
-
-    print("---")
-
-    i = invrev_wrapper(F, size)
-    if i != None:
-        T = i.tab(size)
-        print("REV|INV", T)
-    else:
-        print("None")
-
-    print("#", F.invrev(size))
-
-    print("Delannoy +++++++++++++++++")
-
-    i = revinv_wrapper(G, size)
-    if i != None:
-        T = i.tab(size)
-        print("INV|REV", T)
-    else:
-        print("None")
-
-    print("#", G.revinv(size))
-
-    print("---")
-
-    i = invrev_wrapper(G, size)
-    if i != None:
-        T = i.tab(size)
-        print("REV|INV", T)
-    else:
-        print("None")
-
-    print("#", G.invrev(size))
-
-    print("xxxxx")
-    print(Abel.sim)
-    print("===")
-    print(Abel.tab(6))
-    print(Abel.sub(0,0)(6))
-    print(Abel.sub(1,0)(6))
-    print(Abel.sub(1,1)(6))
-    print("===")
-    print(Bell.tab(6))
-    print(Bell.sub(0,0)(6))
-    print(Bell.sub(1,0)(6))
-    print(Bell.sub(1,1)(6))
-
+ 
     print(Abel.tab(7))
     print()
 
@@ -263,5 +187,3 @@ if __name__ == "__main__":
     def Abel11(n: int, k: int) -> int: 
         return abel11(n)[k]
     print(Abel11(3,2))
-
-  

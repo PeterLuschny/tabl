@@ -98,6 +98,7 @@ tabl_files: list[str] = [
     "_tablmake.py",
     "_tablexport.py",
     "_tablhtml.py",
+    "_tabltraits.py",
     "_tabldata.py",
     "_tabltraitcard.py",
 ]
@@ -195,7 +196,6 @@ import_header: list[str] = [
     "import gzip\n",
     "import sqlite3\n",
     "from fractions import Fraction as frac\n",
-    "from sympy import Matrix, Rational\n",
 ]
 
 data_path: list[str] = [
@@ -207,6 +207,8 @@ data_path: list[str] = [
     "oeispath = (path / reloeispath).resolve()\n",
     "reldbpath = 'data/oeis.db'\n",
     "dbpath = (path / reldbpath).resolve()\n",
+    "reltraitsdbpath = 'data/traits.db'\n",
+    "traitspath = (path / reltraitsdbpath).resolve()\n",
     "relstrippedpath = 'data/stripped'\n",
     "strippedpath = (path / relstrippedpath).resolve()\n",
     "relcsvpath = 'data/csv'\n",

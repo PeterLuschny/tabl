@@ -1,12 +1,8 @@
-from typing import Callable
+from _tabltypes import tgen, tabl
+from _tabltypes import inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
+from _tabltraits import TRAIT, TRAIT2, RegisterTraits
 from _tablpaths import GetDataPath, GetCsvPath, GetMdPath
 from _tabldata import fnv_hash, querydbhash, querydbseq 
-from _tabltypes import rgen, tgen, tabl, trow
-from _tabltypes import inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
-from _tablpoly import PolyRow0, PolyRow1, PolyRow2, PolyRow3, PolyCol0, PolyCol1, PolyCol2, PolyCol3, PolyDiag, PosHalf, NegHalf, PolyTabl
-from _tablsums import RowSum, EvenSum, OddSum, AltSum, AccSum, AccRevSum, AntiDiagSum
-from _tabltabls import FlatTabl, FlatAccTabl, FlatRevAccTabl, FlatAccRevTabl, FlatAntiDiagTabl, FlatRevTabl, FlatInvTabl, FlatInvRevTabl, FlatRevInvTabl, FlatDiffxTabl 
-from _tabltransforms import FlatBinTabl, FlatInvBinTabl, BinConv, InvBinConv,  RowLcm, RowGcd, RowMax, DiagRow0, DiagRow1, DiagRow2, DiagRow3, DiagCol0, DiagCol1, DiagCol2, DiagCol3, TransSqrs, TransNat0, TransNat1, ColMiddle, ColECentral, ColOCentral, ColLeft, ColRight 
 
 
 """
@@ -28,12 +24,9 @@ Pretty printing of triangles trait cards.
 STRINGLEN = 60
 
 def SeqToFixlenString(seq:list[int], maxlen:int=STRINGLEN, separator:str=',') -> str:
-    fnv = fnv_hash(seq, True)
-    isin = querydbhash(fnv)
-    if isin == "missing":
-        isin = querydbseq(seq[1:])
-        # print("*** Not in by hash, shift found by seq?", isin)
-    stri = isin + "  "
+    # fnv = fnv_hash(seq, True)
+    # isin = queryoeis(fnv, seq, oeis_cur)
+    stri = " | "
     maxl = 3
     for trm in seq:
         s = str(trm) + separator
@@ -102,80 +95,8 @@ def flat(t: tabl) -> list[int]:
     return [i for row in t for i in row] 
 
 
-
 #########################################################
 
-TRAIT: dict[str, Callable[[tabl], trow]] = {}
-def RegisterTrait(f: Callable[[tabl], trow]) -> None: 
-    TRAIT[f.__name__] = f
-
-TRAIT2: dict[str, Callable[[rgen, int], trow]] = {}
-def RegisterTrait2(f: Callable[[rgen, int], trow]) -> None:
-    TRAIT2[f.__name__] = f
-
-def register() -> None:
-
-    RegisterTrait(FlatTabl)   # must always come first!
-
-    #RegisterTrait(FlatRevTabl)
-    #RegisterTrait(FlatInvTabl) ### BUG in sympy-inv? HANGS HERE sometimes !!!!!!!
-    #RegisterTrait(FlatRevInvTabl)
-    # RegisterTrait(FlatInvRevTabl)  ### BUG in sympy-inv? HANGS HERE !!!!!!!  Lah
-
-    #RegisterTrait(FlatAccTabl)
-    #RegisterTrait(FlatRevAccTabl) # rarely found
-    #RegisterTrait(FlatAccRevTabl)
-    #RegisterTrait(FlatAntiDiagTabl)
-    #RegisterTrait(FlatBinTabl)    # rarely found
-    #RegisterTrait(FlatInvBinTabl) # rarely found
-    #RegisterTrait(FlatDiffxTabl)
-
-    RegisterTrait(RowSum)
-    RegisterTrait(EvenSum)
-    RegisterTrait(OddSum)
-    RegisterTrait(AltSum)
-    RegisterTrait(AntiDiagSum)
-    RegisterTrait(AccSum)
-    RegisterTrait(AccRevSum)
-
-    RegisterTrait(RowLcm)
-    RegisterTrait(RowGcd)
-    RegisterTrait(RowMax)
-    RegisterTrait(ColMiddle)
-    RegisterTrait(ColECentral)
-    RegisterTrait(ColOCentral)
-    RegisterTrait(ColLeft)
-    RegisterTrait(ColRight)
-    
-    RegisterTrait(BinConv)
-    RegisterTrait(InvBinConv)
-
-# -------------------------------------------
-
-    RegisterTrait2(TransNat0)
-    RegisterTrait2(TransNat1)
-    RegisterTrait2(TransSqrs)
-    # RegisterTrait2(DiagRow0) same as ColRight
-    RegisterTrait2(DiagRow1)
-    RegisterTrait2(DiagRow2)
-    RegisterTrait2(DiagRow3)
-    # RegisterTrait2(DiagCol0) same as ColLeft
-    RegisterTrait2(DiagCol1)
-    RegisterTrait2(DiagCol2)
-    RegisterTrait2(DiagCol3)
-
-    RegisterTrait2(PolyTabl)
-    # RegisterTrait2(PolyRow0)
-    RegisterTrait2(PolyRow1)
-    RegisterTrait2(PolyRow2)
-    RegisterTrait2(PolyRow3)
-    # RegisterTrait2(PolyCol0) same as ColLeft
-    # RegisterTrait2(PolyCol1) same as RowSum
-    RegisterTrait2(PolyCol2) 
-    RegisterTrait2(PolyCol3)
-    RegisterTrait2(PolyDiag)
-    RegisterTrait2(PosHalf)
-    RegisterTrait2(NegHalf)
 
 STRINGLEN = 100
 
@@ -187,7 +108,7 @@ def PrintTraits(g: tgen, size: int,
     trianglename = g.id
     T = g.tab(size)
     gen = g.gen
-    anum = g.sim[0]  # Note that the similars are ordered!
+    anum = "" # ???? (g.sim)[0]  # Note that the similars are ordered!
 
     if markdown:
 
@@ -238,7 +159,7 @@ def PrintTraits(g: tgen, size: int,
                 anum = '' 
             else:
                 seqstr = SeqToFixlenString(tt, STRINGLEN, ' ')
-                print(f'| {trianglename} | {traitname:<12} | {seqstr} |')
+                print(f'| {trianglename} | {traitname:<12} | {seqstr}|')
 
     else:  # TXT simple dictionary, no options, no anums 
 
@@ -255,7 +176,7 @@ def SaveTraitsToFile(g: tgen, size: int,
     trianglename = g.id
     T = g.tab(size)
     gen = g.gen
-    anum = g.sim[0]  # Note that the similars are ordered!
+    anum = "" # BUG (g.sim)[0]  # Note that the similars are ordered!
     print(anum)
 
     if markdown:
@@ -364,24 +285,30 @@ def PrintExtendedTraits(T: tgen, size: int, withanum: bool = False, markdown: bo
     PrintTraits(T, size, withanum, markdown)
     T.id = Tid 
 
-    print("\n# Reverse.")
+    print("\n# Reverse.", '*-*' * 20)
     r = reversion_wrapper(T, tim)
     PrintTraits(r, size, withanum, markdown)
 
     I = inversion_wrapper(T, tim)
     if I != None:
-        print("\n# Inverse.")
+        print("\n# Inverse.", '*-*' * 20)
         PrintTraits(I, size, withanum, markdown)
-
+    else:
+        print("\nInfo: Inverse does not exists!\n")
+    
     r = revinv_wrapper(T, tim)
     if r != None:
-        print("\n# Reverse of inverse.")
+        print("\n# Reverse of inverse.", '*-*' * 20)
         PrintTraits(r, size, withanum, markdown)
+    else:
+        print("\nInfo: Reverse of inverse does not exists!\n")  
 
     r = invrev_wrapper(T, tim)
     if r != None:
-        print("\n# Inverse of reverse.")
+        print("\n# Inverse of reverse.", '*-*' * 20)
         PrintTraits(r, size, withanum, markdown)
+    else:
+        print("\nInfo: Inverse of reverse does not exists!\n")    
 
 
 def SaveExtendedTraitsToCSV(G: tgen, size: int) -> None:
@@ -445,7 +372,7 @@ def PrintAllTraits(size: int) -> None:
 
 
 def SaveAllFoundTraitsToCSV() -> None:
-    register()
+    RegisterTraits()
     for fun in tabl_fun:
         print("#", fun.id)
         SaveTraitsToFile(fun, 20, 
@@ -455,7 +382,7 @@ def SaveAllFoundTraitsToCSV() -> None:
 
 
 def SaveAllTraitsToCSV() -> None:
-    register()
+    RegisterTraits()
     for fun in tabl_fun:
         print("#", fun.id)
         SaveTraitsToFile(fun, 20,
@@ -465,11 +392,10 @@ def SaveAllTraitsToCSV() -> None:
 
 
 def SaveAllExtendedTraitsToCSV() -> None:
-    register()
+    RegisterTraits()
     for fun in tabl_fun:
         print("##", fun.id)
         SaveExtendedTraitsToCSV(fun, 20)
-
 
 
 if __name__ == "__main__":
@@ -480,9 +406,15 @@ if __name__ == "__main__":
     from Lah import Lah
     from StirlingSet import StirlingSet
     from StirlingCyc import StirlingCycle
+    from Fubini import Fubini
     from Motzkin import Motzkin
+    from MotzkinGF import MotzkinGF
+    from Delannoy import Delannoy
+    from SchroederL import SchroederL
+    from SchroederP import SchroederPaths
     from Binomial import Binomial
     from CatalanSqr import CatalanSqr
+    from Catalan import Catalan
     from PowLaguerre import PowLaguerre
     from LabeledGraphs import LabeledGraphs
     from BinomialCatalan import BinomialCatalan
@@ -490,114 +422,50 @@ if __name__ == "__main__":
     from MoebiusMat import MoebiusMat
     from Euclid import Euclid
     from PartitionDist import PartnumDist
+    from EulerianB import EulerianB
     
-    register()
+    RegisterTraits()
+
+    # Minimum: 32 = 2 * 15 for hash + 2 for shift
 
     # SaveAllTraitsToCSV()
 
-    # SaveExtendedTraitsToCSV(StirlingSet, 20) 
+    # SaveExtendedTraitsToCSV(StirlingSet, 32) 
     # SaveAllExtendedTraitsToCSV()
     # SaveAllFoundTraitsToCSV()
 
-    
-    #SaveTraitsToFile(LabGraphs, 20,
-    #                    withanum = True,
-    #                    markdown = False,
-    #                    onlythefound = False)
-    
-    # BUG PrintTraits(BinomialCatalan, 32, withanum = True, markdown = True, onlythefound = False)
-   
+    #SaveTraitsToFile(LabGraphs, 32, withanum = True, markdown = False, onlythefound = False)
+    # PrintTraits(BinomialCatalan, 32, withanum = True, markdown = True, onlythefound = False)
     # PrintTraits(PartnumDist, 32, withanum = False, markdown = False, onlythefound = False)
-    
-    # Minimum: 32 = 2 * 15 for hash + 2 for shift
-    PrintTraits(Lah, 32, withanum = False, markdown = False, onlythefound = False)
-
+    # PrintTraits(Lah, 32, withanum = False, markdown = True, onlythefound = False)
     # PrintTraits(StirlingCycle, 32, withanum = False, markdown = False, onlythefound = False)
 
-    #SEQ = StirlingSet
-    #PrintTraits(SEQ, 32, withanum = False, markdown = False, onlythefound = False)
+    SEQ = StirlingSet
+
+    #PrintExtendedTraits(SEQ, 32, False, True)
+    #PrintExtendedTraits(Lah, 32, False, True)
+    #PrintExtendedTraits(Delannoy, 32, False, True)
+    #PrintExtendedTraits(SchroederPaths, 32, False, True)
+    #PrintExtendedTraits(SchroederL, 32, False, True)
+    #PrintExtendedTraits(Abel, 32, False, True)
+    #PrintExtendedTraits(Fubini, 32, False, True)
+    #PrintExtendedTraits(Catalan, 32, False, True)
+    #PrintExtendedTraits(MotzkinGF, 32, False, True)
+    #PrintExtendedTraits(EulerianB, 32, False, True)
 
     # With A-numbers, but slower:
-    #PrintTraits(SEQ, 12, withanum = False, markdown = True)
+    #PrintTraits(SEQ, 32, withanum = False, markdown = True)
 
     # Greater size increases the precision of the anumber.
     # Creates a md file which saves all sequences.
-    # SaveTraitsToFile(SEQ, 20, withanum = True, markdown = True)
+    # SaveTraitsToFile(SEQ, 32, withanum = True, markdown = True)
 
     # Creates a csv file which saves only the sequences found.
-    # SaveTraitsToFile(SEQ, 20, withanum = True, markdown = False)
+    # SaveTraitsToFile(SEQ, 32, withanum = True, markdown = False)
 
-    # PrintExtendedTraits(SEQ, 12, withanum = False, markdown = True)
+    # PrintExtendedTraits(SEQ, 32, withanum = False, markdown = True)
 
-    #for fun in tabl_fun:
-    #    PrintExtendedTraits(fun, 12, False)
+    for fun in tabl_fun:
+        PrintExtendedTraits(fun, 32, False, True)
    
     print("Done")
-
-'''
-for fun in tabl_fun:
-        PrintTraits(fun, 20, True)
-
-for traitname, hits in HITS.items():
-    print(f'| {hits} | {traitname:<16} |')
-
-
-[ 0]  6  FlatDiffx
-[ 1]  7  RevAccTabl
-[ 2] 11  AccRevTabl
-[ 3] 12  InvRevTabl
-[ 4] 13  AccTabl
-[ 5] 14  RowLcm
-[ 6] 15  Poly
-#------------------- 
-[ 7] 19  TransSqrs
-[ 8] 22  RevInvTabl
-[ 9] 28  AntiDiagTabl
-[10] 28  PolyDiag
-[11] 29  ColMiddle
-[12] 29  InvTabl
-[13] 32  AccSum
-[14] 32  BinConv
-[15] 32  InvBinConv
-[16] 34  AccRevSum
-[17] 34  TransNat1
-[18] 35  PolyRow3
-[19] 36  PolyCol3
-[20] 40  AntiDiagSum
-[21] 40  TransNat0
-[22] 42  OddSum
-[23] 45  EvenSum
-[24] 45  RowMax
-[25] 46  NegHalf
-[26] 47  PosHalf
-[27] 48  PolyCol2
-[28] 51  ColCentral
-[29] 53  RowGcd
-[30] 54  RevTabl
-[31] 55  DiagRow3
-[32] 57  AltSum
-[33] 58  DiagCol3
-[34] 60  DiagCol2
-[35] 61  DiagRow2
-[36] 65  DiagCol1
-[37] 65  PolyRow2
-[38] 66  DiagRow1
---
-[39] 67  ColLeft
-[40] 67  ColRight
-[41] 67  * DiagCol0
-[42] 67  * DiagRow0
-[43] 67  Tabl
-[44] 67  * PolyCol0
-[45] 67  * PolyCol1
-[46] 67  * PolyRow0
-[47] 67  PolyRow1
-[48] 67  RowSum
-
-DiagCol0 = PolyCol0 = ColLeft
-DiagRow0 = PolyRow0 = ColRight
-RowSum   = PolyCol1
-
-'''
-
-

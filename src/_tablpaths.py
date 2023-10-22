@@ -17,6 +17,9 @@ datapath = (path / reldatapath).resolve()
 reldbpath = "data/oeis.db"
 dbpath = (path / reldbpath).resolve()
 
+reltraitsdbpath = "data/traits.db"
+traitspath = (path / reltraitsdbpath).resolve()
+
 propath = (path / relprofpath).resolve()
 sorpath = (path / relsortpath).resolve()
 

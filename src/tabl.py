@@ -9,7 +9,6 @@ import requests
 import gzip
 import sqlite3
 from fractions import Fraction as frac
-from sympy import Matrix, Rational
 from pathlib import Path
 path = Path(__file__).parent
 reldatapath = 'data/oeis_data.csv'
@@ -18,6 +17,8 @@ reloeispath = 'data/oeis.csv'
 oeispath = (path / reloeispath).resolve()
 reldbpath = 'data/oeis.db'
 dbpath = (path / reldbpath).resolve()
+reltraitsdbpath = 'data/traits.db'
+traitspath = (path / reltraitsdbpath).resolve()
 relstrippedpath = 'data/stripped'
 strippedpath = (path / relstrippedpath).resolve()
 relcsvpath = 'data/csv'
@@ -35,36 +36,29 @@ def GetHtmlPath() -> Path: return htmlpath
 def GetMdPath() -> Path: return mdpath
 setrecursionlimit(3000)
 set_int_max_str_digits(5000)
-def isintegerinv(T: list[list[int] | list[Rational]]) -> bool:
-    for row in T:
-        for k in row:
-            if type(k) == Rational:
-                return False
-    return True
+def InverseTabl(L: list[list[int]]) -> list[list[int]]:
+    # Inverse of a lower triangular matrix
+    n = len(L)
+    inv = [[0 for i in range(n)] for _ in range(n)]  # Identity matrix
+    for i in range(n):
+        inv[i][i] = 1
+    for k in range(n):
+        for j in range(n):
+            for i in range(k):
+                inv[k][j] -= inv[i][j] * L[k][i]
+            a = inv[k][j]
+            b = L[k][k]
+            if b == 0:
+                # print("Warning: Inverse does not exist!")
+                return []
+            a, r = divmod(a, b) # make sure that a is integer
+            if r != 0:
+                # print("Warning: Integer terms do not exist!")
+                return []
+    return [row[0:n + 1] for n, row in enumerate(inv)]
 def InverseTriangle(r, dim: int) -> list[list[int]]:
     M = [[r(n)[k] if k <= n else 0 for k in range(dim)] for n in range(dim)]
-    try:
-        I = Matrix(M) ** -1
-    except:
-        # print("Not invertible")
-        return []
-    T = [[I[n, k] for k in range(n + 1)] for n in range(dim)]
-    if not isintegerinv(T): 
-        # print("Inverse not integer matrix")
-        return []
-    return T
-def InverseTabl(T: list[list[int]]) -> list[list[int]]:
-    M = [[T[n][k] if k <= n else 0 for k in range(len(T))] for n in range(len(T))]
-    try:
-        I = Matrix(M) ** -1
-    except: 
-        # print("Not invertible")
-        return []
-    t = [[I[n, k] for k in range(n + 1)] for n in range(len(M))]
-    if not isintegerinv(t): 
-        # print("Inverse not integer matrix")
-        return []
-    return t
+    return InverseTabl(M)
 """Type: table row"""
 trow: TypeAlias = list[int]
 """Type: table"""
@@ -80,14 +74,17 @@ tri: TypeAlias = Callable[[int, int], int]
 def inversion_wrapper(T: tgen, size: int) -> tgen | None:
     t = T.inv(size)
     if t == []: return None
-    def psgen(n: int) -> trow: return list(t[n])
+    def psgen(n: int) -> trow: 
+        return list(t[n])
     @set_attributes(psgen, T.id + ":Inv", [], True)
     def Psgen(n: int, k: int) ->  int:
         return psgen(n)[k]
     return Psgen
 def reversion_wrapper(T: tgen, size: int) -> tgen:
-    t = T.rev(size)
-    def rsgen(n: int) -> trow: return list(t[n]) 
+    t = T.tab(size)
+    def rsgen(n: int) -> trow: 
+        row = t[n]
+        return [row[n - i] for i in range(n + 1)]
     @set_attributes(rsgen, T.id + ":Rev", [], True)
     def Rsgen(n: int, k: int) -> int:
         return rsgen(n)[k]
@@ -96,16 +93,18 @@ def revinv_wrapper(T: tgen, size: int) -> tgen | None:
     I = inversion_wrapper(T, size)
     if I == None: return None
     J = reversion_wrapper(I, size)
-    def rigen(n: int) -> trow: return list(J.gen(n))
+    def rigen(n: int) -> trow: 
+        return list(J.gen(n))
     @set_attributes(rigen, J.id, [], True)
     def Rigen(n: int, k: int) -> int:
         return rigen(n)[k]
     return Rigen
 def invrev_wrapper(T: tgen, size: int) -> tgen | None:
     R = reversion_wrapper(T, size)
-    S = inversion_wrapper(R, size)
+    S = inversion_wrapper(R, size) 
     if S == None: return None
-    def tigen(n: int) -> trow: return list(S.gen(n))
+    def tigen(n: int) -> trow: 
+        return list(S.gen(n))
     @set_attributes(tigen, S.id, [], True)
     def Tigen(n: int, k: int) -> int:
         return tigen(n)[k]
@@ -2048,6 +2047,125 @@ def CsvToHtml(fun: tgen, csvpath: Path, outpath: Path) -> None:
 def AllCsvToHtml(csvpath: Path = GetCsvPath(), outpath: Path = GetHtmlPath()) -> None:
     for fun in tabl_fun:
         CsvToHtml(fun, csvpath, outpath)
+TRAIT: dict[str, Callable[[tabl], trow]] = {}
+def RegisterTrait(f: Callable[[tabl], trow]) -> None: 
+    TRAIT[f.__name__] = f
+TRAIT2: dict[str, Callable[[rgen, int], trow]] = {}
+def RegisterTrait2(f: Callable[[rgen, int], trow]) -> None:
+    TRAIT2[f.__name__] = f
+def RegisterTraits() -> None:
+    RegisterTrait(FlatTabl)   # must always come first!
+    #RegisterTrait(FlatRevTabl)
+    #RegisterTrait(FlatInvTabl)
+    #RegisterTrait(FlatRevInvTabl)
+    #RegisterTrait(FlatInvRevTabl)
+    #RegisterTrait(FlatAccTabl)
+    #RegisterTrait(FlatRevAccTabl) # rarely found
+    #RegisterTrait(FlatAccRevTabl)
+    #RegisterTrait(FlatAntiDiagTabl)
+    #RegisterTrait(FlatBinTabl)    # rarely found
+    #RegisterTrait(FlatInvBinTabl) # rarely found
+    #RegisterTrait(FlatDiffxTabl)
+    RegisterTrait(RowSum)
+    RegisterTrait(EvenSum)
+    RegisterTrait(OddSum)
+    RegisterTrait(AltSum)
+    RegisterTrait(AntiDiagSum)
+    RegisterTrait(AccSum)
+    RegisterTrait(AccRevSum)
+    RegisterTrait(RowLcm)
+    RegisterTrait(RowGcd)
+    RegisterTrait(RowMax)
+    RegisterTrait(ColMiddle)
+    RegisterTrait(ColECentral)
+    RegisterTrait(ColOCentral)
+    RegisterTrait(ColLeft)
+    RegisterTrait(ColRight)
+    
+    RegisterTrait(BinConv)
+    RegisterTrait(InvBinConv)
+    RegisterTrait2(TransNat0)
+    RegisterTrait2(TransNat1)
+    RegisterTrait2(TransSqrs)
+    # RegisterTrait2(DiagRow0) same as ColRight
+    RegisterTrait2(DiagRow1)
+    RegisterTrait2(DiagRow2)
+    RegisterTrait2(DiagRow3)
+    # RegisterTrait2(DiagCol0) same as ColLeft
+    RegisterTrait2(DiagCol1)
+    RegisterTrait2(DiagCol2)
+    RegisterTrait2(DiagCol3)
+    RegisterTrait2(PolyTabl)
+    # RegisterTrait2(PolyRow0)
+    RegisterTrait2(PolyRow1)
+    RegisterTrait2(PolyRow2)
+    RegisterTrait2(PolyRow3)
+    # RegisterTrait2(PolyCol0) same as ColLeft
+    # RegisterTrait2(PolyCol1) same as RowSum
+    RegisterTrait2(PolyCol2) 
+    RegisterTrait2(PolyCol3)
+    RegisterTrait2(PolyDiag)
+    RegisterTrait2(PosHalf)
+    RegisterTrait2(NegHalf)
+'''
+for fun in tabl_fun:
+        PrintTraits(fun, 20, True)
+for traitname, hits in HITS.items():
+    print(f'| {hits} | {traitname:<16} |')
+[ 0]  6  FlatDiffx
+[ 1]  7  RevAccTabl
+[ 2] 11  AccRevTabl
+[ 3] 12  InvRevTabl
+[ 4] 13  AccTabl
+[ 5] 14  RowLcm
+[ 6] 15  Poly
+[ 7] 19  TransSqrs
+[ 8] 22  RevInvTabl
+[ 9] 28  AntiDiagTabl
+[10] 28  PolyDiag
+[11] 29  ColMiddle
+[12] 29  InvTabl
+[13] 32  AccSum
+[14] 32  BinConv
+[15] 32  InvBinConv
+[16] 34  AccRevSum
+[17] 34  TransNat1
+[18] 35  PolyRow3
+[19] 36  PolyCol3
+[20] 40  AntiDiagSum
+[21] 40  TransNat0
+[22] 42  OddSum
+[23] 45  EvenSum
+[24] 45  RowMax
+[25] 46  NegHalf
+[26] 47  PosHalf
+[27] 48  PolyCol2
+[28] 51  ColCentral
+[29] 53  RowGcd
+[30] 54  RevTabl
+[31] 55  DiagRow3
+[32] 57  AltSum
+[33] 58  DiagCol3
+[34] 60  DiagCol2
+[35] 61  DiagRow2
+[36] 65  DiagCol1
+[37] 65  PolyRow2
+[38] 66  DiagRow1
+--
+[39] 67  ColLeft
+[40] 67  ColRight
+[41] 67  * DiagCol0
+[42] 67  * DiagRow0
+[43] 67  Tabl
+[44] 67  * PolyCol0
+[45] 67  * PolyCol1
+[46] 67  * PolyRow0
+[47] 67  PolyRow1
+[48] 67  RowSum
+DiagCol0 = PolyCol0 = ColLeft
+DiagRow0 = PolyRow0 = ColRight
+RowSum   = PolyCol1
+'''
 def fnv(data: bytes) -> int:
     """
     FNV-1a hash algorithm.
@@ -2086,7 +2204,6 @@ def oeisabsdata() -> None:
             for seq in oeisdata:
                 if not "#" in seq:
                     absdata.write(seq.replace("-", ""))
-MINTERMS = 15
 def oeisabsdatawithfnv() -> None:
     """Make all terms absolute, take MINTERMS terms, add fnv."""
     with open(oeispath, "r") as oeisdata:
@@ -2101,7 +2218,7 @@ def oeisabsdatawithfnv() -> None:
                 f = hex(fnv(bytes(x, encoding="ascii")))[2:]
                 cleandata.write(f + "," + s[0] + "," + x + ",\n")
 def oeissql() -> None:
-    """Make all terms absolute, take 28 terms, add fnv.
+    """Make all terms absolute, take MINTERMS terms, add fnv.
        Write (fnv, anum, seq) to oeis.db.
     """
     tabl = sqlite3.connect(dbpath)
@@ -2109,53 +2226,98 @@ def oeissql() -> None:
     cur.execute("CREATE TABLE sequences(hash, anum, seq)")
     with open(oeispath, "r") as oeisdata:
         reader = csv.reader(oeisdata)
-        with open(datapath, "w") as cleandata:
-            seq_list = [[txt[0][0:7], [abs(int(s)) for s in txt[1:-1]]] for txt in reader]
-            for s in seq_list:
-                if len(s[1]) < MINTERMS:
-                    continue
-                x = str(s[1][0:MINTERMS]).translate(str.maketrans("", "", "[],"))
-                f = hex(fnv(bytes(x, encoding="ascii")))[2:]
-                tup = (f, s[0], x )
-                cur.execute("INSERT INTO sequences VALUES(?, ?, ?)", tup)
+        
+        seq_list = [[txt[0][0:7], [abs(int(s)) for s in txt[1:-1]]] for txt in reader]
+        for s in seq_list:
+            if len(s[1]) < MINTERMS:
+                continue
+            x = str(s[1][0:MINTERMS]).translate(str.maketrans("", "", "[],"))
+            f = hex(fnv(bytes(x, encoding="ascii")))[2:]
+            tup = (f, s[0], x )
+            cur.execute("INSERT INTO sequences VALUES(?, ?, ?)", tup)
     tabl.commit()
     tabl.close()
-def querydbhash(H: str) -> str:
-    oeis_con = sqlite3.connect(dbpath)
-    oeis_cur = oeis_con.cursor()
-        
+def querydbhash(H: str, oeis_cur) -> str:
     sql = "SELECT anum FROM sequences WHERE hash=? LIMIT 1"
     res = oeis_cur.execute(sql, (H,))
     record = res.fetchone()
-    oeis_con.commit()
-    oeis_con.close()
     return "missing" if record == None else record[0]
-def querydbseq(seq:list[int]) -> str:
-    oeis_con = sqlite3.connect(dbpath)
-    oeis_cur = oeis_con.cursor()
+def querydbseq(seq:list[int], oeis_cur) -> str:
     x = str([abs(int(s)) for s in seq[0:MINTERMS]]).translate(str.maketrans("", "", "[],"))
-        
     sql = "SELECT anum FROM sequences WHERE seq=? LIMIT 1"
     res = oeis_cur.execute(sql, (x,))
     record = res.fetchone()
-    oeis_con.commit()
-    oeis_con.close()
     return "missing" if record == None else record[0]
+def queryoeis(H: str, seq:list[int], oeis_cur) -> str:
+    sql = "SELECT anum FROM sequences WHERE hash=? LIMIT 1"
+    res = oeis_cur.execute(sql, (H,))
+    record = res.fetchone()
+    if record != None: return record[0]
+    # not found by hash, perhaps shifted by one?
+    x = str([abs(int(s)) for s in seq[1:MINTERMS+1]]).translate(str.maketrans("", "", "[],"))
+    sql = "SELECT anum FROM sequences WHERE seq=? LIMIT 1"
+    res = oeis_cur.execute(sql, (x,))
+    record = res.fetchone()
+    return "missing" if record == None else record[0]
+STRINGLENx = 100
+def SaveTraits(g: tgen, size: int, traits_cur, oeis_cur) -> None:
+    T = g.tab(size)
+   
+    for traitname, trait in TRAIT.items():
+        seq = trait(T)
+        fnv = fnv_hash(seq, True)
+        anum = queryoeis(fnv, seq, oeis_cur)
+        seqstr = ""
+        maxl = 0
+        for trm in seq:
+            s = str(trm) + ' '
+            maxl += len(s)
+            if maxl > STRINGLENx: break
+            seqstr += s
+        tup = (g.id, fnv, traitname, anum, seqstr)
+        print(tup)
+        traits_cur.execute("INSERT INTO traits VALUES(?, ?, ?, ?, ?)", tup)
+def SaveExtendedTraitsToDB(T: tgen, size: int, traits_cur, oeis_cur) -> None:
+    tim: int = size + size // 2
+    Tid = T.id; T.id = T.id + ":Std"
+    RegisterTraits()
+    SaveTraits(T, size, traits_cur, oeis_cur)
+    T.id = Tid 
+    r = reversion_wrapper(T, tim)
+    SaveTraits(r, size, traits_cur, oeis_cur)
+    I = inversion_wrapper(T, tim)
+    if I != None:
+        SaveTraits(I, size, traits_cur, oeis_cur)
+    
+    r = revinv_wrapper(T, tim)
+    if r != None:
+        SaveTraits(r, size, traits_cur, oeis_cur)
+    r = invrev_wrapper(T, tim)
+    if r != None:
+        SaveTraits(r, size, traits_cur, oeis_cur)
+def SaveAllTraitsToDB(tabl_fun: list[tgen]) -> None:
+    traits_con = sqlite3.connect(traitspath)
+    traits_cur = traits_con.cursor()
+    traits_cur.execute("CREATE TABLE traits(triangle, hash, trait, anum, seq)")
+    oeis_con = sqlite3.connect(dbpath)
+    oeis_cur = oeis_con.cursor()
+    for fun in tabl_fun:
+        SaveExtendedTraitsToDB(fun, 32, traits_cur, oeis_cur)
+    
+    traits_con.commit()
+    traits_con.close()
+    oeis_con.close()
+    print("Created database traits.db in", traitspath)
 def GetOEISdata() -> None:
     print("Updating OEIS data!")
-    # get_compressed()
-    # oeisabsdata()
-    # oeisabsdatawithfnv()
+    get_compressed()
     oeissql()
     print("OEIS data updated!")
 STRINGLEN = 60
 def SeqToFixlenString(seq:list[int], maxlen:int=STRINGLEN, separator:str=',') -> str:
-    fnv = fnv_hash(seq, True)
-    isin = querydbhash(fnv)
-    if isin == "missing":
-        isin = querydbseq(seq[1:])
-        # print("*** Not in by hash, shift found by seq?", isin)
-    stri = isin + "  "
+    # fnv = fnv_hash(seq, True)
+    # isin = queryoeis(fnv, seq, oeis_cur)
+    stri = " | "
     maxl = 3
     for trm in seq:
         s = str(trm) + separator
@@ -2208,66 +2370,6 @@ def flat(t: tabl) -> list[int]:
     """
     if t == []: return []
     return [i for row in t for i in row] 
-TRAIT: dict[str, Callable[[tabl], trow]] = {}
-def RegisterTrait(f: Callable[[tabl], trow]) -> None: 
-    TRAIT[f.__name__] = f
-TRAIT2: dict[str, Callable[[rgen, int], trow]] = {}
-def RegisterTrait2(f: Callable[[rgen, int], trow]) -> None:
-    TRAIT2[f.__name__] = f
-def register() -> None:
-    RegisterTrait(FlatTabl)   # must always come first!
-    #RegisterTrait(FlatRevTabl)
-    #RegisterTrait(FlatInvTabl) ### BUG in sympy-inv? HANGS HERE sometimes !!!!!!!
-    #RegisterTrait(FlatRevInvTabl)
-    # RegisterTrait(FlatInvRevTabl)  ### BUG in sympy-inv? HANGS HERE !!!!!!!  Lah
-    #RegisterTrait(FlatAccTabl)
-    #RegisterTrait(FlatRevAccTabl) # rarely found
-    #RegisterTrait(FlatAccRevTabl)
-    #RegisterTrait(FlatAntiDiagTabl)
-    #RegisterTrait(FlatBinTabl)    # rarely found
-    #RegisterTrait(FlatInvBinTabl) # rarely found
-    #RegisterTrait(FlatDiffxTabl)
-    RegisterTrait(RowSum)
-    RegisterTrait(EvenSum)
-    RegisterTrait(OddSum)
-    RegisterTrait(AltSum)
-    RegisterTrait(AntiDiagSum)
-    RegisterTrait(AccSum)
-    RegisterTrait(AccRevSum)
-    RegisterTrait(RowLcm)
-    RegisterTrait(RowGcd)
-    RegisterTrait(RowMax)
-    RegisterTrait(ColMiddle)
-    RegisterTrait(ColECentral)
-    RegisterTrait(ColOCentral)
-    RegisterTrait(ColLeft)
-    RegisterTrait(ColRight)
-    
-    RegisterTrait(BinConv)
-    RegisterTrait(InvBinConv)
-    RegisterTrait2(TransNat0)
-    RegisterTrait2(TransNat1)
-    RegisterTrait2(TransSqrs)
-    # RegisterTrait2(DiagRow0) same as ColRight
-    RegisterTrait2(DiagRow1)
-    RegisterTrait2(DiagRow2)
-    RegisterTrait2(DiagRow3)
-    # RegisterTrait2(DiagCol0) same as ColLeft
-    RegisterTrait2(DiagCol1)
-    RegisterTrait2(DiagCol2)
-    RegisterTrait2(DiagCol3)
-    RegisterTrait2(PolyTabl)
-    # RegisterTrait2(PolyRow0)
-    RegisterTrait2(PolyRow1)
-    RegisterTrait2(PolyRow2)
-    RegisterTrait2(PolyRow3)
-    # RegisterTrait2(PolyCol0) same as ColLeft
-    # RegisterTrait2(PolyCol1) same as RowSum
-    RegisterTrait2(PolyCol2) 
-    RegisterTrait2(PolyCol3)
-    RegisterTrait2(PolyDiag)
-    RegisterTrait2(PosHalf)
-    RegisterTrait2(NegHalf)
 STRINGLEN = 100
 def PrintTraits(g: tgen, size: int, 
                 withanum: bool = False, 
@@ -2276,7 +2378,7 @@ def PrintTraits(g: tgen, size: int,
     trianglename = g.id
     T = g.tab(size)
     gen = g.gen
-    anum = g.sim[0]  # Note that the similars are ordered!
+    anum = "" # ???? (g.sim)[0]  # Note that the similars are ordered!
     if markdown:
         if withanum:
             print( "| Triangle    | Anum    | Trait    |  Sequence   |")
@@ -2320,7 +2422,7 @@ def PrintTraits(g: tgen, size: int,
                 anum = '' 
             else:
                 seqstr = SeqToFixlenString(tt, STRINGLEN, ' ')
-                print(f'| {trianglename} | {traitname:<12} | {seqstr} |')
+                print(f'| {trianglename} | {traitname:<12} | {seqstr}|')
     else:  # TXT simple dictionary, no options, no anums 
         for traitname, trait in TRAIT2.items():
             seqstr = SeqToFixlenString(trait(gen, size), STRINGLEN, ' ')
@@ -2332,7 +2434,7 @@ def SaveTraitsToFile(g: tgen, size: int,
     trianglename = g.id
     T = g.tab(size)
     gen = g.gen
-    anum = g.sim[0]  # Note that the similars are ordered!
+    anum = "" # BUG (g.sim)[0]  # Note that the similars are ordered!
     print(anum)
     if markdown:
         filepath = (GetMdPath() / f"{trianglename}.md").resolve()    
@@ -2423,21 +2525,28 @@ def PrintExtendedTraits(T: tgen, size: int, withanum: bool = False, markdown: bo
     Tid = T.id; T.id = T.id + ":Std"
     PrintTraits(T, size, withanum, markdown)
     T.id = Tid 
-    print("\n# Reverse.")
+    print("\n# Reverse.", '*-*' * 20)
     r = reversion_wrapper(T, tim)
     PrintTraits(r, size, withanum, markdown)
     I = inversion_wrapper(T, tim)
     if I != None:
-        print("\n# Inverse.")
+        print("\n# Inverse.", '*-*' * 20)
         PrintTraits(I, size, withanum, markdown)
+    else:
+        print("\nInfo: Inverse does not exists!\n")
+    
     r = revinv_wrapper(T, tim)
     if r != None:
-        print("\n# Reverse of inverse.")
+        print("\n# Reverse of inverse.", '*-*' * 20)
         PrintTraits(r, size, withanum, markdown)
+    else:
+        print("\nInfo: Reverse of inverse does not exists!\n")  
     r = invrev_wrapper(T, tim)
     if r != None:
-        print("\n# Inverse of reverse.")
+        print("\n# Inverse of reverse.", '*-*' * 20)
         PrintTraits(r, size, withanum, markdown)
+    else:
+        print("\nInfo: Inverse of reverse does not exists!\n")    
 def SaveExtendedTraitsToCSV(G: tgen, size: int) -> None:
     # register()
     tim: int = size + size // 2
@@ -2484,7 +2593,7 @@ def PrintAllTraits(size: int) -> None:
     for fun in tabl_fun:
         PrintTraits(fun, size, withanum = False)
 def SaveAllFoundTraitsToCSV() -> None:
-    register()
+    RegisterTraits()
     for fun in tabl_fun:
         print("#", fun.id)
         SaveTraitsToFile(fun, 20, 
@@ -2492,7 +2601,7 @@ def SaveAllFoundTraitsToCSV() -> None:
                          markdown = False,
                          onlythefound = True)
 def SaveAllTraitsToCSV() -> None:
-    register()
+    RegisterTraits()
     for fun in tabl_fun:
         print("#", fun.id)
         SaveTraitsToFile(fun, 20,
@@ -2500,7 +2609,7 @@ def SaveAllTraitsToCSV() -> None:
                          markdown = False,
                          onlythefound = False)
 def SaveAllExtendedTraitsToCSV() -> None:
-    register()
+    RegisterTraits()
     for fun in tabl_fun:
         print("##", fun.id)
         SaveExtendedTraitsToCSV(fun, 20)

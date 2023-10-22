@@ -2,7 +2,11 @@ import requests
 import gzip
 import csv
 import sqlite3
-from _tablpaths import strippedpath, datapath, oeispath, dbpath
+from typing import Callable
+from _tablpaths import strippedpath, datapath, oeispath, dbpath, traitspath
+from _tabltypes import rgen, tgen, tabl, trow
+from _tabltypes import inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
+from _tabltraits import TRAIT, RegisterTraits
 
 # #@
 
@@ -55,7 +59,6 @@ def oeisabsdata() -> None:
                 if not "#" in seq:
                     absdata.write(seq.replace("-", ""))
 
-MINTERMS = 15
 
 def oeisabsdatawithfnv() -> None:
     """Make all terms absolute, take MINTERMS terms, add fnv."""
@@ -74,7 +77,7 @@ def oeisabsdatawithfnv() -> None:
 
 
 def oeissql() -> None:
-    """Make all terms absolute, take 28 terms, add fnv.
+    """Make all terms absolute, take MINTERMS terms, add fnv.
        Write (fnv, anum, seq) to oeis.db.
     """
 
@@ -84,52 +87,119 @@ def oeissql() -> None:
 
     with open(oeispath, "r") as oeisdata:
         reader = csv.reader(oeisdata)
-        with open(datapath, "w") as cleandata:
-            seq_list = [[txt[0][0:7], [abs(int(s)) for s in txt[1:-1]]] for txt in reader]
-            for s in seq_list:
-                if len(s[1]) < MINTERMS:
-                    continue
-                x = str(s[1][0:MINTERMS]).translate(str.maketrans("", "", "[],"))
-                f = hex(fnv(bytes(x, encoding="ascii")))[2:]
-                tup = (f, s[0], x )
-                cur.execute("INSERT INTO sequences VALUES(?, ?, ?)", tup)
+        
+        seq_list = [[txt[0][0:7], [abs(int(s)) for s in txt[1:-1]]] for txt in reader]
+        for s in seq_list:
+            if len(s[1]) < MINTERMS:
+                continue
+            x = str(s[1][0:MINTERMS]).translate(str.maketrans("", "", "[],"))
+            f = hex(fnv(bytes(x, encoding="ascii")))[2:]
+            tup = (f, s[0], x )
+            cur.execute("INSERT INTO sequences VALUES(?, ?, ?)", tup)
 
     tabl.commit()
     tabl.close()
 
 
-def querydbhash(H: str) -> str:
-    oeis_con = sqlite3.connect(dbpath)
-    oeis_cur = oeis_con.cursor()
-        
+def querydbhash(H: str, oeis_cur) -> str:
     sql = "SELECT anum FROM sequences WHERE hash=? LIMIT 1"
     res = oeis_cur.execute(sql, (H,))
     record = res.fetchone()
-    oeis_con.commit()
-    oeis_con.close()
-
     return "missing" if record == None else record[0]
 
 
-def querydbseq(seq:list[int]) -> str:
-    oeis_con = sqlite3.connect(dbpath)
-    oeis_cur = oeis_con.cursor()
+def querydbseq(seq:list[int], oeis_cur) -> str:
     x = str([abs(int(s)) for s in seq[0:MINTERMS]]).translate(str.maketrans("", "", "[],"))
-        
     sql = "SELECT anum FROM sequences WHERE seq=? LIMIT 1"
     res = oeis_cur.execute(sql, (x,))
     record = res.fetchone()
-    oeis_con.commit()
+    return "missing" if record == None else record[0]
+
+
+def queryoeis(H: str, seq:list[int], oeis_cur) -> str:
+    sql = "SELECT anum FROM sequences WHERE hash=? LIMIT 1"
+    res = oeis_cur.execute(sql, (H,))
+    record = res.fetchone()
+    if record != None: return record[0]
+    # not found by hash, perhaps shifted by one?
+    x = str([abs(int(s)) for s in seq[1:MINTERMS+1]]).translate(str.maketrans("", "", "[],"))
+    sql = "SELECT anum FROM sequences WHERE seq=? LIMIT 1"
+    res = oeis_cur.execute(sql, (x,))
+    record = res.fetchone()
+    return "missing" if record == None else record[0]
+
+
+STRINGLENx = 100
+
+
+def SaveTraits(g: tgen, size: int, traits_cur, oeis_cur) -> None:
+    T = g.tab(size)
+   
+    for traitname, trait in TRAIT.items():
+        seq = trait(T)
+        fnv = fnv_hash(seq, True)
+        anum = queryoeis(fnv, seq, oeis_cur)
+        seqstr = ""
+        maxl = 0
+        for trm in seq:
+            s = str(trm) + ' '
+            maxl += len(s)
+            if maxl > STRINGLENx: break
+            seqstr += s
+
+        tup = (g.id, fnv, traitname, anum, seqstr)
+        print(tup)
+        traits_cur.execute("INSERT INTO traits VALUES(?, ?, ?, ?, ?)", tup)
+
+
+def SaveExtendedTraitsToDB(T: tgen, size: int, traits_cur, oeis_cur) -> None:
+
+    tim: int = size + size // 2
+
+    Tid = T.id; T.id = T.id + ":Std"
+
+    RegisterTraits()
+    SaveTraits(T, size, traits_cur, oeis_cur)
+    T.id = Tid 
+
+    r = reversion_wrapper(T, tim)
+    SaveTraits(r, size, traits_cur, oeis_cur)
+
+    I = inversion_wrapper(T, tim)
+    if I != None:
+        SaveTraits(I, size, traits_cur, oeis_cur)
+    
+    r = revinv_wrapper(T, tim)
+    if r != None:
+        SaveTraits(r, size, traits_cur, oeis_cur)
+
+    r = invrev_wrapper(T, tim)
+    if r != None:
+        SaveTraits(r, size, traits_cur, oeis_cur)
+
+
+def SaveAllTraitsToDB(tabl_fun: list[tgen]) -> None:
+    traits_con = sqlite3.connect(traitspath)
+    traits_cur = traits_con.cursor()
+    traits_cur.execute("CREATE TABLE traits(triangle, hash, trait, anum, seq)")
+
+    oeis_con = sqlite3.connect(dbpath)
+    oeis_cur = oeis_con.cursor()
+
+    for fun in tabl_fun:
+        SaveExtendedTraitsToDB(fun, 32, traits_cur, oeis_cur)
+    
+    traits_con.commit()
+    traits_con.close()
+
     oeis_con.close()
 
-    return "missing" if record == None else record[0]
+    print("Created database traits.db in", traitspath)
 
 
 def GetOEISdata() -> None:
     print("Updating OEIS data!")
-    # get_compressed()
-    # oeisabsdata()
-    # oeisabsdatawithfnv()
+    get_compressed()
     oeissql()
     print("OEIS data updated!")
 
@@ -166,16 +236,6 @@ if __name__ == "__main__":
         oeis_con.close()
 
     def test4():
-        print(querydbhash("8f5854a276f4f23f"))
-        print(querydbhash("10019398ce7a877b"))
-        print(querydbhash("10019398ce7a877a"))
-        print(querydbhash("29ecd5e3cea1a7e4"))
-        print(querydbhash("39ecd5e3cea1a7e4"))
-
-        print(querydbseq([1,1,2,2,3,4,5,6,7,8,11,12,15,16,19]))
-        print(querydbseq([-1,1,2,2,3,4,5,6,7,8,11,12,15,16,19,21]))
-        print(querydbseq([-1,1,2,2,3,4,5,6,7,8,11,12,15,16]))
-
         data = "1 1 2 2 3 4 5 6 7 8 11 12 15 16 19"
         print(hex(fnv(bytes(data, encoding="ascii"))))
         data = "1 1 6 84 600 145080 2167200 453138235200 319959556963200"
@@ -190,5 +250,7 @@ if __name__ == "__main__":
 
     # test4()
 
+    from tabl import tabl_fun
     # GetOEISdata()
+    SaveAllTraitsToDB(tabl_fun)
     
