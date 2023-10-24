@@ -2,11 +2,11 @@ import requests
 import gzip
 import csv
 import sqlite3
-from typing import Callable
+import pandas as pd
+from pathlib import Path
 from _tablpaths import strippedpath, datapath, oeispath, dbpath, traitspath
-from _tabltypes import rgen, tgen, tabl, trow
-from _tabltypes import inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
-from _tabltraits import TRAIT, RegisterTraits
+from _tabltypes import tgen, inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
+from _tabltraits import RegisterTraits, is_tabletrait
 
 # #@
 
@@ -25,9 +25,9 @@ def fnv(data: bytes) -> int:
 MINTERMS = 15
 
 def fnv_hash(seq: list[int], absolut: bool=False) -> str:
+    if seq == []: return "0"
     if len(seq) < MINTERMS:
         print(f"*** Warning *** Hash based only on {len(seq)} terms.")
-        return "0"
     if absolut:
         s = str([abs(i) for i in seq[0:MINTERMS]])
     else:
@@ -121,6 +121,7 @@ def queryoeis(H: str, seq:list[int], oeis_cur) -> str:
     res = oeis_cur.execute(sql, (H,))
     record = res.fetchone()
     if record != None: return record[0]
+
     # not found by hash, perhaps shifted by one?
     x = str([abs(int(s)) for s in seq[1:MINTERMS+1]]).translate(str.maketrans("", "", "[],"))
     sql = "SELECT anum FROM sequences WHERE seq=? LIMIT 1"
@@ -131,12 +132,16 @@ def queryoeis(H: str, seq:list[int], oeis_cur) -> str:
 
 STRINGLENx = 100
 
-
-def SaveTraits(g: tgen, size: int, traits_cur, oeis_cur) -> None:
+def SaveTraits(g: tgen, size: int, traits_cur, oeis_cur, TRAITS: dict) -> None:
     T = g.tab(size)
+    r = g.gen
    
-    for traitname, trait in TRAIT.items():
-        seq = trait(T)
+    for traitname, trait in TRAITS.items():
+        seq = trait(T) if is_tabletrait(trait) else trait(r, size)
+        if seq == []:
+            print(f"Info: {g.id + traitname} does not exist.")
+            continue
+
         fnv = fnv_hash(seq, True)
         anum = queryoeis(fnv, seq, oeis_cur)
         seqstr = ""
@@ -147,7 +152,7 @@ def SaveTraits(g: tgen, size: int, traits_cur, oeis_cur) -> None:
             if maxl > STRINGLENx: break
             seqstr += s
 
-        tup = (g.id, fnv, traitname, anum, seqstr)
+        tup = (g.id, traitname, fnv, anum, seqstr)
         print(tup)
         traits_cur.execute("INSERT INTO traits VALUES(?, ?, ?, ?, ?)", tup)
 
@@ -158,30 +163,31 @@ def SaveExtendedTraitsToDB(T: tgen, size: int, traits_cur, oeis_cur) -> None:
 
     Tid = T.id; T.id = T.id + ":Std"
 
-    RegisterTraits()
-    SaveTraits(T, size, traits_cur, oeis_cur)
+    TRAITS = RegisterTraits()
+
+    SaveTraits(T, size, traits_cur, oeis_cur, TRAITS)
     T.id = Tid 
 
     r = reversion_wrapper(T, tim)
-    SaveTraits(r, size, traits_cur, oeis_cur)
+    SaveTraits(r, size, traits_cur, oeis_cur, TRAITS)
 
     I = inversion_wrapper(T, tim)
     if I != None:
-        SaveTraits(I, size, traits_cur, oeis_cur)
+        SaveTraits(I, size, traits_cur, oeis_cur, TRAITS)
     
     r = revinv_wrapper(T, tim)
     if r != None:
-        SaveTraits(r, size, traits_cur, oeis_cur)
+        SaveTraits(r, size, traits_cur, oeis_cur, TRAITS)
 
     r = invrev_wrapper(T, tim)
     if r != None:
-        SaveTraits(r, size, traits_cur, oeis_cur)
+        SaveTraits(r, size, traits_cur, oeis_cur, TRAITS)
 
 
 def SaveAllTraitsToDB(tabl_fun: list[tgen]) -> None:
     traits_con = sqlite3.connect(traitspath)
     traits_cur = traits_con.cursor()
-    traits_cur.execute("CREATE TABLE traits(triangle, hash, trait, anum, seq)")
+    traits_cur.execute("CREATE TABLE traits(triangle, trait, hash, anum, seq)")
 
     oeis_con = sqlite3.connect(dbpath)
     oeis_cur = oeis_con.cursor()
@@ -195,6 +201,18 @@ def SaveAllTraitsToDB(tabl_fun: list[tgen]) -> None:
     oeis_con.close()
 
     print("Created database traits.db in", traitspath)
+
+
+def SaveAsCsv(path: Path):
+    with sqlite3.connect(path) as db:
+        cursor = db.cursor()
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+        tables = cursor.fetchall()
+        for table_name in tables:
+            table_name = table_name[0]
+            table = pd.read_sql_query("SELECT * from %s" % table_name, db)
+            table.to_csv(table_name + '.csv', index_label='index')
+        cursor.close()
 
 
 def GetOEISdata() -> None:
@@ -248,9 +266,9 @@ if __name__ == "__main__":
         print(fnv_hash([i for i in range(28)], True))
         print(fnv_hash([(-1)**i*i for i in range(28)], True))
 
-    # test4()
 
     from tabl import tabl_fun
-    # GetOEISdata()
+    GetOEISdata()
     SaveAllTraitsToDB(tabl_fun)
-    
+    SaveAsCsv(traitspath)
+

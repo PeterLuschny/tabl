@@ -1,101 +1,108 @@
 from typing import Callable
 from itertools import accumulate
-from _tabltypes import tabl, trow, tgen
+from _tabltypes import tabl, trow, tgen, rgen
 from _tablinverse import InverseTabl
 
-def flat(t: tabl) -> list[int]: 
+def flat(T: tabl) -> list[int]: 
     """Flatten table to sequence
 
     Args:
-        t (tabl): table
+        T (tabl): table
 
     Returns:
         list[int]: sequence
     """
-    if t == []: return []
-    return [i for row in t for i in row] 
+    if T == []: return []
+    return [i for row in T for i in row] 
 
 # #@
 
 
-def AntiDiagTabl(t: tabl) -> tabl:
+def AntiDiagTabl(T: tabl) -> tabl:
     """Return the table of (upward) anti-diagonals."""
-    return [[t[n - k - 1][k] 
+    return [[T[n - k - 1][k] 
              for k in range((n + 1) // 2)] 
-             for n in range(1, len(t) + 1)]
+             for n in range(1, len(T) + 1)]
 
 
-def AccTabl(t: tabl) -> tabl:
-    return [list(accumulate(row)) for row in t]
+def AccTabl(T: tabl) -> tabl:
+    return [list(accumulate(row)) for row in T]
 
 
-def RevTabl(t: tabl) -> tabl:
-    return [list(reversed(row)) for row in t]
+def RevTabl(T: tabl) -> tabl:
+    return [list(reversed(row)) for row in T]
 
 
-def InvTabl(t: tabl) -> tabl:
-    return InverseTabl(t)
+def InvTabl(T: tabl) -> tabl:
+    return InverseTabl(T)
 
 
-def InvRevTabl(t: tabl) -> tabl:
-    return InverseTabl(RevTabl(t))
+def InvRevTabl(T: tabl) -> tabl:
+    return InverseTabl(RevTabl(T))
 
 
-def RevAccTabl(t: tabl) -> tabl:
-    return RevTabl(AccTabl(t))
+def RevAccTabl(T: tabl) -> tabl:
+    return RevTabl(AccTabl(T))
 
 
-def AccRevTabl(t: tabl) -> tabl:
-    return AccTabl(RevTabl(t))
+def AccRevTabl(T: tabl) -> tabl:
+    return AccTabl(RevTabl(T))
 
 
-def FlatTabl(t: tabl) -> trow:
-    return [i for row in t for i in row]
+def FlatTabl(T: tabl) -> trow:
+    return [i for row in T for i in row]
 
 
-def FlatInvTabl(t: tabl) -> trow:
-    return [i for row in InvTabl(t) for i in row]
+def FlatTabl_(g: rgen, row: int) -> trow:
+    return g(row)
 
 
-def FlatRevTabl(t: tabl) -> trow:
-    return [i for row in RevTabl(t) for i in row]
+def FlatInvTabl(T: tabl) -> trow:
+    IT = InvTabl(T)
+    if InvTabl(T) == []: return []
+    return [i for row in IT for i in row]
 
 
-def FlatInvRevTabl(t: tabl) -> trow:
-    return [i for row in InvTabl(RevTabl(t)) for i in row]
+def FlatRevTabl(T: tabl) -> trow:
+    return [i for row in RevTabl(T) for i in row]
 
 
-def FlatRevInvTabl(t: tabl) -> trow:
-    return [i for row in RevTabl(InvTabl(t)) for i in row]
+def FlatInvRevTabl(T: tabl) -> trow:
+    return [i for row in InvTabl(RevTabl(T)) for i in row]
 
 
-def FlatAntiDiagTabl(t: tabl) -> trow:
-    return [i for row in AntiDiagTabl(t) for i in row]
+def FlatRevInvTabl(T: tabl) -> trow:
+    IT = InvTabl(T)
+    return [i for row in RevTabl(IT) for i in row]
 
 
-def FlatAccTabl(t: tabl) -> trow:
-    return [i for row in AccTabl(t) for i in row]
+def FlatAntiDiagTabl(T: tabl) -> trow:
+    return [i for row in AntiDiagTabl(T) for i in row]
 
 
-def FlatRevAccTabl(t: tabl) -> trow:
-    return [i for row in RevAccTabl(t) for i in row]
+def FlatAccTabl(T: tabl) -> trow:
+    return [i for row in AccTabl(T) for i in row]
 
 
-def FlatAccRevTabl(t: tabl) -> trow:
-    return [i for row in AccRevTabl(t) for i in row]
+def FlatRevAccTabl(T: tabl) -> trow:
+    return [i for row in RevAccTabl(T) for i in row]
 
 
-def FlatDiffxTabl(t: tabl) -> trow:
-    return [(k + 1) * c for row in t for k,c in enumerate(row)]
+def FlatAccRevTabl(T: tabl) -> trow:
+    return [i for row in AccRevTabl(T) for i in row]
 
 
-def PrintTabls(t: tgen, size: int = 8, mdformat: bool = True) -> None:
+def FlatDiffxTabl(T: tabl) -> trow:
+    return [(k + 1) * c for row in T for k,c in enumerate(row)]
+
+
+def PrintTabls(g: tgen, size: int = 8, mdformat: bool = True) -> None:
 
     TABLSTRAIT: dict[str, Callable[[tabl], trow]] = {}
     def RegisterTablsTrait(f: Callable[[tabl], trow]) -> None: 
         TABLSTRAIT[f.__name__] = f
 
-    T  = t.tab(size) 
+    T  = g.tab(size) 
 
     RegisterTablsTrait(FlatTabl)
     RegisterTablsTrait(FlatRevTabl)
@@ -109,7 +116,7 @@ def PrintTabls(t: tgen, size: int = 8, mdformat: bool = True) -> None:
     RegisterTablsTrait(FlatAntiDiagTabl)
 
 
-    trianglename = t.id
+    trianglename = T.id
 
     if mdformat:
         print("#", trianglename, ": Tables")

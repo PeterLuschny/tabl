@@ -1,38 +1,57 @@
 from typing import Callable
-from _tabltypes import rgen, tgen, tabl, trow
-from _tablpoly import PolyRow0, PolyRow1, PolyRow2, PolyRow3, PolyCol0, PolyCol1, PolyCol2, PolyCol3, PolyDiag, PosHalf, NegHalf, PolyTabl
+from inspect import signature
+from _tabltypes import rgen, tabl, trow
+from _tablpoly import PolyRow1, PolyRow2, PolyRow3, PolyCol2, PolyCol3, PolyDiag, PosHalf, NegHalf, PosHalfTab, NegHalfTab, PolyDiagTablRow
 from _tablsums import RowSum, EvenSum, OddSum, AltSum, AccSum, AccRevSum, AntiDiagSum
-from _tabltabls import FlatTabl, FlatAccTabl, FlatRevAccTabl, FlatAccRevTabl, FlatAntiDiagTabl, FlatRevTabl, FlatInvTabl, FlatInvRevTabl, FlatRevInvTabl, FlatDiffxTabl 
-from _tabltransforms import FlatBinTabl, FlatInvBinTabl, BinConv, InvBinConv,  RowLcm, RowGcd, RowMax, DiagRow0, DiagRow1, DiagRow2, DiagRow3, DiagCol0, DiagCol1, DiagCol2, DiagCol3, TransSqrs, TransNat0, TransNat1, ColMiddle, ColECentral, ColOCentral, ColLeft, ColRight 
+from _tabltransforms import DiagRow1, DiagRow2, DiagRow3, DiagCol1, DiagCol2, DiagCol3, TransSqrs, TransNat0, TransNat1 
+from _tabltransforms import TransNat0Tab, TransNat1Tab, TransSqrsTab  # DiagRow1, DiagRow2, DiagRow3, DiagCol1, DiagCol2, DiagCol3, 
+from _tabltransforms import BinConv, InvBinConv, RowLcm, RowGcd, RowMax, ColMiddle, ColECentral, ColOCentral, ColLeft, ColRight  
+from _tabltabls import FlatTabl , FlatAccTabl, FlatRevAccTabl, FlatAccRevTabl, FlatAntiDiagTabl, FlatRevTabl, FlatInvTabl, FlatInvRevTabl, FlatRevInvTabl, FlatDiffxTabl 
 
+
+'''
+Traits come in two flavors: 
+    The 'table' type:
+    TYPE: Callable[[tabl], trow]]:
+  
+    The 'generic' type:
+    TYPE: Callable[[rgen, int], trow]]
+
+    To diffenrentiate use the function 'is_tabletrait(f)'
+    that returns 'True' if 'f' is of table-type.
+'''
 
 # #@
 
 
-TRAIT: dict[str, Callable[[tabl], trow]] = {}
-def RegisterTrait(f: Callable[[tabl], trow]) -> None: 
-    TRAIT[f.__name__] = f
+def is_tabletrait(f: Callable):
+    sig = signature(f)
+    ann = list(sig.parameters.values())[0].annotation
+    return ann == list[list[int]]
 
-TRAIT2: dict[str, Callable[[rgen, int], trow]] = {}
-def RegisterTrait2(f: Callable[[rgen, int], trow]) -> None:
-    TRAIT2[f.__name__] = f
 
-def RegisterTraits() -> None:
+def RegisterTraits() -> dict[str, Callable]:
+    
+    TRAITS: dict[str, Callable] = {}
+    def RegisterTrait(f: Callable): 
+        TRAITS[f.__name__] = f
+
+    # TYPE: Callable[[tabl], trow]]:
 
     RegisterTrait(FlatTabl)   # must always come first!
 
-    #RegisterTrait(FlatRevTabl)
-    #RegisterTrait(FlatInvTabl)
-    #RegisterTrait(FlatRevInvTabl)
-    #RegisterTrait(FlatInvRevTabl)
+    RegisterTrait(FlatRevTabl)
+    RegisterTrait(FlatInvTabl)
+    RegisterTrait(FlatRevInvTabl)
+    RegisterTrait(FlatInvRevTabl)
 
-    #RegisterTrait(FlatAccTabl)
+    RegisterTrait(FlatAccTabl)
     #RegisterTrait(FlatRevAccTabl) # rarely found
-    #RegisterTrait(FlatAccRevTabl)
-    #RegisterTrait(FlatAntiDiagTabl)
+    RegisterTrait(FlatAccRevTabl)
+    RegisterTrait(FlatAntiDiagTabl)
     #RegisterTrait(FlatBinTabl)    # rarely found
     #RegisterTrait(FlatInvBinTabl) # rarely found
-    #RegisterTrait(FlatDiffxTabl)
+    RegisterTrait(FlatDiffxTabl)
 
     RegisterTrait(RowSum)
     RegisterTrait(EvenSum)
@@ -45,6 +64,7 @@ def RegisterTraits() -> None:
     RegisterTrait(RowLcm)
     RegisterTrait(RowGcd)
     RegisterTrait(RowMax)
+
     RegisterTrait(ColMiddle)
     RegisterTrait(ColECentral)
     RegisterTrait(ColOCentral)
@@ -54,96 +74,139 @@ def RegisterTraits() -> None:
     RegisterTrait(BinConv)
     RegisterTrait(InvBinConv)
 
-#  -------------------------------------------
+    RegisterTrait(TransNat0Tab)
+    RegisterTrait(TransNat1Tab)
+    RegisterTrait(TransSqrsTab)
 
-    RegisterTrait2(TransNat0)
-    RegisterTrait2(TransNat1)
-    RegisterTrait2(TransSqrs)
-    # RegisterTrait2(DiagRow0) same as ColRight
-    RegisterTrait2(DiagRow1)
-    RegisterTrait2(DiagRow2)
-    RegisterTrait2(DiagRow3)
-    # RegisterTrait2(DiagCol0) same as ColLeft
-    RegisterTrait2(DiagCol1)
-    RegisterTrait2(DiagCol2)
-    RegisterTrait2(DiagCol3)
+    RegisterTrait(PosHalfTab)
+    RegisterTrait(NegHalfTab)
 
-    RegisterTrait2(PolyTabl)
-    # RegisterTrait2(PolyRow0)
-    RegisterTrait2(PolyRow1)
-    RegisterTrait2(PolyRow2)
-    RegisterTrait2(PolyRow3)
-    # RegisterTrait2(PolyCol0) same as ColLeft
-    # RegisterTrait2(PolyCol1) same as RowSum
-    RegisterTrait2(PolyCol2) 
-    RegisterTrait2(PolyCol3)
-    RegisterTrait2(PolyDiag)
-    RegisterTrait2(PosHalf)
-    RegisterTrait2(NegHalf)
+    # TYPE Callable[[rgen, int], trow]]
+
+    # RegisterTrait(TransNat0)
+    # RegisterTrait(TransNat1)
+    # RegisterTrait(TransSqrs)
+    # RegisterTrait(DiagRow0) same as ColRight
+    RegisterTrait(DiagRow1)
+    RegisterTrait(DiagRow2)
+    RegisterTrait(DiagRow3)
+    # RegisterTrait(DiagCol0) same as ColLeft
+    RegisterTrait(DiagCol1)
+    RegisterTrait(DiagCol2)
+    RegisterTrait(DiagCol3)
+
+    RegisterTrait(PolyDiagTablRow)
+    # RegisterTrait(PolyRow0)
+    RegisterTrait(PolyRow1)
+    RegisterTrait(PolyRow2)
+    RegisterTrait(PolyRow3)
+    # RegisterTrait(PolyCol0) same as ColLeft
+    # RegisterTrait(PolyCol1) same as RowSum
+    # Bernoulli(n,0) versus Bernoulli(n,1)!
+    RegisterTrait(PolyCol2) 
+    RegisterTrait(PolyCol3)
+    RegisterTrait(PolyDiag)
+    # RegisterTrait(PosHalf)
+    # RegisterTrait(NegHalf)
+
+    return TRAITS
+
+def RegisterGenericTraits() -> dict[str, Callable[[rgen, int], trow]]:
+    
+    TABLES: dict[str, Callable[[rgen, int], trow]] = {}
+    def RegisterGenericTrait(f: Callable[[rgen, int], trow]): 
+        TABLES[f.__name__] = f
+
+    RegisterGenericTrait(TransNat0)
+    RegisterGenericTrait(TransNat1)
+    RegisterGenericTrait(TransSqrs)
+    # RegisterGenericTrait(DiagRow0) same as ColRight
+    RegisterGenericTrait(DiagRow1)
+    RegisterGenericTrait(DiagRow2)
+    RegisterGenericTrait(DiagRow3)
+    # RegisterGenericTrait(DiagCol0) same as ColLeft
+    RegisterGenericTrait(DiagCol1)
+    RegisterGenericTrait(DiagCol2)
+    RegisterGenericTrait(DiagCol3)
+
+    RegisterGenericTrait(PolyDiagTablRow)
+    # RegisterGenericTrait(PolyRow0)
+    RegisterGenericTrait(PolyRow1)
+    RegisterGenericTrait(PolyRow2)
+    RegisterGenericTrait(PolyRow3)
+    # RegisterGenericTrait(PolyCol0) same as ColLeft
+    # RegisterGenericTrait(PolyCol1) same as RowSum
+    # Bernoulli(n,0) versus Bernoulli(n,1)!
+    RegisterGenericTrait(PolyCol2) 
+    RegisterGenericTrait(PolyCol3)
+    RegisterGenericTrait(PolyDiag)
+    RegisterGenericTrait(PosHalf)
+    RegisterGenericTrait(NegHalf)
+
+    return TABLES
 
 
-'''
-for fun in tabl_fun:
-        PrintTraits(fun, 20, True)
+def RegisterTableTraits() -> dict[str, Callable[[tabl], trow]]:
 
-for traitname, hits in HITS.items():
-    print(f'| {hits} | {traitname:<16} |')
+    TRAITS: dict[str, Callable[[tabl], trow]] = {}
+    def RegisterTableTrait(f: Callable[[tabl], trow]): 
+        TRAITS[f.__name__] = f
+
+    RegisterTableTrait(FlatTabl)   # must always come first!
+
+    #RegisterTableTrait(FlatRevTabl)
+    #RegisterTableTrait(FlatInvTabl)
+    #RegisterTableTrait(FlatRevInvTabl)
+    #RegisterTableTrait(FlatInvRevTabl)
+
+    #RegisterTableTrait(FlatAccTabl)
+    #RegisterTableTrait(FlatRevAccTabl) # rarely found
+    #RegisterTableTrait(FlatAccRevTabl)
+    #RegisterTableTrait(FlatAntiDiagTabl)
+    #RegisterTableTrait(FlatBinTabl)    # rarely found
+    #RegisterTableTrait(FlatInvBinTabl) # rarely found
+    #RegisterTableTrait(FlatDiffxTabl)
+
+    RegisterTableTrait(RowSum)
+    RegisterTableTrait(EvenSum)
+    RegisterTableTrait(OddSum)
+    RegisterTableTrait(AltSum)
+    RegisterTableTrait(AntiDiagSum)
+    RegisterTableTrait(AccSum)
+    RegisterTableTrait(AccRevSum)
+
+    RegisterTableTrait(RowLcm)
+    RegisterTableTrait(RowGcd)
+    RegisterTableTrait(RowMax)
+
+    RegisterTableTrait(ColMiddle)
+    RegisterTableTrait(ColECentral)
+    RegisterTableTrait(ColOCentral)
+    RegisterTableTrait(ColLeft)
+    RegisterTableTrait(ColRight)
+    
+    RegisterTableTrait(BinConv)
+    RegisterTableTrait(InvBinConv)
+
+    RegisterTableTrait(TransNat0Tab)
+    RegisterTableTrait(TransNat1Tab)
+    RegisterTableTrait(TransSqrsTab)
+
+    RegisterTableTrait(PosHalfTab)
+    RegisterTableTrait(NegHalfTab)
+
+    return TRAITS
 
 
-[ 0]  6  FlatDiffx
-[ 1]  7  RevAccTabl
-[ 2] 11  AccRevTabl
-[ 3] 12  InvRevTabl
-[ 4] 13  AccTabl
-[ 5] 14  RowLcm
-[ 6] 15  Poly
-#------------------- 
-[ 7] 19  TransSqrs
-[ 8] 22  RevInvTabl
-[ 9] 28  AntiDiagTabl
-[10] 28  PolyDiag
-[11] 29  ColMiddle
-[12] 29  InvTabl
-[13] 32  AccSum
-[14] 32  BinConv
-[15] 32  InvBinConv
-[16] 34  AccRevSum
-[17] 34  TransNat1
-[18] 35  PolyRow3
-[19] 36  PolyCol3
-[20] 40  AntiDiagSum
-[21] 40  TransNat0
-[22] 42  OddSum
-[23] 45  EvenSum
-[24] 45  RowMax
-[25] 46  NegHalf
-[26] 47  PosHalf
-[27] 48  PolyCol2
-[28] 51  ColCentral
-[29] 53  RowGcd
-[30] 54  RevTabl
-[31] 55  DiagRow3
-[32] 57  AltSum
-[33] 58  DiagCol3
-[34] 60  DiagCol2
-[35] 61  DiagRow2
-[36] 65  DiagCol1
-[37] 65  PolyRow2
-[38] 66  DiagRow1
---
-[39] 67  ColLeft
-[40] 67  ColRight
-[41] 67  * DiagCol0
-[42] 67  * DiagRow0
-[43] 67  Tabl
-[44] 67  * PolyCol0
-[45] 67  * PolyCol1
-[46] 67  * PolyRow0
-[47] 67  PolyRow1
-[48] 67  RowSum
+if __name__ == "__main__":
 
-DiagCol0 = PolyCol0 = ColLeft
-DiagRow0 = PolyRow0 = ColRight
-RowSum   = PolyCol1
+    #T = RegisterTableTraits()
+    #G = RegisterGenericTraits()
+    #for k in T.items() : print(is_tabletrait(k[1]), k[0])
+    #for k in G.items() : print(is_tabletrait(k[1]), k[0])
 
-'''
+    R = RegisterTraits() 
+    count = 0
+    for k in R.items() : 
+        count += 1
+        print(count, is_tabletrait(k[1]), k[0])

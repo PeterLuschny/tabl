@@ -25,7 +25,7 @@ def Profile(T: tgen, hor: int = 10) -> dict[str, list[int]]:
     ver: int = hor // 2
 
     # Triangle flattened
-    d["Triangle"] = flat(T.tab(6))
+    d["Triangle"] = T.tab(6)
 
     # Row sums
     d["RowSum"] = RowSum(t)

@@ -47,47 +47,46 @@ def alt_sum(r: trow) -> int:
 def alt_sum_(g: rgen, index: int) -> int:
     return alt_sum(g(index))
 
-
-def RowSum(t: tabl) -> trow:
-    return [sum(row) for row in t]
+def RowSum(T: tabl) -> trow:
+    return [sum(row) for row in T]
 
 def RowSum_(g: rgen, size: int) -> trow:
     return [sum(g(n)) for n in range(size)]
 
-def EvenSum(t: tabl) -> trow:
-    return [even_sum(row) for row in t]
+def EvenSum(T: tabl) -> trow:
+    return [even_sum(row) for row in T]
 
 def EvenSum_(g: rgen, size: int) -> trow:
     return [even_sum(g(n)) for n in range(size)]
 
-def OddSum(t: tabl) -> trow:
-    return [odd_sum(row) for row in t]
+def OddSum(T: tabl) -> trow:
+    return [odd_sum(row) for row in T]
 
 def OddSum_(g: rgen, size: int) -> trow:
     return [odd_sum(g(n)) for n in range(size)]
 
-def AltSum(t: tabl) -> trow:
-    return [alt_sum(row) for row in t]
+def AltSum(T: tabl) -> trow:
+    return [alt_sum(row) for row in T]
 
 def AltSum_(g: rgen, size: int) -> trow:
     return [alt_sum(g(n)) for n in range(size)]
 
-def AccSum(t: tabl) -> trow:
-    return [acc_sum(row) for row in t]
+def AccSum(T: tabl) -> trow:
+    return [acc_sum(row) for row in T]
 
 def AccSum_(g: rgen, size: int) -> trow:
     return [acc_sum(g(n)) for n in range(size)]
 
-def AccRevSum(t: tabl) -> trow:
-    return [accrev_sum(row) for row in t]
+def AccRevSum(T: tabl) -> trow:
+    return [accrev_sum(row) for row in T]
 
 def AccRevSum_(g: rgen, size: int) -> trow:
     return [accrev_sum(g(n)) for n in range(size)]
 
-def AntiDiagSum(t: tabl) -> trow:
+def AntiDiagSum(T: tabl) -> trow:
     def row(n: int)->list[int]: 
-        return [t[n - k - 1][k] for k in range((n + 1) // 2)]
-    return [sum(row(n)) for n in range(1, len(t) + 1)]
+        return [T[n - k - 1][k] for k in range((n + 1) // 2)]
+    return [sum(row(n)) for n in range(1, len(T) + 1)]
 
 def AntiDiagSum_(g: rgen, size: int) -> trow:
     return [antidiag_sum_(g, n) for n in range(size)]

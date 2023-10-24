@@ -190,11 +190,13 @@ import_header: list[str] = [
     "from math import lcm, gcd, factorial\n",
     "from sys import setrecursionlimit, set_int_max_str_digits\n",
     "from typing import Callable, TypeAlias\n",
+    "from inspect import signature\n",
     "import contextlib\n",
     "import csv\n",
     "import requests\n",
     "import gzip\n",
     "import sqlite3\n",
+    "import pandas as pd\n",
     "from fractions import Fraction as frac\n",
 ]
 

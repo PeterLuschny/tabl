@@ -23,8 +23,8 @@ def LinMap_(g: rgen, V: seq, size: int) -> trow:
     return [sum(g(n)[k] * V(k) for k in range(n + 1)) for n in range(size)]
 
 
-def LinMap(M: tabl, V: seq) -> trow:
-    return [sum(M[n][k] * V(k) for k in range(n + 1)) for n in range(len(M))]
+def LinMap(T: tabl, V: seq) -> trow:
+    return [sum(T[n][k] * V(k) for k in range(n + 1)) for n in range(len(T))]
 
 
 def BinMap(V: seq, size: int) -> trow:
@@ -35,12 +35,12 @@ def BinTabl_(g: rgen, size: int) -> tabl:
     return [BinMap(lambda k: g(n)[k], n + 1) for n in range(size)]
 
 
-def BinTabl(M: tabl) -> tabl:
-    return [BinMap(lambda k: M[n][k], n + 1) for n in range(len(M))]
+def BinTabl(T: tabl) -> tabl:
+    return [BinMap(lambda k: T[n][k], n + 1) for n in range(len(T))]
 
 
-def FlatBinTabl(t: tabl) -> trow:
-    return [i for row in BinTabl(t) for i in row]
+def FlatBinTabl(T: tabl) -> trow:
+    return [i for row in BinTabl(T) for i in row]
 
 
 def BinConv(T: tabl) -> trow:
@@ -57,13 +57,13 @@ def ConvTabl_(g: rgen, size: int) -> tabl:
     return [LinMap_(g, lambda k: g(n)[k], n + 1) for n in range(size)]
 
 
-def ConvTabl(t: tabl) -> tabl:
-    def g(n: int) ->list[int]: return [t[n][k] for k in range(n + 1)]
-    return [LinMap_(g, lambda k: g(n)[k], n + 1) for n in range(len(t))]
+def ConvTabl(T: tabl) -> tabl:
+    def g(n: int) ->list[int]: return [T[n][k] for k in range(n + 1)]
+    return [LinMap_(g, lambda k: g(n)[k], n + 1) for n in range(len(T))]
 
 
-def FlatConvTabl(t: tabl) -> trow:
-    return [i for row in ConvTabl(t) for i in row]
+def FlatConvTabl(T: tabl) -> trow:
+    return [i for row in ConvTabl(T) for i in row]
 
 
 def InvLinMap(g: rgen, V: seq, size: int) -> trow:
@@ -80,16 +80,16 @@ def InvBinMap(V: seq, size: int) -> trow:
                for k in range(n + 1)) for n in range(size)]
 
 
-def InvBinTabl(M: tabl) -> tabl:
-    return [InvBinMap(lambda k: M[n][k], n + 1) for n in range(len(M))]
+def InvBinTabl(T: tabl) -> tabl:
+    return [InvBinMap(lambda k: T[n][k], n + 1) for n in range(len(T))]
 
 
 def InvBinTabl_(g: rgen, size: int) -> tabl: 
     return [InvBinMap(lambda k: g(n)[k], n + 1) for n in range(size)]
 
 
-def FlatInvBinTabl(t: tabl) -> trow:
-    return [i for row in InvBinTabl(t) for i in row]
+def FlatInvBinTabl(T: tabl) -> trow:
+    return [i for row in InvBinTabl(T) for i in row]
 
 
 def InvBinConv(T: tabl) -> trow:
@@ -135,8 +135,12 @@ def Lcm(t: trow) -> int:
     return lcm(*Z) if Z != [] else 1
 
 
-def RowLcm(t: tabl) -> trow:
-    return [Lcm(row) for row in t]
+def RowLcm(T: tabl) -> trow:
+    return [Lcm(row) for row in T]
+
+
+def RowLcm_(g: rgen, size: int) -> trow:
+    return [Lcm_(g, row) for row in range(size)]
 
 
 # Note our convention to exclude 0 and 1.
@@ -149,23 +153,23 @@ def RowGcd_(g: rgen, size: int) -> trow:
     return [Gcd_(g, row) for row in range(size)]
 
 
-def Gcd(t: trow) -> int:
-    Z = [v for v in t if not v in [-1, 0, 1]]
+def Gcd(r: trow) -> int:
+    Z = [v for v in r if not v in [-1, 0, 1]]
     return gcd(*Z) if Z != [] else 1
 
 
-def GcdReducedRow(t: trow) -> trow:
-    Z = [v for v in t if not v in [-1, 0, 1]]
+def GcdReducedRow(r: trow) -> trow:
+    Z = [v for v in r if not v in [-1, 0, 1]]
     cd = gcd(*Z) if Z != [] else 1
-    return [v // cd if not v in [-1, 0, 1] else v for v in t]
+    return [v // cd if not v in [-1, 0, 1] else v for v in r]
 
 
-def GcdReduced(t: tabl) -> tabl:
-    return [GcdReducedRow(row) for row in t]
+def GcdReduced(T: tabl) -> tabl:
+    return [GcdReducedRow(row) for row in T]
 
 
-def RowGcd(t: tabl) -> trow:
-    return [Gcd(row) for row in t]
+def RowGcd(T: tabl) -> trow:
+    return [Gcd(row) for row in T]
 
 
 # Note our convention to use the abs value.
@@ -178,70 +182,69 @@ def RowMax_(g: rgen, size: int) -> trow:
     return [Max_(g, row) for row in range(size)]
 
 
-def Max(t: trow) -> int:
-    absrow = [abs(n) for n in t]
+def Max(r: trow) -> int:
+    absrow = [abs(n) for n in r]
     return reduce(max, absrow) 
 
 
-def RowMax(t: tabl) -> trow:
-    return [Max(row) for row in t]
+def RowMax(T: tabl) -> trow:
+    return [Max(row) for row in T]
 
 
 ################################################
 
 
 def Trans(g: rgen, V: Callable[[int], int], size: int) -> trow:
-    return [sum(g(n)[k] * V(k) for k in range(n + 1)) 
-            for n in range(size)]
+    return [sum(g(n)[k] * V(k) for k in range(n + 1)) for n in range(size) ]
 
 
-def TransSqrs(f: rgen, size: int) -> trow: 
-    return Trans(f, lambda k: k * k, size)
-
-
-def TransNat0(f: rgen, size: int) -> trow: 
-    return Trans(f, lambda k: k, size)
-
-
-def TransNat1(f: rgen, size: int) -> trow: 
-    return Trans(f, lambda k: k + 1, size)
-
-
-def trans(T: tabl, V: Callable[[int], int]) -> trow:
+def TransTabl(T: tabl, V: Callable[[int], int]) -> trow:
     return [sum(T[n][k] * V(k) for k in range(n + 1)) 
             for n in range(len(T))]
 
 
-def transsqrs(T: tabl) -> trow: 
-    return trans(T, lambda k: k * k)
+def TransSqrs(g: rgen, size: int) -> trow: 
+    return Trans(g, lambda k: k * k, size)
 
 
-def transnat0(T: tabl) -> trow: 
-    return trans(T, lambda k: k)
+def TransSqrsTab(T: tabl) -> trow: 
+    return TransTabl(T, lambda k: k * k)
 
 
-def transnat1(T: tabl) -> trow: 
-    return trans(T, lambda k: k + 1)
+def TransNat0(g: rgen, size: int) -> trow: 
+    return Trans(g, lambda k: k, size)
 
 
-def ColMiddle(t: tabl) -> trow:
-    return [row[n // 2] for n, row in enumerate(t)]
+def TransNat0Tab(T: tabl) -> trow: 
+    return TransTabl(T, lambda k: k)
 
 
-def ColECentral(t: tabl) -> trow:
-    return [row[n // 2] for n, row in enumerate(t) if n % 2 == 0]
+def TransNat1(g: rgen, size: int) -> trow: 
+    return Trans(g, lambda k: k + 1, size)
 
 
-def ColOCentral(t: tabl) -> trow:
-    return [row[n // 2] for n, row in enumerate(t) if n % 2 == 1]
+def TransNat1Tab(T: tabl) -> trow: 
+    return TransTabl(T, lambda k: k + 1)
 
 
-def ColLeft(t: tabl) -> trow:
-    return [row[0] for row in t]
+def ColMiddle(T: tabl) -> trow:
+    return [row[n // 2] for n, row in enumerate(T)]
 
 
-def ColRight(t: tabl)  -> trow:
-    return [row[-1] for row in t]
+def ColECentral(T: tabl) -> trow:
+    return [row[n // 2] for n, row in enumerate(T) if n % 2 == 0]
+
+
+def ColOCentral(T: tabl) -> trow:
+    return [row[n // 2] for n, row in enumerate(T) if n % 2 == 1]
+
+
+def ColLeft(T: tabl) -> trow:
+    return [row[0] for row in T]
+
+
+def ColRight(T: tabl)  -> trow:
+    return [row[-1] for row in T]
 
 
 #def Det(t: tabl) -> trow:

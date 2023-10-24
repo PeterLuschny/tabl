@@ -9,8 +9,12 @@ def Poly(g: rgen, n: int, x: int) -> int:
     return sum(c * (x ** j) for (j, c) in enumerate(row))
 
 
+def PolyTabl(T: tabl, n: int, x: int) -> int:
+    return sum(T[n][k] * (x ** k) for k in range(n + 1))
+
+
 def PolyRow(g: rgen, size: int, row: int) -> trow:
-    return [Poly(g, row, k) for k in range(size)]
+    return [Poly(g, row, x) for x in range(size)]
 
 
 def PolyRow0(g: rgen, size: int) -> trow: return PolyRow(g, size, 0)
@@ -40,9 +44,8 @@ def antidiag_poly(g: rgen, n: int) -> trow:
 def PolyDiagTabl(g: rgen, size: int) -> tabl:
     return [antidiag_poly(g, n) for n in range(size)]
 
-
-# PolyTablDiagTabl
-def PolyTabl(g: rgen, size: int) -> trow:
+ 
+def PolyDiagTablRow(g: rgen, size: int) -> trow:
     return [i for row in PolyDiagTabl(g, size) for i in row]
 
 
@@ -56,8 +59,18 @@ def PosHalf(g: rgen, size: int) -> trow:
     return [((2 ** n) * r).numerator for n, r in enumerate(R)]
 
 
+def PosHalfTab(T: tabl) -> trow:
+    R = PolyFrac(T, frac(1, 2))
+    return [((2 ** n) * r).numerator for n, r in enumerate(R)]
+
+
 def NegHalf(g: rgen, size: int) -> trow:
     T = [g(n) for n in range(size)]
+    R = PolyFrac(T, frac(-1, 2))
+    return [(((-2) ** n) * r).numerator for n, r in enumerate(R)]
+
+
+def NegHalfTab(T: tabl) -> trow:
     R = PolyFrac(T, frac(-1, 2))
     return [(((-2) ** n) * r).numerator for n, r in enumerate(R)]
 
@@ -68,7 +81,7 @@ def PrintPolys(t: tgen, size: int = 8, mdformat: bool = True) -> None:
     def RegisterPolyTrait(f: Callable[[t.gen, int], trow]) -> None: 
         POLYTRAIT[f.__name__] = f
 
-    RegisterPolyTrait(PolyTabl)
+    RegisterPolyTrait(PolyDiagTablRow)
     RegisterPolyTrait(PolyRow0)
     RegisterPolyTrait(PolyRow1)
     RegisterPolyTrait(PolyRow2)

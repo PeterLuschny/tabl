@@ -3,7 +3,7 @@ from _tablpoly import PolyCol, PolyRow
 from _tabltabls import AccTabl, RevAccTabl, AccRevTabl, RevTabl, AntiDiagTabl
 from _tablsums import PrintSums
 from _tabltransforms import ColMiddle, ColECentral, ColLeft,ColRight, PrintTransforms, RowLcm, RowGcd, RowMax, TransSqrs, TransNat0, TransNat1, ColOCentral
-from _tabltransforms import transsqrs, transnat0, transnat1
+from _tabltransforms import TransSqrsTab, TransNat0Tab, TransNat1Tab
 
 
 # #@
@@ -82,9 +82,9 @@ def PrintTrans(t: tabl) -> None:
     print(f'| ColOCenter | {ColOCentral(t)} |')
     print(f'| ColLeft    | {ColLeft(t)} |')
     print(f'| ColRight   | {ColRight(t)} |')
-    print(f'| TransSqrs  | {transsqrs(t)} |')
-    print(f'| TransNat0  | {transnat0(t)} |')
-    print(f'| TransNat1  | {transnat1(t)} |')
+    print(f'| TransSqrs  | {TransSqrsTab(t)} |')
+    print(f'| TransNat0  | {TransNat0Tab(t)} |')
+    print(f'| TransNat1  | {TransNat1Tab(t)} |')
 #    print(f'| Bin        | {transbinval(t)} |')
 #    print(f'| InvBin     | {invtransbinval(t)} |')
 
