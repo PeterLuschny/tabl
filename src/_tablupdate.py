@@ -9,7 +9,7 @@ mkpath = (path / "src/_tablmake.py").resolve()
 '''Make sure to reference tabl.py in its current state.'''
 exec(open(mkpath).read())
 
-from tabl import GetOEISdata, SaveAllTraitsToCSV, AllCsvToHtml, SaveExtendedTables, CrossReferences 
+from tabl import GetOEISdata, AllCsvToHtml, SaveExtendedTables, CrossReferences 
 
 '''
 DO NOT USE this function if you only want to update tabl.py.
@@ -28,7 +28,6 @@ a new release.
 def update() -> None:
     print("Updating OEIS data ...")
     GetOEISdata()
-    SaveAllTraitsToCSV()
     AllCsvToHtml()
     SaveExtendedTables()
     CrossReferences()

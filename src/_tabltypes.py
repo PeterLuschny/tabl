@@ -177,13 +177,13 @@ if __name__ == "__main__":
 
     from Abel import Abel
  
+    print(Abel.id)
     print(Abel.tab(7))
     print()
 
     abel11 = lambda n: Abel.sub(1,1)(n)
 
-    @set_attributes(
-    abel11, "Abel11", ['A359', 'A05'], False)
+    @set_attributes(abel11, "Abel11", ['A359', 'A05'], False)
     def Abel11(n: int, k: int) -> int: 
         return abel11(n)[k]
     print(Abel11(3,2))

@@ -20,13 +20,16 @@ dbpath = (path / reldbpath).resolve()
 reltraitsdbpath = "data/traits.db"
 traitspath = (path / reltraitsdbpath).resolve()
 
+reltraitscsvpath = "data/traits.csv"
+traitscsvpath = (path / reltraitscsvpath).resolve()
+
 propath = (path / relprofpath).resolve()
 sorpath = (path / relsortpath).resolve()
 
 relcsvpath = "data/TraitCards"
-allcsvfile = "data/allcsv.csv"
-
 csvpath = (path / relcsvpath).resolve()
+
+allcsvfile = "data/allcsv.csv"
 allcsvpath = (path / allcsvfile).resolve()
 
 propath = (path / relprofpath).resolve()
@@ -41,6 +44,9 @@ htmlpath = (path / relhtmlpath).resolve()
 relmdpath = 'data/md'
 mdpath = (path / relmdpath).resolve()
 
+
+def GetPath(name: str) -> Path:
+    return (path / name).resolve()
 
 def GetDataPath() -> Path:
     return datapath

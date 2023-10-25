@@ -100,7 +100,6 @@ tabl_files: list[str] = [
     "_tablhtml.py",
     "_tabltraits.py",
     "_tabldata.py",
-    "_tabltraitcard.py",
 ]
 
 
@@ -211,6 +210,8 @@ data_path: list[str] = [
     "dbpath = (path / reldbpath).resolve()\n",
     "reltraitsdbpath = 'data/traits.db'\n",
     "traitspath = (path / reltraitsdbpath).resolve()\n",
+    "reltraitscsvpath = 'data/traits.csv'\n",
+    "traitscsvpath = (path / reltraitscsvpath).resolve()\n"
     "relstrippedpath = 'data/stripped'\n",
     "strippedpath = (path / relstrippedpath).resolve()\n",
     "relcsvpath = 'data/csv'\n",
