@@ -3168,17 +3168,21 @@ Pretty printing of triangles trait cards.
 """
 
 
-def SaveDbAs(dbpath: Path) -> None:
+def SaveDBasCSV(dbpath: Path) -> int:
+    size = 0
     with sqlite3.connect(dbpath) as db:
         cursor = db.cursor()
         cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
         tables = cursor.fetchall()
         for table_name in tables:
             table_name = table_name[0]
-            table = pd.read_sql_query("SELECT * from %s" % table_name, db)
+            sql = f"SELECT triangle, trait, anum, seq FROM {table_name} WHERE anum != 'A000012' AND anum != 'A000007' AND anum != 'A000004' AND anum != 'missing'"
+            table = pd.read_sql_query(sql, db)
             table.to_csv(traitpath(table_name, "csv"), index_label="index")
             table.to_markdown(traitpath(table_name, "md"))
+            size = table.size // 4
         cursor.close()
+    return size
 
 
 def GetOEISdata() -> None:

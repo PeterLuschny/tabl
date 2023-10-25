@@ -2,10 +2,9 @@ import requests
 import gzip
 import csv
 import sqlite3
-# import tabulate
 import pandas as pd
 from pathlib import Path
-from _tablpaths import strippedpath, datapath, oeispath, dbpath, traitspath, traitscsvpath
+from _tablpaths import strippedpath, datapath, oeispath, dbpath, traitspath
 from _tabltypes import tgen, inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
 from _tabltraits import RegisterTraits, is_tabletrait
 
@@ -239,17 +238,25 @@ Pretty printing of triangles trait cards.
 | A000000  | Laguerre   | Rev  | TransNat1 | 1, 3, 15, 97, 753, 6771, 68983, 783945      |
 """
 
-def SaveDbAs(dbpath: Path) -> None:
+# https://www.sqlite.org/lang_select.html
+# https://www.sqlitetutorial.net/sqlite-where/
+# https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html
+
+def SaveDBasCSV(dbpath: Path) -> int:
+    size = 0
     with sqlite3.connect(dbpath) as db:
         cursor = db.cursor()
         cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
         tables = cursor.fetchall()
         for table_name in tables:
             table_name = table_name[0]
-            table = pd.read_sql_query("SELECT * from %s" % table_name, db)
+            sql = f"SELECT triangle, trait, anum, seq FROM {table_name} WHERE anum != 'A000012' AND anum != 'A000007' AND anum != 'A000004' AND anum != 'missing'"
+            table = pd.read_sql_query(sql, db)
             table.to_csv(traitpath(table_name, "csv"), index_label='index')
             table.to_markdown(traitpath(table_name, "md"))
+            size = table.size // 4
         cursor.close()
+    return size
 
 
 def GetOEISdata() -> None:
@@ -260,6 +267,7 @@ def GetOEISdata() -> None:
 
 
 if __name__ == "__main__":
+  
     
     def test1():  
         oeis_con = sqlite3.connect(dbpath)
@@ -303,12 +311,28 @@ if __name__ == "__main__":
         print(fnv_hash([i for i in range(28)], True))
         print(fnv_hash([(-1)**i*i for i in range(28)], True))
 
+    def test5():
+        from tabl import tabl_fun
+        GetOEISdata()
+        SaveAllTraitsToDB(tabl_fun)
+        SaveDBasCSV(traitspath)
 
-    #from tabl import tabl_fun
-    #GetOEISdata()
-    #SaveAllTraitsToDB(tabl_fun)
-    #SaveDbAs(traitspath)
+    def test6():
+        from Abel import Abel
+        #SaveTraitsToDB(Abel)
+        SaveDBasCSV(traitpath(Abel.id, "db") )
 
-    #from Abel import Abel
-    #SaveTraitsToDB(Abel)
+    def test7():
+        from Lah import Lah
+        SaveTraitsToDB(Lah)
+        SaveDBasCSV(traitpath(Lah.id, "db") )
+
+    def test8():
+        from tabl import tabl_fun
+        for fun in tabl_fun:
+            SaveTraitsToDB(fun)
+            size = SaveDBasCSV(traitpath(fun.id, "db") )
+            print(f"{fun.id}.db references {size} sequences.")
+
+    test7()
    
