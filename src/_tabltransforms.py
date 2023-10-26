@@ -207,7 +207,7 @@ def TransSqrs(g: rgen, size: int) -> trow:
     return Trans(g, lambda k: k * k, size)
 
 
-def TransSqrsTab(T: tabl) -> trow: 
+def TransSqrsTabl(T: tabl) -> trow: 
     return TransTabl(T, lambda k: k * k)
 
 
@@ -215,7 +215,7 @@ def TransNat0(g: rgen, size: int) -> trow:
     return Trans(g, lambda k: k, size)
 
 
-def TransNat0Tab(T: tabl) -> trow: 
+def TransNat0Tabl(T: tabl) -> trow: 
     return TransTabl(T, lambda k: k)
 
 
@@ -223,7 +223,7 @@ def TransNat1(g: rgen, size: int) -> trow:
     return Trans(g, lambda k: k + 1, size)
 
 
-def TransNat1Tab(T: tabl) -> trow: 
+def TransNat1Tabl(T: tabl) -> trow: 
     return TransTabl(T, lambda k: k + 1)
 
 

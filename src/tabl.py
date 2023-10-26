@@ -411,7 +411,7 @@ def PolyDiagTabl(g: rgen, size: int) -> tabl:
     return [antidiag_poly(g, n) for n in range(size)]
 
 
-def PolyDiagTablRow(g: rgen, size: int) -> trow:
+def PolyDiagRow(g: rgen, size: int) -> trow:
     return [i for row in PolyDiagTabl(g, size) for i in row]
 
 
@@ -425,7 +425,7 @@ def PosHalf(g: rgen, size: int) -> trow:
     return [((2**n) * r).numerator for n, r in enumerate(R)]
 
 
-def PosHalfTab(T: tabl) -> trow:
+def PosHalfTabl(T: tabl) -> trow:
     R = PolyFrac(T, frac(1, 2))
     return [((2**n) * r).numerator for n, r in enumerate(R)]
 
@@ -436,7 +436,7 @@ def NegHalf(g: rgen, size: int) -> trow:
     return [(((-2) ** n) * r).numerator for n, r in enumerate(R)]
 
 
-def NegHalfTab(T: tabl) -> trow:
+def NegHalfTabl(T: tabl) -> trow:
     R = PolyFrac(T, frac(-1, 2))
     return [(((-2) ** n) * r).numerator for n, r in enumerate(R)]
 
@@ -447,7 +447,7 @@ def PrintPolys(t: tgen, size: int = 8, mdformat: bool = True) -> None:
     def RegisterPolyTrait(f: Callable[[t.gen, int], trow]) -> None:
         POLYTRAIT[f.__name__] = f
 
-    RegisterPolyTrait(PolyDiagTablRow)
+    RegisterPolyTrait(PolyDiagRow)
     RegisterPolyTrait(PolyRow0)
     RegisterPolyTrait(PolyRow1)
     RegisterPolyTrait(PolyRow2)
@@ -685,7 +685,7 @@ def TransSqrs(g: rgen, size: int) -> trow:
     return Trans(g, lambda k: k * k, size)
 
 
-def TransSqrsTab(T: tabl) -> trow:
+def TransSqrsTabl(T: tabl) -> trow:
     return TransTabl(T, lambda k: k * k)
 
 
@@ -693,7 +693,7 @@ def TransNat0(g: rgen, size: int) -> trow:
     return Trans(g, lambda k: k, size)
 
 
-def TransNat0Tab(T: tabl) -> trow:
+def TransNat0Tabl(T: tabl) -> trow:
     return TransTabl(T, lambda k: k)
 
 
@@ -701,7 +701,7 @@ def TransNat1(g: rgen, size: int) -> trow:
     return Trans(g, lambda k: k + 1, size)
 
 
-def TransNat1Tab(T: tabl) -> trow:
+def TransNat1Tabl(T: tabl) -> trow:
     return TransTabl(T, lambda k: k + 1)
 
 
@@ -988,9 +988,9 @@ def PrintTrans(t: tabl) -> None:
     print(f"| ColOCenter | {ColOCentral(t)} |")
     print(f"| ColLeft    | {ColLeft(t)} |")
     print(f"| ColRight   | {ColRight(t)} |")
-    print(f"| TransSqrs  | {TransSqrsTab(t)} |")
-    print(f"| TransNat0  | {TransNat0Tab(t)} |")
-    print(f"| TransNat1  | {TransNat1Tab(t)} |")
+    print(f"| TransSqrs  | {TransSqrsTabl(t)} |")
+    print(f"| TransNat0  | {TransNat0Tabl(t)} |")
+    print(f"| TransNat1  | {TransNat1Tabl(t)} |")
 
 
 def PrintViews(g: tgen, rows: int = 7, verbose: bool = True) -> None:
@@ -2631,60 +2631,6 @@ def SaveExtendedTables(dim: int = 9) -> None:
                     PrintViews(r, dim)
 
 
-def GetFormulas() -> dict[str, str]:
-    FORMULA: dict[str, str] = {}
-    FORMULA["Tabl"] = "T(n, k), 0 &le; k &le; n"
-    FORMULA["RevTabl"] = "T(n, n - k), 0 &le; k &le; n"
-    FORMULA["InvTabl"] = "T<sup>-1</sup>(n, k), 0 &le; k &le; n"
-    FORMULA["RevInvTabl"] = "T<sup>-1</sup>(n, n - k), 0 &le; k &le; n"
-    FORMULA["InvRevTabl"] = "(T(n, n - k))<sup>-1</sup>, 0 &le; k &le; n"
-    FORMULA["AccTabl"] = "see docs"
-    FORMULA["RevAccTabl"] = "see docs"
-    FORMULA["AccRevTabl"] = "see docs"
-    FORMULA["AntiDiagTabl"] = "see docs"
-    FORMULA["BinTabl"] = "see docs"
-    FORMULA["InvBinTabl"] = "see docs"
-    FORMULA["DiffxTabl"] = "T(n, k) (k+1)"
-    FORMULA["RowSum"] = "&sum;<sub> k=0..n </sub> T(n, k)"
-    FORMULA["EvenSum"] = "&sum;<sub> k=0..n </sub> T(n, k) even(k)"
-    FORMULA["OddSum"] = "&sum;<sub> k=0..n </sub> T(n, k) odd(k)"
-    FORMULA["AltSum"] = "&sum;<sub> k=0..n </sub> T(n, k) (-1)^k"
-    FORMULA["AntiDiagSum"] = "&sum;<sub> k=0..n // 2 </sub> T(n - k, k)"
-    FORMULA["AccSum"] = "&sum;<sub> k=0..n </sub>&sum;<sub> j=0..k </sub> T(n, j)"
-    FORMULA[
-        "AccRevSum"
-    ] = "&sum;<sub> k=0..n </sub>&sum;<sub> j=0..k </sub> T(n, n - j)"
-    FORMULA["RowLcm"] = "Lcm<sub> k=0..n </sub> | T(n, k) | &gt; 1"
-    FORMULA["RowGcd"] = "Gcd<sub> k=0..n </sub> | T(n, k) | &gt; 1"
-    FORMULA["RowMax"] = "Max<sub> k=0..n </sub> | T(n, k) |"
-    FORMULA["ColMiddle"] = "T(n, n // 2)"
-    FORMULA["ColECentral"] = "T(2 n, n)"
-    FORMULA["ColOCentral"] = "T(2 n + 1, n)"
-    FORMULA["ColLeft"] = "T(n, 0)"
-    FORMULA["ColRight"] = "T(n, n)"
-    FORMULA["BinConv"] = "&sum;<sub> k=0..n </sub> C(n, k) T(n, k)"
-    FORMULA["InvBinConv"] = "&sum;<sub> k=0..n </sub> C(n, k) T(n, n - k) (-1)^k"
-    FORMULA["TransSqrs"] = "&sum;<sub> k=0..n </sub> T(n, k) k^2"
-    FORMULA["TransNat0"] = "&sum;<sub> k=0..n </sub> T(n, k) k"
-    FORMULA["TransNat1"] = "&sum;<sub> k=0..n </sub> T(n, k) (k + 1)^k"
-    FORMULA["DiagRow1"] = "T(n + 1, n)"
-    FORMULA["DiagRow2"] = "T(n + 2, n)"
-    FORMULA["DiagRow3"] = "T(n + 3, n)"
-    FORMULA["DiagCol1"] = "T(n + 1, 1)"
-    FORMULA["DiagCol2"] = "T(n + 2, 2)"
-    FORMULA["DiagCol3"] = "T(n + 3, 3)"
-    FORMULA["PolyTabl"] = "see docs"
-    FORMULA["PolyRow1"] = "&sum;<sub> k=0..1 </sub>T(1, k) n^k"
-    FORMULA["PolyRow2"] = "&sum;<sub> k=0..2 </sub>T(2, k) n^k"
-    FORMULA["PolyRow3"] = "&sum;<sub> k=0..3 </sub>T(3, k) n^k"
-    FORMULA["PolyCol2"] = "&sum;<sub> k=0..n </sub>T(n, k) 2^k"
-    FORMULA["PolyCol3"] = "&sum;<sub> k=0..n </sub>T(n, k) 3^k"
-    FORMULA["PolyDiag"] = "&sum;<sub> k=0..n </sub>T(n, k) n^k"
-    FORMULA["PosHalf"] = "&sum;<sub> k=0..n </sub>2^n T(n, k) (1/2)^k"
-    FORMULA["NegHalf"] = "&sum;<sub> k=0..n </sub>(-2)^n T(n, k) (-1/2)^k"
-    return FORMULA
-
-
 Header = [
     "<!DOCTYPE html>",
     "<html lang='en'><head><meta charset='UTF-8'/>",
@@ -2703,21 +2649,23 @@ CSS = [
     "th.rowNumber, td.rowNumber { text-align: right;} ",
     "a {text-decoration: none; color:brown;} ",
     "a:hover {background-color: #AFE1AF;} ",
-    "#rcor1 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 40px; height: 0px;} ",
-    "#rcor2 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 550px; height: 0px;} ",
-    "#rcor3 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 88px; height: 20px; font-weight: 700; text-align: center;} ",
+    "#rcor1 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 60px; height: 0px;} ",
+    "#rcor2 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 60px; height: 0px;} ",
+    "#rcor3 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 60px; height: 0px;} ",
+    "#rcor4 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 880px; height: 20px; font-weight: 700; text-align: center;} ",
     ".center {margin-top: 1em;} ",
-    ".tooltip { position: relative; display: inline-block; font-weight: 600;} ",
-    ".tooltip .formula { visibility: hidden; width: 200px; background-color: lightgray; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; top: +2px; left: 105%;} ",
+    ".type { font-weight: 600;} ",
+    ".tooltip { position: relative; font-weight: 600;} ",
+    ".tooltip .formula { visibility: hidden; width: 200px; background-color: lightgray; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; top: +2px; left: 95%;} ",
     ".tooltip:hover .formula { visibility: visible; } ",
     "</style></head><body>",
 ]
-
 Table = [
     "<table class='sortable'><thead><tr>",
-    "<th id='rcor1'>&#8597; Trait</th>",
-    "<th id='rcor1'>&#8597; A</th>",
-    "<th id='rcor2'>Sequence</th>",
+    "<th id='rcor1'>&#8597; Type</th>",
+    "<th id='rcor2'>&#8597; Trait</th>",
+    "<th id='rcor3'>&#8597; Anum</th>",
+    "<th id='rcor4'>&#8597; Sequence</th>",
     "</tr></thead><tbody>",
 ]
 SCRIPT = [
@@ -2761,7 +2709,7 @@ Footer = [
 def HtmlTriangle(fun: tgen) -> str:
     s = ""
     for n in range(6):
-        s += "[{n}] " + str(fun.gen(n)).replace("[", "").replace("]", "") + "<br>"
+        s += f"[{n}] " + str(fun.gen(n)).replace("[", "").replace("]", "") + "<br>"
     return s
 
 
@@ -2810,10 +2758,9 @@ def navbar(fun: tgen) -> list[str]:
 
 def CsvToHtml(fun: tgen, csvpath: Path, outpath: Path) -> None:
     name = fun.id
-    # csvfile = (csvpath / (name + "X.csv")).resolve()
     csvfile = (csvpath / (name + ".csv")).resolve()
     outfile = (outpath / (name + ".html")).resolve()
-    FORMULA = GetFormulas()
+    FORMULA = Formulas()
     with open(csvfile, "r") as csvfile:
         reader = csv.reader(csvfile)
         with open(outfile, "w") as outfile:
@@ -2825,7 +2772,10 @@ def CsvToHtml(fun: tgen, csvpath: Path, outpath: Path) -> None:
             l = next(reader)  # column names
             sim = str(fun.sim).replace("'", "").replace("[", "").replace("]", "")
             outfile.write(
-                f"<div class='tooltip' style='border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 160px; height: 20px; font-weight: 700; text-align: center;'>{name.upper()}<span class='formula' style=' background: #73AD21; font-weight:600; width: 220px;'>{HtmlTriangle(fun)}</span></div>"
+                "<div class='tooltip' style='border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 160px; height: 20px; font-weight: 700; text-align: center;'>"
+            )
+            outfile.write(
+                f"{name.upper()}<span class='formula' style=' background: #73AD21; font-weight:600; width: 220px;'>{HtmlTriangle(fun)}</span></div>"
             )
             outfile.write(
                 f"<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OEIS Similars: {sim}\n</p>"
@@ -2833,32 +2783,34 @@ def CsvToHtml(fun: tgen, csvpath: Path, outpath: Path) -> None:
             for l in Table:
                 outfile.write(l)
             for line in reader:
-                if line[0][0] == "#":
-                    continue
-                if line[3] == "[]":
-                    continue
-                # trait
-                l2 = line[2]
-                tip = FORMULA[l2]
-                if "Tabl" in l2:
-                    l2 = "&#916;" + l2.replace("Tabl", "")
+                # Layout: index,triangle,trait,anum,seq
+                # 0,Abel:Std,FlatTabl,A137452,1 0 1 0 ...
+                # print(line)
+                # index = line[0]
+                l = line[1]
+                type = l[l.index(":") + 1 :]
+                trait = line[2]
+                anum = line[3]
+                seq = line[4]
+                outfile.write(f"<tr><td class='type'>{type}</td>")
+                if "Flat" in trait:
+                    trait = trait.replace("Flat", "")
+                tip = FORMULA[trait]
                 outfile.write(
-                    f"<tr><td class='tooltip'>{l2}<span class='formula'>{tip}</span></td>"
+                    f"<td class='tooltip'>{trait}<span class='formula'>{tip}</span></td>"
                 )
-                seq = line[3].replace("[", "").replace(" ]", "")
                 # Anum
-                if line[1] == "":
-                    sep = seq.replace(" ", "+")
-                    # outfile.write(f"<td><a href='https://oeis.org/?q={seq}&sort=&#language=&go=search' target='_blank'>search</a></td>")
+                if anum == "":  # this will not happen ?
                     outfile.write(
-                        f"<td style='text-align:center;'><a href='http://sequencedb.net/index.html?s={sep}' target='_blank'>search</a></td>"
+                        f"<td><a href='https://oeis.org/?q={seq}&sort=&#language=&go=search' target='_blank'>search</a></td>"
                     )
+                    # outfile.write(f"<td style='text-align:center;'><a href='http://sequencedb.net/index.html?s={sep}' target='_blank'>search</a></td>")
                 else:
                     outfile.write(
-                        f"<td><a href='https://oeis.org/{line[1]}'>{line[1]}</a></td>"
+                        f"<td><a href='https://oeis.org/{anum}'>{anum}</a></td>"
                     )
                 # seq
-                outfile.write(f"<td>{seq}</td></tr>")
+                outfile.write(f"<td style='font-family:Consolas'>{seq}</td></tr>")
             outfile.write("</tbody></table>")
             for l in navbar(fun):
                 outfile.write(l)
@@ -2916,11 +2868,11 @@ def RegisterTraits() -> dict[str, Callable]:
 
     RegisterTrait(BinConv)
     RegisterTrait(InvBinConv)
-    RegisterTrait(TransNat0Tab)
-    RegisterTrait(TransNat1Tab)
-    RegisterTrait(TransSqrsTab)
-    RegisterTrait(PosHalfTab)
-    RegisterTrait(NegHalfTab)
+    RegisterTrait(TransNat0Tabl)
+    RegisterTrait(TransNat1Tabl)
+    RegisterTrait(TransSqrsTabl)
+    RegisterTrait(PosHalfTabl)
+    RegisterTrait(NegHalfTabl)
     # TYPE Callable[[rgen, int], trow]]
     # RegisterTrait(TransNat0)
     # RegisterTrait(TransNat1)
@@ -2933,7 +2885,7 @@ def RegisterTraits() -> dict[str, Callable]:
     RegisterTrait(DiagCol1)
     RegisterTrait(DiagCol2)
     RegisterTrait(DiagCol3)
-    RegisterTrait(PolyDiagTablRow)
+    RegisterTrait(PolyDiagRow)
     # RegisterTrait(PolyRow0)
     RegisterTrait(PolyRow1)
     RegisterTrait(PolyRow2)
@@ -2947,6 +2899,62 @@ def RegisterTraits() -> dict[str, Callable]:
     # RegisterTrait(PosHalf)
     # RegisterTrait(NegHalf)
     return TRAITS
+
+
+def Formulas() -> dict[str, str]:
+    FORMULA: dict[str, str] = {}
+    FORMULA["Tabl"] = "T(n, k), 0 &le; k &le; n"
+    FORMULA["FlatTabl"] = "T(n, k), 0 &le; k &le; n"
+    FORMULA["RevTabl"] = "T(n, n - k), 0 &le; k &le; n"
+    FORMULA["InvTabl"] = "T<sup>-1</sup>(n, k), 0 &le; k &le; n"
+    FORMULA["RevInvTabl"] = "T<sup>-1</sup>(n, n - k), 0 &le; k &le; n"
+    FORMULA["InvRevTabl"] = "(T(n, n - k))<sup>-1</sup>, 0 &le; k &le; n"
+    FORMULA["AccTabl"] = "see docs"
+    FORMULA["RevAccTabl"] = "see docs"
+    FORMULA["AccRevTabl"] = "see docs"
+    FORMULA["AntiDiagTabl"] = "see docs"
+    FORMULA["BinTabl"] = "see docs"
+    FORMULA["InvBinTabl"] = "see docs"
+    FORMULA["DiffxTabl"] = "T(n, k) (k+1)"
+    FORMULA["RowSum"] = "&sum;<sub> k=0..n </sub> T(n, k)"
+    FORMULA["EvenSum"] = "&sum;<sub> k=0..n </sub> T(n, k) even(k)"
+    FORMULA["OddSum"] = "&sum;<sub> k=0..n </sub> T(n, k) odd(k)"
+    FORMULA["AltSum"] = "&sum;<sub> k=0..n </sub> T(n, k) (-1)^k"
+    FORMULA["AntiDiagSum"] = "&sum;<sub> k=0..n // 2 </sub> T(n - k, k)"
+    FORMULA["AccSum"] = "&sum;<sub> k=0..n </sub>&sum;<sub> j=0..k </sub> T(n, j)"
+    FORMULA[
+        "AccRevSum"
+    ] = "&sum;<sub> k=0..n </sub>&sum;<sub> j=0..k </sub> T(n, n - j)"
+    FORMULA["RowLcm"] = "Lcm<sub> k=0..n </sub> | T(n, k) | &gt; 1"
+    FORMULA["RowGcd"] = "Gcd<sub> k=0..n </sub> | T(n, k) | &gt; 1"
+    FORMULA["RowMax"] = "Max<sub> k=0..n </sub> | T(n, k) |"
+    FORMULA["ColMiddle"] = "T(n, n // 2)"
+    FORMULA["ColECentral"] = "T(2 n, n)"
+    FORMULA["ColOCentral"] = "T(2 n + 1, n)"
+    FORMULA["ColLeft"] = "T(n, 0)"
+    FORMULA["ColRight"] = "T(n, n)"
+    FORMULA["BinConv"] = "&sum;<sub> k=0..n </sub> C(n, k) T(n, k)"
+    FORMULA["InvBinConv"] = "&sum;<sub> k=0..n </sub> C(n, k) T(n, n - k) (-1)^k"
+    FORMULA["TransSqrsTabl"] = "&sum;<sub> k=0..n </sub> T(n, k) k^2"
+    FORMULA["TransNat0Tabl"] = "&sum;<sub> k=0..n </sub> T(n, k) k"
+    FORMULA["TransNat1Tabl"] = "&sum;<sub> k=0..n </sub> T(n, k) (k + 1)^k"
+    FORMULA["DiagRow1"] = "T(n + 1, n)"
+    FORMULA["DiagRow2"] = "T(n + 2, n)"
+    FORMULA["DiagRow3"] = "T(n + 3, n)"
+    FORMULA["DiagCol1"] = "T(n + 1, 1)"
+    FORMULA["DiagCol2"] = "T(n + 2, 2)"
+    FORMULA["DiagCol3"] = "T(n + 3, 3)"
+    FORMULA["PolyTabl"] = "see docs"
+    FORMULA["PolyRow1"] = "&sum;<sub> k=0..1 </sub>T(1, k) n^k"
+    FORMULA["PolyRow2"] = "&sum;<sub> k=0..2 </sub>T(2, k) n^k"
+    FORMULA["PolyRow3"] = "&sum;<sub> k=0..3 </sub>T(3, k) n^k"
+    FORMULA["PolyCol2"] = "&sum;<sub> k=0..n </sub>T(n, k) 2^k"
+    FORMULA["PolyCol3"] = "&sum;<sub> k=0..n </sub>T(n, k) 3^k"
+    FORMULA["PolyDiag"] = "&sum;<sub> k=0..n </sub>T(n, k) n^k"
+    FORMULA["PolyDiagRow"] = "see docs"
+    FORMULA["PosHalfTabl"] = "&sum;<sub> k=0..n </sub>2^n T(n, k) (1/2)^k"
+    FORMULA["NegHalfTabl"] = "&sum;<sub> k=0..n </sub>(-2)^n T(n, k) (-1/2)^k"
+    return FORMULA
 
 
 def fnv(data: bytes) -> int:

@@ -11,8 +11,8 @@ strippedpath = (path / relstrippedpath).resolve()
 reloeispath = "data/oeis.csv"
 oeispath = (path / reloeispath).resolve()
 
-reldatapath = "data/oeis_data.csv"
-datapath = (path / reldatapath).resolve()
+#reldatapath = "data/oeis_data.csv"
+#datapath = (path / reldatapath).resolve()
 
 reldbpath = "data/oeis.db"
 dbpath = (path / reldbpath).resolve()
@@ -43,6 +43,8 @@ htmlpath = (path / relhtmlpath).resolve()
 
 relmdpath = 'data/md'
 mdpath = (path / relmdpath).resolve()
+
+datapath = (path / 'data').resolve()
 
 
 def GetPath(name: str) -> Path:

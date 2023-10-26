@@ -1,10 +1,10 @@
 from typing import Callable
 from inspect import signature
 from _tabltypes import rgen, tabl, trow
-from _tablpoly import PolyRow1, PolyRow2, PolyRow3, PolyCol2, PolyCol3, PolyDiag, PosHalf, NegHalf, PosHalfTab, NegHalfTab, PolyDiagTablRow
+from _tablpoly import PolyRow1, PolyRow2, PolyRow3, PolyCol2, PolyCol3, PolyDiag, PosHalf, NegHalf, PosHalfTabl, NegHalfTabl, PolyDiagRow
 from _tablsums import RowSum, EvenSum, OddSum, AltSum, AccSum, AccRevSum, AntiDiagSum
 from _tabltransforms import DiagRow1, DiagRow2, DiagRow3, DiagCol1, DiagCol2, DiagCol3, TransSqrs, TransNat0, TransNat1 
-from _tabltransforms import TransNat0Tab, TransNat1Tab, TransSqrsTab  # DiagRow1, DiagRow2, DiagRow3, DiagCol1, DiagCol2, DiagCol3, 
+from _tabltransforms import TransNat0Tabl, TransNat1Tabl, TransSqrsTabl  # DiagRow1, DiagRow2, DiagRow3, DiagCol1, DiagCol2, DiagCol3, 
 from _tabltransforms import BinConv, InvBinConv, RowLcm, RowGcd, RowMax, ColMiddle, ColECentral, ColOCentral, ColLeft, ColRight  
 from _tabltabls import FlatTabl, FlatAccTabl, FlatRevAccTabl, FlatAccRevTabl, FlatAntiDiagTabl, FlatRevTabl, FlatInvTabl, FlatInvRevTabl, FlatRevInvTabl, FlatDiffxTabl 
 
@@ -75,12 +75,12 @@ def RegisterTraits() -> dict[str, Callable]:
     RegisterTrait(BinConv)
     RegisterTrait(InvBinConv)
 
-    RegisterTrait(TransNat0Tab)
-    RegisterTrait(TransNat1Tab)
-    RegisterTrait(TransSqrsTab)
+    RegisterTrait(TransNat0Tabl)
+    RegisterTrait(TransNat1Tabl)
+    RegisterTrait(TransSqrsTabl)
 
-    RegisterTrait(PosHalfTab)
-    RegisterTrait(NegHalfTab)
+    RegisterTrait(PosHalfTabl)
+    RegisterTrait(NegHalfTabl)
 
     # TYPE Callable[[rgen, int], trow]]
 
@@ -96,7 +96,7 @@ def RegisterTraits() -> dict[str, Callable]:
     RegisterTrait(DiagCol2)
     RegisterTrait(DiagCol3)
 
-    RegisterTrait(PolyDiagTablRow)
+    RegisterTrait(PolyDiagRow)
     # RegisterTrait(PolyRow0)
     RegisterTrait(PolyRow1)
     RegisterTrait(PolyRow2)
@@ -111,6 +111,62 @@ def RegisterTraits() -> dict[str, Callable]:
     # RegisterTrait(NegHalf)
 
     return TRAITS
+
+
+def Formulas() -> dict[str, str]:
+    FORMULA: dict[str, str] = {}
+
+    FORMULA['Tabl']         = 'T(n, k), 0 &le; k &le; n'
+    FORMULA['FlatTabl']     = 'T(n, k), 0 &le; k &le; n'
+    FORMULA['RevTabl']      = 'T(n, n - k), 0 &le; k &le; n'
+    FORMULA['InvTabl']      = 'T<sup>-1</sup>(n, k), 0 &le; k &le; n'
+    FORMULA['RevInvTabl']   = 'T<sup>-1</sup>(n, n - k), 0 &le; k &le; n'
+    FORMULA['InvRevTabl']   = '(T(n, n - k))<sup>-1</sup>, 0 &le; k &le; n'
+    FORMULA['AccTabl']      = 'see docs'
+    FORMULA['RevAccTabl']   = 'see docs'
+    FORMULA['AccRevTabl']   = 'see docs'
+    FORMULA['AntiDiagTabl'] = 'see docs'
+    FORMULA['BinTabl']      = 'see docs'
+    FORMULA['InvBinTabl']   = 'see docs'
+    FORMULA['DiffxTabl']    = 'T(n, k) (k+1)'
+    FORMULA['RowSum']       = '&sum;<sub> k=0..n </sub> T(n, k)'
+    FORMULA['EvenSum']      = '&sum;<sub> k=0..n </sub> T(n, k) even(k)'
+    FORMULA['OddSum']       = '&sum;<sub> k=0..n </sub> T(n, k) odd(k)'
+    FORMULA['AltSum']       = '&sum;<sub> k=0..n </sub> T(n, k) (-1)^k'
+    FORMULA['AntiDiagSum']  = '&sum;<sub> k=0..n // 2 </sub> T(n - k, k)'
+    FORMULA['AccSum']       = '&sum;<sub> k=0..n </sub>&sum;<sub> j=0..k </sub> T(n, j)'
+    FORMULA['AccRevSum']    = '&sum;<sub> k=0..n </sub>&sum;<sub> j=0..k </sub> T(n, n - j)'
+    FORMULA['RowLcm']       = 'Lcm<sub> k=0..n </sub> | T(n, k) | &gt; 1'
+    FORMULA['RowGcd']       = 'Gcd<sub> k=0..n </sub> | T(n, k) | &gt; 1'
+    FORMULA['RowMax']       = 'Max<sub> k=0..n </sub> | T(n, k) |'
+    FORMULA['ColMiddle']    = 'T(n, n // 2)'
+    FORMULA['ColECentral']  = 'T(2 n, n)'
+    FORMULA['ColOCentral']  = 'T(2 n + 1, n)'
+    FORMULA['ColLeft']      = 'T(n, 0)'
+    FORMULA['ColRight']     = 'T(n, n)'
+    FORMULA['BinConv']      = '&sum;<sub> k=0..n </sub> C(n, k) T(n, k)'
+    FORMULA['InvBinConv']   = '&sum;<sub> k=0..n </sub> C(n, k) T(n, n - k) (-1)^k'
+    FORMULA['TransSqrsTabl']  = '&sum;<sub> k=0..n </sub> T(n, k) k^2'
+    FORMULA['TransNat0Tabl']  = '&sum;<sub> k=0..n </sub> T(n, k) k'
+    FORMULA['TransNat1Tabl']  = '&sum;<sub> k=0..n </sub> T(n, k) (k + 1)^k'
+    FORMULA['DiagRow1']     = 'T(n + 1, n)'
+    FORMULA['DiagRow2']     = 'T(n + 2, n)'
+    FORMULA['DiagRow3']     = 'T(n + 3, n)'
+    FORMULA['DiagCol1']     = 'T(n + 1, 1)'
+    FORMULA['DiagCol2']     = 'T(n + 2, 2)'
+    FORMULA['DiagCol3']     = 'T(n + 3, 3)'
+    FORMULA['PolyTabl']     = 'see docs'
+    FORMULA['PolyRow1']     = '&sum;<sub> k=0..1 </sub>T(1, k) n^k'
+    FORMULA['PolyRow2']     = '&sum;<sub> k=0..2 </sub>T(2, k) n^k'
+    FORMULA['PolyRow3']     = '&sum;<sub> k=0..3 </sub>T(3, k) n^k'
+    FORMULA['PolyCol2']     = '&sum;<sub> k=0..n </sub>T(n, k) 2^k'
+    FORMULA['PolyCol3']     = '&sum;<sub> k=0..n </sub>T(n, k) 3^k'
+    FORMULA['PolyDiag']     = '&sum;<sub> k=0..n </sub>T(n, k) n^k'
+    FORMULA['PolyDiagRow']  = 'see docs'
+    FORMULA['PosHalfTabl']  = '&sum;<sub> k=0..n </sub>2^n T(n, k) (1/2)^k'
+    FORMULA['NegHalfTabl']  = '&sum;<sub> k=0..n </sub>(-2)^n T(n, k) (-1/2)^k'
+
+    return FORMULA
 
 
 if __name__ == "__main__":

@@ -2,8 +2,8 @@ from _tabltypes import  rgen, tgen, tabl
 from _tablpoly import PolyCol, PolyRow
 from _tabltabls import AccTabl, RevAccTabl, AccRevTabl, RevTabl, AntiDiagTabl
 from _tablsums import PrintSums
-from _tabltransforms import ColMiddle, ColECentral, ColLeft,ColRight, PrintTransforms, RowLcm, RowGcd, RowMax, TransSqrs, TransNat0, TransNat1, ColOCentral
-from _tabltransforms import TransSqrsTab, TransNat0Tab, TransNat1Tab
+from _tabltransforms import ColMiddle, ColECentral, ColLeft,ColRight, RowLcm, RowGcd, RowMax, ColOCentral
+from _tabltransforms import TransSqrsTabl, TransNat0Tabl, TransNat1Tabl, TransSqrs, TransNat0, TransNat1, PrintTransforms
 
 
 # #@
@@ -82,9 +82,9 @@ def PrintTrans(t: tabl) -> None:
     print(f'| ColOCenter | {ColOCentral(t)} |')
     print(f'| ColLeft    | {ColLeft(t)} |')
     print(f'| ColRight   | {ColRight(t)} |')
-    print(f'| TransSqrs  | {TransSqrsTab(t)} |')
-    print(f'| TransNat0  | {TransNat0Tab(t)} |')
-    print(f'| TransNat1  | {TransNat1Tab(t)} |')
+    print(f'| TransSqrs  | {TransSqrsTabl(t)} |')
+    print(f'| TransNat0  | {TransNat0Tabl(t)} |')
+    print(f'| TransNat1  | {TransNat1Tabl(t)} |')
 #    print(f'| Bin        | {transbinval(t)} |')
 #    print(f'| InvBin     | {invtransbinval(t)} |')
 

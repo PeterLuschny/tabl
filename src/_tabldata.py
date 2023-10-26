@@ -319,7 +319,7 @@ if __name__ == "__main__":
 
     def test6():
         from Abel import Abel
-        #SaveTraitsToDB(Abel)
+        SaveTraitsToDB(Abel)
         SaveDBasCSV(traitpath(Abel.id, "db") )
 
     def test7():
@@ -334,5 +334,17 @@ if __name__ == "__main__":
             size = SaveDBasCSV(traitpath(fun.id, "db") )
             print(f"{fun.id}.db references {size} sequences.")
 
-    test7()
+    def test99():
+        from tabl import tabl_fun
+    
+        GetOEISdata()
+        SaveAllTraitsToDB(tabl_fun)
+        SaveDBasCSV(traitspath)
+
+        for fun in tabl_fun:
+            SaveTraitsToDB(fun)
+            size = SaveDBasCSV(traitpath(fun.id, "db") )
+            print(f"{fun.id}.db references {size} sequences.")
+
+    test99()
    
