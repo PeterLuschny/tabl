@@ -1,12 +1,11 @@
 from typing import Callable
 from inspect import signature
-from _tabltypes import rgen, tabl, trow
-from _tablpoly import PolyRow1, PolyRow2, PolyRow3, PolyCol2, PolyCol3, PolyDiag, PosHalf, NegHalf, PosHalfTabl, NegHalfTabl, PolyDiagRow
+from _tablpoly import PolyRow1, PolyRow2, PolyRow3, PolyCol2, PolyCol3, PolyDiag, PosHalfTabl, NegHalfTabl, PolyDiagRow
 from _tablsums import RowSum, EvenSum, OddSum, AltSum, AccSum, AccRevSum, AntiDiagSum
-from _tabltransforms import DiagRow1, DiagRow2, DiagRow3, DiagCol1, DiagCol2, DiagCol3, TransSqrs, TransNat0, TransNat1 
-from _tabltransforms import TransNat0Tabl, TransNat1Tabl, TransSqrsTabl  # DiagRow1, DiagRow2, DiagRow3, DiagCol1, DiagCol2, DiagCol3, 
+from _tabltransforms import DiagRow1, DiagRow2, DiagRow3, DiagCol1, DiagCol2, DiagCol3
+from _tabltransforms import TransNat0Tabl, TransNat1Tabl, TransSqrsTabl  
 from _tabltransforms import BinConv, InvBinConv, RowLcm, RowGcd, RowMax, ColMiddle, ColECentral, ColOCentral, ColLeft, ColRight  
-from _tabltabls import FlatTabl, FlatAccTabl, FlatRevAccTabl, FlatAccRevTabl, FlatAntiDiagTabl, FlatRevTabl, FlatInvTabl, FlatInvRevTabl, FlatRevInvTabl, FlatDiffxTabl 
+from _tabltabls import FlatTabl, FlatAccTabl, FlatAccRevTabl, FlatAntiDiagTabl, FlatRevTabl, FlatInvTabl, FlatInvRevTabl, FlatRevInvTabl, FlatDiffxTabl 
 
 
 '''

@@ -43,8 +43,6 @@ Clean up by hand:
 * Delete the copy of _tablupdate from the project folder.
 * Move tabl.py from the project folder to the src folder.
 * Format tabl.py.
-* Copy the header of README.md to crossrefs. md.
-* Delete README.md
-* Rename crossrefs.md to README.md.
-* Convert README.md to html using a VS plugin
+* Delete README.md from the root and move README.md from data/md 
+* to the root and convert it to html with a VS code plugin.
 '''

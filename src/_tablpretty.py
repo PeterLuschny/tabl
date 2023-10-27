@@ -2,7 +2,7 @@
 # #@
 
 
-def PrintPrintTriangle(triangle, centered):
+def PrintPrintTriangle(triangle: list[list[int]], centered: bool):
     """Cudos to '200_success' from 'codereview'."""
     largest_element = triangle[-1][len(triangle[-1]) // 2]
     element_width = len(str(largest_element))
@@ -17,7 +17,6 @@ if __name__ == '__main__':
 
     from Abel import Abel
     from Delannoy import Delannoy
-    from FussCatalan import FussCatalan
     from ChristTree import Ctree
 
     go = 'y'

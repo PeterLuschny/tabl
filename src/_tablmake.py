@@ -1,8 +1,8 @@
-# from io import TextIOWrapper
 from os import getcwd
 from os.path import join, isfile
 
 tabl_files: list[str] = [
+    "_tablpaths.py",
     "_tablinverse.py",
     "_tabltypes.py",
     "_tabltabls.py",
@@ -197,44 +197,15 @@ import_header: list[str] = [
     "import sqlite3\n",
     "import pandas as pd\n",
     "from fractions import Fraction as frac\n",
+    "from pathlib import Path\n",
 ]
 
-data_path: list[str] = [
-    "from pathlib import Path\n",
-    "path = Path(__file__).parent\n",
-    "reldatapath = 'data/oeis_data.csv'\n",
-    "datapath = (path / reldatapath).resolve()\n",
-    "reloeispath = 'data/oeis.csv'\n",
-    "oeispath = (path / reloeispath).resolve()\n",
-    "reldbpath = 'data/oeis.db'\n",
-    "dbpath = (path / reldbpath).resolve()\n",
-    "reltraitsdbpath = 'data/traits.db'\n",
-    "traitspath = (path / reltraitsdbpath).resolve()\n",
-    "reltraitscsvpath = 'data/traits.csv'\n",
-    "traitscsvpath = (path / reltraitscsvpath).resolve()\n"
-    "relstrippedpath = 'data/stripped'\n",
-    "strippedpath = (path / relstrippedpath).resolve()\n",
-    "relcsvpath = 'data/csv'\n",
-    "csvpath = (path / relcsvpath).resolve()\n",
-    "allcsvfile = 'data/allcsv.csv'\n",
-    "allcsvpath = (path / allcsvfile).resolve()\n",
-    "relhtmlpath = 'data/html'\n",
-    "htmlpath = (path / relhtmlpath).resolve()\n",
-    "relmdpath = 'data/md'\n",
-    "mdpath = (path / relmdpath).resolve()\n",
-    "def GetDataPath() -> Path: return datapath\n",
-    "def GetCsvPath() -> Path: return csvpath\n",
-    "def GetAllCsvPath() -> Path: return allcsvpath\n",
-    "def GetHtmlPath() -> Path: return htmlpath\n",
-    "def GetMdPath() -> Path: return mdpath\n",
-]
 
 def make() -> None:
     dir: str = join(getcwd(), "src")
     dest = open("tabl.py", "w+")
 
     dest.writelines(import_header)
-    dest.writelines(data_path)
     dest.write("setrecursionlimit(3000)\n")
     dest.write("set_int_max_str_digits(5000)\n")
 

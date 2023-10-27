@@ -1,8 +1,9 @@
 from tabl import tabl_fun
 
 import contextlib
+from _tablpaths import GetDataPath
 from _tablviews import PrintViews
-from _tablpaths import GetMdPath
+from _tablpaths import GetDataPath
 from _tabltypes import (
     inversion_wrapper,
     reversion_wrapper,
@@ -13,14 +14,30 @@ from _tabltypes import (
 
 # #@
 
+readme_header = """
+*** La sélection du Chef ***
 
-def CrossReferences(path: str="crossrefs.md") -> None:
+# Tables à la carte
+
+INTEGER SEQUENCES ARE ONLY THE SHADOWS OF INTEGER TRIANGLES
+
+Python implementations of integer sequences dubbed tabl in the OEIS.
+The notebook gives a first introduction for the user.
+
+
+"""
+
+
+def CrossReferences(name: str="README") -> None:
     """Writes a table in markdown style.
     Uses stored data from fun.sim (no searching)
     """
 
-    with open(path, "w+") as xrefs:
+    path = GetDataPath(name, 'md')
 
+    with open(path, "w+", encoding='utf-8') as xrefs:
+
+        xrefs.write(readme_header)
         xrefs.write("| Table |  Source | Traits   |  OEIS similars |\n")
         xrefs.write("| :---  | :---    | :---     |  :---          |\n")
 
@@ -32,20 +49,15 @@ def CrossReferences(path: str="crossrefs.md") -> None:
             for sim in similars:
                 anum += "%7Cid%3A" + sim
             xrefs.write(
-                f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/data/md/{id}.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://oeis.org/search?q={anum}) |\n"
-            )
+                f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/data/md/{id}.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://oeis.org/search?q={anum}) |\n")
 
 
-
-def SaveExtendedTables(dim: int = 9) -> None:
+def SaveExtendedTables(dim: int = 10) -> None:
 
     tim: int = dim + dim
-    path = GetMdPath()
 
     for fun in tabl_fun:
-        tblfile = fun.id + ".md"
-        tablpath = (path / tblfile).resolve()
-
+        tablpath = GetDataPath(fun.id, 'tbl')
         with open(tablpath, "w+") as dest:
             with contextlib.redirect_stdout(dest):
                 PrintViews(fun, dim)
@@ -67,4 +79,5 @@ def SaveExtendedTables(dim: int = 9) -> None:
 
 if __name__ == "__main__":
 
+    # SaveExtendedTables()
     CrossReferences()

@@ -136,13 +136,16 @@ if __name__ == "__main__":
     from StirlingSet import StirlingSet
     from LabeledGraphs import LabeledGraphs
 
+    print(RevTabl(Abel.tab(6)))
+    print(FlatRevTabl(Abel.tab(6)))
+
     #PrintTabls(Abel, 4)
     #PrintTabls(StirlingSet, 6, False)
     #PrintTabls(LabeledGraphs, 6)
 
-    T = LabeledGraphs.tab(9)
-    print(T)
-    print(AccTabl(T))
-    print(FlatAccTabl(T))
+    #T = LabeledGraphs.tab(9)
+    #print(T)
+    #print(AccTabl(T))
+    #print(FlatAccTabl(T))
     #print(InvTabl(T))
     #print(AntiDiagTabl(T))

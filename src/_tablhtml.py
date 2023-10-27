@@ -1,7 +1,6 @@
 import csv
-from pathlib import Path
 from _tabltypes import tgen
-from _tablpaths import GetCsvPath, GetHtmlPath, GetDataPath
+from _tablpaths import GetDataPath
 from _tabltraits import Formulas
 from tabl import tabl_fun
 
@@ -115,19 +114,19 @@ def navbar(fun: tgen) -> list[str]:
     return NAVBAR
 
 
-def CsvToHtml(fun: tgen, csvpath: Path, outpath: Path) -> None:
+def CsvToHtml(fun: tgen) -> None:
 
     name = fun.id
 
-    csvfile = (csvpath / (name + ".csv")).resolve()
-    outfile = (outpath / (name + ".html")).resolve()
+    csvfile = GetDataPath(name, 'csv')
+    outfile = GetDataPath(name, 'html')
 
     FORMULA = Formulas()
 
     with open(csvfile, 'r') as csvfile:
         reader = csv.reader(csvfile)
 
-        with open(outfile, 'w') as outfile:
+        with open(outfile, 'a') as outfile:
 
             for l in Header: 
                 outfile.write(l)  
@@ -152,7 +151,6 @@ def CsvToHtml(fun: tgen, csvpath: Path, outpath: Path) -> None:
 
                 # Layout: index,triangle,trait,anum,seq
                 # 0,Abel:Std,FlatTabl,A137452,1 0 1 0 ...
-                # print(line)
                 # index = line[0]
                 l = line[1]
                 type = l[l.index(':')+1:]
@@ -188,18 +186,17 @@ def CsvToHtml(fun: tgen, csvpath: Path, outpath: Path) -> None:
                 outfile.write(l)
 
 
-def AllCsvToHtml(csvpath: Path = GetCsvPath(), outpath: Path = GetHtmlPath()) -> None:
+def AllCsvToHtml() -> None:
     for fun in tabl_fun:
-        CsvToHtml(fun, csvpath, outpath)
+        CsvToHtml(fun)
 
 
 if __name__ == "__main__":
 
     from Abel import Abel
     from CatalanSqr import CatalanSqr
-    from PowLaguerre import PowLaguerre
     
-    # CsvToHtml(Abel, GetDataPath(), GetHtmlPath())
-    AllCsvToHtml(GetDataPath(), GetHtmlPath())
+    # CsvToHtml(Abel)
+    AllCsvToHtml()
 
     print("Done ...")

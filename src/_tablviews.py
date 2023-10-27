@@ -3,7 +3,7 @@ from _tablpoly import PolyCol, PolyRow
 from _tabltabls import AccTabl, RevAccTabl, AccRevTabl, RevTabl, AntiDiagTabl
 from _tablsums import PrintSums
 from _tabltransforms import ColMiddle, ColECentral, ColLeft,ColRight, RowLcm, RowGcd, RowMax, ColOCentral
-from _tabltransforms import TransSqrsTabl, TransNat0Tabl, TransNat1Tabl, TransSqrs, TransNat0, TransNat1, PrintTransforms
+from _tabltransforms import TransSqrsTabl, TransNat0Tabl, TransNat1Tabl
 
 
 # #@

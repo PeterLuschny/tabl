@@ -13,51 +13,24 @@ import pandas as pd
 from fractions import Fraction as frac
 from pathlib import Path
 
-path = Path(__file__).parent
-reldatapath = "data/oeis_data.csv"
-datapath = (path / reldatapath).resolve()
-reloeispath = "data/oeis.csv"
-oeispath = (path / reloeispath).resolve()
-reldbpath = "data/oeis.db"
-dbpath = (path / reldbpath).resolve()
-reltraitsdbpath = "data/traits.db"
-traitspath = (path / reltraitsdbpath).resolve()
-reltraitscsvpath = "data/traits.csv"
-traitscsvpath = (path / reltraitscsvpath).resolve()
-relstrippedpath = "data/stripped"
-strippedpath = (path / relstrippedpath).resolve()
-relcsvpath = "data/csv"
-csvpath = (path / relcsvpath).resolve()
-allcsvfile = "data/allcsv.csv"
-allcsvpath = (path / allcsvfile).resolve()
-relhtmlpath = "data/html"
-htmlpath = (path / relhtmlpath).resolve()
-relmdpath = "data/md"
-mdpath = (path / relmdpath).resolve()
-
-
-def GetDataPath() -> Path:
-    return datapath
-
-
-def GetCsvPath() -> Path:
-    return csvpath
-
-
-def GetAllCsvPath() -> Path:
-    return allcsvpath
-
-
-def GetHtmlPath() -> Path:
-    return htmlpath
-
-
-def GetMdPath() -> Path:
-    return mdpath
-
-
 setrecursionlimit(3000)
 set_int_max_str_digits(5000)
+path = Path(__file__).parent.parent
+strippedpath = (path / "data/stripped").resolve()
+
+
+def GetPath(name: str) -> Path:
+    return (path / name).resolve()
+
+
+def GetData(name: str) -> Path:
+    relpath = f"data/{name}"
+    return (path / relpath).resolve()
+
+
+def GetDataPath(name: str, fix: str) -> Path:
+    relpath = f"data/{fix}/{name}.{fix}"
+    return (path / relpath).resolve()
 
 
 def InverseTabl(L: list[list[int]]) -> list[list[int]]:
@@ -2588,13 +2561,21 @@ tabl_fun: list[tgen] = [
     WardSet,
     Worpitzky,
 ]
+readme_header = """
+*** La sélection du Chef ***
+INTEGER SEQUENCES ARE ONLY THE SHADOWS OF INTEGER TRIANGLES
+Python implementations of integer sequences dubbed tabl in the OEIS.
+The notebook gives a first introduction for the user.
+"""
 
 
-def CrossReferences(path: str = "crossrefs.md") -> None:
+def CrossReferences(name: str = "README") -> None:
     """Writes a table in markdown style.
     Uses stored data from fun.sim (no searching)
     """
-    with open(path, "w+") as xrefs:
+    path = GetDataPath(name, "md")
+    with open(path, "w+", encoding="utf-8") as xrefs:
+        xrefs.write(readme_header)
         xrefs.write("| Table |  Source | Traits   |  OEIS similars |\n")
         xrefs.write("| :---  | :---    | :---     |  :---          |\n")
         for fun in tabl_fun:
@@ -2609,12 +2590,10 @@ def CrossReferences(path: str = "crossrefs.md") -> None:
             )
 
 
-def SaveExtendedTables(dim: int = 9) -> None:
+def SaveExtendedTables(dim: int = 10) -> None:
     tim: int = dim + dim
-    path = GetMdPath()
     for fun in tabl_fun:
-        tblfile = fun.id + ".md"
-        tablpath = (path / tblfile).resolve()
+        tablpath = GetDataPath(fun.id, "tbl")
         with open(tablpath, "w+") as dest:
             with contextlib.redirect_stdout(dest):
                 PrintViews(fun, dim)
@@ -2756,14 +2735,14 @@ def navbar(fun: tgen) -> list[str]:
     return NAVBAR
 
 
-def CsvToHtml(fun: tgen, csvpath: Path, outpath: Path) -> None:
+def CsvToHtml(fun: tgen) -> None:
     name = fun.id
-    csvfile = (csvpath / (name + ".csv")).resolve()
-    outfile = (outpath / (name + ".html")).resolve()
+    csvfile = GetDataPath(name, "csv")
+    outfile = GetDataPath(name, "html")
     FORMULA = Formulas()
     with open(csvfile, "r") as csvfile:
         reader = csv.reader(csvfile)
-        with open(outfile, "w") as outfile:
+        with open(outfile, "a") as outfile:
             for l in Header:
                 outfile.write(l)
             outfile.write(f"<title>{name} : IntegerTriangles.py</title>")
@@ -2785,7 +2764,6 @@ def CsvToHtml(fun: tgen, csvpath: Path, outpath: Path) -> None:
             for line in reader:
                 # Layout: index,triangle,trait,anum,seq
                 # 0,Abel:Std,FlatTabl,A137452,1 0 1 0 ...
-                # print(line)
                 # index = line[0]
                 l = line[1]
                 type = l[l.index(":") + 1 :]
@@ -2820,9 +2798,9 @@ def CsvToHtml(fun: tgen, csvpath: Path, outpath: Path) -> None:
                 outfile.write(l)
 
 
-def AllCsvToHtml(csvpath: Path = GetCsvPath(), outpath: Path = GetHtmlPath()) -> None:
+def AllCsvToHtml() -> None:
     for fun in tabl_fun:
-        CsvToHtml(fun, csvpath, outpath)
+        CsvToHtml(fun)
 
 
 def is_tabletrait(f: Callable):
@@ -2961,7 +2939,7 @@ def fnv(data: bytes) -> int:
     """
     FNV-1a hash algorithm.
     """
-    assert isinstance(data, bytes)
+    # assert isinstance(data, bytes)
     hval = 0xCBF29CE484222325
     for byte in data:
         hval = hval ^ byte
@@ -2973,10 +2951,17 @@ MINTERMS = 15
 
 
 def fnv_hash(seq: list[int], absolut: bool = False) -> str:
-    if seq == []:
-        return "0"
+    """Returns the fnv-hash of an integer sequence based on the first MINTERMS terms.
+    Args:
+        seq (list[int]):
+        absolut (bool, optional): Take the absolute value of the terms? Defaults to False.
+    Returns:
+        str: The hex value of the hash without the '0x'-head.
+    """
     if len(seq) < MINTERMS:
         print(f"*** Warning *** Hash based only on {len(seq)} terms.")
+        if seq == []:
+            return "0"
     if absolut:
         s = str([abs(i) for i in seq[0:MINTERMS]])
     else:
@@ -2985,7 +2970,7 @@ def fnv_hash(seq: list[int], absolut: bool = False) -> str:
     return hex(fnv(bytes(x, encoding="ascii")))[2:]
 
 
-def get_compressed() -> None:
+def GetCompressed() -> None:
     oeisstripped = "https://oeis.org/stripped.gz"
     r = requests.get(oeisstripped, stream=True)
     with open(strippedpath, "wb") as local:
@@ -2993,24 +2978,16 @@ def get_compressed() -> None:
             if chunk:
                 local.write(chunk)
     with gzip.open(strippedpath, "rb") as gz:
-        with open(oeispath, "wb") as da:
+        with open(GetDataPath("oeis", "csv"), "wb") as da:
             da.write(gz.read())
+    print("Info: OEIS-data saved as oeis.csv in data/csv.")
 
 
-def oeisabsdata() -> None:
-    """Make all terms absolute."""
-    with open(oeispath, "r") as oeisdata:
-        with open(datapath, "w") as absdata:
-            for seq in oeisdata:
-                if not "#" in seq:
-                    absdata.write(seq.replace("-", ""))
-
-
-def oeisabsdatawithfnv() -> None:
+def MakeOeisminiWithFnv() -> None:
     """Make all terms absolute, take MINTERMS terms, add fnv."""
-    with open(oeispath, "r") as oeisdata:
+    with open(GetDataPath("oeis", "csv"), "r") as oeisdata:
         reader = csv.reader(oeisdata)
-        with open(datapath, "w") as cleandata:
+        with open(GetDataPath("oeismini", "csv"), "w") as minidata:
             #           A000003 ,1
             seq_list = [
                 [txt[0][0:7], [abs(int(s)) for s in txt[1:-1]]] for txt in reader
@@ -3020,17 +2997,19 @@ def oeisabsdatawithfnv() -> None:
                     continue
                 x = str(s[1][0:MINTERMS]).translate(str.maketrans("", "", "[],"))
                 f = hex(fnv(bytes(x, encoding="ascii")))[2:]
-                cleandata.write(f + "," + s[0] + "," + x + ",\n")
+                minidata.write(f + "," + s[0] + "," + x + ",\n")
+    print("Info: Hashed OEIS-data saved as oeismini.csv in data/csv.")
 
 
 def OeisToSql() -> None:
     """Make all terms absolute, take MINTERMS terms, add fnv.
     Write (fnv, anum, seq) to oeis.db.
     """
-    tabl = sqlite3.connect(dbpath)
+    tabl = sqlite3.connect(GetDataPath("oeismini", "db"))
     cur = tabl.cursor()
-    cur.execute("CREATE TABLE sequences(hash, anum, seq)")
-    with open(oeispath, "r") as oeisdata:
+    sql = "CREATE TABLE sequences(hash, anum, seq)"
+    cur.execute(sql)
+    with open(GetDataPath("oeis", "csv"), "r") as oeisdata:
         reader = csv.reader(oeisdata)
 
         seq_list = [[txt[0][0:7], [abs(int(s)) for s in txt[1:-1]]] for txt in reader]
@@ -3040,9 +3019,11 @@ def OeisToSql() -> None:
             x = str(s[1][0:MINTERMS]).translate(str.maketrans("", "", "[],"))
             f = hex(fnv(bytes(x, encoding="ascii")))[2:]
             tup = (f, s[0], x)
-            cur.execute("INSERT INTO sequences VALUES(?, ?, ?)", tup)
+            sql = "INSERT INTO sequences VALUES(?, ?, ?)"
+            cur.execute(sql, tup)
     tabl.commit()
     tabl.close()
+    print("Info: Database oeismini.db saved in data/db.")
 
 
 def querydbhash(H: str, oeis_cur) -> str:
@@ -3085,7 +3066,7 @@ def SaveTraits(g: tgen, size: int, traits_cur, oeis_cur, table, TRAITS: dict) ->
     for traitname, trait in TRAITS.items():
         seq = trait(T) if is_tabletrait(trait) else trait(r, size)
         if seq == []:
-            print(f"Info: {g.id + traitname} does not exist.")
+            print(f"Info: {g.id}:{traitname} does not exist.".replace("Flat", ""))
             continue
         fnv = fnv_hash(seq, True)
         anum = queryoeis(fnv, seq, oeis_cur)
@@ -3098,8 +3079,9 @@ def SaveTraits(g: tgen, size: int, traits_cur, oeis_cur, table, TRAITS: dict) ->
                 break
             seqstr += s
         tup = (g.id, traitname, fnv, anum, seqstr)
-        print(tup)
-        traits_cur.execute(f"INSERT INTO {table} VALUES(?, ?, ?, ?, ?)", tup)
+        # print(tup)
+        sql = f"INSERT INTO {table} VALUES(?, ?, ?, ?, ?)"
+        traits_cur.execute(sql, tup)
 
 
 def SaveExtendedTraitsToDB(t: tgen, size: int, traits_cur, oeis_cur, table) -> None:
@@ -3131,35 +3113,33 @@ def SaveExtendedTraitsToDB(t: tgen, size: int, traits_cur, oeis_cur, table) -> N
             SaveTraits(ir, size, traits_cur, oeis_cur, table, TRAITS)
 
 
-def traitpath(name: str, fix: str) -> Path:
-    relpath = f"data/{name}.{fix}"
-    return (Path(__file__).parent.parent / relpath).resolve()
-
-
 def SaveAllTraitsToDB(tabl_fun: list[tgen]) -> None:
-    with sqlite3.connect(traitspath) as db:
+    name = "traits"
+    with sqlite3.connect(GetDataPath(name, "db")) as db:
         traits_cur = db.cursor()
-        table = "traits"
-        traits_cur.execute(f"CREATE TABLE {table}(triangle, trait, hash, anum, seq)")
-        with sqlite3.connect(dbpath) as oeis:
+        sql = f"CREATE TABLE {name}(triangle, trait, hash, anum, seq)"
+        traits_cur.execute(sql)
+        with sqlite3.connect(GetDataPath("oeismini", "db")) as oeis:
             oeis_cur = oeis.cursor()
             for fun in tabl_fun:
-                SaveExtendedTraitsToDB(fun, 32, traits_cur, oeis_cur, table)
+                SaveExtendedTraitsToDB(fun, 32, traits_cur, oeis_cur, name)
         db.commit()
-    print("Created database traits.db in", traitspath)
+
+    print("Created database traits.db in data/db.")
 
 
-def SaveTraitsToDB(fun) -> None:
+def SaveTraitsToDB(fun: tgen) -> None:
     name = fun.id
-    with sqlite3.connect(traitpath(name, "db")) as db:
+    with sqlite3.connect(GetDataPath(name, "db")) as db:
         traits_cur = db.cursor()
-        traits_cur.execute(f"CREATE TABLE {name}(triangle, trait, hash, anum, seq)")
-        with sqlite3.connect(dbpath) as oeis:
+        sql = f"CREATE TABLE {name}(triangle, trait, hash, anum, seq)"
+        traits_cur.execute(sql)
+        with sqlite3.connect(GetDataPath("oeismini", "db")) as oeis:
             oeis_cur = oeis.cursor()
             SaveExtendedTraitsToDB(fun, 32, traits_cur, oeis_cur, name)
 
         db.commit()
-    print(f"Created {name}.db.")
+    print(f"Created database {name}.db in data/db.")
 
 
 """
@@ -3176,18 +3156,19 @@ Pretty printing of triangles trait cards.
 """
 
 
-def SaveDBasCSV(dbpath: Path) -> int:
+def SaveFoundDB(dbpath: Path) -> int:
     size = 0
     with sqlite3.connect(dbpath) as db:
         cursor = db.cursor()
-        cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+        sql = "SELECT name FROM sqlite_master WHERE type='table';"
+        cursor.execute(sql)
         tables = cursor.fetchall()
         for table_name in tables:
             table_name = table_name[0]
             sql = f"SELECT triangle, trait, anum, seq FROM {table_name} WHERE anum != 'A000012' AND anum != 'A000007' AND anum != 'A000004' AND anum != 'missing'"
             table = pd.read_sql_query(sql, db)
-            table.to_csv(traitpath(table_name, "csv"), index_label="index")
-            table.to_markdown(traitpath(table_name, "md"))
+            table.to_csv(GetDataPath(table_name, "csv"), index_label="index")
+            table.to_markdown(GetDataPath(table_name, "md"))
             size = table.size // 4
         cursor.close()
     return size
@@ -3195,6 +3176,6 @@ def SaveDBasCSV(dbpath: Path) -> int:
 
 def GetOEISdata() -> None:
     print("Updating OEIS data!")
-    get_compressed()
+    GetCompressed()
     OeisToSql()
     print("OEIS data updated!")
