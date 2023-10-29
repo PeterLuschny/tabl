@@ -34,7 +34,7 @@ def Profile(T: tgen, hor: int = 10) -> dict[str, list[int]]:
     d["AltSum"] = AltSum(t)
     d["AccSum"] = AccSum(t)
     d["AccRevSum"] = AccRevSum(t)
-    d["AntiDiagSum"] = DiagSum(t)
+    d["DiagSum"] = DiagSum(t)
 
     # DiagsAsRowArray
     rows: int = ver
@@ -49,18 +49,18 @@ def Profile(T: tgen, hor: int = 10) -> dict[str, list[int]]:
         d["DiagCol" + str(j)] = [T.gen(j + k)[j] for k in range(rows)]
 
     # RowPolyArray
-    rows = ver
-    cols = hor
-    for j in range(rows):
-        d["PolyRow" + str(j)] = PolyRow(T.gen, j, cols)
+    #rows = ver
+    #cols = hor
+    #for j in range(rows):
+    #    d["PolyRow" + str(j)] = PolyRow(T.gen, j, cols)
 
     # ColPolyArray
-    rows = ver
-    cols = hor
-    for j in range(rows):
-        if j == 1:
-            continue
-        d["PolyCol" + str(j)] = PolyCol(T.gen, j, cols)
+    #rows = ver
+    #cols = hor
+    #for j in range(rows):
+    #    if j == 1:
+    #        continue
+    #    d["PolyCol" + str(j)] = PolyCol(T.gen, j, cols)
 
     return d
 

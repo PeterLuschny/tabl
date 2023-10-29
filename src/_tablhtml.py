@@ -38,8 +38,8 @@ CSS = ["<style> body {font-family: 'Segoe UI', sans-serif;} ",
     "#rcor3 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 66px; height: 0px;} ",
     "#rcor4 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 880px; height: 20px; font-weight: 700; text-align: center;} ",
     ".center {margin-top: 1em;} ",
-    ".type { font-weight: 600;} ",
-    ".tooltip { position: relative; font-weight: 600;} ",
+    ".type { font-weight: 600; text-align: center;} ",
+    ".tooltip { position: relative; font-weight: 600; text-align: center;} ",
     ".tooltip .formula { visibility: hidden; width: 200px; background-color: lightgray; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; top: +2px; left: 95%;} ",
     ".tooltip:hover .formula { visibility: visible; } ",
     "</style></head><body>"]
@@ -137,7 +137,7 @@ def CsvToHtml(fun: tgen) -> None:
         reader = csv.reader(csvfile)
 
         with open(outfile, 'w+') as outfile:
-
+            
             for l in Header: 
                 outfile.write(l)  
 
@@ -172,18 +172,18 @@ def CsvToHtml(fun: tgen) -> None:
                 outfile.write(f"<td class='tooltip'>{trait}<span class='formula'>{tip}</span></td>") 
 
                 # Anum
-                color = ''
+                color = "rgb(0, 0, 255)"
                 if anum == 'missing':  # start with a(3) !
                     sseq = (seq.split(' ', 3)[3]).replace(' ', ',')
                     url = f'https://oeis.org/search?q={sseq}&fmt=json'
                     if IsInOEIS(url): 
-                        color = "rgb(130, 177, 255)"
+                        color = "rgb(115, 147, 179)"
                         url = f'https://oeis.org/search?q={sseq}'
                         outfile.write(f"<td><a href='{url}' target='_blank'>variant</a></td>") 
                     else:
-                        color = "rgb(115, 147, 179)"
+                        color = "rgb(167, 199, 231)"
                         outfile.write(f"<td><a href='{url}' target='_blank'>missing</a></td>") 
-                    time.sleep(1)
+                    time.sleep(0.5)
                 else:
                     outfile.write(f"<td><a href='https://oeis.org/{anum}'>{anum}</a></td>") 
 
