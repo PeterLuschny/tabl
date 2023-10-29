@@ -6,7 +6,9 @@ from typing import Callable, TypeAlias
 from inspect import signature
 import contextlib
 import csv
+import urllib.request
 import requests
+import time
 import gzip
 import sqlite3
 import pandas as pd
@@ -19,7 +21,7 @@ path = Path(__file__).parent.parent
 strippedpath = (path / "data/stripped").resolve()
 
 
-def GetPath(name: str) -> Path:
+def GetRoot(name: str = "") -> Path:
     return (path / name).resolve()
 
 
@@ -246,51 +248,51 @@ def AccRevTabl(T: tabl) -> tabl:
     return AccTabl(RevTabl(T))
 
 
-def FlatTabl(T: tabl) -> trow:
+def Triangle(T: tabl) -> trow:
     return [i for row in T for i in row]
 
 
-def FlatTabl_(g: rgen, row: int) -> trow:
+def Triangle_(g: rgen, row: int) -> trow:
     return g(row)
 
 
-def FlatInvTabl(T: tabl) -> trow:
+def Inv(T: tabl) -> trow:
     IT = InvTabl(T)
     if InvTabl(T) == []:
         return []
     return [i for row in IT for i in row]
 
 
-def FlatRevTabl(T: tabl) -> trow:
+def Rev(T: tabl) -> trow:
     return [i for row in RevTabl(T) for i in row]
 
 
-def FlatInvRevTabl(T: tabl) -> trow:
+def InvRev(T: tabl) -> trow:
     return [i for row in InvTabl(RevTabl(T)) for i in row]
 
 
-def FlatRevInvTabl(T: tabl) -> trow:
+def RevInv(T: tabl) -> trow:
     IT = InvTabl(T)
     return [i for row in RevTabl(IT) for i in row]
 
 
-def FlatAntiDiagTabl(T: tabl) -> trow:
+def AntiDiag(T: tabl) -> trow:
     return [i for row in AntiDiagTabl(T) for i in row]
 
 
-def FlatAccTabl(T: tabl) -> trow:
+def Acc(T: tabl) -> trow:
     return [i for row in AccTabl(T) for i in row]
 
 
-def FlatRevAccTabl(T: tabl) -> trow:
+def RevAcc(T: tabl) -> trow:
     return [i for row in RevAccTabl(T) for i in row]
 
 
-def FlatAccRevTabl(T: tabl) -> trow:
+def AccRev(T: tabl) -> trow:
     return [i for row in AccRevTabl(T) for i in row]
 
 
-def FlatDiffxTabl(T: tabl) -> trow:
+def Diffx(T: tabl) -> trow:
     return [(k + 1) * c for row in T for k, c in enumerate(row)]
 
 
@@ -301,15 +303,15 @@ def PrintTabls(g: tgen, size: int = 8, mdformat: bool = True) -> None:
         TABLSTRAIT[f.__name__] = f
 
     T = g.tab(size)
-    RegisterTablsTrait(FlatTabl)
-    RegisterTablsTrait(FlatRevTabl)
-    RegisterTablsTrait(FlatInvTabl)
-    RegisterTablsTrait(FlatInvRevTabl)
-    RegisterTablsTrait(FlatRevInvTabl)
-    RegisterTablsTrait(FlatAccTabl)
-    RegisterTablsTrait(FlatRevAccTabl)
-    RegisterTablsTrait(FlatAccRevTabl)
-    RegisterTablsTrait(FlatAntiDiagTabl)
+    RegisterTablsTrait(Triangle)
+    RegisterTablsTrait(Rev)
+    RegisterTablsTrait(Inv)
+    RegisterTablsTrait(InvRev)
+    RegisterTablsTrait(RevInv)
+    RegisterTablsTrait(Acc)
+    RegisterTablsTrait(RevAcc)
+    RegisterTablsTrait(AccRev)
+    RegisterTablsTrait(AntiDiag)
     trianglename = T.id
     if mdformat:
         print("#", trianglename, ": Tables")
@@ -323,17 +325,17 @@ def PrintTabls(g: tgen, size: int = 8, mdformat: bool = True) -> None:
             print(f'{trianglename+":"+traitname:<21} {trait(T)}')
 
 
-def Poly(g: rgen, n: int, x: int) -> int:
+def PolyEval_(g: rgen, n: int, x: int) -> int:
     row = g(n)
     return sum(c * (x**j) for (j, c) in enumerate(row))
 
 
-def PolyTabl(T: tabl, n: int, x: int) -> int:
+def PolyEval(T: tabl, n: int, x: int) -> int:
     return sum(T[n][k] * (x**k) for k in range(n + 1))
 
 
 def PolyRow(g: rgen, size: int, row: int) -> trow:
-    return [Poly(g, row, x) for x in range(size)]
+    return [PolyEval_(g, row, x) for x in range(size)]
 
 
 def PolyRow0(g: rgen, size: int) -> trow:
@@ -353,7 +355,7 @@ def PolyRow3(g: rgen, size: int) -> trow:
 
 
 def PolyCol(g: rgen, size: int, col: int) -> trow:
-    return [Poly(g, k, col) for k in range(size)]
+    return [PolyEval_(g, k, col) for k in range(size)]
 
 
 def PolyCol0(g: rgen, size: int) -> trow:
@@ -373,18 +375,18 @@ def PolyCol3(g: rgen, size: int) -> trow:
 
 
 def PolyDiag(g: rgen, size: int) -> trow:
-    return [Poly(g, n, n) for n in range(size)]
+    return [PolyEval_(g, n, n) for n in range(size)]
 
 
-def antidiag_poly(g: rgen, n: int) -> trow:
-    return [Poly(g, n - k, k) for k in range(n + 1)]
+def AntiDiagPoly(g: rgen, n: int) -> trow:
+    return [PolyEval_(g, n - k, k) for k in range(n + 1)]
 
 
 def PolyDiagTabl(g: rgen, size: int) -> tabl:
-    return [antidiag_poly(g, n) for n in range(size)]
+    return [AntiDiagPoly(g, n) for n in range(size)]
 
 
-def PolyDiagRow(g: rgen, size: int) -> trow:
+def Poly(g: rgen, size: int) -> trow:
     return [i for row in PolyDiagTabl(g, size) for i in row]
 
 
@@ -392,24 +394,24 @@ def PolyFrac(T: tabl, x: frac) -> list[frac | int]:
     return [sum(c * (x**k) for (k, c) in enumerate(row)) for row in T]
 
 
-def PosHalf(g: rgen, size: int) -> trow:
+def PosHalf_(g: rgen, size: int) -> trow:
     T = [g(n) for n in range(size)]
     R = PolyFrac(T, frac(1, 2))
     return [((2**n) * r).numerator for n, r in enumerate(R)]
 
 
-def PosHalfTabl(T: tabl) -> trow:
+def PosHalf(T: tabl) -> trow:
     R = PolyFrac(T, frac(1, 2))
     return [((2**n) * r).numerator for n, r in enumerate(R)]
 
 
-def NegHalf(g: rgen, size: int) -> trow:
+def NegHalf_(g: rgen, size: int) -> trow:
     T = [g(n) for n in range(size)]
     R = PolyFrac(T, frac(-1, 2))
     return [(((-2) ** n) * r).numerator for n, r in enumerate(R)]
 
 
-def NegHalfTabl(T: tabl) -> trow:
+def NegHalf(T: tabl) -> trow:
     R = PolyFrac(T, frac(-1, 2))
     return [(((-2) ** n) * r).numerator for n, r in enumerate(R)]
 
@@ -420,7 +422,7 @@ def PrintPolys(t: tgen, size: int = 8, mdformat: bool = True) -> None:
     def RegisterPolyTrait(f: Callable[[t.gen, int], trow]) -> None:
         POLYTRAIT[f.__name__] = f
 
-    RegisterPolyTrait(PolyDiagRow)
+    RegisterPolyTrait(Poly)
     RegisterPolyTrait(PolyRow0)
     RegisterPolyTrait(PolyRow1)
     RegisterPolyTrait(PolyRow2)
@@ -431,8 +433,8 @@ def PrintPolys(t: tgen, size: int = 8, mdformat: bool = True) -> None:
     RegisterPolyTrait(PolyCol3)
 
     RegisterPolyTrait(PolyDiag)
-    RegisterPolyTrait(PosHalf)
-    RegisterPolyTrait(NegHalf)
+    RegisterPolyTrait(PosHalf_)
+    RegisterPolyTrait(NegHalf_)
     trianglename = t.id
     gen = t.gen
     if mdformat:
@@ -485,7 +487,7 @@ def ConvTabl_(g: rgen, size: int) -> tabl:
     return [LinMap_(g, lambda k: g(n)[k], n + 1) for n in range(size)]
 
 
-def ConvTabl(T: tabl) -> tabl:
+def Conv(T: tabl) -> tabl:
     def g(n: int) -> list[int]:
         return [T[n][k] for k in range(n + 1)]
 
@@ -493,7 +495,7 @@ def ConvTabl(T: tabl) -> tabl:
 
 
 def FlatConvTabl(T: tabl) -> trow:
-    return [i for row in ConvTabl(T) for i in row]
+    return [i for row in Conv(T) for i in row]
 
 
 def InvLinMap(g: rgen, V: seq, size: int) -> trow:
@@ -513,16 +515,16 @@ def InvBinMap(V: seq, size: int) -> trow:
     ]
 
 
-def InvBinTabl(T: tabl) -> tabl:
+def InvBin(T: tabl) -> tabl:
     return [InvBinMap(lambda k: T[n][k], n + 1) for n in range(len(T))]
 
 
-def InvBinTabl_(g: rgen, size: int) -> tabl:
+def InvBin_(g: rgen, size: int) -> tabl:
     return [InvBinMap(lambda k: g(n)[k], n + 1) for n in range(size)]
 
 
 def FlatInvBinTabl(T: tabl) -> trow:
-    return [i for row in InvBinTabl(T) for i in row]
+    return [i for row in InvBin(T) for i in row]
 
 
 def InvBinConv(T: tabl) -> trow:
@@ -534,7 +536,7 @@ def InvBinConv(T: tabl) -> trow:
 
 
 def InvBinConv_(g: rgen, size: int) -> trow:
-    T = InvBinTabl_(g, size)
+    T = InvBin_(g, size)
     return [row[-1] for row in T]
 
 
@@ -633,60 +635,60 @@ def Max_(g: rgen, row: int) -> int:
     return reduce(max, absf)
 
 
-def RowMax_(g: rgen, size: int) -> trow:
-    return [Max_(g, row) for row in range(size)]
-
-
 def Max(r: trow) -> int:
     absrow = [abs(n) for n in r]
     return reduce(max, absrow)
+
+
+def RowMax_(g: rgen, size: int) -> trow:
+    return [Max_(g, row) for row in range(size)]
 
 
 def RowMax(T: tabl) -> trow:
     return [Max(row) for row in T]
 
 
-def Trans(g: rgen, V: Callable[[int], int], size: int) -> trow:
+def Trans_(g: rgen, V: Callable[[int], int], size: int) -> trow:
     return [sum(g(n)[k] * V(k) for k in range(n + 1)) for n in range(size)]
 
 
-def TransTabl(T: tabl, V: Callable[[int], int]) -> trow:
+def Trans(T: tabl, V: Callable[[int], int]) -> trow:
     return [sum(T[n][k] * V(k) for k in range(n + 1)) for n in range(len(T))]
 
 
-def TransSqrs(g: rgen, size: int) -> trow:
-    return Trans(g, lambda k: k * k, size)
+def TransSqrs_(g: rgen, size: int) -> trow:
+    return Trans_(g, lambda k: k * k, size)
 
 
-def TransSqrsTabl(T: tabl) -> trow:
-    return TransTabl(T, lambda k: k * k)
+def TransSqrs(T: tabl) -> trow:
+    return Trans(T, lambda k: k * k)
 
 
-def TransNat0(g: rgen, size: int) -> trow:
-    return Trans(g, lambda k: k, size)
+def TransNat0_(g: rgen, size: int) -> trow:
+    return Trans_(g, lambda k: k, size)
 
 
-def TransNat0Tabl(T: tabl) -> trow:
-    return TransTabl(T, lambda k: k)
+def TransNat0(T: tabl) -> trow:
+    return Trans(T, lambda k: k)
 
 
-def TransNat1(g: rgen, size: int) -> trow:
-    return Trans(g, lambda k: k + 1, size)
+def TransNat1_(g: rgen, size: int) -> trow:
+    return Trans_(g, lambda k: k + 1, size)
 
 
-def TransNat1Tabl(T: tabl) -> trow:
-    return TransTabl(T, lambda k: k + 1)
+def TransNat1(T: tabl) -> trow:
+    return Trans(T, lambda k: k + 1)
 
 
 def ColMiddle(T: tabl) -> trow:
     return [row[n // 2] for n, row in enumerate(T)]
 
 
-def ColECentral(T: tabl) -> trow:
+def CentralE(T: tabl) -> trow:
     return [row[n // 2] for n, row in enumerate(T) if n % 2 == 0]
 
 
-def ColOCentral(T: tabl) -> trow:
+def CentralO(T: tabl) -> trow:
     return [row[n // 2] for n, row in enumerate(T) if n % 2 == 1]
 
 
@@ -704,9 +706,9 @@ def PrintTransforms(t: tgen, size: int = 8, mdformat: bool = True) -> None:
     def RegisterTransTrait(f: Callable[[t.gen, int], trow]) -> None:
         TRANSTRAIT[f.__name__] = f
 
-    RegisterTransTrait(TransSqrs)
-    RegisterTransTrait(TransNat0)
-    RegisterTransTrait(TransNat1)
+    RegisterTransTrait(TransSqrs_)
+    RegisterTransTrait(TransNat0_)
+    RegisterTransTrait(TransNat1_)
     RegisterTransTrait(DiagRow0)
     RegisterTransTrait(DiagRow1)
     RegisterTransTrait(DiagRow2)
@@ -739,7 +741,7 @@ def PrintMiscTraits(T: tabl, trianglename: str, mdformat: bool = True) -> None:
     RegisterMiscTrait(RowGcd)
     RegisterMiscTrait(RowMax)
     RegisterMiscTrait(ColMiddle)
-    RegisterMiscTrait(ColECentral)
+    RegisterMiscTrait(CentralE)
     RegisterMiscTrait(ColLeft)
     RegisterMiscTrait(ColRight)
     RegisterMiscTrait(BinConv)
@@ -852,14 +854,14 @@ def AccRevSum_(g: rgen, size: int) -> trow:
     return [accrev_sum(g(n)) for n in range(size)]
 
 
-def AntiDiagSum(T: tabl) -> trow:
+def DiagSum(T: tabl) -> trow:
     def row(n: int) -> list[int]:
         return [T[n - k - 1][k] for k in range((n + 1) // 2)]
 
     return [sum(row(n)) for n in range(1, len(T) + 1)]
 
 
-def AntiDiagSum_(g: rgen, size: int) -> trow:
+def DiagSum_(g: rgen, size: int) -> trow:
     return [antidiag_sum_(g, n) for n in range(size)]
 
 
@@ -875,7 +877,7 @@ def PrintSums(T: tabl, trianglename: str, mdformat: bool = True) -> None:
     RegisterSumTrait(AltSum)
     RegisterSumTrait(AccSum)
     RegisterSumTrait(AccRevSum)
-    RegisterSumTrait(AntiDiagSum)
+    RegisterSumTrait(DiagSum)
     if mdformat:
         # print("#", trianglename, ": Sums")
         print("| Trait        |   Seq  |")
@@ -942,7 +944,7 @@ def PrintPolyColArray(T: rgen, rows: int, cols: int) -> None:
 def PrintFlats(t: tabl) -> None:
     print("| Flat       |  Seq  |")
     print("| :---       | :---  |")
-    print(f"| Tabl       | {t} |")
+    print(f"| Triangle   | {t} |")
     print(f"| RevTabl    | {RevTabl(t)} |")
     print(f"| AntiDiag   | {AntiDiagTabl(t)} |")
     print(f"| AccTabl    | {AccTabl(t)} |")
@@ -957,13 +959,13 @@ def PrintTrans(t: tabl) -> None:
     print(f"| RowGcd     | {RowGcd(t)} |")
     print(f"| RowMax     | {RowMax(t)} |")
     print(f"| ColMiddle  | {ColMiddle(t)} |")
-    print(f"| ColECenter | {ColECentral(t)} |")
-    print(f"| ColOCenter | {ColOCentral(t)} |")
+    print(f"| CentralE   | {CentralE(t)} |")
+    print(f"| CentralO   | {CentralO(t)} |")
     print(f"| ColLeft    | {ColLeft(t)} |")
     print(f"| ColRight   | {ColRight(t)} |")
-    print(f"| TransSqrs  | {TransSqrsTabl(t)} |")
-    print(f"| TransNat0  | {TransNat0Tabl(t)} |")
-    print(f"| TransNat1  | {TransNat1Tabl(t)} |")
+    print(f"| TransSqrs  | {TransSqrs(t)} |")
+    print(f"| TransNat0  | {TransNat0(t)} |")
+    print(f"| TransNat1  | {TransNat1(t)} |")
 
 
 def PrintViews(g: tgen, rows: int = 7, verbose: bool = True) -> None:
@@ -1020,7 +1022,7 @@ def Profile(T: tgen, hor: int = 10) -> dict[str, list[int]]:
     d["AltSum"] = AltSum(t)
     d["AccSum"] = AccSum(t)
     d["AccRevSum"] = AccRevSum(t)
-    d["AntiDiagSum"] = AntiDiagSum(t)
+    d["AntiDiagSum"] = DiagSum(t)
     # DiagsAsRowArray
     rows: int = ver
     cols: int = hor
@@ -2569,11 +2571,9 @@ The notebook gives a first introduction for the user.
 """
 
 
-def CrossReferences(name: str = "README") -> None:
-    """Writes a table in markdown style.
-    Uses stored data from fun.sim (no searching)
-    """
-    path = GetDataPath(name, "md")
+def CrossReferences(name: str = "README.md") -> None:
+    """Writes the crossreferences as a md-table to the root."""
+    path = GetRoot(name)
     with open(path, "w+", encoding="utf-8") as xrefs:
         xrefs.write(readme_header)
         xrefs.write("| Table |  Source | Traits   |  OEIS similars |\n")
@@ -2588,6 +2588,8 @@ def CrossReferences(name: str = "README") -> None:
             xrefs.write(
                 f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/data/md/{id}.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://oeis.org/search?q={anum}) |\n"
             )
+
+    print("Info: 'README.md' written to the root folder.")
 
 
 def SaveExtendedTables(dim: int = 10) -> None:
@@ -2610,6 +2612,12 @@ def SaveExtendedTables(dim: int = 10) -> None:
                     PrintViews(r, dim)
 
 
+def IsInOEIS(url: str) -> bool:
+    with urllib.request.urlopen(url) as response:
+        page = response.read()
+        return -1 == page.find(b'"count": 0', 36, 236)
+
+
 Header = [
     "<!DOCTYPE html>",
     "<html lang='en'><head><meta charset='UTF-8'/>",
@@ -2630,7 +2638,7 @@ CSS = [
     "a:hover {background-color: #AFE1AF;} ",
     "#rcor1 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 60px; height: 0px;} ",
     "#rcor2 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 60px; height: 0px;} ",
-    "#rcor3 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 60px; height: 0px;} ",
+    "#rcor3 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 66px; height: 0px;} ",
     "#rcor4 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 880px; height: 20px; font-weight: 700; text-align: center;} ",
     ".center {margin-top: 1em;} ",
     ".type { font-weight: 600;} ",
@@ -2742,7 +2750,7 @@ def CsvToHtml(fun: tgen) -> None:
     FORMULA = Formulas()
     with open(csvfile, "r") as csvfile:
         reader = csv.reader(csvfile)
-        with open(outfile, "a") as outfile:
+        with open(outfile, "w+") as outfile:
             for l in Header:
                 outfile.write(l)
             outfile.write(f"<title>{name} : IntegerTriangles.py</title>")
@@ -2763,7 +2771,7 @@ def CsvToHtml(fun: tgen) -> None:
                 outfile.write(l)
             for line in reader:
                 # Layout: index,triangle,trait,anum,seq
-                # 0,Abel:Std,FlatTabl,A137452,1 0 1 0 ...
+                # 0,Abel:Std,Triangle,A137452,1 0 1 0 ...
                 # index = line[0]
                 l = line[1]
                 type = l[l.index(":") + 1 :]
@@ -2771,24 +2779,35 @@ def CsvToHtml(fun: tgen) -> None:
                 anum = line[3]
                 seq = line[4]
                 outfile.write(f"<tr><td class='type'>{type}</td>")
-                if "Flat" in trait:
-                    trait = trait.replace("Flat", "")
                 tip = FORMULA[trait]
                 outfile.write(
                     f"<td class='tooltip'>{trait}<span class='formula'>{tip}</span></td>"
                 )
                 # Anum
-                if anum == "":  # this will not happen ?
-                    outfile.write(
-                        f"<td><a href='https://oeis.org/?q={seq}&sort=&#language=&go=search' target='_blank'>search</a></td>"
-                    )
-                    # outfile.write(f"<td style='text-align:center;'><a href='http://sequencedb.net/index.html?s={sep}' target='_blank'>search</a></td>")
+                color = ""
+                if anum == "missing":  # start with a(3) !
+                    sseq = (seq.split(" ", 3)[3]).replace(" ", ",")
+                    url = f"https://oeis.org/search?q={sseq}&fmt=json"
+                    if IsInOEIS(url):
+                        color = "rgb(130, 177, 255)"
+                        url = f"https://oeis.org/search?q={sseq}"
+                        outfile.write(
+                            f"<td><a href='{url}' target='_blank'>variant</a></td>"
+                        )
+                    else:
+                        color = "rgb(115, 147, 179)"
+                        outfile.write(
+                            f"<td><a href='{url}' target='_blank'>missing</a></td>"
+                        )
+                    time.sleep(1)
                 else:
                     outfile.write(
                         f"<td><a href='https://oeis.org/{anum}'>{anum}</a></td>"
                     )
                 # seq
-                outfile.write(f"<td style='font-family:Consolas'>{seq}</td></tr>")
+                outfile.write(
+                    f"<td style='font-family:Consolas;color:{color}'>{seq}</td></tr>"
+                )
             outfile.write("</tbody></table>")
             for l in navbar(fun):
                 outfile.write(l)
@@ -2816,45 +2835,40 @@ def RegisterTraits() -> dict[str, Callable]:
         TRAITS[f.__name__] = f
 
     # TYPE: Callable[[tabl], trow]]:
-    RegisterTrait(FlatTabl)  # must always come first!
-    RegisterTrait(FlatRevTabl)
-    RegisterTrait(FlatInvTabl)
-    RegisterTrait(FlatRevInvTabl)
-    RegisterTrait(FlatInvRevTabl)
-    RegisterTrait(FlatAccTabl)
-    # RegisterTrait(FlatRevAccTabl) # rarely found
-    RegisterTrait(FlatAccRevTabl)
-    RegisterTrait(FlatAntiDiagTabl)
-    # RegisterTrait(FlatBinTabl)    # rarely found
-    # RegisterTrait(FlatInvBinTabl) # rarely found
-    RegisterTrait(FlatDiffxTabl)
+    RegisterTrait(Triangle)  # is flat; must always come first!
+    RegisterTrait(Rev)
+    RegisterTrait(Inv)
+    RegisterTrait(RevInv)
+    RegisterTrait(InvRev)
+    RegisterTrait(Acc)
+    # RegisterTrait(RevAcc) # rarely found
+    RegisterTrait(AccRev)
+    RegisterTrait(AntiDiag)
+    RegisterTrait(Diffx)
     RegisterTrait(RowSum)
     RegisterTrait(EvenSum)
     RegisterTrait(OddSum)
     RegisterTrait(AltSum)
-    RegisterTrait(AntiDiagSum)
+    RegisterTrait(DiagSum)
     RegisterTrait(AccSum)
     RegisterTrait(AccRevSum)
     RegisterTrait(RowLcm)
     RegisterTrait(RowGcd)
     RegisterTrait(RowMax)
     RegisterTrait(ColMiddle)
-    RegisterTrait(ColECentral)
-    RegisterTrait(ColOCentral)
+    RegisterTrait(CentralE)
+    RegisterTrait(CentralO)
     RegisterTrait(ColLeft)
     RegisterTrait(ColRight)
 
     RegisterTrait(BinConv)
     RegisterTrait(InvBinConv)
-    RegisterTrait(TransNat0Tabl)
-    RegisterTrait(TransNat1Tabl)
-    RegisterTrait(TransSqrsTabl)
-    RegisterTrait(PosHalfTabl)
-    RegisterTrait(NegHalfTabl)
+    RegisterTrait(TransNat0)
+    RegisterTrait(TransNat1)
+    RegisterTrait(TransSqrs)
+    RegisterTrait(PosHalf)
+    RegisterTrait(NegHalf)
     # TYPE Callable[[rgen, int], trow]]
-    # RegisterTrait(TransNat0)
-    # RegisterTrait(TransNat1)
-    # RegisterTrait(TransSqrs)
     # RegisterTrait(DiagRow0) same as ColRight
     RegisterTrait(DiagRow1)
     RegisterTrait(DiagRow2)
@@ -2863,42 +2877,36 @@ def RegisterTraits() -> dict[str, Callable]:
     RegisterTrait(DiagCol1)
     RegisterTrait(DiagCol2)
     RegisterTrait(DiagCol3)
-    RegisterTrait(PolyDiagRow)
+    RegisterTrait(Poly)
     # RegisterTrait(PolyRow0)
     RegisterTrait(PolyRow1)
     RegisterTrait(PolyRow2)
     RegisterTrait(PolyRow3)
     # RegisterTrait(PolyCol0) same as ColLeft
     # RegisterTrait(PolyCol1) same as RowSum
-    # Bernoulli(n,0) versus Bernoulli(n,1)!
     RegisterTrait(PolyCol2)
     RegisterTrait(PolyCol3)
     RegisterTrait(PolyDiag)
-    # RegisterTrait(PosHalf)
-    # RegisterTrait(NegHalf)
     return TRAITS
 
 
 def Formulas() -> dict[str, str]:
     FORMULA: dict[str, str] = {}
-    FORMULA["Tabl"] = "T(n, k), 0 &le; k &le; n"
-    FORMULA["FlatTabl"] = "T(n, k), 0 &le; k &le; n"
-    FORMULA["RevTabl"] = "T(n, n - k), 0 &le; k &le; n"
-    FORMULA["InvTabl"] = "T<sup>-1</sup>(n, k), 0 &le; k &le; n"
-    FORMULA["RevInvTabl"] = "T<sup>-1</sup>(n, n - k), 0 &le; k &le; n"
-    FORMULA["InvRevTabl"] = "(T(n, n - k))<sup>-1</sup>, 0 &le; k &le; n"
-    FORMULA["AccTabl"] = "see docs"
-    FORMULA["RevAccTabl"] = "see docs"
-    FORMULA["AccRevTabl"] = "see docs"
-    FORMULA["AntiDiagTabl"] = "see docs"
-    FORMULA["BinTabl"] = "see docs"
-    FORMULA["InvBinTabl"] = "see docs"
-    FORMULA["DiffxTabl"] = "T(n, k) (k+1)"
+    FORMULA["Triangle"] = "T(n, k), 0 &le; k &le; n"
+    FORMULA["Rev"] = "T(n, n - k), 0 &le; k &le; n"
+    FORMULA["Inv"] = "T<sup>-1</sup>(n, k), 0 &le; k &le; n"
+    FORMULA["RevInv"] = "T<sup>-1</sup>(n, n - k), 0 &le; k &le; n"
+    FORMULA["InvRev"] = "(T(n, n - k))<sup>-1</sup>, 0 &le; k &le; n"
+    FORMULA["Acc"] = "see docs"
+    FORMULA["RevAcc"] = "see docs"
+    FORMULA["AccRev"] = "see docs"
+    FORMULA["AntiDiag"] = "see docs"
+    FORMULA["Diffx"] = "T(n, k) (k+1)"
     FORMULA["RowSum"] = "&sum;<sub> k=0..n </sub> T(n, k)"
     FORMULA["EvenSum"] = "&sum;<sub> k=0..n </sub> T(n, k) even(k)"
     FORMULA["OddSum"] = "&sum;<sub> k=0..n </sub> T(n, k) odd(k)"
     FORMULA["AltSum"] = "&sum;<sub> k=0..n </sub> T(n, k) (-1)^k"
-    FORMULA["AntiDiagSum"] = "&sum;<sub> k=0..n // 2 </sub> T(n - k, k)"
+    FORMULA["DiagSum"] = "&sum;<sub> k=0..n // 2 </sub> T(n - k, k)"
     FORMULA["AccSum"] = "&sum;<sub> k=0..n </sub>&sum;<sub> j=0..k </sub> T(n, j)"
     FORMULA[
         "AccRevSum"
@@ -2907,31 +2915,30 @@ def Formulas() -> dict[str, str]:
     FORMULA["RowGcd"] = "Gcd<sub> k=0..n </sub> | T(n, k) | &gt; 1"
     FORMULA["RowMax"] = "Max<sub> k=0..n </sub> | T(n, k) |"
     FORMULA["ColMiddle"] = "T(n, n // 2)"
-    FORMULA["ColECentral"] = "T(2 n, n)"
-    FORMULA["ColOCentral"] = "T(2 n + 1, n)"
+    FORMULA["CentralE"] = "T(2 n, n)"
+    FORMULA["CentralO"] = "T(2 n + 1, n)"
     FORMULA["ColLeft"] = "T(n, 0)"
     FORMULA["ColRight"] = "T(n, n)"
     FORMULA["BinConv"] = "&sum;<sub> k=0..n </sub> C(n, k) T(n, k)"
     FORMULA["InvBinConv"] = "&sum;<sub> k=0..n </sub> C(n, k) T(n, n - k) (-1)^k"
-    FORMULA["TransSqrsTabl"] = "&sum;<sub> k=0..n </sub> T(n, k) k^2"
-    FORMULA["TransNat0Tabl"] = "&sum;<sub> k=0..n </sub> T(n, k) k"
-    FORMULA["TransNat1Tabl"] = "&sum;<sub> k=0..n </sub> T(n, k) (k + 1)^k"
+    FORMULA["TransSqrs"] = "&sum;<sub> k=0..n </sub> T(n, k) k^2"
+    FORMULA["TransNat0"] = "&sum;<sub> k=0..n </sub> T(n, k) k"
+    FORMULA["TransNat1"] = "&sum;<sub> k=0..n </sub> T(n, k) (k + 1)^k"
     FORMULA["DiagRow1"] = "T(n + 1, n)"
     FORMULA["DiagRow2"] = "T(n + 2, n)"
     FORMULA["DiagRow3"] = "T(n + 3, n)"
     FORMULA["DiagCol1"] = "T(n + 1, 1)"
     FORMULA["DiagCol2"] = "T(n + 2, 2)"
     FORMULA["DiagCol3"] = "T(n + 3, 3)"
-    FORMULA["PolyTabl"] = "see docs"
+    FORMULA["Poly"] = "see docs"
     FORMULA["PolyRow1"] = "&sum;<sub> k=0..1 </sub>T(1, k) n^k"
     FORMULA["PolyRow2"] = "&sum;<sub> k=0..2 </sub>T(2, k) n^k"
     FORMULA["PolyRow3"] = "&sum;<sub> k=0..3 </sub>T(3, k) n^k"
     FORMULA["PolyCol2"] = "&sum;<sub> k=0..n </sub>T(n, k) 2^k"
     FORMULA["PolyCol3"] = "&sum;<sub> k=0..n </sub>T(n, k) 3^k"
     FORMULA["PolyDiag"] = "&sum;<sub> k=0..n </sub>T(n, k) n^k"
-    FORMULA["PolyDiagRow"] = "see docs"
-    FORMULA["PosHalfTabl"] = "&sum;<sub> k=0..n </sub>2^n T(n, k) (1/2)^k"
-    FORMULA["NegHalfTabl"] = "&sum;<sub> k=0..n </sub>(-2)^n T(n, k) (-1/2)^k"
+    FORMULA["PosHalf"] = "&sum;<sub> k=0..n </sub>2^n T(n, k) (1/2)^k"
+    FORMULA["NegHalf"] = "&sum;<sub> k=0..n </sub>(-2)^n T(n, k) (-1/2)^k"
     return FORMULA
 
 
@@ -3125,7 +3132,7 @@ def SaveAllTraitsToDB(tabl_fun: list[tgen]) -> None:
                 SaveExtendedTraitsToDB(fun, 32, traits_cur, oeis_cur, name)
         db.commit()
 
-    print("Created database traits.db in data/db.")
+    print("Info: Created database traits.db in data/db.")
 
 
 def SaveTraitsToDB(fun: tgen) -> None:
@@ -3139,7 +3146,7 @@ def SaveTraitsToDB(fun: tgen) -> None:
             SaveExtendedTraitsToDB(fun, 32, traits_cur, oeis_cur, name)
 
         db.commit()
-    print(f"Created database {name}.db in data/db.")
+    print(f"Info: Created database {name}.db in data/db.")
 
 
 """
@@ -3167,8 +3174,44 @@ def SaveFoundDB(dbpath: Path) -> int:
             table_name = table_name[0]
             sql = f"SELECT triangle, trait, anum, seq FROM {table_name} WHERE anum != 'A000012' AND anum != 'A000007' AND anum != 'A000004' AND anum != 'missing'"
             table = pd.read_sql_query(sql, db)
+            table.to_csv(GetDataPath(table_name + "F", "csv"), index_label="index")
+            table.to_markdown(GetDataPath(table_name + "F", "md"))
+            size = table.size // 4
+        cursor.close()
+    return size
+
+
+def SaveDB_CSV_MD(dbpath: Path) -> int:
+    size = 0
+    with sqlite3.connect(dbpath) as db:
+        cursor = db.cursor()
+        sql = "SELECT name FROM sqlite_master WHERE type='table';"
+        cursor.execute(sql)
+        tables = cursor.fetchall()
+        for table_name in tables:
+            table_name = table_name[0]
+            sql = f"SELECT triangle, trait, anum, seq FROM {table_name} WHERE anum != 'A000012' AND anum != 'A000007' AND anum != 'A000004'"
+            table = pd.read_sql_query(sql, db)
             table.to_csv(GetDataPath(table_name, "csv"), index_label="index")
             table.to_markdown(GetDataPath(table_name, "md"))
+            size = table.size // 4
+        cursor.close()
+    return size
+
+
+def SaveMissingDB(dbpath: Path) -> int:
+    size = 0
+    with sqlite3.connect(dbpath) as db:
+        cursor = db.cursor()
+        sql = "SELECT name FROM sqlite_master WHERE type='table';"
+        cursor.execute(sql)
+        tables = cursor.fetchall()
+        for table_name in tables:
+            table_name = table_name[0]
+            sql = f"SELECT triangle, trait, anum, seq FROM {table_name} WHERE anum == 'missing'"
+            table = pd.read_sql_query(sql, db)
+            table.to_csv(GetDataPath(table_name + "X", "csv"), index_label="index")
+            table.to_markdown(GetDataPath(table_name + "X", "md"))
             size = table.size // 4
         cursor.close()
     return size

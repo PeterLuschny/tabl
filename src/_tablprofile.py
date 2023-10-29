@@ -1,6 +1,6 @@
 
 from _tablpoly import PolyRow,PolyCol
-from _tablsums import RowSum,EvenSum, OddSum,AltSum,AccSum,AccRevSum,AntiDiagSum
+from _tablsums import RowSum,EvenSum, OddSum,AltSum,AccSum,AccRevSum,DiagSum
 from _tabltypes import tgen, tabl, inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
 
 def flat(t: tabl) -> list[int]: 
@@ -34,7 +34,7 @@ def Profile(T: tgen, hor: int = 10) -> dict[str, list[int]]:
     d["AltSum"] = AltSum(t)
     d["AccSum"] = AccSum(t)
     d["AccRevSum"] = AccRevSum(t)
-    d["AntiDiagSum"] = AntiDiagSum(t)
+    d["AntiDiagSum"] = DiagSum(t)
 
     # DiagsAsRowArray
     rows: int = ver

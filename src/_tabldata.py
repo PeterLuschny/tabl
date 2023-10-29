@@ -210,9 +210,10 @@ def SaveAllTraitsToDB(tabl_fun: list[tgen]) -> None:
             oeis_cur = oeis.cursor()
             for fun in tabl_fun:
                 SaveExtendedTraitsToDB(fun, 32, traits_cur, oeis_cur, name)
+
         db.commit()
     
-    print("Created database traits.db in data/db.")
+    print("Info: Created database traits.db in data/db.")
 
 
 def SaveTraitsToDB(fun: tgen) -> None:
@@ -228,7 +229,7 @@ def SaveTraitsToDB(fun: tgen) -> None:
     
         db.commit()
 
-    print(f"Created database {name}.db in data/db.")
+    print(f"Info: Created database {name}.db in data/db.")
 
 
 """
@@ -260,8 +261,44 @@ def SaveFoundDB(dbpath: Path) -> int:
             table_name = table_name[0]
             sql = f"SELECT triangle, trait, anum, seq FROM {table_name} WHERE anum != 'A000012' AND anum != 'A000007' AND anum != 'A000004' AND anum != 'missing'"
             table = pd.read_sql_query(sql, db)
+            table.to_csv(GetDataPath(table_name + "F", "csv"), index_label='index')
+            table.to_markdown(GetDataPath(table_name + "F", "md"))
+            size = table.size // 4
+        cursor.close()
+    return size
+
+
+def SaveDB_CSV_MD(dbpath: Path) -> int:
+    size = 0
+    with sqlite3.connect(dbpath) as db:
+        cursor = db.cursor()
+        sql = "SELECT name FROM sqlite_master WHERE type='table';"
+        cursor.execute(sql)
+        tables = cursor.fetchall()
+        for table_name in tables:
+            table_name = table_name[0]
+            sql = f"SELECT triangle, trait, anum, seq FROM {table_name} WHERE anum != 'A000012' AND anum != 'A000007' AND anum != 'A000004'"
+            table = pd.read_sql_query(sql, db)
             table.to_csv(GetDataPath(table_name, "csv"), index_label='index')
             table.to_markdown(GetDataPath(table_name, "md"))
+            size = table.size // 4
+        cursor.close()
+    return size
+
+
+def SaveMissingDB(dbpath: Path) -> int:
+    size = 0
+    with sqlite3.connect(dbpath) as db:
+        cursor = db.cursor()
+        sql = "SELECT name FROM sqlite_master WHERE type='table';"
+        cursor.execute(sql)
+        tables = cursor.fetchall()
+        for table_name in tables:
+            table_name = table_name[0]
+            sql = f"SELECT triangle, trait, anum, seq FROM {table_name} WHERE anum == 'missing'"
+            table = pd.read_sql_query(sql, db)
+            table.to_csv(GetDataPath(table_name + "X", "csv"), index_label='index')
+            table.to_markdown(GetDataPath(table_name + "X", "md"))
             size = table.size // 4
         cursor.close()
     return size
@@ -325,17 +362,13 @@ if __name__ == "__main__":
         GetOEISdata()
         SaveAllTraitsToDB(tabl_fun)
         SaveFoundDB(GetDataPath('traits', 'db'))
-
-    def test6():
-        from Abel import Abel
-        SaveTraitsToDB(Abel)
-        SaveFoundDB(GetDataPath(Abel.id, 'db') )
+   
 
     def test7():
         # from Lah import Lah
         from Abel import Abel
         SaveTraitsToDB(Abel)
-        found = SaveFoundDB(GetDataPath(Abel.id, 'db') )
+        found = SaveDB_CSV_MD(GetDataPath(Abel.id, 'db') )
         print(f"{Abel.id}.csv references {found} sequences from OEIS.")
 
     def test8():
@@ -350,12 +383,22 @@ if __name__ == "__main__":
     
         # GetOEISdata()
         # SaveAllTraitsToDB(tabl_fun)
-        # SaveDBasCSV(GetDataPath('traits', 'db'))
 
         for fun in tabl_fun:
             SaveTraitsToDB(fun)
             size = SaveFoundDB(GetDataPath(fun.id, "db") )
             print(f"{fun.id}.csv references {size} sequences from OEIS.")
 
+    def test999():
+        #from Abel import Abel
+        #SaveMixedDB(GetDataPath(Abel.id, 'db') )
+        from tabl import tabl_fun
+        for fun in tabl_fun:
+            # size = SaveMissingDB(GetDataPath(fun.id, 'db') )
+            # print(f"OEIS misses {size} sequences for {fun.id}.")
+           
+            size = SaveDB_CSV_MD(GetDataPath(fun.id, 'db') )
+            print(f"{size} sequences for {fun.id} identified.")
+            
     test7()
    

@@ -2,11 +2,11 @@ from _tabltypes import  rgen, tgen, tabl
 from _tablpoly import PolyCol, PolyRow
 from _tabltabls import AccTabl, RevAccTabl, AccRevTabl, RevTabl, AntiDiagTabl
 from _tablsums import PrintSums
-from _tabltransforms import ColMiddle, ColECentral, ColLeft,ColRight, RowLcm, RowGcd, RowMax, ColOCentral
-from _tabltransforms import TransSqrsTabl, TransNat0Tabl, TransNat1Tabl
-
+from _tabltransforms import ColMiddle, CentralE, ColLeft,ColRight, RowLcm, RowGcd, RowMax, CentralO
+from _tabltransforms import TransSqrs, TransNat0, TransNat1
 
 # #@
+
 
 def PrintTabl(t: tabl) -> None:
     for row in t:
@@ -63,7 +63,7 @@ def PrintPolyColArray(T: rgen, rows: int, cols: int) -> None:
 def PrintFlats(t: tabl) -> None:
     print( "| Flat       |  Seq  |")
     print( "| :---       | :---  |")
-    print(f'| Tabl       | {t} |')
+    print(f'| Triangle   | {t} |')
     print(f'| RevTabl    | {RevTabl(t)} |')
     print(f'| AntiDiag   | {AntiDiagTabl(t)} |')
     print(f'| AccTabl    | {AccTabl(t)} |')
@@ -78,15 +78,13 @@ def PrintTrans(t: tabl) -> None:
     print(f'| RowGcd     | {RowGcd(t)} |')
     print(f'| RowMax     | {RowMax(t)} |')
     print(f'| ColMiddle  | {ColMiddle(t)} |')
-    print(f'| ColECenter | {ColECentral(t)} |')
-    print(f'| ColOCenter | {ColOCentral(t)} |')
+    print(f'| CentralE   | {CentralE(t)} |')
+    print(f'| CentralO   | {CentralO(t)} |')
     print(f'| ColLeft    | {ColLeft(t)} |')
     print(f'| ColRight   | {ColRight(t)} |')
-    print(f'| TransSqrs  | {TransSqrsTabl(t)} |')
-    print(f'| TransNat0  | {TransNat0Tabl(t)} |')
-    print(f'| TransNat1  | {TransNat1Tabl(t)} |')
-#    print(f'| Bin        | {transbinval(t)} |')
-#    print(f'| InvBin     | {invtransbinval(t)} |')
+    print(f'| TransSqrs  | {TransSqrs(t)} |')
+    print(f'| TransNat0  | {TransNat0(t)} |')
+    print(f'| TransNat1  | {TransNat1(t)} |')
 
 
 def PrintViews(g: tgen, rows: int = 7, verbose: bool = True) -> None:

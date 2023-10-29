@@ -55,7 +55,6 @@ if __name__ == "__main__":
 
     # test()
 
-
     from Abel import Abel
     from Bell import Bell
     from StirlingSet import StirlingSet

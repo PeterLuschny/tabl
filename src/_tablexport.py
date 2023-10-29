@@ -1,7 +1,7 @@
 from tabl import tabl_fun
 
 import contextlib
-from _tablpaths import GetDataPath
+from _tablpaths import GetRoot, GetDataPath
 from _tablviews import PrintViews
 from _tablpaths import GetDataPath
 from _tabltypes import (
@@ -27,13 +27,11 @@ The notebook gives a first introduction for the user.
 
 """
 
-
-def CrossReferences(name: str="README") -> None:
-    """Writes a table in markdown style.
-    Uses stored data from fun.sim (no searching)
+def CrossReferences(name: str="README.md") -> None:
+    """Writes the crossreferences as a md-table to the root.
     """
 
-    path = GetDataPath(name, 'md')
+    path = GetRoot(name)
 
     with open(path, "w+", encoding='utf-8') as xrefs:
 
@@ -50,6 +48,8 @@ def CrossReferences(name: str="README") -> None:
                 anum += "%7Cid%3A" + sim
             xrefs.write(
                 f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/data/md/{id}.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://oeis.org/search?q={anum}) |\n")
+            
+    print("Info: 'README.md' written to the root folder.")
 
 
 def SaveExtendedTables(dim: int = 10) -> None:

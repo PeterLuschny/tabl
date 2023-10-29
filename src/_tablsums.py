@@ -83,12 +83,12 @@ def AccRevSum(T: tabl) -> trow:
 def AccRevSum_(g: rgen, size: int) -> trow:
     return [accrev_sum(g(n)) for n in range(size)]
 
-def AntiDiagSum(T: tabl) -> trow:
+def DiagSum(T: tabl) -> trow:
     def row(n: int)->list[int]: 
         return [T[n - k - 1][k] for k in range((n + 1) // 2)]
     return [sum(row(n)) for n in range(1, len(T) + 1)]
 
-def AntiDiagSum_(g: rgen, size: int) -> trow:
+def DiagSum_(g: rgen, size: int) -> trow:
     return [antidiag_sum_(g, n) for n in range(size)]
 
 
@@ -104,7 +104,7 @@ def PrintSums(T: tabl, trianglename: str, mdformat: bool = True) -> None:
     RegisterSumTrait(AltSum)
     RegisterSumTrait(AccSum)
     RegisterSumTrait(AccRevSum)
-    RegisterSumTrait(AntiDiagSum)
+    RegisterSumTrait(DiagSum)
 
     if mdformat:
         # print("#", trianglename, ": Sums")

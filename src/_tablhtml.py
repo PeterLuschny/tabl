@@ -1,10 +1,19 @@
+import time
 import csv
+import urllib.request
 from _tabltypes import tgen
 from _tablpaths import GetDataPath
 from _tabltraits import Formulas
 from tabl import tabl_fun
 
 # #@
+
+
+def IsInOEIS(url: str) -> bool:
+    with urllib.request.urlopen(url) as response:
+        page = response.read()
+        return -1 == page.find(b'"count": 0', 36, 236)
+
 
 Header = [
 "<!DOCTYPE html>",
@@ -26,7 +35,7 @@ CSS = ["<style> body {font-family: 'Segoe UI', sans-serif;} ",
     "a:hover {background-color: #AFE1AF;} ",
     "#rcor1 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 60px; height: 0px;} ",
     "#rcor2 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 60px; height: 0px;} ",
-    "#rcor3 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 60px; height: 0px;} ",
+    "#rcor3 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 66px; height: 0px;} ",
     "#rcor4 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 880px; height: 20px; font-weight: 700; text-align: center;} ",
     ".center {margin-top: 1em;} ",
     ".type { font-weight: 600;} ",
@@ -36,7 +45,7 @@ CSS = ["<style> body {font-family: 'Segoe UI', sans-serif;} ",
     "</style></head><body>"]
 
 # layout: index,triangle,trait,anum,seq
-# 0,Abel:Std,FlatTabl,A137452,1 0 1 0 ...
+# 0,Abel:Std,Triangle,A137452,1 0 1 0 ...
 Table = [ "<table class='sortable'><thead><tr>",
     "<th id='rcor1'>&#8597; Type</th>",
     "<th id='rcor2'>&#8597; Trait</th>",
@@ -88,6 +97,7 @@ def HtmlTriangle(fun: tgen) -> str:
 
 funnames = [fun.id for fun in tabl_fun]
 
+
 def getprevnext(funname: list[str]) -> tuple[str, str]:
     idx = funnames.index(funname)
     prev = idx - 1; succ = idx + 1;
@@ -116,7 +126,7 @@ def navbar(fun: tgen) -> list[str]:
 
 def CsvToHtml(fun: tgen) -> None:
 
-    name = fun.id
+    name = fun.id 
 
     csvfile = GetDataPath(name, 'csv')
     outfile = GetDataPath(name, 'html')
@@ -126,7 +136,7 @@ def CsvToHtml(fun: tgen) -> None:
     with open(csvfile, 'r') as csvfile:
         reader = csv.reader(csvfile)
 
-        with open(outfile, 'a') as outfile:
+        with open(outfile, 'w+') as outfile:
 
             for l in Header: 
                 outfile.write(l)  
@@ -148,9 +158,8 @@ def CsvToHtml(fun: tgen) -> None:
                 outfile.write(l) 
 
             for line in reader:
-
                 # Layout: index,triangle,trait,anum,seq
-                # 0,Abel:Std,FlatTabl,A137452,1 0 1 0 ...
+                # 0,Abel:Std,Triangle,A137452,1 0 1 0 ...
                 # index = line[0]
                 l = line[1]
                 type = l[l.index(':')+1:]
@@ -159,20 +168,27 @@ def CsvToHtml(fun: tgen) -> None:
                 seq = line[4]
 
                 outfile.write(f"<tr><td class='type'>{type}</td>")
-
-                if "Flat" in trait: trait = trait.replace('Flat', '')
                 tip = FORMULA[trait]
                 outfile.write(f"<td class='tooltip'>{trait}<span class='formula'>{tip}</span></td>") 
 
                 # Anum
-                if anum == '':  # this will not happen ?
-                    outfile.write(f"<td><a href='https://oeis.org/?q={seq}&sort=&#language=&go=search' target='_blank'>search</a></td>") 
-                    #outfile.write(f"<td style='text-align:center;'><a href='http://sequencedb.net/index.html?s={sep}' target='_blank'>search</a></td>")
+                color = ''
+                if anum == 'missing':  # start with a(3) !
+                    sseq = (seq.split(' ', 3)[3]).replace(' ', ',')
+                    url = f'https://oeis.org/search?q={sseq}&fmt=json'
+                    if IsInOEIS(url): 
+                        color = "rgb(130, 177, 255)"
+                        url = f'https://oeis.org/search?q={sseq}'
+                        outfile.write(f"<td><a href='{url}' target='_blank'>variant</a></td>") 
+                    else:
+                        color = "rgb(115, 147, 179)"
+                        outfile.write(f"<td><a href='{url}' target='_blank'>missing</a></td>") 
+                    time.sleep(1)
                 else:
                     outfile.write(f"<td><a href='https://oeis.org/{anum}'>{anum}</a></td>") 
 
                 # seq
-                outfile.write(f"<td style='font-family:Consolas'>{seq}</td></tr>") 
+                outfile.write(f"<td style='font-family:Consolas;color:{color}'>{seq}</td></tr>") 
 
             outfile.write("</tbody></table>") 
 
@@ -185,7 +201,7 @@ def CsvToHtml(fun: tgen) -> None:
             for l in SCRIPT:
                 outfile.write(l)
 
-
+ 
 def AllCsvToHtml() -> None:
     for fun in tabl_fun:
         CsvToHtml(fun)
@@ -194,9 +210,12 @@ def AllCsvToHtml() -> None:
 if __name__ == "__main__":
 
     from Abel import Abel
-    from CatalanSqr import CatalanSqr
+    from Catalan import Catalan
     
-    # CsvToHtml(Abel)
-    AllCsvToHtml()
+    CsvToHtml(Abel)
+    # AllCsvToHtml()
+
+    #IsInOEIS('https://oeis.org/search?q=1,1,0,1,2,0,1,6,9,0,1,12,48,64,0,1,20,150,500,625,0,1,30,360,2160,6480,7776,0,1,42,735,6860,36015&fmt=json')
+    #IsInOEIS('https://oeis.org/search?q=1,2,3,4,5&fmt=json')
 
     print("Done ...")

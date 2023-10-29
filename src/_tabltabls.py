@@ -49,50 +49,50 @@ def AccRevTabl(T: tabl) -> tabl:
     return AccTabl(RevTabl(T))
 
 
-def FlatTabl(T: tabl) -> trow:
+def Triangle(T: tabl) -> trow:
     return [i for row in T for i in row]
 
 
-def FlatTabl_(g: rgen, row: int) -> trow:
+def Triangle_(g: rgen, row: int) -> trow:
     return g(row)
 
 
-def FlatInvTabl(T: tabl) -> trow:
+def Inv(T: tabl) -> trow:
     IT = InvTabl(T)
     if InvTabl(T) == []: return []
     return [i for row in IT for i in row]
 
 
-def FlatRevTabl(T: tabl) -> trow:
+def Rev(T: tabl) -> trow:
     return [i for row in RevTabl(T) for i in row]
 
 
-def FlatInvRevTabl(T: tabl) -> trow:
+def InvRev(T: tabl) -> trow:
     return [i for row in InvTabl(RevTabl(T)) for i in row]
 
 
-def FlatRevInvTabl(T: tabl) -> trow:
+def RevInv(T: tabl) -> trow:
     IT = InvTabl(T)
     return [i for row in RevTabl(IT) for i in row]
 
 
-def FlatAntiDiagTabl(T: tabl) -> trow:
+def AntiDiag(T: tabl) -> trow:
     return [i for row in AntiDiagTabl(T) for i in row]
 
 
-def FlatAccTabl(T: tabl) -> trow:
+def Acc(T: tabl) -> trow:
     return [i for row in AccTabl(T) for i in row]
 
 
-def FlatRevAccTabl(T: tabl) -> trow:
+def RevAcc(T: tabl) -> trow:
     return [i for row in RevAccTabl(T) for i in row]
 
 
-def FlatAccRevTabl(T: tabl) -> trow:
+def AccRev(T: tabl) -> trow:
     return [i for row in AccRevTabl(T) for i in row]
 
 
-def FlatDiffxTabl(T: tabl) -> trow:
+def Diffx(T: tabl) -> trow:
     return [(k + 1) * c for row in T for k,c in enumerate(row)]
 
 
@@ -104,16 +104,16 @@ def PrintTabls(g: tgen, size: int = 8, mdformat: bool = True) -> None:
 
     T  = g.tab(size) 
 
-    RegisterTablsTrait(FlatTabl)
-    RegisterTablsTrait(FlatRevTabl)
-    RegisterTablsTrait(FlatInvTabl)
-    RegisterTablsTrait(FlatInvRevTabl)
-    RegisterTablsTrait(FlatRevInvTabl)
+    RegisterTablsTrait(Triangle)
+    RegisterTablsTrait(Rev)
+    RegisterTablsTrait(Inv)
+    RegisterTablsTrait(InvRev)
+    RegisterTablsTrait(RevInv)
 
-    RegisterTablsTrait(FlatAccTabl)
-    RegisterTablsTrait(FlatRevAccTabl)
-    RegisterTablsTrait(FlatAccRevTabl)
-    RegisterTablsTrait(FlatAntiDiagTabl)
+    RegisterTablsTrait(Acc)
+    RegisterTablsTrait(RevAcc)
+    RegisterTablsTrait(AccRev)
+    RegisterTablsTrait(AntiDiag)
 
 
     trianglename = T.id
@@ -137,7 +137,7 @@ if __name__ == "__main__":
     from LabeledGraphs import LabeledGraphs
 
     print(RevTabl(Abel.tab(6)))
-    print(FlatRevTabl(Abel.tab(6)))
+    print(Rev(Abel.tab(6)))
 
     #PrintTabls(Abel, 4)
     #PrintTabls(StirlingSet, 6, False)
@@ -146,6 +146,6 @@ if __name__ == "__main__":
     #T = LabeledGraphs.tab(9)
     #print(T)
     #print(AccTabl(T))
-    #print(FlatAccTabl(T))
+    #print(Acc(T))
     #print(InvTabl(T))
-    #print(AntiDiagTabl(T))
+    #print(AntiDiag(T))

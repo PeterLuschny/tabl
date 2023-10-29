@@ -7,7 +7,7 @@ path = Path(__file__).parent.parent
 strippedpath = (path / "data/stripped").resolve()
 
 
-def GetPath(name: str) -> Path:
+def GetRoot(name: str='') -> Path:
     return (path / name).resolve()
   
 
@@ -26,3 +26,13 @@ def GetDataPath(name: str, fix: str)  -> Path:
 # htmltraits = "https://luschny.de/math/oeis/" 
 # oeisstripped = "https://oeis.org/stripped.gz"
 # oeissearch = "https://oeis.org/search?q="
+
+
+if __name__ == "__main__":
+    print(GetRoot())
+    print(GetRoot("README.md"))
+    print(GetRoot("src/_tablmake.py"))
+
+    '''Make sure to reference tabl.py in its current state.'''
+    # exec(open(mkpath).read())
+

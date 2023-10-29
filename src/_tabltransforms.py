@@ -57,13 +57,13 @@ def ConvTabl_(g: rgen, size: int) -> tabl:
     return [LinMap_(g, lambda k: g(n)[k], n + 1) for n in range(size)]
 
 
-def ConvTabl(T: tabl) -> tabl:
+def Conv(T: tabl) -> tabl:
     def g(n: int) ->list[int]: return [T[n][k] for k in range(n + 1)]
     return [LinMap_(g, lambda k: g(n)[k], n + 1) for n in range(len(T))]
 
 
 def FlatConvTabl(T: tabl) -> trow:
-    return [i for row in ConvTabl(T) for i in row]
+    return [i for row in Conv(T) for i in row]
 
 
 def InvLinMap(g: rgen, V: seq, size: int) -> trow:
@@ -80,16 +80,16 @@ def InvBinMap(V: seq, size: int) -> trow:
                for k in range(n + 1)) for n in range(size)]
 
 
-def InvBinTabl(T: tabl) -> tabl:
+def InvBin(T: tabl) -> tabl:
     return [InvBinMap(lambda k: T[n][k], n + 1) for n in range(len(T))]
 
 
-def InvBinTabl_(g: rgen, size: int) -> tabl: 
+def InvBin_(g: rgen, size: int) -> tabl: 
     return [InvBinMap(lambda k: g(n)[k], n + 1) for n in range(size)]
 
 
 def FlatInvBinTabl(T: tabl) -> trow:
-    return [i for row in InvBinTabl(T) for i in row]
+    return [i for row in InvBin(T) for i in row]
 
 
 def InvBinConv(T: tabl) -> trow:
@@ -98,7 +98,7 @@ def InvBinConv(T: tabl) -> trow:
 
 
 def InvBinConv_(g: rgen, size: int) -> trow:
-    T = InvBinTabl_(g, size)
+    T = InvBin_(g, size)
     return [row[-1] for row in T]
 
 
@@ -178,13 +178,13 @@ def Max_(g: rgen, row: int) -> int:
     return reduce(max, absf) 
 
 
-def RowMax_(g: rgen, size: int) -> trow:
-    return [Max_(g, row) for row in range(size)]
-
-
 def Max(r: trow) -> int:
     absrow = [abs(n) for n in r]
     return reduce(max, absrow) 
+
+
+def RowMax_(g: rgen, size: int) -> trow:
+    return [Max_(g, row) for row in range(size)]
 
 
 def RowMax(T: tabl) -> trow:
@@ -194,48 +194,48 @@ def RowMax(T: tabl) -> trow:
 ################################################
 
 
-def Trans(g: rgen, V: Callable[[int], int], size: int) -> trow:
+def Trans_(g: rgen, V: Callable[[int], int], size: int) -> trow:
     return [sum(g(n)[k] * V(k) for k in range(n + 1)) for n in range(size) ]
 
 
-def TransTabl(T: tabl, V: Callable[[int], int]) -> trow:
+def Trans(T: tabl, V: Callable[[int], int]) -> trow:
     return [sum(T[n][k] * V(k) for k in range(n + 1)) 
             for n in range(len(T))]
 
 
-def TransSqrs(g: rgen, size: int) -> trow: 
-    return Trans(g, lambda k: k * k, size)
+def TransSqrs_(g: rgen, size: int) -> trow: 
+    return Trans_(g, lambda k: k * k, size)
 
 
-def TransSqrsTabl(T: tabl) -> trow: 
-    return TransTabl(T, lambda k: k * k)
+def TransSqrs(T: tabl) -> trow: 
+    return Trans(T, lambda k: k * k)
 
 
-def TransNat0(g: rgen, size: int) -> trow: 
-    return Trans(g, lambda k: k, size)
+def TransNat0_(g: rgen, size: int) -> trow: 
+    return Trans_(g, lambda k: k, size)
 
 
-def TransNat0Tabl(T: tabl) -> trow: 
-    return TransTabl(T, lambda k: k)
+def TransNat0(T: tabl) -> trow: 
+    return Trans(T, lambda k: k)
 
 
-def TransNat1(g: rgen, size: int) -> trow: 
-    return Trans(g, lambda k: k + 1, size)
+def TransNat1_(g: rgen, size: int) -> trow: 
+    return Trans_(g, lambda k: k + 1, size)
 
 
-def TransNat1Tabl(T: tabl) -> trow: 
-    return TransTabl(T, lambda k: k + 1)
+def TransNat1(T: tabl) -> trow: 
+    return Trans(T, lambda k: k + 1)
 
 
 def ColMiddle(T: tabl) -> trow:
     return [row[n // 2] for n, row in enumerate(T)]
 
 
-def ColECentral(T: tabl) -> trow:
+def CentralE(T: tabl) -> trow:
     return [row[n // 2] for n, row in enumerate(T) if n % 2 == 0]
 
 
-def ColOCentral(T: tabl) -> trow:
+def CentralO(T: tabl) -> trow:
     return [row[n // 2] for n, row in enumerate(T) if n % 2 == 1]
 
 
@@ -257,9 +257,9 @@ def PrintTransforms(t: tgen, size: int = 8, mdformat: bool = True) -> None:
     def RegisterTransTrait(f: Callable[[t.gen, int], trow]) -> None: 
         TRANSTRAIT[f.__name__] = f
 
-    RegisterTransTrait(TransSqrs)
-    RegisterTransTrait(TransNat0)
-    RegisterTransTrait(TransNat1)
+    RegisterTransTrait(TransSqrs_)
+    RegisterTransTrait(TransNat0_)
+    RegisterTransTrait(TransNat1_)
 
     RegisterTransTrait(DiagRow0)
     RegisterTransTrait(DiagRow1)
@@ -296,7 +296,7 @@ def PrintMiscTraits(T: tabl, trianglename: str, mdformat: bool = True) -> None:
     RegisterMiscTrait(RowMax)
 
     RegisterMiscTrait(ColMiddle)
-    RegisterMiscTrait(ColECentral)
+    RegisterMiscTrait(CentralE)
     RegisterMiscTrait(ColLeft)
     RegisterMiscTrait(ColRight)
 
