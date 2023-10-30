@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Rencontres triangle.
  
@@ -31,7 +31,7 @@ def rencontres(n: int) -> list[int]:
     return row
 
 
-@set_attributes(rencontres, "Rencontres", ["A008290", "A098825"], True)
+@MakeTriangle(rencontres, "Rencontres", ["A008290", "A098825"], True)
 def Rencontres(n: int, k: int) -> int:
     return rencontres(n)[k]
 

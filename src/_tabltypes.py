@@ -52,7 +52,7 @@ def inversion_wrapper(T: tgen, size: int) -> tgen | None:
     def psgen(n: int) -> trow: 
         return list(t[n])
 
-    @set_attributes(psgen, T.id + ":Inv", [], True)
+    @MakeTriangle(psgen, T.id + ":Inv", [], True)
     def Psgen(n: int, k: int) ->  int:
         return psgen(n)[k]
 
@@ -66,7 +66,7 @@ def reversion_wrapper(T: tgen, size: int) -> tgen:
         row = t[n]
         return [row[n - i] for i in range(n + 1)]
 
-    @set_attributes(rsgen, T.id + ":Rev", [], True)
+    @MakeTriangle(rsgen, T.id + ":Rev", [], True)
     def Rsgen(n: int, k: int) -> int:
         return rsgen(n)[k]
 
@@ -82,7 +82,7 @@ def revinv_wrapper(T: tgen, size: int) -> tgen | None:
     def rigen(n: int) -> trow: 
         return list(J.gen(n))
 
-    @set_attributes(rigen, J.id, [], True)
+    @MakeTriangle(rigen, J.id, [], True)
     def Rigen(n: int, k: int) -> int:
         return rigen(n)[k]
 
@@ -97,7 +97,7 @@ def invrev_wrapper(T: tgen, size: int) -> tgen | None:
     def tigen(n: int) -> trow: 
         return list(S.gen(n))
 
-    @set_attributes(tigen, S.id, [], True)
+    @MakeTriangle(tigen, S.id, [], True)
     def Tigen(n: int, k: int) -> int:
         return tigen(n)[k]
 
@@ -112,7 +112,7 @@ def AbsSubTriangle(g: rgen, N: int, K: int, size: int) -> tabl:
     return [[abs(g(n)[k]) for k in range(K, K - N + n + 1)] for n in range(N, N + size)]
 
 
-def set_attributes(gen: rgen, id: str, sim: list[str], vert: bool=False) -> Callable[..., Callable[[int,int], int]]:
+def MakeTriangle(gen: rgen, id: str, sim: list[str], vert: bool=False) -> Callable[..., Callable[[int,int], int]]:
 
     def makerow(n: int) -> trow:
         return list(gen(n))
@@ -183,7 +183,7 @@ if __name__ == "__main__":
 
     abel11 = lambda n: Abel.sub(1,1)(n)
 
-    @set_attributes(abel11, "Abel11", ['A359', 'A05'], False)
+    @MakeTriangle(abel11, "Abel11", ['A359', 'A05'], False)
     def Abel11(n: int, k: int) -> int: 
         return abel11(n)[k]
     print(Abel11(3,2))

@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Schroeder triangle.
 
@@ -30,7 +30,7 @@ def schroeder(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     schroeder,
     "Schroeder",
     ["A122538", "A033877", "A080245", "A080247", "A106579"],

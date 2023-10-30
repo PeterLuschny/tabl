@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Stirling set numbers of second order.
 
@@ -32,7 +32,7 @@ def stirlingset2(n: int) -> list[int]:
     return row
 
 
-@set_attributes(stirlingset2, "StirlingSet2", ["A358623", "A008299", "A137375"], False)
+@MakeTriangle(stirlingset2, "StirlingSet2", ["A358623", "A008299", "A137375"], False)
 def StirlingSet2(n: int, k: int) -> int:
     return stirlingset2(n)[k]
 

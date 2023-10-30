@@ -1,6 +1,6 @@
 from functools import cache
 from math import factorial
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 
 """Baxter polynomials.
@@ -31,7 +31,7 @@ def baxter(n: int) -> list[int]:
     return [0] + [(2 * F(n - 1)) // (F(k - 1) * F(n - k)) for k in range(1, n + 1)]
 
 
-@set_attributes(baxter, "Baxter", ["A359363", "A056939"], False)
+@MakeTriangle(baxter, "Baxter", ["A359363", "A056939"], False)
 def Baxter(n: int, k: int) -> int:
     return baxter(n)[k]
 

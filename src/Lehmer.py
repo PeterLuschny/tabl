@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Lehmer-Comtet of 2nd kind, unsigned.
 
@@ -30,7 +30,7 @@ def lehmer(n: int) -> list[int]:
     return [t(k - 1, n - k, n - k) if n != k else 1 for k in range(n + 1)]
 
 
-@set_attributes(lehmer, "Lehmer", ["A354794", "A039621"], True)
+@MakeTriangle(lehmer, "Lehmer", ["A354794", "A039621"], True)
 def Lehmer(n: int, k: int) -> int:
     return lehmer(n)[k]
 

@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """
 T(n,k) = binomial(n, k) * Catalan(n - k).
@@ -31,7 +31,7 @@ def binomialcatalan(n: int) -> list[int]:
     return row
 
 
-@set_attributes(binomialcatalan, "BinomialCatalan", ["A124644", "A098474"], True)
+@MakeTriangle(binomialcatalan, "BinomialCatalan", ["A124644", "A098474"], True)
 def BinomialCatalan(n: int, k: int) -> int:
     return binomialcatalan(n)[k]
 

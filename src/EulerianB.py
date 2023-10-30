@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """EulerianB triangle.
 
@@ -26,7 +26,7 @@ def eulerianb(n: int) -> list[int]:
     return row
 
 
-@set_attributes(eulerianb, "EulerianB", ["A060187", "A138076"], True)
+@MakeTriangle(eulerianb, "EulerianB", ["A060187", "A138076"], True)
 def EulerianB(n: int, k: int) -> int:
     return eulerianb(n)[k]
 

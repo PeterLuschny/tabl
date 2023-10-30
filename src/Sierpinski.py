@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 from Binomial import binomial
 
 """Sierpiński's triangle, binomial(n, k) mod 2.
@@ -23,7 +23,7 @@ def sierpinski(n: int) -> list[int]:
     return [b[k] % 2 for k in range(n + 1)]
 
 
-@set_attributes(
+@MakeTriangle(
     sierpinski,
     "Sierpinski",
     ["A047999", "A090971", "A114700", "A143200", "A166282"],

@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Stirling set B-type.
 
@@ -34,7 +34,7 @@ def stirlingsetb(n: int) -> list[int]:
     return row
 
 
-@set_attributes(stirlingsetb, "StirlingSetB", ["A154602"], True)
+@MakeTriangle(stirlingsetb, "StirlingSetB", ["A154602"], True)
 def StirlingSetB(n: int, k: int) -> int:
     return stirlingsetb(n)[k]
 

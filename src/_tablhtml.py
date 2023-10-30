@@ -177,13 +177,13 @@ def CsvToHtml(fun: tgen) -> None:
                     sseq = (seq.split(' ', 3)[3]).replace(' ', ',')
                     url = f'https://oeis.org/search?q={sseq}&fmt=json'
                     if IsInOEIS(url): 
-                        color = "rgb(115, 147, 179)"
+                        color = "rgb(127, 0, 255)"
                         url = f'https://oeis.org/search?q={sseq}'
                         outfile.write(f"<td><a href='{url}' target='_blank'>variant</a></td>") 
                     else:
                         color = "rgb(167, 199, 231)"
                         outfile.write(f"<td><a href='{url}' target='_blank'>missing</a></td>") 
-                    time.sleep(0.5)
+                    time.sleep(1)  # give OEIS time
                 else:
                     outfile.write(f"<td><a href='https://oeis.org/{anum}'>{anum}</a></td>") 
 
@@ -204,15 +204,16 @@ def CsvToHtml(fun: tgen) -> None:
  
 def AllCsvToHtml() -> None:
     for fun in tabl_fun:
+        print("Info: Generating data/html/{fun.id}.html.")
         CsvToHtml(fun)
 
 
 if __name__ == "__main__":
 
     from Abel import Abel
-    from Catalan import Catalan
+    from Worpitzky import Worpitzky
     
-    CsvToHtml(Abel)
+    CsvToHtml(Worpitzky)
     # AllCsvToHtml()
 
     #IsInOEIS('https://oeis.org/search?q=1,1,0,1,2,0,1,6,9,0,1,12,48,64,0,1,20,150,500,625,0,1,30,360,2160,6480,7776,0,1,42,735,6860,36015&fmt=json')

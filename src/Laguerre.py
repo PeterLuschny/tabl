@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 
 """Laguerre polynomials n! * L(n, x) (unsigned coefficients).
@@ -27,7 +27,7 @@ def laguerre(n: int) -> list[int]:
     return row
 
 
-@set_attributes(laguerre, "Laguerre", ["A021009", "A021010", "A144084"], True)
+@MakeTriangle(laguerre, "Laguerre", ["A021009", "A021010", "A144084"], True)
 def Laguerre(n: int, k: int) -> int:
     return laguerre(n)[k]
 

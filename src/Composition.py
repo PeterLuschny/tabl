@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 from CompositionMax import compomax
 
 """Compositions of n with exact k parts.
@@ -25,7 +25,7 @@ def composition(n: int) -> list[int]:
     return [cm[k] - cm[k - 1] if k > 0 else 0 for k in range(n + 1)]
 
 
-@set_attributes(composition, "Composition", ["A048004"], True)
+@MakeTriangle(composition, "Composition", ["A048004"], True)
 def Composition(n: int, k: int) -> int:
     return composition(n)[k]
 

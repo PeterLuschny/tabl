@@ -1,4 +1,5 @@
-from _tabltypes import  rgen, tgen, tabl
+from _tabltypes import rgen, tgen, tabl
+from _tabltypes import inversion_wrapper, reversion_wrapper, revinv_wrapper, invrev_wrapper
 from _tablpoly import PolyCol, PolyRow
 from _tabltabls import AccTabl, RevAccTabl, AccRevTabl, RevTabl, AntiDiagTabl
 from _tablsums import PrintSums
@@ -6,6 +7,19 @@ from _tabltransforms import ColMiddle, CentralE, ColLeft,ColRight, RowLcm, RowGc
 from _tabltransforms import TransSqrs, TransNat0, TransNat1
 
 # #@
+
+
+def flat(t: tabl) -> list[int]: 
+    """Flatten table to sequence
+
+    Args:
+        t (tabl): table
+
+    Returns:
+        list[int]: sequence
+    """
+    if t == []: return []
+    return [i for row in t for i in row] 
 
 
 def PrintTabl(t: tabl) -> None:
@@ -130,9 +144,32 @@ def PrintViews(g: tgen, rows: int = 7, verbose: bool = True) -> None:
     print()
 
 
+def PrintProfile(fun: tgen, dim: int = 10) -> None:
+
+    tim: int = dim + dim
+
+    PrintViews(fun, dim)
+
+    I = inversion_wrapper(fun, tim)
+    if I != None:
+        PrintViews(I, dim)
+
+    r = reversion_wrapper(fun, tim)
+    PrintViews(r, dim)
+
+    r = revinv_wrapper(fun, tim)
+    if r != None:
+       PrintViews(r, dim)
+
+    r = invrev_wrapper(fun, tim)
+    if r != None:
+        PrintViews(r, dim)
+
+
 if __name__ == "__main__":
 
     from Abel import Abel
     from Bell import Bell
 
-    PrintViews(Abel, 6)
+    # PrintViews(Abel, 6)
+    PrintProfile(Abel)

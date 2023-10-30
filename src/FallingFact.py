@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Falling factorial, number of permutations of n things k at a time.
 
@@ -24,7 +24,7 @@ def fallingfactorial(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     fallingfactorial,
     "FallingFact",
     ["A008279", "A068424", "A094587", "A173333", "A181511"],

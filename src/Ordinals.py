@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """von Neumann ordinals (kind of). 
 
@@ -21,7 +21,7 @@ def ordinals(n: int) -> list[int]:
     return ordinals(n - 1) + [n]
 
 
-@set_attributes(
+@MakeTriangle(
     ordinals, "Ordinals", ["A002262", "A002260", "A004736", "A025581"], False
 )
 def Ordinals(n: int, k: int) -> int:

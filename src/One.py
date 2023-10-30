@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Uno, the all 1's triangle.
 
@@ -22,7 +22,7 @@ def one(n: int) -> list[int]:
     return one(n - 1) + [1]
 
 
-@set_attributes(one, "One", ["A000012", "A008836", "A014077"], True)
+@MakeTriangle(one, "One", ["A000012", "A008836", "A014077"], True)
 def One(n: int, k: int) -> int:
     return one(n)[k]
 

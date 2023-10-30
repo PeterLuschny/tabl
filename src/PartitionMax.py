@@ -1,6 +1,6 @@
 from functools import cache
 from itertools import accumulate
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 from Partition import partnumexact
 
 """Euler's table, partition numbers at most.
@@ -23,7 +23,7 @@ def partnummax(n: int) -> list[int]:
     return list(accumulate(partnumexact(n)))
 
 
-@set_attributes(partnummax, "PartitionMax", ["A026820"], False)
+@MakeTriangle(partnummax, "PartitionMax", ["A026820"], False)
 def PartnumMax(n: int, k: int) -> int:
     return partnummax(n)[k]
 

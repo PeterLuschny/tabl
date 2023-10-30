@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Balott Catalan triangle. 
 
@@ -32,7 +32,7 @@ def catalan(n: int) -> list[int]:
     return row
 
 
-@set_attributes(catalan, "Catalan", ["A128899", "A039598"], True)
+@MakeTriangle(catalan, "Catalan", ["A128899", "A039598"], True)
 def Catalan(n: int, k: int) -> int:
     return catalan(n)[k]
 

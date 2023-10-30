@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Compositions of n into at most k parts.
 
@@ -27,7 +27,7 @@ def compomax(n: int) -> list[int]:
     return [t(n, k) for k in range(n + 1)]
 
 
-@set_attributes(compomax, "CompositionMax", ["A126198"], False)
+@MakeTriangle(compomax, "CompositionMax", ["A126198"], False)
 def CompoMax(n: int, k: int) -> int:
     return compomax(n)[k]
 

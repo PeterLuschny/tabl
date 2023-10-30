@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Coefficients of Chebyshev S(n, x) = U(n, x/2) polynomials.
 
@@ -30,7 +30,7 @@ def chebyshevs(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     chebyshevs, "ChebyshevS", ["A049310", "A053119", "A112552", "A168561"], True
 )
 def ChebyshevS(n: int, k: int) -> int:

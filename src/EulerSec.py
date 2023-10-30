@@ -1,6 +1,6 @@
 from functools import cache
 from Binomial import binomial
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Euler secant polynomials.
 
@@ -28,7 +28,7 @@ def eulersec(n: int) -> list[int]:
     return row
 
 
-@set_attributes(eulersec, "EulerSec", ["A119879", "A081658", "A153641"], True)
+@MakeTriangle(eulersec, "EulerSec", ["A119879", "A081658", "A153641"], True)
 def EulerSec(n: int, k: int) -> int:
     return eulersec(n)[k]
 

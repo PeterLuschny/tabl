@@ -77,6 +77,9 @@ def SaveExtendedTables(dim: int = 10) -> None:
                 if r != None:
                     PrintViews(r, dim)
 
+    print("Info: Extended tables written to the data/md folder as 'name.tbl.md'.")
+
+
 if __name__ == "__main__":
 
     SaveExtendedTables()

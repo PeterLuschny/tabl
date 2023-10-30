@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Christmas tree, binomial(n mod 2, k mod 2).
 
@@ -24,7 +24,7 @@ def ctree(n: int) -> list[int]:
     return [1, 0] * (n // 2) + [1]
 
 
-@set_attributes(ctree, "ChristTree", ["A106465", "A106470"], True)
+@MakeTriangle(ctree, "ChristTree", ["A106465", "A106470"], True)
 def Ctree(n: int, k: int) -> int:
     return ctree(n)[k]
 

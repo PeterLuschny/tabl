@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """(Physicist's) Hermite polynomials, unsigned coefficients. 
 
@@ -25,7 +25,7 @@ def hermiteh(n: int) -> list[int]:
     return row
 
 
-@set_attributes(hermiteh, "HermiteH", ["A060821"], False)
+@MakeTriangle(hermiteh, "HermiteH", ["A060821"], False)
 def HermiteH(n: int, k: int) -> int:
     return hermiteh(n)[k]
 

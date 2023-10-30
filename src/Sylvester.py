@@ -1,7 +1,7 @@
 from functools import cache
 from Binomial import Binomial
 from StirlingCyc import StirlingCycle
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Sylvester polynomials.
 
@@ -26,7 +26,7 @@ def sylvester(n: int) -> list[int]:
     return [s(n, k) for k in range(n + 1)]
 
 
-@set_attributes(sylvester, "Sylvester", ["A341101"], False)
+@MakeTriangle(sylvester, "Sylvester", ["A341101"], False)
 def Sylvester(n: int, k: int) -> int:
     return sylvester(n)[k]
 

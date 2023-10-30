@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Ward set numbers.
 
@@ -30,7 +30,7 @@ def wardset(n: int) -> list[int]:
     return row
 
 
-@set_attributes(wardset, "WardSet", ["A269939", "A134991"], False)
+@MakeTriangle(wardset, "WardSet", ["A269939", "A134991"], False)
 def WardSet(n: int, k: int) -> int:
     return wardset(n)[k]
 

@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Fubini triangle.
 
@@ -29,7 +29,7 @@ def fubini(n: int) -> list[int]:
     return row
 
 
-@set_attributes(fubini, "Fubini", ["A131689", "A019538", "A090582", "A278075"], False)
+@MakeTriangle(fubini, "Fubini", ["A131689", "A019538", "A090582", "A278075"], False)
 def Fubini(n: int, k: int) -> int:
     return fubini(n)[k]
 

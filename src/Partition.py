@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Partition numbers (Euler's table), see also A026820, A000041.
 
@@ -31,7 +31,7 @@ def partnumexact(n: int) -> list[int]:
     return [part(n, k) for k in range(n + 1)]
 
 
-@set_attributes(partnumexact, "Partition", ["A072233", "A008284", "A058398"], True)
+@MakeTriangle(partnumexact, "Partition", ["A072233", "A008284", "A058398"], True)
 def PartnumExact(n: int, k: int) -> int:
     return partnumexact(n)[k]
 

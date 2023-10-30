@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """
 T(n, k) = if k == 0 then 0^n else binomial(n-1, k-1) * Bell(n - k)
@@ -34,7 +34,7 @@ def binomialbell(n: int) -> list[int]:
     return a
 
 
-@set_attributes(binomialbell, "BinomialBell", ["A056857", "A056860"], True)
+@MakeTriangle(binomialbell, "BinomialBell", ["A056857", "A056860"], True)
 def BinomialBell(n: int, k: int) -> int:
     return binomialbell(n)[k]
 

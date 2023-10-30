@@ -1,6 +1,6 @@
 from functools import cache
 from Binomial import Binomial
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Labeled graphs.
 
@@ -31,7 +31,7 @@ def labeledgraphs(n: int) -> list[int]:
     return [0] + s + [b]
 
 
-@set_attributes(labeledgraphs, "LabeledGraphs", ["A360603"], True)
+@MakeTriangle(labeledgraphs, "LabeledGraphs", ["A360603"], True)
 def LabeledGraphs(n: int, k: int) -> int:
     return labeledgraphs(n)[k]
 

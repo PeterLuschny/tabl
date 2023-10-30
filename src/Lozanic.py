@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 from Binomial import binomial
 
 """Lozanic numbers. 
@@ -37,7 +37,7 @@ def lozanic(n: int) -> list[int]:
     return row
 
 
-@set_attributes(lozanic, "Lozanic", ["A034851"], True)
+@MakeTriangle(lozanic, "Lozanic", ["A034851"], True)
 def Lozanic(n: int, k: int) -> int:
     return lozanic(n)[k]
 

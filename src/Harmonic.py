@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Harmonic polynomials (coefficients).
 
@@ -31,7 +31,7 @@ def harmonic(n: int) -> list[int]:
     return row
 
 
-@set_attributes(harmonic, "Harmonic", ["A358694", "A109822"], True)
+@MakeTriangle(harmonic, "Harmonic", ["A358694", "A109822"], True)
 def Harmonic(n: int, k: int) -> int:
     return harmonic(n)[k]
 

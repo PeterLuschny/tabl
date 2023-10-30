@@ -1,4 +1,3 @@
-# from tabl import  AllCsvToHtml, SaveExtendedTables, CrossReferences 
 from _tabldata import GetCompressed, OeisToSql, SaveAllTraitsToDB,SaveTraitsToDB, SaveDB_CSV_MD
 from _tablexport import SaveExtendedTables, CrossReferences
 from _tablhtml import AllCsvToHtml
@@ -26,13 +25,21 @@ def setup() -> None:
 
     for fun in tabl_fun:
         SaveTraitsToDB(fun)
-        found = SaveDB_CSV_MD(GetDataPath(fun.id, 'db') )
+        SaveDB_CSV_MD(GetDataPath(fun.id, 'db') )
+
+    print("Info: All traits saved to data/db.")
+
+    print("Warning: You have to be online now!") 
+    print("Info: Building html pages; this will take long since we are querying OEIS.")
 
     AllCsvToHtml()
-    print("Warning: You must also put the files 'sortable.js' and 'style.css' into the html directory!")
+    print("Warning: You must put the files 'sortable.js' and 'style.css' into the html directory!")
+    print("Info: Building extended tables.")
 
     SaveExtendedTables()
     CrossReferences()
+
+    print("Done ...")
 
 
 if __name__ == "__main__":

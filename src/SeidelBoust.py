@@ -1,4 +1,4 @@
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 from Seidel import seidel
 
 
@@ -21,7 +21,7 @@ def seidelboust(n: int) -> list[int]:
     return seidel(n) if n % 2 else seidel(n)[::-1]
 
 
-@set_attributes(
+@MakeTriangle(
     seidelboust, "SeidelBoust", ["A008280", "A108040", "A236935", "A239005"], False
 )
 def SeidelBoust(n: int, k: int) -> int:

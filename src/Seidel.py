@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Seidel triangle.
 
@@ -27,7 +27,7 @@ def seidel(n: int) -> list[int]:
     return row
 
 
-@set_attributes(seidel, "Seidel", ["A008281", "A008282", "A010094"], False)
+@MakeTriangle(seidel, "Seidel", ["A008281", "A008282", "A010094"], False)
 def Seidel(n: int, k: int) -> int:
     return seidel(n)[k]
 

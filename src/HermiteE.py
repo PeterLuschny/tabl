@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """(Probabilist's) Hermite polynomials He, unsigned coefficients. 
 
@@ -23,7 +23,7 @@ def hermitee(n: int) -> list[int]:
     return row
 
 
-@set_attributes(hermitee, "HermiteE", ["A099174", "A066325", "A073278"], True)
+@MakeTriangle(hermitee, "HermiteE", ["A099174", "A066325", "A073278"], True)
 def HermiteE(n: int, k: int) -> int:
     return hermitee(n)[k]
 

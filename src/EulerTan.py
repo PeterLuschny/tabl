@@ -1,6 +1,6 @@
 from functools import cache
 from Binomial import binomial
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Euler tangent polynomials.
 
@@ -27,7 +27,7 @@ def eulertan(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     eulertan, "EulerTan", ["A162660", "A350972", "A155585", "A009006", "A000182"], False
 )
 def EulerTan(n: int, k: int) -> int:

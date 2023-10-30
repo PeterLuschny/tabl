@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Symmetric polynomial, row k gives the (n-1)-st elementary of [k, k+1, k+2,..., k+n].
 
@@ -28,7 +28,7 @@ def sympoly(n: int) -> list[int]:
     return row
 
 
-@set_attributes(sympoly, "SymPoly", ["A165675", "A093905", "A105954", "A165674"], True)
+@MakeTriangle(sympoly, "SymPoly", ["A165675", "A093905", "A105954", "A165674"], True)
 def Sympoly(n: int, k: int) -> int:
     return sympoly(n)[k]
 

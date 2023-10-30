@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Gaussian coefficient for q = 2.
 
@@ -28,7 +28,7 @@ def gaussq2(n: int) -> list[int]:
     return pow
 
 
-@set_attributes(gaussq2, "Gaussq2", ["A022166"], True)
+@MakeTriangle(gaussq2, "Gaussq2", ["A022166"], True)
 def Gaussq2(n: int, k: int) -> int:
     return gaussq2(n)[k]
 

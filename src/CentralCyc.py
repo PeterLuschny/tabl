@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Central cycle factorial numbers.
 
@@ -28,7 +28,7 @@ def centralcycle(n: int) -> list[int]:
     return row
 
 
-@set_attributes(centralcycle, "CentralCycle", ["A269940", "A111999", "A259456"], False)
+@MakeTriangle(centralcycle, "CentralCycle", ["A269940", "A111999", "A259456"], False)
 def CentralCycle(n: int, k: int) -> int:
     return centralcycle(n)[k]
 

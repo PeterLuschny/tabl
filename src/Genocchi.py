@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Genocchi triangle.
 
@@ -30,7 +30,7 @@ def genocchi(n: int) -> list[int]:
     return row[1:]
 
 
-@set_attributes(genocchi, "Genocchi", ["A297703"], False)
+@MakeTriangle(genocchi, "Genocchi", ["A297703"], False)
 def Genocchi(n: int, k: int) -> int:
     return genocchi(n)[k]
 

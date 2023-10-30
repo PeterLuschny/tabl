@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 
 """Levin's Triangle, RisingFactorial(n + 1, n) / (k! * (n - k)!).
@@ -29,7 +29,7 @@ def levin(n: int) -> list[int]:
     return row
 
 
-@set_attributes(levin, "Levin", ["A356546"], False)
+@MakeTriangle(levin, "Levin", ["A356546"], False)
 def Levin(n: int, k: int) -> int:
     return levin(n)[k]
 

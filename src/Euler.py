@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Euler triangle.
 
@@ -29,7 +29,7 @@ def euler(n: int) -> list[int]:
     return row
 
 
-@set_attributes(euler, "Euler", ["A247453", "A109449"], True)
+@MakeTriangle(euler, "Euler", ["A247453", "A109449"], True)
 def Euler(n: int, k: int) -> int:
     return euler(n)[k]
 

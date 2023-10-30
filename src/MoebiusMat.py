@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 from Divisibility import divisibility
 
 """Moebius Matrix.
@@ -38,7 +38,7 @@ def moebiusmat(n: int) -> list[int]:
     return r
 
 
-@set_attributes(moebiusmat, "MoebiusMat", ["A363914", "A054525"], True)
+@MakeTriangle(moebiusmat, "MoebiusMat", ["A363914", "A054525"], True)
 def MoebiusMat(n: int, k: int) -> int:
     return moebiusmat(n)[k]
 

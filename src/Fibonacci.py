@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Fibonacci-Pascal triangle.
 
@@ -31,7 +31,7 @@ def fibonacci(n: int) -> list[int]:
     return row
 
 
-@set_attributes(fibonacci, "Fibonacci", ["A354267", "A105809", "A228074"], False)
+@MakeTriangle(fibonacci, "Fibonacci", ["A354267", "A105809", "A228074"], False)
 def Fibonacci(n: int, k: int) -> int:
     return fibonacci(n)[k]
 

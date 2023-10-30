@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Polygonal numbers.
 
@@ -42,7 +42,7 @@ def polygonal(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     polygonal, "Polygonal", ["A139600", "A057145", "A134394", "A139601"], False
 )
 def Polygonal(n: int, k: int) -> int:

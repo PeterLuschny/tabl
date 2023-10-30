@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Central set factorial numbers.
 
@@ -28,7 +28,7 @@ def centralset(n: int) -> list[int]:
     return row
 
 
-@set_attributes(centralset, "CentralSet", ["A269945", "A008957", "A036969"], True)
+@MakeTriangle(centralset, "CentralSet", ["A269945", "A008957", "A036969"], True)
 def CentralSet(n: int, k: int) -> int:
     return centralset(n)[k]
 

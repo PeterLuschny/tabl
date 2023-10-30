@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Bessel2 triangle.
 
@@ -30,7 +30,7 @@ def bessel2(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     bessel2,
     "Bessel2",
     ["A359760", "A073278", "A066325", "A099174", "A111924", "A144299", "A104556"],

@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Schroeder bilateral paths.
 
@@ -30,7 +30,7 @@ def schroederpaths(n: int) -> list[int]:
     return row
 
 
-@set_attributes(schroederpaths, "SchroederP", ["A104684", "A063007"], True)
+@MakeTriangle(schroederpaths, "SchroederP", ["A104684", "A063007"], True)
 def SchroederPaths(n: int, k: int) -> int:
     return schroederpaths(n)[k]
 

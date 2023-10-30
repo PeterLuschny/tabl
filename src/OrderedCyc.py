@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Ordered cycle numbers.
 
@@ -29,7 +29,7 @@ def orderedcycle(n: int) -> list[int]:
     return row
 
 
-@set_attributes(orderedcycle, "OrderedCycle", ["A225479", "A048594", "A075181"], False)
+@MakeTriangle(orderedcycle, "OrderedCycle", ["A225479", "A048594", "A075181"], False)
 def OrderedCycle(n: int, k: int) -> int:
     return orderedcycle(n)[k]
 

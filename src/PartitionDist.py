@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Partitions of n having exactly k distinct parts, A365676.
 
@@ -32,7 +32,7 @@ def partnumdist(n) -> list[int]:
     return [_pdist(n, k, n) for k in range(n + 1)]
 
 
-@set_attributes(partnumdist, "PartitionDist", ["A365676", "A116608", "A060177"], False)
+@MakeTriangle(partnumdist, "PartitionDist", ["A365676", "A116608", "A060177"], False)
 def PartnumDist(n: int, k: int) -> int:
     return partnumdist(n)[k]
 

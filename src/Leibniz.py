@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Leibniz's Triangle, FallingFactorial(n + 1, n) / (k! * (n - k)!).
  
@@ -29,7 +29,7 @@ def leibniz(n: int) -> list[int]:
     return row
 
 
-@set_attributes(leibniz, "Leibniz", ["A003506"], False)
+@MakeTriangle(leibniz, "Leibniz", ["A003506"], False)
 def Leibniz(n: int, k: int) -> int:
     return leibniz(n)[k]
 

@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Pascal triangle, binomial coefficients.
 
@@ -28,7 +28,7 @@ def binomial(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     binomial,
     "Binomial",
     [

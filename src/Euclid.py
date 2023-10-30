@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Euclid's triangle.
 
@@ -32,7 +32,7 @@ def euclid(n: int) -> list[int]:
     return [_euclid(i, n) for i in range(n + 1)]
 
 
-@set_attributes(euclid, "Euclid", ["A217831"], False)
+@MakeTriangle(euclid, "Euclid", ["A217831"], False)
 def Euclid(n: int, k: int) -> int:
     return euclid(n)[k]
 

@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Delannoy triangle.
 
@@ -30,7 +30,7 @@ def delannoy(n: int) -> list[int]:
     return row
 
 
-@set_attributes(delannoy, "Delannoy", ["A008288"], True)
+@MakeTriangle(delannoy, "Delannoy", ["A008288"], True)
 def Delannoy(n: int, k: int) -> int:
     return delannoy(n)[k]
 

@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """The Riordan square of the Catalan numbers in the sense of A321620. 
 
@@ -32,7 +32,7 @@ def catalansqr(n: int) -> list[int]:
     return row
 
 
-@set_attributes(catalansqr, "CatalanSqr", ["A039599", "A050155"], True)
+@MakeTriangle(catalansqr, "CatalanSqr", ["A039599", "A050155"], True)
 def CatalanSqr(n: int, k: int) -> int:
     return catalansqr(n)[k]
 

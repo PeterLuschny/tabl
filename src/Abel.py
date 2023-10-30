@@ -1,6 +1,6 @@
 from functools import cache
 from Binomial import binomial
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 
 """Abel polynomials (unsigned coefficients).
@@ -25,7 +25,7 @@ def abel(n: int) -> list[int]:
     return [b[k - 1] * n ** (n - k) if k > 0 else 0 for k in range(n + 1)]
 
 
-@set_attributes(abel, "Abel", ["A137452", "A061356", "A139526"], True)
+@MakeTriangle(abel, "Abel", ["A137452", "A061356", "A139526"], True)
 def Abel(n: int, k: int) -> int:
     return abel(n)[k]
 

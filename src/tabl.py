@@ -84,7 +84,7 @@ def inversion_wrapper(T: tgen, size: int) -> tgen | None:
     def psgen(n: int) -> trow:
         return list(t[n])
 
-    @set_attributes(psgen, T.id + ":Inv", [], True)
+    @MakeTriangle(psgen, T.id + ":Inv", [], True)
     def Psgen(n: int, k: int) -> int:
         return psgen(n)[k]
 
@@ -98,7 +98,7 @@ def reversion_wrapper(T: tgen, size: int) -> tgen:
         row = t[n]
         return [row[n - i] for i in range(n + 1)]
 
-    @set_attributes(rsgen, T.id + ":Rev", [], True)
+    @MakeTriangle(rsgen, T.id + ":Rev", [], True)
     def Rsgen(n: int, k: int) -> int:
         return rsgen(n)[k]
 
@@ -114,7 +114,7 @@ def revinv_wrapper(T: tgen, size: int) -> tgen | None:
     def rigen(n: int) -> trow:
         return list(J.gen(n))
 
-    @set_attributes(rigen, J.id, [], True)
+    @MakeTriangle(rigen, J.id, [], True)
     def Rigen(n: int, k: int) -> int:
         return rigen(n)[k]
 
@@ -130,7 +130,7 @@ def invrev_wrapper(T: tgen, size: int) -> tgen | None:
     def tigen(n: int) -> trow:
         return list(S.gen(n))
 
-    @set_attributes(tigen, S.id, [], True)
+    @MakeTriangle(tigen, S.id, [], True)
     def Tigen(n: int, k: int) -> int:
         return tigen(n)[k]
 
@@ -145,7 +145,7 @@ def AbsSubTriangle(g: rgen, N: int, K: int, size: int) -> tabl:
     return [[abs(g(n)[k]) for k in range(K, K - N + n + 1)] for n in range(N, N + size)]
 
 
-def set_attributes(
+def MakeTriangle(
     gen: rgen, id: str, sim: list[str], vert: bool = False
 ) -> Callable[..., Callable[[int, int], int]]:
     def makerow(n: int) -> trow:
@@ -889,6 +889,18 @@ def PrintSums(T: tabl, trianglename: str, mdformat: bool = True) -> None:
             print(f'{trianglename + ":" + traitname:<18} {trait(T)}')
 
 
+def flat(t: tabl) -> list[int]:
+    """Flatten table to sequence
+    Args:
+        t (tabl): table
+    Returns:
+        list[int]: sequence
+    """
+    if t == []:
+        return []
+    return [i for row in t for i in row]
+
+
 def PrintTabl(t: tabl) -> None:
     for row in t:
         print(row)
@@ -958,9 +970,9 @@ def PrintTrans(t: tabl) -> None:
     print(f"| RowLcm     | {RowLcm(t)} |")
     print(f"| RowGcd     | {RowGcd(t)} |")
     print(f"| RowMax     | {RowMax(t)} |")
-    print(f"| ColMiddle  | {ColMiddle(t)} |")
     print(f"| CentralE   | {CentralE(t)} |")
     print(f"| CentralO   | {CentralO(t)} |")
+    print(f"| ColMiddle  | {ColMiddle(t)} |")
     print(f"| ColLeft    | {ColLeft(t)} |")
     print(f"| ColRight   | {ColRight(t)} |")
     print(f"| TransSqrs  | {TransSqrs(t)} |")
@@ -1009,82 +1021,20 @@ def PrintViews(g: tgen, rows: int = 7, verbose: bool = True) -> None:
     print()
 
 
-def Profile(T: tgen, hor: int = 10) -> dict[str, list[int]]:
-    d: dict[str, list[int]] = {}
-    t: tabl = T.tab(hor)
-    ver: int = hor // 2
-    # Triangle flattened
-    d["Triangle"] = T.tab(6)
-    # Row sums
-    d["RowSum"] = RowSum(t)
-    d["EvenSum"] = EvenSum(t)
-    d["OddSum"] = OddSum(t)
-    d["AltSum"] = AltSum(t)
-    d["AccSum"] = AccSum(t)
-    d["AccRevSum"] = AccRevSum(t)
-    d["AntiDiagSum"] = DiagSum(t)
-    # DiagsAsRowArray
-    rows: int = ver
-    cols: int = hor
-    for j in range(rows):
-        d["DiagRow" + str(j)] = [T.gen(j + k)[k] for k in range(cols)]
-    # DiagsAsColArray
-    rows = hor
-    cols = ver
-    for j in range(cols):
-        d["DiagCol" + str(j)] = [T.gen(j + k)[j] for k in range(rows)]
-    # RowPolyArray
-    rows = ver
-    cols = hor
-    for j in range(rows):
-        d["PolyRow" + str(j)] = PolyRow(T.gen, j, cols)
-    # ColPolyArray
-    rows = ver
-    cols = hor
-    for j in range(rows):
-        if j == 1:
-            continue
-        d["PolyCol" + str(j)] = PolyCol(T.gen, j, cols)
-    return d
-
-
-counter: int = 0
-
-
-def PrintProfile(T: tgen, dim: int, format: str) -> None:
-    d: dict[str, list[int]] = Profile(T, dim)
-    if format == "twolines":
-        for seq in d.items():
-            print(f"{T.id}:{seq[0]}\n{seq[1]}")
-    if format == "oneline":
-        print(T.id)
-        for seq in d.items():
-            print(f"{seq[0]}, {seq[1]}")
-        print()
-    if format == "nonames":
-        global counter
-        for seq in d.items():
-            counter += 1
-            print(seq[1])
-
-
-def PrintExtendedProfile(T: tgen, dim: int, format: str) -> None:
-    tim: int = dim + dim // 2
-    PrintProfile(T, dim, format)
-    I = inversion_wrapper(T, tim)
+def PrintProfile(fun: tgen, dim: int = 10) -> None:
+    tim: int = dim + dim
+    PrintViews(fun, dim)
+    I = inversion_wrapper(fun, tim)
     if I != None:
-        PrintProfile(I, dim, format)
-    R = reversion_wrapper(T, tim)
-    PrintProfile(R, dim, format)
-    r = revinv_wrapper(T, tim)
+        PrintViews(I, dim)
+    r = reversion_wrapper(fun, tim)
+    PrintViews(r, dim)
+    r = revinv_wrapper(fun, tim)
     if r != None:
-        PrintProfile(r, dim, format)
-    r = invrev_wrapper(T, tim)
+        PrintViews(r, dim)
+    r = invrev_wrapper(fun, tim)
     if r != None:
-        PrintProfile(r, dim, format)
-    if format == "nonames":
-        global counter
-        print(counter, "sequences generated.")
+        PrintViews(r, dim)
 
 
 @cache
@@ -1095,7 +1045,7 @@ def abel(n: int) -> list[int]:
     return [b[k - 1] * n ** (n - k) if k > 0 else 0 for k in range(n + 1)]
 
 
-@set_attributes(abel, "Abel", ["A137452", "A061356", "A139526"], True)
+@MakeTriangle(abel, "Abel", ["A137452", "A061356", "A139526"], True)
 def Abel(n: int, k: int) -> int:
     return abel(n)[k]
 
@@ -1112,7 +1062,7 @@ def baxter(n: int) -> list[int]:
     return [0] + [(2 * F(n - 1)) // (F(k - 1) * F(n - k)) for k in range(1, n + 1)]
 
 
-@set_attributes(baxter, "Baxter", ["A359363", "A056939"], False)
+@MakeTriangle(baxter, "Baxter", ["A359363", "A056939"], False)
 def Baxter(n: int, k: int) -> int:
     return baxter(n)[k]
 
@@ -1127,7 +1077,7 @@ def bell(n: int) -> list[int]:
     return row
 
 
-@set_attributes(bell, "Bell", ["A011971", "A011972", "A123346"], False)
+@MakeTriangle(bell, "Bell", ["A011971", "A011972", "A123346"], False)
 def Bell(n: int, k: int) -> int:
     return bell(n)[k]
 
@@ -1144,7 +1094,7 @@ def bessel(n: int) -> list[int]:
     return row
 
 
-@set_attributes(bessel, "Bessel", ["A132062", "A001497", "A001498", "A122850"], True)
+@MakeTriangle(bessel, "Bessel", ["A132062", "A001497", "A001498", "A122850"], True)
 def Bessel(n: int, k: int) -> int:
     return bessel(n)[k]
 
@@ -1162,7 +1112,7 @@ def bessel2(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     bessel2,
     "Bessel2",
     ["A359760", "A073278", "A066325", "A099174", "A111924", "A144299", "A104556"],
@@ -1182,7 +1132,7 @@ def binomial(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     binomial,
     "Binomial",
     [
@@ -1215,7 +1165,7 @@ def binomialbell(n: int) -> list[int]:
     return a
 
 
-@set_attributes(binomialbell, "BinomialBell", ["A056857", "A056860"], True)
+@MakeTriangle(binomialbell, "BinomialBell", ["A056857", "A056860"], True)
 def BinomialBell(n: int, k: int) -> int:
     return binomialbell(n)[k]
 
@@ -1233,7 +1183,7 @@ def binomialcatalan(n: int) -> list[int]:
     return row
 
 
-@set_attributes(binomialcatalan, "BinomialCatalan", ["A124644", "A098474"], True)
+@MakeTriangle(binomialcatalan, "BinomialCatalan", ["A124644", "A098474"], True)
 def BinomialCatalan(n: int, k: int) -> int:
     return binomialcatalan(n)[k]
 
@@ -1252,7 +1202,7 @@ def catalan(n: int) -> list[int]:
     return row
 
 
-@set_attributes(catalan, "Catalan", ["A128899", "A039598"], True)
+@MakeTriangle(catalan, "Catalan", ["A128899", "A039598"], True)
 def Catalan(n: int, k: int) -> int:
     return catalan(n)[k]
 
@@ -1271,7 +1221,7 @@ def catalanaer(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     catalanaer, "CatalanAer", ["A053121", "A052173", "A112554", "A322378"], True
 )
 def CatalanAer(n: int, k: int) -> int:
@@ -1291,7 +1241,7 @@ def catalansqr(n: int) -> list[int]:
     return row
 
 
-@set_attributes(catalansqr, "CatalanSqr", ["A039599", "A050155"], True)
+@MakeTriangle(catalansqr, "CatalanSqr", ["A039599", "A050155"], True)
 def CatalanSqr(n: int, k: int) -> int:
     return catalansqr(n)[k]
 
@@ -1308,7 +1258,7 @@ def centralcycle(n: int) -> list[int]:
     return row
 
 
-@set_attributes(centralcycle, "CentralCycle", ["A269940", "A111999", "A259456"], False)
+@MakeTriangle(centralcycle, "CentralCycle", ["A269940", "A111999", "A259456"], False)
 def CentralCycle(n: int, k: int) -> int:
     return centralcycle(n)[k]
 
@@ -1325,7 +1275,7 @@ def centralset(n: int) -> list[int]:
     return row
 
 
-@set_attributes(centralset, "CentralSet", ["A269945", "A008957", "A036969"], True)
+@MakeTriangle(centralset, "CentralSet", ["A269945", "A008957", "A036969"], True)
 def CentralSet(n: int, k: int) -> int:
     return centralset(n)[k]
 
@@ -1343,7 +1293,7 @@ def chebyshevs(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     chebyshevs, "ChebyshevS", ["A049310", "A053119", "A112552", "A168561"], True
 )
 def ChebyshevS(n: int, k: int) -> int:
@@ -1364,7 +1314,7 @@ def chebyshevt(n: int) -> list[int]:
     return row
 
 
-@set_attributes(chebyshevt, "ChebyshevT", ["A053120", "A039991", "A081265"], True)
+@MakeTriangle(chebyshevt, "ChebyshevT", ["A053120", "A039991", "A081265"], True)
 def ChebyshevT(n: int, k: int) -> int:
     return chebyshevt(n)[k]
 
@@ -1383,7 +1333,7 @@ def chebyshevu(n: int) -> list[int]:
     return row
 
 
-@set_attributes(chebyshevu, "ChebyshevU", ["A053117", "A053118", "A115322"], True)
+@MakeTriangle(chebyshevu, "ChebyshevU", ["A053117", "A053118", "A115322"], True)
 def ChebyshevU(n: int, k: int) -> int:
     return chebyshevu(n)[k]
 
@@ -1395,7 +1345,7 @@ def ctree(n: int) -> list[int]:
     return [1, 0] * (n // 2) + [1]
 
 
-@set_attributes(ctree, "ChristTree", ["A106465", "A106470"], True)
+@MakeTriangle(ctree, "ChristTree", ["A106465", "A106470"], True)
 def Ctree(n: int, k: int) -> int:
     return ctree(n)[k]
 
@@ -1408,7 +1358,7 @@ def composition(n: int) -> list[int]:
     return [cm[k] - cm[k - 1] if k > 0 else 0 for k in range(n + 1)]
 
 
-@set_attributes(composition, "Composition", ["A048004"], True)
+@MakeTriangle(composition, "Composition", ["A048004"], True)
 def Composition(n: int, k: int) -> int:
     return composition(n)[k]
 
@@ -1424,7 +1374,7 @@ def compomax(n: int) -> list[int]:
     return [t(n, k) for k in range(n + 1)]
 
 
-@set_attributes(compomax, "CompositionMax", ["A126198"], False)
+@MakeTriangle(compomax, "CompositionMax", ["A126198"], False)
 def CompoMax(n: int, k: int) -> int:
     return compomax(n)[k]
 
@@ -1442,7 +1392,7 @@ def delannoy(n: int) -> list[int]:
     return row
 
 
-@set_attributes(delannoy, "Delannoy", ["A008288"], True)
+@MakeTriangle(delannoy, "Delannoy", ["A008288"], True)
 def Delannoy(n: int, k: int) -> int:
     return delannoy(n)[k]
 
@@ -1463,7 +1413,7 @@ def divisibility(n: int) -> list[int]:
     return L
 
 
-@set_attributes(divisibility, "Divisibility", ["A113704", "A051731"], True)
+@MakeTriangle(divisibility, "Divisibility", ["A113704", "A051731"], True)
 def Divisibility(n: int, k: int) -> int:
     return divisibility(n)[k]
 
@@ -1482,7 +1432,7 @@ def euclid(n: int) -> list[int]:
     return [_euclid(i, n) for i in range(n + 1)]
 
 
-@set_attributes(euclid, "Euclid", ["A217831"], False)
+@MakeTriangle(euclid, "Euclid", ["A217831"], False)
 def Euclid(n: int, k: int) -> int:
     return euclid(n)[k]
 
@@ -1498,7 +1448,7 @@ def euler(n: int) -> list[int]:
     return row
 
 
-@set_attributes(euler, "Euler", ["A247453", "A109449"], True)
+@MakeTriangle(euler, "Euler", ["A247453", "A109449"], True)
 def Euler(n: int, k: int) -> int:
     return euler(n)[k]
 
@@ -1513,7 +1463,7 @@ def eulerian(n: int) -> list[int]:
     return row
 
 
-@set_attributes(eulerian, "Eulerian", ["A173018", "A008292", "A123125"], False)
+@MakeTriangle(eulerian, "Eulerian", ["A173018", "A008292", "A123125"], False)
 def Eulerian(n: int, k: int) -> int:
     return eulerian(n)[k]
 
@@ -1530,7 +1480,7 @@ def eulerian2(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     eulerian2, "Eulerian2", ["A340556", "A008517", "A112007", "A163936"], False
 )
 def Eulerian2(n: int, k: int) -> int:
@@ -1547,7 +1497,7 @@ def eulerianb(n: int) -> list[int]:
     return row
 
 
-@set_attributes(eulerianb, "EulerianB", ["A060187", "A138076"], True)
+@MakeTriangle(eulerianb, "EulerianB", ["A060187", "A138076"], True)
 def EulerianB(n: int, k: int) -> int:
     return eulerianb(n)[k]
 
@@ -1563,7 +1513,7 @@ def eulersec(n: int) -> list[int]:
     return row
 
 
-@set_attributes(eulersec, "EulerSec", ["A119879", "A081658", "A153641"], True)
+@MakeTriangle(eulersec, "EulerSec", ["A119879", "A081658", "A153641"], True)
 def EulerSec(n: int, k: int) -> int:
     return eulersec(n)[k]
 
@@ -1581,7 +1531,7 @@ def eulertan(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     eulertan, "EulerTan", ["A162660", "A350972", "A155585", "A009006", "A000182"], False
 )
 def EulerTan(n: int, k: int) -> int:
@@ -1602,7 +1552,7 @@ def fallingfactorial(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     fallingfactorial,
     "FallingFact",
     ["A008279", "A068424", "A094587", "A173333", "A181511"],
@@ -1626,7 +1576,7 @@ def fibonacci(n: int) -> list[int]:
     return row
 
 
-@set_attributes(fibonacci, "Fibonacci", ["A354267", "A105809", "A228074"], False)
+@MakeTriangle(fibonacci, "Fibonacci", ["A354267", "A105809", "A228074"], False)
 def Fibonacci(n: int, k: int) -> int:
     return fibonacci(n)[k]
 
@@ -1645,7 +1595,7 @@ def fubini(n: int) -> list[int]:
     return row
 
 
-@set_attributes(fubini, "Fubini", ["A131689", "A019538", "A090582", "A278075"], False)
+@MakeTriangle(fubini, "Fubini", ["A131689", "A019538", "A090582", "A278075"], False)
 def Fubini(n: int, k: int) -> int:
     return fubini(n)[k]
 
@@ -1660,7 +1610,7 @@ def fusscatalan(n: int) -> list[int]:
     return list(accumulate(row))
 
 
-@set_attributes(fusscatalan, "FussCatalan", ["A355173", "A030237", "A054445"], False)
+@MakeTriangle(fusscatalan, "FussCatalan", ["A355173", "A030237", "A054445"], False)
 def FussCatalan(n: int, k: int) -> int:
     return fusscatalan(n)[k]
 
@@ -1678,7 +1628,7 @@ def gaussq2(n: int) -> list[int]:
     return pow
 
 
-@set_attributes(gaussq2, "Gaussq2", ["A022166"], True)
+@MakeTriangle(gaussq2, "Gaussq2", ["A022166"], True)
 def Gaussq2(n: int, k: int) -> int:
     return gaussq2(n)[k]
 
@@ -1695,7 +1645,7 @@ def genocchi(n: int) -> list[int]:
     return row[1:]
 
 
-@set_attributes(genocchi, "Genocchi", ["A297703"], False)
+@MakeTriangle(genocchi, "Genocchi", ["A297703"], False)
 def Genocchi(n: int, k: int) -> int:
     return genocchi(n)[k]
 
@@ -1714,7 +1664,7 @@ def harmonic(n: int) -> list[int]:
     return row
 
 
-@set_attributes(harmonic, "Harmonic", ["A358694", "A109822"], True)
+@MakeTriangle(harmonic, "Harmonic", ["A358694", "A109822"], True)
 def Harmonic(n: int, k: int) -> int:
     return harmonic(n)[k]
 
@@ -1728,7 +1678,7 @@ def hermitee(n: int) -> list[int]:
     return row
 
 
-@set_attributes(hermitee, "HermiteE", ["A099174", "A066325", "A073278"], True)
+@MakeTriangle(hermitee, "HermiteE", ["A099174", "A066325", "A073278"], True)
 def HermiteE(n: int, k: int) -> int:
     return hermitee(n)[k]
 
@@ -1742,7 +1692,7 @@ def hermiteh(n: int) -> list[int]:
     return row
 
 
-@set_attributes(hermiteh, "HermiteH", ["A060821"], False)
+@MakeTriangle(hermiteh, "HermiteH", ["A060821"], False)
 def HermiteH(n: int, k: int) -> int:
     return hermiteh(n)[k]
 
@@ -1761,7 +1711,7 @@ def labeledgraphs(n: int) -> list[int]:
     return [0] + s + [b]
 
 
-@set_attributes(labeledgraphs, "LabeledGraphs", ["A360603"], True)
+@MakeTriangle(labeledgraphs, "LabeledGraphs", ["A360603"], True)
 def LabeledGraphs(n: int, k: int) -> int:
     return labeledgraphs(n)[k]
 
@@ -1776,7 +1726,7 @@ def laguerre(n: int) -> list[int]:
     return row
 
 
-@set_attributes(laguerre, "Laguerre", ["A021009", "A021010", "A144084"], True)
+@MakeTriangle(laguerre, "Laguerre", ["A021009", "A021010", "A144084"], True)
 def Laguerre(n: int, k: int) -> int:
     return laguerre(n)[k]
 
@@ -1792,7 +1742,7 @@ def lah(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     lah, "Lah", ["A271703", "A008297", "A066667", "A089231", "A105278", "A111596"], True
 )
 def Lah(n: int, k: int) -> int:
@@ -1813,7 +1763,7 @@ def lehmer(n: int) -> list[int]:
     return [t(k - 1, n - k, n - k) if n != k else 1 for k in range(n + 1)]
 
 
-@set_attributes(lehmer, "Lehmer", ["A354794", "A039621"], True)
+@MakeTriangle(lehmer, "Lehmer", ["A354794", "A039621"], True)
 def Lehmer(n: int, k: int) -> int:
     return lehmer(n)[k]
 
@@ -1829,7 +1779,7 @@ def leibniz(n: int) -> list[int]:
     return row
 
 
-@set_attributes(leibniz, "Leibniz", ["A003506"], False)
+@MakeTriangle(leibniz, "Leibniz", ["A003506"], False)
 def Leibniz(n: int, k: int) -> int:
     return leibniz(n)[k]
 
@@ -1845,7 +1795,7 @@ def levin(n: int) -> list[int]:
     return row
 
 
-@set_attributes(levin, "Levin", ["A356546"], False)
+@MakeTriangle(levin, "Levin", ["A356546"], False)
 def Levin(n: int, k: int) -> int:
     return levin(n)[k]
 
@@ -1865,7 +1815,7 @@ def lozanic(n: int) -> list[int]:
     return row
 
 
-@set_attributes(lozanic, "Lozanic", ["A034851"], True)
+@MakeTriangle(lozanic, "Lozanic", ["A034851"], True)
 def Lozanic(n: int, k: int) -> int:
     return lozanic(n)[k]
 
@@ -1891,7 +1841,7 @@ def moebiusmat(n: int) -> list[int]:
     return r
 
 
-@set_attributes(moebiusmat, "MoebiusMat", ["A363914", "A054525"], True)
+@MakeTriangle(moebiusmat, "MoebiusMat", ["A363914", "A054525"], True)
 def MoebiusMat(n: int, k: int) -> int:
     return moebiusmat(n)[k]
 
@@ -1909,7 +1859,7 @@ def motzkin(n: int) -> list[int]:
     return row
 
 
-@set_attributes(motzkin, "Motzkin", ["A359364"], False)
+@MakeTriangle(motzkin, "Motzkin", ["A359364"], False)
 def Motzkin(n: int, k: int) -> int:
     return motzkin(n)[k]
 
@@ -1928,7 +1878,7 @@ def motzkingf(n: int) -> list[int]:
     return row
 
 
-@set_attributes(motzkingf, "MotzkinGF", ["A064189", "A026300", "A009766"], True)
+@MakeTriangle(motzkingf, "MotzkinGF", ["A064189", "A026300", "A009766"], True)
 def MotzkinGF(n: int, k: int) -> int:
     return motzkingf(n)[k]
 
@@ -1947,9 +1897,20 @@ def narayana(n: int) -> list[int]:
     return row
 
 
-@set_attributes(narayana, "Narayana", ["A090181", "A001263", "A131198"], True)
+@MakeTriangle(narayana, "Narayana", ["A090181", "A001263", "A131198"], True)
 def Narayana(n: int, k: int) -> int:
     return narayana(n)[k]
+
+
+@cache
+def naturals(n: int):
+    R = range((n * (n + 1)) // 2, ((n + 1) * (n + 2)) // 2)
+    return [i + 1 for i in R]
+
+
+@MakeTriangle(naturals, "Naturals", ["A000027", "A001477"], True)
+def Naturals(n: int, k: int) -> int:
+    return naturals(n)[k]
 
 
 @cache
@@ -1962,7 +1923,7 @@ def nicomachus(n: int) -> list[int]:
     return row
 
 
-@set_attributes(nicomachus, "Nicomachus", ["A036561", "A081954", "A175840"], False)
+@MakeTriangle(nicomachus, "Nicomachus", ["A036561", "A081954", "A175840"], False)
 def Nicomachus(n: int, k: int) -> int:
     return nicomachus(n)[k]
 
@@ -1974,7 +1935,7 @@ def one(n: int) -> list[int]:
     return one(n - 1) + [1]
 
 
-@set_attributes(one, "One", ["A000012", "A008836", "A014077"], True)
+@MakeTriangle(one, "One", ["A000012", "A008836", "A014077"], True)
 def One(n: int, k: int) -> int:
     return one(n)[k]
 
@@ -1986,9 +1947,7 @@ def ordinals(n: int) -> list[int]:
     return ordinals(n - 1) + [n]
 
 
-@set_attributes(
-    ordinals, "Ordinals", ["A002262", "A002260", "A004736", "A025581"], False
-)
+@MakeTriangle(ordinals, "Ordinals", ["A002262", "A002260", "A004736", "A025581"], False)
 def Ordinals(n: int, k: int) -> int:
     return ordinals(n)[k]
 
@@ -2006,7 +1965,7 @@ def orderedcycle(n: int) -> list[int]:
     return row
 
 
-@set_attributes(orderedcycle, "OrderedCycle", ["A225479", "A048594", "A075181"], False)
+@MakeTriangle(orderedcycle, "OrderedCycle", ["A225479", "A048594", "A075181"], False)
 def OrderedCycle(n: int, k: int) -> int:
     return orderedcycle(n)[k]
 
@@ -2025,7 +1984,7 @@ def partnumexact(n: int) -> list[int]:
     return [part(n, k) for k in range(n + 1)]
 
 
-@set_attributes(partnumexact, "Partition", ["A072233", "A008284", "A058398"], True)
+@MakeTriangle(partnumexact, "Partition", ["A072233", "A008284", "A058398"], True)
 def PartnumExact(n: int, k: int) -> int:
     return partnumexact(n)[k]
 
@@ -2046,7 +2005,7 @@ def partnumdist(n) -> list[int]:
     return [_pdist(n, k, n) for k in range(n + 1)]
 
 
-@set_attributes(partnumdist, "PartitionDist", ["A365676", "A116608", "A060177"], False)
+@MakeTriangle(partnumdist, "PartitionDist", ["A365676", "A116608", "A060177"], False)
 def PartnumDist(n: int, k: int) -> int:
     return partnumdist(n)[k]
 
@@ -2056,7 +2015,7 @@ def partnummax(n: int) -> list[int]:
     return list(accumulate(partnumexact(n)))
 
 
-@set_attributes(partnummax, "PartitionMax", ["A026820"], False)
+@MakeTriangle(partnummax, "PartitionMax", ["A026820"], False)
 def PartnumMax(n: int, k: int) -> int:
     return partnummax(n)[k]
 
@@ -2075,7 +2034,7 @@ def polygonal(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     polygonal, "Polygonal", ["A139600", "A057145", "A134394", "A139601"], False
 )
 def Polygonal(n: int, k: int) -> int:
@@ -2093,7 +2052,7 @@ def powlaguerre(n: int) -> list[int]:
     return row
 
 
-@set_attributes(powlaguerre, "PowLaguerre", ["A196347", "A021012"], False)
+@MakeTriangle(powlaguerre, "PowLaguerre", ["A196347", "A021012"], False)
 def PowLaguerre(n: int, k: int) -> int:
     return powlaguerre(n)[k]
 
@@ -2112,7 +2071,7 @@ def rencontres(n: int) -> list[int]:
     return row
 
 
-@set_attributes(rencontres, "Rencontres", ["A008290", "A098825"], True)
+@MakeTriangle(rencontres, "Rencontres", ["A008290", "A098825"], True)
 def Rencontres(n: int, k: int) -> int:
     return rencontres(n)[k]
 
@@ -2127,7 +2086,7 @@ def risingfactorial(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     risingfactorial,
     "RisingFact",
     ["A008279", "A068424", "A094587", "A173333", "A181511"],
@@ -2149,7 +2108,7 @@ def schroeder(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     schroeder,
     "Schroeder",
     ["A122538", "A033877", "A080245", "A080247", "A106579"],
@@ -2170,7 +2129,7 @@ def schroederpaths(n: int) -> list[int]:
     return row
 
 
-@set_attributes(schroederpaths, "SchroederP", ["A104684", "A063007"], True)
+@MakeTriangle(schroederpaths, "SchroederP", ["A104684", "A063007"], True)
 def SchroederPaths(n: int, k: int) -> int:
     return schroederpaths(n)[k]
 
@@ -2189,7 +2148,7 @@ def schroederl(n: int) -> list[int]:
     return row
 
 
-@set_attributes(schroederl, "SchroederL", ["A172094"], True)
+@MakeTriangle(schroederl, "SchroederL", ["A172094"], True)
 def SchroederL(n: int, k: int) -> int:
     return schroederl(n)[k]
 
@@ -2206,7 +2165,7 @@ def seidel(n: int) -> list[int]:
     return row
 
 
-@set_attributes(seidel, "Seidel", ["A008281", "A008282", "A010094"], False)
+@MakeTriangle(seidel, "Seidel", ["A008281", "A008282", "A010094"], False)
 def Seidel(n: int, k: int) -> int:
     return seidel(n)[k]
 
@@ -2215,7 +2174,7 @@ def seidelboust(n: int) -> list[int]:
     return seidel(n) if n % 2 else seidel(n)[::-1]
 
 
-@set_attributes(
+@MakeTriangle(
     seidelboust, "SeidelBoust", ["A008280", "A108040", "A236935", "A239005"], False
 )
 def SeidelBoust(n: int, k: int) -> int:
@@ -2228,7 +2187,7 @@ def sierpinski(n: int) -> list[int]:
     return [b[k] % 2 for k in range(n + 1)]
 
 
-@set_attributes(
+@MakeTriangle(
     sierpinski,
     "Sierpinski",
     ["A047999", "A090971", "A114700", "A143200", "A166282"],
@@ -2248,7 +2207,7 @@ def stirlingcycle(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     stirlingcycle,
     "StirlingCyc",
     ["A132393", "A008275", "A008276", "A048994", "A054654", "A094638", "A130534"],
@@ -2271,9 +2230,7 @@ def stirlingcycle2(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
-    stirlingcycle2, "StirlingCyc2", ["A358622", "A008306", "A106828"], False
-)
+@MakeTriangle(stirlingcycle2, "StirlingCyc2", ["A358622", "A008306", "A106828"], False)
 def StirlingCycle2(n: int, k: int) -> int:
     return stirlingcycle2(n)[k]
 
@@ -2290,7 +2247,7 @@ def stirlingcycleb(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     stirlingcycleb, "StirlingCycB", ["A028338", "A039757", "A039758", "A109692"], True
 )
 def StirlingCycleB(n: int, k: int) -> int:
@@ -2307,7 +2264,7 @@ def stirlingset(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     stirlingset,
     "StirlingSet",
     [
@@ -2340,7 +2297,7 @@ def stirlingset2(n: int) -> list[int]:
     return row
 
 
-@set_attributes(stirlingset2, "StirlingSet2", ["A358623", "A008299", "A137375"], False)
+@MakeTriangle(stirlingset2, "StirlingSet2", ["A358623", "A008299", "A137375"], False)
 def StirlingSet2(n: int, k: int) -> int:
     return stirlingset2(n)[k]
 
@@ -2360,7 +2317,7 @@ def stirlingsetb(n: int) -> list[int]:
     return row
 
 
-@set_attributes(stirlingsetb, "StirlingSetB", ["A154602"], True)
+@MakeTriangle(stirlingsetb, "StirlingSetB", ["A154602"], True)
 def StirlingSetB(n: int, k: int) -> int:
     return stirlingsetb(n)[k]
 
@@ -2375,7 +2332,7 @@ def sylvester(n: int) -> list[int]:
     return [s(n, k) for k in range(n + 1)]
 
 
-@set_attributes(sylvester, "Sylvester", ["A341101"], False)
+@MakeTriangle(sylvester, "Sylvester", ["A341101"], False)
 def Sylvester(n: int, k: int) -> int:
     return sylvester(n)[k]
 
@@ -2391,7 +2348,7 @@ def sympoly(n: int) -> list[int]:
     return row
 
 
-@set_attributes(sympoly, "SymPoly", ["A165675", "A093905", "A105954", "A165674"], True)
+@MakeTriangle(sympoly, "SymPoly", ["A165675", "A093905", "A105954", "A165674"], True)
 def Sympoly(n: int, k: int) -> int:
     return sympoly(n)[k]
 
@@ -2406,7 +2363,7 @@ def ternarytree(n: int) -> list[int]:
     return list(accumulate(accumulate(row)))
 
 
-@set_attributes(ternarytree, "TernaryTrees", ["A355172"], False)
+@MakeTriangle(ternarytree, "TernaryTrees", ["A355172"], False)
 def TernaryTree(n: int, k: int) -> int:
     return ternarytree(n)[k]
 
@@ -2423,7 +2380,7 @@ def wardset(n: int) -> list[int]:
     return row
 
 
-@set_attributes(wardset, "WardSet", ["A269939", "A134991"], False)
+@MakeTriangle(wardset, "WardSet", ["A269939", "A134991"], False)
 def WardSet(n: int, k: int) -> int:
     return wardset(n)[k]
 
@@ -2438,7 +2395,7 @@ def worpitzky(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     worpitzky,
     "Worpitzky",
     ["A028246", "A053440", "A075263", "A130850", "A163626"],
@@ -2471,6 +2428,10 @@ def euler_num(n: int) -> int:
 @cache
 def eulerphi(n: int) -> int:
     return sum(k * moebiusmat(n)[k] for k in range(n + 1))
+
+
+def motzkin_num(n: int) -> int:
+    return sum(motzkin(n))
 
 
 def partlist_num(n: int) -> int:
@@ -2534,6 +2495,7 @@ tabl_fun: list[tgen] = [
     Motzkin,
     MotzkinGF,
     Narayana,
+    Naturals,
     Nicomachus,
     One,
     Ordinals,
@@ -2586,7 +2548,7 @@ def CrossReferences(name: str = "README.md") -> None:
             for sim in similars:
                 anum += "%7Cid%3A" + sim
             xrefs.write(
-                f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/data/md/{id}.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://oeis.org/search?q={anum}) |\n"
+                f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/data/md/{id}.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://oeis.org/search?q={anum}) |\n"
             )
 
     print("Info: 'README.md' written to the root folder.")
@@ -2595,7 +2557,7 @@ def CrossReferences(name: str = "README.md") -> None:
 def SaveExtendedTables(dim: int = 10) -> None:
     tim: int = dim + dim
     for fun in tabl_fun:
-        tablpath = GetDataPath(fun.id, "tbl")
+        tablpath = GetDataPath(fun.id + ".tbl", "md")
         with open(tablpath, "w+") as dest:
             with contextlib.redirect_stdout(dest):
                 PrintViews(fun, dim)
@@ -2610,6 +2572,7 @@ def SaveExtendedTables(dim: int = 10) -> None:
                 r = invrev_wrapper(fun, tim)
                 if r != None:
                     PrintViews(r, dim)
+    print("Info: Extended tables written to the data/md folder as 'name.tbl.md'.")
 
 
 def IsInOEIS(url: str) -> bool:
@@ -2641,8 +2604,8 @@ CSS = [
     "#rcor3 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 66px; height: 0px;} ",
     "#rcor4 {border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 880px; height: 20px; font-weight: 700; text-align: center;} ",
     ".center {margin-top: 1em;} ",
-    ".type { font-weight: 600;} ",
-    ".tooltip { position: relative; font-weight: 600;} ",
+    ".type { font-weight: 600; text-align: center;} ",
+    ".tooltip { position: relative; font-weight: 600; text-align: center;} ",
     ".tooltip .formula { visibility: hidden; width: 200px; background-color: lightgray; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; top: +2px; left: 95%;} ",
     ".tooltip:hover .formula { visibility: visible; } ",
     "</style></head><body>",
@@ -2784,22 +2747,22 @@ def CsvToHtml(fun: tgen) -> None:
                     f"<td class='tooltip'>{trait}<span class='formula'>{tip}</span></td>"
                 )
                 # Anum
-                color = ""
+                color = "rgb(0, 0, 255)"
                 if anum == "missing":  # start with a(3) !
                     sseq = (seq.split(" ", 3)[3]).replace(" ", ",")
                     url = f"https://oeis.org/search?q={sseq}&fmt=json"
                     if IsInOEIS(url):
-                        color = "rgb(130, 177, 255)"
+                        color = "rgb(127, 0, 255)"
                         url = f"https://oeis.org/search?q={sseq}"
                         outfile.write(
                             f"<td><a href='{url}' target='_blank'>variant</a></td>"
                         )
                     else:
-                        color = "rgb(115, 147, 179)"
+                        color = "rgb(167, 199, 231)"
                         outfile.write(
                             f"<td><a href='{url}' target='_blank'>missing</a></td>"
                         )
-                    time.sleep(1)
+                    time.sleep(1)  # give OEIS time
                 else:
                     outfile.write(
                         f"<td><a href='https://oeis.org/{anum}'>{anum}</a></td>"
@@ -2819,6 +2782,7 @@ def CsvToHtml(fun: tgen) -> None:
 
 def AllCsvToHtml() -> None:
     for fun in tabl_fun:
+        print("Info: Generating data/html/{fun.id}.html.")
         CsvToHtml(fun)
 
 

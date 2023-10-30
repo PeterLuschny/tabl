@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """
 The divisibility matrix, the indicator function for divisibility.
@@ -35,7 +35,7 @@ def divisibility(n: int) -> list[int]:
     return L
 
 
-@set_attributes(divisibility, "Divisibility", ["A113704", "A051731"], True)
+@MakeTriangle(divisibility, "Divisibility", ["A113704", "A051731"], True)
 def Divisibility(n: int, k: int) -> int:
     return divisibility(n)[k]
 

@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 
 """Expansion of x^n in terms of Laguerre (unsigned).
@@ -28,7 +28,7 @@ def powlaguerre(n: int) -> list[int]:
     return row
 
 
-@set_attributes(powlaguerre, "PowLaguerre", ["A196347", "A021012"], False)
+@MakeTriangle(powlaguerre, "PowLaguerre", ["A196347", "A021012"], False)
 def PowLaguerre(n: int, k: int) -> int:
     return powlaguerre(n)[k]
 

@@ -1,6 +1,6 @@
 from functools import cache
 from itertools import accumulate
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Ternary trees, Fuss-Catalan 2.
 
@@ -28,7 +28,7 @@ def ternarytree(n: int) -> list[int]:
     return list(accumulate(accumulate(row)))
 
 
-@set_attributes(ternarytree, "TernaryTrees", ["A355172"], False)
+@MakeTriangle(ternarytree, "TernaryTrees", ["A355172"], False)
 def TernaryTree(n: int, k: int) -> int:
     return ternarytree(n)[k]
 

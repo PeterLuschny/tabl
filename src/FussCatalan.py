@@ -1,6 +1,6 @@
 from functools import cache
 from itertools import accumulate
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Fuss-Catalan triangle. 
 
@@ -26,7 +26,7 @@ def fusscatalan(n: int) -> list[int]:
     return list(accumulate(row))
 
 
-@set_attributes(fusscatalan, "FussCatalan", ["A355173", "A030237", "A054445"], False)
+@MakeTriangle(fusscatalan, "FussCatalan", ["A355173", "A030237", "A054445"], False)
 def FussCatalan(n: int, k: int) -> int:
     return fusscatalan(n)[k]
 

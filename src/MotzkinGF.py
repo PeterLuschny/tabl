@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Motzkin generating function triangle.
 
@@ -30,7 +30,7 @@ def motzkingf(n: int) -> list[int]:
     return row
 
 
-@set_attributes(motzkingf, "MotzkinGF", ["A064189", "A026300", "A009766"], True)
+@MakeTriangle(motzkingf, "MotzkinGF", ["A064189", "A026300", "A009766"], True)
 def MotzkinGF(n: int, k: int) -> int:
     return motzkingf(n)[k]
 

@@ -1,5 +1,5 @@
 from functools import cache
-from _tabltypes import set_attributes
+from _tabltypes import MakeTriangle
 
 """Stirling cycle numbers of second order.
  
@@ -30,7 +30,7 @@ def stirlingcycle2(n: int) -> list[int]:
     return row
 
 
-@set_attributes(
+@MakeTriangle(
     stirlingcycle2, "StirlingCyc2", ["A358622", "A008306", "A106828"], False
 )
 def StirlingCycle2(n: int, k: int) -> int:
