@@ -81,6 +81,7 @@ def inversion_wrapper(T: tgen, size: int) -> tgen | None:
     if t == []:
         return None
 
+    @cache
     def psgen(n: int) -> trow:
         return list(t[n])
 
@@ -94,6 +95,7 @@ def inversion_wrapper(T: tgen, size: int) -> tgen | None:
 def reversion_wrapper(T: tgen, size: int) -> tgen:
     t = T.tab(size)
 
+    @cache
     def rsgen(n: int) -> trow:
         row = t[n]
         return [row[n - i] for i in range(n + 1)]
@@ -111,6 +113,7 @@ def revinv_wrapper(T: tgen, size: int) -> tgen | None:
         return None
     J = reversion_wrapper(I, size)
 
+    @cache
     def rigen(n: int) -> trow:
         return list(J.gen(n))
 
@@ -127,6 +130,7 @@ def invrev_wrapper(T: tgen, size: int) -> tgen | None:
     if S == None:
         return None
 
+    @cache
     def tigen(n: int) -> trow:
         return list(S.gen(n))
 
@@ -2575,12 +2579,6 @@ def SaveExtendedTables(dim: int = 10) -> None:
     print("Info: Extended tables written to the data/md folder as 'name.tbl.md'.")
 
 
-def IsInOEIS(url: str) -> bool:
-    with urllib.request.urlopen(url) as response:
-        page = response.read()
-        return -1 == page.find(b'"count": 0', 36, 236)
-
-
 Header = [
     "<!DOCTYPE html>",
     "<html lang='en'><head><meta charset='UTF-8'/>",
@@ -2747,23 +2745,21 @@ def CsvToHtml(fun: tgen) -> None:
                     f"<td class='tooltip'>{trait}<span class='formula'>{tip}</span></td>"
                 )
                 # Anum
-                color = "rgb(0, 0, 255)"
-                if anum == "missing":  # start with a(3) !
-                    sseq = (seq.split(" ", 3)[3]).replace(" ", ",")
+                sseq = (seq.split(" ", 3)[3]).replace(" ", ",")
+                if anum == "missing":
+                    color = "rgb(127, 0, 255)"
+                    url = f"https://oeis.org/search?q={sseq}"
+                    outfile.write(
+                        f"<td><a href='{url}' target='_blank'>variant</a></td>"
+                    )
+                elif anum == "variant":
+                    color = "rgb(167, 199, 231)"
                     url = f"https://oeis.org/search?q={sseq}&fmt=json"
-                    if IsInOEIS(url):
-                        color = "rgb(127, 0, 255)"
-                        url = f"https://oeis.org/search?q={sseq}"
-                        outfile.write(
-                            f"<td><a href='{url}' target='_blank'>variant</a></td>"
-                        )
-                    else:
-                        color = "rgb(167, 199, 231)"
-                        outfile.write(
-                            f"<td><a href='{url}' target='_blank'>missing</a></td>"
-                        )
-                    time.sleep(1)  # give OEIS time
+                    outfile.write(
+                        f"<td><a href='{url}' target='_blank'>missing</a></td>"
+                    )
                 else:
+                    color = "rgb(0, 0, 255)"
                     outfile.write(
                         f"<td><a href='https://oeis.org/{anum}'>{anum}</a></td>"
                     )
@@ -2782,7 +2778,7 @@ def CsvToHtml(fun: tgen) -> None:
 
 def AllCsvToHtml() -> None:
     for fun in tabl_fun:
-        print("Info: Generating data/html/{fun.id}.html.")
+        print(f"Info: Generating data/html/{fun.id}.html.")
         CsvToHtml(fun)
 
 
@@ -2997,7 +2993,14 @@ def OeisToSql() -> None:
     print("Info: Database oeismini.db saved in data/db.")
 
 
-def querydbhash(H: str, oeis_cur) -> str:
+def querydbhash(H: str, oeis_cur: sqlite3.Cursor) -> str:
+    """_summary_
+    Args:
+        H (str): hash
+        oeis_cur (OEISCursor): _description_
+    Returns:
+        str: _description_
+    """
     sql = "SELECT anum FROM sequences WHERE hash=? LIMIT 1"
     res = oeis_cur.execute(sql, (H,))
     record = res.fetchone()
@@ -3005,6 +3008,13 @@ def querydbhash(H: str, oeis_cur) -> str:
 
 
 def querydbseq(seq: list[int], oeis_cur) -> str:
+    """_summary_
+    Args:
+        seq (list[int]): _description_
+        oeis_cur (_type_): _description_
+    Returns:
+        str: _description_
+    """
     x = str([abs(int(s)) for s in seq[0:MINTERMS]]).translate(
         str.maketrans("", "", "[],")
     )
@@ -3014,7 +3024,15 @@ def querydbseq(seq: list[int], oeis_cur) -> str:
     return "missing" if record == None else record[0]
 
 
-def queryoeis(H: str, seq: list[int], oeis_cur) -> str:
+def queryminioeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
+    """Query oeis_mini db only.
+    Args:
+        H (str): _description_
+        seq (list[int]): _description_
+        oeis_cur (SQLCursor): _description_
+    Returns:
+        str: _description_
+    """
     sql = "SELECT anum FROM sequences WHERE hash=? LIMIT 1"
     res = oeis_cur.execute(sql, (H,))
     record = res.fetchone()
@@ -3027,20 +3045,72 @@ def queryoeis(H: str, seq: list[int], oeis_cur) -> str:
     return "missing" if record == None else record[0]
 
 
+def IsInOEIS(seq: list[int]) -> bool:
+    """_summary_
+    Args:
+        seq (list[int]): sequence
+    Returns:
+        bool: found?
+    """
+    strseq = str(seq).replace("[", "").replace("]", "").replace(" ", "")
+    url = f"https://oeis.org/search?q={strseq}&fmt=json"
+    with urllib.request.urlopen(url) as response:
+        page = response.read()
+        return -1 == page.find(b'"count": 0', 36, 236)
+
+
+def queryoeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
+    """First query oeis_mini (local),
+       if nothing found query OEIS (internet).
+    Args:
+        H (str): _description_
+        seq (list[int]): _description_
+        oeis_cur (SQLCursor): _description_
+    Returns:
+        str: _description_
+    """
+    rec = queryminioeis(H, seq, oeis_cur)
+    if rec != "missing":
+        return rec
+    time.sleep(1)  # give the OEIS server time to relax
+    if IsInOEIS(seq[3 : MINTERMS + 3]):
+        return "variant"
+    else:
+        return "missing"
+
+
 STRINGLENx = 100
 
 
-def SaveTraits(g: tgen, size: int, traits_cur, oeis_cur, table, TRAITS: dict) -> None:
+def SaveTraits(
+    g: tgen,
+    size: int,
+    traits_cur: sqlite3.Cursor,
+    oeis_cur: sqlite3.Cursor,
+    table: str,
+    TRAITS: dict,
+) -> None:
+    """Warning: uses internet!
+    Args:
+        g : _description_
+        size : _description_
+        traits_cur : _description_
+        oeis_cur : _description_
+        table : _description_
+        TRAITS : _description_
+    """
     T = g.tab(size)
     r = g.gen
 
     for traitname, trait in TRAITS.items():
         seq = trait(T) if is_tabletrait(trait) else trait(r, size)
         if seq == []:
-            print(f"Info: {g.id}:{traitname} does not exist.".replace("Flat", ""))
+            print(f"Info: {g.id}:{traitname} does not exist.")
             continue
         fnv = fnv_hash(seq, True)
-        anum = queryoeis(fnv, seq, oeis_cur)
+        # Much faster in the local version.
+        # anum = queryminioeis(fnv, seq, oeis_cur)  # local
+        anum = queryoeis(fnv, seq, oeis_cur)  # with internet
         seqstr = ""
         maxl = 0
         for trm in seq:
@@ -3055,7 +3125,17 @@ def SaveTraits(g: tgen, size: int, traits_cur, oeis_cur, table, TRAITS: dict) ->
         traits_cur.execute(sql, tup)
 
 
-def SaveExtendedTraitsToDB(t: tgen, size: int, traits_cur, oeis_cur, table) -> None:
+def SaveExtendedTraitsToDB(
+    t: tgen, size: int, traits_cur: sqlite3.Cursor, oeis_cur: sqlite3.Cursor, table: str
+) -> None:
+    """Warning: uses internet!
+    Args:
+        t (tgen): _description_
+        size (int): _description_
+        traits_cur (_type_): _description_
+        oeis_cur (_type_): _description_
+        table (_type_): _description_
+    """
     tim: int = size + size // 2
     Tid = t.id
     t.id = t.id + ":Std"
@@ -3084,22 +3164,8 @@ def SaveExtendedTraitsToDB(t: tgen, size: int, traits_cur, oeis_cur, table) -> N
             SaveTraits(ir, size, traits_cur, oeis_cur, table, TRAITS)
 
 
-def SaveAllTraitsToDB(tabl_fun: list[tgen]) -> None:
-    name = "traits"
-    with sqlite3.connect(GetDataPath(name, "db")) as db:
-        traits_cur = db.cursor()
-        sql = f"CREATE TABLE {name}(triangle, trait, hash, anum, seq)"
-        traits_cur.execute(sql)
-        with sqlite3.connect(GetDataPath("oeismini", "db")) as oeis:
-            oeis_cur = oeis.cursor()
-            for fun in tabl_fun:
-                SaveExtendedTraitsToDB(fun, 32, traits_cur, oeis_cur, name)
-        db.commit()
-
-    print("Info: Created database traits.db in data/db.")
-
-
 def SaveTraitsToDB(fun: tgen) -> None:
+    """Warning: uses internet!"""
     name = fun.id
     with sqlite3.connect(GetDataPath(name, "db")) as db:
         traits_cur = db.cursor()
@@ -3113,21 +3179,7 @@ def SaveTraitsToDB(fun: tgen) -> None:
     print(f"Info: Created database {name}.db in data/db.")
 
 
-"""
-Pretty printing of triangles trait cards.
-| A-number | Triangle   | Form | Function  | Sequence                                    |
-|----------|------------|------|-----------|---------------------------------------------|
-| A000302  | Binomial   | Std  | PolyVal3  | 1, 4, 16, 64, 256, 1024, 4096, 16384        |
-| A001333  | SchroederB | Inv  | AltSum    | 1, -1, 3, -7, 17, -41, 99, -239             |
-| A006012  | SchroederL | Inv  | AltSum    | 1, -2, 6, -20, 68, -232, 792, -2704         |
-| A026302  | Motzkin    | Rev  | Central   | 1, 2, 9, 44, 230, 1242, 6853, 38376         |
-| A103194  | Laguerre   | Std  | TransNat0 | 0, 1, 6, 39, 292, 2505, 24306, 263431       |
-| A111884  | Lah        | Std  | TransAlts | 1, -1, -1, -1, 1, 19, 151, 1091             |
-| A000000  | Laguerre   | Rev  | TransNat1 | 1, 3, 15, 97, 753, 6771, 68983, 783945      |
-"""
-
-
-def SaveFoundDB(dbpath: Path) -> int:
+def ConvertDBtoCSVandMD(dbpath: Path, funname: str) -> int:
     size = 0
     with sqlite3.connect(dbpath) as db:
         cursor = db.cursor()
@@ -3136,53 +3188,51 @@ def SaveFoundDB(dbpath: Path) -> int:
         tables = cursor.fetchall()
         for table_name in tables:
             table_name = table_name[0]
-            sql = f"SELECT triangle, trait, anum, seq FROM {table_name} WHERE anum != 'A000012' AND anum != 'A000007' AND anum != 'A000004' AND anum != 'missing'"
-            table = pd.read_sql_query(sql, db)
-            table.to_csv(GetDataPath(table_name + "F", "csv"), index_label="index")
-            table.to_markdown(GetDataPath(table_name + "F", "md"))
-            size = table.size // 4
-        cursor.close()
-    return size
-
-
-def SaveDB_CSV_MD(dbpath: Path) -> int:
-    size = 0
-    with sqlite3.connect(dbpath) as db:
-        cursor = db.cursor()
-        sql = "SELECT name FROM sqlite_master WHERE type='table';"
-        cursor.execute(sql)
-        tables = cursor.fetchall()
-        for table_name in tables:
-            table_name = table_name[0]
-            sql = f"SELECT triangle, trait, anum, seq FROM {table_name} WHERE anum != 'A000012' AND anum != 'A000007' AND anum != 'A000004'"
+            sql = f"""SELECT triangle, trait, anum, seq 
+                      FROM {table_name} 
+                      WHERE anum != 'A000012' 
+                      AND anum != 'A000007' 
+                      AND anum != 'A000004' """
             table = pd.read_sql_query(sql, db)
             table.to_csv(GetDataPath(table_name, "csv"), index_label="index")
             table.to_markdown(GetDataPath(table_name, "md"))
             size = table.size // 4
         cursor.close()
+    print(f"Info: Created data/csv/{funname}.csv and data/md/{funname}.md.")
     return size
 
 
-def SaveMissingDB(dbpath: Path) -> int:
-    size = 0
-    with sqlite3.connect(dbpath) as db:
-        cursor = db.cursor()
-        sql = "SELECT name FROM sqlite_master WHERE type='table';"
-        cursor.execute(sql)
-        tables = cursor.fetchall()
-        for table_name in tables:
-            table_name = table_name[0]
-            sql = f"SELECT triangle, trait, anum, seq FROM {table_name} WHERE anum == 'missing'"
-            table = pd.read_sql_query(sql, db)
-            table.to_csv(GetDataPath(table_name + "X", "csv"), index_label="index")
-            table.to_markdown(GetDataPath(table_name + "X", "md"))
-            size = table.size // 4
-        cursor.close()
-    return size
+def SaveAllTraitsToDBandCSVandMD(tabl_fun: list[tgen]) -> None:
+    """Warning: uses internet!"""
+    for fun in tabl_fun:
+        SaveTraitsToDB(fun)
+        ConvertDBtoCSVandMD(GetDataPath(fun.id, "db"), fun.id)
+    return
 
 
-def GetOEISdata() -> None:
-    print("Updating OEIS data!")
-    GetCompressed()
-    OeisToSql()
-    print("OEIS data updated!")
+def MergeDBs(tablfun: list[tgen]):
+    destname = "traits"
+    destpath = GetDataPath(destname, "db")
+    with sqlite3.connect(destpath) as dest:
+        dest_cursor = dest.cursor()
+        sql = f"CREATE TABLE {destname}(triangle, trait, hash, anum, seq)"
+        dest_cursor.execute(sql)
+        for src in tablfun:
+            srcpath = GetDataPath(src.id, "db")
+            with sqlite3.connect(srcpath) as src:
+                src_cursor = src.cursor()
+                sql = "SELECT name FROM sqlite_master WHERE type='table';"
+                src_cursor.execute(sql)
+                tables = src_cursor.fetchall()
+                for table_name in tables:
+                    table_name = table_name[0]
+                    print(table_name)
+                    sql = f"SELECT * FROM {table_name}"
+                    res = src_cursor.execute(sql)
+                    trs = res.fetchall()
+                    sql = f"INSERT INTO {destname} VALUES(?, ?, ?, ?, ?)"
+                    dest_cursor.executemany(sql, trs)
+                src_cursor.close()
+        dest.commit()
+        dest_cursor.close()
+    print("Info: Created database traits.db in data/db.")

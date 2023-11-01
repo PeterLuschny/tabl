@@ -1,18 +1,10 @@
-import time
 import csv
-import urllib.request
 from _tabltypes import tgen
 from _tablpaths import GetDataPath
 from _tabltraits import Formulas
 from tabl import tabl_fun
 
 # #@
-
-
-def IsInOEIS(url: str) -> bool:
-    with urllib.request.urlopen(url) as response:
-        page = response.read()
-        return -1 == page.find(b'"count": 0', 36, 236)
 
 
 Header = [
@@ -172,19 +164,17 @@ def CsvToHtml(fun: tgen) -> None:
                 outfile.write(f"<td class='tooltip'>{trait}<span class='formula'>{tip}</span></td>") 
 
                 # Anum
-                color = "rgb(0, 0, 255)"
-                if anum == 'missing':  # start with a(3) !
-                    sseq = (seq.split(' ', 3)[3]).replace(' ', ',')
+                sseq = (seq.split(' ', 3)[3]).replace(' ', ',')
+                if anum == 'missing':  
+                    color = "rgb(127, 0, 255)"
+                    url = f'https://oeis.org/search?q={sseq}'
+                    outfile.write(f"<td><a href='{url}' target='_blank'>variant</a></td>") 
+                elif anum == 'variant':  
+                    color = "rgb(167, 199, 231)"
                     url = f'https://oeis.org/search?q={sseq}&fmt=json'
-                    if IsInOEIS(url): 
-                        color = "rgb(127, 0, 255)"
-                        url = f'https://oeis.org/search?q={sseq}'
-                        outfile.write(f"<td><a href='{url}' target='_blank'>variant</a></td>") 
-                    else:
-                        color = "rgb(167, 199, 231)"
-                        outfile.write(f"<td><a href='{url}' target='_blank'>missing</a></td>") 
-                    time.sleep(1)  # give OEIS time
+                    outfile.write(f"<td><a href='{url}' target='_blank'>missing</a></td>") 
                 else:
+                    color = "rgb(0, 0, 255)"
                     outfile.write(f"<td><a href='https://oeis.org/{anum}'>{anum}</a></td>") 
 
                 # seq
@@ -204,7 +194,7 @@ def CsvToHtml(fun: tgen) -> None:
  
 def AllCsvToHtml() -> None:
     for fun in tabl_fun:
-        print("Info: Generating data/html/{fun.id}.html.")
+        print(f"Info: Generating data/html/{fun.id}.html.")
         CsvToHtml(fun)
 
 
@@ -213,10 +203,7 @@ if __name__ == "__main__":
     from Abel import Abel
     from Worpitzky import Worpitzky
     
-    CsvToHtml(Worpitzky)
-    # AllCsvToHtml()
-
-    #IsInOEIS('https://oeis.org/search?q=1,1,0,1,2,0,1,6,9,0,1,12,48,64,0,1,20,150,500,625,0,1,30,360,2160,6480,7776,0,1,42,735,6860,36015&fmt=json')
-    #IsInOEIS('https://oeis.org/search?q=1,2,3,4,5&fmt=json')
+    CsvToHtml(Abel)
+    #AllCsvToHtml()
 
     print("Done ...")

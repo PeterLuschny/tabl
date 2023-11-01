@@ -1,3 +1,4 @@
+from functools import cache
 from typing import Callable, TypeAlias
 from _tablinverse import InverseTriangle, InverseTabl
 
@@ -49,6 +50,7 @@ def inversion_wrapper(T: tgen, size: int) -> tgen | None:
     t = T.inv(size)
     if t == []: return None
 
+    @cache
     def psgen(n: int) -> trow: 
         return list(t[n])
 
@@ -62,6 +64,8 @@ def inversion_wrapper(T: tgen, size: int) -> tgen | None:
 def reversion_wrapper(T: tgen, size: int) -> tgen:
 
     t = T.tab(size)
+
+    @cache
     def rsgen(n: int) -> trow: 
         row = t[n]
         return [row[n - i] for i in range(n + 1)]
@@ -79,6 +83,7 @@ def revinv_wrapper(T: tgen, size: int) -> tgen | None:
     if I == None: return None
     J = reversion_wrapper(I, size)
 
+    @cache
     def rigen(n: int) -> trow: 
         return list(J.gen(n))
 
@@ -94,6 +99,7 @@ def invrev_wrapper(T: tgen, size: int) -> tgen | None:
     S = inversion_wrapper(R, size) 
     if S == None: return None
 
+    @cache
     def tigen(n: int) -> trow: 
         return list(S.gen(n))
 

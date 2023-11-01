@@ -1,7 +1,7 @@
-from _tabldata import GetCompressed, OeisToSql, SaveAllTraitsToDB,SaveTraitsToDB, SaveDB_CSV_MD
+from _tabldata import GetCompressed, OeisToSql, SaveAllTraitsToDBandCSVandMD, MergeDBs
 from _tablexport import SaveExtendedTables, CrossReferences
 from _tablhtml import AllCsvToHtml
-from _tablpaths import GetRoot, GetDataPath
+from _tablpaths import GetRoot
 from tabl import tabl_fun
 
 # #@
@@ -14,26 +14,21 @@ from tabl import tabl_fun
     done only by the administrator when preparing a new release.
 '''
 def setup() -> None:
+
     print("Info: Building database. This takes some time! (~2 hour)")
-    
+    print("Warning: You have to be online now, since we are querying OEIS!") 
     print("Info: Updating OEIS data ...")
+
     GetCompressed()
     OeisToSql()
     print("Info: OEIS data updated!")
-   
-    SaveAllTraitsToDB(tabl_fun)
 
-    for fun in tabl_fun:
-        SaveTraitsToDB(fun)
-        SaveDB_CSV_MD(GetDataPath(fun.id, 'db') )
-
-    print("Info: All traits saved to data/db.")
-
-    print("Warning: You have to be online now!") 
-    print("Info: Building html pages; this will take long since we are querying OEIS.")
+    SaveAllTraitsToDBandCSVandMD(tabl_fun)   
+    MergeDBs(tabl_fun)       
+    print("Info: All traits of all sequences saved to db, csv, and md!")
 
     AllCsvToHtml()
-    print("Warning: You must put the files 'sortable.js' and 'style.css' into the html directory!")
+    print("Warning: You must put also the files 'sortable.js' and 'style.css' into the html directory!")
     print("Info: Building extended tables.")
 
     SaveExtendedTables()
@@ -52,5 +47,5 @@ if __name__ == "__main__":
     If you want to update 'tabl.py' after you have added a new
     triangle implementation just run "src/_tablmake.py".
     '''
-    # setup()
+    #setup()
 
