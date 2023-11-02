@@ -188,7 +188,9 @@ def queryminioeis(H: str, seq:list[int], oeis_cur: sqlite3.Cursor) -> str:
 
 
 def IsInOEIS(seq: list[int]) -> bool:
-    """_summary_
+    """Sometimes it is too much for the
+    OEIS-server and it slamms the door:
+    "Connection reset by peer!"
 
     Args:
         seq (list[int]): sequence
@@ -218,7 +220,7 @@ def queryoeis(H: str, seq:list[int], oeis_cur: sqlite3.Cursor) -> str:
     rec = queryminioeis(H, seq, oeis_cur)
     if rec != 'missing':
         return rec
-    time.sleep(1)  # give the OEIS server time to relax
+    time.sleep(2)  # give the OEIS server time to relax
     if IsInOEIS(seq[3:MINTERMS + 3]): 
         return "variant" 
     else:

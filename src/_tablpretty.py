@@ -1,7 +1,25 @@
 # https://github.com/jazzband/prettytable
 
+from tabulate import tabulate
 
 # #@
+
+table = [
+        ["Row0", [1]],
+        ["Row1", [0, 1]],
+        ["Row2", [0, 2, 1]],
+        ["Row3", [0, 9, 6, 1]],
+        ["Row4", [0, 64, 48, 12, 1]],
+        ["Row5", [0, 625, 500, 150, 20, 1]],
+        ["Row6", [0, 7776, 6480, 2160, 360, 30, 1]],
+        ["Row7", [0, 117649, 100842, 36015, 6860, 735, 42, 1]],
+        ["Row8", [0, 2097152, 1835008, 688128, 143360, 17920, 1344, 56, 1]],
+        [
+            "Row9",
+            [0, 43046721, 38263752, 14880348, 3306744, 459270, 40824, 2268, 72, 1],
+        ]]
+print(tabulate(table, ["Row", "Seq"], tablefmt="github"))
+
 
 def PrintPrintTriangle(triangle: list[list[int]], centered: bool):
     """Cudos to '200_success' from 'codereview'."""

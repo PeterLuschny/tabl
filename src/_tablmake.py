@@ -192,6 +192,7 @@ import_header: list[str] = [
     "from sys import setrecursionlimit, set_int_max_str_digits\n",
     "from typing import Callable, TypeAlias\n",
     "from inspect import signature\n",
+    "from tabulate import tabulate\n",  # needed by pandas
     "import contextlib\n",
     "import csv\n",
     "import urllib.request\n",
@@ -242,6 +243,6 @@ def make() -> None:
             src_file.close()
     dest.close()
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     make()
