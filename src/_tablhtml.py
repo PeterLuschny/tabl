@@ -107,7 +107,7 @@ def navbar(fun: tgen) -> list[str]:
     rc = "style='border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 108px; height: 20px; font-weight: 700; text-align: center; margin-left: 8px; margin-right: 8px;'"
     NAVBAR = ["<table class='center'><tr>"]
     NAVBAR.append(f"<td {rc};><a style='color:white' href='https://luschny.de/math/oeis/{prevnext[0]}.html'>&nbsp;&lt;&lt;&nbsp;</a></td>")
-    NAVBAR.append(f"<td {rc};><a style='color:white' href='https://github.com/PeterLuschny/tabl/blob/main/data/md/{fun.id}.md'>Table</a></td>")
+    NAVBAR.append(f"<td {rc};><a style='color:white' href='https://github.com/PeterLuschny/tabl/blob/main/data/md/{fun.id}.tbl.md'>Table</a></td>")
     NAVBAR.append(f"<td {rc};><a style='color:white' href='https://github.com/PeterLuschny/tabl/blob/main/src/{fun.id}.py'>Source</a></td>")
     NAVBAR.append(f"<td {rc};><a style='color:white' href='https://oeis.org/search?q={anums}'>Similars</a></td>")
     NAVBAR.append(f"<td {rc};><a style='color:white' href='https://luschny.de/math/oeis/index.html'>Index</a></td>")
@@ -203,7 +203,7 @@ if __name__ == "__main__":
     from Abel import Abel
     from Worpitzky import Worpitzky
     
-    CsvToHtml(Abel)
-    #AllCsvToHtml()
+    #CsvToHtml(Abel)
+    AllCsvToHtml()
 
     print("Done ...")

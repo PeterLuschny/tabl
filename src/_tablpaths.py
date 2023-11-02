@@ -1,5 +1,8 @@
 from pathlib import Path
 
+
+# root
+#    | 
 #    data
 #       | -> csv
 #               | -> oeis.csv
@@ -16,6 +19,7 @@ from pathlib import Path
 #               | -> *.md
 #               | -> *.tbl.md
 #       | -> html
+#               | -> sortable.js
 #               | -> Abel.html
 #               | -> *.html
 
@@ -40,24 +44,25 @@ def GetDataPath(name: str, fix: str)  -> Path:
     return (path / relpath).resolve()
 
 
-def MakeDirectory(dir: str)  -> None:
+def MakeDirectory(dir: Path)  -> None:
     """Checks if a path exists, and if not,
     creates the new path."""
     Path(dir).mkdir(parents=True, exist_ok=True)
 
 
-def EnsureDataDirectories() -> None:    
-    MakeDirectory("data/csv")
-    MakeDirectory("data/db")
-    MakeDirectory("data/html")
-    MakeDirectory("data/md")
+def EnsureDataDirectories() -> None: 
+    MakeDirectory(GetRoot("data/csv"))
+    MakeDirectory(GetRoot("data/db"))
+    MakeDirectory(GetRoot("data/html"))
+    MakeDirectory(GetRoot("data/md"))
 
 
-# githubtab = "https://github.com/PeterLuschny/tabl/blob/main/tables.md"
-# githubsrc = "https://github.com/PeterLuschny/tabl/blob/main/src/"
-# htmltraits = "https://luschny.de/math/oeis/" 
+# githubtab    = "https://github.com/PeterLuschny/tabl/blob/main/tables.md"
+# githubsrc    = "https://github.com/PeterLuschny/tabl/blob/main/src/"
+# htmltraits   = "https://luschny.de/math/oeis/" 
 # oeisstripped = "https://oeis.org/stripped.gz"
-# oeissearch = "https://oeis.org/search?q="
+# oeissearch   = "https://oeis.org/search?q="
+# sortable     = "https://github.com/tofsjonas/sortable"
 
 
 if __name__ == "__main__":

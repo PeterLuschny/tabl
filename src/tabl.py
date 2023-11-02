@@ -35,17 +35,17 @@ def GetDataPath(name: str, fix: str) -> Path:
     return (path / relpath).resolve()
 
 
-def MakeDirectory(dir: str) -> None:
+def MakeDirectory(dir: Path) -> None:
     """Checks if a path exists, and if not,
     creates the new path."""
     Path(dir).mkdir(parents=True, exist_ok=True)
 
 
 def EnsureDataDirectories() -> None:
-    MakeDirectory("data/csv")
-    MakeDirectory("data/db")
-    MakeDirectory("data/html")
-    MakeDirectory("data/md")
+    MakeDirectory(GetRoot("data/csv"))
+    MakeDirectory(GetRoot("data/db"))
+    MakeDirectory(GetRoot("data/html"))
+    MakeDirectory(GetRoot("data/md"))
 
 
 def InverseTabl(L: list[list[int]]) -> list[list[int]]:
@@ -2699,7 +2699,7 @@ def navbar(fun: tgen) -> list[str]:
         f"<td {rc};><a style='color:white' href='https://luschny.de/math/oeis/{prevnext[0]}.html'>&nbsp;&lt;&lt;&nbsp;</a></td>"
     )
     NAVBAR.append(
-        f"<td {rc};><a style='color:white' href='https://github.com/PeterLuschny/tabl/blob/main/data/md/{fun.id}.md'>Table</a></td>"
+        f"<td {rc};><a style='color:white' href='https://github.com/PeterLuschny/tabl/blob/main/data/md/{fun.id}.tbl.md'>Table</a></td>"
     )
     NAVBAR.append(
         f"<td {rc};><a style='color:white' href='https://github.com/PeterLuschny/tabl/blob/main/src/{fun.id}.py'>Source</a></td>"

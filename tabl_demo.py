@@ -4,6 +4,9 @@ from tabl import MakeTriangle, PrintProfile
 """
 This is a demo of the simplest use of the 'tabl' module.
 
+All it needs is one file, 'tabl.py', that has to be put in
+the same directory as this demo file.
+
 The function 'demo' computes the n-th row of a regular integer
 triangle. It has to be defined for n >= 0.
 """
@@ -21,3 +24,11 @@ def Demo(n: int, k: int) -> int:
 
 if __name__ == "__main__":
     PrintProfile(Demo) 
+
+
+"""  
+Of course, much more is possible, for example creating a database 
+for the traits of a triangle. If you want to do this, you should 
+start by running '_tablsetup.py'. This takes a while, but is a 
+one-time thing.
+"""
