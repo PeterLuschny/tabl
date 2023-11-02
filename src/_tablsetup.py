@@ -1,7 +1,7 @@
 from _tabldata import GetCompressed, OeisToSql, SaveAllTraitsToDBandCSVandMD, MergeDBs
 from _tablexport import SaveExtendedTables, CrossReferences
+from _tablpaths import GetRoot, EnsureDataDirectories
 from _tablhtml import AllCsvToHtml
-from _tablpaths import GetRoot
 from tabl import tabl_fun
 
 # #@
@@ -14,6 +14,8 @@ from tabl import tabl_fun
     done only by the administrator when preparing a new release.
 '''
 def setup() -> None:
+
+    EnsureDataDirectories()
 
     print("Info: Building database. This takes some time! (~2 hour)")
     print("Warning: You have to be online now, since we are querying OEIS!") 
@@ -28,7 +30,7 @@ def setup() -> None:
     print("Info: All traits of all sequences saved to db, csv, and md!")
 
     AllCsvToHtml()
-    print("Warning: You must put also the files 'sortable.js' and 'style.css' into the html directory!")
+    print("Warning: You must put also the file 'sortable.js' into the html directory!")
     print("Info: Building extended tables.")
 
     SaveExtendedTables()
@@ -48,4 +50,3 @@ if __name__ == "__main__":
     triangle implementation just run "src/_tablmake.py".
     '''
     #setup()
-

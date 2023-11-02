@@ -1,9 +1,28 @@
 from pathlib import Path
 
+#    data
+#       | -> csv
+#               | -> oeis.csv
+#               | -> Abel.csv
+#               | -> *.csv
+#       | -> db
+#               | -> oeismini.db
+#               | -> traits.db
+#               | -> Abel.db
+#               | -> *.db
+#       | -> md
+#               | -> Abel.md
+#               | -> Abel.tbl.md
+#               | -> *.md
+#               | -> *.tbl.md
+#       | -> html
+#               | -> Abel.html
+#               | -> *.html
+
+
 # #@
 
 path = Path(__file__).parent.parent
-
 strippedpath = (path / "data/stripped").resolve()
 
 
@@ -21,6 +40,19 @@ def GetDataPath(name: str, fix: str)  -> Path:
     return (path / relpath).resolve()
 
 
+def MakeDirectory(dir: str)  -> None:
+    """Checks if a path exists, and if not,
+    creates the new path."""
+    Path(dir).mkdir(parents=True, exist_ok=True)
+
+
+def EnsureDataDirectories() -> None:    
+    MakeDirectory("data/csv")
+    MakeDirectory("data/db")
+    MakeDirectory("data/html")
+    MakeDirectory("data/md")
+
+
 # githubtab = "https://github.com/PeterLuschny/tabl/blob/main/tables.md"
 # githubsrc = "https://github.com/PeterLuschny/tabl/blob/main/src/"
 # htmltraits = "https://luschny.de/math/oeis/" 
@@ -36,3 +68,4 @@ if __name__ == "__main__":
     '''Make sure to reference tabl.py in its current state.'''
     # exec(open(mkpath).read())
 
+    EnsureDataDirectories()

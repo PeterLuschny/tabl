@@ -35,6 +35,19 @@ def GetDataPath(name: str, fix: str) -> Path:
     return (path / relpath).resolve()
 
 
+def MakeDirectory(dir: str) -> None:
+    """Checks if a path exists, and if not,
+    creates the new path."""
+    Path(dir).mkdir(parents=True, exist_ok=True)
+
+
+def EnsureDataDirectories() -> None:
+    MakeDirectory("data/csv")
+    MakeDirectory("data/db")
+    MakeDirectory("data/html")
+    MakeDirectory("data/md")
+
+
 def InverseTabl(L: list[list[int]]) -> list[list[int]]:
     # Inverse of a lower triangular matrix
     n = len(L)

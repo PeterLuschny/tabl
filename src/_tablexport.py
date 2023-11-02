@@ -11,6 +11,11 @@ from _tabltypes import (
     invrev_wrapper,
 )
 
+'''
+Memo for the developer:
+The html version of the 'readme' (crossreference table) needs (and only needs):
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+'''
 
 # #@
 

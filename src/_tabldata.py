@@ -11,20 +11,6 @@ from _tabltypes import tgen, inversion_wrapper, reversion_wrapper, revinv_wrappe
 from _tabltraits import RegisterTraits, is_tabletrait
 
 
-#    data
-#       | -> csv
-#               | -> oeis.csv
-#               | -> Abel.csv
-#       | -> db
-#               | -> oeismini.db
-#               | -> traits.db
-#               | -> Abel.db
-#       | -> md
-#               | -> Abel.md
-#               | -> Abel.tbl.md
-#       | -> html
-#               | -> Abel.html
-
 """
     Pretty printing of triangles trait cards.
 
