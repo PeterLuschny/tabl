@@ -2,7 +2,7 @@
 # #@
 
 
-def InverseTabl(L: list[list[int]]) -> list[list[int]]:
+def InvertTabl(L: list[list[int]]) -> list[list[int]]:
     # Inverse of a lower triangular matrix
     n = len(L)
     inv = [[0 for i in range(n)] for _ in range(n)]  # Identity matrix
@@ -17,28 +17,28 @@ def InverseTabl(L: list[list[int]]) -> list[list[int]]:
             if b == 0:
                 # print("Warning: Inverse does not exist!")
                 return []
-            a, r = divmod(a, b) # make sure that a is integer
+            a, r = divmod(a, b)  # make sure that a is integer
             if r != 0:
                 # print("Warning: Integer terms do not exist!")
                 return []
     return [row[0:n + 1] for n, row in enumerate(inv)]
 
 
-def InverseTriangle(r, dim: int) -> list[list[int]]:
+def InvertTriangle(r, dim: int) -> list[list[int]]:
     M = [[r(n)[k] if k <= n else 0 for k in range(dim)] for n in range(dim)]
-    return InverseTabl(M)
+    return InvertTabl(M)
 
 
 if __name__ == "__main__":
 
     def test():
         M = [[1, 0, 0], [1, 2, 0], [1, 2, 3]]
-        I = InverseTabl(M)
-        print(I)
+        V = InvertTabl(M)
+        print(V)
 
         M = [[1, 0, 0], [1, 2, 0], [1, 2, 0]]
-        I = InverseTabl(M)
-        print(I)
+        V = InvertTabl(M)
+        print(V)
 
         M = [
             [1,      0,      0,     0,    0,   0,  0, 0],
@@ -50,8 +50,8 @@ if __name__ == "__main__":
             [0,   7776,   6480,  2160,  360,  30,  1, 0],
             [0, 117649, 100842, 36015, 6860, 735, 42, 1],
         ]
-        I = InverseTabl(M)
-        print(I)
+        V = InvertTabl(M)
+        print(V)
 
     # test()
 
@@ -60,12 +60,11 @@ if __name__ == "__main__":
     from StirlingSet import StirlingSet
 
     dim = 8
-    print(InverseTabl(Abel.tab(dim)))
-    print(InverseTriangle(Abel.gen, dim))
+    print(InvertTabl(Abel.tab(dim)))
+    print(InvertTriangle(Abel.gen, dim))
 
-    print(InverseTabl(StirlingSet.tab(dim)))
-    print(InverseTriangle(StirlingSet.gen, dim))
+    print(InvertTabl(StirlingSet.tab(dim)))
+    print(InvertTriangle(StirlingSet.gen, dim))
 
-    print(InverseTabl(Bell.tab(dim)))
-    print(InverseTriangle(Bell.gen, dim))
-
+    print(InvertTabl(Bell.tab(dim)))
+    print(InvertTriangle(Bell.gen, dim))

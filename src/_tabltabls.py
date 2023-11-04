@@ -1,7 +1,7 @@
 from typing import Callable
 from itertools import accumulate
 from _tabltypes import tabl, trow, tgen, rgen
-from _tablinverse import InverseTabl
+from _tablinverse import InvertTabl
 
 def flat(T: tabl) -> list[int]: 
     """Flatten table to sequence
@@ -34,11 +34,11 @@ def RevTabl(T: tabl) -> tabl:
 
 
 def InvTabl(T: tabl) -> tabl:
-    return InverseTabl(T)
+    return InvertTabl(T)
 
 
 def InvRevTabl(T: tabl) -> tabl:
-    return InverseTabl(RevTabl(T))
+    return InvertTabl(RevTabl(T))
 
 
 def RevAccTabl(T: tabl) -> tabl:

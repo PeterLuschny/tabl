@@ -17,7 +17,7 @@ def demo(n: int) -> list[int]:
     return [i + 1 for i in R]
 
 
-@MakeTriangle(demo, "Demo", ['A000027', 'A001477'], False)
+@MakeTriangle(demo, "Demo", ['A000027', 'A001477'])
 def Demo(n: int, k: int) -> int:
     return demo(n)[k]
 

@@ -2,7 +2,7 @@ from pathlib import Path
 
 
 # root
-#    | 
+#    |
 #    data
 #       | -> csv
 #               | -> oeis.csv
@@ -30,27 +30,27 @@ path = Path(__file__).parent.parent
 strippedpath = (path / "data/stripped").resolve()
 
 
-def GetRoot(name: str='') -> Path:
+def GetRoot(name: str = '') -> Path:
     return (path / name).resolve()
-  
+
 
 def GetData(name: str) -> Path:
     relpath = f"data/{name}"
     return (path / relpath).resolve()
 
 
-def GetDataPath(name: str, fix: str)  -> Path:
+def GetDataPath(name: str, fix: str) -> Path:
     relpath = f"data/{fix}/{name}.{fix}"
     return (path / relpath).resolve()
 
 
-def MakeDirectory(dir: Path)  -> None:
+def MakeDirectory(dir: Path) -> None:
     """Checks if a path exists, and if not,
     creates the new path."""
     Path(dir).mkdir(parents=True, exist_ok=True)
 
 
-def EnsureDataDirectories() -> None: 
+def EnsureDataDirectories() -> None:
     MakeDirectory(GetRoot("data/csv"))
     MakeDirectory(GetRoot("data/db"))
     MakeDirectory(GetRoot("data/html"))
@@ -59,7 +59,7 @@ def EnsureDataDirectories() -> None:
 
 # githubtab    = "https://github.com/PeterLuschny/tabl/blob/main/tables.md"
 # githubsrc    = "https://github.com/PeterLuschny/tabl/blob/main/src/"
-# htmltraits   = "https://luschny.de/math/oeis/" 
+# htmltraits   = "https://luschny.de/math/oeis/"
 # oeisstripped = "https://oeis.org/stripped.gz"
 # oeissearch   = "https://oeis.org/search?q="
 # sortable     = "https://github.com/tofsjonas/sortable"

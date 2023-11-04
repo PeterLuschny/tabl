@@ -1,6 +1,6 @@
 import sys
 from _tablviews import PrintViews
-from _tablinverse import InverseTabl
+from _tablinverse import InvertTabl
 from _tabltypes import tgen, rgen
 
 
@@ -31,7 +31,7 @@ def TablTest(T: tgen, dim: int = 8, short: bool = False) -> None:
     except: 
         print("Exceeds the limit for integer string conversion.")
 
-    I = InverseTabl(T.tab(8))
+    I = InvertTabl(T.tab(8))
     if I == []:
         print("\nTriangle is not invertibel.")
     else:

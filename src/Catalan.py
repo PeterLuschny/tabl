@@ -1,7 +1,7 @@
 from functools import cache
 from _tabltypes import MakeTriangle
 
-"""Balott Catalan triangle. 
+"""Balott Catalan triangle.
 
 [0] 1;
 [1] 0,    1;

@@ -1,6 +1,8 @@
 # https://github.com/jazzband/prettytable
 
 from tabulate import tabulate
+from prettytable import PrettyTable
+from prettytable.colortable import ColorTable, Themes
 
 # #@
 
@@ -33,8 +35,6 @@ def PrintPrintTriangle(triangle: list[list[int]], centered: bool):
     for row in triangle:
         print(format_row(row).center(triangle_width))
 
-
-from prettytable import PrettyTable
 
 x = PrettyTable()
 x.field_names = ["Row", "Seq"]
@@ -79,7 +79,6 @@ x.add_rows(
 )
 print(x)
 
-from prettytable.colortable import ColorTable, Themes
 
 y = ColorTable(theme=Themes.OCEAN)
 # y = PrettyTable()

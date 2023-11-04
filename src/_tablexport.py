@@ -3,12 +3,11 @@ from tabl import tabl_fun
 import contextlib
 from _tablpaths import GetRoot, GetDataPath
 from _tablviews import PrintViews
-from _tablpaths import GetDataPath
 from _tabltypes import (
-    inversion_wrapper,
-    reversion_wrapper,
-    revinv_wrapper,
-    invrev_wrapper,
+    InvTable,
+    RevTable,
+    RevInvTable,
+    InvRevTable,
 )
 
 '''
@@ -32,7 +31,8 @@ The notebook gives a first introduction for the user.
 
 """
 
-def CrossReferences(name: str="README.md") -> None:
+
+def CrossReferences(name: str = "README.md") -> None:
     """Writes the crossreferences as a md-table to the root.
     """
 
@@ -52,8 +52,11 @@ def CrossReferences(name: str="README.md") -> None:
             for sim in similars:
                 anum += "%7Cid%3A" + sim
             xrefs.write(
-                f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/data/md/{id}.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://oeis.org/search?q={anum}) |\n")
-            
+                f'''| [{id}](https://github.com/PeterLuschny/tabl/blob/main/data/md/{id}.tbl.md)
+                    | [source](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py)
+                    | [traits](https://luschny.de/math/oeis/{id}.html)
+                    | [{s}](https://oeis.org/search?q={anum}) |\n''')
+
     print("Info: 'README.md' written to the root folder.")
 
 
@@ -67,19 +70,19 @@ def SaveExtendedTables(dim: int = 10) -> None:
             with contextlib.redirect_stdout(dest):
                 PrintViews(fun, dim)
 
-                I = inversion_wrapper(fun, tim)
-                if I != None:
-                    PrintViews(I, dim)
+                V = InvTable(fun, tim)
+                if V is not None:
+                    PrintViews(V, dim)
 
-                r = reversion_wrapper(fun, tim)
+                r = RevTable(fun, tim)
                 PrintViews(r, dim)
 
-                r = revinv_wrapper(fun, tim)
-                if r != None:
+                r = RevInvTable(fun, tim)
+                if r is not None:
                     PrintViews(r, dim)
 
-                r = invrev_wrapper(fun, tim)
-                if r != None:
+                r = InvRevTable(fun, tim)
+                if r is not None:
                     PrintViews(r, dim)
 
     print("Info: Extended tables written to the data/md folder as 'name.tbl.md'.")

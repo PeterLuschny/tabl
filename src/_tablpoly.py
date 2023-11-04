@@ -4,6 +4,7 @@ from _tabltypes import rgen, tgen, tabl, trow
 
 # #@
 
+
 def PolyEval_(g: rgen, n: int, x: int) -> int:
     row = g(n)
     return sum(c * (x ** j) for (j, c) in enumerate(row))
@@ -44,12 +45,12 @@ def AntiDiagPoly(g: rgen, n: int) -> trow:
 def PolyDiagTabl(g: rgen, size: int) -> tabl:
     return [AntiDiagPoly(g, n) for n in range(size)]
 
- 
+
 def Poly(g: rgen, size: int) -> trow:
     return [i for row in PolyDiagTabl(g, size) for i in row]
 
 
-def PolyFrac(T: tabl, x: frac)  -> list[frac | int]:
+def PolyFrac(T: tabl, x: frac) -> list[frac | int]:
     return [sum(c * (x ** k) for (k, c) in enumerate(row)) for row in T]
 
 
@@ -78,7 +79,8 @@ def NegHalf(T: tabl) -> trow:
 def PrintPolys(t: tgen, size: int = 8, mdformat: bool = True) -> None:
 
     POLYTRAIT: dict[str, Callable[[t.gen, int], trow]] = {}
-    def RegisterPolyTrait(f: Callable[[t.gen, int], trow]) -> None: 
+
+    def RegisterPolyTrait(f: Callable[[t.gen, int], trow]) -> None:
         POLYTRAIT[f.__name__] = f
 
     RegisterPolyTrait(Poly)
@@ -90,7 +92,7 @@ def PrintPolys(t: tgen, size: int = 8, mdformat: bool = True) -> None:
     RegisterPolyTrait(PolyCol1)
     RegisterPolyTrait(PolyCol2)
     RegisterPolyTrait(PolyCol3)
-    
+
     RegisterPolyTrait(PolyDiag)
     RegisterPolyTrait(PosHalf_)
     RegisterPolyTrait(NegHalf_)
@@ -99,8 +101,8 @@ def PrintPolys(t: tgen, size: int = 8, mdformat: bool = True) -> None:
     gen = t.gen
     if mdformat:
         print("#", trianglename, ": Polynomial values")
-        print( "| Trait    |   Seq  |")
-        print( "| :---     |  :---  |")
+        print("| Trait    |   Seq  |")
+        print("| :---     |  :---  |")
         for traitname, trait in POLYTRAIT.items():
             print(f'| {traitname:<8} | {trait(gen, size)} |')
         print()
@@ -115,8 +117,8 @@ if __name__ == "__main__":
     from Bell import Bell
 
     PrintPolys(Abel)
-    #PrintPolys(Bell, 6, False)
+    # PrintPolys(Bell, 6, False)
 
-    print(PolyDiag(Abel.gen, 8) )
-    print(PolyDiagTabl(Abel.gen, 8) )
-    print(Poly(Abel.gen, 8) ) 
+    print(PolyDiag(Abel.gen, 8))
+    print(PolyDiagTabl(Abel.gen, 8))
+    print(Poly(Abel.gen, 8))

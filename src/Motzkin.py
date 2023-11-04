@@ -23,8 +23,8 @@ def motzkin(n: int) -> list[int]:
     if n == 1:
         return [1, 0]
 
-    l = 0 if n % 2 else (motzkin(n - 2)[n - 2] * 2 * (n - 1)) // (n // 2 + 1)
-    row = motzkin(n - 1) + [l]
+    h = 0 if n % 2 else (motzkin(n - 2)[n - 2] * 2 * (n - 1)) // (n // 2 + 1)
+    row = motzkin(n - 1) + [h]
     for k in range(2, n, 2):
         row[k] = (n * row[k]) // (n - k)
     return row

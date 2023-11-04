@@ -49,7 +49,7 @@ def EnsureDataDirectories() -> None:
     MakeDirectory(GetRoot("data/md"))
 
 
-def InverseTabl(L: list[list[int]]) -> list[list[int]]:
+def InvertTabl(L: list[list[int]]) -> list[list[int]]:
     # Inverse of a lower triangular matrix
     n = len(L)
     inv = [[0 for i in range(n)] for _ in range(n)]  # Identity matrix
@@ -71,9 +71,9 @@ def InverseTabl(L: list[list[int]]) -> list[list[int]]:
     return [row[0 : n + 1] for n, row in enumerate(inv)]
 
 
-def InverseTriangle(r, dim: int) -> list[list[int]]:
+def InvertTriangle(r, dim: int) -> list[list[int]]:
     M = [[r(n)[k] if k <= n else 0 for k in range(dim)] for n in range(dim)]
-    return InverseTabl(M)
+    return InvertTabl(M)
 
 
 """Type: table row"""
@@ -90,7 +90,14 @@ tgen: TypeAlias = Callable[[int, int], int]
 tri: TypeAlias = Callable[[int, int], int]
 
 
-def inversion_wrapper(T: tgen, size: int) -> tgen | None:
+def InvTable(T: tgen, size: int) -> tgen | None:
+    """_summary_
+    Args:
+        T (tgen): _description_
+        size (int): _description_
+    Returns:
+        tgen | None: _description_
+    """
     t = T.inv(size)
     if t == []:
         return None
@@ -106,7 +113,14 @@ def inversion_wrapper(T: tgen, size: int) -> tgen | None:
     return Psgen
 
 
-def reversion_wrapper(T: tgen, size: int) -> tgen:
+def RevTable(T: tgen, size: int) -> tgen:
+    """_summary_
+    Args:
+        T (tgen): _description_
+        size (int): _description_
+    Returns:
+        tgen: _description_
+    """
     t = T.tab(size)
 
     @cache
@@ -121,11 +135,19 @@ def reversion_wrapper(T: tgen, size: int) -> tgen:
     return Rsgen
 
 
-def revinv_wrapper(T: tgen, size: int) -> tgen | None:
-    I = inversion_wrapper(T, size)
-    if I == None:
+def RevInvTable(T: tgen, size: int) -> tgen | None:
+    """First inverse, then reverse.
+       read: Rev(Inv(T))
+    Args:
+        T (tgen): _description_
+        size (int): _description_
+    Returns:
+        tgen | None: _description_
+    """
+    V = InvTable(T, size)
+    if V is None:
         return None
-    J = reversion_wrapper(I, size)
+    J = RevTable(V, size)
 
     @cache
     def rigen(n: int) -> trow:
@@ -138,10 +160,18 @@ def revinv_wrapper(T: tgen, size: int) -> tgen | None:
     return Rigen
 
 
-def invrev_wrapper(T: tgen, size: int) -> tgen | None:
-    R = reversion_wrapper(T, size)
-    S = inversion_wrapper(R, size)
-    if S == None:
+def InvRevTable(T: tgen, size: int) -> tgen | None:
+    """First reverse, then inverse.
+       read: Inv(Rev(T))
+    Args:
+        T (tgen): _description_
+        size (int): _description_
+    Returns:
+        tgen | None: _description_
+    """
+    R = RevTable(T, size)
+    S = InvTable(R, size)
+    if S is None:
         return None
 
     @cache
@@ -184,20 +214,20 @@ def MakeTriangle(
     def makeinv(size: int) -> tabl:
         if not vert:
             return []
-        return InverseTriangle(gen, size)
+        return InvertTriangle(gen, size)
 
     def makerevinv(size: int) -> tabl:
         if not vert:
             return []
-        I = InverseTriangle(gen, size)
-        if I == []:
+        V = InvertTriangle(gen, size)
+        if V == []:
             return []
-        return [[I[n][n - k] for k in range(n + 1)] for n in range(size)]
+        return [[V[n][n - k] for k in range(n + 1)] for n in range(size)]
 
     def makeinvrev(size: int) -> tabl:
         R = [list(reversed(gen(n))) for n in range(size)]
         M = [[R[n][k] if k <= n else 0 for k in range(size)] for n in range(size)]
-        return InverseTabl(M)
+        return InvertTabl(M)
 
     def sub(N: int, K: int) -> Callable[[int], tabl]:
         def gsub(size: int) -> tabl:
@@ -216,7 +246,7 @@ def MakeTriangle(
 
         return gabssub
 
-    def wrapper(f: Callable[[int, int], int]) -> Callable[[int, int], int]:
+    def Triangle(f: Callable[[int, int], int]) -> Callable[[int, int], int]:
         f.tab = maketab
         f.rev = makerev
         f.mat = makemat
@@ -232,7 +262,7 @@ def MakeTriangle(
         f.gen = gen
         return f
 
-    return wrapper
+    return Triangle
 
 
 def AntiDiagTabl(T: tabl) -> tabl:
@@ -251,11 +281,11 @@ def RevTabl(T: tabl) -> tabl:
 
 
 def InvTabl(T: tabl) -> tabl:
-    return InverseTabl(T)
+    return InvertTabl(T)
 
 
 def InvRevTabl(T: tabl) -> tabl:
-    return InverseTabl(RevTabl(T))
+    return InvertTabl(RevTabl(T))
 
 
 def RevAccTabl(T: tabl) -> tabl:
@@ -449,7 +479,6 @@ def PrintPolys(t: tgen, size: int = 8, mdformat: bool = True) -> None:
     RegisterPolyTrait(PolyCol1)
     RegisterPolyTrait(PolyCol2)
     RegisterPolyTrait(PolyCol3)
-
     RegisterPolyTrait(PolyDiag)
     RegisterPolyTrait(PosHalf_)
     RegisterPolyTrait(NegHalf_)
@@ -599,7 +628,7 @@ def DiagCol3(g: rgen, size: int) -> trow:
 
 
 def Lcm_(g: rgen, row: int) -> int:
-    Z = [v for v in g(row) if not v in [-1, 0, 1]]
+    Z = [v for v in g(row) if v not in [-1, 0, 1]]
     return lcm(*Z) if Z != [] else 1
 
 
@@ -608,7 +637,7 @@ def TabLcm_(g: rgen, size: int) -> trow:
 
 
 def Lcm(t: trow) -> int:
-    Z = [v for v in t if not v in [-1, 0, 1]]
+    Z = [v for v in t if v not in [-1, 0, 1]]
     return lcm(*Z) if Z != [] else 1
 
 
@@ -621,7 +650,7 @@ def RowLcm_(g: rgen, size: int) -> trow:
 
 
 def Gcd_(g: rgen, row: int) -> int:
-    Z = [v for v in g(row) if not v in [-1, 0, 1]]
+    Z = [v for v in g(row) if v not in [-1, 0, 1]]
     return gcd(*Z) if Z != [] else 1
 
 
@@ -630,14 +659,14 @@ def RowGcd_(g: rgen, size: int) -> trow:
 
 
 def Gcd(r: trow) -> int:
-    Z = [v for v in r if not v in [-1, 0, 1]]
+    Z = [v for v in r if v not in [-1, 0, 1]]
     return gcd(*Z) if Z != [] else 1
 
 
 def GcdReducedRow(r: trow) -> trow:
-    Z = [v for v in r if not v in [-1, 0, 1]]
+    Z = [v for v in r if v not in [-1, 0, 1]]
     cd = gcd(*Z) if Z != [] else 1
-    return [v // cd if not v in [-1, 0, 1] else v for v in r]
+    return [v // cd if v not in [-1, 0, 1] else v for v in r]
 
 
 def GcdReduced(T: tabl) -> tabl:
@@ -1042,16 +1071,16 @@ def PrintViews(g: tgen, rows: int = 7, verbose: bool = True) -> None:
 def PrintProfile(fun: tgen, dim: int = 10) -> None:
     tim: int = dim + dim
     PrintViews(fun, dim)
-    I = inversion_wrapper(fun, tim)
-    if I != None:
-        PrintViews(I, dim)
-    r = reversion_wrapper(fun, tim)
+    V = InvTable(fun, tim)
+    if V is not None:
+        PrintViews(V, dim)
+    r = RevTable(fun, tim)
     PrintViews(r, dim)
-    r = revinv_wrapper(fun, tim)
-    if r != None:
+    r = RevInvTable(fun, tim)
+    if r is not None:
         PrintViews(r, dim)
-    r = invrev_wrapper(fun, tim)
-    if r != None:
+    r = InvRevTable(fun, tim)
+    if r is not None:
         PrintViews(r, dim)
 
 
@@ -1870,8 +1899,8 @@ def motzkin(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [1, 0]
-    l = 0 if n % 2 else (motzkin(n - 2)[n - 2] * 2 * (n - 1)) // (n // 2 + 1)
-    row = motzkin(n - 1) + [l]
+    h = 0 if n % 2 else (motzkin(n - 2)[n - 2] * 2 * (n - 1)) // (n // 2 + 1)
+    row = motzkin(n - 1) + [h]
     for k in range(2, n, 2):
         row[k] = (n * row[k]) // (n - k)
     return row
@@ -1921,7 +1950,7 @@ def Narayana(n: int, k: int) -> int:
 
 
 @cache
-def naturals(n: int):
+def naturals(n: int) -> list[int]:
     R = range((n * (n + 1)) // 2, ((n + 1) * (n + 2)) // 2)
     return [i + 1 for i in R]
 
@@ -2566,9 +2595,11 @@ def CrossReferences(name: str = "README.md") -> None:
             for sim in similars:
                 anum += "%7Cid%3A" + sim
             xrefs.write(
-                f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/data/md/{id}.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://oeis.org/search?q={anum}) |\n"
+                f"""| [{id}](https://github.com/PeterLuschny/tabl/blob/main/data/md/{id}.tbl.md)
+                    | [source](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py)
+                    | [traits](https://luschny.de/math/oeis/{id}.html)
+                    | [{s}](https://oeis.org/search?q={anum}) |\n"""
             )
-
     print("Info: 'README.md' written to the root folder.")
 
 
@@ -2579,16 +2610,16 @@ def SaveExtendedTables(dim: int = 10) -> None:
         with open(tablpath, "w+") as dest:
             with contextlib.redirect_stdout(dest):
                 PrintViews(fun, dim)
-                I = inversion_wrapper(fun, tim)
-                if I != None:
-                    PrintViews(I, dim)
-                r = reversion_wrapper(fun, tim)
+                V = InvTable(fun, tim)
+                if V is not None:
+                    PrintViews(V, dim)
+                r = RevTable(fun, tim)
                 PrintViews(r, dim)
-                r = revinv_wrapper(fun, tim)
-                if r != None:
+                r = RevInvTable(fun, tim)
+                if r is not None:
                     PrintViews(r, dim)
-                r = invrev_wrapper(fun, tim)
-                if r != None:
+                r = InvRevTable(fun, tim)
+                if r is not None:
                     PrintViews(r, dim)
     print("Info: Extended tables written to the data/md folder as 'name.tbl.md'.")
 
@@ -2726,12 +2757,12 @@ def CsvToHtml(fun: tgen) -> None:
     with open(csvfile, "r") as csvfile:
         reader = csv.reader(csvfile)
         with open(outfile, "w+") as outfile:
-            for l in Header:
-                outfile.write(l)
+            for h in Header:
+                outfile.write(h)
             outfile.write(f"<title>{name} : IntegerTriangles.py</title>")
-            for l in CSS:
-                outfile.write(l)
-            l = next(reader)  # column names
+            for h in CSS:
+                outfile.write(h)
+            h = next(reader)  # column names
             sim = str(fun.sim).replace("'", "").replace("[", "").replace("]", "")
             outfile.write(
                 "<div class='tooltip' style='border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 160px; height: 20px; font-weight: 700; text-align: center;'>"
@@ -2742,14 +2773,14 @@ def CsvToHtml(fun: tgen) -> None:
             outfile.write(
                 f"<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OEIS Similars: {sim}\n</p>"
             )
-            for l in Table:
-                outfile.write(l)
+            for h in Table:
+                outfile.write(h)
             for line in reader:
                 # Layout: index,triangle,trait,anum,seq
                 # 0,Abel:Std,Triangle,A137452,1 0 1 0 ...
                 # index = line[0]
-                l = line[1]
-                type = l[l.index(":") + 1 :]
+                h = line[1]
+                type = h[h.index(":") + 1:]
                 trait = line[2]
                 anum = line[3]
                 seq = line[4]
@@ -2782,12 +2813,12 @@ def CsvToHtml(fun: tgen) -> None:
                     f"<td style='font-family:Consolas;color:{color}'>{seq}</td></tr>"
                 )
             outfile.write("</tbody></table>")
-            for l in navbar(fun):
-                outfile.write(l)
-            for l in Footer:
-                outfile.write(l)
-            for l in SCRIPT:
-                outfile.write(l)
+            for h in navbar(fun):
+                outfile.write(h)
+            for h in Footer:
+                outfile.write(h)
+            for h in SCRIPT:
+                outfile.write(h)
 
 
 def AllCsvToHtml() -> None:
@@ -2834,7 +2865,6 @@ def RegisterTraits() -> dict[str, Callable]:
     RegisterTrait(CentralO)
     RegisterTrait(ColLeft)
     RegisterTrait(ColRight)
-
     RegisterTrait(BinConv)
     RegisterTrait(InvBinConv)
     RegisterTrait(TransNat0)
@@ -2992,7 +3022,6 @@ def OeisToSql() -> None:
     cur.execute(sql)
     with open(GetDataPath("oeis", "csv"), "r") as oeisdata:
         reader = csv.reader(oeisdata)
-
         seq_list = [[txt[0][0:7], [abs(int(s)) for s in txt[1:-1]]] for txt in reader]
         for s in seq_list:
             if len(s[1]) < MINTERMS:
@@ -3018,10 +3047,10 @@ def querydbhash(H: str, oeis_cur: sqlite3.Cursor) -> str:
     sql = "SELECT anum FROM sequences WHERE hash=? LIMIT 1"
     res = oeis_cur.execute(sql, (H,))
     record = res.fetchone()
-    return "missing" if record == None else record[0]
+    return "missing" if record is None else record[0]
 
 
-def querydbseq(seq: list[int], oeis_cur) -> str:
+def querydbseq(seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     """_summary_
     Args:
         seq (list[int]): _description_
@@ -3035,7 +3064,7 @@ def querydbseq(seq: list[int], oeis_cur) -> str:
     sql = "SELECT anum FROM sequences WHERE seq=? LIMIT 1"
     res = oeis_cur.execute(sql, (x,))
     record = res.fetchone()
-    return "missing" if record == None else record[0]
+    return "missing" if record is None else record[0]
 
 
 def queryminioeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
@@ -3050,24 +3079,24 @@ def queryminioeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     sql = "SELECT anum FROM sequences WHERE hash=? LIMIT 1"
     res = oeis_cur.execute(sql, (H,))
     record = res.fetchone()
-    if record != None:
+    if record is not None:
         return record[0]
     # not found by hash, perhaps shifted by one?
-    H = fnv_hash(seq[1 : MINTERMS + 1], True)
+    H = fnv_hash(seq[1: MINTERMS + 1], True)
     res = oeis_cur.execute(sql, (H,))
     record = res.fetchone()
-    return "missing" if record == None else record[0]
+    return "missing" if record is None else record[0]
 
 
 def IsInOEIS(seq: list[int]) -> bool:
-    """Sometimes it is too much for the
-    OEIS-server and it slamms the door:
+    """Sometimes the OEIS-server slamms the door:
     "Connection reset by peer!"
     Args:
         seq (list[int]): sequence
     Returns:
         bool: found?
     """
+    time.sleep(4)  # give the OEIS server time to relax
     strseq = str(seq).replace("[", "").replace("]", "").replace(" ", "")
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
     with urllib.request.urlopen(url) as response:
@@ -3088,14 +3117,31 @@ def queryoeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     rec = queryminioeis(H, seq, oeis_cur)
     if rec != "missing":
         return rec
-    time.sleep(2)  # give the OEIS server time to relax
-    if IsInOEIS(seq[3 : MINTERMS + 3]):
+    if IsInOEIS(seq[3: MINTERMS + 3]):
         return "variant"
     else:
         return "missing"
 
 
-STRINGLENx = 100
+def GetType(name: str) -> str:
+    # There are 6 types:
+    # ["", "Std", "Rev", "Inv", "Rev:Inv", "Inv:Rev"]
+    sp = name.split(":", 1)
+    if len(sp) == 1:
+        return ""
+    return name.split(":", 1)[1]
+
+
+def CreateTable(name: str) -> str:
+    return f"CREATE TABLE {name}(triangle, type, trait, hash, anum, seq)"
+
+
+def InsertTable(name: str) -> str:
+    return f"INSERT INTO {name} VALUES(?, ?, ?, ?, ?, ?)"
+
+
+def GetMaxStrLen() -> int:
+    return 100
 
 
 def SaveTraits(
@@ -3117,27 +3163,31 @@ def SaveTraits(
     """
     T = g.tab(size)
     r = g.gen
-
+    triname = g.id
+    trityp = GetType(triname)
     for traitname, trait in TRAITS.items():
+        if trityp == traitname:
+            # print("Skiped:", triname, trityp, traitname)
+            continue
         seq = trait(T) if is_tabletrait(trait) else trait(r, size)
         if seq == []:
-            print(f"Info: {g.id}:{traitname} does not exist.")
+            print(f"Info: {triname} -> {traitname} does not exist.")
             continue
-        fnv = fnv_hash(seq, True)
+        hash = fnv_hash(seq, True)
         # Much faster in the local version.
-        # anum = queryminioeis(fnv, seq, oeis_cur)  # local
-        anum = queryoeis(fnv, seq, oeis_cur)  # with internet
+        anum = queryminioeis(hash, seq, oeis_cur)  # local
+        # anum = queryoeis(hash, seq, oeis_cur)  # with internet
         seqstr = ""
         maxl = 0
         for trm in seq:
             s = str(trm) + " "
             maxl += len(s)
-            if maxl > STRINGLENx:
+            if maxl > GetMaxStrLen():
                 break
             seqstr += s
-        tup = (g.id, traitname, fnv, anum, seqstr)
+        tup = (triname, trityp, traitname, hash, anum, seqstr)
         # print(tup)
-        sql = f"INSERT INTO {table} VALUES(?, ?, ?, ?, ?)"
+        sql = InsertTable(table)
         traits_cur.execute(sql, tup)
 
 
@@ -3159,25 +3209,25 @@ def SaveExtendedTraitsToDB(
     thash = fnv_hash(t.tab(MINTERMS))
     SaveTraits(t, size, traits_cur, oeis_cur, table, TRAITS)
     t.id = Tid
-    r = reversion_wrapper(t, tim)
+    r = RevTable(t, tim)
     rhash = fnv_hash(r.tab(MINTERMS))
     if thash != rhash:
         SaveTraits(r, size, traits_cur, oeis_cur, table, TRAITS)
-    i = inversion_wrapper(t, tim)
+        # ir = InvRevTable(t, tim)
+        ir = InvTable(r, tim)
+        if ir is not None:
+            SaveTraits(ir, size, traits_cur, oeis_cur, table, TRAITS)
+    i = InvTable(t, tim)
     ihash = "0"
-    if i != None:
+    if i is not None:
         ihash = fnv_hash(i.tab(MINTERMS))
         SaveTraits(i, size, traits_cur, oeis_cur, table, TRAITS)
-
-    ri = revinv_wrapper(t, tim)
-    if ri != None:
-        rihash = fnv_hash(ri.tab(MINTERMS))
-        if ihash != rihash:
-            SaveTraits(ri, size, traits_cur, oeis_cur, table, TRAITS)
-    if thash != rhash:
-        ir = invrev_wrapper(t, tim)
-        if ir != None:
-            SaveTraits(ir, size, traits_cur, oeis_cur, table, TRAITS)
+        # ri = RevInvTable(t, tim)
+        ri = RevTable(i, tim)
+        if ri is not None:
+            rihash = fnv_hash(ri.tab(MINTERMS))
+            if ihash != rihash:
+                SaveTraits(ri, size, traits_cur, oeis_cur, table, TRAITS)
 
 
 def SaveTraitsToDB(fun: tgen) -> None:
@@ -3185,12 +3235,10 @@ def SaveTraitsToDB(fun: tgen) -> None:
     name = fun.id
     with sqlite3.connect(GetDataPath(name, "db")) as db:
         traits_cur = db.cursor()
-        sql = f"CREATE TABLE {name}(triangle, trait, hash, anum, seq)"
-        traits_cur.execute(sql)
+        traits_cur.execute(CreateTable(name))
         with sqlite3.connect(GetDataPath("oeismini", "db")) as oeis:
             oeis_cur = oeis.cursor()
             SaveExtendedTraitsToDB(fun, 32, traits_cur, oeis_cur, name)
-
         db.commit()
     print(f"Info: Created database {name}.db in data/db.")
 
@@ -3204,10 +3252,10 @@ def ConvertDBtoCSVandMD(dbpath: Path, funname: str) -> int:
         tables = cursor.fetchall()
         for table_name in tables:
             table_name = table_name[0]
-            sql = f"""SELECT triangle, trait, anum, seq 
-                      FROM {table_name} 
-                      WHERE anum != 'A000012' 
-                      AND anum != 'A000007' 
+            sql = f"""SELECT triangle, trait, anum, seq
+                      FROM {table_name}
+                      WHERE anum != 'A000012'
+                      AND anum != 'A000007'
                       AND anum != 'A000004' """
             table = pd.read_sql_query(sql, db)
             table.to_csv(GetDataPath(table_name, "csv"), index_label="index")
@@ -3231,8 +3279,7 @@ def MergeDBs(tablfun: list[tgen]):
     destpath = GetDataPath(destname, "db")
     with sqlite3.connect(destpath) as dest:
         dest_cursor = dest.cursor()
-        sql = f"CREATE TABLE {destname}(triangle, trait, hash, anum, seq)"
-        dest_cursor.execute(sql)
+        dest_cursor.execute(CreateTable(destname))
         for src in tablfun:
             srcpath = GetDataPath(src.id, "db")
             with sqlite3.connect(srcpath) as src:
@@ -3246,7 +3293,7 @@ def MergeDBs(tablfun: list[tgen]):
                     sql = f"SELECT * FROM {table_name}"
                     res = src_cursor.execute(sql)
                     trs = res.fetchall()
-                    sql = f"INSERT INTO {destname} VALUES(?, ?, ?, ?, ?)"
+                    sql = InsertTable(destname)
                     dest_cursor.executemany(sql, trs)
                 src_cursor.close()
         dest.commit()
