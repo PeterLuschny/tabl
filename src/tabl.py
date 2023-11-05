@@ -2612,10 +2612,7 @@ def CrossReferences(name: str = "README.md") -> None:
             for sim in similars:
                 anum += "%7Cid%3A" + sim
             xrefs.write(
-                f"""| [{id}](https://github.com/PeterLuschny/tabl/blob/main/data/md/{id}.tbl.md)
-                    | [source](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py)
-                    | [traits](https://luschny.de/math/oeis/{id}.html)
-                    | [{s}](https://oeis.org/search?q={anum}) |\n"""
+                f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/data/md/{id}.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://oeis.org/search?q={anum}) |\n"
             )
     print("Info: 'README.md' written to the root folder.")
 
