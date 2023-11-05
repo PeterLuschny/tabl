@@ -1,7 +1,7 @@
 from _tabltypes import rgen, tgen, tabl
 from _tabltypes import InvTable, RevTable, RevInvTable, InvRevTable
-from _tablpoly import PolyCol, PolyRow
-from _tabltabls import AccTabl, RevAccTabl, AccRevTabl, RevTabl, AntiDiagTabl
+from _tablpoly import PolyCol, PolyRow, PosHalf, NegHalf
+from _tabltabls import AccTabl, RevAccTabl, AccRevTabl, RevTabl, AntiDiagTabl, Diffx1Tabl
 from _tablsums import PrintSums
 from _tabltransforms import (
     ColMiddle,
@@ -12,8 +12,13 @@ from _tabltransforms import (
     RowGcd,
     RowMax,
     CentralO,
+    BinConv,
+    InvBinConv,
+    TransSqrs, 
+    TransNat0, 
+    TransNat1,
 )
-from _tabltransforms import TransSqrs, TransNat0, TransNat1
+
 
 # #@
 
@@ -93,6 +98,7 @@ def PrintFlats(t: tabl) -> None:
     print(f"| AccTabl    | {AccTabl(t)} |")
     print(f"| RevAccTabl | {RevAccTabl(t)} |")
     print(f"| AccRevTabl | {AccRevTabl(t)} |")
+    print(f"| DiffxTabl  | {Diffx1Tabl(t)} |")
 
 
 def PrintTrans(t: tabl) -> None:
@@ -106,9 +112,13 @@ def PrintTrans(t: tabl) -> None:
     print(f"| ColMiddle  | {ColMiddle(t)} |")
     print(f"| ColLeft    | {ColLeft(t)} |")
     print(f"| ColRight   | {ColRight(t)} |")
+    print(f"| BinConv    | {BinConv(t)} |")
+    print(f"| InvBinConv | {InvBinConv(t)} |")
     print(f"| TransSqrs  | {TransSqrs(t)} |")
     print(f"| TransNat0  | {TransNat0(t)} |")
     print(f"| TransNat1  | {TransNat1(t)} |")
+    print(f"| PosHalf    | {PosHalf(t)} |")
+    print(f"| NegHalf    | {NegHalf(t)} |")
 
 
 def PrintViews(g: tgen, rows: int = 7, verbose: bool = True) -> None:

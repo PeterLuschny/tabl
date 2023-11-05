@@ -1,6 +1,5 @@
 from functools import cache
 from _tabltypes import MakeTriangle
-from Binomial import binomial
 
 """Sierpiński's triangle, binomial(n, k) mod 2.
 
@@ -19,8 +18,7 @@ from Binomial import binomial
 
 @cache
 def sierpinski(n: int) -> list[int]:
-    b = binomial(n)
-    return [b[k] % 2 for k in range(n + 1)]
+    return [int(not ~n & k) for k in range(n + 1)]
 
 
 @MakeTriangle(

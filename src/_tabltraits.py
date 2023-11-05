@@ -14,6 +14,7 @@ from _tablpoly import (
 from _tablsums import RowSum, EvenSum, OddSum, AltSum, AccSum, AccRevSum, DiagSum
 from _tabltransforms import DiagRow1, DiagRow2, DiagRow3, DiagCol1, DiagCol2, DiagCol3
 from _tabltransforms import TransNat0, TransNat1, TransSqrs
+from _tabltabls import Triangle, Acc, AccRev, AntiDiag, Rev, Inv, InvRev, RevInv, Diffx1
 from _tabltransforms import (
     BinConv,
     InvBinConv,
@@ -26,7 +27,6 @@ from _tabltransforms import (
     ColLeft,
     ColRight,
 )
-from _tabltabls import Triangle, Acc, AccRev, AntiDiag, Rev, Inv, InvRev, RevInv, Diffx
 
 
 """
@@ -70,7 +70,7 @@ def RegisterTraits() -> dict[str, Callable]:
     # RegisterTrait(RevAcc) # rarely found
     RegisterTrait(AccRev)
     RegisterTrait(AntiDiag)
-    RegisterTrait(Diffx)
+    RegisterTrait(Diffx1)
 
     RegisterTrait(RowSum)
     RegisterTrait(EvenSum)
@@ -137,7 +137,7 @@ def Formulas() -> dict[str, str]:
     FORMULA["RevAcc"] = "see docs"
     FORMULA["AccRev"] = "see docs"
     FORMULA["AntiDiag"] = "see docs"
-    FORMULA["Diffx"] = "T(n, k) (k+1)"
+    FORMULA["Diffx1"] = "T(n, k) (k+1)"
     FORMULA["RowSum"] = "&sum;<sub> k=0..n </sub> T(n, k)"
     FORMULA["EvenSum"] = "&sum;<sub> k=0..n </sub> T(n, k) even(k)"
     FORMULA["OddSum"] = "&sum;<sub> k=0..n </sub> T(n, k) odd(k)"

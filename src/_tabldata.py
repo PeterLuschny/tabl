@@ -73,7 +73,7 @@ def fnv_hash(seq: list[int], absolut: bool = False) -> str:
 
 def GetCompressed() -> None:
     oeisstripped = "https://oeis.org/stripped.gz"
-    r = requests.get(oeisstripped, stream=True)
+    r = requests.get(oeisstripped, stream = True)
 
     with open(strippedpath, "wb") as local:
         for chunk in r.iter_content(chunk_size=8192):
@@ -290,7 +290,7 @@ def SaveTraits(
 
         hash = fnv_hash(seq, True)
 
-        # Much faster in the local version.
+        # Much faster in the local version, but no OEIS check.
         anum = queryminioeis(hash, seq, oeis_cur)  # local
         # anum = queryoeis(hash, seq, oeis_cur)  # with internet
 

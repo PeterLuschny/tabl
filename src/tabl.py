@@ -296,6 +296,22 @@ def AccRevTabl(T: tabl) -> tabl:
     return AccTabl(RevTabl(T))
 
 
+def Diffx1(T: tabl) -> trow:  # flat tabl
+    return [(k + 1) * c for row in T for k, c in enumerate(row)]
+
+
+def Diffx1Tabl(T: tabl) -> tabl:
+    return [[(k + 1) * c for k, c in enumerate(row)] for row in T]
+
+
+def Diffx0(T: tabl) -> trow:  # flat tabl
+    return [k * c for row in T for k, c in enumerate(row)]
+
+
+def Diffx0Tabl(T: tabl) -> tabl:
+    return [[k * c for k, c in enumerate(row)] for row in T]
+
+
 def Triangle(T: tabl) -> trow:
     return [i for row in T for i in row]
 
@@ -340,10 +356,6 @@ def AccRev(T: tabl) -> trow:
     return [i for row in AccRevTabl(T) for i in row]
 
 
-def Diffx(T: tabl) -> trow:
-    return [(k + 1) * c for row in T for k, c in enumerate(row)]
-
-
 def PrintTabls(g: tgen, size: int = 8, mdformat: bool = True) -> None:
     TABLSTRAIT: dict[str, Callable[[tabl], trow]] = {}
 
@@ -360,7 +372,8 @@ def PrintTabls(g: tgen, size: int = 8, mdformat: bool = True) -> None:
     RegisterTablsTrait(RevAcc)
     RegisterTablsTrait(AccRev)
     RegisterTablsTrait(AntiDiag)
-    trianglename = T.id
+    RegisterTablsTrait(Diffx0)
+    trianglename = g.id
     if mdformat:
         print("#", trianglename, ": Tables")
         print()  # reqiured!
@@ -1009,6 +1022,7 @@ def PrintFlats(t: tabl) -> None:
     print(f"| AccTabl    | {AccTabl(t)} |")
     print(f"| RevAccTabl | {RevAccTabl(t)} |")
     print(f"| AccRevTabl | {AccRevTabl(t)} |")
+    print(f"| DiffxTabl  | {Diffx1Tabl(t)} |")
 
 
 def PrintTrans(t: tabl) -> None:
@@ -1022,9 +1036,13 @@ def PrintTrans(t: tabl) -> None:
     print(f"| ColMiddle  | {ColMiddle(t)} |")
     print(f"| ColLeft    | {ColLeft(t)} |")
     print(f"| ColRight   | {ColRight(t)} |")
+    print(f"| BinConv    | {BinConv(t)} |")
+    print(f"| InvBinConv | {InvBinConv(t)} |")
     print(f"| TransSqrs  | {TransSqrs(t)} |")
     print(f"| TransNat0  | {TransNat0(t)} |")
     print(f"| TransNat1  | {TransNat1(t)} |")
+    print(f"| PosHalf    | {PosHalf(t)} |")
+    print(f"| NegHalf    | {NegHalf(t)} |")
 
 
 def PrintViews(g: tgen, rows: int = 7, verbose: bool = True) -> None:
@@ -2230,8 +2248,7 @@ def SeidelBoust(n: int, k: int) -> int:
 
 @cache
 def sierpinski(n: int) -> list[int]:
-    b = binomial(n)
-    return [b[k] % 2 for k in range(n + 1)]
+    return [int(not ~n & k) for k in range(n + 1)]
 
 
 @MakeTriangle(
@@ -2780,7 +2797,7 @@ def CsvToHtml(fun: tgen) -> None:
                 # 0,Abel:Std,Triangle,A137452,1 0 1 0 ...
                 # index = line[0]
                 h = line[1]
-                type = h[h.index(":") + 1:]
+                type = h[h.index(":") + 1 :]
                 trait = line[2]
                 anum = line[3]
                 seq = line[4]
@@ -2849,7 +2866,7 @@ def RegisterTraits() -> dict[str, Callable]:
     # RegisterTrait(RevAcc) # rarely found
     RegisterTrait(AccRev)
     RegisterTrait(AntiDiag)
-    RegisterTrait(Diffx)
+    RegisterTrait(Diffx1)
     RegisterTrait(RowSum)
     RegisterTrait(EvenSum)
     RegisterTrait(OddSum)
@@ -2905,7 +2922,7 @@ def Formulas() -> dict[str, str]:
     FORMULA["RevAcc"] = "see docs"
     FORMULA["AccRev"] = "see docs"
     FORMULA["AntiDiag"] = "see docs"
-    FORMULA["Diffx"] = "T(n, k) (k+1)"
+    FORMULA["Diffx1"] = "T(n, k) (k+1)"
     FORMULA["RowSum"] = "&sum;<sub> k=0..n </sub> T(n, k)"
     FORMULA["EvenSum"] = "&sum;<sub> k=0..n </sub> T(n, k) even(k)"
     FORMULA["OddSum"] = "&sum;<sub> k=0..n </sub> T(n, k) odd(k)"
@@ -3082,7 +3099,7 @@ def queryminioeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     if record is not None:
         return record[0]
     # not found by hash, perhaps shifted by one?
-    H = fnv_hash(seq[1: MINTERMS + 1], True)
+    H = fnv_hash(seq[1 : MINTERMS + 1], True)
     res = oeis_cur.execute(sql, (H,))
     record = res.fetchone()
     return "missing" if record is None else record[0]
@@ -3117,7 +3134,7 @@ def queryoeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     rec = queryminioeis(H, seq, oeis_cur)
     if rec != "missing":
         return rec
-    if IsInOEIS(seq[3: MINTERMS + 3]):
+    if IsInOEIS(seq[3 : MINTERMS + 3]):
         return "variant"
     else:
         return "missing"
@@ -3174,7 +3191,7 @@ def SaveTraits(
             print(f"Info: {triname} -> {traitname} does not exist.")
             continue
         hash = fnv_hash(seq, True)
-        # Much faster in the local version.
+        # Much faster in the local version, but no OEIS check.
         anum = queryminioeis(hash, seq, oeis_cur)  # local
         # anum = queryoeis(hash, seq, oeis_cur)  # with internet
         seqstr = ""

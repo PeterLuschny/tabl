@@ -49,6 +49,22 @@ def AccRevTabl(T: tabl) -> tabl:
     return AccTabl(RevTabl(T))
 
 
+def Diffx1(T: tabl) -> trow:  # flat tabl
+    return [(k + 1) * c for row in T for k,c in enumerate(row)]
+
+
+def Diffx1Tabl(T: tabl) -> tabl:
+    return [[(k + 1) * c for k,c in enumerate(row)] for row in T]
+
+
+def Diffx0(T: tabl) -> trow:  # flat tabl
+    return [k * c for row in T for k,c in enumerate(row)]
+
+
+def Diffx0Tabl(T: tabl) -> tabl:
+    return [[k * c for k,c in enumerate(row)] for row in T]
+
+
 def Triangle(T: tabl) -> trow:
     return [i for row in T for i in row]
 
@@ -92,10 +108,6 @@ def AccRev(T: tabl) -> trow:
     return [i for row in AccRevTabl(T) for i in row]
 
 
-def Diffx(T: tabl) -> trow:
-    return [(k + 1) * c for row in T for k,c in enumerate(row)]
-
-
 def PrintTabls(g: tgen, size: int = 8, mdformat: bool = True) -> None:
 
     TABLSTRAIT: dict[str, Callable[[tabl], trow]] = {}
@@ -114,9 +126,10 @@ def PrintTabls(g: tgen, size: int = 8, mdformat: bool = True) -> None:
     RegisterTablsTrait(RevAcc)
     RegisterTablsTrait(AccRev)
     RegisterTablsTrait(AntiDiag)
+    RegisterTablsTrait(Diffx0)
 
 
-    trianglename = T.id
+    trianglename = g.id
 
     if mdformat:
         print("#", trianglename, ": Tables")
@@ -136,12 +149,12 @@ if __name__ == "__main__":
     from StirlingSet import StirlingSet
     from LabeledGraphs import LabeledGraphs
 
-    print(RevTabl(Abel.tab(6)))
-    print(Rev(Abel.tab(6)))
+    #print(RevTabl(Abel.tab(6)))
+    #print(Rev(Abel.tab(6)))
 
-    #PrintTabls(Abel, 4)
-    #PrintTabls(StirlingSet, 6, False)
-    #PrintTabls(LabeledGraphs, 6)
+    PrintTabls(Abel, 6)
+    PrintTabls(StirlingSet, 6, False)
+    PrintTabls(LabeledGraphs, 6)
 
     #T = LabeledGraphs.tab(9)
     #print(T)
