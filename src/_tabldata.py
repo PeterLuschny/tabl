@@ -3,6 +3,7 @@ import gzip
 import csv
 import sqlite3
 import urllib.request
+import urllib.error
 import time
 import pandas as pd
 from pathlib import Path
@@ -31,6 +32,34 @@ from _tabltraits import RegisterTraits, is_tabletrait
 
 
 # #@
+
+
+# Exception: Could not open https://oeis.org/search?q=24,192,1920,23040,322560,5160960,92897280,1857945600,40874803200,980995276800,25505877196800,714164561510400,21424936845312000,685597979049984000,23310331287699456000&fmt=json.
+def IsInOEIS(seq: list[int]) -> bool:
+    """15 queries per minute are enough.
+
+    Args:
+        seq (list[int]): sequence
+
+    Returns:
+        bool: found?
+    """
+    strseq = str(seq).replace("[", "").replace("]", "").replace(" ", "")
+    url = f"https://oeis.org/search?q={strseq}&fmt=json"
+
+    for _ in range(1, 4):
+        time.sleep(5)  # give the OEIS server some time to relax
+        try:
+            with urllib.request.urlopen(url) as response:
+                page = response.read()
+                return -1 == page.find(b'"count": 0', 36, 400)
+        except urllib.error.HTTPError as he:
+            print(he.__dict__)
+        except urllib.error.URLError as ue:
+            print(ue.__dict__)
+        
+    raise Exception(f"Could not open {url}.")
+        
 
 
 def fnv(data: bytes) -> int:
@@ -93,7 +122,7 @@ def MakeOeisminiWithFnv() -> None:
     with open(GetDataPath("oeis", "csv"), "r") as oeisdata:
         reader = csv.reader(oeisdata)
         with open(GetDataPath("oeismini", "csv"), "w") as minidata:
-            #           A000003 ,1
+            #    A000003 ,1
             seq_list = [
                 [txt[0][0:7], [abs(int(s)) for s in txt[1:-1]]] for txt in reader
             ]
@@ -195,24 +224,6 @@ def queryminioeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     return "missing" if record is None else record[0]
 
 
-def IsInOEIS(seq: list[int]) -> bool:
-    """Sometimes the OEIS-server slamms the door:
-    "Connection reset by peer!"
-
-    Args:
-        seq (list[int]): sequence
-
-    Returns:
-        bool: found?
-    """
-    time.sleep(4)  # give the OEIS server time to relax
-    strseq = str(seq).replace("[", "").replace("]", "").replace(" ", "")
-    url = f"https://oeis.org/search?q={strseq}&fmt=json"
-    with urllib.request.urlopen(url) as response:
-        page = response.read()
-        return -1 == page.find(b'"count": 0', 36, 236)
-
-
 def queryoeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     """First query oeis_mini (local),
        if nothing found query OEIS (internet).
@@ -244,7 +255,7 @@ def GetType(name: str) -> str:
 
 
 def CreateTable(name: str) -> str:
-    return f"CREATE TABLE {name}(triangle, type, trait, hash, anum, seq)"
+    return f"CREATE TABLE {name}(triangle, type, trait, anum, hash, seq)"
 
 
 def InsertTable(name: str) -> str:
@@ -290,9 +301,10 @@ def SaveTraits(
 
         hash = fnv_hash(seq, True)
 
+        ###################### The undocumented switch.
         # Much faster in the local version, but no OEIS check.
-        anum = queryminioeis(hash, seq, oeis_cur)  # local
-        # anum = queryoeis(hash, seq, oeis_cur)  # with internet
+        # anum = queryminioeis(hash, seq, oeis_cur)  # local
+        anum = queryoeis(hash, seq, oeis_cur)  # with internet
 
         seqstr = ""
         maxl = 0
@@ -303,7 +315,7 @@ def SaveTraits(
                 break
             seqstr += s
 
-        tup = (triname, trityp, traitname, hash, anum, seqstr)
+        tup = (triname, trityp, traitname, anum, hash, seqstr)
         # print(tup)
         sql = InsertTable(table)
         traits_cur.execute(sql, tup)
@@ -492,4 +504,5 @@ if __name__ == "__main__":
     def test9():
         MergeDBs(tabl_fun)
 
-    SaveAllTraitsToDBandCSVandMD(tabl_fun[:4])
+    # SaveAllTraitsToDBandCSVandMD(tabl_fun[2:3])
+    SaveTraitsToDB(tabl_fun[3])

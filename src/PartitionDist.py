@@ -22,9 +22,7 @@ def _pdist(n: int, k: int, r: int) -> int:
         return 1 if k == 0 else 0
     if k == 0 or r == 0:
         return 0
-    return sum(_pdist(n - r * j, k - 1, r - 1) for j in range(1, n // r + 1)) + _pdist(
-        n, k, r - 1
-    )
+    return sum(_pdist(n - r * j, k - 1, r - 1) for j in range(1, n // r + 1)) + _pdist(n, k, r - 1)
 
 
 @cache

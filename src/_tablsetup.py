@@ -27,7 +27,7 @@ def setup() -> None:
     OeisToSql()
     print("Info: OEIS data updated!")
 
-    SaveAllTraitsToDBandCSVandMD(tabl_fun)
+    SaveAllTraitsToDBandCSVandMD(tabl_fun[68:69])
     MergeDBs(tabl_fun)
     print("Info: All traits of all sequences saved to db, csv, and md!")
 
@@ -50,4 +50,4 @@ if __name__ == "__main__":
     If you want to update 'tabl.py' after you have added a new
     triangle implementation just run "src/_tablmake.py".
     """
-    # setup()
+    setup()

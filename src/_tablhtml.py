@@ -191,24 +191,23 @@ def CsvToHtml(fun: tgen) -> None:
                     f"<td class='tooltip'>{trait}<span class='formula'>{tip}</span></td>"
                 )
 
-                # Anum
                 sseq = (seq.split(" ", 3)[3]).replace(" ", ",")
                 if anum == "missing":
                     color = "rgb(127, 0, 255)"
                     url = f"https://oeis.org/search?q={sseq}"
                     outfile.write(
-                        f"<td><a href='{url}' target='_blank'>variant</a></td>"
+                        f"<td><a href='{url}' target='_blank'>missing</a></td>"
                     )
                 elif anum == "variant":
                     color = "rgb(167, 199, 231)"
-                    url = f"https://oeis.org/search?q={sseq}&fmt=json"
+                    url = f"https://oeis.org/search?q={sseq}"
                     outfile.write(
-                        f"<td><a href='{url}' target='_blank'>missing</a></td>"
+                        f"<td><a href='{url}' target='_blank'>variant</a></td>"
                     )
                 else:
                     color = "rgb(0, 0, 255)"
                     outfile.write(
-                        f"<td><a href='https://oeis.org/{anum}'>{anum}</a></td>"
+                        f"<td><a href='https://oeis.org/{anum}' target='_blank'>{anum}</a></td>"
                     )
 
                 # seq

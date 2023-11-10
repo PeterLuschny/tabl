@@ -19,9 +19,7 @@ from _tabltypes import MakeTriangle
 @cache
 def sylvester(n: int) -> list[int]:
     def s(n: int, k: int) -> int:
-        return sum(
-            Binomial(n, k - j) * StirlingCycle(n - k + j, j) for j in range(k + 1)
-        )
+        return sum(Binomial(n, k - j) * StirlingCycle(n - k + j, j) for j in range(k + 1))
 
     return [s(n, k) for k in range(n + 1)]
 

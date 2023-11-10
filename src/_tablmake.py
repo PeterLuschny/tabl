@@ -196,6 +196,7 @@ import_header: list[str] = [
     "import contextlib\n",
     "import csv\n",
     "import urllib.request\n",
+    "import urllib.error\n",
     "import requests\n",
     "import time\n",
     "import gzip\n",
