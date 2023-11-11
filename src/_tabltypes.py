@@ -45,6 +45,19 @@ tri: TypeAlias = Callable[[int, int], int]
 #   (g: Callable[[int], list[int]], size: int) -> list[int]
 
 
+def SeqString(seq: list[int], maxlen: int) -> str:
+    seqstr = ""
+    maxl = 0
+    for trm in seq:
+        s = str(trm) + ","
+        maxl += len(s)
+        if maxl > maxlen:
+            break
+        seqstr += s
+    return seqstr
+
+
+
 def InvTable(T: tgen, size: int) -> tgen | None:
     """_summary_
 

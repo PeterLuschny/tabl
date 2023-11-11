@@ -1,5 +1,5 @@
 import csv
-from _tabltypes import tgen
+from _tabltypes import tgen, SeqString
 from _tablpaths import GetDataPath
 from _tabltraits import Formulas
 from tabl import tabl_fun
@@ -192,6 +192,7 @@ def CsvToHtml(fun: tgen) -> None:
                 )
 
                 sseq = (seq.split(" ", 3)[3]).replace(" ", ",")
+
                 if anum == "missing":
                     color = "rgb(127, 0, 255)"
                     url = f"https://oeis.org/search?q={sseq}"

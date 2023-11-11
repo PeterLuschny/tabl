@@ -27,18 +27,18 @@ def setup() -> None:
     OeisToSql()
     print("Info: OEIS data updated!")
 
-    SaveAllTraitsToDBandCSVandMD(tabl_fun[68:69])
+    SaveAllTraitsToDBandCSVandMD(tabl_fun)
     MergeDBs(tabl_fun)
     print("Info: All traits of all sequences saved to db, csv, and md!")
 
     AllCsvToHtml()
-    print("Warning: You must put also the file 'sortable.js' into the html directory!")
     print("Info: Building extended tables.")
 
     SaveExtendedTables()
     CrossReferences()
 
     print("Done ...")
+    print("... but you must still put the file 'sortable.js' into the html directory!")
 
 
 if __name__ == "__main__":

@@ -29,11 +29,11 @@ def sympoly(n: int) -> list[int]:
 
 
 @MakeTriangle(sympoly, "SymPoly", ["A165675", "A093905", "A105954", "A165674"], True)
-def Sympoly(n: int, k: int) -> int:
+def SymPoly(n: int, k: int) -> int:
     return sympoly(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(Sympoly)
+    TablTest(SymPoly)

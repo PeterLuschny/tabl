@@ -159,7 +159,7 @@ def Formulas() -> dict[str, str]:
     FORMULA["InvBinConv"] = "&sum;<sub> k=0..n </sub> C(n, k) T(n, n - k) (-1)^k"
     FORMULA["TransSqrs"] = "&sum;<sub> k=0..n </sub> T(n, k) k^2"
     FORMULA["TransNat0"] = "&sum;<sub> k=0..n </sub> T(n, k) k"
-    FORMULA["TransNat1"] = "&sum;<sub> k=0..n </sub> T(n, k) (k + 1)^k"
+    FORMULA["TransNat1"] = "&sum;<sub> k=0..n </sub> T(n, k) (k + 1)"
     FORMULA["DiagRow1"] = "T(n + 1, n)"
     FORMULA["DiagRow2"] = "T(n + 2, n)"
     FORMULA["DiagRow3"] = "T(n + 3, n)"

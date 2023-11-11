@@ -91,6 +91,18 @@ tgen: TypeAlias = Callable[[int, int], int]
 tri: TypeAlias = Callable[[int, int], int]
 
 
+def SeqString(seq: list[int], maxlen: int) -> str:
+    seqstr = ""
+    maxl = 0
+    for trm in seq:
+        s = str(trm) + ","
+        maxl += len(s)
+        if maxl > maxlen:
+            break
+        seqstr += s
+    return seqstr
+
+
 def InvTable(T: tgen, size: int) -> tgen | None:
     """_summary_
     Args:
@@ -2414,7 +2426,7 @@ def sympoly(n: int) -> list[int]:
 
 
 @MakeTriangle(sympoly, "SymPoly", ["A165675", "A093905", "A105954", "A165674"], True)
-def Sympoly(n: int, k: int) -> int:
+def SymPoly(n: int, k: int) -> int:
     return sympoly(n)[k]
 
 
@@ -2585,7 +2597,7 @@ tabl_fun: list[tgen] = [
     StirlingSet2,
     StirlingSetB,
     Sylvester,
-    Sympoly,
+    SymPoly,
     TernaryTree,
     WardSet,
     Worpitzky,
@@ -2967,14 +2979,18 @@ def IsInOEIS(seq: list[int]) -> bool:
     Returns:
         bool: found?
     """
-    strseq = str(seq).replace("[", "").replace("]", "").replace(" ", "")
+    strseq = SeqString(seq, 260)
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
     for _ in range(1, 4):
         time.sleep(5)  # give the OEIS server some time to relax
         try:
             with urllib.request.urlopen(url) as response:
                 page = response.read()
-                return -1 == page.find(b'"count": 0', 36, 400)
+                # If "count": 0 exists then 'find' returns a value >= 0,
+                # that means that no sequence was found.
+                # Otherwise 'find' returns -1, that means that
+                # a substring similar to the sequence was found.
+                return -1 == page.find(b'"count": 0')
         except urllib.error.HTTPError as he:
             print(he.__dict__)
         except urllib.error.URLError as ue:
@@ -3073,7 +3089,7 @@ def OeisToSql() -> None:
     print("Info: Database oeismini.db saved in data/db.")
 
 
-def querydbhash(H: str, oeis_cur: sqlite3.Cursor) -> str:
+def QueryDBhash(H: str, oeis_cur: sqlite3.Cursor) -> str:
     """_summary_
     Args:
         H (str): hash
@@ -3087,7 +3103,7 @@ def querydbhash(H: str, oeis_cur: sqlite3.Cursor) -> str:
     return "missing" if record is None else record[0]
 
 
-def querydbseq(seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
+def QueryDBstr(seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     """_summary_
     Args:
         seq (list[int]): _description_
@@ -3104,7 +3120,7 @@ def querydbseq(seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     return "missing" if record is None else record[0]
 
 
-def queryminioeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
+def QueryMiniOeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     """Query oeis_mini db only.
     Args:
         H (str): _description_
@@ -3125,7 +3141,7 @@ def queryminioeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     return "missing" if record is None else record[0]
 
 
-def queryoeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
+def QueryOeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     """First query oeis_mini (local),
        if nothing found query OEIS (internet).
     Args:
@@ -3135,7 +3151,7 @@ def queryoeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     Returns:
         str: _description_
     """
-    rec = queryminioeis(H, seq, oeis_cur)
+    rec = QueryMiniOeis(H, seq, oeis_cur)
     if rec != "missing":
         return rec
     if IsInOEIS(seq[3 : MINTERMS + 3]):
@@ -3198,7 +3214,7 @@ def SaveTraits(
         ###################### The undocumented switch.
         # Much faster in the local version, but no OEIS check.
         # anum = queryminioeis(hash, seq, oeis_cur)  # local
-        anum = queryoeis(hash, seq, oeis_cur)  # with internet
+        anum = QueryOeis(hash, seq, oeis_cur)  # with internet
         seqstr = ""
         maxl = 0
         for trm in seq:

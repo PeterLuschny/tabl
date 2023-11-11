@@ -179,7 +179,7 @@ tabl_fun: list[tgen] = [
     StirlingSet2,
     StirlingSetB,
     Sylvester,
-    Sympoly,
+    SymPoly,
     TernaryTree,
     WardSet,
     Worpitzky,

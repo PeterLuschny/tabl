@@ -8,7 +8,7 @@ import time
 import pandas as pd
 from pathlib import Path
 from _tablpaths import GetDataPath, strippedpath
-from _tabltypes import tgen, InvTable, RevTable
+from _tabltypes import tgen, InvTable, RevTable, SeqString
 from _tabltraits import RegisterTraits, is_tabletrait
 
 
@@ -34,7 +34,6 @@ from _tabltraits import RegisterTraits, is_tabletrait
 # #@
 
 
-# Exception: Could not open https://oeis.org/search?q=24,192,1920,23040,322560,5160960,92897280,1857945600,40874803200,980995276800,25505877196800,714164561510400,21424936845312000,685597979049984000,23310331287699456000&fmt=json.
 def IsInOEIS(seq: list[int]) -> bool:
     """15 queries per minute are enough.
 
@@ -44,7 +43,7 @@ def IsInOEIS(seq: list[int]) -> bool:
     Returns:
         bool: found?
     """
-    strseq = str(seq).replace("[", "").replace("]", "").replace(" ", "")
+    strseq = SeqString(seq, 260)
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
 
     for _ in range(1, 4):
@@ -52,7 +51,11 @@ def IsInOEIS(seq: list[int]) -> bool:
         try:
             with urllib.request.urlopen(url) as response:
                 page = response.read()
-                return -1 == page.find(b'"count": 0', 36, 400)
+                # If "count": 0 exists then 'find' returns a value >= 0,
+                # that means that no sequence was found.
+                # Otherwise 'find' returns -1, that means that 
+                # a substring similar to the sequence was found.
+                return -1 == page.find(b'"count": 0')
         except urllib.error.HTTPError as he:
             print(he.__dict__)
         except urllib.error.URLError as ue:
@@ -165,7 +168,7 @@ def OeisToSql() -> None:
     print("Info: Database oeismini.db saved in data/db.")
 
 
-def querydbhash(H: str, oeis_cur: sqlite3.Cursor) -> str:
+def QueryDBhash(H: str, oeis_cur: sqlite3.Cursor) -> str:
     """_summary_
 
     Args:
@@ -181,7 +184,7 @@ def querydbhash(H: str, oeis_cur: sqlite3.Cursor) -> str:
     return "missing" if record is None else record[0]
 
 
-def querydbseq(seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
+def QueryDBstr(seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     """_summary_
 
     Args:
@@ -200,7 +203,7 @@ def querydbseq(seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     return "missing" if record is None else record[0]
 
 
-def queryminioeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
+def QueryMiniOeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     """Query oeis_mini db only.
 
     Args:
@@ -224,7 +227,7 @@ def queryminioeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     return "missing" if record is None else record[0]
 
 
-def queryoeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
+def QueryOeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     """First query oeis_mini (local),
        if nothing found query OEIS (internet).
 
@@ -236,7 +239,7 @@ def queryoeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     Returns:
         str: _description_
     """
-    rec = queryminioeis(H, seq, oeis_cur)
+    rec = QueryMiniOeis(H, seq, oeis_cur)
     if rec != "missing":
         return rec
     if IsInOEIS(seq[3: MINTERMS + 3]):
@@ -304,7 +307,7 @@ def SaveTraits(
         ###################### The undocumented switch.
         # Much faster in the local version, but no OEIS check.
         # anum = queryminioeis(hash, seq, oeis_cur)  # local
-        anum = queryoeis(hash, seq, oeis_cur)  # with internet
+        anum = QueryOeis(hash, seq, oeis_cur)  # with internet
 
         seqstr = ""
         maxl = 0
@@ -490,11 +493,11 @@ if __name__ == "__main__":
         print(fnv_hash([(-1) ** i * i for i in range(28)], True))
 
     def test7():
-        from Abel import Abel
+        from SymPoly import SymPoly
 
-        SaveTraitsToDB(Abel)
-        found = ConvertDBtoCSVandMD(GetDataPath(Abel.id, "db"), Abel.id)
-        print(f"{Abel.id}.csv references {found} sequences from OEIS.")
+        SaveTraitsToDB(SymPoly)
+        # found = ConvertDBtoCSVandMD(GetDataPath(Abel.id, "db"), Abel.id)
+        # print(f"{Abel.id}.csv references {found} sequences from OEIS.")
 
     def test99():
         for fun in tabl_fun:
@@ -505,4 +508,5 @@ if __name__ == "__main__":
         MergeDBs(tabl_fun)
 
     # SaveAllTraitsToDBandCSVandMD(tabl_fun[2:3])
-    SaveTraitsToDB(tabl_fun[3])
+    # SaveTraitsToDB(tabl_fun[3])
+    test7()
