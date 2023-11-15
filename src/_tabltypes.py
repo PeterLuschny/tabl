@@ -45,6 +45,19 @@ tri: TypeAlias = Callable[[int, int], int]
 #   (g: Callable[[int], list[int]], size: int) -> list[int]
 
 
+def Flat(T: tabl) -> list[int]: 
+    """Flatten table to sequence
+
+    Args:
+        T (tabl): table
+
+    Returns:
+        list[int]: sequence
+    """
+    if T == []: return []
+    return [i for row in T for i in row] 
+
+
 def SeqString(seq: list[int], maxlen: int) -> str:
     seqstr = ""
     maxl = 0
@@ -55,7 +68,6 @@ def SeqString(seq: list[int], maxlen: int) -> str:
             break
         seqstr += s
     return seqstr
-
 
 
 def InvTable(T: tgen, size: int) -> tgen | None:

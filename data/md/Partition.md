@@ -82,17 +82,17 @@
 |  79 | Partition:Inv     | RevInv     | A080934 | 1 1 0 1 1 0 1 1 1 0 1 1 2 1 0 1 1 2 2 1 0 1 1 2 3 3 1 0 1 1 2 3 4 3 1 0 1 1 2 3 5 5 4 1 0 1 1 2 3 5 |
 |  80 | Partition:Inv     | Acc        | A157687 | 1 0 1 0 -1 0 0 0 -1 0 0 1 0 -1 0 0 0 1 0 -1 0 0 0 1 1 0 -1 0 0 -1 0 1 1 0 -1 0 0 -1 -1 1 1 1 0 -1 0 |
 |  81 | Partition:Inv     | AccRev     | A115512 | 1 1 1 1 0 0 1 0 0 0 1 0 -1 0 0 1 0 -1 0 0 0 1 0 -1 -1 0 0 0 1 0 -1 -1 0 1 0 0 1 0 -1 -1 -1 1 1 0 0  |
-|  82 | Partition:Inv     | AntiDiag   | variant | 1 0 0 1 0 -1 0 0 1 0 1 -1 0 0 -1 1 0 0 1 -1 0 -1 1 -1 1 0 -1 1 0 -1 0 0 0 1 -1 1 0 0 -1 2 0 -1 0 1  |
+|  82 | Partition:Inv     | AntiDiag   | missing | 1 0 0 1 0 -1 0 0 1 0 1 -1 0 0 -1 1 0 0 1 -1 0 -1 1 -1 1 0 -1 1 0 -1 0 0 0 1 -1 1 0 0 -1 2 0 -1 0 1  |
 |  83 | Partition:Inv     | Diffx1     | missing | 1 0 2 0 -2 3 0 0 -3 4 0 2 -3 -4 5 0 0 3 -4 -5 6 0 0 3 0 -5 -6 7 0 -2 3 4 0 -6 -7 8 0 -2 0 8 0 0 -7  |
 |  84 | Partition:Inv     | RowSum     | A014026 | 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0                                     |
 |  85 | Partition:Inv     | EvenSum    | missing | 1 0 1 -1 0 0 1 0 0 0 -1 -1 -1 0 0 1 1 2 2 3 3 1 1 -1 -2 -4 -5 -7 -7 -9 -9 -9                        |
 |  86 | Partition:Inv     | OddSum     | A115513 | 0 1 -1 1 0 0 -1 0 0 0 1 1 1 0 0 -1 -1 -2 -2 -3 -3 -1 -1 1 2 4 5 7 7 9 9 9                           |
 |  87 | Partition:Inv     | AltSum     | missing | 1 -1 2 -2 0 0 2 0 0 0 -2 -2 -2 0 0 2 2 4 4 6 6 2 2 -2 -4 -8 -10 -14 -14 -18 -18 -18                 |
-|  88 | Partition:Inv     | DiagSum    | variant | 1 0 1 -1 1 0 0 0 0 -1 1 0 -1 1 1 0 0 0 0 0 0 -1 0 -2 -1 -1 0 -2 1 0 1 0                             |
+|  88 | Partition:Inv     | DiagSum    | missing | 1 0 1 -1 1 0 0 0 0 -1 1 0 -1 1 1 0 0 0 0 0 0 -1 0 -2 -1 -1 0 -2 1 0 1 0                             |
 |  89 | Partition:Inv     | AccSum     | A115513 | 1 1 -1 -1 0 0 1 0 0 0 -1 -1 -1 0 0 1 1 2 2 3 3 1 1 -1 -2 -4 -5 -7 -7 -9 -9 -9                       |
 |  90 | Partition:Inv     | AccRevSum  | missing | 1 2 1 1 0 0 -1 0 0 0 1 1 1 0 0 -1 -1 -2 -2 -3 -3 -1 -1 1 2 4 5 7 7 9 9 9                            |
 |  91 | Partition:Inv     | RowLcm     | missing | 1 1 1 1 1 1 1 1 2 2 2 2 2 2 6 2 12 12 10 30 20 210 210 40 120 168 1980 168 510 72 440 630           |
-|  92 | Partition:Inv     | RowGcd     | variant | 1 1 1 1 1 1 1 1 2 2 2 2 2 2 1 2 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1                                     |
+|  92 | Partition:Inv     | RowGcd     | missing | 1 1 1 1 1 1 1 1 2 2 2 2 2 2 1 2 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1                                     |
 |  93 | Partition:Inv     | RowMax     | A033271 | 1 1 1 1 1 1 1 1 2 2 2 2 2 2 3 2 4 4 5 5 5 7 7 8 8 8 11 14 17 18 20 18                               |
 |  94 | Partition:Inv     | ColMiddle  | missing | 1 0 -1 0 -1 1 0 1 0 2 1 1 0 2 1 1 0 1 0 1 0 1 0 0 -1 1 0 1 0 0 -1 1                                 |
 |  95 | Partition:Inv     | CentralE   | A010815 | 1 -1 -1 0 0 1 0 1 0 0 0 0 -1 0 0 -1                                                                 |
@@ -132,9 +132,9 @@
 | 129 | Partition:Inv:Rev | AccSum     | missing | 1 2 1 1 0 0 -1 0 0 0 1 1 1 0 0 -1 -1 -2 -2 -3 -3 -1 -1 1 2 4 5 7 7 9 9 9                            |
 | 130 | Partition:Inv:Rev | AccRevSum  | A115513 | 1 1 -1 -1 0 0 1 0 0 0 -1 -1 -1 0 0 1 1 2 2 3 3 1 1 -1 -2 -4 -5 -7 -7 -9 -9 -9                       |
 | 131 | Partition:Inv:Rev | RowLcm     | missing | 1 1 1 1 1 1 1 1 2 2 2 2 2 2 6 2 12 12 10 30 20 210 210 40 120 168 1980 168 510 72 440 630           |
-| 132 | Partition:Inv:Rev | RowGcd     | variant | 1 1 1 1 1 1 1 1 2 2 2 2 2 2 1 2 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1                                     |
+| 132 | Partition:Inv:Rev | RowGcd     | missing | 1 1 1 1 1 1 1 1 2 2 2 2 2 2 1 2 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1                                     |
 | 133 | Partition:Inv:Rev | RowMax     | A033271 | 1 1 1 1 1 1 1 1 2 2 2 2 2 2 3 2 4 4 5 5 5 7 7 8 8 8 11 14 17 18 20 18                               |
-| 134 | Partition:Inv:Rev | ColMiddle  | variant | 1 1 -1 -1 -1 -1 0 0 0 0 1 1 0 0 1 1 0 0 0 0 0 0 0 0 -1 -1 0 0 0 0 -1 -1                             |
+| 134 | Partition:Inv:Rev | ColMiddle  | missing | 1 1 -1 -1 -1 -1 0 0 0 0 1 1 0 0 1 1 0 0 0 0 0 0 0 0 -1 -1 0 0 0 0 -1 -1                             |
 | 135 | Partition:Inv:Rev | CentralE   | A010815 | 1 -1 -1 0 0 1 0 1 0 0 0 0 -1 0 0 -1                                                                 |
 | 136 | Partition:Inv:Rev | CentralO   | A010815 | 1 -1 -1 0 0 1 0 1 0 0 0 0 -1 0 0 -1                                                                 |
 | 137 | Partition:Inv:Rev | BinConv    | missing | 1 1 -1 -2 -5 -4 -5 22 69 172 438 925 1805 3290 6268 9336 16645 19109 25141 -1006 -38061 -292116     |

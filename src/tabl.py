@@ -1,3 +1,4 @@
+from os import remove
 from functools import cache, reduce
 from itertools import accumulate
 from math import lcm, gcd, factorial
@@ -89,6 +90,18 @@ rgen: TypeAlias = Callable[[int], trow]
 tgen: TypeAlias = Callable[[int, int], int]
 """Type: triangle"""
 tri: TypeAlias = Callable[[int, int], int]
+
+
+def Flat(T: tabl) -> list[int]:
+    """Flatten table to sequence
+    Args:
+        T (tabl): table
+    Returns:
+        list[int]: sequence
+    """
+    if T == []:
+        return []
+    return [i for row in T for i in row]
 
 
 def SeqString(seq: list[int], maxlen: int) -> str:
@@ -2953,7 +2966,7 @@ def Formulas() -> dict[str, str]:
     FORMULA["InvBinConv"] = "&sum;<sub> k=0..n </sub> C(n, k) T(n, n - k) (-1)^k"
     FORMULA["TransSqrs"] = "&sum;<sub> k=0..n </sub> T(n, k) k^2"
     FORMULA["TransNat0"] = "&sum;<sub> k=0..n </sub> T(n, k) k"
-    FORMULA["TransNat1"] = "&sum;<sub> k=0..n </sub> T(n, k) (k + 1)^k"
+    FORMULA["TransNat1"] = "&sum;<sub> k=0..n </sub> T(n, k) (k + 1)"
     FORMULA["DiagRow1"] = "T(n + 1, n)"
     FORMULA["DiagRow2"] = "T(n + 2, n)"
     FORMULA["DiagRow3"] = "T(n + 3, n)"
@@ -2973,16 +2986,16 @@ def Formulas() -> dict[str, str]:
 
 
 def IsInOEIS(seq: list[int]) -> bool:
-    """15 queries per minute are enough.
+    """
     Args:
         seq (list[int]): sequence
     Returns:
         bool: found?
     """
-    strseq = SeqString(seq, 260)
+    strseq = SeqString(seq, 160)
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
     for _ in range(1, 4):
-        time.sleep(5)  # give the OEIS server some time to relax
+        time.sleep(4)  # give the OEIS server some time to relax
         try:
             with urllib.request.urlopen(url) as response:
                 page = response.read()
@@ -3154,7 +3167,7 @@ def QueryOeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     rec = QueryMiniOeis(H, seq, oeis_cur)
     if rec != "missing":
         return rec
-    if IsInOEIS(seq[3 : MINTERMS + 3]):
+    if IsInOEIS(seq):
         return "variant"
     else:
         return "missing"

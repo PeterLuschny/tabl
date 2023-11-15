@@ -8,7 +8,7 @@ import time
 import pandas as pd
 from pathlib import Path
 from _tablpaths import GetDataPath, strippedpath
-from _tabltypes import tgen, InvTable, RevTable, SeqString
+from _tabltypes import tgen, Flat, InvTable, RevTable, SeqString
 from _tabltraits import RegisterTraits, is_tabletrait
 
 
@@ -35,7 +35,7 @@ from _tabltraits import RegisterTraits, is_tabletrait
 
 
 def IsInOEIS(seq: list[int]) -> bool:
-    """15 queries per minute are enough.
+    """
 
     Args:
         seq (list[int]): sequence
@@ -43,11 +43,11 @@ def IsInOEIS(seq: list[int]) -> bool:
     Returns:
         bool: found?
     """
-    strseq = SeqString(seq, 260)
+    strseq = SeqString(seq, 160)
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
 
     for _ in range(1, 4):
-        time.sleep(5)  # give the OEIS server some time to relax
+        time.sleep(4)  # give the OEIS server some time to relax
         try:
             with urllib.request.urlopen(url) as response:
                 page = response.read()
@@ -242,7 +242,7 @@ def QueryOeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     rec = QueryMiniOeis(H, seq, oeis_cur)
     if rec != "missing":
         return rec
-    if IsInOEIS(seq[3: MINTERMS + 3]):
+    if IsInOEIS(seq):
         return "variant"
     else:
         return "missing"
@@ -493,9 +493,10 @@ if __name__ == "__main__":
         print(fnv_hash([(-1) ** i * i for i in range(28)], True))
 
     def test7():
-        from SymPoly import SymPoly
+        #from SymPoly import SymPoly
+        from MoebiusMat import MoebiusMat
 
-        SaveTraitsToDB(SymPoly)
+        SaveTraitsToDB(MoebiusMat)
         # found = ConvertDBtoCSVandMD(GetDataPath(Abel.id, "db"), Abel.id)
         # print(f"{Abel.id}.csv references {found} sequences from OEIS.")
 
@@ -507,6 +508,49 @@ if __name__ == "__main__":
     def test9():
         MergeDBs(tabl_fun)
 
+
+    def isinoeis():
+        """15 queries per minute are enough.
+
+        Args:
+            seq (list[int]): sequence
+
+        Returns:
+            bool: found?
+        """
+        from MoebiusMat import MoebiusMat as gen
+
+        T = gen.tab(28)
+        r = gen.gen
+        TRAITS = RegisterTraits()
+        found = False
+
+        for traitname, trait in TRAITS.items():
+
+            seq = trait(T) if is_tabletrait(trait) else trait(r, 28)
+            if seq == []:  continue
+            strseq = SeqString(seq, 160)
+            
+            print(traitname)
+            print(strseq)
+            url = f"https://oeis.org/search?q={strseq}&fmt=json"
+
+            time.sleep(4)  # give the OEIS server some time to relax
+            try:
+                with urllib.request.urlopen(url) as response:
+                    page = response.read()
+                    print(page[36:500])
+                    found = -1 == page.find(b'"count": 0')
+            except urllib.error.HTTPError as he:
+                print(he.__dict__)
+            except urllib.error.URLError as ue:
+                print(ue.__dict__)
+            
+            print(found,"\n")
+            input(":")
+
+
     # SaveAllTraitsToDBandCSVandMD(tabl_fun[2:3])
     # SaveTraitsToDB(tabl_fun[3])
-    test7()
+
+    # isinoeis()

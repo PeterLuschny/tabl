@@ -100,6 +100,7 @@ tabl_files: list[str] = [
     "_tablexport.py",
     "_tablhtml.py",
     "_tabltraits.py",
+    "_tablstatistic",
     "_tabldata.py",
 ]
 
@@ -186,6 +187,7 @@ tabl_fun: list[tgen] = [
 ]\n""".format()
 
 import_header: list[str] = [
+    "from os import remove\n",
     "from functools import cache, reduce\n",
     "from itertools import accumulate\n",
     "from math import lcm, gcd, factorial\n",

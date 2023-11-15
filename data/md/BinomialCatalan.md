@@ -98,7 +98,7 @@
 |  95 | BinomialCatalan:Rev:Inv | AccSum     | missing | 1 -1 -3 -1 19 69 -49 -1667 -6369 24881 406939 1201881 -16467527 -198695329 -159951219 16950414055   |
 |  96 | BinomialCatalan:Rev:Inv | AccRevSum  | missing | 1 1 -1 -4 -1 29 89 -169 -2521 -6313 55409 559294 484021 -30094481 -238436381 662569480 26914361335  |
 |  97 | BinomialCatalan:Rev:Inv | RowLcm     | missing | 1 1 2 3 4 10 420 38220 662480 1389220560 1889339961600 130564097606342400 6887047246178391452160    |
-|  98 | BinomialCatalan:Rev:Inv | RowGcd     | variant | 1 1 2 3 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1                                     |
+|  98 | BinomialCatalan:Rev:Inv | RowGcd     | missing | 1 1 2 3 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1                                     |
 |  99 | BinomialCatalan:Rev:Inv | RowMax     | missing | 1 1 2 3 4 10 30 196 784 3262 32620 179410 1356984 11428820 80001740 1029616800 8236934400           |
 | 100 | BinomialCatalan:Rev:Inv | ColMiddle  | missing | 1 -1 -2 0 0 10 20 70 140 -252 -504 -12936 -25872 -111540 -223080 2175030 4350060 79299220 158598440 |
 | 101 | BinomialCatalan:Rev:Inv | CentralE   | missing | 1 -2 0 20 140 -504 -25872 -223080 4350060 158598440 804058112 -79771661424 -2377331705840           |

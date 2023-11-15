@@ -1,19 +1,8 @@
 from typing import Callable
 from itertools import accumulate
-from _tabltypes import tabl, trow, tgen, rgen
+from _tabltypes import tabl, trow, tgen, rgen, Flat
 from _tablinverse import InvertTabl
 
-def flat(T: tabl) -> list[int]: 
-    """Flatten table to sequence
-
-    Args:
-        T (tabl): table
-
-    Returns:
-        list[int]: sequence
-    """
-    if T == []: return []
-    return [i for row in T for i in row] 
 
 # #@
 

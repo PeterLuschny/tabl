@@ -2,6 +2,7 @@ from _tabldata import GetCompressed, OeisToSql, SaveAllTraitsToDBandCSVandMD, Me
 from _tablexport import SaveExtendedTables, CrossReferences
 from _tablpaths import GetRoot, EnsureDataDirectories
 from _tablhtml import AllCsvToHtml
+from _tablstatistic import TuttiStats
 from tabl import tabl_fun
 
 
@@ -39,6 +40,9 @@ def setup() -> None:
 
     print("Done ...")
     print("... but you must still put the file 'sortable.js' into the html directory!")
+
+    print("\nAnd here are the new statistics with the current ranking:\n")
+    TuttiStats()
 
 
 if __name__ == "__main__":
