@@ -2495,6 +2495,25 @@ def Worpitzky(n: int, k: int) -> int:
     return worpitzky(n)[k]
 
 
+@cache
+def zarankiewicz(n: int) -> list[int]:
+    def s(n: int):
+        return (1 + n // 2) * (1 + (n + 1) // 2)
+
+    sn = s(n)
+    return [sn * s(k) for k in range(n + 1)]
+
+
+@MakeTriangle(
+    zarankiewicz,
+    "Zarankiewicz",
+    ["A298368"],
+    False,
+)
+def Zarankiewicz(n: int, k: int) -> int:
+    return zarankiewicz(n)[k]
+
+
 def bell_num(n: int) -> int:
     if n == 0:
         return 1
@@ -2614,6 +2633,7 @@ tabl_fun: list[tgen] = [
     TernaryTree,
     WardSet,
     Worpitzky,
+    Zarankiewicz,
 ]
 readme_header = """
 *** La sélection du Chef ***

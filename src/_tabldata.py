@@ -494,9 +494,10 @@ if __name__ == "__main__":
 
     def test7():
         #from SymPoly import SymPoly
-        from MoebiusMat import MoebiusMat
+        from Zarankiewicz import Zarankiewicz
+        # from MoebiusMat import MoebiusMat
 
-        SaveTraitsToDB(MoebiusMat)
+        SaveTraitsToDB(Zarankiewicz)
         # found = ConvertDBtoCSVandMD(GetDataPath(Abel.id, "db"), Abel.id)
         # print(f"{Abel.id}.csv references {found} sequences from OEIS.")
 
@@ -553,4 +554,4 @@ if __name__ == "__main__":
     # SaveAllTraitsToDBandCSVandMD(tabl_fun[2:3])
     # SaveTraitsToDB(tabl_fun[3])
 
-    # isinoeis()
+    test7()

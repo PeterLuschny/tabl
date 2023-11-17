@@ -87,6 +87,7 @@ tabl_files: list[str] = [
     "TernaryTrees.py",
     "WardSet.py",
     "Worpitzky.py",
+    "Zarankiewicz.py",
     "NumBell.py",
     "NumBernoulli.py",
     "NumDivisors",
@@ -184,6 +185,7 @@ tabl_fun: list[tgen] = [
     TernaryTree,
     WardSet,
     Worpitzky,
+    Zarankiewicz,
 ]\n""".format()
 
 import_header: list[str] = [
