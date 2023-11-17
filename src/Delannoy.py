@@ -23,8 +23,8 @@ def delannoy(n: int) -> list[int]:
     if n == 1:
         return [1, 1]
 
-    rov: list[int] = delannoy(n - 2)
-    row: list[int] = delannoy(n - 1) + [1]
+    rov = delannoy(n - 2)
+    row = delannoy(n - 1) + [1]
     for k in range(n - 1, 0, -1):
         row[k] += row[k - 1] + rov[k - 1]
     return row

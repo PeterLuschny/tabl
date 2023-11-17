@@ -21,7 +21,7 @@ def schroederpaths(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = schroederpaths(n - 1) + [1]
+    row = schroederpaths(n - 1) + [1]
 
     for k in range(n, 0, -1):
         row[k] = (row[k - 1] * (2 * n - k)) // k

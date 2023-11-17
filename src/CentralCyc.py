@@ -21,7 +21,7 @@ def centralcycle(n: int) -> list[int]:
     if n == 1:
         return [0, 1]
 
-    row: list[int] = centralcycle(n - 1) + [0]
+    row = centralcycle(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = (n + k - 1) * (row[k] + row[k - 1])
 

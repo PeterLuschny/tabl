@@ -23,7 +23,7 @@ def ternarytree(n: int) -> list[int]:
     if n == 1:
         return [0, 1]
 
-    row: list[int] = ternarytree(n - 1) + [ternarytree(n - 1)[n - 1]]
+    row = ternarytree(n - 1) + [ternarytree(n - 1)[n - 1]]
 
     return list(accumulate(accumulate(row)))
 

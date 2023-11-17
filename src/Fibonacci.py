@@ -23,8 +23,8 @@ def fibonacci(n: int) -> list[int]:
     if n == 1:
         return [0, 1]
 
-    row: list[int] = fibonacci(n - 1) + [1]
-    s: int = row[1]
+    row = fibonacci(n - 1) + [1]
+    s = row[1]
     for k in range(n - 1, 0, -1):
         row[k] += row[k - 1]
     row[0] = s

@@ -22,7 +22,7 @@ def leibniz(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = leibniz(n - 1) + [n + 1]
+    row = leibniz(n - 1) + [n + 1]
     row[0] = row[n] = n + 1
     for k in range(1, n):
         row[k] = ((n - k + 1) * row[k - 1]) // k

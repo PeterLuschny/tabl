@@ -22,7 +22,7 @@ def orderedcycle(n: int) -> list[int]:
     if n == 1:
         return [0, 1]
 
-    row: list[int] = orderedcycle(n - 1) + [0]
+    row = orderedcycle(n - 1) + [0]
     row[n] = row[n] * n
     for k in range(n, 0, -1):
         row[k] = (n - 1) * row[k] + k * row[k - 1]

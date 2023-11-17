@@ -19,8 +19,8 @@ def seidel(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    rowA: list[int] = seidel(n - 1)
-    row: list[int] = [0] + seidel(n - 1)
+    rowA = seidel(n - 1)
+    row = [0] + seidel(n - 1)
     row[1] = row[n]
     for k in range(2, n + 1):
         row[k] = row[k - 1] + rowA[n - k]

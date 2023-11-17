@@ -22,8 +22,8 @@ def schroederl(n: int) -> list[int]:
     if n == 1:
         return [1, 1]
 
-    arow: list[int] = schroederl(n - 1) + [0]
-    row: list[int] = schroederl(n - 1) + [1]
+    arow = schroederl(n - 1) + [0]
+    row = schroederl(n - 1) + [1]
 
     row[0] = row[0] + 2 * row[1]
     for k in range(1, n):

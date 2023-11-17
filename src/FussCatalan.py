@@ -22,7 +22,7 @@ def fusscatalan(n: int) -> list[int]:
     if n == 1:
         return [0, 1]
 
-    row: list[int] = fusscatalan(n - 1) + [fusscatalan(n - 1)[n - 1]]
+    row = fusscatalan(n - 1) + [fusscatalan(n - 1)[n - 1]]
     return list(accumulate(row))
 
 

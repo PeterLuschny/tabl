@@ -23,8 +23,8 @@ def stirlingcycle2(n: int) -> list[int]:
     if n == 1:
         return [0, 0]
 
-    rov: list[int] = stirlingcycle2(n - 2)
-    row: list[int] = stirlingcycle2(n - 1) + [0]
+    rov = stirlingcycle2(n - 2)
+    row = stirlingcycle2(n - 1) + [0]
     for k in range(1, n // 2 + 1):
         row[k] = (n - 1) * (rov[k - 1] + row[k])
     return row

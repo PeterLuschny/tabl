@@ -21,7 +21,7 @@ def euler(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = euler(n - 1) + [1]
+    row = euler(n - 1) + [1]
     for k in range(n, 0, -1):
         row[k] = (row[k - 1] * n) // (k)
     row[0] = -sum((-1) ** (j // 2) * row[j] for j in range(n, 0, -2))

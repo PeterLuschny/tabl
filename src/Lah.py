@@ -22,7 +22,7 @@ def lah(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = lah(n - 1) + [1]
+    row = lah(n - 1) + [1]
     row[0] = 0
     for k in range(n - 1, 0, -1):
         row[k] = row[k] * (n + k - 1) + row[k - 1]

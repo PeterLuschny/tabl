@@ -23,8 +23,8 @@ def chebyshevs(n: int) -> list[int]:
     if n == 1:
         return [0, 1]
 
-    rov: list[int] = chebyshevs(n - 2)
-    row: list[int] = [0] + chebyshevs(n - 1)
+    rov = chebyshevs(n - 2)
+    row = [0] + chebyshevs(n - 1)
     for k in range(0, n - 1):
         row[k] -= rov[k]
     return row

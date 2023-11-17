@@ -22,8 +22,8 @@ def stirlingsetb(n: int) -> list[int]:
     if n == 1:
         return [1, 1]
 
-    pow: list[int] = stirlingsetb(n - 1)
-    row: list[int] = stirlingsetb(n - 1) + [1]
+    pow = stirlingsetb(n - 1)
+    row = stirlingsetb(n - 1) + [1]
 
     row[0] += 2 * row[1]
 

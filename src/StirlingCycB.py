@@ -19,7 +19,7 @@ def stirlingcycleb(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = stirlingcycleb(n - 1) + [1]
+    row = stirlingcycleb(n - 1) + [1]
 
     m = 2 * n - 1
     for k in range(n - 1, 0, -1):

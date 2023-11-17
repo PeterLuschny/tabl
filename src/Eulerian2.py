@@ -22,7 +22,7 @@ def eulerian2(n: int) -> list[int]:
     if n == 1:
         return [0, 1]
 
-    row: list[int] = eulerian2(n - 1) + [0]
+    row = eulerian2(n - 1) + [0]
     for k in range(n, 1, -1):
         row[k] = (2 * n - k) * row[k - 1] + k * row[k]
     return row

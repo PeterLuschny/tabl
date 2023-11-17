@@ -5,12 +5,12 @@ from _tabltypes import tgen, rgen
 
 
 def TablTest(T: tgen, dim: int = 8, short: bool = False) -> None:
-
-    PrintViews(T, dim, verbose=True)
-
+    
     # Increase the default recursion limit
     sys.setrecursionlimit(3000)
     sys.set_int_max_str_digits(5000)
+
+    PrintViews(T, dim, verbose=True)
 
     arg: int = 500 if short else 1000
     gen: rgen = T.gen
@@ -39,3 +39,13 @@ def TablTest(T: tgen, dim: int = 8, short: bool = False) -> None:
         for row in I: print(row)
 
     print("\n--- TablTest done!\n")
+
+
+if __name__ == "__main__":
+
+    print(sys.getrecursionlimit())
+    sys.setrecursionlimit(3000)
+    print(sys.getrecursionlimit())
+
+    sys.set_int_max_str_digits(5000)
+    

@@ -19,7 +19,7 @@ def sympoly(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = sympoly(n - 1) + [1]
+    row = sympoly(n - 1) + [1]
 
     for m in range(n - 1, 0, -1):
         row[m] = (n - m + 1) * row[m] + row[m - 1]

@@ -18,8 +18,8 @@ def fallingfactorial(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    r: list[int] = fallingfactorial(n - 1)
-    row: list[int] = [n * r[k] for k in range(-1, n)]
+    r = fallingfactorial(n - 1)
+    row = [n * r[k] for k in range(-1, n)]
     row[0] = 1
     return row
 

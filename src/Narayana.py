@@ -23,8 +23,8 @@ def narayana(n: int) -> list[int]:
     if n < 3:
         return [[1], [0, 1], [0, 1, 1]][n]
 
-    a: list[int] = narayana(n - 2) + [0, 0]
-    row: list[int] = narayana(n - 1) + [1]
+    a = narayana(n - 2) + [0, 0]
+    row = narayana(n - 1) + [1]
     for k in range(n - 1, 1, -1):
         row[k] = (
             (row[k] + row[k - 1]) * (2 * n - 1)

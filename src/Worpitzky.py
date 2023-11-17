@@ -20,7 +20,7 @@ def worpitzky(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = worpitzky(n - 1) + [0]
+    row = worpitzky(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = k * row[k - 1] + (k + 1) * row[k]
     return row

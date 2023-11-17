@@ -23,7 +23,7 @@ def wardset(n: int) -> list[int]:
     if n == 1:
         return [0, 1]
 
-    row: list[int] = wardset(n - 1) + [0]
+    row = wardset(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = k * row[k] + (n + k - 1) * row[k - 1]
 

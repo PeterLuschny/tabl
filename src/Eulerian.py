@@ -20,7 +20,7 @@ def eulerian(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row: list[int] = eulerian(n - 1) + [0]
+    row = eulerian(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = (n - k) * row[k - 1] + (k + 1) * row[k]
     return row

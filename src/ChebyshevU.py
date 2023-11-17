@@ -24,8 +24,8 @@ def chebyshevu(n: int) -> list[int]:
     if n == 1:
         return [0, 2]
 
-    rov: list[int] = chebyshevu(n - 2)
-    row: list[int] = [0] + chebyshevu(n - 1)
+    rov = chebyshevu(n - 2)
+    row = [0] + chebyshevu(n - 1)
     row[n] = 2 * row[n]
     for k in range(0, n - 1):
         row[k] = 2 * row[k] - rov[k]

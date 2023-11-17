@@ -23,7 +23,7 @@ def fubini(n: int) -> list[int]:
     def r(k: int) -> int:
         return fubini(n - 1)[k] if k <= n - 1 else 0
 
-    row: list[int] = [0] + fubini(n - 1)
+    row = [0] + fubini(n - 1)
     for k in range(1, n + 1):
         row[k] = k * (r(k - 1) + r(k))
     return row

@@ -16,7 +16,7 @@ from _tabltypes import MakeTriangle
 
 @cache
 def hermitee(n: int) -> list[int]:
-    row: list[int] = [0] * (n + 1)
+    row = [0] * (n + 1)
     row[n] = 1
     for k in range(n - 2, -1, -2):
         row[k] = (row[k + 2] * (k + 2) * (k + 1)) // (n - k)

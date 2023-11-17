@@ -24,7 +24,7 @@ def motzkingf(n: int) -> list[int]:
     def r(k: int) -> int:
         return motzkingf(n - 1)[k] if k >= 0 and k < n else 0
 
-    row: list[int] = motzkingf(n - 1) + [1]
+    row = motzkingf(n - 1) + [1]
     for k in range(0, n):
         row[k] += r(k - 1) + r(k + 1)
     return row
