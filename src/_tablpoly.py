@@ -114,7 +114,7 @@ def PrintPolys(t: tgen, size: int = 8, mdformat: bool = True) -> None:
 if __name__ == "__main__":
 
     from Abel import Abel
-    from Bell import Bell
+    # from Bell import Bell
 
     PrintPolys(Abel)
     # PrintPolys(Bell, 6, False)

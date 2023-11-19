@@ -70,7 +70,7 @@ def InvertTabl(L: list[list[int]]) -> list[list[int]]:
             if r != 0:
                 # print("Warning: Integer terms do not exist!")
                 return []
-    return [row[0 : n + 1] for n, row in enumerate(inv)]
+    return [row[0: n + 1] for n, row in enumerate(inv)]
 
 
 def InvertTriangle(r, dim: int) -> list[list[int]]:
@@ -2840,7 +2840,7 @@ def CsvToHtml(fun: tgen) -> None:
                 # 0,Abel:Std,Triangle,A137452,1 0 1 0 ...
                 # index = line[0]
                 h = line[1]
-                type = h[h.index(":") + 1 :]
+                type = h[h.index(":") + 1:]
                 trait = line[2]
                 anum = line[3]
                 seq = line[4]
@@ -3168,7 +3168,7 @@ def QueryMiniOeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     if record is not None:
         return record[0]
     # not found by hash, perhaps shifted by one?
-    H = fnv_hash(seq[1 : MINTERMS + 1], True)
+    H = fnv_hash(seq[1: MINTERMS + 1], True)
     res = oeis_cur.execute(sql, (H,))
     record = res.fetchone()
     return "missing" if record is None else record[0]
@@ -3244,7 +3244,7 @@ def SaveTraits(
             print(f"Info: {triname} -> {traitname} does not exist.")
             continue
         hash = fnv_hash(seq, True)
-        ###################### The undocumented switch.
+        # The undocumented switch.
         # Much faster in the local version, but no OEIS check.
         # anum = queryminioeis(hash, seq, oeis_cur)  # local
         anum = QueryOeis(hash, seq, oeis_cur)  # with internet

@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import MakeTriangle
 
 """Stirling cycle numbers of second order.
- 
+
 [0]  1
 [1]  0,     0
 [2]  0,     1,     0

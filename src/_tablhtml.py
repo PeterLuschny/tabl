@@ -235,8 +235,8 @@ def AllCsvToHtml() -> None:
 
 
 if __name__ == "__main__":
-    from Abel import Abel
-    from Worpitzky import Worpitzky
+    # from Abel import Abel
+    # from Worpitzky import Worpitzky
 
     # CsvToHtml(Abel)
     AllCsvToHtml()

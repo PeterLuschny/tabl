@@ -1,7 +1,7 @@
 from functools import cache
 from _tabltypes import MakeTriangle
 
-"""Stirling cycle B-type. 
+"""Stirling cycle B-type.
 
 [0]      1;
 [1]      1,      1;

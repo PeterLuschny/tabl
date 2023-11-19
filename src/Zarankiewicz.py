@@ -14,9 +14,10 @@ from _tabltypes import MakeTriangle
 [8] 25, 50, 100, 150, 225, 300, 400, 500, 625;
 """
 
+
 @cache
 def zarankiewicz(n: int) -> list[int]:
-    def s(n: int): return  (1 + n // 2) * (1 + (n + 1) // 2)
+    def s(n: int): return (1 + n // 2) * (1 + (n + 1) // 2)
 
     sn = s(n)
     return [sn * s(k) for k in range(n + 1)]

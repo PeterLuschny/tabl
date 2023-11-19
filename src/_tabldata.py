@@ -53,16 +53,15 @@ def IsInOEIS(seq: list[int]) -> bool:
                 page = response.read()
                 # If "count": 0 exists then 'find' returns a value >= 0,
                 # that means that no sequence was found.
-                # Otherwise 'find' returns -1, that means that 
+                # Otherwise 'find' returns -1, that means that
                 # a substring similar to the sequence was found.
                 return -1 == page.find(b'"count": 0')
         except urllib.error.HTTPError as he:
             print(he.__dict__)
         except urllib.error.URLError as ue:
             print(ue.__dict__)
-        
+
     raise Exception(f"Could not open {url}.")
-        
 
 
 def fnv(data: bytes) -> int:
@@ -105,7 +104,7 @@ def fnv_hash(seq: list[int], absolut: bool = False) -> str:
 
 def GetCompressed() -> None:
     oeisstripped = "https://oeis.org/stripped.gz"
-    r = requests.get(oeisstripped, stream = True)
+    r = requests.get(oeisstripped, stream=True)
 
     with open(strippedpath, "wb") as local:
         for chunk in r.iter_content(chunk_size=8192):
@@ -304,7 +303,7 @@ def SaveTraits(
 
         hash = fnv_hash(seq, True)
 
-        ###################### The undocumented switch.
+        # The undocumented switch.
         # Much faster in the local version, but no OEIS check.
         # anum = queryminioeis(hash, seq, oeis_cur)  # local
         anum = QueryOeis(hash, seq, oeis_cur)  # with internet
@@ -493,8 +492,9 @@ if __name__ == "__main__":
         print(fnv_hash([(-1) ** i * i for i in range(28)], True))
 
     def test7():
-        #from SymPoly import SymPoly
+        # from SymPoly import SymPoly
         from Zarankiewicz import Zarankiewicz
+
         # from MoebiusMat import MoebiusMat
 
         SaveTraitsToDB(Zarankiewicz)
@@ -508,7 +508,6 @@ if __name__ == "__main__":
 
     def test9():
         MergeDBs(tabl_fun)
-
 
     def isinoeis():
         """15 queries per minute are enough.
@@ -527,11 +526,11 @@ if __name__ == "__main__":
         found = False
 
         for traitname, trait in TRAITS.items():
-
             seq = trait(T) if is_tabletrait(trait) else trait(r, 28)
-            if seq == []:  continue
+            if seq == []:
+                continue
             strseq = SeqString(seq, 160)
-            
+
             print(traitname)
             print(strseq)
             url = f"https://oeis.org/search?q={strseq}&fmt=json"
@@ -546,10 +545,9 @@ if __name__ == "__main__":
                 print(he.__dict__)
             except urllib.error.URLError as ue:
                 print(ue.__dict__)
-            
-            print(found,"\n")
-            input(":")
 
+            print(found, "\n")
+            input(":")
 
     # SaveAllTraitsToDBandCSVandMD(tabl_fun[2:3])
     # SaveTraitsToDB(tabl_fun[3])

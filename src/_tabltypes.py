@@ -45,7 +45,7 @@ tri: TypeAlias = Callable[[int, int], int]
 #   (g: Callable[[int], list[int]], size: int) -> list[int]
 
 
-def Flat(T: tabl) -> list[int]: 
+def Flat(T: tabl) -> list[int]:
     """Flatten table to sequence
 
     Args:
@@ -54,8 +54,9 @@ def Flat(T: tabl) -> list[int]:
     Returns:
         list[int]: sequence
     """
-    if T == []: return []
-    return [i for row in T for i in row] 
+    if T == []:
+        return []
+    return [i for row in T for i in row]
 
 
 def SeqString(seq: list[int], maxlen: int) -> str:

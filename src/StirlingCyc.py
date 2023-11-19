@@ -1,7 +1,7 @@
 from functools import cache
 from _tabltypes import MakeTriangle
 
-"""Stirling cycle numbers, unsigned Stirling numbers of the 1. kind. 
+"""Stirling cycle numbers, unsigned Stirling numbers of the 1. kind.
 
 
 [0]  1

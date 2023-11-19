@@ -1,6 +1,6 @@
 from typing import Callable
 from itertools import accumulate
-from _tabltypes import tabl, trow, tgen, rgen, Flat
+from _tabltypes import tabl, trow, tgen, rgen
 from _tablinverse import InvertTabl
 
 
@@ -9,9 +9,9 @@ from _tablinverse import InvertTabl
 
 def AntiDiagTabl(T: tabl) -> tabl:
     """Return the table of (upward) anti-diagonals."""
-    return [[T[n - k - 1][k] 
-             for k in range((n + 1) // 2)] 
-             for n in range(1, len(T) + 1)]
+    return [[T[n - k - 1][k]
+            for k in range((n + 1) // 2)]
+            for n in range(1, len(T) + 1)]
 
 
 def AccTabl(T: tabl) -> tabl:
@@ -39,19 +39,19 @@ def AccRevTabl(T: tabl) -> tabl:
 
 
 def Diffx1(T: tabl) -> trow:  # flat tabl
-    return [(k + 1) * c for row in T for k,c in enumerate(row)]
+    return [(k + 1) * c for row in T for k, c in enumerate(row)]
 
 
 def Diffx1Tabl(T: tabl) -> tabl:
-    return [[(k + 1) * c for k,c in enumerate(row)] for row in T]
+    return [[(k + 1) * c for k, c in enumerate(row)] for row in T]
 
 
 def Diffx0(T: tabl) -> trow:  # flat tabl
-    return [k * c for row in T for k,c in enumerate(row)]
+    return [k * c for row in T for k, c in enumerate(row)]
 
 
 def Diffx0Tabl(T: tabl) -> tabl:
-    return [[k * c for k,c in enumerate(row)] for row in T]
+    return [[k * c for k, c in enumerate(row)] for row in T]
 
 
 def Triangle(T: tabl) -> trow:
@@ -64,7 +64,8 @@ def Triangle_(g: rgen, row: int) -> trow:
 
 def Inv(T: tabl) -> trow:
     IT = InvTabl(T)
-    if InvTabl(T) == []: return []
+    if InvTabl(T) == []:
+        return []
     return [i for row in IT for i in row]
 
 
@@ -100,10 +101,11 @@ def AccRev(T: tabl) -> trow:
 def PrintTabls(g: tgen, size: int = 8, mdformat: bool = True) -> None:
 
     TABLSTRAIT: dict[str, Callable[[tabl], trow]] = {}
-    def RegisterTablsTrait(f: Callable[[tabl], trow]) -> None: 
+
+    def RegisterTablsTrait(f: Callable[[tabl], trow]) -> None:
         TABLSTRAIT[f.__name__] = f
 
-    T  = g.tab(size) 
+    T = g.tab(size)
 
     RegisterTablsTrait(Triangle)
     RegisterTablsTrait(Rev)
@@ -117,14 +119,13 @@ def PrintTabls(g: tgen, size: int = 8, mdformat: bool = True) -> None:
     RegisterTablsTrait(AntiDiag)
     RegisterTablsTrait(Diffx0)
 
-
     trianglename = g.id
 
     if mdformat:
         print("#", trianglename, ": Tables")
-        print() # reqiured!
-        print( "| Trait    |   Seq  |")
-        print( "| :---     |  :---  |")
+        print()  # reqiured!
+        print("| Trait    |   Seq  |")
+        print("| :---     |  :---  |")
         for traitname, trait in TABLSTRAIT.items():
             print(f'| {traitname:<15} | {trait(T)} |')
     else:
@@ -138,16 +139,16 @@ if __name__ == "__main__":
     from StirlingSet import StirlingSet
     from LabeledGraphs import LabeledGraphs
 
-    #print(RevTabl(Abel.tab(6)))
-    #print(Rev(Abel.tab(6)))
+    # print(RevTabl(Abel.tab(6)))
+    # print(Rev(Abel.tab(6)))
 
     PrintTabls(Abel, 6)
     PrintTabls(StirlingSet, 6, False)
     PrintTabls(LabeledGraphs, 6)
 
-    #T = LabeledGraphs.tab(9)
-    #print(T)
-    #print(AccTabl(T))
-    #print(Acc(T))
-    #print(InvTabl(T))
-    #print(AntiDiag(T))
+    # T = LabeledGraphs.tab(9)
+    # print(T)
+    # print(AccTabl(T))
+    # print(Acc(T))
+    # print(InvTabl(T))
+    # print(AntiDiag(T))
