@@ -9,3 +9,4 @@ __pycache__/
 _pycache_/
 .vscode
 .gitignore
+.DS_Store

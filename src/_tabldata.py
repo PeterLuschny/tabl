@@ -1,4 +1,5 @@
 import requests
+from requests import get
 import gzip
 import csv
 import sqlite3
@@ -34,7 +35,7 @@ from _tabltraits import RegisterTraits, is_tabletrait
 # #@
 
 
-def IsInOEIS(seq: list[int]) -> bool:
+def isInOEIS(seq: list[int]) -> bool:
     """
 
     Args:
@@ -47,7 +48,7 @@ def IsInOEIS(seq: list[int]) -> bool:
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
 
     for _ in range(1, 4):
-        time.sleep(4)  # give the OEIS server some time to relax
+        time.sleep(1)  # give the OEIS server some time to relax
         try:
             with urllib.request.urlopen(url) as response:
                 page = response.read()
@@ -60,6 +61,37 @@ def IsInOEIS(seq: list[int]) -> bool:
             print(he.__dict__)
         except urllib.error.URLError as ue:
             print(ue.__dict__)
+
+    raise Exception(f"Could not open {url}.")
+
+
+def IsInOEIS(seq: list[int]) -> str:
+    """
+
+    Args:
+        seq (list[int]): sequence
+
+    Returns:
+        "" or Anumber as Bnumber
+    """
+    strseq = SeqString(seq, 160)
+    url = f"https://oeis.org/search?q={strseq}&fmt=json"
+
+    for _ in range(1, 4):
+        time.sleep(1)  # give the OEIS server some time to relax
+        try:
+            jdata = get(f"https://oeis.org/search?q={strseq}&fmt=json").json()
+            count = jdata["count"]
+            anumber = ""
+            if count > 0:
+                seq = jdata["results"][0]
+                number = seq["number"]
+                anumber = f"B{(6 - len(str(number))) * '0' + str(number)}"
+            return anumber
+        except requests.JSONDecodeError as je:
+            print(je)
+        except requests.Timeout as te:
+            print(te)
 
     raise Exception(f"Could not open {url}.")
 
@@ -241,10 +273,10 @@ def QueryOeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     rec = QueryMiniOeis(H, seq, oeis_cur)
     if rec != "missing":
         return rec
-    if IsInOEIS(seq):
-        return "variant"
-    else:
+    bnum = IsInOEIS(seq)
+    if bnum == "":
         return "missing"
+    return bnum
 
 
 def GetType(name: str) -> str:
@@ -493,11 +525,11 @@ if __name__ == "__main__":
 
     def test7():
         # from SymPoly import SymPoly
-        from Zarankiewicz import Zarankiewicz
+        from Abel import Abel
 
         # from MoebiusMat import MoebiusMat
 
-        SaveTraitsToDB(Zarankiewicz)
+        SaveTraitsToDB(Abel)
         # found = ConvertDBtoCSVandMD(GetDataPath(Abel.id, "db"), Abel.id)
         # print(f"{Abel.id}.csv references {found} sequences from OEIS.")
 

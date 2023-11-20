@@ -189,19 +189,20 @@ tabl_fun: list[tgen] = [
 ]\n""".format()
 
 import_header: list[str] = [
-    "from os import remove\n",
+    # "from os import remove\n",
     "from functools import cache, reduce\n",
     "from itertools import accumulate\n",
     "from math import lcm, gcd, factorial\n",
     "from sys import setrecursionlimit, set_int_max_str_digits\n",
     "from typing import Callable, TypeAlias\n",
     "from inspect import signature\n",
-    "from tabulate import tabulate\n",  # needed by pandas
+    # "from tabulate import tabulate\n",  # needed by pandas
     "import contextlib\n",
     "import csv\n",
     "import urllib.request\n",
     "import urllib.error\n",
     "import requests\n",
+    "from requests import get\n",
     "import time\n",
     "import gzip\n",
     "import sqlite3\n",

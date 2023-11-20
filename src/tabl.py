@@ -1,16 +1,15 @@
-from os import remove
 from functools import cache, reduce
 from itertools import accumulate
 from math import lcm, gcd, factorial
 from sys import setrecursionlimit, set_int_max_str_digits
 from typing import Callable, TypeAlias
 from inspect import signature
-from tabulate import tabulate
 import contextlib
 import csv
 import urllib.request
 import urllib.error
 import requests
+from requests import get
 import time
 import gzip
 import sqlite3
@@ -70,7 +69,7 @@ def InvertTabl(L: list[list[int]]) -> list[list[int]]:
             if r != 0:
                 # print("Warning: Integer terms do not exist!")
                 return []
-    return [row[0: n + 1] for n, row in enumerate(inv)]
+    return [row[0 : n + 1] for n, row in enumerate(inv)]
 
 
 def InvertTriangle(r, dim: int) -> list[list[int]]:
@@ -1162,7 +1161,7 @@ def Baxter(n: int, k: int) -> int:
 def bell(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = [bell(n - 1)[n - 1]] + bell(n - 1)
+    row = [bell(n - 1)[n - 1]] + bell(n - 1)
     for k in range(1, n + 1):
         row[k] += row[k - 1]
     return row
@@ -1179,7 +1178,7 @@ def bessel(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = bessel(n - 1) + [1]
+    row = bessel(n - 1) + [1]
     for k in range(n - 1, 0, -1):
         row[k] = row[k - 1] + (2 * (n - 1) - k) * row[k]
     return row
@@ -1217,7 +1216,7 @@ def Bessel2(n: int, k: int) -> int:
 def binomial(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = [1] + binomial(n - 1)
+    row = [1] + binomial(n - 1)
     for k in range(1, n):
         row[k] += row[k + 1]
     return row
@@ -1285,8 +1284,9 @@ def catalan(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 1]
-    pow: list[int] = catalan(n - 1) + [0]
-    row: list[int] = pow.copy()
+
+    pow = catalan(n - 1) + [0]
+    row = pow.copy()
     for k in range(n - 1, 0, -1):
         row[k] = pow[k - 1] + 2 * pow[k] + pow[k + 1]
     row[n] = 1
@@ -1306,7 +1306,7 @@ def catalanaer(n: int) -> list[int]:
     def r(k: int) -> int:
         return catalanaer(n - 1)[k] if k >= 0 and k < n else 0
 
-    row: list[int] = catalanaer(n - 1) + [1]
+    row = catalanaer(n - 1) + [1]
     for k in range(0, n):
         row[k] = r(k - 1) + r(k + 1)
     return row
@@ -1343,7 +1343,7 @@ def centralcycle(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = centralcycle(n - 1) + [0]
+    row = centralcycle(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = (n + k - 1) * (row[k] + row[k - 1])
     return row
@@ -1360,7 +1360,7 @@ def centralset(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = centralset(n - 1) + [1]
+    row = centralset(n - 1) + [1]
     for k in range(n - 1, 1, -1):
         row[k] = k**2 * row[k] + row[k - 1]
     return row
@@ -1377,8 +1377,8 @@ def chebyshevs(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 1]
-    rov: list[int] = chebyshevs(n - 2)
-    row: list[int] = [0] + chebyshevs(n - 1)
+    rov = chebyshevs(n - 2)
+    row = [0] + chebyshevs(n - 1)
     for k in range(0, n - 1):
         row[k] -= rov[k]
     return row
@@ -1397,8 +1397,8 @@ def chebyshevt(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 1]
-    rov: list[int] = chebyshevt(n - 2)
-    row: list[int] = [0] + chebyshevt(n - 1)
+    rov = chebyshevt(n - 2)
+    row = [0] + chebyshevt(n - 1)
     row[n] = 2 * row[n]
     for k in range(0, n - 1):
         row[k] = 2 * row[k] - rov[k]
@@ -1416,8 +1416,8 @@ def chebyshevu(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 2]
-    rov: list[int] = chebyshevu(n - 2)
-    row: list[int] = [0] + chebyshevu(n - 1)
+    rov = chebyshevu(n - 2)
+    row = [0] + chebyshevu(n - 1)
     row[n] = 2 * row[n]
     for k in range(0, n - 1):
         row[k] = 2 * row[k] - rov[k]
@@ -1476,8 +1476,8 @@ def delannoy(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [1, 1]
-    rov: list[int] = delannoy(n - 2)
-    row: list[int] = delannoy(n - 1) + [1]
+    rov = delannoy(n - 2)
+    row = delannoy(n - 1) + [1]
     for k in range(n - 1, 0, -1):
         row[k] += row[k - 1] + rov[k - 1]
     return row
@@ -1532,7 +1532,7 @@ def Euclid(n: int, k: int) -> int:
 def euler(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = euler(n - 1) + [1]
+    row = euler(n - 1) + [1]
     for k in range(n, 0, -1):
         row[k] = (row[k - 1] * n) // (k)
     row[0] = -sum((-1) ** (j // 2) * row[j] for j in range(n, 0, -2))
@@ -1548,7 +1548,7 @@ def Euler(n: int, k: int) -> int:
 def eulerian(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = eulerian(n - 1) + [0]
+    row = eulerian(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = (n - k) * row[k - 1] + (k + 1) * row[k]
     return row
@@ -1565,7 +1565,7 @@ def eulerian2(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = eulerian2(n - 1) + [0]
+    row = eulerian2(n - 1) + [0]
     for k in range(n, 1, -1):
         row[k] = (2 * n - k) * row[k - 1] + k * row[k]
     return row
@@ -1582,7 +1582,7 @@ def Eulerian2(n: int, k: int) -> int:
 def eulerianb(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = eulerianb(n - 1) + [1]
+    row = eulerianb(n - 1) + [1]
     for k in range(n - 1, 0, -1):
         row[k] = (2 * (n - k) + 1) * row[k - 1] + (2 * k + 1) * row[k]
     return row
@@ -1637,8 +1637,8 @@ def eulerT(n: int) -> int:
 def fallingfactorial(n: int) -> list[int]:
     if n == 0:
         return [1]
-    r: list[int] = fallingfactorial(n - 1)
-    row: list[int] = [n * r[k] for k in range(-1, n)]
+    r = fallingfactorial(n - 1)
+    row = [n * r[k] for k in range(-1, n)]
     row[0] = 1
     return row
 
@@ -1659,8 +1659,8 @@ def fibonacci(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = fibonacci(n - 1) + [1]
-    s: int = row[1]
+    row = fibonacci(n - 1) + [1]
+    s = row[1]
     for k in range(n - 1, 0, -1):
         row[k] += row[k - 1]
     row[0] = s
@@ -1680,7 +1680,7 @@ def fubini(n: int) -> list[int]:
     def r(k: int) -> int:
         return fubini(n - 1)[k] if k <= n - 1 else 0
 
-    row: list[int] = [0] + fubini(n - 1)
+    row = [0] + fubini(n - 1)
     for k in range(1, n + 1):
         row[k] = k * (r(k - 1) + r(k))
     return row
@@ -1697,7 +1697,7 @@ def fusscatalan(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = fusscatalan(n - 1) + [fusscatalan(n - 1)[n - 1]]
+    row = fusscatalan(n - 1) + [fusscatalan(n - 1)[n - 1]]
     return list(accumulate(row))
 
 
@@ -1710,8 +1710,8 @@ def FussCatalan(n: int, k: int) -> int:
 def gaussq2(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = gaussq2(n - 1)
-    pow: list[int] = [1] + gaussq2(n - 1)
+    row = gaussq2(n - 1)
+    pow = [1] + gaussq2(n - 1)
     p = 2
     for k in range(1, n):
         pow[k] = row[k - 1] + p * row[k]
@@ -1747,8 +1747,8 @@ def harmonic(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = harmonic(n - 1) + [1]
-    sav: int = row[1]
+    row = harmonic(n - 1) + [1]
+    sav = row[1]
     for k in range(n - 1, 0, -1):
         row[k] = (n - 1) * row[k] + row[k - 1]
     row[1] += sav
@@ -1762,7 +1762,7 @@ def Harmonic(n: int, k: int) -> int:
 
 @cache
 def hermitee(n: int) -> list[int]:
-    row: list[int] = [0] * (n + 1)
+    row = [0] * (n + 1)
     row[n] = 1
     for k in range(n - 2, -1, -2):
         row[k] = (row[k + 2] * (k + 2) * (k + 1)) // (n - k)
@@ -1776,7 +1776,7 @@ def HermiteE(n: int, k: int) -> int:
 
 @cache
 def hermiteh(n: int) -> list[int]:
-    row: list[int] = [0] * (n + 1)
+    row = [0] * (n + 1)
     row[n] = 2**n
     for k in range(n - 2, -1, -2):
         row[k] = (row[k + 2] * (k + 2) * (k + 1)) // (2 * (n - k))
@@ -1811,7 +1811,7 @@ def LabeledGraphs(n: int, k: int) -> int:
 def laguerre(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = [0] + laguerre(n - 1)
+    row = [0] + laguerre(n - 1)
     for k in range(0, n):
         row[k] += (n + k) * row[k + 1]
     return row
@@ -1826,7 +1826,7 @@ def Laguerre(n: int, k: int) -> int:
 def lah(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = lah(n - 1) + [1]
+    row = lah(n - 1) + [1]
     row[0] = 0
     for k in range(n - 1, 0, -1):
         row[k] = row[k] * (n + k - 1) + row[k - 1]
@@ -1863,7 +1863,7 @@ def Lehmer(n: int, k: int) -> int:
 def leibniz(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = leibniz(n - 1) + [n + 1]
+    row = leibniz(n - 1) + [n + 1]
     row[0] = row[n] = n + 1
     for k in range(1, n):
         row[k] = ((n - k + 1) * row[k - 1]) // k
@@ -1879,7 +1879,7 @@ def Leibniz(n: int, k: int) -> int:
 def levin(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = levin(n - 1) + [1]
+    row = levin(n - 1) + [1]
     row[0] = row[n] = (row[n - 1] * (4 * n - 2)) // n
     for k in range(1, n):
         row[k] = ((n - k + 1) * row[k - 1]) // k
@@ -1963,7 +1963,7 @@ def motzkingf(n: int) -> list[int]:
     def r(k: int) -> int:
         return motzkingf(n - 1)[k] if k >= 0 and k < n else 0
 
-    row: list[int] = motzkingf(n - 1) + [1]
+    row = motzkingf(n - 1) + [1]
     for k in range(0, n):
         row[k] += r(k - 1) + r(k + 1)
     return row
@@ -1978,8 +1978,8 @@ def MotzkinGF(n: int, k: int) -> int:
 def narayana(n: int) -> list[int]:
     if n < 3:
         return [[1], [0, 1], [0, 1, 1]][n]
-    a: list[int] = narayana(n - 2) + [0, 0]
-    row: list[int] = narayana(n - 1) + [1]
+    a = narayana(n - 2) + [0, 0]
+    row = narayana(n - 1) + [1]
     for k in range(n - 1, 1, -1):
         row[k] = (
             (row[k] + row[k - 1]) * (2 * n - 1)
@@ -2008,7 +2008,7 @@ def Naturals(n: int, k: int) -> int:
 def nicomachus(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = nicomachus(n - 1) + [3 * nicomachus(n - 1)[n - 1]]
+    row = nicomachus(n - 1) + [3 * nicomachus(n - 1)[n - 1]]
     for k in range(0, n):
         row[k] *= 2
     return row
@@ -2049,7 +2049,7 @@ def orderedcycle(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = orderedcycle(n - 1) + [0]
+    row = orderedcycle(n - 1) + [0]
     row[n] = row[n] * n
     for k in range(n, 0, -1):
         row[k] = (n - 1) * row[k] + k * row[k - 1]
@@ -2117,8 +2117,8 @@ def polygonal(n: int) -> list[int]:
         return [0]
     if n == 1:
         return [0, 1]
-    rov: list[int] = polygonal(n - 2)
-    row: list[int] = polygonal(n - 1) + [n]
+    rov = polygonal(n - 2)
+    row = polygonal(n - 1) + [n]
     row[n - 1] += row[n - 2]
     for k in range(2, n - 1):
         row[k] += row[k] - rov[k]
@@ -2136,7 +2136,7 @@ def Polygonal(n: int, k: int) -> int:
 def powlaguerre(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = powlaguerre(n - 1) + [1]
+    row = powlaguerre(n - 1) + [1]
     row[0] = row[n] = row[0] * n
     for k in range(1, n):
         row[k] = ((n - k + 1) * row[k - 1]) // k
@@ -2154,9 +2154,7 @@ def rencontres(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = [
-        (n - 1) * (rencontres(n - 1)[0] + rencontres(n - 2)[0])
-    ] + rencontres(n - 1)
+    row = [(n - 1) * (rencontres(n - 1)[0] + rencontres(n - 2)[0])] + rencontres(n - 1)
     for k in range(1, n - 1):
         row[k] = (n * row[k]) // k
     return row
@@ -2171,7 +2169,7 @@ def Rencontres(n: int, k: int) -> int:
 def risingfactorial(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = [0] + risingfactorial(n - 1)
+    row = [0] + risingfactorial(n - 1)
     for k in range(0, n):
         row[k] += (n - k) * row[k + 1]
     return row
@@ -2193,7 +2191,7 @@ def schroeder(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = schroeder(n - 1) + [1]
+    row = schroeder(n - 1) + [1]
     for k in range(n - 1, 0, -1):
         row[k] += row[k - 1] + row[k + 1]
     return row
@@ -2213,7 +2211,7 @@ def Schroeder(n: int, k: int) -> int:
 def schroederpaths(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = schroederpaths(n - 1) + [1]
+    row = schroederpaths(n - 1) + [1]
     for k in range(n, 0, -1):
         row[k] = (row[k - 1] * (2 * n - k)) // k
     row[0] = (row[0] * (4 * n - 2)) // n
@@ -2231,8 +2229,8 @@ def schroederl(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [1, 1]
-    arow: list[int] = schroederl(n - 1) + [0]
-    row: list[int] = schroederl(n - 1) + [1]
+    arow = schroederl(n - 1) + [0]
+    row = schroederl(n - 1) + [1]
     row[0] = row[0] + 2 * row[1]
     for k in range(1, n):
         row[k] = arow[k - 1] + 3 * arow[k] + 2 * arow[k + 1]
@@ -2248,8 +2246,8 @@ def SchroederL(n: int, k: int) -> int:
 def seidel(n: int) -> list[int]:
     if n == 0:
         return [1]
-    rowA: list[int] = seidel(n - 1)
-    row: list[int] = [0] + seidel(n - 1)
+    rowA = seidel(n - 1)
+    row = [0] + seidel(n - 1)
     row[1] = row[n]
     for k in range(2, n + 1):
         row[k] = row[k - 1] + rowA[n - k]
@@ -2291,7 +2289,7 @@ def Sierpinski(n: int, k: int) -> int:
 def stirlingcycle(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = [0] + stirlingcycle(n - 1)
+    row = [0] + stirlingcycle(n - 1)
     for k in range(1, n):
         row[k] = row[k] + (n - 1) * row[k + 1]
     return row
@@ -2313,8 +2311,8 @@ def stirlingcycle2(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 0]
-    rov: list[int] = stirlingcycle2(n - 2)
-    row: list[int] = stirlingcycle2(n - 1) + [0]
+    rov = stirlingcycle2(n - 2)
+    row = stirlingcycle2(n - 1) + [0]
     for k in range(1, n // 2 + 1):
         row[k] = (n - 1) * (rov[k - 1] + row[k])
     return row
@@ -2329,7 +2327,7 @@ def StirlingCycle2(n: int, k: int) -> int:
 def stirlingcycleb(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = stirlingcycleb(n - 1) + [1]
+    row = stirlingcycleb(n - 1) + [1]
     m = 2 * n - 1
     for k in range(n - 1, 0, -1):
         row[k] = m * row[k] + row[k - 1]
@@ -2348,7 +2346,7 @@ def StirlingCycleB(n: int, k: int) -> int:
 def stirlingset(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = [0] + stirlingset(n - 1)
+    row = [0] + stirlingset(n - 1)
     for k in range(1, n):
         row[k] = row[k] + k * row[k + 1]
     return row
@@ -2380,8 +2378,8 @@ def stirlingset2(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 0]
-    rov: list[int] = stirlingset2(n - 2)
-    row: list[int] = stirlingset2(n - 1) + [0]
+    rov = stirlingset2(n - 2)
+    row = stirlingset2(n - 1) + [0]
     for k in range(1, n // 2 + 1):
         row[k] = (n - 1) * rov[k - 1] + k * row[k]
     return row
@@ -2398,8 +2396,8 @@ def stirlingsetb(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [1, 1]
-    pow: list[int] = stirlingsetb(n - 1)
-    row: list[int] = stirlingsetb(n - 1) + [1]
+    pow = stirlingsetb(n - 1)
+    row = stirlingsetb(n - 1) + [1]
     row[0] += 2 * row[1]
     for k in range(1, n - 1):
         row[k] = 2 * (k + 1) * pow[k + 1] + (2 * k + 1) * pow[k] + pow[k - 1]
@@ -2431,7 +2429,7 @@ def Sylvester(n: int, k: int) -> int:
 def sympoly(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = sympoly(n - 1) + [1]
+    row = sympoly(n - 1) + [1]
     for m in range(n - 1, 0, -1):
         row[m] = (n - m + 1) * row[m] + row[m - 1]
     row[0] *= n
@@ -2449,7 +2447,7 @@ def ternarytree(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = ternarytree(n - 1) + [ternarytree(n - 1)[n - 1]]
+    row = ternarytree(n - 1) + [ternarytree(n - 1)[n - 1]]
     return list(accumulate(accumulate(row)))
 
 
@@ -2464,7 +2462,7 @@ def wardset(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 1]
-    row: list[int] = wardset(n - 1) + [0]
+    row = wardset(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = k * row[k] + (n + k - 1) * row[k - 1]
     return row
@@ -2479,7 +2477,7 @@ def WardSet(n: int, k: int) -> int:
 def worpitzky(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row: list[int] = worpitzky(n - 1) + [0]
+    row = worpitzky(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = k * row[k - 1] + (k + 1) * row[k]
     return row
@@ -2753,9 +2751,9 @@ SCRIPT = [
     "</script>\n" "<p>&nbsp;</p></body></html>",
 ]
 Footer = [
-    "<p style='margin-left:8px'>Note: The A-numbers are based on a finite number of numerical comparisons.<br>",
-    "They ignore the sign and the OEIS-offset, and might differ in the first few values.<br>"
-    "Here the offset of all triangles is 0 and consequently also the offset of all sequences.</p>",
+    "<p style='margin-left:8px'>Note: The A-numbers are based on a finite number of numerical comparisons. The B-numbers<br>",
+    "are  the A-numbers of sligthly different variants. They ignore the sign and the OEIS-offset and might differ in the<br>",
+    "first few values. Since the offset of all triangles is 0 also the offset of all sequences is zero.</p>",
 ]
 
 
@@ -2840,7 +2838,7 @@ def CsvToHtml(fun: tgen) -> None:
                 # 0,Abel:Std,Triangle,A137452,1 0 1 0 ...
                 # index = line[0]
                 h = line[1]
-                type = h[h.index(":") + 1:]
+                type = h[h.index(":") + 1 :]
                 trait = line[2]
                 anum = line[3]
                 seq = line[4]
@@ -2856,8 +2854,8 @@ def CsvToHtml(fun: tgen) -> None:
                     outfile.write(
                         f"<td><a href='{url}' target='_blank'>missing</a></td>"
                     )
-                elif anum == "variant":
-                    color = "rgb(167, 199, 231)"
+                elif anum[0] == "B":
+                    color = "rgb(0, 0, 0)"
                     url = f"https://oeis.org/search?q={sseq}"
                     outfile.write(
                         f"<td><a href='{url}' target='_blank'>variant</a></td>"
@@ -3005,7 +3003,7 @@ def Formulas() -> dict[str, str]:
     return FORMULA
 
 
-def IsInOEIS(seq: list[int]) -> bool:
+def isInOEIS(seq: list[int]) -> bool:
     """
     Args:
         seq (list[int]): sequence
@@ -3015,7 +3013,7 @@ def IsInOEIS(seq: list[int]) -> bool:
     strseq = SeqString(seq, 160)
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
     for _ in range(1, 4):
-        time.sleep(4)  # give the OEIS server some time to relax
+        time.sleep(1)  # give the OEIS server some time to relax
         try:
             with urllib.request.urlopen(url) as response:
                 page = response.read()
@@ -3028,7 +3026,33 @@ def IsInOEIS(seq: list[int]) -> bool:
             print(he.__dict__)
         except urllib.error.URLError as ue:
             print(ue.__dict__)
+    raise Exception(f"Could not open {url}.")
 
+
+def IsInOEIS(seq: list[int]) -> str:
+    """
+    Args:
+        seq (list[int]): sequence
+    Returns:
+        "" or Anumber as Bnumber
+    """
+    strseq = SeqString(seq, 160)
+    url = f"https://oeis.org/search?q={strseq}&fmt=json"
+    for _ in range(1, 4):
+        time.sleep(1)  # give the OEIS server some time to relax
+        try:
+            jdata = get(f"https://oeis.org/search?q={strseq}&fmt=json").json()
+            count = jdata["count"]
+            anumber = ""
+            if count > 0:
+                seq = jdata["results"][0]
+                number = seq["number"]
+                anumber = f"B{(6 - len(str(number))) * '0' + str(number)}"
+            return anumber
+        except requests.JSONDecodeError as je:
+            print(je)
+        except requests.Timeout as te:
+            print(te)
     raise Exception(f"Could not open {url}.")
 
 
@@ -3168,7 +3192,7 @@ def QueryMiniOeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     if record is not None:
         return record[0]
     # not found by hash, perhaps shifted by one?
-    H = fnv_hash(seq[1: MINTERMS + 1], True)
+    H = fnv_hash(seq[1 : MINTERMS + 1], True)
     res = oeis_cur.execute(sql, (H,))
     record = res.fetchone()
     return "missing" if record is None else record[0]
@@ -3187,10 +3211,10 @@ def QueryOeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     rec = QueryMiniOeis(H, seq, oeis_cur)
     if rec != "missing":
         return rec
-    if IsInOEIS(seq):
-        return "variant"
-    else:
+    bnum = IsInOEIS(seq)
+    if bnum == "":
         return "missing"
+    return bnum
 
 
 def GetType(name: str) -> str:

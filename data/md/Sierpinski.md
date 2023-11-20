@@ -13,7 +13,7 @@
 |  10 | Sierpinski:Std     | EvenSum    | A060632 | 1 1 2 2 2 2 4 4 2 2 4 4 4 4 8 8 2 2 4 4 4 4 8 8 4 4 8 8 8 8 16 16                                   |
 |  11 | Sierpinski:Std     | OddSum     | missing | 0 1 0 2 0 2 0 4 0 2 0 4 0 4 0 8 0 2 0 4 0 4 0 8 0 4 0 8 0 8 0 16                                    |
 |  12 | Sierpinski:Std     | AltSum     | missing | 1 0 2 0 2 0 4 0 2 0 4 0 4 0 8 0 2 0 4 0 4 0 8 0 4 0 8 0 8 0 16 0                                    |
-|  13 | Sierpinski:Std     | DiagSum    | variant | 1 1 2 1 3 2 3 1 4 3 5 2 5 3 4 1 5 4 7 3 8 5 7 2 7 5 8 3 7 4 5 1                                     |
+|  13 | Sierpinski:Std     | DiagSum    | B002487 | 1 1 2 1 3 2 3 1 4 3 5 2 5 3 4 1 5 4 7 3 8 5 7 2 7 5 8 3 7 4 5 1                                     |
 |  14 | Sierpinski:Std     | AccSum     | missing | 1 3 4 10 6 14 16 36 10 22 24 52 28 60 64 136 18 38 40 84 44 92 96 200 52 108 112 232 120 248 256    |
 |  15 | Sierpinski:Std     | AccRevSum  | missing | 1 3 4 10 6 14 16 36 10 22 24 52 28 60 64 136 18 38 40 84 44 92 96 200 52 108 112 232 120 248 256    |
 |  16 | Sierpinski:Std     | ColMiddle  | A036987 | 1 1 0 1 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1                                     |
@@ -86,7 +86,7 @@
 |  83 | Sierpinski:Inv:Rev | EvenSum    | A014026 | 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0                                     |
 |  84 | Sierpinski:Inv:Rev | OddSum     | A033683 | 0 -1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0                                    |
 |  85 | Sierpinski:Inv:Rev | AltSum     | A130706 | 1 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0                                     |
-|  86 | Sierpinski:Inv:Rev | DiagSum    | variant | 1 1 0 1 -1 0 1 1 -2 -1 1 0 1 1 0 1 -3 -2 1 -1 2 1 -1 0 1 1 0 1 -1 0 1 1                             |
+|  86 | Sierpinski:Inv:Rev | DiagSum    | B005590 | 1 1 0 1 -1 0 1 1 -2 -1 1 0 1 1 0 1 -3 -2 1 -1 2 1 -1 0 1 1 0 1 -1 0 1 1                             |
 |  87 | Sierpinski:Inv:Rev | AccSum     | A087263 | 1 1 2 0 4 0 0 0 8 0 0 0 0 0 0 0 16 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0                                    |
 |  88 | Sierpinski:Inv:Rev | AccRevSum  | A087263 | 1 -1 -2 0 -4 0 0 0 -8 0 0 0 0 0 0 0 -16 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0                               |
 |  89 | Sierpinski:Inv:Rev | ColMiddle  | A036987 | 1 1 0 -1 0 0 0 1 0 0 0 0 0 0 0 -1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1                                   |

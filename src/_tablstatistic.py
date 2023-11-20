@@ -52,17 +52,19 @@ def Statistic(dbname: str):
     enum = res.fetchone()
     print(f"\tmissing  sequences is {enum[0]}.")
 
-    sql = f"SELECT COUNT() FROM {dbname} WHERE anum = 'variant';"
-    res = cur.execute(sql)
-    fnum = res.fetchone()
-    print(f"\tsimilar  sequences is {fnum[0]}.")
+    # sql = f"SELECT COUNT() FROM {dbname} WHERE anum = 'variant';"
+    # res = cur.execute(sql)
+    # fnum = res.fetchone()
+    # print(f"\tsimilar  sequences is {fnum[0]}.")
 
-    sql = f"SELECT COUNT() FROM {dbname} WHERE anum != 'variant' AND anum != 'missing';"
+    # sql = f"SELECT COUNT() FROM {dbname} WHERE anum != 'variant' AND anum != 'missing';"
+    sql = f"SELECT COUNT() FROM {dbname} WHERE anum != 'missing';"
     res = cur.execute(sql)
     gnum = res.fetchone()
     print(f"\tall      A-numbers is {gnum[0]}.")
 
-    sql = f"SELECT COUNT(DISTINCT anum) FROM {dbname} WHERE anum != 'variant' AND anum != 'missing';"
+    # sql = f"SELECT COUNT(DISTINCT anum) FROM {dbname} WHERE anum != 'variant' AND anum != 'missing';"
+    sql = f"SELECT COUNT(DISTINCT anum) FROM {dbname} WHERE anum != 'missing';"
     res = cur.execute(sql)
     hnum = res.fetchone()
     print(f"\tdistinct A-numbers is {hnum[0]}.")
@@ -71,7 +73,7 @@ def Statistic(dbname: str):
     cur.close()
     con.close()
 
-    return [dbname, anum[0], bnum[0], cnum[0], dnum[0], enum[0], fnum[0], gnum[0], hnum[0]]
+    return [dbname, anum[0], bnum[0], cnum[0], dnum[0], enum[0], gnum[0], hnum[0]]
 
 
 def TuttiStats(name: str = "traitsstats") -> None:
@@ -84,12 +86,12 @@ def TuttiStats(name: str = "traitsstats") -> None:
 
     with sqlite3.connect(filename) as db:
         cur = db.cursor()
-        sql = f"CREATE TABLE {name}(Anum, name, allhash, disthash, triangles, types, missing, similar, allanum, distanum)"
+        sql = f"CREATE TABLE {name}(Anum, name, allhash, disthash, triangles, types, missing, allanum, distanum)"
         cur.execute(sql)
 
         for fun in tabl_fun:
             score = [fun.sim[0]] + Statistic(fun.id)
-            sql = f"INSERT INTO {name} VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            sql = f"INSERT INTO {name} VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)"
             cur.execute(sql, score)
 
         db.commit()
@@ -101,7 +103,7 @@ def TuttiStats(name: str = "traitsstats") -> None:
         cur.execute(f"SELECT * FROM {name} ORDER by distanum DESC")
         F = cur.fetchall()
         for f in F:
-            print([f[9] + f[7] // 2], f)
+            print([f[8]], f)
 
         cur.close()
 

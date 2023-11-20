@@ -82,9 +82,9 @@ SCRIPT = [
 ]
 
 Footer = [
-    "<p style='margin-left:8px'>Note: The A-numbers are based on a finite number of numerical comparisons.<br>",
-    "They ignore the sign and the OEIS-offset, and might differ in the first few values.<br>"
-    "Here the offset of all triangles is 0 and consequently also the offset of all sequences.</p>",
+    "<p style='margin-left:8px'>Note: The A-numbers are based on a finite number of numerical comparisons. The B-numbers<br>",
+    "are  the A-numbers of sligthly different variants. They ignore the sign and the OEIS-offset and might differ in the<br>",
+    "first few values. Since the offset of all triangles is 0 also the offset of all sequences is zero.</p>",
 ]
 
 
@@ -199,8 +199,8 @@ def CsvToHtml(fun: tgen) -> None:
                     outfile.write(
                         f"<td><a href='{url}' target='_blank'>missing</a></td>"
                     )
-                elif anum == "variant":
-                    color = "rgb(167, 199, 231)"
+                elif anum[0] == 'B':
+                    color = "rgb(0, 0, 0)"
                     url = f"https://oeis.org/search?q={sseq}"
                     outfile.write(
                         f"<td><a href='{url}' target='_blank'>variant</a></td>"

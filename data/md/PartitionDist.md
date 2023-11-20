@@ -17,7 +17,7 @@
 | 14 | PartitionDist:Std | RowGcd     | missing | 1 1 2 2 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1                                     |
 | 15 | PartitionDist:Std | RowMax     | missing | 1 1 2 2 3 5 6 11 13 17 22 27 37 52 67 97 117 154 184 235 277 338 414 535 692 873 1100 1369 1661     |
 | 16 | PartitionDist:Std | ColMiddle  | missing | 1 0 2 2 2 5 1 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0                                     |
-| 17 | PartitionDist:Std | CentralE   | variant | 1 2 2 1 0 0 0 0 0 0 0 0 0 0 0 0                                                                     |
+| 17 | PartitionDist:Std | CentralE   | B098418 | 1 2 2 1 0 0 0 0 0 0 0 0 0 0 0 0                                                                     |
 | 18 | PartitionDist:Std | CentralO   | missing | 0 2 5 2 0 0 0 0 0 0 0 0 0 0 0 0                                                                     |
 | 19 | PartitionDist:Std | ColRight   | A014026 | 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0                                     |
 | 20 | PartitionDist:Std | BinConv    | missing | 1 1 4 9 24 60 134 315 676 1479 3040 6292 12601 24934 48468 92768 175576 326978 604356 1100366       |
@@ -28,7 +28,7 @@
 | 25 | PartitionDist:Std | PosHalf    | missing | 1 1 4 10 32 72 232 512 1504 3584 9664 22528 62208 142336 370688 885760 2240512 5238784 13271040     |
 | 26 | PartitionDist:Std | NegHalf    | missing | 1 1 -4 6 -16 -8 -40 -192 160 -768 1728 -5632 -256 -19456 30720 41984 -12288 110592 -524288 1638400  |
 | 27 | PartitionDist:Std | DiagRow1   | A033322 | 0 2 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0                                     |
-| 28 | PartitionDist:Std | DiagRow2   | variant | 0 2 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0                                     |
+| 28 | PartitionDist:Std | DiagRow2   | B071164 | 0 2 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0                                     |
 | 29 | PartitionDist:Std | DiagRow3   | missing | 0 3 5 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0                                     |
 | 30 | PartitionDist:Std | DiagCol1   | A000005 | 1 2 2 3 2 4 2 4 3 4 2 6 2 4 4 5 2 6 2 6 4 4 2 8 3 4 4 6 2 8 2 6                                     |
 | 31 | PartitionDist:Std | DiagCol2   | A045845 | 0 1 2 5 6 11 13 17 22 27 29 37 44 44 55 59 68 71 81 82 102 97 112 109 136 126 149 141 168 157 188   |
@@ -56,7 +56,7 @@
 | 53 | PartitionDist:Rev | RowGcd     | missing | 1 1 2 2 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1                                     |
 | 54 | PartitionDist:Rev | RowMax     | missing | 1 1 2 2 3 5 6 11 13 17 22 27 37 52 67 97 117 154 184 235 277 338 414 535 692 873 1100 1369 1661     |
 | 55 | PartitionDist:Rev | ColMiddle  | missing | 1 1 2 1 2 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0                                     |
-| 56 | PartitionDist:Rev | CentralE   | variant | 1 2 2 1 0 0 0 0 0 0 0 0 0 0 0 0                                                                     |
+| 56 | PartitionDist:Rev | CentralE   | B098418 | 1 2 2 1 0 0 0 0 0 0 0 0 0 0 0 0                                                                     |
 | 57 | PartitionDist:Rev | CentralO   | A014026 | 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0                                                                     |
 | 58 | PartitionDist:Rev | ColLeft    | A014026 | 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0                                     |
 | 59 | PartitionDist:Rev | BinConv    | missing | 1 1 4 9 24 60 134 315 676 1479 3040 6292 12601 24934 48468 92768 175576 326978 604356 1100366       |
@@ -70,7 +70,7 @@
 | 67 | PartitionDist:Rev | DiagRow2   | A045845 | 0 1 2 5 6 11 13 17 22 27 29 37 44 44 55 59 68 71 81 82 102 97 112 109 136 126 149 141 168 157 188   |
 | 68 | PartitionDist:Rev | DiagRow3   | missing | 0 0 0 1 2 5 10 15 25 37 52 67 97 117 154 184 235 277 338 385 469 531 630 698 810 910 1038 1144 1295 |
 | 69 | PartitionDist:Rev | DiagCol1   | A033322 | 0 2 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0                                     |
-| 70 | PartitionDist:Rev | DiagCol2   | variant | 0 2 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0                                     |
+| 70 | PartitionDist:Rev | DiagCol2   | B071164 | 0 2 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0                                     |
 | 71 | PartitionDist:Rev | DiagCol3   | missing | 0 3 5 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0                                     |
 | 72 | PartitionDist:Rev | Poly       | missing | 1 1 1 0 1 1 0 2 1 1 0 3 4 1 1 0 5 10 6 1 1 0 7 32 21 8 1 1 0 11 72 99 36 10 1 1 0 15 232 297 224 55 |
 | 73 | PartitionDist:Rev | PolyRow2   | A005843 | 0 2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40 42 44 46 48 50 52 54 56 58 60 62          |
