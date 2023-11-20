@@ -2751,9 +2751,9 @@ SCRIPT = [
     "</script>\n" "<p>&nbsp;</p></body></html>",
 ]
 Footer = [
-    "<p style='margin-left:8px'>Note: The A-numbers are based on a finite number of numerical comparisons. The B-numbers<br>",
-    "are  the A-numbers of sligthly different variants. They ignore the sign and the OEIS-offset and might differ in the<br>",
-    "first few values. Since the offset of all triangles is 0 also the offset of all sequences is zero.</p>",
+    "<p style='margin-left:8px'>Note: The A-numbers are based on a finite number of numerical comparisons. The B-numbers are<br>",
+    "A-numbers of sligthly different variants. They ignore the sign and the OEIS-offset and might differ<br>",
+    "in the first few values. Since the offset of all triangles is 0 also the offset of all sequences is 0.</p>",
 ]
 
 
@@ -2849,21 +2849,22 @@ def CsvToHtml(fun: tgen) -> None:
                 )
                 sseq = (seq.split(" ", 3)[3]).replace(" ", ",")
                 if anum == "missing":
-                    color = "rgb(127, 0, 255)"
-                    url = f"https://oeis.org/search?q={sseq}"
-                    outfile.write(
-                        f"<td><a href='{url}' target='_blank'>missing</a></td>"
-                    )
-                elif anum[0] == "B":
                     color = "rgb(0, 0, 0)"
                     url = f"https://oeis.org/search?q={sseq}"
                     outfile.write(
-                        f"<td><a href='{url}' target='_blank'>variant</a></td>"
+                        f"<td><a href='{url}' style='color:{color}' target='_blank'>missing</a></td>"
+                    )
+                elif anum[0] == "B":
+                    Anum = "A" + anum[1:]
+                    color = "rgb(127, 0, 255)"
+                    url = f"https://oeis.org/search?q={sseq}"
+                    outfile.write(
+                        f"<td><a href='https://oeis.org/{Anum}' style='color:{color}' target='_blank'>{anum}</a></td>"
                     )
                 else:
                     color = "rgb(0, 0, 255)"
                     outfile.write(
-                        f"<td><a href='https://oeis.org/{anum}' target='_blank'>{anum}</a></td>"
+                        f"<td><a href='https://oeis.org/{anum}' style='color:{color}' target='_blank'>{anum}</a></td>"
                     )
                 # seq
                 outfile.write(
@@ -3005,22 +3006,21 @@ def Formulas() -> dict[str, str]:
 
 def isInOEIS(seq: list[int]) -> bool:
     """
+    Check if a given sequence is present in the OEIS (Online Encyclopedia of Integer Sequences).
     Args:
-        seq (list[int]): sequence
+        seq (list[int]): The sequence to check.
     Returns:
-        bool: found?
+        bool: True if the sequence is found in the OEIS, False otherwise.
+    Raises:
+        Exception: If the OEIS server cannot be reached after multiple attempts.
     """
     strseq = SeqString(seq, 160)
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
-    for _ in range(1, 4):
-        time.sleep(1)  # give the OEIS server some time to relax
+    for _ in range(3):
+        time.sleep(0.5)  # give the OEIS server some time to relax
         try:
             with urllib.request.urlopen(url) as response:
                 page = response.read()
-                # If "count": 0 exists then 'find' returns a value >= 0,
-                # that means that no sequence was found.
-                # Otherwise 'find' returns -1, that means that
-                # a substring similar to the sequence was found.
                 return -1 == page.find(b'"count": 0')
         except urllib.error.HTTPError as he:
             print(he.__dict__)
@@ -3031,40 +3031,46 @@ def isInOEIS(seq: list[int]) -> bool:
 
 def IsInOEIS(seq: list[int]) -> str:
     """
+    Check if a given sequence is present in the OEIS (Online Encyclopedia of Integer Sequences).
     Args:
-        seq (list[int]): sequence
+        seq (list[int]): The sequence to check.
     Returns:
-        "" or Anumber as Bnumber
+        str: The A-number of the sequence if found in OEIS, otherwise an empty string.
+    Raises:
+        Exception: If the OEIS server cannot be reached after multiple attempts.
     """
     strseq = SeqString(seq, 160)
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
     for _ in range(1, 4):
-        time.sleep(1)  # give the OEIS server some time to relax
+        time.sleep(0.5)  # give the OEIS server some time to relax
         try:
-            jdata = get(f"https://oeis.org/search?q={strseq}&fmt=json").json()
-            count = jdata["count"]
+            jdata = get(url).json()
             anumber = ""
-            if count > 0:
-                seq = jdata["results"][0]
-                number = seq["number"]
+            if jdata["count"] > 0:
+                number = jdata["results"][0]["number"]
                 anumber = f"B{(6 - len(str(number))) * '0' + str(number)}"
             return anumber
-        except requests.JSONDecodeError as je:
-            print(je)
-        except requests.Timeout as te:
-            print(te)
+        except requests.exceptions.RequestException as e:
+            print(f"Error: {e}")
+        except requests.exceptions.Timeout as e:
+            print(f"Timeout: {e}")
     raise Exception(f"Could not open {url}.")
 
 
 def fnv(data: bytes) -> int:
     """
-    FNV-1a hash algorithm.
+    This function calculates the FNV-1a hash value for the given data.
+    Args:
+        data (bytes): The input data to be hashed.
+    Returns:
+        int: The calculated hash value.
     """
     # assert isinstance(data, bytes)
     hval = 0xCBF29CE484222325
     for byte in data:
-        hval = hval ^ byte
-        hval = (hval * 0x100000001B3) % 0x10000000000000000
+        hval ^= byte
+        hval *= 0x100000001B3
+        hval &= 0xFFFFFFFFFFFFFFFF
     return hval
 
 
@@ -3092,20 +3098,37 @@ def fnv_hash(seq: list[int], absolut: bool = False) -> str:
 
 
 def GetCompressed() -> None:
+    """
+    Downloads the stripped file from OEIS, extracts the CSV data, and saves it to a file.
+    Raises:
+        requests.exceptions.RequestException: If there is an error downloading the stripped file.
+        IOError: If there is an error extracting the OEIS data.
+        Exception: If any other error occurs.
+    """
+    # Download the stripped file
+    print("Downloading OEIS stripped file...")
     oeisstripped = "https://oeis.org/stripped.gz"
     r = requests.get(oeisstripped, stream=True)
+    r.raise_for_status()
+    csvpath = GetDataPath("oeis", "csv")
+    # Save the stripped file
     with open(strippedpath, "wb") as local:
         for chunk in r.iter_content(chunk_size=8192):
             if chunk:
                 local.write(chunk)
+    # Extract the CSV file from the stripped file
     with gzip.open(strippedpath, "rb") as gz:
-        with open(GetDataPath("oeis", "csv"), "wb") as da:
+        with open(csvpath, "wb") as da:
             da.write(gz.read())
-    print("Info: OEIS-data saved as oeis.csv in data/csv.")
+    print(f"OEIS data saved as {csvpath}.")
 
 
 def MakeOeisminiWithFnv() -> None:
-    """Make all terms absolute, take MINTERMS terms, add fnv."""
+    """
+    This function reads data from a CSV file containing OEIS sequences,
+    processes the data, and saves the hashed sequences into a SQLite database.
+    Make all terms absolute, take MINTERMS terms, add fnv.
+    """
     with open(GetDataPath("oeis", "csv"), "r") as oeisdata:
         reader = csv.reader(oeisdata)
         with open(GetDataPath("oeismini", "csv"), "w") as minidata:
@@ -3123,8 +3146,20 @@ def MakeOeisminiWithFnv() -> None:
 
 
 def OeisToSql() -> None:
-    """Make all terms absolute, take MINTERMS terms, add fnv.
-    Write (fnv, anum, seq) to oeis.db.
+    """
+    This function reads data from a CSV file containing OEIS sequences,
+    processes the data, and inserts it into a SQLite database.
+    The function performs the following steps:
+    1. Connects to the SQLite database.
+    2. Creates a table named 'sequences' if it doesn't already exist.
+    3. Reads the data from the CSV file.
+    4. Processes the data by making all terms absolute and taking MINTERMS terms.
+    5. Calculates the FNV hash for each sequence.
+    6. Inserts the (fnv, anum, seq) values into the 'sequences' table.
+    Note: The function assumes the existence of the 'GetDataPath' function,
+    which returns the path to the data files.
+    Raises:
+        Exception: If there is an error during the execution of the function.
     """
     tabl = sqlite3.connect(GetDataPath("oeismini", "db"))
     cur = tabl.cursor()
@@ -3147,12 +3182,13 @@ def OeisToSql() -> None:
 
 
 def QueryDBhash(H: str, oeis_cur: sqlite3.Cursor) -> str:
-    """_summary_
+    """
+    Query the sequences table in the database for a given hash.
     Args:
-        H (str): hash
-        oeis_cur (OEISCursor): _description_
+        H (str): The hash value to query.
+        oeis_cur (sqlite3.Cursor): The cursor object for executing SQL queries.
     Returns:
-        str: _description_
+        str: The corresponding anum value if the hash is found, otherwise "missing".
     """
     sql = "SELECT anum FROM sequences WHERE hash=? LIMIT 1"
     res = oeis_cur.execute(sql, (H,))
@@ -3161,12 +3197,13 @@ def QueryDBhash(H: str, oeis_cur: sqlite3.Cursor) -> str:
 
 
 def QueryDBstr(seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
-    """_summary_
+    """
+    Query the sequences table in the database for a given sequence.
     Args:
-        seq (list[int]): _description_
-        oeis_cur (_type_): _description_
+        seq (list[int]): The sequence to query.
+        oeis_cur (sqlite3.Cursor): The cursor object for executing SQL queries.
     Returns:
-        str: _description_
+        str: The corresponding anum value if the sequence is found, otherwise "missing".
     """
     x = str([abs(int(s)) for s in seq[0:MINTERMS]]).translate(
         str.maketrans("", "", "[],")
@@ -3178,13 +3215,14 @@ def QueryDBstr(seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
 
 
 def QueryMiniOeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
-    """Query oeis_mini db only.
+    """
+    Query oeis_mini db only.
     Args:
-        H (str): _description_
-        seq (list[int]): _description_
-        oeis_cur (SQLCursor): _description_
+        H (str): The hash value to query.
+        seq (list[int]): The sequence to query.
+        oeis_cur (sqlite3.Cursor): The cursor object for executing SQL queries.
     Returns:
-        str: _description_
+        str: The corresponding anum value if the sequence is found, otherwise "missing".
     """
     sql = "SELECT anum FROM sequences WHERE hash=? LIMIT 1"
     res = oeis_cur.execute(sql, (H,))
@@ -3199,14 +3237,14 @@ def QueryMiniOeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
 
 
 def QueryOeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
-    """First query oeis_mini (local),
-       if nothing found query OEIS (internet).
+    """
+    First query oeis_mini (local), if nothing found query OEIS (internet).
     Args:
-        H (str): _description_
-        seq (list[int]): _description_
-        oeis_cur (SQLCursor): _description_
+        H (str): The hash value to query.
+        seq (list[int]): The sequence to query.
+        oeis_cur (sqlite3.Cursor): The cursor object for executing SQL queries.
     Returns:
-        str: _description_
+        str: The corresponding anum value if the sequence is found, otherwise "missing".
     """
     rec = QueryMiniOeis(H, seq, oeis_cur)
     if rec != "missing":
@@ -3246,14 +3284,22 @@ def SaveTraits(
     table: str,
     TRAITS: dict,
 ) -> None:
-    """Warning: uses internet!
+    """Saves traits data to a database table.
+    This function saves traits data to a specified database table. It uses the provided
+    triangle generator `g` and size `size` to generate the traits data. The traits data is then
+    stored in the `traits_cur` cursor object. The `oeis_cur` cursor object is used to
+    query the OEIS (Online Encyclopedia of Integer Sequences) for additional information
+    about the traits data. The `table` parameter specifies the name of the database table
+    to store the traits data. The `TRAITS` dictionary contains the traits to be saved.
     Args:
-        g : _description_
-        size : _description_
-        traits_cur : _description_
-        oeis_cur : _description_
-        table : _description_
-        TRAITS : _description_
+        g (tgen): The generator used to generate the traits data.
+        size (int): The size of the traits data.
+        traits_cur (sqlite3.Cursor): The cursor object for the traits table.
+        oeis_cur (sqlite3.Cursor): The cursor object for the OEIS table.
+        table (str): The name of the database table to store the traits data.
+        TRAITS (dict): A dictionary containing the traits to be saved.
+    Returns:
+        None
     """
     T = g.tab(size)
     r = g.gen
@@ -3261,15 +3307,12 @@ def SaveTraits(
     trityp = GetType(triname)
     for traitname, trait in TRAITS.items():
         if trityp == traitname:
-            # print("Skiped:", triname, trityp, traitname)
             continue
         seq = trait(T) if is_tabletrait(trait) else trait(r, size)
         if seq == []:
             print(f"Info: {triname} -> {traitname} does not exist.")
             continue
         hash = fnv_hash(seq, True)
-        # The undocumented switch.
-        # Much faster in the local version, but no OEIS check.
         # anum = queryminioeis(hash, seq, oeis_cur)  # local
         anum = QueryOeis(hash, seq, oeis_cur)  # with internet
         seqstr = ""
@@ -3287,24 +3330,33 @@ def SaveTraits(
 
 
 def SaveExtendedTraitsToDB(
-    t: tgen, size: int, traits_cur: sqlite3.Cursor, oeis_cur: sqlite3.Cursor, table: str
+    fun: tgen,
+    size: int,
+    traits_cur: sqlite3.Cursor,
+    oeis_cur: sqlite3.Cursor,
+    table: str,
 ) -> None:
-    """Warning: uses internet!
+    """
+    Saves the extended traits of a triangle to a SQLite database.
     Args:
-        t (tgen): _description_
-        size (int): _description_
-        traits_cur (_type_): _description_
-        oeis_cur (_type_): _description_
-        table (_type_): _description_
+        fun (tgen): The triangle whose extended traits are to be saved.
+        size (int): The size of the triangle.
+        traits_cur (sqlite3.Cursor): The cursor for the traits database.
+        oeis_cur (sqlite3.Cursor): The cursor for the OEIS database.
+        table (str): The name of the triangle.
+    Raises:
+        Exception: If there is an error while saving the extended traits to the database.
+    Returns:
+        None
     """
     tim: int = size + size // 2
-    Tid = t.id
-    t.id = t.id + ":Std"
+    Tid = fun.id
+    fun.id = fun.id + ":Std"
     TRAITS = RegisterTraits()
-    thash = fnv_hash(t.tab(MINTERMS))
-    SaveTraits(t, size, traits_cur, oeis_cur, table, TRAITS)
-    t.id = Tid
-    r = RevTable(t, tim)
+    thash = fnv_hash(fun.tab(MINTERMS))
+    SaveTraits(fun, size, traits_cur, oeis_cur, table, TRAITS)
+    fun.id = Tid
+    r = RevTable(fun, tim)
     rhash = fnv_hash(r.tab(MINTERMS))
     if thash != rhash:
         SaveTraits(r, size, traits_cur, oeis_cur, table, TRAITS)
@@ -3312,7 +3364,7 @@ def SaveExtendedTraitsToDB(
         ir = InvTable(r, tim)
         if ir is not None:
             SaveTraits(ir, size, traits_cur, oeis_cur, table, TRAITS)
-    i = InvTable(t, tim)
+    i = InvTable(fun, tim)
     ihash = "0"
     if i is not None:
         ihash = fnv_hash(i.tab(MINTERMS))
@@ -3326,7 +3378,15 @@ def SaveExtendedTraitsToDB(
 
 
 def SaveTraitsToDB(fun: tgen) -> None:
-    """Warning: uses internet!"""
+    """
+    Saves the traits of a triangle to a SQLite database.
+    Args:
+        fun (tgen): The triangle whose traits are to be saved.
+    Raises:
+        Exception: If there is an error while saving the traits to the database.
+    Returns:
+        None
+    """
     name = fun.id
     with sqlite3.connect(GetDataPath(name, "db")) as db:
         traits_cur = db.cursor()
@@ -3339,6 +3399,16 @@ def SaveTraitsToDB(fun: tgen) -> None:
 
 
 def ConvertDBtoCSVandMD(dbpath: Path, funname: str) -> int:
+    """
+    Converts a SQLite database to CSV and Markdown files.
+    Args:
+        dbpath (str): The path to the SQLite database.
+        funname (str): The name of the triangle.
+    Returns:
+        int: The size of the converted table.
+    Raises:
+        Exception: If there is an error converting the database.
+    """
     size = 0
     with sqlite3.connect(dbpath) as db:
         cursor = db.cursor()
@@ -3353,23 +3423,41 @@ def ConvertDBtoCSVandMD(dbpath: Path, funname: str) -> int:
                       AND anum != 'A000007'
                       AND anum != 'A000004' """
             table = pd.read_sql_query(sql, db)
-            table.to_csv(GetDataPath(table_name, "csv"), index_label="index")
-            table.to_markdown(GetDataPath(table_name, "md"))
+            csv_path = GetDataPath(table_name, "csv")
+            md_path = GetDataPath(table_name, "md")
+            table.to_csv(csv_path, index_label="index")
+            table.to_markdown(md_path)
             size = table.size // 4
         cursor.close()
-    print(f"Info: Created data/csv/{funname}.csv and data/md/{funname}.md.")
+    print(f"Info: Created {csv_path} and {md_path}.")
     return size
 
 
 def SaveAllTraitsToDBandCSVandMD(tabl_fun: list[tgen]) -> None:
-    """Warning: uses internet!"""
+    """
+    Saves all traits to a database, CSV, and Markdown file.
+    This function iterates over a list of tabl_fun objects and performs the following actions for each object:
+    1. Saves the traits to a database using the SaveTraitsToDB function.
+    2. Converts the database file to CSV and Markdown formats using the ConvertDBtoCSVandMD function.
+    Args:
+        tabl_fun (list[tgen]): A list of tabl_fun objects.
+    Returns:
+        None
+    """
     for fun in tabl_fun:
         SaveTraitsToDB(fun)
         ConvertDBtoCSVandMD(GetDataPath(fun.id, "db"), fun.id)
     return
 
 
-def MergeDBs(tablfun: list[tgen]):
+def MergeAllDBs(tablfun: list[tgen]):
+    """
+    Merge all SQLite databases into a single database.
+    Args:
+        tablfun (list[tgen]): List of triangles.
+    Raises:
+        Exception: If there is an error during the merging process.
+    """
     destname = "traits"
     destpath = GetDataPath(destname, "db")
     with sqlite3.connect(destpath) as dest:

@@ -1,4 +1,4 @@
-from _tabldata import GetCompressed, OeisToSql, SaveAllTraitsToDBandCSVandMD, MergeDBs
+from local._KOtabldata import GetCompressed, OeisToSql, SaveAllTraitsToDBandCSVandMD, MergeAllDBs
 from _tablexport import SaveExtendedTables, CrossReferences
 from _tablpaths import GetRoot, EnsureDataDirectories
 from _tablhtml import AllCsvToHtml
@@ -29,7 +29,7 @@ def setup() -> None:
     print("Info: OEIS data updated!")
 
     SaveAllTraitsToDBandCSVandMD(tabl_fun)
-    MergeDBs(tabl_fun)
+    MergeAllDBs(tabl_fun)
     print("Info: All traits of all sequences saved to db, csv, and md!")
 
     AllCsvToHtml()

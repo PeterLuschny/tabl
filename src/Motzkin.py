@@ -47,6 +47,6 @@ from Binomial import Binomial
 def motzkin(n: int) -> list[int]:
     def Catalan(n: int) -> int:
         return Binomial(2 * n, n) // (n + 1)
-    
+
     return [Binomial(n, k) * Catalan(k // 2) if k % 2 == 0 else 0 for k in range(n + 1)]
 """

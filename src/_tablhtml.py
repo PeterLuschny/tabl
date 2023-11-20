@@ -1,5 +1,5 @@
 import csv
-from _tabltypes import tgen, SeqString
+from _tabltypes import tgen
 from _tablpaths import GetDataPath
 from _tabltraits import Formulas
 from tabl import tabl_fun
@@ -82,9 +82,9 @@ SCRIPT = [
 ]
 
 Footer = [
-    "<p style='margin-left:8px'>Note: The A-numbers are based on a finite number of numerical comparisons. The B-numbers<br>",
-    "are  the A-numbers of sligthly different variants. They ignore the sign and the OEIS-offset and might differ in the<br>",
-    "first few values. Since the offset of all triangles is 0 also the offset of all sequences is zero.</p>",
+    "<p style='margin-left:8px'>Note: The A-numbers are based on a finite number of numerical comparisons. The B-numbers are<br>",
+                               "A-numbers of sligthly different variants. They ignore the sign and the OEIS-offset and might differ<br>",
+                               "in the first few values. Since the offset of all triangles is 0 also the offset of all sequences is 0.</p>",
 ]
 
 
@@ -194,21 +194,22 @@ def CsvToHtml(fun: tgen) -> None:
                 sseq = (seq.split(" ", 3)[3]).replace(" ", ",")
 
                 if anum == "missing":
-                    color = "rgb(127, 0, 255)"
-                    url = f"https://oeis.org/search?q={sseq}"
-                    outfile.write(
-                        f"<td><a href='{url}' target='_blank'>missing</a></td>"
-                    )
-                elif anum[0] == 'B':
                     color = "rgb(0, 0, 0)"
                     url = f"https://oeis.org/search?q={sseq}"
                     outfile.write(
-                        f"<td><a href='{url}' target='_blank'>variant</a></td>"
+                        f"<td><a href='{url}' style='color:{color}' target='_blank'>missing</a></td>"
+                    )
+                elif anum[0] == 'B':
+                    Anum = 'A' + anum[1:]
+                    color = "rgb(127, 0, 255)"
+                    url = f"https://oeis.org/search?q={sseq}"
+                    outfile.write(
+                        f"<td><a href='https://oeis.org/{Anum}' style='color:{color}' target='_blank'>{anum}</a></td>"
                     )
                 else:
                     color = "rgb(0, 0, 255)"
                     outfile.write(
-                        f"<td><a href='https://oeis.org/{anum}' target='_blank'>{anum}</a></td>"
+                        f"<td><a href='https://oeis.org/{anum}' style='color:{color}' target='_blank'>{anum}</a></td>"
                     )
 
                 # seq
@@ -236,8 +237,6 @@ def AllCsvToHtml() -> None:
 
 if __name__ == "__main__":
     # from Abel import Abel
-    # from Worpitzky import Worpitzky
-
     # CsvToHtml(Abel)
     AllCsvToHtml()
 
