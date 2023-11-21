@@ -1,4 +1,4 @@
-from local._KOtabldata import GetCompressed, OeisToSql, SaveAllTraitsToDBandCSVandMD, MergeAllDBs
+from _tabldata import GetCompressed, OeisToSql, SaveAllTraitsToDBandCSVandMD, MergeAllDBs
 from _tablexport import SaveExtendedTables, CrossReferences
 from _tablpaths import GetRoot, EnsureDataDirectories
 from _tablhtml import AllCsvToHtml

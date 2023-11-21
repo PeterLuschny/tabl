@@ -1213,6 +1213,23 @@ def Bessel2(n: int, k: int) -> int:
 
 
 @cache
+def binarypell(n):
+    if n == 0:
+        return [1]
+    arow = binarypell(n - 1)
+    row = arow + [1]
+    for k in range(n - 1, 0, -1):
+        row[k] = arow[k - 1] + 2 * arow[k]
+    row[0] = 2 * arow[0]
+    return row
+
+
+@MakeTriangle(binarypell, "BinaryPell", ["A038207"], True)
+def BinaryPell(n: int, k: int) -> int:
+    return binarypell(n)[k]
+
+
+@cache
 def binomial(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -2559,6 +2576,7 @@ tabl_fun: list[tgen] = [
     Bell,
     Bessel,
     Bessel2,
+    BinaryPell,
     Binomial,
     BinomialBell,
     BinomialCatalan,
@@ -3052,8 +3070,7 @@ def IsInOEIS(seq: list[int]) -> str:
             return anumber
         except requests.exceptions.RequestException as e:
             print(f"Error: {e}")
-        except requests.exceptions.Timeout as e:
-            print(f"Timeout: {e}")
+
     raise Exception(f"Could not open {url}.")
 
 
@@ -3429,7 +3446,7 @@ def ConvertDBtoCSVandMD(dbpath: Path, funname: str) -> int:
             table.to_markdown(md_path)
             size = table.size // 4
         cursor.close()
-    print(f"Info: Created {csv_path} and {md_path}.")
+    print(f"Info: Created data/csv/{funname}.csv and data/md/{funname}.md.")
     return size
 
 

@@ -87,8 +87,6 @@ def IsInOEIS(seq: list[int]) -> str:
             return anumber
         except requests.exceptions.RequestException as e:
             print(f"Error: {e}")
-        except requests.exceptions.Timeout as e:
-            print(f"Timeout: {e}")
 
     raise Exception(f"Could not open {url}.")
 
@@ -338,7 +336,7 @@ def GetMaxStrLen() -> int:
     return 100
 
 
-def SaveTraits(g: tgen, size: int, traits_cur: sqlite3.Cursor, oeis_cur: sqlite3.Cursor, table: str, TRAITS: dict) -> None:
+def SaveTraits(fun: tgen, size: int, traits_cur: sqlite3.Cursor, oeis_cur: sqlite3.Cursor, table: str, TRAITS: dict) -> None:
     """Saves traits data to a database table.
 
     This function saves traits data to a specified database table. It uses the provided
@@ -349,7 +347,7 @@ def SaveTraits(g: tgen, size: int, traits_cur: sqlite3.Cursor, oeis_cur: sqlite3
     to store the traits data. The `TRAITS` dictionary contains the traits to be saved.
 
     Args:
-        g (tgen): The generator used to generate the traits data.
+        fun (tgen): The generator used to generate the traits data.
         size (int): The size of the traits data.
         traits_cur (sqlite3.Cursor): The cursor object for the traits table.
         oeis_cur (sqlite3.Cursor): The cursor object for the OEIS table.
@@ -359,9 +357,9 @@ def SaveTraits(g: tgen, size: int, traits_cur: sqlite3.Cursor, oeis_cur: sqlite3
     Returns:
         None
     """
-    T = g.tab(size)
-    r = g.gen
-    triname = g.id
+    T = fun.tab(size)
+    r = fun.gen
+    triname = fun.id
     trityp = GetType(triname)
 
     for traitname, trait in TRAITS.items():
@@ -387,7 +385,6 @@ def SaveTraits(g: tgen, size: int, traits_cur: sqlite3.Cursor, oeis_cur: sqlite3
             seqstr += s
 
         tup = (triname, trityp, traitname, anum, hash, seqstr)
-        # print(tup)
         sql = InsertTable(table)
         traits_cur.execute(sql, tup)
 
@@ -505,7 +502,7 @@ def ConvertDBtoCSVandMD(dbpath: Path, funname: str) -> int:
             size = table.size // 4
         cursor.close()
 
-    print(f"Info: Created {csv_path} and {md_path}.")
+    print(f"Info: Created data/csv/{funname}.csv and data/md/{funname}.md.")
     return size
 
 
@@ -616,4 +613,7 @@ if __name__ == "__main__":
     # SaveAllTraitsToDBandCSVandMD(tabl_fun[2:3])
     # SaveTraitsToDB(tabl_fun[3])
 
-    test7()
+    for fun in tabl_fun:
+        ConvertDBtoCSVandMD(GetDataPath(fun.id, "db"), fun.id)
+
+    #test7()
