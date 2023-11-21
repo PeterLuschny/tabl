@@ -113,7 +113,7 @@ def fnv(data: bytes) -> int:
 MINTERMS = 15
 
 
-def fnv_hash(seq: list[int], absolut: bool = False) -> str:
+def FNVhash(seq: list[int], absolut: bool = False) -> str:
     """Returns the fnv-hash of an integer sequence based on the first MINTERMS terms.
 
     Args:
@@ -124,7 +124,7 @@ def fnv_hash(seq: list[int], absolut: bool = False) -> str:
         str: The hex value of the hash without the '0x'-head.
     """
     if len(seq) < MINTERMS:
-        print(f"*** Warning *** Hash based only on {len(seq)} terms.")
+        print(f"*** Warning *** Hash based only on {len(seq)} terms, {MINTERMS} required.")
         if seq == []:
             return "0"
     if absolut:
@@ -232,9 +232,9 @@ def OeisToSql() -> None:
     print("Info: Database oeismini.db saved in data/db.")
 
 
-def QueryDBhash(H: str, oeis_cur: sqlite3.Cursor) -> str:
+def QueryDBbyHash(H: str, db_cur: sqlite3.Cursor) -> str:
     """
-    Query the sequences table in the database for a given hash.
+    Query the sequences table in the local database for a given hash.
 
     Args:
         H (str): The hash value to query.
@@ -244,12 +244,12 @@ def QueryDBhash(H: str, oeis_cur: sqlite3.Cursor) -> str:
         str: The corresponding anum value if the hash is found, otherwise "missing".
     """
     sql = "SELECT anum FROM sequences WHERE hash=? LIMIT 1"
-    res = oeis_cur.execute(sql, (H,))
+    res = db_cur.execute(sql, (H,))
     record = res.fetchone()
     return "missing" if record is None else record[0]
 
 
-def QueryDBstr(seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
+def QueryDBbySeq(seq: list[int], db_cur: sqlite3.Cursor) -> str:
     """
     Query the sequences table in the database for a given sequence.
 
@@ -264,12 +264,12 @@ def QueryDBstr(seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
         str.maketrans("", "", "[],")
     )
     sql = "SELECT anum FROM sequences WHERE seq=? LIMIT 1"
-    res = oeis_cur.execute(sql, (x,))
+    res = db_cur.execute(sql, (x,))
     record = res.fetchone()
     return "missing" if record is None else record[0]
 
 
-def QueryMiniOeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
+def QueryDBbyHashAndSeq(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
     """
     Query oeis_mini db only.
 
@@ -282,19 +282,19 @@ def QueryMiniOeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
         str: The corresponding anum value if the sequence is found, otherwise "missing".
     """
     sql = "SELECT anum FROM sequences WHERE hash=? LIMIT 1"
-    res = oeis_cur.execute(sql, (H,))
+    res = db_cur.execute(sql, (H,))
     record = res.fetchone()
     if record is not None:
         return record[0]
 
     # not found by hash, perhaps shifted by one?
-    H = fnv_hash(seq[1: MINTERMS + 1], True)
-    res = oeis_cur.execute(sql, (H,))
+    H = FNVhash(seq[1: MINTERMS + 1], True)
+    res = db_cur.execute(sql, (H,))
     record = res.fetchone()
     return "missing" if record is None else record[0]
 
 
-def QueryOeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
+def QueryOeis(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
     """
     First query oeis_mini (local), if nothing found query OEIS (internet).
 
@@ -306,10 +306,13 @@ def QueryOeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     Returns:
         str: The corresponding anum value if the sequence is found, otherwise "missing".
     """
-    rec = QueryMiniOeis(H, seq, oeis_cur)
+    rec = QueryDBbyHashAndSeq(H, seq, db_cur)
+    # print(H, seq)
+    # print("QueryDBbyHashAndSeq", rec)
     if rec != "missing":
         return rec
     bnum = IsInOEIS(seq)
+    # print("IsInOEIS", bnum)
     if bnum == "":
         return "missing"
     return bnum
@@ -371,7 +374,7 @@ def SaveTraits(fun: tgen, size: int, traits_cur: sqlite3.Cursor, oeis_cur: sqlit
             print(f"Info: {triname} -> {traitname} does not exist.")
             continue
 
-        hash = fnv_hash(seq, True)
+        hash = FNVhash(seq, True)
         # anum = queryminioeis(hash, seq, oeis_cur)  # local
         anum = QueryOeis(hash, seq, oeis_cur)  # with internet
 
@@ -412,12 +415,12 @@ def SaveExtendedTraitsToDB(fun: tgen, size: int, traits_cur: sqlite3.Cursor, oei
 
     TRAITS = RegisterTraits()
 
-    thash = fnv_hash(fun.tab(MINTERMS))
+    thash = FNVhash(fun.tab(MINTERMS))
     SaveTraits(fun, size, traits_cur, oeis_cur, table, TRAITS)
     fun.id = Tid
 
     r = RevTable(fun, tim)
-    rhash = fnv_hash(r.tab(MINTERMS))
+    rhash = FNVhash(r.tab(MINTERMS))
     if thash != rhash:
         SaveTraits(r, size, traits_cur, oeis_cur, table, TRAITS)
 
@@ -429,13 +432,13 @@ def SaveExtendedTraitsToDB(fun: tgen, size: int, traits_cur: sqlite3.Cursor, oei
     i = InvTable(fun, tim)
     ihash = "0"
     if i is not None:
-        ihash = fnv_hash(i.tab(MINTERMS))
+        ihash = FNVhash(i.tab(MINTERMS))
         SaveTraits(i, size, traits_cur, oeis_cur, table, TRAITS)
 
         # ri = RevInvTable(t, tim)
         ri = RevTable(i, tim)
         if ri is not None:
-            rihash = fnv_hash(ri.tab(MINTERMS))
+            rihash = FNVhash(ri.tab(MINTERMS))
             if ihash != rihash:
                 SaveTraits(ri, size, traits_cur, oeis_cur, table, TRAITS)
 
@@ -470,6 +473,7 @@ def SaveTraitsToDB(fun: tgen) -> None:
 def ConvertDBtoCSVandMD(dbpath: Path, funname: str) -> int:
     """
     Converts a SQLite database to CSV and Markdown files.
+    We exclude cases 'A000012', 'A000007', and 'A000004', which are trivial.
 
     Args:
         dbpath (str): The path to the SQLite database.
@@ -584,6 +588,15 @@ if __name__ == "__main__":
         oeis_con.commit()
         oeis_con.close()
 
+    def test22(hash: str):
+        oeis_con = sqlite3.connect(GetDataPath("oeismini", "db"))
+        oeis_cur = oeis_con.cursor()
+        res = oeis_cur.execute(f"SELECT hash, anum, seq FROM sequences WHERE hash='{hash}'")
+        output = res.fetchone()
+        print(output)
+        oeis_con.commit()
+        oeis_con.close()
+
     def test3():
         oeis_con = sqlite3.connect(GetDataPath("oeismini", "db"))
         oeis_cur = oeis_con.cursor()
@@ -607,10 +620,29 @@ if __name__ == "__main__":
     def test9():
         MergeAllDBs(tabl_fun)
 
+    def test33():
+        from tabl import Fubini, CentralE, CentralO
+        T = Fubini.tab(32)
+
+        ce = CentralE(T)
+        cehash = FNVhash(ce, True)
+        #print(cehash, ce)
+
+        co = CentralO(T)
+        cohash = FNVhash(co, True)
+        #print(cohash, co)
+
+        with sqlite3.connect(GetDataPath("oeismini", "db")) as oeis:
+            res = QueryOeis(cehash, ce, oeis.cursor())
+            print("test", res)
+
     # GetCompressed()
     # SaveAllTraitsToDBandCSVandMD(tabl_fun[2:3])
     # SaveTraitsToDB(tabl_fun[3])
     #test7()
 
-    for fun in tabl_fun:
-        ConvertDBtoCSVandMD(GetDataPath(fun.id, "db"), fun.id)
+    #for fun in tabl_fun:
+    #    ConvertDBtoCSVandMD(GetDataPath(fun.id, "db"), fun.id)
+
+    test22("d7e6f639f03bf659")
+
