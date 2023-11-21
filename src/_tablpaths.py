@@ -70,7 +70,7 @@ if __name__ == "__main__":
     print(GetRoot("README.md"))
     print(GetRoot("src/_tablmake.py"))
 
-    '''Make sure to reference tabl.py in its current state.'''
+    # Make sure to reference tabl.py in its current state.
     # exec(open(mkpath).read())
 
     EnsureDataDirectories()

@@ -143,7 +143,7 @@ oeis_schema = '''{
 
 
 def search(query: str) -> str:
-    jdata = get(f"https://oeis.org/search?q={query}&fmt=json").json()
+    jdata = get(f"https://oeis.org/search?q={query}&fmt=json", timeout=10).json()
     count = jdata["count"]
     print(count)
     anumber = ""

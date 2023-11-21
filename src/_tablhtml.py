@@ -147,10 +147,10 @@ def CsvToHtml(fun: tgen) -> None:
 
     FORMULA = Formulas()
 
-    with open(csvfile, "r") as csvfile:
+    with open(csvfile, "r", encoding="utf-8") as csvfile:
         reader = csv.reader(csvfile)
 
-        with open(outfile, "w+") as outfile:
+        with open(outfile, "w+", encoding="utf-8") as outfile:
             for h in Header:
                 outfile.write(h)
 

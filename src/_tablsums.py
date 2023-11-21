@@ -2,12 +2,6 @@ from typing import Callable
 from itertools import accumulate
 from _tabltypes import tabl, trow, rgen
 
-"""Naming convention for 'g composed with f': (g o f)(x):= g(f(x))
-
-    The function
-    reversed(accumulate(R)) will be named 'RevAcc';
-    accumulate(reversed(R)) will be named 'AccRev';
-"""
 
 # #@
 

@@ -62,7 +62,7 @@ def SaveExtendedTables(dim: int = 10) -> None:
 
     for fun in tabl_fun:
         tablpath = GetDataPath(fun.id + '.tbl', 'md')
-        with open(tablpath, "w+") as dest:
+        with open(tablpath, "w+", encoding="utf-8") as dest:
             with contextlib.redirect_stdout(dest):
                 PrintViews(fun, dim)
 

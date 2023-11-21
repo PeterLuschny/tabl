@@ -2,7 +2,6 @@ local/*
 docs/*
 data/db
 data/db/*
-data/html/*
 data/csv/*
 data/stripped
 __pycache__/

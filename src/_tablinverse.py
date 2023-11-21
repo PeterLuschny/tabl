@@ -53,7 +53,6 @@ if __name__ == "__main__":
         V = InvertTabl(M)
         print(V)
 
-
     from Abel import Abel
     from Bell import Bell
     from StirlingSet import StirlingSet

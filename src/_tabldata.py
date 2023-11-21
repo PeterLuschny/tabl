@@ -1,13 +1,13 @@
-import requests
-from requests import get
 import gzip
 import csv
 import sqlite3
 import urllib.request
 import urllib.error
 import time
-import pandas as pd
 from pathlib import Path
+import requests
+from requests import get
+import pandas as pd
 from _tablpaths import GetDataPath, strippedpath
 from _tabltypes import tgen, InvTable, RevTable, SeqString
 from _tabltraits import RegisterTraits, is_tabletrait
@@ -33,6 +33,7 @@ from _tabltraits import RegisterTraits, is_tabletrait
 def isInOEIS(seq: list[int]) -> bool:
     """
     Check if a given sequence is present in the OEIS (Online Encyclopedia of Integer Sequences).
+    The search uses seq[3:] with max string length 160.
 
     Args:
         seq (list[int]): The sequence to check.
@@ -43,7 +44,7 @@ def isInOEIS(seq: list[int]) -> bool:
     Raises:
         Exception: If the OEIS server cannot be reached after multiple attempts.
     """
-    strseq = SeqString(seq, 160)
+    strseq = SeqString(seq, 160, 3)
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
 
     for _ in range(3):
@@ -63,6 +64,7 @@ def isInOEIS(seq: list[int]) -> bool:
 def IsInOEIS(seq: list[int]) -> str:
     """
     Check if a given sequence is present in the OEIS (Online Encyclopedia of Integer Sequences).
+    The search uses seq[3:] with max string length 160.
 
     Args:
         seq (list[int]): The sequence to check.
@@ -73,13 +75,13 @@ def IsInOEIS(seq: list[int]) -> str:
     Raises:
         Exception: If the OEIS server cannot be reached after multiple attempts.
     """
-    strseq = SeqString(seq, 160)
+    strseq = SeqString(seq, 160, 3)
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
 
-    for _ in range(1, 4):
+    for _ in range(3):
         time.sleep(0.5)  # give the OEIS server some time to relax
         try:
-            jdata = get(url).json()
+            jdata = get(url, timeout=10).json()
             anumber = ""
             if jdata["count"] > 0:
                 number = jdata["results"][0]["number"]
@@ -147,7 +149,7 @@ def GetCompressed() -> None:
     # Download the stripped file
     print("Downloading OEIS stripped file...")
     oeisstripped = "https://oeis.org/stripped.gz"
-    r = requests.get(oeisstripped, stream=True)
+    r = requests.get(oeisstripped, stream=True, timeout=10)
     r.raise_for_status()
     csvpath = GetDataPath("oeis", "csv")
 
@@ -307,20 +309,19 @@ def QueryOeis(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
         str: The corresponding anum value if the sequence is found, otherwise "missing".
     """
     rec = QueryDBbyHashAndSeq(H, seq, db_cur)
-    # print(H, seq)
-    # print("QueryDBbyHashAndSeq", rec)
     if rec != "missing":
         return rec
     bnum = IsInOEIS(seq)
-    # print("IsInOEIS", bnum)
     if bnum == "":
         return "missing"
     return bnum
 
 
 def GetType(name: str) -> str:
-    # There are 6 types:
-    # ["", "Std", "Rev", "Inv", "Rev:Inv", "Inv:Rev"]
+    """
+    There are 6 types:
+        ["", "Std", "Rev", "Inv", "Rev:Inv", "Inv:Rev"]
+    """
     sp = name.split(":", 1)
     if len(sp) == 1:
         return ""
@@ -374,9 +375,9 @@ def SaveTraits(fun: tgen, size: int, traits_cur: sqlite3.Cursor, oeis_cur: sqlit
             print(f"Info: {triname} -> {traitname} does not exist.")
             continue
 
-        hash = FNVhash(seq, True)
+        fnvhash = FNVhash(seq, True)
         # anum = queryminioeis(hash, seq, oeis_cur)  # local
-        anum = QueryOeis(hash, seq, oeis_cur)  # with internet
+        anum = QueryOeis(fnvhash, seq, oeis_cur)  # with internet
 
         seqstr = ""
         maxl = 0
@@ -387,7 +388,7 @@ def SaveTraits(fun: tgen, size: int, traits_cur: sqlite3.Cursor, oeis_cur: sqlit
                 break
             seqstr += s
 
-        tup = (triname, trityp, traitname, anum, hash, seqstr)
+        tup = (triname, trityp, traitname, anum, fnvhash, seqstr)
         sql = InsertTable(table)
         traits_cur.execute(sql, tup)
 
@@ -468,6 +469,51 @@ def SaveTraitsToDB(fun: tgen) -> None:
         db.commit()
 
     print(f"Info: Created database {name}.db in data/db.")
+
+
+def ConvertLocalDBtoCSVandMD() -> None:
+    """
+    This function converts the data from the SQLite database into CSV and Markdown formats.
+
+    The function performs the following steps:
+    1. Connects to the SQLite database.
+    2. Retrieves all the data from the 'sequences' table.
+    3. Writes the data into a CSV file.
+    4. Generates a Markdown table from the data and writes it into a Markdown file.
+
+    Note: The function assumes the existence of the 'GetDataPath' function,
+    which returns the path to the data files.
+
+    Raises:
+        Exception: If there is an error during the execution of the function.
+    """
+    try:
+        # Connect to the database
+        with sqlite3.connect(GetDataPath("oeismini", "db")) as conn:
+            cur = conn.cursor()
+
+            # Retrieve all data from the 'sequences' table
+            cur.execute("SELECT * FROM sequences")
+            data = cur.fetchall()
+
+            # Write the data into a CSV file
+            csvpath = GetDataPath("oeismini", "csv")
+            with open(csvpath, "w", newline="") as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerow(["hash", "anum", "seq"])
+                writer.writerows(data)
+
+            # Generate a Markdown table from the data
+            mdpath = GetDataPath("oeismini", "md")
+            with open(mdpath, "w") as mdfile:
+                mdfile.write("| hash | anum | seq |\n")
+                mdfile.write("|------|------|-----|\n")
+                for row in data:
+                    mdfile.write(f"| {row[0]} | {row[1]} | {row[2]} |\n")
+
+        print(f"Converted database to CSV ({csvpath}) and Markdown ({mdpath}).")
+    except Exception as e:
+        print(f"Error: {str(e)}")
 
 
 def ConvertDBtoCSVandMD(dbpath: Path, funname: str) -> int:
@@ -645,4 +691,5 @@ if __name__ == "__main__":
     #    ConvertDBtoCSVandMD(GetDataPath(fun.id, "db"), fun.id)
 
     test22("d7e6f639f03bf659")
-
+    #ConvertLocalDBtoCSVandMD()
+    #test33()

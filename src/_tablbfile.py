@@ -1,3 +1,4 @@
+"""Module providing a function writing a b-file for the OEIS."""
 import re
 from datetime import date
 from typing import Callable
@@ -35,7 +36,7 @@ def write_oeis_bfile(
     filename: str = targetdir + "b" + anum[1:] + ".txt"
     print("Writing " + anum + " to " + filename)
 
-    with open(filename, "w+") as file:
+    with open(filename, "w+", encoding="utf-8") as file:
         file.write("# OEIS: " + anum + "\n")
         today: date = date.today()
         timestamp: str = today.isoformat()

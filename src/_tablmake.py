@@ -215,8 +215,8 @@ import_header: list[str] = [
 
 
 def make() -> None:
-    dir: str = join(getcwd(), "src")
-    dest = open("tabl.py", "w+")
+    dir = join(getcwd(), "src")
+    dest = open("tabl.py", "w+", encoding="utf-8")
 
     dest.writelines(import_header)
     dest.write("setrecursionlimit(3000)\n")
@@ -230,7 +230,7 @@ def make() -> None:
         file_path: str = join(dir, src)
         if isfile(file_path):
             start: bool = False
-            src_file = open(file_path, "r")
+            src_file = open(file_path, "r", encoding="utf-8")
 
             for line in src_file:
                 if line.startswith("from"):

@@ -59,10 +59,10 @@ def Flat(T: tabl) -> list[int]:
     return [i for row in T for i in row]
 
 
-def SeqString(seq: list[int], maxlen: int) -> str:
+def SeqString(seq: list[int], maxlen: int, offset: int=0) -> str:
     seqstr = ""
     maxl = 0
-    for trm in seq:
+    for trm in seq[offset:]:
         s = str(trm) + ","
         maxl += len(s)
         if maxl > maxlen:

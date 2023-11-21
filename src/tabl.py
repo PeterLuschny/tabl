@@ -103,10 +103,10 @@ def Flat(T: tabl) -> list[int]:
     return [i for row in T for i in row]
 
 
-def SeqString(seq: list[int], maxlen: int) -> str:
+def SeqString(seq: list[int], maxlen: int, offset: int = 0) -> str:
     seqstr = ""
     maxl = 0
-    for trm in seq:
+    for trm in seq[offset:]:
         s = str(trm) + ","
         maxl += len(s)
         if maxl > maxlen:
@@ -2683,7 +2683,7 @@ def SaveExtendedTables(dim: int = 10) -> None:
     tim: int = dim + dim
     for fun in tabl_fun:
         tablpath = GetDataPath(fun.id + ".tbl", "md")
-        with open(tablpath, "w+") as dest:
+        with open(tablpath, "w+", encoding="utf-8") as dest:
             with contextlib.redirect_stdout(dest):
                 PrintViews(fun, dim)
                 V = InvTable(fun, tim)
@@ -2830,9 +2830,9 @@ def CsvToHtml(fun: tgen) -> None:
     csvfile = GetDataPath(name, "csv")
     outfile = GetDataPath(name, "html")
     FORMULA = Formulas()
-    with open(csvfile, "r") as csvfile:
+    with open(csvfile, "r", encoding="utf-8") as csvfile:
         reader = csv.reader(csvfile)
-        with open(outfile, "w+") as outfile:
+        with open(outfile, "w+", encoding="utf-8") as outfile:
             for h in Header:
                 outfile.write(h)
             outfile.write(f"<title>{name} : IntegerTriangles.py</title>")
@@ -3025,6 +3025,7 @@ def Formulas() -> dict[str, str]:
 def isInOEIS(seq: list[int]) -> bool:
     """
     Check if a given sequence is present in the OEIS (Online Encyclopedia of Integer Sequences).
+    The search uses seq[3:] with max string length 160.
     Args:
         seq (list[int]): The sequence to check.
     Returns:
@@ -3032,7 +3033,7 @@ def isInOEIS(seq: list[int]) -> bool:
     Raises:
         Exception: If the OEIS server cannot be reached after multiple attempts.
     """
-    strseq = SeqString(seq, 160)
+    strseq = SeqString(seq, 160, 3)
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
     for _ in range(3):
         time.sleep(0.5)  # give the OEIS server some time to relax
@@ -3050,6 +3051,7 @@ def isInOEIS(seq: list[int]) -> bool:
 def IsInOEIS(seq: list[int]) -> str:
     """
     Check if a given sequence is present in the OEIS (Online Encyclopedia of Integer Sequences).
+    The search uses seq[3:] with max string length 160.
     Args:
         seq (list[int]): The sequence to check.
     Returns:
@@ -3057,12 +3059,12 @@ def IsInOEIS(seq: list[int]) -> str:
     Raises:
         Exception: If the OEIS server cannot be reached after multiple attempts.
     """
-    strseq = SeqString(seq, 160)
+    strseq = SeqString(seq, 160, 3)
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
-    for _ in range(1, 4):
+    for _ in range(3):
         time.sleep(0.5)  # give the OEIS server some time to relax
         try:
-            jdata = get(url).json()
+            jdata = get(url, timeout=10).json()
             anumber = ""
             if jdata["count"] > 0:
                 number = jdata["results"][0]["number"]
@@ -3093,7 +3095,7 @@ def fnv(data: bytes) -> int:
 MINTERMS = 15
 
 
-def fnv_hash(seq: list[int], absolut: bool = False) -> str:
+def FNVhash(seq: list[int], absolut: bool = False) -> str:
     """Returns the fnv-hash of an integer sequence based on the first MINTERMS terms.
     Args:
         seq (list[int]):
@@ -3102,7 +3104,9 @@ def fnv_hash(seq: list[int], absolut: bool = False) -> str:
         str: The hex value of the hash without the '0x'-head.
     """
     if len(seq) < MINTERMS:
-        print(f"*** Warning *** Hash based only on {len(seq)} terms.")
+        print(
+            f"*** Warning *** Hash based only on {len(seq)} terms, {MINTERMS} required."
+        )
         if seq == []:
             return "0"
     if absolut:
@@ -3124,7 +3128,7 @@ def GetCompressed() -> None:
     # Download the stripped file
     print("Downloading OEIS stripped file...")
     oeisstripped = "https://oeis.org/stripped.gz"
-    r = requests.get(oeisstripped, stream=True)
+    r = requests.get(oeisstripped, stream=True, timeout=10)
     r.raise_for_status()
     csvpath = GetDataPath("oeis", "csv")
     # Save the stripped file
@@ -3197,9 +3201,9 @@ def OeisToSql() -> None:
     print("Info: Database oeismini.db saved in data/db.")
 
 
-def QueryDBhash(H: str, oeis_cur: sqlite3.Cursor) -> str:
+def QueryDBbyHash(H: str, db_cur: sqlite3.Cursor) -> str:
     """
-    Query the sequences table in the database for a given hash.
+    Query the sequences table in the local database for a given hash.
     Args:
         H (str): The hash value to query.
         oeis_cur (sqlite3.Cursor): The cursor object for executing SQL queries.
@@ -3207,12 +3211,12 @@ def QueryDBhash(H: str, oeis_cur: sqlite3.Cursor) -> str:
         str: The corresponding anum value if the hash is found, otherwise "missing".
     """
     sql = "SELECT anum FROM sequences WHERE hash=? LIMIT 1"
-    res = oeis_cur.execute(sql, (H,))
+    res = db_cur.execute(sql, (H,))
     record = res.fetchone()
     return "missing" if record is None else record[0]
 
 
-def QueryDBstr(seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
+def QueryDBbySeq(seq: list[int], db_cur: sqlite3.Cursor) -> str:
     """
     Query the sequences table in the database for a given sequence.
     Args:
@@ -3225,12 +3229,12 @@ def QueryDBstr(seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
         str.maketrans("", "", "[],")
     )
     sql = "SELECT anum FROM sequences WHERE seq=? LIMIT 1"
-    res = oeis_cur.execute(sql, (x,))
+    res = db_cur.execute(sql, (x,))
     record = res.fetchone()
     return "missing" if record is None else record[0]
 
 
-def QueryMiniOeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
+def QueryDBbyHashAndSeq(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
     """
     Query oeis_mini db only.
     Args:
@@ -3241,18 +3245,18 @@ def QueryMiniOeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
         str: The corresponding anum value if the sequence is found, otherwise "missing".
     """
     sql = "SELECT anum FROM sequences WHERE hash=? LIMIT 1"
-    res = oeis_cur.execute(sql, (H,))
+    res = db_cur.execute(sql, (H,))
     record = res.fetchone()
     if record is not None:
         return record[0]
     # not found by hash, perhaps shifted by one?
-    H = fnv_hash(seq[1 : MINTERMS + 1], True)
-    res = oeis_cur.execute(sql, (H,))
+    H = FNVhash(seq[1 : MINTERMS + 1], True)
+    res = db_cur.execute(sql, (H,))
     record = res.fetchone()
     return "missing" if record is None else record[0]
 
 
-def QueryOeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
+def QueryOeis(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
     """
     First query oeis_mini (local), if nothing found query OEIS (internet).
     Args:
@@ -3262,7 +3266,7 @@ def QueryOeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
     Returns:
         str: The corresponding anum value if the sequence is found, otherwise "missing".
     """
-    rec = QueryMiniOeis(H, seq, oeis_cur)
+    rec = QueryDBbyHashAndSeq(H, seq, db_cur)
     if rec != "missing":
         return rec
     bnum = IsInOEIS(seq)
@@ -3272,8 +3276,10 @@ def QueryOeis(H: str, seq: list[int], oeis_cur: sqlite3.Cursor) -> str:
 
 
 def GetType(name: str) -> str:
-    # There are 6 types:
-    # ["", "Std", "Rev", "Inv", "Rev:Inv", "Inv:Rev"]
+    """
+    There are 6 types:
+        ["", "Std", "Rev", "Inv", "Rev:Inv", "Inv:Rev"]
+    """
     sp = name.split(":", 1)
     if len(sp) == 1:
         return ""
@@ -3328,9 +3334,9 @@ def SaveTraits(
         if seq == []:
             print(f"Info: {triname} -> {traitname} does not exist.")
             continue
-        hash = fnv_hash(seq, True)
+        fnvhash = FNVhash(seq, True)
         # anum = queryminioeis(hash, seq, oeis_cur)  # local
-        anum = QueryOeis(hash, seq, oeis_cur)  # with internet
+        anum = QueryOeis(fnvhash, seq, oeis_cur)  # with internet
         seqstr = ""
         maxl = 0
         for trm in seq:
@@ -3339,7 +3345,7 @@ def SaveTraits(
             if maxl > GetMaxStrLen():
                 break
             seqstr += s
-        tup = (triname, trityp, traitname, anum, hash, seqstr)
+        tup = (triname, trityp, traitname, anum, fnvhash, seqstr)
         sql = InsertTable(table)
         traits_cur.execute(sql, tup)
 
@@ -3368,11 +3374,11 @@ def SaveExtendedTraitsToDB(
     Tid = fun.id
     fun.id = fun.id + ":Std"
     TRAITS = RegisterTraits()
-    thash = fnv_hash(fun.tab(MINTERMS))
+    thash = FNVhash(fun.tab(MINTERMS))
     SaveTraits(fun, size, traits_cur, oeis_cur, table, TRAITS)
     fun.id = Tid
     r = RevTable(fun, tim)
-    rhash = fnv_hash(r.tab(MINTERMS))
+    rhash = FNVhash(r.tab(MINTERMS))
     if thash != rhash:
         SaveTraits(r, size, traits_cur, oeis_cur, table, TRAITS)
         # ir = InvRevTable(t, tim)
@@ -3382,12 +3388,12 @@ def SaveExtendedTraitsToDB(
     i = InvTable(fun, tim)
     ihash = "0"
     if i is not None:
-        ihash = fnv_hash(i.tab(MINTERMS))
+        ihash = FNVhash(i.tab(MINTERMS))
         SaveTraits(i, size, traits_cur, oeis_cur, table, TRAITS)
         # ri = RevInvTable(t, tim)
         ri = RevTable(i, tim)
         if ri is not None:
-            rihash = fnv_hash(ri.tab(MINTERMS))
+            rihash = FNVhash(ri.tab(MINTERMS))
             if ihash != rihash:
                 SaveTraits(ri, size, traits_cur, oeis_cur, table, TRAITS)
 
@@ -3413,9 +3419,48 @@ def SaveTraitsToDB(fun: tgen) -> None:
     print(f"Info: Created database {name}.db in data/db.")
 
 
+def ConvertLocalDBtoCSVandMD() -> None:
+    """
+    This function converts the data from the SQLite database into CSV and Markdown formats.
+    The function performs the following steps:
+    1. Connects to the SQLite database.
+    2. Retrieves all the data from the 'sequences' table.
+    3. Writes the data into a CSV file.
+    4. Generates a Markdown table from the data and writes it into a Markdown file.
+    Note: The function assumes the existence of the 'GetDataPath' function,
+    which returns the path to the data files.
+    Raises:
+        Exception: If there is an error during the execution of the function.
+    """
+    try:
+        # Connect to the database
+        with sqlite3.connect(GetDataPath("oeismini", "db")) as conn:
+            cur = conn.cursor()
+            # Retrieve all data from the 'sequences' table
+            cur.execute("SELECT * FROM sequences")
+            data = cur.fetchall()
+            # Write the data into a CSV file
+            csvpath = GetDataPath("oeismini", "csv")
+            with open(csvpath, "w", newline="") as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerow(["hash", "anum", "seq"])
+                writer.writerows(data)
+            # Generate a Markdown table from the data
+            mdpath = GetDataPath("oeismini", "md")
+            with open(mdpath, "w") as mdfile:
+                mdfile.write("| hash | anum | seq |\n")
+                mdfile.write("|------|------|-----|\n")
+                for row in data:
+                    mdfile.write(f"| {row[0]} | {row[1]} | {row[2]} |\n")
+        print(f"Converted database to CSV ({csvpath}) and Markdown ({mdpath}).")
+    except Exception as e:
+        print(f"Error: {str(e)}")
+
+
 def ConvertDBtoCSVandMD(dbpath: Path, funname: str) -> int:
     """
     Converts a SQLite database to CSV and Markdown files.
+    We exclude cases 'A000012', 'A000007', and 'A000004', which are trivial.
     Args:
         dbpath (str): The path to the SQLite database.
         funname (str): The name of the triangle.
