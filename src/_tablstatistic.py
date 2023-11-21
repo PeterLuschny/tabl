@@ -6,23 +6,32 @@ from os import remove
 # #@
 
 
-def Statistic(dbname: str):
+def ListByAnum(dbname: str) -> None:
     con = sqlite3.connect(GetDataPath(dbname, "db"))
     cur = con.cursor()
 
-    # sql = "SELECT anum, triangle, trait FROM traits WHERE anum != 'variant' AND anum != 'missing' ORDER by anum;"
-    # res = cur.execute(sql)
-    # wer = res.fetchall()
-    # for seq in wer: print("{0} {1}_{2}.".format(*seq))
-    # print()
+    sql = "SELECT anum, triangle, trait FROM traits WHERE anum != 'missing' ORDER by anum;"
+    res = cur.execute(sql)
+    wer = res.fetchall()
+    for seq in wer:
+        print("{0} {1}_{2}.".format(*seq))
+    print()
 
-    # sql = "SELECT DISTINCT(anum), triangle FROM traits WHERE anum != 'variant' AND anum != 'missing' GROUP BY anum;"
-    # res = cur.execute(sql)
-    # wer = res.fetchall()
-    # for seq in wer:
-    #     print("{0} {1}".format(*seq))
-    #     print("{0}, ".format(*seq), end="")
-    # print()
+    sql = "SELECT DISTINCT(anum), triangle FROM traits WHERE anum != 'missing' GROUP BY anum;"
+    res = cur.execute(sql)
+    wer = res.fetchall()
+    for seq in wer:
+        print("{0} {1}".format(*seq))
+        print("{0}, ".format(*seq), end="")
+    print()
+
+    cur.close()
+    con.close()
+
+
+def Statistic(dbname: str):
+    con = sqlite3.connect(GetDataPath(dbname, "db"))
+    cur = con.cursor()
 
     print(f"\n* Statistic about {dbname}:")
     print("The number of ...")
@@ -52,18 +61,11 @@ def Statistic(dbname: str):
     enum = res.fetchone()
     print(f"\tmissing  sequences is {enum[0]}.")
 
-    # sql = f"SELECT COUNT() FROM {dbname} WHERE anum = 'variant';"
-    # res = cur.execute(sql)
-    # fnum = res.fetchone()
-    # print(f"\tsimilar  sequences is {fnum[0]}.")
-
-    # sql = f"SELECT COUNT() FROM {dbname} WHERE anum != 'variant' AND anum != 'missing';"
     sql = f"SELECT COUNT() FROM {dbname} WHERE anum != 'missing';"
     res = cur.execute(sql)
     gnum = res.fetchone()
     print(f"\tall      A-numbers is {gnum[0]}.")
 
-    # sql = f"SELECT COUNT(DISTINCT anum) FROM {dbname} WHERE anum != 'variant' AND anum != 'missing';"
     sql = f"SELECT COUNT(DISTINCT anum) FROM {dbname} WHERE anum != 'missing';"
     res = cur.execute(sql)
     hnum = res.fetchone()
@@ -96,7 +98,6 @@ def TuttiStats(name: str = "traitsstats") -> None:
 
         db.commit()
 
-        # Summary:
         Statistic("traits")
 
         print("\nRanking of triangles with regard to their impact:\n")
@@ -107,7 +108,7 @@ def TuttiStats(name: str = "traitsstats") -> None:
 
         cur.close()
 
-    print(f"Info: Created database {name}.db in data/db.")
+    print(f"Created database {name}.db in data/db.")
 
 
 if __name__ == "__main__":

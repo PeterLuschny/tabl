@@ -85,6 +85,5 @@ def SaveExtendedTables(dim: int = 10) -> None:
 
 
 if __name__ == "__main__":
-
     SaveExtendedTables()
     CrossReferences()

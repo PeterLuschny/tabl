@@ -53,7 +53,6 @@ if __name__ == "__main__":
         V = InvertTabl(M)
         print(V)
 
-    # test()
 
     from Abel import Abel
     from Bell import Bell

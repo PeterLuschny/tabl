@@ -16,8 +16,7 @@ from _tabltransforms import (
     InvBinConv,
     TransSqrs,
     TransNat0,
-    TransNat1,
-)
+    TransNat1 )
 
 
 # #@
@@ -195,7 +194,5 @@ def PrintProfile(fun: tgen, dim: int = 10) -> None:
 
 if __name__ == "__main__":
     from Abel import Abel
-    # from Bell import Bell
-
     # PrintViews(Abel, 6)
     PrintProfile(Abel)

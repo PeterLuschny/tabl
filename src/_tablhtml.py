@@ -201,13 +201,13 @@ def CsvToHtml(fun: tgen) -> None:
                     )
                 elif anum[0] == 'B':
                     Anum = 'A' + anum[1:]
-                    color = "rgb(127, 0, 255)"
+                    color = "rgb(0, 0, 255)"
                     url = f"https://oeis.org/search?q={sseq}"
                     outfile.write(
                         f"<td><a href='https://oeis.org/{Anum}' style='color:{color}' target='_blank'>{anum}</a></td>"
                     )
                 else:
-                    color = "rgb(0, 0, 255)"
+                    color = "rgb(127, 0, 255)"
                     outfile.write(
                         f"<td><a href='https://oeis.org/{anum}' style='color:{color}' target='_blank'>{anum}</a></td>"
                     )

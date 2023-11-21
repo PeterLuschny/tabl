@@ -2874,13 +2874,13 @@ def CsvToHtml(fun: tgen) -> None:
                     )
                 elif anum[0] == "B":
                     Anum = "A" + anum[1:]
-                    color = "rgb(127, 0, 255)"
+                    color = "rgb(0, 0, 255)"
                     url = f"https://oeis.org/search?q={sseq}"
                     outfile.write(
                         f"<td><a href='https://oeis.org/{Anum}' style='color:{color}' target='_blank'>{anum}</a></td>"
                     )
                 else:
-                    color = "rgb(0, 0, 255)"
+                    color = "rgb(127, 0, 255)"
                     outfile.write(
                         f"<td><a href='https://oeis.org/{anum}' style='color:{color}' target='_blank'>{anum}</a></td>"
                     )
@@ -3070,7 +3070,6 @@ def IsInOEIS(seq: list[int]) -> str:
             return anumber
         except requests.exceptions.RequestException as e:
             print(f"Error: {e}")
-
     raise Exception(f"Could not open {url}.")
 
 
@@ -3294,7 +3293,7 @@ def GetMaxStrLen() -> int:
 
 
 def SaveTraits(
-    g: tgen,
+    fun: tgen,
     size: int,
     traits_cur: sqlite3.Cursor,
     oeis_cur: sqlite3.Cursor,
@@ -3309,7 +3308,7 @@ def SaveTraits(
     about the traits data. The `table` parameter specifies the name of the database table
     to store the traits data. The `TRAITS` dictionary contains the traits to be saved.
     Args:
-        g (tgen): The generator used to generate the traits data.
+        fun (tgen): The generator used to generate the traits data.
         size (int): The size of the traits data.
         traits_cur (sqlite3.Cursor): The cursor object for the traits table.
         oeis_cur (sqlite3.Cursor): The cursor object for the OEIS table.
@@ -3318,9 +3317,9 @@ def SaveTraits(
     Returns:
         None
     """
-    T = g.tab(size)
-    r = g.gen
-    triname = g.id
+    T = fun.tab(size)
+    r = fun.gen
+    triname = fun.id
     trityp = GetType(triname)
     for traitname, trait in TRAITS.items():
         if trityp == traitname:
@@ -3341,7 +3340,6 @@ def SaveTraits(
                 break
             seqstr += s
         tup = (triname, trityp, traitname, anum, hash, seqstr)
-        # print(tup)
         sql = InsertTable(table)
         traits_cur.execute(sql, tup)
 

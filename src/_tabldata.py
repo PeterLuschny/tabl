@@ -579,7 +579,7 @@ if __name__ == "__main__":
         oeis_cur = oeis_con.cursor()
         res = oeis_cur.execute("SELECT hash, anum, seq FROM sequences ORDER BY hash")
         output = res.fetchmany(5)
-        for seq in output:  # print(seq)
+        for seq in output:
             print("hash: {0} anum: {1} seq: {2}.".format(*seq))
         oeis_con.commit()
         oeis_con.close()
@@ -598,8 +598,6 @@ if __name__ == "__main__":
     def test7():
         from Abel import Abel
         SaveTraitsToDB(Abel)
-        # found = ConvertDBtoCSVandMD(GetDataPath(Abel.id, "db"), Abel.id)
-        # print(f"{Abel.id}.csv references {found} sequences from OEIS.")
 
     def test99():
         for fun in tabl_fun:
@@ -612,8 +610,7 @@ if __name__ == "__main__":
     # GetCompressed()
     # SaveAllTraitsToDBandCSVandMD(tabl_fun[2:3])
     # SaveTraitsToDB(tabl_fun[3])
+    #test7()
 
     for fun in tabl_fun:
         ConvertDBtoCSVandMD(GetDataPath(fun.id, "db"), fun.id)
-
-    #test7()
