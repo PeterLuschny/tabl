@@ -3,6 +3,7 @@ docs/*
 data/db
 data/db/*
 data/csv/*
+data/html/*
 data/stripped
 __pycache__/
 _pycache_/

@@ -3,17 +3,14 @@ from _tabltypes import MakeTriangle
 
 """Rising factorial.
 
-
-[0]       1
-[1]       1,      1
-[2]       2,      2,      1
-[3]       6,      6,      3,     1
-[4]      24,     24,     12,     4,     1
-[5]     120,    120,     60,    20,     5,    1
-[6]     720,    720,    360,   120,    30,    6,   1
-[7]    5040,   5040,   2520,   840,   210,   42,   7,  1
-[8]   40320,  40320,  20160,  6720,  1680,  336,  56,  8, 1
-[9]  362880, 362880, 181440, 60480, 15120, 3024, 504, 72, 9, 1
+[0]  1;
+[1]  1, 1;
+[2]  1, 2,   6;
+[3]  1, 3,  12,  60;
+[4]  1, 4,  20, 120,  840;
+[5]  1, 5,  30, 210, 1680, 15120;
+[6]  1, 6,  42, 336, 3024, 30240, 332640;
+[7]  1, 7,  56, 504, 5040, 55440, 665280, 8648640;
 """
 
 
@@ -22,18 +19,14 @@ def risingfactorial(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row = [0] + risingfactorial(n - 1)
-    for k in range(0, n):
-        row[k] += (n - k) * row[k + 1]
+    row = [1 for _ in range(n + 1)]
+    row[1] = n
+    for k in range(1, n):
+        row[k + 1] = row[k] * (n + k)
     return row
 
 
-@MakeTriangle(
-    risingfactorial,
-    "RisingFact",
-    ["A008279", "A068424", "A094587", "A173333", "A181511"],
-    True,
-)
+@MakeTriangle(risingfactorial, "RisingFact", ["A124320"], False)
 def RisingFactorial(n: int, k: int) -> int:
     return risingfactorial(n)[k]
 

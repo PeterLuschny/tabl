@@ -1,7 +1,7 @@
 from functools import cache
 from _tabltypes import MakeTriangle
 
-"""(Probabilist's) Hermite polynomials He, unsigned coefficients. 
+"""(Probabilist's) Hermite polynomials He, unsigned coefficients.
 
 [0] [ 1]
 [1] [ 0,   1]

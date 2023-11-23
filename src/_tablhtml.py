@@ -81,11 +81,11 @@ SCRIPT = [
     "</script>\n" "<p>&nbsp;</p></body></html>",
 ]
 
-Footer = [
-    "<p style='margin-left:8px'>Note: The A-numbers are based on a finite number of numerical comparisons. The B-numbers are<br>",
-                               "A-numbers of sligthly different variants. They ignore the sign and the OEIS-offset and might differ<br>",
-                               "in the first few values. Since the offset of all triangles is 0 also the offset of all sequences is 0.</p>",
-]
+Footer = ("<div style='word-wrap: break-word; width: 95%;'><p style='margin-left:14px'>"
+        "Note: The A-numbers are based on a finite number of numerical comparisons. "
+        "The B-numbers are A-numbers of sligthly different variants. They ignore the sign "
+        "and the OEIS-offset and might differ in the first few values. Since the offset "
+        "of all triangles is 0 also the offset of all sequences is 0.</p></div>")
 
 
 def HtmlTriangle(fun: tgen) -> str:
@@ -222,8 +222,7 @@ def CsvToHtml(fun: tgen) -> None:
             for h in navbar(fun):
                 outfile.write(h)
 
-            for h in Footer:
-                outfile.write(h)
+            outfile.write(Footer)
 
             for h in SCRIPT:
                 outfile.write(h)

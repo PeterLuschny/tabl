@@ -672,24 +672,26 @@ if __name__ == "__main__":
 
         ce = CentralE(T)
         cehash = FNVhash(ce, True)
-        #print(cehash, ce)
+        # print(cehash, ce)
 
         co = CentralO(T)
         cohash = FNVhash(co, True)
-        #print(cohash, co)
+        # print(cohash, co)
 
         with sqlite3.connect(GetDataPath("oeismini", "db")) as oeis:
             res = QueryOeis(cehash, ce, oeis.cursor())
+            print("test", res)
+            res = QueryOeis(cohash, co, oeis.cursor())
             print("test", res)
 
     # GetCompressed()
     # SaveAllTraitsToDBandCSVandMD(tabl_fun[2:3])
     # SaveTraitsToDB(tabl_fun[3])
-    #test7()
+    # test7()
 
-    #for fun in tabl_fun:
+    # for fun in tabl_fun:
     #    ConvertDBtoCSVandMD(GetDataPath(fun.id, "db"), fun.id)
 
     test22("d7e6f639f03bf659")
-    #ConvertLocalDBtoCSVandMD()
-    #test33()
+    # ConvertLocalDBtoCSVandMD()
+    # test33()

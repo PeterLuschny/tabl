@@ -1,7 +1,7 @@
 from functools import cache
 from _tabltypes import MakeTriangle
 
-"""(Physicist's) Hermite polynomials, unsigned coefficients. 
+"""(Physicist's) Hermite polynomials, unsigned coefficients.
 
 [0]     1;
 [1]     0,     2;

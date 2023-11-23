@@ -17,13 +17,15 @@ from _tabltypes import MakeTriangle
 
 @cache
 def binarypell(n):
-    
-    if n == 0: return [1]
-    arow = binarypell(n-1) 
-    row = arow + [1]   
+
+    if n == 0:
+        return [1]
+
+    arow = binarypell(n-1)
+    row = arow + [1]
     for k in range(n-1, 0, -1):
         row[k] = arow[k - 1] + 2 * arow[k]
-    row[0] = 2 * arow[0]    
+    row[0] = 2 * arow[0]
     return row
 
 

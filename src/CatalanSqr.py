@@ -1,7 +1,7 @@
 from functools import cache
 from _tabltypes import MakeTriangle
 
-"""The Riordan square of the Catalan numbers in the sense of A321620. 
+"""The Riordan square of the Catalan numbers in the sense of A321620.
 
 [0]    1;
 [1]    1,     1;

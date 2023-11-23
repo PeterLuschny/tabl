@@ -1,5 +1,5 @@
 from functools import cache
-from tabl import MakeTriangle, PrintProfile 
+from tabl import MakeTriangle, PrintProfile
 
 """
 This is a demo of the most primitive use of the 'tabl' module.
@@ -21,4 +21,4 @@ def Naturals(n: int, k: int) -> int:
 
 
 if __name__ == "__main__":
-    PrintProfile(Naturals) 
+    PrintProfile(Naturals)

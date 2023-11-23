@@ -16,8 +16,7 @@ from _tabltransforms import (
     InvBinConv,
     TransSqrs,
     TransNat0,
-    TransNat1 )
-
+    TransNat1)
 
 # #@
 

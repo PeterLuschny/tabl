@@ -22,7 +22,7 @@ def catalan(n: int) -> list[int]:
         return [1]
     if n == 1:
         return [0, 1]
-    
+
     pow = catalan(n - 1) + [0]
     row = pow.copy()
     for k in range(n - 1, 0, -1):
@@ -41,6 +41,3 @@ if __name__ == "__main__":
     from _tabltest import TablTest
 
     TablTest(Catalan)
-
-# C:\Users\User\AppData\Local\Programs\Python\Python311\Scripts\
-# C:\Users\User\AppData\Local\Programs\Python\Python311\

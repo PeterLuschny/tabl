@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import MakeTriangle
 
 
-"""Narayana triangle. 
+"""Narayana triangle.
 
 
 [0]  1;

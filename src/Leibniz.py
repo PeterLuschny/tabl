@@ -2,7 +2,6 @@ from functools import cache
 from _tabltypes import MakeTriangle
 
 """Leibniz's Triangle, FallingFactorial(n + 1, n) / (k! * (n - k)!).
- 
 
 [0]  1
 [1]  2   2
