@@ -1,6 +1,7 @@
 import unittest
 from Abel import abel
 
+
 class TestAbel(unittest.TestCase):
     def test_abel_zero(self):
         self.assertEqual(abel(0), [1])

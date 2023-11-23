@@ -1,6 +1,7 @@
 import unittest
 from Bell import bell
 
+
 class TestBell(unittest.TestCase):
     def test_bell_zero(self):
         self.assertEqual(bell(0), [1])
@@ -11,6 +12,7 @@ class TestBell(unittest.TestCase):
         self.assertEqual(bell(3), [5, 7, 10, 15])
         self.assertEqual(bell(4), [15, 20, 27, 37, 52])
         # Add more tests for positive input values
+
 
 if __name__ == '__main__':
     unittest.main()

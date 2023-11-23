@@ -2,6 +2,7 @@ import unittest
 from fractions import Fraction as frac
 from NumBernoulli import Bernoulli
 
+
 class TestBernoulli(unittest.TestCase):
     def test_bernoulli_zero(self):
         self.assertEqual(Bernoulli(0), frac(1, 1))

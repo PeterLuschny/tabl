@@ -25,7 +25,8 @@ def fallingfactorial(n: int) -> list[int]:
 
 
 @MakeTriangle(fallingfactorial, "FallingFact",
-    ["A008279", "A068424", "A094587", "A173333", "A181511"], False)
+             ["A008279", "A068424", "A094587", "A173333", "A181511"],
+             False)
 def FallingFactorial(n: int, k: int) -> int:
     return fallingfactorial(n)[k]
 

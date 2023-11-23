@@ -82,10 +82,10 @@ SCRIPT = [
 ]
 
 Footer = ("<div style='word-wrap: break-word; width: 95%;'><p style='margin-left:14px'>"
-        "Note: The A-numbers are based on a finite number of numerical comparisons. "
-        "The B-numbers are A-numbers of sligthly different variants. They ignore the sign "
-        "and the OEIS-offset and might differ in the first few values. Since the offset "
-        "of all triangles is 0 also the offset of all sequences is 0.</p></div>")
+          "Note: The A-numbers are based on a finite number of numerical comparisons. "
+          "The B-numbers are A-numbers of sligthly different variants. They ignore the sign "
+          "and the OEIS-offset and might differ in the first few values. Since the offset "
+          "of all triangles is 0 also the offset of all sequences is 0.</p></div>")
 
 
 def HtmlTriangle(fun: tgen) -> str:

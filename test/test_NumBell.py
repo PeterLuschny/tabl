@@ -1,6 +1,7 @@
 import unittest
 from NumBell import bell_num
 
+
 class TestBellNum(unittest.TestCase):
     def test_bell_num_zero(self):
         self.assertEqual(bell_num(0), 1)

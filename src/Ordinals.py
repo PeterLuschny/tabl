@@ -1,7 +1,7 @@
 from functools import cache
 from _tabltypes import MakeTriangle
 
-"""von Neumann ordinals (kind of). 
+"""von Neumann ordinals (kind of).
 
 [0] [0]
 [1] [0,  1]

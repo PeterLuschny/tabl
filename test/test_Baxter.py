@@ -1,6 +1,7 @@
 import unittest
 from Baxter import baxter
 
+
 class TestBaxter(unittest.TestCase):
     def test_baxter_zero(self):
         self.assertEqual(baxter(0), [1])

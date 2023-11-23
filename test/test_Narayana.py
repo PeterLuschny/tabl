@@ -1,6 +1,7 @@
 import unittest
 from Narayana import narayana
 
+
 class TestNarayana(unittest.TestCase):
     def test_narayana_zero(self):
         self.assertEqual(narayana(0), [1])

@@ -1,5 +1,5 @@
 from functools import cache
-from tabl import MakeTriangle, PrintProfile 
+from tabl import MakeTriangle, PrintProfile
 
 """
 This is a demo of the simplest use of the 'tabl' module.
@@ -10,6 +10,7 @@ the same directory as this demo file.
 The function 'demo' computes the n-th row of a regular integer
 triangle. It has to be defined for n >= 0.
 """
+
 
 @cache
 def demo(n: int) -> list[int]:
@@ -23,12 +24,12 @@ def Demo(n: int, k: int) -> int:
 
 
 if __name__ == "__main__":
-    PrintProfile(Demo) 
+    PrintProfile(Demo)
 
 
-"""  
-Of course, much more is possible, for example creating a database 
-for the traits of a triangle. If you want to do this, you should 
-start by running '_tablsetup.py'. This takes a while, but is a 
+"""
+Of course, much more is possible, for example creating a database
+for the traits of a triangle. If you want to do this, you should
+start by running '_tablsetup.py'. This takes a while, but is a
 one-time thing.
 """

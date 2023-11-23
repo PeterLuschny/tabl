@@ -2,7 +2,7 @@ from functools import cache
 from _tabltypes import MakeTriangle
 
 """Rencontres triangle.
- 
+
 [0]       1;
 [1]       0,      1;
 [2]       1,      0,     1;
