@@ -140,6 +140,15 @@ def navbar(fun: tgen) -> list[str]:
 
 
 def CsvToHtml(fun: tgen) -> None:
+    """
+    Converts a CSV file to an HTML file.
+
+    Args:
+        fun (tgen): The generator object of the triangle.
+
+    Returns:
+        None
+    """
     name = fun.id
 
     csvfile = GetDataPath(name, "csv")

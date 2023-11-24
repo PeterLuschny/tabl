@@ -141,8 +141,17 @@ oeis_schema = '''{
 
 # #@
 
-
 def search(query: str) -> str:
+    """
+    Search for a sequence in the OEIS (Online Encyclopedia of Integer Sequences).
+
+    Args:
+        query (str): The sequence query.
+
+    Returns:
+        str: The sequence number in the OEIS format (e.g., A000001).
+
+    """
     jdata = get(f"https://oeis.org/search?q={query}&fmt=json", timeout=10).json()
     count = jdata["count"]
     print(count)

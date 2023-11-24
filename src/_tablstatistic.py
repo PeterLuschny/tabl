@@ -1,3 +1,4 @@
+import datetime
 import sqlite3
 from _tablpaths import GetDataPath
 from tabl import tabl_fun
@@ -108,6 +109,7 @@ def TuttiStats(name: str = "traitsstats") -> None:
 
         cur.close()
 
+    print("The statistics were created on", datetime.datetime.now(), ".\n")
     print(f"Created database {name}.db in data/db.")
 
 

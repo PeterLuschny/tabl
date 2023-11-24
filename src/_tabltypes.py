@@ -22,7 +22,7 @@ from _tablinverse import InvertTriangle, InvertTabl
 """Type: table row"""
 trow: TypeAlias = list[int]
 
-"""Type: table"""
+"""Type: triangle (resp. table)"""
 tabl: TypeAlias = list[list[int]]
 
 """Type: sequence generator"""
@@ -31,18 +31,9 @@ seq: TypeAlias = Callable[[int], int]
 """Type: row generator"""
 rgen: TypeAlias = Callable[[int], trow]
 
-"""Type: table generator"""
+"""Type: triangle (resp. table) generator"""
 # tgen: TypeAlias = Callable[[int, int], list[int] | int]  | Callable[[int], list[int] | int]
 tgen: TypeAlias = Callable[[int, int], int]
-
-"""Type: triangle"""
-tri: TypeAlias = Callable[[int, int], int]
-
-#   Two types of traits:
-#   print(signature(EvenSum))
-#   (t: list[list[int]]) -> list[int]
-#   print(signature(DiagRow0))
-#   (g: Callable[[int], list[int]], size: int) -> list[int]
 
 
 def Flat(T: tabl) -> list[int]:
@@ -60,6 +51,18 @@ def Flat(T: tabl) -> list[int]:
 
 
 def SeqString(seq: list[int], maxlen: int, offset: int = 0) -> str:
+    """
+    Converts a sequence of integers into a string representation.
+
+    Args:
+        seq (list[int]): The sequence of integers to be converted.
+        maxlen (int): The maximum length of the resulting string.
+        offset (int, optional): The starting index of the sequence. Defaults to 0.
+
+    Returns:
+        str: The string representation of the sequence.
+
+    """
     seqstr = ""
     maxl = 0
     for trm in seq[offset:]:
@@ -72,14 +75,16 @@ def SeqString(seq: list[int], maxlen: int, offset: int = 0) -> str:
 
 
 def InvTable(T: tgen, size: int) -> tgen | None:
-    """_summary_
+    """
+    Returns a generator for the inverse triangle if the triangle is ivertible.
 
     Args:
-        T (tgen): _description_
-        size (int): _description_
+        T (tgen): The generator of the triangle.
+        size (int): Size of the inverse triangle to be generated.
 
     Returns:
-        tgen | None: _description_
+        tgen : The generator of the inverse triangle.
+        None : If the inverse triangle does not exist.
     """
 
     t = T.inv(size)
@@ -98,14 +103,15 @@ def InvTable(T: tgen, size: int) -> tgen | None:
 
 
 def RevTable(T: tgen, size: int) -> tgen:
-    """_summary_
+    """
+    Returns a generator for the reversed triangle.
 
     Args:
-        T (tgen): _description_
-        size (int): _description_
+        T (tgen): The generator of the triangle.
+        size (int): Size of the reversed triangle to be generated.
 
     Returns:
-        tgen: _description_
+        tgen: The generator of the reversed triangle.
     """
 
     t = T.tab(size)
@@ -120,6 +126,34 @@ def RevTable(T: tgen, size: int) -> tgen:
         return rsgen(n)[k]
 
     return Rsgen
+
+
+def AltTable(T: tgen, size: int = 0) -> tgen:
+    """
+    Returns a generator for the triangle with alternating signs.
+
+    Args:
+        T (tgen): The generator of the triangle.
+        size (int): Size of the sign-changed triangle to be generated.
+
+    Returns:
+        tgen: The generator of the sign-changed triangle.
+    """
+
+    #t = T.tab(size)
+    r = T.gen
+
+    @cache
+    def asgen(n: int) -> trow:
+        #row = t[n]
+        return [(-1) ** k * term for k, term in enumerate(r(n))]
+
+    @MakeTriangle(asgen, T.id + ":Alt", [], True)
+    def Asgen(n: int, k: int) -> int:
+        return asgen(n)[k]
+
+    return Asgen
+
 
 
 def RevInvTable(T: tgen, size: int) -> tgen | None:
@@ -178,10 +212,35 @@ def InvRevTable(T: tgen, size: int) -> tgen | None:
 
 
 def SubTriangle(g: rgen, N: int, K: int, size: int) -> tabl:
+    """
+    Generates a sub-triangle of a given size from a given row generator function.
+
+    Args:
+        g (rgen): The row generator function used to generate the elements of the triangle.
+        N (int): The starting row index of the sub-triangle.
+        K (int): The starting column index of the sub-triangle.
+        size (int): The size of the sub-triangle.
+
+    Returns:
+        tabl: The generated sub-triangle.
+
+    """
     return [[g(n)[k] for k in range(K, K - N + n + 1)] for n in range(N, N + size)]
 
 
 def AbsSubTriangle(g: rgen, N: int, K: int, size: int) -> tabl:
+    """
+    Generates a sub-triangle with absolute values of a given size from a given row generator function.
+
+    Args:
+        g (rgen): The row generator function used to generate the elements of the triangle.
+        N (int): The starting row index of the sub-triangle.
+        K (int): The starting column index of the sub-triangle.
+        size (int): The size of the sub-triangle.
+
+    Returns:
+        tabl: The generated sub-triangle with absolute values.
+    """
     return [[abs(g(n)[k]) for k in range(K, K - N + n + 1)] for n in range(N, N + size)]
 
 
@@ -264,7 +323,8 @@ if __name__ == "__main__":
     print(Abel.tab(7))
     print()
 
-    def abel11(n): return Abel.sub(1, 1)(n)
+    def abel11(n):
+        return Abel.sub(1, 1)(n)
 
     @MakeTriangle(abel11, "Abel11", ["A359", "A05"], False)
     def Abel11(n: int, k: int) -> int:

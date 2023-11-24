@@ -3,12 +3,7 @@ from tabl import tabl_fun
 import contextlib
 from _tablpaths import GetRoot, GetDataPath
 from _tablviews import PrintViews
-from _tabltypes import (
-    InvTable,
-    RevTable,
-    RevInvTable,
-    InvRevTable,
-)
+from _tabltypes import (InvTable, RevTable, RevInvTable, InvRevTable)
 
 '''
 Memo for the developer:
@@ -33,9 +28,12 @@ The notebook gives a first introduction for the user.
 
 
 def CrossReferences(name: str = "README.md") -> None:
-    """Writes the crossreferences as a md-table to the root.
     """
+    Writes the crossreferences as a md-table to the root.
 
+    Args:
+        name (str, optional): The name of the file to write the crossreferences to. Defaults to "README.md".
+    """
     path = GetRoot(name)
 
     with open(path, "w+", encoding='utf-8') as xrefs:
@@ -57,7 +55,12 @@ def CrossReferences(name: str = "README.md") -> None:
 
 
 def SaveExtendedTables(dim: int = 10) -> None:
+    """
+    Saves the extended tables to the data/md folder.
 
+    Args:
+        dim (int, optional): The dimension of the tables. Defaults to 10.
+    """
     tim: int = dim + dim
 
     for fun in tabl_fun:

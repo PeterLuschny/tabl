@@ -1,9 +1,37 @@
 
+import numpy as np
+
+def NumpyInvertTabl(L: list[list[int]]) -> list[list[int]]:
+    """ NOT YET TESTED! """
+    n = len(L)
+    inv = np.zeros((n, n))
+
+    for k in range(n):
+        if L[k][k] == 0:
+            return []  # Inverse does not exist
+
+        inv[k][k] = 1 / L[k][k]
+
+        for j in range(k + 1, n):
+            inv[k][j] = -np.dot(inv[k][:k], L[k][:k+1:-1]) / L[k][k]
+
+    return inv.tolist()
+
 # #@
 
 
 def InvertTabl(L: list[list[int]]) -> list[list[int]]:
-    # Inverse of a lower triangular matrix
+    """
+    Calculates the inverse of a lower triangular matrix.
+
+    Args:
+        L (list[list[int]]): The lower triangular matrix.
+
+    Returns:
+        list[list[int]]: The integer inverse of the lower triangular matrix if it exists.
+        []: If the inverse does not exist.
+
+    """
     n = len(L)
     inv = [[0 for i in range(n)] for _ in range(n)]  # Identity matrix
     for i in range(n):
@@ -16,10 +44,12 @@ def InvertTabl(L: list[list[int]]) -> list[list[int]]:
             b = L[k][k]
             if b == 0:
                 # print("Warning: Inverse does not exist!")
+                # raise ValueError("Inverse does not exist!")
                 return []
             a, r = divmod(a, b)  # make sure that a is integer
             if r != 0:
                 # print("Warning: Integer terms do not exist!")
+                # raise ValueError("Integer terms do not exist!")
                 return []
     return [row[0:n + 1] for n, row in enumerate(inv)]
 

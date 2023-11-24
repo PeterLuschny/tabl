@@ -38,6 +38,12 @@ def AccRevTabl(T: tabl) -> tabl:
     return AccTabl(RevTabl(T))
 
 
+def AltSignTabl(T: tabl) -> tabl:
+    return [[(-1)**k * T[n][k]
+            for k in range(n + 1)]
+            for n in range(len(T))]
+
+
 def Diffx1(T: tabl) -> trow:  # flat tabl
     return [(k + 1) * c for row in T for k, c in enumerate(row)]
 
@@ -98,6 +104,10 @@ def AccRev(T: tabl) -> trow:
     return [i for row in AccRevTabl(T) for i in row]
 
 
+def AltSign(T: tabl) -> trow:
+    return [i for row in AltSignTabl(T) for i in row]
+
+
 def PrintTabls(g: tgen, size: int = 8, mdformat: bool = True) -> None:
 
     TABLSTRAIT: dict[str, Callable[[tabl], trow]] = {}
@@ -139,12 +149,20 @@ if __name__ == "__main__":
     from StirlingSet import StirlingSet
     from LabeledGraphs import LabeledGraphs
 
+    T = Abel.tab(8)
+    A = AltSignTabl(T)
+    print(T)
+    print(A)
+
     # print(RevTabl(Abel.tab(6)))
     # print(Rev(Abel.tab(6)))
 
-    PrintTabls(Abel, 6)
-    PrintTabls(StirlingSet, 6, False)
-    PrintTabls(LabeledGraphs, 6)
+    # print(RevTabl(Abel.tab(6)))
+    # print(Rev(Abel.tab(6)))
+
+    # PrintTabls(Abel, 6)
+    # PrintTabls(StirlingSet, 6, False)
+    # PrintTabls(LabeledGraphs, 6)
 
     # T = LabeledGraphs.tab(9)
     # print(T)

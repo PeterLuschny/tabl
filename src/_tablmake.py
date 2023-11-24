@@ -19,6 +19,7 @@ tabl_files: list[str] = [
     "Binomial.py",
     "BinomialBell.py",
     "BinomialCatalan.py",
+    "BinomialMinus.py",
     "Catalan.py",
     "CatalanAer.py",
     "CatalanSqr.py",
@@ -118,6 +119,7 @@ tabl_fun: list[tgen] = [
     Binomial,
     BinomialBell,
     BinomialCatalan,
+    BinomialMinus,
     Catalan,
     CatalanAer,
     CatalanSqr,
@@ -192,6 +194,7 @@ tabl_fun: list[tgen] = [
 
 import_header: list[str] = [
     # "from os import remove\n",
+    "import datetime\n",
     "from functools import cache, reduce\n",
     "from itertools import accumulate\n",
     "from math import lcm, gcd, factorial\n",
@@ -215,6 +218,17 @@ import_header: list[str] = [
 
 
 def make() -> None:
+    """
+    This function generates a 'tabl.py' file by combining the contents of multiple source files.
+    It reads the source files from the 'src' directory and writes the combined content to 'tabl.py'.
+    The function also sets the recursion limit and the maximum number of digits for integer conversion.
+
+    Parameters:
+    None
+
+    Returns:
+    None
+    """
     dir = join(getcwd(), "src")
     dest = open("tabl.py", "w+", encoding="utf-8")
 

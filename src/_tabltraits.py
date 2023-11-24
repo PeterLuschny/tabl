@@ -29,23 +29,19 @@ from _tabltransforms import (
 )
 
 
-"""
-Traits come in two flavors:
-
-    The 'table' type:
-    TYPE: Callable[[tabl], trow]]:
-
-    The 'generic' type:
-    TYPE: Callable[[rgen, int], trow]]
-
-    To diffenrentiate use the function 'is_tabletrait(f)'
-    that returns 'True' if 'f' is of table-type.
-"""
-
 # #@
 
 
 def is_tabletrait(f: Callable):
+    """
+    Traits come in two flavors:
+
+    (a) The 'table' type: Callable[[tabl], trow]]:
+    (b) The 'generic' type: Callable[[rgen, int], trow]]
+
+    To diffenrentiate use the function 'is_tabletrait(f)'
+    that returns 'True' if 'f' is of table-type.
+"""
     sig = signature(f)
     ann = list(sig.parameters.values())[0].annotation
     return ann == list[list[int]]

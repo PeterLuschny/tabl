@@ -9,7 +9,7 @@ import requests
 from requests import get
 import pandas as pd
 from _tablpaths import GetDataPath, strippedpath
-from _tabltypes import tgen, InvTable, RevTable, SeqString
+from _tabltypes import tgen, InvTable, RevTable, AltTable, SeqString
 from _tabltraits import RegisterTraits, is_tabletrait
 
 
@@ -319,8 +319,8 @@ def QueryOeis(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
 
 def GetType(name: str) -> str:
     """
-    There are 6 types:
-        ["", "Std", "Rev", "Inv", "Rev:Inv", "Inv:Rev"]
+    There are 7 types:
+        ["", "Std", "Rev", "Inv", "Rev:Inv", "Inv:Rev", "Alt"]
     """
     sp = name.split(":", 1)
     if len(sp) == 1:
@@ -334,6 +334,19 @@ def CreateTable(name: str) -> str:
 
 def InsertTable(name: str) -> str:
     return f"INSERT INTO {name} VALUES(?, ?, ?, ?, ?, ?)"
+
+
+def FilterTraits(anum: str) -> bool:
+    """
+    Filter traits to remove traits that are not interresting.
+
+    Args:
+        anumber (str): The traits as A-number.
+
+    Returns:
+        True if the trait should be discarded.
+    """
+    return anum in ["A000012", "A000007", "A000004"]
 
 
 def GetMaxStrLen() -> int:
@@ -379,6 +392,9 @@ def SaveTraits(fun: tgen, size: int, traits_cur: sqlite3.Cursor, oeis_cur: sqlit
         # anum = queryminioeis(hash, seq, oeis_cur)  # local
         anum = QueryOeis(fnvhash, seq, oeis_cur)  # with internet
 
+        if FilterTraits(anum):  # discard traits that are not interresting
+            continue
+
         seqstr = ""
         maxl = 0
         for trm in seq:
@@ -419,6 +435,9 @@ def SaveExtendedTraitsToDB(fun: tgen, size: int, traits_cur: sqlite3.Cursor, oei
     thash = FNVhash(fun.tab(MINTERMS))
     SaveTraits(fun, size, traits_cur, oeis_cur, table, TRAITS)
     fun.id = Tid
+
+    a = AltTable(fun, tim)
+    SaveTraits(a, size, traits_cur, oeis_cur, table, TRAITS)
 
     r = RevTable(fun, tim)
     rhash = FNVhash(r.tab(MINTERMS))
@@ -687,11 +706,11 @@ if __name__ == "__main__":
     # GetCompressed()
     # SaveAllTraitsToDBandCSVandMD(tabl_fun[2:3])
     # SaveTraitsToDB(tabl_fun[3])
-    # test7()
+    test7()
 
     # for fun in tabl_fun:
     #    ConvertDBtoCSVandMD(GetDataPath(fun.id, "db"), fun.id)
 
-    test22("d7e6f639f03bf659")
+    # test22("d7e6f639f03bf659")
     # ConvertLocalDBtoCSVandMD()
     # test33()
