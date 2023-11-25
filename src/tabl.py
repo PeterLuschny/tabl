@@ -2866,7 +2866,8 @@ Footer = (
     "Note: The A-numbers are based on a finite number of numerical comparisons. "
     "The B-numbers are A-numbers of sligthly different variants. They ignore the sign "
     "and the OEIS-offset and might differ in the first few values. Since the offset "
-    "of all triangles is 0 also the offset of all sequences is 0.</p></div>"
+    "of all triangles is 0 also the offset of all sequences is 0. It should also be "
+    "noted that we do not list A000004, A000007, and A000012.</p></div>"
 )
 
 
@@ -3401,6 +3402,17 @@ def InsertTable(name: str) -> str:
     return f"INSERT INTO {name} VALUES(?, ?, ?, ?, ?, ?)"
 
 
+def FilterTraits(anum: str) -> bool:
+    """
+    Filter traits to remove traits that are not interresting.
+    Args:
+        anumber (str): The traits as A-number.
+    Returns:
+        True if the trait should be discarded.
+    """
+    return anum in ["A000012", "A000007", "A000004"]
+
+
 def GetMaxStrLen() -> int:
     return 100
 
@@ -3444,6 +3456,8 @@ def SaveTraits(
         fnvhash = FNVhash(seq, True)
         # anum = queryminioeis(hash, seq, oeis_cur)  # local
         anum = QueryOeis(fnvhash, seq, oeis_cur)  # with internet
+        if FilterTraits(anum):  # discard traits that are not interresting
+            continue
         seqstr = ""
         maxl = 0
         for trm in seq:

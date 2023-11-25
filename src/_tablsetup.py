@@ -27,8 +27,8 @@ def setup() -> None:
 
     EnsureDataDirectories()
 
-    print("Info: Building database. This takes some time! (~2 hour)")
     print("Warning: You have to be online now, since we are querying OEIS!")
+    print("Info: Building database. This takes some time! (~2 hour)")
     print("Info: Updating OEIS data ...")
 
     GetCompressed()

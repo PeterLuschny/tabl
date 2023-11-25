@@ -85,7 +85,8 @@ Footer = ("<div style='word-wrap: break-word; width: 95%;'><p style='margin-left
           "Note: The A-numbers are based on a finite number of numerical comparisons. "
           "The B-numbers are A-numbers of sligthly different variants. They ignore the sign "
           "and the OEIS-offset and might differ in the first few values. Since the offset "
-          "of all triangles is 0 also the offset of all sequences is 0.</p></div>")
+          "of all triangles is 0 also the offset of all sequences is 0. It should also be "
+          "noted that we do not list A000004, A000007, and A000012.</p></div>")
 
 
 def HtmlTriangle(fun: tgen) -> str:
