@@ -1384,6 +1384,25 @@ def BinomialMinus(n: int, k: int) -> int:
 
 
 @cache
+def binomialpell(n):
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [2, 2]
+    arow = binomialpell(n - 1)
+    row = arow + [n + 1]
+    for k in range(1, n):
+        row[k] = (arow[k - 1] * (n + 1)) // k
+    row[0] = 2 * arow[0] + binomialpell(n - 2)[0]
+    return row
+
+
+@MakeTriangle(binomialpell, "BinomialPell", ["A367211"], True)
+def BinomialPell(n: int, k: int) -> int:
+    return binomialpell(n)[k]
+
+
+@cache
 def catalan(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -2664,6 +2683,7 @@ tabl_fun: list[tgen] = [
     BinomialBell,
     BinomialCatalan,
     BinomialMinus,
+    BinomialPell,
     Catalan,
     CatalanAer,
     CatalanSqr,

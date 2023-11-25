@@ -677,6 +677,10 @@ if __name__ == "__main__":
         from Abel import Abel
         SaveTraitsToDB(Abel)
 
+    def test77():
+        from BinomialPell import BinomialPell
+        SaveTraitsToDB(BinomialPell)
+
     def test99():
         for fun in tabl_fun:
             size = ConvertDBtoCSVandMD(GetDataPath(fun.id, "db"), fun.id)
@@ -706,7 +710,7 @@ if __name__ == "__main__":
     # GetCompressed()
     # SaveAllTraitsToDBandCSVandMD(tabl_fun[2:3])
     # SaveTraitsToDB(tabl_fun[3])
-    test7()
+    test77()
 
     # for fun in tabl_fun:
     #    ConvertDBtoCSVandMD(GetDataPath(fun.id, "db"), fun.id)
