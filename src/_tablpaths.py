@@ -27,7 +27,9 @@ from pathlib import Path
 # #@
 
 path = Path(__file__).parent.parent
+
 strippedpath = (path / "data/stripped").resolve()
+oeisnamespath = (path / "data/names").resolve()
 
 
 def GetRoot(name: str = '') -> Path:

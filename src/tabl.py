@@ -22,6 +22,7 @@ setrecursionlimit(3000)
 set_int_max_str_digits(5000)
 path = Path(__file__).parent.parent
 strippedpath = (path / "data/stripped").resolve()
+oeisnamespath = (path / "data/names").resolve()
 
 
 def GetRoot(name: str = "") -> Path:
@@ -1403,6 +1404,25 @@ def BinomialPell(n: int, k: int) -> int:
 
 
 @cache
+def binomialdiffpell(n):
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [1, 1]
+    arow = binomialdiffpell(n - 1)
+    row = arow + [1]
+    for k in range(1, n):
+        row[k] = (arow[k - 1] * n) // k
+    row[0] = 2 * arow[0] + binomialdiffpell(n - 2)[0]
+    return row
+
+
+@MakeTriangle(binomialdiffpell, "BinomialDiffPell", ["A367564"], True)
+def BinomialDiffPell(n: int, k: int) -> int:
+    return binomialdiffpell(n)[k]
+
+
+@cache
 def catalan(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -2684,6 +2704,7 @@ tabl_fun: list[tgen] = [
     BinomialCatalan,
     BinomialMinus,
     BinomialPell,
+    BinomialDiffPell,
     Catalan,
     CatalanAer,
     CatalanSqr,
@@ -3203,6 +3224,26 @@ def IsInOEIS(seq: list[int]) -> str:
     raise Exception(f"Could not open {url}.")
 
 
+def GetNameByAnum(anum: str) -> str:
+    """
+    Retrieves the name associated with the given anum.
+    Parameters:
+    anum (str): The OEIS A-number to search for.
+    Returns:
+    str: The name associated with the given anum, or an empty string if not found.
+    """
+    if anum[0] == "B":
+        anum = "A" + anum[1:]
+    with open(GetDataPath("oeisnames", "csv"), "r", encoding="utf8") as oeisnames:
+        lines = oeisnames.readlines()
+        # reader = csv.reader(oeisnames, delimiter= ",")
+        for line in lines:
+            rnum = line[0:7]
+            if anum == rnum:
+                return line[8:-2]
+    return ""
+
+
 def fnv(data: bytes) -> int:
     """
     This function calculates the FNV-1a hash value for the given data.
@@ -3247,7 +3288,7 @@ def FNVhash(seq: list[int], absolut: bool = False) -> str:
 
 def GetCompressed() -> None:
     """
-    Downloads the stripped file from OEIS, extracts the CSV data, and saves it to a file.
+    Downloads the stripped file from OEIS, extracts the CSV data, and saves it to oeis.csv.
     Raises:
         requests.exceptions.RequestException: If there is an error downloading the stripped file.
         IOError: If there is an error extracting the OEIS data.
@@ -3269,6 +3310,32 @@ def GetCompressed() -> None:
         with open(csvpath, "wb") as da:
             da.write(gz.read())
     print(f"OEIS data saved as {csvpath}.")
+
+
+def GetNames() -> None:
+    """
+    Downloads the names file from OEIS, extracts the CSV data, and saves it to oeisnames.csv.
+    Raises:
+        requests.exceptions.RequestException: If there is an error downloading the names file.
+        IOError: If there is an error extracting the OEIS data.
+        Exception: If any other error occurs.
+    """
+    # Download the name file
+    print("Downloading OEIS names file...")
+    oeisnames = "https://oeis.org/names.gz"
+    r = requests.get(oeisnames, stream=True, timeout=10)
+    r.raise_for_status()
+    csvpath = GetDataPath("oeisnames", "csv")
+    # Save the names file
+    with open(oeisnamespath, "wb") as local:
+        for chunk in r.iter_content(chunk_size=8192):
+            if chunk:
+                local.write(chunk)
+    # Extract the CSV file from the names file
+    with gzip.open(oeisnamespath, "rb") as gz:
+        with open(csvpath, "wb") as da:
+            da.write(gz.read())
+    print(f"OEIS names saved as {csvpath}.")
 
 
 def MakeOeisminiWithFnv() -> None:

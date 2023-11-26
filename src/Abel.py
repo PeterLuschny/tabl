@@ -2,6 +2,54 @@ from functools import cache
 from Binomial import binomial
 from _tabltypes import MakeTriangle
 
+"""
+What CHAT-GPT says about Abel polynomials:
+
+The Abel polynomials, denoted as A(n, x), are a sequence of polynomials named
+after the Norwegian mathematician Niels Henrik Abel. These polynomials have
+several interesting properties and applications in different areas of
+mathematics. Here are some significant aspects of the Abel polynomials:
+
+1. ** Definition**: The Abel polynomials are defined as
+    A(n, x) = x * (x - n)^(n-1).
+
+2. ** Appell Sequences**: The Abel polynomials form an Appell sequence, a type
+of polynomial sequence with special properties. In particular, the Abel
+polynomials are associated with the Abel operator, which is a differential
+operator defined by the formula t * exp(y * t) * p(x) = t * p(x + y).
+
+3. ** Roots and Coefficients**: The roots of the Abel polynomials have
+interesting relationships with combinatorial structures such as rooted labeled
+trees. The coefficients of the Abel polynomials appear in various combinatorial
+counting problems.
+
+4. ** Connection to Cayley's Formula**: The Abel polynomials are related to
+Cayley's formula, which provides a formula for the number of labeled trees
+on n vertices. The Abel polynomials arise in the context of finding the number
+of rooted labeled trees with a specific root degree.
+
+5. ** Umbral Calculus**: The Abel polynomials are part of the umbral calculus,
+a symbolic manipulation technique that deals with sequences of polynomials. Umbral
+calculus is used to study combinatorial structures and their generating functions.
+
+6. ** Exponential Riordan Array**: The Abel polynomials are associated with an
+exponential Riordan array [1, LambertW(x)], where LambertW(x) is the Lambert W
+function. This connection adds another layer of mathematical relationships.
+
+7. ** Special Functions and Series**: The Abel polynomials appear in various
+mathematical functions and series, contributing to the understanding of special
+functions and their properties.
+
+8. ** Historical Significance**: Niels Henrik Abel, after whom the polynomials
+are named, made significant contributions to the field of mathematics. The Abel
+polynomials serve as a tribute to his work and legacy.
+
+In summary, the Abel polynomials are significant due to their connections to
+combinatorial structures, their role in umbral calculus, and their appearance
+in various mathematical contexts and relationships. They provide a rich source
+of mathematical exploration and are part of the broader landscape of mathematical
+structures and functions.
+"""
 
 """Abel polynomials (unsigned coefficients).
 [0] [1]
@@ -34,3 +82,81 @@ if __name__ == "__main__":
     from _tabltest import TablTest
 
     TablTest(Abel, short=True)
+
+'''
+* Statistic about Abel:
+The number of ...
+        all      hashes    is 199.
+        distinct hashes    is 116.
+        core     triangles is 1.
+        distinct types     is 5.
+        missing  sequences is 86.
+        all      A-numbers is 113.
+        distinct A-numbers is 58.
+
+The traits of the Abel triangle as represented in the OEIS.
+
+|    | A-number| trait            | A-name                                                                  |
+|----|---------|------------------|-------------------------------------------------------------------------|
+| 1  | A000027 | Inv-DiagCol1     | The positive integers. Also called the natural numbers, the whole numb  |
+| 2  | A000169 | Std-RowMax       | Number of labeled rooted trees with n nodes: n^(n-1)                    |
+| 3  | A000248 | Inv-AltSum       | Expansion of e.g.f. exp(x*exp(x))                                       |
+| 4  | A001477 | Std-PolyRow1     | The nonnegative integers                                                |
+| 5  | A002378 | Std-DiagRow1     | Oblong (or promic, pronic, or heteromecic) numbers: a(n) = n*(n+1)      |
+| 6  | A003725 | Inv-RowSum       | E.g.f.: exp( x * exp(-x) )                                              |
+| 7  | A005408 | Rev-PolyRow2     | The odd numbers: a(n) = 2*n + 1                                         |
+| 8  | A005563 | Std-PolyRow2     | a(n) = n*(n+2) = (n+1)^2 - 1                                            |
+| 9  | A007334 | Std-PolyCol2     | Number of spanning trees in the graph K_{n}/e, which results from cont  |
+| 10 | A009121 | Inv-EvenSum      | Expansion of e.g.f. cosh(exp(x)*x)                                      |
+| 11 | A009565 | Inv-OddSum       | Expansion of e.g.f. sinh(exp(x)*x)                                      |
+| 12 | A014026 | Alt-PolyDiag     | Inverse of 17th cyclotomic polynomial                                   |
+| 13 | A016778 | Rev-PolyRow3     | a(n) = (3*n+1)^2                                                        |
+| 14 | A028310 | Std-RowGcd       | Expansion of (1 - x + x^2) / (1 - x)^2 in powers of x                   |
+| 15 | A033683 | Alt-TransNat0    | a(n) = 1 if n is an odd square not divisible by 3, otherwise 0          |
+| 16 | A036216 | Inv-DiagCol3     | Expansion of 1/(1 - 3*x)^4; 4-fold convolution of A000244 (powers of 3  |
+| 17 | A052750 | Std-PosHalf      | a(n) = (2*n + 1)^(n - 1)                                                |
+| 18 | A052752 | Rev-PolyCol3     | a(n) = (3*n+1)^(n-1)                                                    |
+| 19 | A059297 | Std-Inv          | Triangle of idempotent numbers binomial(n,k)*k^(n-k), version 1         |
+| 20 | A059299 | Std-RevInv       | Triangle of idempotent numbers (version 3), T(n, k) = binomial(n, k) *  |
+| 21 | A060747 | Inv:Rev-PolyRow2 | a(n) = 2*n - 1                                                          |
+| 22 | A067998 | Alt-PolyRow2     | a(n) = n^2 - 2*n                                                        |
+| 23 | A085527 | Std-NegHalf      | a(n) = (2n+1)^n                                                         |
+| 24 | A089946 | Std-TransNat0    | Secondary diagonal of array A089944, in which the n-th row is the n-th  |
+| 25 | A137452 | Std-Triangle     | Triangular array of the coefficients of the sequence of Abel polynomia  |
+| 26 | A177885 | Std-AltSum       | a(n) = (1-n)^(n-1)                                                      |
+| 27 | A193678 | Std-PolyDiag     | Discriminant of Chebyshev C-polynomials                                 |
+| 28 | A195136 | Std-OddSum       | a(n) = ((n+1)^(n-1) + (n-1)^(n-1))/2 for n>=1                           |
+| 29 | A195509 | Inv:Rev-EvenSum  | Expansion of e.g.f. (exp(x*exp(x)) + exp(x/exp(x)))/2                   |
+| 30 | A208879 | Inv:Rev-Poly     | Number of words A(n,k), either empty or beginning with the first lette  |
+| 31 | A216689 | Inv-NegHalf      | E.g.f. exp( x * exp(x)^2 )                                              |
+| 32 | A225497 | Std-TransSqrs    | Total number of rooted labeled trees over all forests on {1,2,...,n} i  |
+| 33 | A232006 | Std-Poly         | Triangular array read by rows: T(n,k) is the number of simple labeled   |
+| 34 | A274278 | Std-EvenSum      | a(n) = ((n+1)^(n-1) - (n-1)^(n-1))/2 for n>=1                           |
+| 35 | A274741 | Rev-Poly         | Table of coefficients in functions that satisfy W_n(x) = W_{n-1}(x)^W_  |
+| 36 | A275707 | Inv:Rev-NegHalf  | Number of partial functions f:{1,2,...,n}->{1,2,...,n} such that ever   |
+| 37 | A320258 | Inv:Rev-PolyDiag | a(n) = n! * [x^n] exp(x*exp(-n*x))                                      |
+| 38 | A356819 | Inv-PosHalf      | Expansion of e.g.f. exp(-x * exp(2*x))                                  |
+| 39 | A356820 | Inv:Rev-PolyCol3 | Expansion of e.g.f. exp(-x * exp(3*x))                                  |
+| 40 | A360814 | Inv-DiagSum      | Expansion of Sum_{k>=0} x^(2*k) / (1 - k*x)^(k+1)                       |
+| 41 | A362354 | Std-PolyCol3     | a(n) = 3*(n+3)^(n-1)                                                    |
+| 42 | A367254 | Std-CentralE     | a(n) = binomial(2*n - 1, n - 1)*(2*n)^n                                 |
+| 43 | A367255 | Std-AccRevSum    | a(n) = (n + 1)^(n - 2)*(3*n + 1)                                        |
+| 44 | A367256 | Std-BinConv      | a(n) = Sum_{k=0..n} binomial(n, k) * binomial(n - 1, k - 1) * n^(n - k  |
+| 45 | A367257 | Std-InvBinConv   | a(n) = Sum_{k=0..n} binomial(n, k) * binomial(n - 1, n - k - 1) * (-n)  |
+| 46 | A367271 | Inv-CentralE     | a(n) = binomial(2*n, n) * n^n                                           |
+| 47 | A367272 | Inv-InvBinConv   | a(n) = Sum_{k=0..n} binomial(n, k)^2 * k^(n - k)                        |
+| 48 | A367273 | Inv-BinConv      | a(n) = Sum_{k=0..n} binomial(n, k)^2 * (k - n)^k                        |
+| 49 | A367274 | Inv:Rev-ColMiddle| a(n) = binomial(n, k) * (n - k)^k where k = floor(n/2)                  |
+| 50 | B000272 | Std-RowSum       | Number of trees on n labeled nodes: n^(n-2) with a(0)=1                 |
+| 51 | B000312 | Alt-AccRevSum    | a(n) = n^n; number of labeled mappings from n points to themselves (en  |
+| 52 | B001788 | Inv-DiagCol2     | a(n) = n*(n+1)*2^(n-2)                                                  |
+| 53 | B053506 | Std-DiagCol2     | a(n) = (n-1)*n^(n-2)                                                    |
+| 54 | B053507 | Std-DiagCol3     | a(n) = binomial(n-1,2)*n^(n-3)                                          |
+| 55 | B055541 | Alt-TransSqrs    | Total number of leaves (nodes of vertex degree 1) in all labeled trees  |
+| 56 | B065513 | Rev-TransNat0    | Number of endofunctions of [n] with a cycle a->b->c->a and for all x i  |
+| 57 | B100536 | Inv:Rev-PolyRow3 | a(n) = 3*n^2 - 2                                                        |
+| 58 | B366151 | Alt-PolyRow3     | a(n) = T(n, 3), where T(n, k) = Sum_{i=0..n} i^k * binomial(n, i) * (1  |
+
+With much better navigation and the missing sequences:
+    https://luschny.de/math/oeis/Abel.html
+'''

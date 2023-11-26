@@ -8,7 +8,7 @@ from pathlib import Path
 import requests
 from requests import get
 import pandas as pd
-from _tablpaths import GetDataPath, strippedpath
+from _tablpaths import GetDataPath, strippedpath, oeisnamespath
 from _tabltypes import tgen, InvTable, RevTable, AltTable, SeqString
 from _tabltraits import RegisterTraits, is_tabletrait
 
@@ -93,6 +93,30 @@ def IsInOEIS(seq: list[int]) -> str:
     raise Exception(f"Could not open {url}.")
 
 
+
+def GetNameByAnum(anum: str) -> str:
+    """
+    Retrieves the name associated with the given anum.
+
+    Parameters:
+    anum (str): The OEIS A-number to search for.
+
+    Returns:
+    str: The name associated with the given anum, or an empty string if not found.
+    """
+    if anum[0] == 'B':
+        anum = 'A' + anum[1:]
+
+    with open(GetDataPath("oeisnames", "csv"), "r", encoding='utf8') as oeisnames:
+        lines = oeisnames.readlines()
+        # reader = csv.reader(oeisnames, delimiter= ",")
+        for line in lines:
+            rnum = line[0:7]
+            if anum == rnum:
+                return line[8:-2]
+    return ""
+
+
 def fnv(data: bytes) -> int:
     """
     This function calculates the FNV-1a hash value for the given data.
@@ -139,7 +163,7 @@ def FNVhash(seq: list[int], absolut: bool = False) -> str:
 
 def GetCompressed() -> None:
     """
-    Downloads the stripped file from OEIS, extracts the CSV data, and saves it to a file.
+    Downloads the stripped file from OEIS, extracts the CSV data, and saves it to oeis.csv.
 
     Raises:
         requests.exceptions.RequestException: If there is an error downloading the stripped file.
@@ -165,6 +189,36 @@ def GetCompressed() -> None:
             da.write(gz.read())
 
     print(f"OEIS data saved as {csvpath}.")
+
+
+def GetNames() -> None:
+    """
+    Downloads the names file from OEIS, extracts the CSV data, and saves it to oeisnames.csv.
+
+    Raises:
+        requests.exceptions.RequestException: If there is an error downloading the names file.
+        IOError: If there is an error extracting the OEIS data.
+        Exception: If any other error occurs.
+    """
+    # Download the name file
+    print("Downloading OEIS names file...")
+    oeisnames = "https://oeis.org/names.gz"
+    r = requests.get(oeisnames, stream=True, timeout=10)
+    r.raise_for_status()
+    csvpath = GetDataPath("oeisnames", "csv")
+
+    # Save the names file
+    with open(oeisnamespath, "wb") as local:
+        for chunk in r.iter_content(chunk_size=8192):
+            if chunk:
+                local.write(chunk)
+
+    # Extract the CSV file from the names file
+    with gzip.open(oeisnamespath, "rb") as gz:
+        with open(csvpath, "wb") as da:
+            da.write(gz.read())
+
+    print(f"OEIS names saved as {csvpath}.")
 
 
 def MakeOeisminiWithFnv() -> None:
@@ -678,8 +732,8 @@ if __name__ == "__main__":
         SaveTraitsToDB(Abel)
 
     def test77():
-        from BinomialPell import BinomialPell
-        SaveTraitsToDB(BinomialPell)
+        from BinomialDiffPell import BinomialDiffPell
+        SaveTraitsToDB(BinomialDiffPell)
 
     def test99():
         for fun in tabl_fun:
@@ -710,7 +764,9 @@ if __name__ == "__main__":
     # GetCompressed()
     # SaveAllTraitsToDBandCSVandMD(tabl_fun[2:3])
     # SaveTraitsToDB(tabl_fun[3])
-    test77()
+    # test77()
+    # GetNames()
+    GetNameByAnum("A000012")
 
     # for fun in tabl_fun:
     #    ConvertDBtoCSVandMD(GetDataPath(fun.id, "db"), fun.id)

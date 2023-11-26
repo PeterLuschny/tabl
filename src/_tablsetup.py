@@ -1,5 +1,6 @@
 from _tabldata import (
     GetCompressed,
+    GetNames,
     OeisToSql,
     ConvertLocalDBtoCSVandMD,
     SaveAllTraitsToDBandCSVandMD,
@@ -32,6 +33,7 @@ def setup() -> None:
     print("Info: Updating OEIS data ...")
 
     GetCompressed()
+    GetNames()
     OeisToSql()
     ConvertLocalDBtoCSVandMD()
     print("Info: OEIS data updated!")
