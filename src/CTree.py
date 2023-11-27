@@ -24,12 +24,12 @@ def ctree(n: int) -> list[int]:
     return [1, 0] * (n // 2) + [1]
 
 
-@MakeTriangle(ctree, "ChristTree", ["A106465", "A106470"], True)
-def Ctree(n: int, k: int) -> int:
+@MakeTriangle(ctree, "CTree", ["A106465", "A106470"], True)
+def CTree(n: int, k: int) -> int:
     return ctree(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(Ctree)
+    TablTest(CTree)

@@ -25,11 +25,3 @@ def Demo(n: int, k: int) -> int:
 
 if __name__ == "__main__":
     PrintProfile(Demo)
-
-
-"""
-Of course, much more is possible, for example creating a database
-for the traits of a triangle. If you want to do this, you should
-start by running '_tablsetup.py'. This takes a while, but is a
-one-time thing.
-"""

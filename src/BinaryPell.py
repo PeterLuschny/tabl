@@ -16,7 +16,7 @@ from _tabltypes import MakeTriangle
 
 
 @cache
-def binarypell(n):
+def binarypell(n: int) -> list[int]:
 
     if n == 0:
         return [1]

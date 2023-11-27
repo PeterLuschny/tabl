@@ -4,7 +4,9 @@ data/db
 data/db/*
 data/csv/*
 data/html/*
+data/md/oeismini.md
 data/stripped
+data/names
 __pycache__/
 _pycache_/
 .vscode

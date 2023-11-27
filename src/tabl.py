@@ -1286,7 +1286,7 @@ def Bessel2(n: int, k: int) -> int:
 
 
 @cache
-def binarypell(n):
+def binarypell(n: int) -> list[int]:
     if n == 0:
         return [1]
     arow = binarypell(n - 1)
@@ -1404,7 +1404,7 @@ def BinomialPell(n: int, k: int) -> int:
 
 
 @cache
-def binomialdiffpell(n):
+def binomialdiffpell(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
@@ -1573,18 +1573,6 @@ def ChebyshevU(n: int, k: int) -> int:
 
 
 @cache
-def ctree(n: int) -> list[int]:
-    if n % 2 == 1:
-        return [1] * (n + 1)
-    return [1, 0] * (n // 2) + [1]
-
-
-@MakeTriangle(ctree, "ChristTree", ["A106465", "A106470"], True)
-def Ctree(n: int, k: int) -> int:
-    return ctree(n)[k]
-
-
-@cache
 def composition(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -1611,6 +1599,18 @@ def compomax(n: int) -> list[int]:
 @MakeTriangle(compomax, "CompositionMax", ["A126198"], False)
 def CompoMax(n: int, k: int) -> int:
     return compomax(n)[k]
+
+
+@cache
+def ctree(n: int) -> list[int]:
+    if n % 2 == 1:
+        return [1] * (n + 1)
+    return [1, 0] * (n // 2) + [1]
+
+
+@MakeTriangle(ctree, "CTree", ["A106465", "A106470"], True)
+def CTree(n: int, k: int) -> int:
+    return ctree(n)[k]
 
 
 @cache
@@ -2715,7 +2715,7 @@ tabl_fun: list[tgen] = [
     ChebyshevU,
     Composition,
     CompoMax,
-    Ctree,
+    CTree,
     Delannoy,
     Divisibility,
     Euclid,
@@ -3261,7 +3261,10 @@ def fnv(data: bytes) -> int:
     return hval
 
 
-MINTERMS = 15
+"""
+This is a very sensible value. It is the number of terms used to calculate the hash.
+"""
+MINTERMS = 21
 
 
 def FNVhash(seq: list[int], absolut: bool = False) -> str:
@@ -3429,9 +3432,9 @@ def QueryDBbySeq(seq: list[int], db_cur: sqlite3.Cursor) -> str:
     return "missing" if record is None else record[0]
 
 
-def QueryDBbyHashAndSeq(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
+def QueryLocalDB(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
     """
-    Query oeis_mini db only.
+    Query local oeismini.db only.
     Args:
         H (str): The hash value to query.
         seq (list[int]): The sequence to query.
@@ -3443,6 +3446,7 @@ def QueryDBbyHashAndSeq(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
     res = db_cur.execute(sql, (H,))
     record = res.fetchone()
     if record is not None:
+        # print("Found by hash.")
         return record[0]
     # not found by hash, perhaps shifted by one?
     H = FNVhash(seq[1 : MINTERMS + 1], True)
@@ -3461,12 +3465,33 @@ def QueryOeis(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
     Returns:
         str: The corresponding anum value if the sequence is found, otherwise "missing".
     """
-    rec = QueryDBbyHashAndSeq(H, seq, db_cur)
+    rec = QueryLocalDB(H, seq, db_cur)
     if rec != "missing":
         return rec
     bnum = IsInOEIS(seq)
     if bnum == "":
         return "missing"
+    return bnum
+
+
+def DebugQueryOeis(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
+    """
+    First query oeis_mini (local), if nothing found query OEIS (internet).
+    Args:
+        H (str): The hash value to query.
+        seq (list[int]): The sequence to query.
+        oeis_cur (sqlite3.Cursor): The cursor object for executing SQL queries.
+    Returns:
+        str: The corresponding anum value if the sequence is found, otherwise "missing".
+    """
+    rec = QueryLocalDB(H, seq, db_cur)
+    if rec != "missing":
+        print(f"Info: {seq} found in local database.")
+        return rec
+    bnum = IsInOEIS(seq)
+    if bnum == "":
+        return "missing"
+    print(f"Info: {seq} found in OEIS.")
     return bnum
 
 

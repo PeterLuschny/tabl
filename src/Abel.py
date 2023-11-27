@@ -2,54 +2,6 @@ from functools import cache
 from Binomial import binomial
 from _tabltypes import MakeTriangle
 
-"""
-What CHAT-GPT says about Abel polynomials:
-
-The Abel polynomials, denoted as A(n, x), are a sequence of polynomials named
-after the Norwegian mathematician Niels Henrik Abel. These polynomials have
-several interesting properties and applications in different areas of
-mathematics. Here are some significant aspects of the Abel polynomials:
-
-1. ** Definition**: The Abel polynomials are defined as
-    A(n, x) = x * (x - n)^(n-1).
-
-2. ** Appell Sequences**: The Abel polynomials form an Appell sequence, a type
-of polynomial sequence with special properties. In particular, the Abel
-polynomials are associated with the Abel operator, which is a differential
-operator defined by the formula t * exp(y * t) * p(x) = t * p(x + y).
-
-3. ** Roots and Coefficients**: The roots of the Abel polynomials have
-interesting relationships with combinatorial structures such as rooted labeled
-trees. The coefficients of the Abel polynomials appear in various combinatorial
-counting problems.
-
-4. ** Connection to Cayley's Formula**: The Abel polynomials are related to
-Cayley's formula, which provides a formula for the number of labeled trees
-on n vertices. The Abel polynomials arise in the context of finding the number
-of rooted labeled trees with a specific root degree.
-
-5. ** Umbral Calculus**: The Abel polynomials are part of the umbral calculus,
-a symbolic manipulation technique that deals with sequences of polynomials. Umbral
-calculus is used to study combinatorial structures and their generating functions.
-
-6. ** Exponential Riordan Array**: The Abel polynomials are associated with an
-exponential Riordan array [1, LambertW(x)], where LambertW(x) is the Lambert W
-function. This connection adds another layer of mathematical relationships.
-
-7. ** Special Functions and Series**: The Abel polynomials appear in various
-mathematical functions and series, contributing to the understanding of special
-functions and their properties.
-
-8. ** Historical Significance**: Niels Henrik Abel, after whom the polynomials
-are named, made significant contributions to the field of mathematics. The Abel
-polynomials serve as a tribute to his work and legacy.
-
-In summary, the Abel polynomials are significant due to their connections to
-combinatorial structures, their role in umbral calculus, and their appearance
-in various mathematical contexts and relationships. They provide a rich source
-of mathematical exploration and are part of the broader landscape of mathematical
-structures and functions.
-"""
 
 """Abel polynomials (unsigned coefficients).
 [0] [1]

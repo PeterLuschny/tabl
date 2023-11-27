@@ -93,7 +93,6 @@ def IsInOEIS(seq: list[int]) -> str:
     raise Exception(f"Could not open {url}.")
 
 
-
 def GetNameByAnum(anum: str) -> str:
     """
     Retrieves the name associated with the given anum.
@@ -135,8 +134,10 @@ def fnv(data: bytes) -> int:
         hval &= 0xFFFFFFFFFFFFFFFF
     return hval
 
-
-MINTERMS = 15
+'''
+This is a very sensible value. It is the number of terms used to calculate the hash.
+'''
+MINTERMS = 21
 
 
 def FNVhash(seq: list[int], absolut: bool = False) -> str:
@@ -325,9 +326,9 @@ def QueryDBbySeq(seq: list[int], db_cur: sqlite3.Cursor) -> str:
     return "missing" if record is None else record[0]
 
 
-def QueryDBbyHashAndSeq(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
+def QueryLocalDB(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
     """
-    Query oeis_mini db only.
+    Query local oeismini.db only.
 
     Args:
         H (str): The hash value to query.
@@ -341,6 +342,7 @@ def QueryDBbyHashAndSeq(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
     res = db_cur.execute(sql, (H,))
     record = res.fetchone()
     if record is not None:
+        # print("Found by hash.")
         return record[0]
 
     # not found by hash, perhaps shifted by one?
@@ -362,12 +364,35 @@ def QueryOeis(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
     Returns:
         str: The corresponding anum value if the sequence is found, otherwise "missing".
     """
-    rec = QueryDBbyHashAndSeq(H, seq, db_cur)
+    rec = QueryLocalDB(H, seq, db_cur)
     if rec != "missing":
         return rec
     bnum = IsInOEIS(seq)
     if bnum == "":
         return "missing"
+    return bnum
+
+
+def DebugQueryOeis(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
+    """
+    First query oeis_mini (local), if nothing found query OEIS (internet).
+
+    Args:
+        H (str): The hash value to query.
+        seq (list[int]): The sequence to query.
+        oeis_cur (sqlite3.Cursor): The cursor object for executing SQL queries.
+
+    Returns:
+        str: The corresponding anum value if the sequence is found, otherwise "missing".
+    """
+    rec = QueryLocalDB(H, seq, db_cur)
+    if rec != "missing":
+        print(f"Info: {seq} found in local database.")
+        return rec
+    bnum = IsInOEIS(seq)
+    if bnum == "":
+        return "missing"
+    print(f"Info: {seq} found in OEIS.")
     return bnum
 
 
@@ -743,34 +768,41 @@ if __name__ == "__main__":
     def test9():
         MergeAllDBs(tabl_fun)
 
+    # Returns A051031 found by hash which is false if the constant
+    # MINTERMS is not large enough!
     def test33():
-        from tabl import Fubini, CentralE, CentralO
-        T = Fubini.tab(32)
+        from tabl import CTree as triangle
+        from tabl import CentralE, CentralO
+        # T = triangle.tab(32)
+        F = triangle.flat(32)
 
-        ce = CentralE(T)
-        cehash = FNVhash(ce, True)
+        cthash = FNVhash(F, True)
+
+        # ce = CentralE(T)
+        # cehash = FNVhash(ce, True)
         # print(cehash, ce)
 
-        co = CentralO(T)
-        cohash = FNVhash(co, True)
+        # co = CentralO(T)
+        # cohash = FNVhash(co, True)
         # print(cohash, co)
 
         with sqlite3.connect(GetDataPath("oeismini", "db")) as oeis:
-            res = QueryOeis(cehash, ce, oeis.cursor())
+            res = DebugQueryOeis(cthash, F, oeis.cursor())
             print("test", res)
-            res = QueryOeis(cohash, co, oeis.cursor())
-            print("test", res)
+
+            #res = QueryOeis(cehash, ce, oeis.cursor())
+            #print("test", res)
+            #res = QueryOeis(cohash, co, oeis.cursor())
+            #print("test", res)
 
     # GetCompressed()
     # SaveAllTraitsToDBandCSVandMD(tabl_fun[2:3])
     # SaveTraitsToDB(tabl_fun[3])
     # test77()
     # GetNames()
-    GetNameByAnum("A000012")
-
+    # GetNameByAnum("A000012")
     # for fun in tabl_fun:
     #    ConvertDBtoCSVandMD(GetDataPath(fun.id, "db"), fun.id)
-
     # test22("d7e6f639f03bf659")
     # ConvertLocalDBtoCSVandMD()
-    # test33()
+    test33()
