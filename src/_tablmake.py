@@ -206,6 +206,7 @@ import_header: list[str] = [
     "from typing import Callable, TypeAlias\n",
     "from inspect import signature\n",
     # "from tabulate import tabulate\n",  # needed by pandas
+    "import traceback\n",
     "import contextlib\n",
     "import csv\n",
     "import urllib.request\n",

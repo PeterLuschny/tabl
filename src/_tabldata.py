@@ -7,6 +7,7 @@ import time
 from pathlib import Path
 import requests
 from requests import get
+import traceback
 import pandas as pd
 from _tablpaths import GetDataPath, strippedpath, oeisnamespath
 from _tabltypes import tgen, InvTable, RevTable, AltTable, SeqString
@@ -116,6 +117,21 @@ def GetNameByAnum(anum: str) -> str:
     return ""
 
 
+'''
+This is a very sensible value. It is the number of terms used to calculate the hash.
+'''
+MINTERMS = 16
+'''
+To guarantee MINTERMS for sequences like the center column of the triangle,
+we need to use a triangle with 33 rows (0..32).
+'''
+TABLSIZE = 2 * MINTERMS
+'''
+Neede for anti-diagonal traits of the triangle.
+'''
+DIAGSIZE = TABLSIZE + TABLSIZE // 2
+
+
 def fnv(data: bytes) -> int:
     """
     This function calculates the FNV-1a hash value for the given data.
@@ -127,17 +143,18 @@ def fnv(data: bytes) -> int:
         int: The calculated hash value.
    """
     # assert isinstance(data, bytes)
+
+    if len(data) < MINTERMS:
+        for line in traceback.format_stack():
+            print(line.strip())
+        raise Exception(f"*** Error *** Data has only {len(data)} terms, {MINTERMS} required.")
+
     hval = 0xCBF29CE484222325
     for byte in data:
         hval ^= byte
         hval *= 0x100000001B3
         hval &= 0xFFFFFFFFFFFFFFFF
     return hval
-
-'''
-This is a very sensible value. It is the number of terms used to calculate the hash.
-'''
-MINTERMS = 21
 
 
 def FNVhash(seq: list[int], absolut: bool = False) -> str:
@@ -151,9 +168,10 @@ def FNVhash(seq: list[int], absolut: bool = False) -> str:
         str: The hex value of the hash without the '0x'-head.
     """
     if len(seq) < MINTERMS:
-        print(f"*** Warning *** Hash based only on {len(seq)} terms, {MINTERMS} required.")
-        if seq == []:
-            return "0"
+        for line in traceback.format_stack():
+            print(line.strip())
+        raise Exception(f"*** Error *** Data has only {len(seq)} terms, {MINTERMS} required.")
+
     if absolut:
         s = str([abs(i) for i in seq[0:MINTERMS]])
     else:
@@ -197,7 +215,7 @@ def GetNames() -> None:
     Downloads the names file from OEIS, extracts the CSV data, and saves it to oeisnames.csv.
 
     Raises:
-        requests.exceptions.RequestException: If there is an error downloading the names file.
+        RequestException: If there is an error downloading the names file.
         IOError: If there is an error extracting the OEIS data.
         Exception: If any other error occurs.
     """
@@ -275,7 +293,7 @@ def OeisToSql() -> None:
 
         seq_list = [[txt[0][0:7], [abs(int(s)) for s in txt[1:-1]]] for txt in reader]
         for s in seq_list:
-            if len(s[1]) < MINTERMS:
+            if len(s[1]) <= MINTERMS:
                 continue
             x = str(s[1][0:MINTERMS]).translate(str.maketrans("", "", "[],"))
             f = hex(fnv(bytes(x, encoding="ascii")))[2:]
@@ -338,15 +356,13 @@ def QueryLocalDB(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
     Returns:
         str: The corresponding anum value if the sequence is found, otherwise "missing".
     """
-    sql = "SELECT anum FROM sequences WHERE hash=? LIMIT 1"
-    res = db_cur.execute(sql, (H,))
-    record = res.fetchone()
-    if record is not None:
-        # print("Found by hash.")
-        return record[0]
 
-    # not found by hash, perhaps shifted by one?
-    H = FNVhash(seq[1: MINTERMS + 1], True)
+    if len(seq) < MINTERMS:
+        for line in traceback.format_stack():
+            print(line.strip())
+        raise Exception(f"*** Error *** Data has only {len(seq)} terms, {MINTERMS} required.")
+
+    sql = "SELECT anum FROM sequences WHERE hash=? LIMIT 1"
     res = db_cur.execute(sql, (H,))
     record = res.fetchone()
     return "missing" if record is None else record[0]
@@ -454,6 +470,9 @@ def SaveTraits(fun: tgen, size: int, traits_cur: sqlite3.Cursor, oeis_cur: sqlit
         None
     """
     T = fun.tab(size)
+    if size < 32:
+        raise Exception(f"*** Error *** Table {fun.id} has only {size} rows, min 32 required.")
+
     r = fun.gen
     triname = fun.id
     trityp = GetType(triname)
@@ -467,8 +486,15 @@ def SaveTraits(fun: tgen, size: int, traits_cur: sqlite3.Cursor, oeis_cur: sqlit
             print(f"Info: {triname} -> {traitname} does not exist.")
             continue
 
+        if len(seq) < MINTERMS:
+            for line in traceback.format_stack():
+                print(line.strip())
+            raise Exception(f"*** Error *** Table {fun.id} and trait {traitname} has only {len(seq)}, min {MINTERMS} required.")
+
+        print(f"Processing {triname}, {traitname}, {len(seq)} ")
+
         fnvhash = FNVhash(seq, True)
-        # anum = queryminioeis(hash, seq, oeis_cur)  # local
+        # anum = queryminioeis(fnvhash, seq, oeis_cur)  # local
         anum = QueryOeis(fnvhash, seq, oeis_cur)  # with internet
 
         if FilterTraits(anum):  # discard traits that are not interresting
@@ -505,39 +531,39 @@ def SaveExtendedTraitsToDB(fun: tgen, size: int, traits_cur: sqlite3.Cursor, oei
     Returns:
         None
     """
-    tim: int = size + size // 2
+
     Tid = fun.id
     fun.id = fun.id + ":Std"
 
     TRAITS = RegisterTraits()
 
-    thash = FNVhash(fun.tab(MINTERMS))
+    thash = FNVhash(fun.flat(DIAGSIZE))
     SaveTraits(fun, size, traits_cur, oeis_cur, table, TRAITS)
     fun.id = Tid
 
-    a = AltTable(fun, tim)
+    a = AltTable(fun, DIAGSIZE)
     SaveTraits(a, size, traits_cur, oeis_cur, table, TRAITS)
 
-    r = RevTable(fun, tim)
-    rhash = FNVhash(r.tab(MINTERMS))
+    r = RevTable(fun, DIAGSIZE)
+    rhash = FNVhash(r.flat(DIAGSIZE))
     if thash != rhash:
         SaveTraits(r, size, traits_cur, oeis_cur, table, TRAITS)
 
-        # ir = InvRevTable(t, tim)
-        ir = InvTable(r, tim)
+        # ir = InvRevTable(t, DIAGSIZE)
+        ir = InvTable(r, DIAGSIZE)
         if ir is not None:
             SaveTraits(ir, size, traits_cur, oeis_cur, table, TRAITS)
 
-    i = InvTable(fun, tim)
+    i = InvTable(fun, DIAGSIZE)
     ihash = "0"
     if i is not None:
-        ihash = FNVhash(i.tab(MINTERMS))
+        ihash = FNVhash(i.flat(DIAGSIZE))
         SaveTraits(i, size, traits_cur, oeis_cur, table, TRAITS)
 
-        # ri = RevInvTable(t, tim)
-        ri = RevTable(i, tim)
+        # ri = RevInvTable(t, DIAGSIZE)
+        ri = RevTable(i, DIAGSIZE)
         if ri is not None:
-            rihash = FNVhash(ri.tab(MINTERMS))
+            rihash = FNVhash(ri.flat(DIAGSIZE))
             if ihash != rihash:
                 SaveTraits(ri, size, traits_cur, oeis_cur, table, TRAITS)
 
@@ -562,7 +588,7 @@ def SaveTraitsToDB(fun: tgen) -> None:
 
         with sqlite3.connect(GetDataPath("oeismini", "db")) as oeis:
             oeis_cur = oeis.cursor()
-            SaveExtendedTraitsToDB(fun, 32, traits_cur, oeis_cur, name)
+            SaveExtendedTraitsToDB(fun, TABLSIZE, traits_cur, oeis_cur, name)
 
         db.commit()
 
@@ -712,6 +738,7 @@ def MergeAllDBs(tablfun: list[tgen]):
 
 if __name__ == "__main__":
     from tabl import tabl_fun
+    # from Binomial import Binomial
 
     def test1():
         oeis_con = sqlite3.connect(GetDataPath("oeismini", "db"))
@@ -772,7 +799,7 @@ if __name__ == "__main__":
     # MINTERMS is not large enough!
     def test33():
         from tabl import CTree as triangle
-        from tabl import CentralE, CentralO
+        # from tabl import CentralE, CentralO
         # T = triangle.tab(32)
         F = triangle.flat(32)
 
@@ -790,10 +817,10 @@ if __name__ == "__main__":
             res = DebugQueryOeis(cthash, F, oeis.cursor())
             print("test", res)
 
-            #res = QueryOeis(cehash, ce, oeis.cursor())
-            #print("test", res)
-            #res = QueryOeis(cohash, co, oeis.cursor())
-            #print("test", res)
+            # res = QueryOeis(cehash, ce, oeis.cursor())
+            # print("test", res)
+            # res = QueryOeis(cohash, co, oeis.cursor())
+            # print("test", res)
 
     # GetCompressed()
     # SaveAllTraitsToDBandCSVandMD(tabl_fun[2:3])
@@ -806,3 +833,6 @@ if __name__ == "__main__":
     # test22("d7e6f639f03bf659")
     # ConvertLocalDBtoCSVandMD()
     test33()
+
+    # for n,row in enumerate(Binomial.tab(TABLSIZE)):
+    #    print([n], row)

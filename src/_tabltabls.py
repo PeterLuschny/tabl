@@ -146,8 +146,8 @@ def PrintTabls(g: tgen, size: int = 8, mdformat: bool = True) -> None:
 if __name__ == "__main__":
 
     from Abel import Abel
-    from StirlingSet import StirlingSet
-    from LabeledGraphs import LabeledGraphs
+    # from StirlingSet import StirlingSet
+    # from LabeledGraphs import LabeledGraphs
 
     T = Abel.tab(8)
     A = AltSignTabl(T)

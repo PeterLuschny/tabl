@@ -1,6 +1,7 @@
 
 import numpy as np
 
+
 def NumpyInvertTabl(L: list[list[int]]) -> list[list[int]]:
     """ NOT YET TESTED! """
     n = len(L)

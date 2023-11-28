@@ -89,7 +89,7 @@ def ListAllAnums() -> None:
     Returns:
     - None
     """
-    print(f"\nA-numbers of all traits that are represented in the OEIS.")
+    print("\nA-numbers of all traits that are represented in the OEIS.")
 
     dbname = "traits"
 
@@ -278,12 +278,11 @@ def Distribution(dbname: str) -> list | None:
         return None
 
 
-
 if __name__ == "__main__":
     # TODO: What A-numbers are most cited?
     # TODO: What hash values whith no A-number are most cited?
 
-    from tabl import Euler as triangle
+    # from tabl import Euler as triangle
 
     # print(Distribution("Abel"))
     ListByDistinctAnum("Abel")

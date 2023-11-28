@@ -140,12 +140,12 @@ def AltTable(T: tgen, size: int = 0) -> tgen:
         tgen: The generator of the sign-changed triangle.
     """
 
-    #t = T.tab(size)
+    # t = T.tab(size)
     r = T.gen
 
     @cache
     def asgen(n: int) -> trow:
-        #row = t[n]
+        # row = t[n]
         return [(-1) ** k * term for k, term in enumerate(r(n))]
 
     @MakeTriangle(asgen, T.id + ":Alt", [], True)
@@ -153,7 +153,6 @@ def AltTable(T: tgen, size: int = 0) -> tgen:
         return asgen(n)[k]
 
     return Asgen
-
 
 
 def RevInvTable(T: tgen, size: int) -> tgen | None:

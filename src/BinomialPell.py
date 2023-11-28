@@ -19,8 +19,10 @@ from _tabltypes import MakeTriangle
 @cache
 def binomialpell(n):
 
-    if n == 0: return [1]
-    if n == 1: return [2, 2]
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [2, 2]
 
     arow = binomialpell(n - 1)
     row = arow + [n + 1]
