@@ -113,22 +113,26 @@ def Flat(T: tabl) -> list[int]:
     return [i for row in T for i in row]
 
 
-def SeqString(seq: list[int], maxlen: int, offset: int = 0) -> str:
+def SeqString(seq: list[int], maxchar: int, maxterms: int, offset: int = 0) -> str:
     """
     Converts a sequence of integers into a string representation.
     Args:
         seq (list[int]): The sequence of integers to be converted.
         maxlen (int): The maximum length of the resulting string.
+        maxterms (int): The maximum number of terms included.
         offset (int, optional): The starting index of the sequence. Defaults to 0.
     Returns:
         str: The string representation of the sequence.
     """
     seqstr = ""
-    maxl = 0
+    maxt = maxl = 0
     for trm in seq[offset:]:
+        maxt += 1
+        if maxt > maxterms:
+            break
         s = str(trm) + ","
         maxl += len(s)
-        if maxl > maxlen:
+        if maxl > maxchar:
             break
         seqstr += s
     return seqstr
@@ -3172,6 +3176,59 @@ def Formulas() -> dict[str, str]:
     return FORMULA
 
 
+"""
+This is a very sensible value. It is the number of terms used to calculate the hash.
+"""
+MINTERMS = 24
+"""
+To guarantee MINTERMS = 16 for sequences like the center column of the triangle,
+we need to use a triangle with 31 rows (0..30). But 16 is too small!
+"""
+MINROWS = 2 * MINTERMS
+"""
+Needed for anti-diagonal traits of the triangle.
+"""
+DIAGSIZE = MINROWS + MINROWS // 2
+
+
+def fnv(data: bytes) -> int:
+    """
+    This function calculates the FNV-1a hash value for the given data.
+    Args:
+        data (bytes): The input data to be hashed.
+    Returns:
+        int: The calculated hash value.
+    """
+    assert isinstance(data, bytes)
+    hval = 0xCBF29CE484222325
+    for byte in data:
+        hval ^= byte
+        hval *= 0x100000001B3
+        hval &= 0xFFFFFFFFFFFFFFFF
+    return hval
+
+
+def FNVhash(seq: list[int], absolut: bool = False) -> str:
+    """Returns the fnv-hash of an integer sequence based on the first MINTERMS terms.
+    Args:
+        seq (list[int]):
+        absolut (bool, optional): Take the absolute value of the terms? Defaults to False.
+    Returns:
+        str: The hex value of the hash without the '0x'-head.
+    """
+    if len(seq) < MINTERMS:
+        for line in traceback.format_stack():
+            print(line.strip())
+        raise Exception(
+            f"*** Error *** Data has only {len(seq)} terms, {MINTERMS} required."
+        )
+    if absolut:
+        x = " ".join(str(abs(i)) for i in seq[0:MINTERMS])
+    else:
+        x = " ".join(str(i) for i in seq[0:MINTERMS])
+    return hex(fnv(bytes(x, encoding="ascii")))[2:]
+
+
 def isInOEIS(seq: list[int]) -> bool:
     """
     Check if a given sequence is present in the OEIS (Online Encyclopedia of Integer Sequences).
@@ -3183,7 +3240,7 @@ def isInOEIS(seq: list[int]) -> bool:
     Raises:
         Exception: If the OEIS server cannot be reached after multiple attempts.
     """
-    strseq = SeqString(seq, 160, 3)
+    strseq = SeqString(seq, 140, 24, 3)
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
     for _ in range(3):
         time.sleep(0.5)  # give the OEIS server some time to relax
@@ -3209,7 +3266,7 @@ def IsInOEIS(seq: list[int]) -> str:
     Raises:
         Exception: If the OEIS server cannot be reached after multiple attempts.
     """
-    strseq = SeqString(seq, 160, 3)
+    strseq = SeqString(seq, 140, 24, 3)
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
     for _ in range(3):
         time.sleep(0.5)  # give the OEIS server some time to relax
@@ -3243,66 +3300,6 @@ def GetNameByAnum(anum: str) -> str:
             if anum == rnum:
                 return line[8:-2]
     return ""
-
-
-"""
-This is a very sensible value. It is the number of terms used to calculate the hash.
-"""
-MINTERMS = 16
-"""
-To guarantee MINTERMS for sequences like the center column of the triangle,
-we need to use a triangle with 33 rows (0..32).
-"""
-TABLSIZE = 2 * MINTERMS
-"""
-Neede for anti-diagonal traits of the triangle.
-"""
-DIAGSIZE = TABLSIZE + TABLSIZE // 2
-
-
-def fnv(data: bytes) -> int:
-    """
-    This function calculates the FNV-1a hash value for the given data.
-    Args:
-        data (bytes): The input data to be hashed.
-    Returns:
-        int: The calculated hash value.
-    """
-    # assert isinstance(data, bytes)
-    if len(data) < MINTERMS:
-        for line in traceback.format_stack():
-            print(line.strip())
-        raise Exception(
-            f"*** Error *** Data has only {len(data)} terms, {MINTERMS} required."
-        )
-    hval = 0xCBF29CE484222325
-    for byte in data:
-        hval ^= byte
-        hval *= 0x100000001B3
-        hval &= 0xFFFFFFFFFFFFFFFF
-    return hval
-
-
-def FNVhash(seq: list[int], absolut: bool = False) -> str:
-    """Returns the fnv-hash of an integer sequence based on the first MINTERMS terms.
-    Args:
-        seq (list[int]):
-        absolut (bool, optional): Take the absolute value of the terms? Defaults to False.
-    Returns:
-        str: The hex value of the hash without the '0x'-head.
-    """
-    if len(seq) < MINTERMS:
-        for line in traceback.format_stack():
-            print(line.strip())
-        raise Exception(
-            f"*** Error *** Data has only {len(seq)} terms, {MINTERMS} required."
-        )
-    if absolut:
-        s = str([abs(i) for i in seq[0:MINTERMS]])
-    else:
-        s = str(seq[0:MINTERMS])
-    x = s.translate(str.maketrans("", "", "[],"))
-    return hex(fnv(bytes(x, encoding="ascii")))[2:]
 
 
 def GetCompressed() -> None:
@@ -3370,19 +3367,19 @@ def MakeOeisminiWithFnv() -> None:
             seq_list = [
                 [txt[0][0:7], [abs(int(s)) for s in txt[1:-1]]] for txt in reader
             ]
-            for s in seq_list:
-                if len(s[1]) < MINTERMS:
+            for seq in seq_list:
+                if len(seq[1]) < MINTERMS:
                     continue
-                x = str(s[1][0:MINTERMS]).translate(str.maketrans("", "", "[],"))
-                f = hex(fnv(bytes(x, encoding="ascii")))[2:]
-                minidata.write(f + "," + s[0] + "," + x + ",\n")
+                f = FNVhash(seq[1])
+                x = " ".join(str(i) for i in seq[1])
+                minidata.write(f + "," + seq[0] + "," + x + ",\n")
     print("Info: Hashed OEIS-data saved as oeismini.csv in data/csv.")
 
 
 def OeisToSql() -> None:
     """
     This function reads data from a CSV file containing OEIS sequences,
-    processes the data, and inserts it into a SQLite database.
+    processes the data, and inserts it into 'oeismini', a SQLite database.
     The function performs the following steps:
     1. Connects to the SQLite database.
     2. Creates a table named 'sequences' if it doesn't already exist.
@@ -3402,12 +3399,12 @@ def OeisToSql() -> None:
     with open(GetDataPath("oeis", "csv"), "r") as oeisdata:
         reader = csv.reader(oeisdata)
         seq_list = [[txt[0][0:7], [abs(int(s)) for s in txt[1:-1]]] for txt in reader]
-        for s in seq_list:
-            if len(s[1]) <= MINTERMS:
+        for seq in seq_list:
+            if len(seq[1]) < MINTERMS:
                 continue
-            x = str(s[1][0:MINTERMS]).translate(str.maketrans("", "", "[],"))
-            f = hex(fnv(bytes(x, encoding="ascii")))[2:]
-            tup = (f, s[0], x)
+            f = FNVhash(seq[1])
+            x = " ".join(str(i) for i in seq[1])
+            tup = (f, seq[0], x)
             sql = "INSERT INTO sequences VALUES(?, ?, ?)"
             cur.execute(sql, tup)
     tabl.commit()
@@ -3450,7 +3447,7 @@ def QueryDBbySeq(seq: list[int], db_cur: sqlite3.Cursor) -> str:
 
 def QueryLocalDB(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
     """
-    Query local oeismini.db only.
+    Query local database oeismini.db.
     Args:
         H (str): The hash value to query.
         seq (list[int]): The sequence to query.
@@ -3500,13 +3497,16 @@ def DebugQueryOeis(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
         str: The corresponding anum value if the sequence is found, otherwise "missing".
     """
     rec = QueryLocalDB(H, seq, db_cur)
+    print(seq)
     if rec != "missing":
-        print(f"Info: {seq} found in local database.")
+        print(f"Using hash {H} found in local database.")
+        f = FNVhash(seq, True)
+        print(f"{f} is actual hash.")
         return rec
     bnum = IsInOEIS(seq)
     if bnum == "":
         return "missing"
-    print(f"Info: {seq} found in OEIS.")
+    print(f"seq found in OEIS.")
     return bnum
 
 
@@ -3674,7 +3674,7 @@ def SaveTraitsToDB(fun: tgen) -> None:
         traits_cur.execute(CreateTable(name))
         with sqlite3.connect(GetDataPath("oeismini", "db")) as oeis:
             oeis_cur = oeis.cursor()
-            SaveExtendedTraitsToDB(fun, TABLSIZE, traits_cur, oeis_cur, name)
+            SaveExtendedTraitsToDB(fun, MINROWS, traits_cur, oeis_cur, name)
         db.commit()
     print(f"Info: Created database {name}.db in data/db.")
 
