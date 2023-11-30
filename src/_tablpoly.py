@@ -1,5 +1,5 @@
 from typing import Callable
-from fractions import Fraction as frac
+from fractions import Fraction
 from _tabltypes import rgen, tgen, tabl, trow
 
 # #@
@@ -50,29 +50,29 @@ def Poly(g: rgen, size: int) -> trow:
     return [i for row in PolyDiagTabl(g, size) for i in row]
 
 
-def PolyFrac(T: tabl, x: frac) -> list[frac | int]:
+def PolyFrac(T: tabl, x: Fraction) -> list[Fraction | int]:
     return [sum(c * (x ** k) for (k, c) in enumerate(row)) for row in T]
 
 
 def PosHalf_(g: rgen, size: int) -> trow:
     T = [g(n) for n in range(size)]
-    R = PolyFrac(T, frac(1, 2))
+    R = PolyFrac(T, Fraction(1, 2))
     return [((2 ** n) * r).numerator for n, r in enumerate(R)]
 
 
 def PosHalf(T: tabl) -> trow:
-    R = PolyFrac(T, frac(1, 2))
+    R = PolyFrac(T, Fraction(1, 2))
     return [((2 ** n) * r).numerator for n, r in enumerate(R)]
 
 
 def NegHalf_(g: rgen, size: int) -> trow:
     T = [g(n) for n in range(size)]
-    R = PolyFrac(T, frac(-1, 2))
+    R = PolyFrac(T, Fraction(-1, 2))
     return [(((-2) ** n) * r).numerator for n, r in enumerate(R)]
 
 
 def NegHalf(T: tabl) -> trow:
-    R = PolyFrac(T, frac(-1, 2))
+    R = PolyFrac(T, Fraction(-1, 2))
     return [(((-2) ** n) * r).numerator for n, r in enumerate(R)]
 
 

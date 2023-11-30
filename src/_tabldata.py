@@ -43,6 +43,13 @@ MINROWS = 2 * MINTERMS
 Needed for anti-diagonal traits of the triangle.
 '''
 DIAGSIZE = MINROWS + MINROWS // 2
+'''
+Maximal length of the string representing the sequence.
+'''
+MAXSTRLEN = 100
+
+def GetMaxStrLen() -> int:
+    return MAXSTRLEN
 
 
 def fnv(data: bytes) -> int:
@@ -102,7 +109,7 @@ def isInOEIS(seq: list[int]) -> bool:
     Raises:
         Exception: If the OEIS server cannot be reached after multiple attempts.
     """
-    strseq = SeqString(seq, 140, 24, 3)
+    strseq = SeqString(seq, 140, 24, ",", 3)
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
 
     for _ in range(3):
@@ -133,7 +140,7 @@ def IsInOEIS(seq: list[int]) -> str:
     Raises:
         Exception: If the OEIS server cannot be reached after multiple attempts.
     """
-    strseq = SeqString(seq, 140, 24, 3)
+    strseq = SeqString(seq, 140, 24, ",", 3)
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
 
     for _ in range(3):
@@ -218,7 +225,6 @@ def GetNames() -> None:
     oeisnames = "https://oeis.org/names.gz"
     r = requests.get(oeisnames, stream=True, timeout=10)
     r.raise_for_status()
-    csvpath = GetDataPath("oeisnames", "csv")
 
     # Save the names file
     with open(oeisnamespath, "wb") as local:
@@ -227,6 +233,7 @@ def GetNames() -> None:
                 local.write(chunk)
 
     # Extract the CSV file from the names file
+    csvpath = GetDataPath("oeisnames", "csv")
     with gzip.open(oeisnamespath, "rb") as gz:
         with open(csvpath, "wb") as da:
             da.write(gz.read())
@@ -411,15 +418,15 @@ def DebugQueryOeis(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
     return bnum
 
 
-def GetType(name: str) -> str:
+def GetType(name: str) -> list[str]:
     """
     There are 7 types:
         ["", "Std", "Rev", "Inv", "Rev:Inv", "Inv:Rev", "Alt"]
     """
     sp = name.split(":", 1)
     if len(sp) == 1:
-        return ""
-    return name.split(":", 1)[1]
+        return ["", ""]
+    return name.split(":", 1)
 
 
 def CreateTable(name: str) -> str:
@@ -430,21 +437,22 @@ def InsertTable(name: str) -> str:
     return f"INSERT INTO {name} VALUES(?, ?, ?, ?, ?, ?)"
 
 
-def FilterTraits(anum: str) -> bool:
+def FilterTraits(anum: str, anumsonly: bool=False) -> bool:
     """
     Filter traits to remove traits that are not interresting.
 
     Args:
         anumber (str): The traits as A-number.
+        anumsonly (bool, optional): Disregard missing anums. Defaults to False.
 
     Returns:
         True if the trait should be discarded.
     """
-    return anum in ["A000012", "A000007", "A000004"]
+    lame = ["A000012", "A000007", "A000004"]
+    if anumsonly:
+        lame.append("missing")
 
-
-def GetMaxStrLen() -> int:
-    return 100
+    return anum in lame
 
 
 def SaveTraits(fun: tgen, size: int, traits_cur: sqlite3.Cursor, oeis_cur: sqlite3.Cursor, table: str, TRAITS: dict) -> None:
@@ -474,7 +482,9 @@ def SaveTraits(fun: tgen, size: int, traits_cur: sqlite3.Cursor, oeis_cur: sqlit
 
     r = fun.gen
     triname = fun.id
-    trityp = GetType(triname)
+    funname, trityp = GetType(triname)
+    print(funname)
+    print(trityp)
 
     for traitname, trait in TRAITS.items():
         if trityp == traitname:
@@ -499,16 +509,9 @@ def SaveTraits(fun: tgen, size: int, traits_cur: sqlite3.Cursor, oeis_cur: sqlit
         if FilterTraits(anum):  # discard traits that are not interresting
             continue
 
-        seqstr = ""
-        maxl = 0
-        for trm in seq:
-            s = str(trm) + " "
-            maxl += len(s)
-            if maxl > GetMaxStrLen():
-                break
-            seqstr += s
+        seqstr = SeqString(seq, MAXSTRLEN, 99)
 
-        tup = (triname, trityp, traitname, anum, fnvhash, seqstr)
+        tup = (funname, trityp, traitname, anum, fnvhash, seqstr)
         sql = InsertTable(table)
         traits_cur.execute(sql, tup)
 
@@ -642,7 +645,6 @@ def ConvertLocalDBtoCSVandMD() -> None:
 def ConvertDBtoCSVandMD(dbpath: Path, funname: str) -> int:
     """
     Converts a SQLite database to CSV and Markdown files.
-    We exclude cases 'A000012', 'A000007', and 'A000004', which are trivial.
 
     Args:
         dbpath (str): The path to the SQLite database.
@@ -662,11 +664,7 @@ def ConvertDBtoCSVandMD(dbpath: Path, funname: str) -> int:
         tables = cursor.fetchall()
         for table_name in tables:
             table_name = table_name[0]
-            sql = f"""SELECT triangle, trait, anum, seq
-                      FROM {table_name}
-                      WHERE anum != 'A000012'
-                      AND anum != 'A000007'
-                      AND anum != 'A000004' """
+            sql = f"SELECT triangle, type, trait, anum, seq FROM {table_name}"
             table = pd.read_sql_query(sql, db)
             csv_path = GetDataPath(table_name, "csv")
             md_path = GetDataPath(table_name, "md")
@@ -681,7 +679,7 @@ def ConvertDBtoCSVandMD(dbpath: Path, funname: str) -> int:
 
 def SaveAllTraitsToDBandCSVandMD(tabl_fun: list[tgen]) -> None:
     """
-    Saves all traits to a database, CSV, and Markdown file.
+    Saves all traits to a database, a CSV file, and Markdown file.
 
     This function iterates over a list of tabl_fun objects and performs the following actions for each object:
     1. Saves the traits to a database using the SaveTraitsToDB function.
@@ -696,7 +694,6 @@ def SaveAllTraitsToDBandCSVandMD(tabl_fun: list[tgen]) -> None:
     for fun in tabl_fun:
         SaveTraitsToDB(fun)
         ConvertDBtoCSVandMD(GetDataPath(fun.id, "db"), fun.id)
-    return
 
 
 def MergeAllDBs(tablfun: list[tgen]):
@@ -794,8 +791,7 @@ if __name__ == "__main__":
     def test9():
         MergeAllDBs(tabl_fun)
 
-    # Returns A051031 found by hash which is false if the constant
-    # MINTERMS is not large enough!
+
     def test33():
         from tabl import CTree as triangle
         # from tabl import CentralE, CentralO
@@ -817,5 +813,5 @@ if __name__ == "__main__":
 
         print(cthash, ",FNVhash")
 
-    OeisToSql()
-    test33()
+    # OeisToSql()
+    # test33()

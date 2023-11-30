@@ -63,7 +63,7 @@ def ListByDistinctAnum(dbname: str) -> None:
     con = sqlite3.connect(GetDataPath(dbname, "db"))
     cur = con.cursor()
 
-    sql = f"SELECT DISTINCT(anum), triangle, trait FROM {dbname} WHERE anum != 'missing' GROUP BY anum;"
+    sql = f"SELECT DISTINCT(anum), triangle, type, trait FROM {dbname} WHERE anum != 'missing' GROUP BY anum;"
     res = cur.execute(sql)
     wer = res.fetchall()
     count = 1
@@ -71,7 +71,7 @@ def ListByDistinctAnum(dbname: str) -> None:
     print("|-----|---------|------------------|--------------------------------------------------------------------------------|")
     for seq in wer:
         anum = setLength(seq[0], 7)
-        trait = setLength(GetType(seq[1]) + "-" + seq[2], 16)
+        trait = setLength(seq[2] + "-" + seq[3], 16)
         seqname = setLength(GetNameByAnum(seq[0]), 78)
         rn = setLength(str(count), 3)
         print(f"| {rn} | {anum} | {trait} | {seqname} |")
@@ -219,7 +219,7 @@ def TuttiStats(targetname: str = "traitsstats") -> None:
     print(f"Created database {targetname}.db in data/db.")
 
 
-def QuickStatistic(triangle: tgen, makenew: bool=False) -> None:
+def SingleStatistic(triangle: tgen, makenew: bool=False) -> None:
     """
     Generate statistics on the given triangle.
 

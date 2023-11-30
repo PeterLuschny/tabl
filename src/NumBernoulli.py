@@ -1,5 +1,5 @@
 from Genocchi import genocchi
-from fractions import Fraction as frac
+from fractions import Fraction
 
 """Bernoulli numbers A164555/A027642
 """
@@ -7,13 +7,13 @@ from fractions import Fraction as frac
 # #@
 
 
-def Bernoulli(n: int) -> frac:
+def Bernoulli(n: int) -> Fraction:
     if n < 2:
-        return frac(1, n + 1)
+        return Fraction(1, n + 1)
     if n % 2 == 1:
-        return frac(0, 1)
+        return Fraction(0, 1)
     g = genocchi(n // 2 - 1)[-1]
-    f = frac(g, 2 ** (n + 1) - 2)
+    f = Fraction(g, 2 ** (n + 1) - 2)
     return -f if n % 4 == 0 else f
 
 

@@ -1,3 +1,4 @@
+from os import remove
 import datetime
 from functools import cache, reduce
 from itertools import accumulate
@@ -16,7 +17,7 @@ import time
 import gzip
 import sqlite3
 import pandas as pd
-from fractions import Fraction as frac
+from fractions import Fraction
 from pathlib import Path
 
 setrecursionlimit(3000)
@@ -113,13 +114,16 @@ def Flat(T: tabl) -> list[int]:
     return [i for row in T for i in row]
 
 
-def SeqString(seq: list[int], maxchar: int, maxterms: int, offset: int = 0) -> str:
+def SeqString(
+    seq: list[int], maxchars: int, maxterms: int, sep: str = " ", offset: int = 0
+) -> str:
     """
     Converts a sequence of integers into a string representation.
     Args:
         seq (list[int]): The sequence of integers to be converted.
-        maxlen (int): The maximum length of the resulting string.
+        maxchars (int): The maximum length of the resulting string.
         maxterms (int): The maximum number of terms included.
+        sep (string, optional): String seperator. Default is ' '.
         offset (int, optional): The starting index of the sequence. Defaults to 0.
     Returns:
         str: The string representation of the sequence.
@@ -130,9 +134,9 @@ def SeqString(seq: list[int], maxchar: int, maxterms: int, offset: int = 0) -> s
         maxt += 1
         if maxt > maxterms:
             break
-        s = str(trm) + ","
+        s = str(trm) + sep
         maxl += len(s)
-        if maxl > maxchar:
+        if maxl > maxchars:
             break
         seqstr += s
     return seqstr
@@ -554,29 +558,29 @@ def Poly(g: rgen, size: int) -> trow:
     return [i for row in PolyDiagTabl(g, size) for i in row]
 
 
-def PolyFrac(T: tabl, x: frac) -> list[frac | int]:
+def PolyFrac(T: tabl, x: Fraction) -> list[Fraction | int]:
     return [sum(c * (x**k) for (k, c) in enumerate(row)) for row in T]
 
 
 def PosHalf_(g: rgen, size: int) -> trow:
     T = [g(n) for n in range(size)]
-    R = PolyFrac(T, frac(1, 2))
+    R = PolyFrac(T, Fraction(1, 2))
     return [((2**n) * r).numerator for n, r in enumerate(R)]
 
 
 def PosHalf(T: tabl) -> trow:
-    R = PolyFrac(T, frac(1, 2))
+    R = PolyFrac(T, Fraction(1, 2))
     return [((2**n) * r).numerator for n, r in enumerate(R)]
 
 
 def NegHalf_(g: rgen, size: int) -> trow:
     T = [g(n) for n in range(size)]
-    R = PolyFrac(T, frac(-1, 2))
+    R = PolyFrac(T, Fraction(-1, 2))
     return [(((-2) ** n) * r).numerator for n, r in enumerate(R)]
 
 
 def NegHalf(T: tabl) -> trow:
-    R = PolyFrac(T, frac(-1, 2))
+    R = PolyFrac(T, Fraction(-1, 2))
     return [(((-2) ** n) * r).numerator for n, r in enumerate(R)]
 
 
@@ -1693,16 +1697,28 @@ def Euler(n: int, k: int) -> int:
 
 
 @cache
-def eulerian(n: int) -> list[int]:
+def KnuthEulerian(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row = eulerian(n - 1) + [0]
+    row = KnuthEulerian(n - 1) + [0]
     for k in range(n, 0, -1):
         row[k] = (n - k) * row[k - 1] + (k + 1) * row[k]
     return row
 
 
-@MakeTriangle(eulerian, "Eulerian", ["A173018", "A008292", "A123125"], False)
+@cache
+def eulerian(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 1]
+    row = eulerian(n - 1) + [1]
+    for k in range(n - 1, 0, -1):
+        row[k] = (n - k + 1) * row[k - 1] + k * row[k]
+    return row
+
+
+@MakeTriangle(eulerian, "Eulerian", ["A123125", "A173018", "A008292"], True)
 def Eulerian(n: int, k: int) -> int:
     return eulerian(n)[k]
 
@@ -2662,13 +2678,13 @@ def bell_num(n: int) -> int:
     return bell(n - 1)[-1]
 
 
-def Bernoulli(n: int) -> frac:
+def Bernoulli(n: int) -> Fraction:
     if n < 2:
-        return frac(1, n + 1)
+        return Fraction(1, n + 1)
     if n % 2 == 1:
-        return frac(0, 1)
+        return Fraction(0, 1)
     g = genocchi(n // 2 - 1)[-1]
-    f = frac(g, 2 ** (n + 1) - 2)
+    f = Fraction(g, 2 ** (n + 1) - 2)
     return -f if n % 4 == 0 else f
 
 
@@ -2908,7 +2924,7 @@ SCRIPT = [
     "</script>\n" "<p>&nbsp;</p></body></html>",
 ]
 Footer = (
-    "<div style='word-wrap: break-word; width: 95%;'><p style='margin-left:14px'>"
+    "<div style='word-wrap: break-word; width: 95%; max-width:710px;'><p style='margin-left:14px'>"
     "Note: The A-numbers are based on a finite number of numerical comparisons. "
     "The B-numbers are A-numbers of sligthly different variants. They ignore the sign "
     "and the OEIS-offset and might differ in the first few values. Since the offset "
@@ -3004,16 +3020,17 @@ def CsvToHtml(fun: tgen) -> None:
                 # Layout: index,triangle,trait,anum,seq
                 # 0,Abel:Std,Triangle,A137452,1 0 1 0 ...
                 # index = line[0]
-                h = line[1]
-                type = h[h.index(":") + 1 :]
-                trait = line[2]
-                anum = line[3]
-                seq = line[4]
+                # name = line[1]
+                type = line[2]
+                trait = line[3]
+                anum = line[4]
+                seq = line[5]
                 outfile.write(f"<tr><td class='type'>{type}</td>")
                 tip = FORMULA[trait]
                 outfile.write(
                     f"<td class='tooltip'>{trait}<span class='formula'>{tip}</span></td>"
                 )
+                print(seq)
                 sseq = (seq.split(" ", 3)[3]).replace(" ", ",")
                 if anum == "missing":
                     color = "rgb(0, 0, 0)"
@@ -3176,6 +3193,231 @@ def Formulas() -> dict[str, str]:
     return FORMULA
 
 
+def ListByAnum(dbname: str) -> None:
+    """
+    Retrieve and print the list of traits grouped by 'anum'
+    from the 'traits' table in the specified database.
+    Parameters:
+    - dbname (str): The name of the database.
+    Returns:
+    - None
+    """
+    con = sqlite3.connect(GetDataPath(dbname, "db"))
+    cur = con.cursor()
+    sql = "SELECT anum, triangle, trait FROM traits WHERE anum != 'missing' ORDER by anum;"
+    res = cur.execute(sql)
+    wer = res.fetchall()
+    for seq in wer:
+        print("{0} {1}_{2}.".format(*seq))
+    print()
+    cur.close()
+    con.close()
+
+
+def setLength(s: str, length: int) -> str:
+    """
+    Truncates or pads the given string `s` to the specified `length`.
+    Args:
+        s (str): The input string.
+        length (int): The maximum length of the resulting string.
+    Returns:
+        str: The modified string with length equal to `length`.
+    """
+    return (s + " " * length)[:length]
+
+
+def ListByDistinctAnum(dbname: str) -> None:
+    """
+    Retrieve and print the list of distinct traits which are in the OEIS,
+    grouped by 'anum' from the specified triangle database.
+    Parameters:
+    - dbname (str): The name of the database.
+    Returns:
+    - None
+    """
+    print(f"\nThe traits of the {dbname} triangle as represented in the OEIS.\n")
+    con = sqlite3.connect(GetDataPath(dbname, "db"))
+    cur = con.cursor()
+    sql = f"SELECT DISTINCT(anum), triangle, type, trait FROM {dbname} WHERE anum != 'missing' GROUP BY anum;"
+    res = cur.execute(sql)
+    wer = res.fetchall()
+    count = 1
+    print(
+        "|     | A-number| trait            | A-name                                                                         |"
+    )
+    print(
+        "|-----|---------|------------------|--------------------------------------------------------------------------------|"
+    )
+    for seq in wer:
+        anum = setLength(seq[0], 7)
+        trait = setLength(seq[2] + "-" + seq[3], 16)
+        seqname = setLength(GetNameByAnum(seq[0]), 78)
+        rn = setLength(str(count), 3)
+        print(f"| {rn} | {anum} | {trait} | {seqname} |")
+        count += 1
+    print()
+    cur.close()
+    con.close()
+
+
+def ListAllAnums() -> None:
+    """
+    Retrieve and print all the A-numbers of traits that are represented in the OEIS.
+    Returns:
+    - None
+    """
+    print("\nA-numbers of all traits that are represented in the OEIS.")
+    dbname = "traits"
+    con = sqlite3.connect(GetDataPath(dbname, "db"))
+    cur = con.cursor()
+    sql = f"SELECT DISTINCT(anum) FROM {dbname} WHERE anum != 'missing'"
+    res = cur.execute(sql)
+    wer = res.fetchall()
+    count = 0
+    for seq in wer:
+        if count % 6 == 0:
+            print()
+        print(f"{seq[0]}, ", end="")
+        count += 1
+    print()
+    cur.close()
+    con.close()
+
+
+def Statistic(dbname: str) -> list:
+    """
+    Calculate various statistics about the given database.
+    Parameters:
+    dbname (str): The name of the database.
+    Returns:
+    list: A list containing the statistics in the following order:
+        - Database name
+        - Total number of A-numbers
+        - Total number of distinct A-numbers
+        - Total number of all hashes
+        - Total number of distinct hashes
+        - Total number of core triangles
+        - Total number of distinct types
+        - Total number of missing sequences
+    """
+    con = sqlite3.connect(GetDataPath(dbname, "db"))
+    cur = con.cursor()
+    print(f"\n* Statistic about {dbname}:")
+    print("The number of ...")
+    sql = f"SELECT COUNT(hash) FROM {dbname};"
+    res = cur.execute(sql)
+    anum = res.fetchone()
+    print(f"\tall      hashes    is {anum[0]}.")
+    sql = f"SELECT COUNT(DISTINCT hash) FROM {dbname};"
+    res = cur.execute(sql)
+    bnum = res.fetchone()
+    print(f"\tdistinct hashes    is {bnum[0]}.")
+    sql = f"SELECT COUNT() FROM {dbname} WHERE trait = 'Triangle' AND type = 'Std';"
+    res = cur.execute(sql)
+    cnum = res.fetchone()
+    print(f"\tcore     triangles is {cnum[0]}.")
+    sql = f"SELECT COUNT(DISTINCT type) FROM {dbname};"
+    res = cur.execute(sql)
+    dnum = res.fetchone()
+    print(f"\tdistinct types     is {dnum[0]}.")
+    sql = f"SELECT COUNT() FROM {dbname} WHERE anum = 'missing';"
+    res = cur.execute(sql)
+    enum = res.fetchone()
+    print(f"\tmissing  sequences is {enum[0]}.")
+    sql = f"SELECT COUNT() FROM {dbname} WHERE anum != 'missing';"
+    res = cur.execute(sql)
+    gnum = res.fetchone()
+    print(f"\tall      A-numbers is {gnum[0]}.")
+    sql = f"SELECT COUNT(DISTINCT anum) FROM {dbname} WHERE anum != 'missing';"
+    res = cur.execute(sql)
+    hnum = res.fetchone()
+    print(f"\tdistinct A-numbers is {hnum[0]}.")
+    con.commit()
+    cur.close()
+    con.close()
+    return [dbname, gnum[0], hnum[0], anum[0], bnum[0], cnum[0], dnum[0], enum[0]]
+
+
+def TuttiStats(targetname: str = "traitsstats") -> None:
+    """
+    Generate statistics for all databases and store them in a SQLite database.
+    Parameters:
+    - name (str): The name of the target base. Default is "traitsstats".
+    Returns:
+    - None
+    """
+    filename = GetDataPath(targetname, "db")
+    try:
+        remove(filename)
+    except OSError:
+        pass
+    with sqlite3.connect(filename) as db:
+        cur = db.cursor()
+        sql = f"CREATE TABLE {targetname}(Anum, name, allanum, distanum, allhash, disthash, triangles, types, missing)"
+        cur.execute(sql)
+        for fun in tabl_fun:
+            score = [fun.sim[0]] + Statistic(fun.id)
+            sql = f"INSERT INTO {targetname} VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            cur.execute(sql, score)
+        db.commit()
+        Statistic("traits")
+        print("\nRanking of triangles with regard to their impact:\n")
+        cur.execute(f"SELECT * FROM {targetname} ORDER by distanum DESC")
+        F = cur.fetchall()
+        for f in F:
+            print([f[3]], f)
+        cur.close()
+    print("The statistics were created on", datetime.datetime.now(), ".\n")
+    print(f"Created database {targetname}.db in data/db.")
+
+
+def SingleStatistic(triangle: tgen, makenew: bool = False) -> None:
+    """
+    Generate statistics on the given triangle.
+    Args:
+        triangle (tgen): The triangle the statistics are to be generated.
+        makenew (bool, optional): Flag indicating whether to create a new database first. Defaults to False.
+    Returns:
+        None
+    """
+    if makenew:
+        filename = GetDataPath(triangle.id, "db")
+        try:
+            remove(filename)
+        except OSError:
+            pass
+        SaveTraitsToDB(triangle)
+    Statistic(triangle.id)
+    ListByDistinctAnum(triangle.id)
+
+
+def Distribution(dbname: str) -> list | None:
+    """
+    Retrieves the distribution of A-numbers in the specified database.
+    Args:
+        dbname (str): The name of the database.
+    Returns:
+        list: A list of tuples containing the A-number and its count,
+            sorted by count in descending order.
+            Each tuple has the format (anum, cnt).
+    Raises:
+        sqlite3.Error: If there is an error accessing the database.
+    """
+    try:
+        con = sqlite3.connect(GetDataPath(dbname, "db"))
+        cur = con.cursor()
+        print(f"\n* Distribution of A-numbers in {dbname}.")
+        sql = f"SELECT anum, COUNT(anum) AS cnt FROM {dbname} GROUP BY anum ORDER BY cnt DESC"
+        cur.execute(sql)
+        result = cur.fetchall()
+        cur.close()
+        con.close()
+        return result
+    except sqlite3.Error as e:
+        print(f"Error accessing database: {e}")
+        return None
+
+
 """
 This is a very sensible value. It is the number of terms used to calculate the hash.
 """
@@ -3189,6 +3431,14 @@ MINROWS = 2 * MINTERMS
 Needed for anti-diagonal traits of the triangle.
 """
 DIAGSIZE = MINROWS + MINROWS // 2
+"""
+Maximal length of the string representing the sequence.
+"""
+MAXSTRLEN = 100
+
+
+def GetMaxStrLen() -> int:
+    return MAXSTRLEN
 
 
 def fnv(data: bytes) -> int:
@@ -3240,7 +3490,7 @@ def isInOEIS(seq: list[int]) -> bool:
     Raises:
         Exception: If the OEIS server cannot be reached after multiple attempts.
     """
-    strseq = SeqString(seq, 140, 24, 3)
+    strseq = SeqString(seq, 140, 24, ",", 3)
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
     for _ in range(3):
         time.sleep(0.5)  # give the OEIS server some time to relax
@@ -3266,7 +3516,7 @@ def IsInOEIS(seq: list[int]) -> str:
     Raises:
         Exception: If the OEIS server cannot be reached after multiple attempts.
     """
-    strseq = SeqString(seq, 140, 24, 3)
+    strseq = SeqString(seq, 140, 24, ",", 3)
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
     for _ in range(3):
         time.sleep(0.5)  # give the OEIS server some time to relax
@@ -3341,13 +3591,13 @@ def GetNames() -> None:
     oeisnames = "https://oeis.org/names.gz"
     r = requests.get(oeisnames, stream=True, timeout=10)
     r.raise_for_status()
-    csvpath = GetDataPath("oeisnames", "csv")
     # Save the names file
     with open(oeisnamespath, "wb") as local:
         for chunk in r.iter_content(chunk_size=8192):
             if chunk:
                 local.write(chunk)
     # Extract the CSV file from the names file
+    csvpath = GetDataPath("oeisnames", "csv")
     with gzip.open(oeisnamespath, "rb") as gz:
         with open(csvpath, "wb") as da:
             da.write(gz.read())
@@ -3510,15 +3760,15 @@ def DebugQueryOeis(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
     return bnum
 
 
-def GetType(name: str) -> str:
+def GetType(name: str) -> list[str]:
     """
     There are 7 types:
         ["", "Std", "Rev", "Inv", "Rev:Inv", "Inv:Rev", "Alt"]
     """
     sp = name.split(":", 1)
     if len(sp) == 1:
-        return ""
-    return name.split(":", 1)[1]
+        return ["", ""]
+    return name.split(":", 1)
 
 
 def CreateTable(name: str) -> str:
@@ -3529,19 +3779,19 @@ def InsertTable(name: str) -> str:
     return f"INSERT INTO {name} VALUES(?, ?, ?, ?, ?, ?)"
 
 
-def FilterTraits(anum: str) -> bool:
+def FilterTraits(anum: str, anumsonly: bool = False) -> bool:
     """
     Filter traits to remove traits that are not interresting.
     Args:
         anumber (str): The traits as A-number.
+        anumsonly (bool, optional): Disregard missing anums. Defaults to False.
     Returns:
         True if the trait should be discarded.
     """
-    return anum in ["A000012", "A000007", "A000004"]
-
-
-def GetMaxStrLen() -> int:
-    return 100
+    lame = ["A000012", "A000007", "A000004"]
+    if anumsonly:
+        lame.append("missing")
+    return anum in lame
 
 
 def SaveTraits(
@@ -3570,13 +3820,15 @@ def SaveTraits(
         None
     """
     T = fun.tab(size)
-    if size < 32:
+    if size < MINROWS:
         raise Exception(
-            f"*** Error *** Table {fun.id} has only {size} rows, min 32 required."
+            f"*** Error *** Table {fun.id} has only {size} rows, min {MINROWS} required."
         )
     r = fun.gen
     triname = fun.id
-    trityp = GetType(triname)
+    funname, trityp = GetType(triname)
+    print(funname)
+    print(trityp)
     for traitname, trait in TRAITS.items():
         if trityp == traitname:
             continue
@@ -3596,15 +3848,8 @@ def SaveTraits(
         anum = QueryOeis(fnvhash, seq, oeis_cur)  # with internet
         if FilterTraits(anum):  # discard traits that are not interresting
             continue
-        seqstr = ""
-        maxl = 0
-        for trm in seq:
-            s = str(trm) + " "
-            maxl += len(s)
-            if maxl > GetMaxStrLen():
-                break
-            seqstr += s
-        tup = (triname, trityp, traitname, anum, fnvhash, seqstr)
+        seqstr = SeqString(seq, MAXSTRLEN, 99)
+        tup = (funname, trityp, traitname, anum, fnvhash, seqstr)
         sql = InsertTable(table)
         traits_cur.execute(sql, tup)
 
@@ -3720,7 +3965,6 @@ def ConvertLocalDBtoCSVandMD() -> None:
 def ConvertDBtoCSVandMD(dbpath: Path, funname: str) -> int:
     """
     Converts a SQLite database to CSV and Markdown files.
-    We exclude cases 'A000012', 'A000007', and 'A000004', which are trivial.
     Args:
         dbpath (str): The path to the SQLite database.
         funname (str): The name of the triangle.
@@ -3737,11 +3981,7 @@ def ConvertDBtoCSVandMD(dbpath: Path, funname: str) -> int:
         tables = cursor.fetchall()
         for table_name in tables:
             table_name = table_name[0]
-            sql = f"""SELECT triangle, trait, anum, seq
-                      FROM {table_name}
-                      WHERE anum != 'A000012'
-                      AND anum != 'A000007'
-                      AND anum != 'A000004' """
+            sql = f"SELECT triangle, type, trait, anum, seq FROM {table_name}"
             table = pd.read_sql_query(sql, db)
             csv_path = GetDataPath(table_name, "csv")
             md_path = GetDataPath(table_name, "md")
@@ -3755,7 +3995,7 @@ def ConvertDBtoCSVandMD(dbpath: Path, funname: str) -> int:
 
 def SaveAllTraitsToDBandCSVandMD(tabl_fun: list[tgen]) -> None:
     """
-    Saves all traits to a database, CSV, and Markdown file.
+    Saves all traits to a database, a CSV file, and Markdown file.
     This function iterates over a list of tabl_fun objects and performs the following actions for each object:
     1. Saves the traits to a database using the SaveTraitsToDB function.
     2. Converts the database file to CSV and Markdown formats using the ConvertDBtoCSVandMD function.
@@ -3767,7 +4007,6 @@ def SaveAllTraitsToDBandCSVandMD(tabl_fun: list[tgen]) -> None:
     for fun in tabl_fun:
         SaveTraitsToDB(fun)
         ConvertDBtoCSVandMD(GetDataPath(fun.id, "db"), fun.id)
-    return
 
 
 def MergeAllDBs(tablfun: list[tgen]):
@@ -3802,3 +4041,19 @@ def MergeAllDBs(tablfun: list[tgen]):
         dest.commit()
         dest_cursor.close()
     print("Info: Created database traits.db in data/db.")
+
+
+def SingleMake(fun: tgen) -> None:
+    """
+    - Saves the traits of the triangle 'fun' to a database, a CSV file, and Markdown file.
+    - Then the HTML file is updated.
+    - The traits statistics is displayed.
+    Args:
+        fun (tgen): The generator of the triangle.
+    Returns:
+        None
+    """
+    SaveTraitsToDB(fun)
+    ConvertDBtoCSVandMD(GetDataPath(fun.id, "db"), fun.id)
+    CsvToHtml(fun)
+    SingleStatistic(fun)

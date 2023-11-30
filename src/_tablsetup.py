@@ -62,4 +62,6 @@ if __name__ == "__main__":
     # DO NOT USE 'setup' if you only want to update tabl.py.
     # If you want to update 'tabl.py' after you have added a new
     # triangle implementation just run "src/_tablmake.py".
+    # Or use the function 'SingleMake(triangle)' from _tablsinglemake
+    # where 'triangle' is the generator of the triangle.
     setup()

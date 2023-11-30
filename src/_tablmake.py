@@ -105,8 +105,9 @@ tabl_files: list[str] = [
     "_tablexport.py",
     "_tablhtml.py",
     "_tabltraits.py",
-    "_tablstatistic",
+    "_tablstatistic.py",
     "_tabldata.py",
+    "_tablsinglemake.py",
 ]
 
 
@@ -197,7 +198,7 @@ tabl_fun: list[tgen] = [
 ]\n""".format()
 
 import_header: list[str] = [
-    # "from os import remove\n",
+    "from os import remove\n",
     "import datetime\n",
     "from functools import cache, reduce\n",
     "from itertools import accumulate\n",
@@ -217,7 +218,7 @@ import_header: list[str] = [
     "import gzip\n",
     "import sqlite3\n",
     "import pandas as pd\n",
-    "from fractions import Fraction as frac\n",
+    "from fractions import Fraction\n",
     "from pathlib import Path\n",
 ]
 

@@ -81,7 +81,7 @@ SCRIPT = [
     "</script>\n" "<p>&nbsp;</p></body></html>",
 ]
 
-Footer = ("<div style='word-wrap: break-word; width: 95%;'><p style='margin-left:14px'>"
+Footer = ("<div style='word-wrap: break-word; width: 95%; max-width:710px;'><p style='margin-left:14px'>"
           "Note: The A-numbers are based on a finite number of numerical comparisons. "
           "The B-numbers are A-numbers of sligthly different variants. They ignore the sign "
           "and the OEIS-offset and might differ in the first few values. Since the offset "
@@ -189,11 +189,11 @@ def CsvToHtml(fun: tgen) -> None:
                 # Layout: index,triangle,trait,anum,seq
                 # 0,Abel:Std,Triangle,A137452,1 0 1 0 ...
                 # index = line[0]
-                h = line[1]
-                type = h[h.index(":") + 1:]
-                trait = line[2]
-                anum = line[3]
-                seq = line[4]
+                # name = line[1]
+                type = line[2]
+                trait = line[3]
+                anum = line[4]
+                seq = line[5]
 
                 outfile.write(f"<tr><td class='type'>{type}</td>")
                 tip = FORMULA[trait]
@@ -201,6 +201,7 @@ def CsvToHtml(fun: tgen) -> None:
                     f"<td class='tooltip'>{trait}<span class='formula'>{tip}</span></td>"
                 )
 
+                print(seq)
                 sseq = (seq.split(" ", 3)[3]).replace(" ", ",")
 
                 if anum == "missing":
