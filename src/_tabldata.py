@@ -483,9 +483,7 @@ def SaveTraits(fun: tgen, size: int, traits_cur: sqlite3.Cursor, oeis_cur: sqlit
     r = fun.gen
     triname = fun.id
     funname, trityp = GetType(triname)
-    print(funname)
-    print(trityp)
-
+ 
     for traitname, trait in TRAITS.items():
         if trityp == traitname:
             continue

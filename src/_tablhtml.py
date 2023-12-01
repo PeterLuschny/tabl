@@ -140,12 +140,13 @@ def navbar(fun: tgen) -> list[str]:
     return NAVBAR
 
 
-def CsvToHtml(fun: tgen) -> None:
+def CsvToHtml(fun: tgen, nomissings: bool = False) -> None:
     """
     Converts a CSV file to an HTML file.
 
     Args:
         fun (tgen): The generator object of the triangle.
+        nomissings (bool, optional): Disregard traits missing in the OEIS. Default is False.
 
     Returns:
         None
@@ -195,13 +196,15 @@ def CsvToHtml(fun: tgen) -> None:
                 anum = line[4]
                 seq = line[5]
 
+                if nomissings and anum == "missing":
+                    continue
+
                 outfile.write(f"<tr><td class='type'>{type}</td>")
                 tip = FORMULA[trait]
                 outfile.write(
                     f"<td class='tooltip'>{trait}<span class='formula'>{tip}</span></td>"
                 )
 
-                print(seq)
                 sseq = (seq.split(" ", 3)[3]).replace(" ", ",")
 
                 if anum == "missing":
@@ -239,13 +242,13 @@ def CsvToHtml(fun: tgen) -> None:
                 outfile.write(h)
 
 
-def AllCsvToHtml() -> None:
+def AllCsvToHtml(nomissings: bool = False) -> None:
     for fun in tabl_fun:
         print(f"Info: Generating data/html/{fun.id}.html.")
-        CsvToHtml(fun)
+        CsvToHtml(fun, nomissings)
 
 
 if __name__ == "__main__":
     # from Abel import Abel
     # CsvToHtml(Abel)
-    AllCsvToHtml()
+    AllCsvToHtml(True)

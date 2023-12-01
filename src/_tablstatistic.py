@@ -1,7 +1,7 @@
 import datetime
 import sqlite3
 from _tablpaths import GetDataPath
-from _tabldata import GetType, GetNameByAnum, SaveTraitsToDB
+from _tabldata import GetNameByAnum, SaveTraitsToDB
 from tabl import tabl_fun, tgen
 from os import remove
 

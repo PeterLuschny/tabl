@@ -11,7 +11,7 @@ from _tablpoly import (
     NegHalf,
     Poly,
 )
-from _tablsums import RowSum, EvenSum, OddSum, AltSum, AccSum, AccRevSum, DiagSum
+from _tablsums import RowSum, EvenSum, OddSum, AltSum, AbsSum, AccSum, AccRevSum, DiagSum
 from _tabltransforms import DiagRow1, DiagRow2, DiagRow3, DiagCol1, DiagCol2, DiagCol3
 from _tabltransforms import TransNat0, TransNat1, TransSqrs
 from _tabltabls import Triangle, Acc, AccRev, AntiDiag, Rev, Inv, InvRev, RevInv, Diffx1
@@ -72,6 +72,7 @@ def RegisterTraits() -> dict[str, Callable]:
     RegisterTrait(EvenSum)
     RegisterTrait(OddSum)
     RegisterTrait(AltSum)
+    RegisterTrait(AbsSum)
     RegisterTrait(DiagSum)
     RegisterTrait(AccSum)
     RegisterTrait(AccRevSum)
@@ -138,11 +139,10 @@ def Formulas() -> dict[str, str]:
     FORMULA["EvenSum"] = "&sum;<sub> k=0..n </sub> T(n, k) even(k)"
     FORMULA["OddSum"] = "&sum;<sub> k=0..n </sub> T(n, k) odd(k)"
     FORMULA["AltSum"] = "&sum;<sub> k=0..n </sub> T(n, k) (-1)^k"
+    FORMULA["AbsSum"] = "&sum;<sub> k=0..n </sub> | T(n, k) |"
     FORMULA["DiagSum"] = "&sum;<sub> k=0..n // 2 </sub> T(n - k, k)"
     FORMULA["AccSum"] = "&sum;<sub> k=0..n </sub>&sum;<sub> j=0..k </sub> T(n, j)"
-    FORMULA[
-        "AccRevSum"
-    ] = "&sum;<sub> k=0..n </sub>&sum;<sub> j=0..k </sub> T(n, n - j)"
+    FORMULA["AccRevSum"] = "&sum;<sub> k=0..n </sub>&sum;<sub> j=0..k </sub> T(n, n - j)"
     FORMULA["RowLcm"] = "Lcm<sub> k=0..n </sub> | T(n, k) | &gt; 1"
     FORMULA["RowGcd"] = "Gcd<sub> k=0..n </sub> | T(n, k) | &gt; 1"
     FORMULA["RowMax"] = "Max<sub> k=0..n </sub> | T(n, k) |"

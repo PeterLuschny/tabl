@@ -946,7 +946,7 @@ def antidiag_sum(r: trow) -> int:
 
 
 def antidiag_sum_(g: rgen, n: int) -> int:
-    return sum([g(n - k)[k] for k in range((n + 2) // 2)])
+    return sum(g(n - k)[k] for k in range((n + 2) // 2))
 
 
 def acc_sum(r: trow) -> int:
@@ -971,6 +971,14 @@ def alt_sum(r: trow) -> int:
 
 def alt_sum_(g: rgen, index: int) -> int:
     return alt_sum(g(index))
+
+
+def abs_sum(r: trow) -> int:
+    return sum(abs(t) for t in r)
+
+
+def abs_sum_(g: rgen, index: int) -> int:
+    return abs_sum(g(index))
 
 
 def RowSum(T: tabl) -> trow:
@@ -1003,6 +1011,14 @@ def AltSum(T: tabl) -> trow:
 
 def AltSum_(g: rgen, size: int) -> trow:
     return [alt_sum(g(n)) for n in range(size)]
+
+
+def AbsSum(T: tabl) -> trow:
+    return [abs_sum(row) for row in T]
+
+
+def AbsSum_(g: rgen, size: int) -> trow:
+    return [abs_sum(g(n)) for n in range(size)]
 
 
 def AccSum(T: tabl) -> trow:
@@ -1042,6 +1058,7 @@ def PrintSums(T: tabl, trianglename: str, mdformat: bool = True) -> None:
     RegisterSumTrait(EvenSum)
     RegisterSumTrait(OddSum)
     RegisterSumTrait(AltSum)
+    RegisterSumTrait(AbsSum)
     RegisterSumTrait(AccSum)
     RegisterSumTrait(AccRevSum)
     RegisterSumTrait(DiagSum)
@@ -3101,6 +3118,7 @@ def RegisterTraits() -> dict[str, Callable]:
     RegisterTrait(EvenSum)
     RegisterTrait(OddSum)
     RegisterTrait(AltSum)
+    RegisterTrait(AbsSum)
     RegisterTrait(DiagSum)
     RegisterTrait(AccSum)
     RegisterTrait(AccRevSum)
@@ -3157,6 +3175,7 @@ def Formulas() -> dict[str, str]:
     FORMULA["EvenSum"] = "&sum;<sub> k=0..n </sub> T(n, k) even(k)"
     FORMULA["OddSum"] = "&sum;<sub> k=0..n </sub> T(n, k) odd(k)"
     FORMULA["AltSum"] = "&sum;<sub> k=0..n </sub> T(n, k) (-1)^k"
+    FORMULA["AbsSum"] = "&sum;<sub> k=0..n </sub> | T(n, k) |"
     FORMULA["DiagSum"] = "&sum;<sub> k=0..n // 2 </sub> T(n - k, k)"
     FORMULA["AccSum"] = "&sum;<sub> k=0..n </sub>&sum;<sub> j=0..k </sub> T(n, j)"
     FORMULA[
