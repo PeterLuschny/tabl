@@ -278,6 +278,50 @@ def Distribution(dbname: str) -> list | None:
         return None
 
 
+def DistinctAnumbers(table_name: str) -> list:
+    """
+    Count the number of distinct A-numbers in a table.
+    Group the traits by A-number.
+
+    Args:
+        table_name (str): The name of the table.
+
+    Returns:
+        list: A list of tuples containing the count, anum, type, trait, and seq of the A-numbers.
+    """
+    oeis_con = sqlite3.connect(GetDataPath(table_name, "db"))
+    oeis_cur = oeis_con.cursor()
+    sql = f"""
+        SELECT COUNT(anum), anum, GROUP_CONCAT(type, ','), GROUP_CONCAT(trait, ','), seq
+        FROM {table_name}
+        WHERE anum IS NOT 'missing'
+        GROUP BY anum
+        ORDER BY COUNT(anum) DESC, anum
+    """
+    res = oeis_cur.execute(sql)
+    ret = res.fetchall()
+    oeis_con.commit()
+    oeis_con.close()
+    return ret
+
+
+def PrintSummary(name: str):
+    """
+    Print a summary of duplicates for a given name.
+
+    Args:
+        name (str): The name to summarize.
+    """
+    CD = DistinctAnumbers(name)
+    for cd in CD[:-1]:
+        z = [f"{a}-{b}" for a, b in zip(cd[2].split(','), cd[3].split(','))]
+        print(cd[0], cd[1], z)
+        print("         ", setLength(GetNameByAnum(cd[1]), 90))
+        print("         ", cd[4])
+        print()
+
+
+
 if __name__ == "__main__":
     # TODO: What A-numbers are most cited?
     # TODO: What hash values whith no A-number are most cited?

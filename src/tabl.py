@@ -2670,25 +2670,6 @@ def Worpitzky(n: int, k: int) -> int:
     return worpitzky(n)[k]
 
 
-@cache
-def zarankiewicz(n: int) -> list[int]:
-    def s(n: int):
-        return (1 + n // 2) * (1 + (n + 1) // 2)
-
-    sn = s(n)
-    return [sn * s(k) for k in range(n + 1)]
-
-
-@MakeTriangle(
-    zarankiewicz,
-    "Zarankiewicz",
-    ["A298368"],
-    False,
-)
-def Zarankiewicz(n: int, k: int) -> int:
-    return zarankiewicz(n)[k]
-
-
 def bell_num(n: int) -> int:
     if n == 0:
         return 1
@@ -2812,7 +2793,6 @@ tabl_fun: list[tgen] = [
     TernaryTree,
     WardSet,
     Worpitzky,
-    Zarankiewicz,
 ]
 readme_header = """
 *** La sélection du Chef ***
@@ -3000,11 +2980,12 @@ def navbar(fun: tgen) -> list[str]:
     return NAVBAR
 
 
-def CsvToHtml(fun: tgen) -> None:
+def CsvToHtml(fun: tgen, nomissings: bool = False) -> None:
     """
     Converts a CSV file to an HTML file.
     Args:
         fun (tgen): The generator object of the triangle.
+        nomissings (bool, optional): Disregard traits missing in the OEIS. Default is False.
     Returns:
         None
     """
@@ -3042,12 +3023,13 @@ def CsvToHtml(fun: tgen) -> None:
                 trait = line[3]
                 anum = line[4]
                 seq = line[5]
+                if nomissings and anum == "missing":
+                    continue
                 outfile.write(f"<tr><td class='type'>{type}</td>")
                 tip = FORMULA[trait]
                 outfile.write(
                     f"<td class='tooltip'>{trait}<span class='formula'>{tip}</span></td>"
                 )
-                print(seq)
                 sseq = (seq.split(" ", 3)[3]).replace(" ", ",")
                 if anum == "missing":
                     color = "rgb(0, 0, 0)"
@@ -3079,10 +3061,10 @@ def CsvToHtml(fun: tgen) -> None:
                 outfile.write(h)
 
 
-def AllCsvToHtml() -> None:
+def AllCsvToHtml(nomissings: bool = False) -> None:
     for fun in tabl_fun:
         print(f"Info: Generating data/html/{fun.id}.html.")
-        CsvToHtml(fun)
+        CsvToHtml(fun, nomissings)
 
 
 def is_tabletrait(f: Callable):
@@ -3435,6 +3417,46 @@ def Distribution(dbname: str) -> list | None:
     except sqlite3.Error as e:
         print(f"Error accessing database: {e}")
         return None
+
+
+def DistinctAnumbers(table_name: str) -> list:
+    """
+    Count the number of distinct A-numbers in a table.
+    Group the traits by A-number.
+    Args:
+        table_name (str): The name of the table.
+    Returns:
+        list: A list of tuples containing the count, anum, type, trait, and seq of the A-numbers.
+    """
+    oeis_con = sqlite3.connect(GetDataPath(table_name, "db"))
+    oeis_cur = oeis_con.cursor()
+    sql = f"""
+        SELECT COUNT(anum), anum, GROUP_CONCAT(type, ','), GROUP_CONCAT(trait, ','), seq
+        FROM {table_name}
+        WHERE anum IS NOT 'missing'
+        GROUP BY anum
+        ORDER BY COUNT(anum) DESC, anum
+    """
+    res = oeis_cur.execute(sql)
+    ret = res.fetchall()
+    oeis_con.commit()
+    oeis_con.close()
+    return ret
+
+
+def PrintSummary(name: str):
+    """
+    Print a summary of duplicates for a given name.
+    Args:
+        name (str): The name to summarize.
+    """
+    CD = DistinctAnumbers(name)
+    for cd in CD[:-1]:
+        z = [f"{a}-{b}" for a, b in zip(cd[2].split(","), cd[3].split(","))]
+        print(cd[0], cd[1], z)
+        print("         ", setLength(GetNameByAnum(cd[1]), 90))
+        print("         ", cd[4])
+        print()
 
 
 """
@@ -3846,8 +3868,7 @@ def SaveTraits(
     r = fun.gen
     triname = fun.id
     funname, trityp = GetType(triname)
-    print(funname)
-    print(trityp)
+
     for traitname, trait in TRAITS.items():
         if trityp == traitname:
             continue
@@ -4076,3 +4097,4 @@ def SingleMake(fun: tgen) -> None:
     ConvertDBtoCSVandMD(GetDataPath(fun.id, "db"), fun.id)
     CsvToHtml(fun)
     SingleStatistic(fun)
+    PrintSummary(fun.id)
