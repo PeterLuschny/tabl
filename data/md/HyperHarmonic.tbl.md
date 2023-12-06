@@ -1,7 +1,7 @@
-# SymPoly
+# HyperHarmonic
 ['A165675', 'A093905', 'A105954', 'A165674']
 
-SymPoly Triangle view
+HyperHarmonic Triangle view
 
 |  Row   |  Seq   |
 | :---   |  :---  |
@@ -16,7 +16,7 @@ SymPoly Triangle view
 | Row8 | [40320, 109584, 69264, 24552, 5944, 1066, 146, 15, 1] |
 | Row9 | [362880, 1026576, 663696, 241128, 60216, 11274, 1650, 191, 17, 1] |
 
-SymPoly Triangles
+HyperHarmonic Triangles
 
 | Flat       |  Seq  |
 | :---       | :---  |
@@ -28,7 +28,7 @@ SymPoly Triangles
 | AccRevTabl | [[1], [1, 2], [1, 4, 6], [1, 6, 17, 23], [1, 8, 34, 84, 108], [1, 10, 57, 211, 485, 605], [1, 12, 86, 428, 1472, 3236, 3956], [1, 14, 121, 759, 3513, 11541, 24609, 29649], [1, 16, 162, 1228, 7172, 31724, 100988, 210572, 250892], [1, 18, 209, 1859, 13133, 73349, 314477, 978173, 2004749, 2367629]] |
 | DiffxTabl  | [[1], [1, 2], [2, 6, 3], [6, 22, 15, 4], [24, 100, 78, 28, 5], [120, 548, 462, 188, 45, 6], [720, 3528, 3132, 1368, 370, 66, 7], [5040, 26136, 24084, 11016, 3190, 642, 91, 8], [40320, 219168, 207792, 98208, 29720, 6396, 1022, 120, 9], [362880, 2053152, 1991088, 964512, 301080, 67644, 11550, 1528, 153, 10]] |
 
-SymPoly Row sums
+HyperHarmonic Row sums
 
 | Trait        |   Seq  |
 | :---         |  :---  |
@@ -36,11 +36,12 @@ SymPoly Row sums
 | EvenSum      | [1, 1, 3, 11, 51, 283, 1839, 13719, 115675, 1088459] |
 | OddSum       | [0, 1, 3, 12, 57, 322, 2117, 15930, 135217, 1279170] |
 | AltSum       | [1, 0, 0, -1, -6, -39, -278, -2211, -19542, -190711] |
+| AbsSum       | [1, 2, 6, 23, 108, 605, 3956, 29649, 250892, 2367629] |
 | AccSum       | [1, 3, 13, 68, 413, 2866, 22457, 196634, 1906165, 20290322] |
 | AccRevSum    | [1, 3, 11, 47, 235, 1369, 9191, 70207, 602755, 5753597] |
 | DiagSum      | [1, 1, 3, 9, 36, 175, 1021, 6965, 54480, 480843] |
 
-SymPoly Transforms
+HyperHarmonic Transforms
 
 | Trans      |   Seq  |
 | :---       |  :---  |
@@ -60,7 +61,7 @@ SymPoly Transforms
 | PosHalf    | [1, 3, 15, 103, 903, 9663, 122287, 1787991, 29671479, 551104591] |
 | NegHalf    | [1, -1, 3, -13, 75, -517, 3875, -26301, 29531, 5729003] |
 
-SymPoly Diagonals as rows
+HyperHarmonic Diagonals as rows
 
 | DiagRow  |   Seq  |
 | :---     |  :---  |
@@ -75,7 +76,7 @@ SymPoly Diagonals as rows
 | DiagRow8 | [40320, 1026576, 6999840, 30334320, 101378880, 284574960, 703404576, 1576890000, 3270729600, 6366517200]|
 | DiagRow9 | [362880, 10628640, 80627040, 383970240, 1397759040, 4243508640, 11277554400, 27046454400, 59753750400, 123418922400]|
 
-SymPoly Diagonals as columns
+HyperHarmonic Diagonals as columns
 
 | DiagCol  |   Seq  |
 | :---     |  :---  |
@@ -90,7 +91,7 @@ SymPoly Diagonals as columns
 | DiagCol8 | [1, 17, 242, 3382, 48504, 725592, 11393808, 188204400, 3270729600, 59753750400] |
 | DiagCol9 | [1, 19, 299, 4578, 71394, 1153956, 19471500, 343976400, 6366517200, 123418922400] |
 
-SymPoly Polynomial values as rows
+HyperHarmonic Polynomial values as rows
 
 | PolyRow  |   Seq  |
 | :---     |  :---  |
@@ -105,7 +106,7 @@ SymPoly Polynomial values as rows
 | PolyRow8 | [40320, 250892, 873696, 2541654, 6680768, 16278840, 37177632, 80105186, 163705344, 318861828] |
 | PolyRow9 | [362880, 2367629, 8458976, 25295193, 68744384, 174392285, 417286944, 946610441, 2043104768, 4209578829] |
 
-SymPoly Polynomial values as columns
+HyperHarmonic Polynomial values as columns
 
 | PolyCol  |   Seq  |
 | :---     |  :---  |
@@ -120,10 +121,10 @@ SymPoly Polynomial values as columns
 | PolyCol8 | [1, 9, 90, 926, 9768, 105864, 1182448, 13657872, 163705344, 2043104768] |
 | PolyCol9 | [1, 10, 110, 1239, 14244, 167421, 2016972, 24976449, 318861828, 4209578829] |
 
-# SymPoly:Inv
+# HyperHarmonic:Inv
 []
 
-SymPoly:Inv Triangle view
+HyperHarmonic:Inv Triangle view
 
 |  Row   |  Seq   |
 | :---   |  :---  |
@@ -138,7 +139,7 @@ SymPoly:Inv Triangle view
 | Row8 | [0, 0, 0, 0, 0, 0, 49, -15, 1] |
 | Row9 | [0, 0, 0, 0, 0, 0, 0, 64, -17, 1] |
 
-SymPoly:Inv Triangles
+HyperHarmonic:Inv Triangles
 
 | Flat       |  Seq  |
 | :---       | :---  |
@@ -150,7 +151,7 @@ SymPoly:Inv Triangles
 | AccRevTabl | [[1], [1, 0], [1, -2, -1], [1, -4, 0, 0], [1, -6, 3, 3, 3], [1, -8, 8, 8, 8, 8], [1, -10, 15, 15, 15, 15, 15], [1, -12, 24, 24, 24, 24, 24, 24], [1, -14, 35, 35, 35, 35, 35, 35, 35], [1, -16, 48, 48, 48, 48, 48, 48, 48, 48]] |
 | DiffxTabl  | [[1], [-1, 2], [1, -6, 3], [0, 8, -15, 4], [0, 0, 27, -28, 5], [0, 0, 0, 64, -45, 6], [0, 0, 0, 0, 125, -66, 7], [0, 0, 0, 0, 0, 216, -91, 8], [0, 0, 0, 0, 0, 0, 343, -120, 9], [0, 0, 0, 0, 0, 0, 0, 512, -153, 10]] |
 
-SymPoly:Inv Row sums
+HyperHarmonic:Inv Row sums
 
 | Trait        |   Seq  |
 | :---         |  :---  |
@@ -158,11 +159,12 @@ SymPoly:Inv Row sums
 | EvenSum      | [1, -1, 2, -5, 10, -9, 26, -13, 50, -17] |
 | OddSum       | [0, 1, -3, 5, -7, 17, -11, 37, -15, 65] |
 | AltSum       | [1, -2, 5, -10, 17, -26, 37, -50, 65, -82] |
+| AbsSum       | [1, 2, 5, 10, 17, 26, 37, 50, 65, 82] |
 | AccSum       | [1, -1, -2, 3, 14, 31, 54, 83, 118, 159] |
 | AccRevSum    | [1, 1, -2, -3, 4, 25, 66, 133, 232, 369] |
 | DiagSum      | [1, -1, 2, -3, 5, -5, 10, -7, 17, -9] |
 
-SymPoly:Inv Transforms
+HyperHarmonic:Inv Transforms
 
 | Trans      |   Seq  |
 | :---       |  :---  |
@@ -182,7 +184,7 @@ SymPoly:Inv Transforms
 | PosHalf    | [1, -1, -1, 7, 23, 47, 79, 119, 167, 223] |
 | NegHalf    | [1, 3, 11, 27, 51, 83, 123, 171, 227, 291] |
 
-SymPoly:Inv Diagonals as rows
+HyperHarmonic:Inv Diagonals as rows
 
 | DiagRow  |   Seq  |
 | :---     |  :---  |
@@ -197,7 +199,7 @@ SymPoly:Inv Diagonals as rows
 | DiagRow8 | [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]|
 | DiagRow9 | [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]|
 
-SymPoly:Inv Diagonals as columns
+HyperHarmonic:Inv Diagonals as columns
 
 | DiagCol  |   Seq  |
 | :---     |  :---  |
@@ -212,7 +214,7 @@ SymPoly:Inv Diagonals as columns
 | DiagCol8 | [1, -17, 81, 0, 0, 0, 0, 0, 0, 0] |
 | DiagCol9 | [1, -19, 100, 0, 0, 0, 0, 0, 0, 0] |
 
-SymPoly:Inv Polynomial values as rows
+HyperHarmonic:Inv Polynomial values as rows
 
 | PolyRow  |   Seq  |
 | :---     |  :---  |
@@ -227,7 +229,7 @@ SymPoly:Inv Polynomial values as rows
 | PolyRow8 | [0, 35, 1472, 9477, 20480, -15625, -233280, -823543, -1835008, -2657205] |
 | PolyRow9 | [0, 48, 4352, 48114, 196608, 312500, -559872, -4941258, -16777216, -38263752] |
 
-SymPoly:Inv Polynomial values as columns
+HyperHarmonic:Inv Polynomial values as columns
 
 | PolyCol  |   Seq  |
 | :---     |  :---  |
@@ -242,10 +244,10 @@ SymPoly:Inv Polynomial values as columns
 | PolyCol8 | [1, 7, 41, 224, 1088, 4096, 4096, -131072, -1835008, -16777216] |
 | PolyCol9 | [1, 8, 55, 360, 2187, 11664, 45927, 0, -2657205, -38263752] |
 
-# SymPoly:Rev
+# HyperHarmonic:Rev
 []
 
-SymPoly:Rev Triangle view
+HyperHarmonic:Rev Triangle view
 
 |  Row   |  Seq   |
 | :---   |  :---  |
@@ -260,7 +262,7 @@ SymPoly:Rev Triangle view
 | Row8 | [1, 15, 146, 1066, 5944, 24552, 69264, 109584, 40320] |
 | Row9 | [1, 17, 191, 1650, 11274, 60216, 241128, 663696, 1026576, 362880] |
 
-SymPoly:Rev Triangles
+HyperHarmonic:Rev Triangles
 
 | Flat       |  Seq  |
 | :---       | :---  |
@@ -272,7 +274,7 @@ SymPoly:Rev Triangles
 | AccRevTabl | [[1], [1, 2], [2, 5, 6], [6, 17, 22, 23], [24, 74, 100, 107, 108], [120, 394, 548, 595, 604, 605], [720, 2484, 3528, 3870, 3944, 3955, 3956], [5040, 18108, 26136, 28890, 29528, 29635, 29648, 29649], [40320, 149904, 219168, 243720, 249664, 250730, 250876, 250891, 250892], [362880, 1389456, 2053152, 2294280, 2354496, 2365770, 2367420, 2367611, 2367628, 2367629]] |
 | DiffxTabl  | [[1], [1, 2], [1, 6, 6], [1, 10, 33, 24], [1, 14, 78, 200, 120], [1, 18, 141, 616, 1370, 720], [1, 22, 222, 1368, 5220, 10584, 5040], [1, 26, 321, 2552, 13770, 48168, 91476, 40320], [1, 30, 438, 4264, 29720, 147312, 484848, 876672, 362880], [1, 34, 573, 6600, 56370, 361296, 1687896, 5309568, 9239184, 3628800]] |
 
-SymPoly:Rev Row sums
+HyperHarmonic:Rev Row sums
 
 | Trait        |   Seq  |
 | :---         |  :---  |
@@ -280,11 +282,12 @@ SymPoly:Rev Row sums
 | EvenSum      | [1, 1, 3, 12, 51, 322, 1839, 15930, 115675, 1279170] |
 | OddSum       | [0, 1, 3, 11, 57, 283, 2117, 13719, 135217, 1088459] |
 | AltSum       | [1, 0, 0, 1, -6, 39, -278, 2211, -19542, 190711] |
+| AbsSum       | [1, 2, 6, 23, 108, 605, 3956, 29649, 250892, 2367629] |
 | AccSum       | [1, 3, 11, 47, 235, 1369, 9191, 70207, 602755, 5753597] |
 | AccRevSum    | [1, 3, 13, 68, 413, 2866, 22457, 196634, 1906165, 20290322] |
 | DiagSum      | [1, 1, 2, 4, 8, 19, 42, 109, 266, 739] |
 
-SymPoly:Rev Transforms
+HyperHarmonic:Rev Transforms
 
 | Trans      |   Seq  |
 | :---       |  :---  |
@@ -304,7 +307,7 @@ SymPoly:Rev Transforms
 | PosHalf    | [1, 3, 12, 56, 300, 1836, 12760, 99912, 873696, 8458976] |
 | NegHalf    | [1, -1, 0, -4, -12, -76, -472, -3528, -29536, -276832] |
 
-SymPoly:Rev Diagonals as rows
+HyperHarmonic:Rev Diagonals as rows
 
 | DiagRow  |   Seq  |
 | :---     |  :---  |
@@ -319,7 +322,7 @@ SymPoly:Rev Diagonals as rows
 | DiagRow8 | [1, 17, 242, 3382, 48504, 725592, 11393808, 188204400, 3270729600, 59753750400]|
 | DiagRow9 | [1, 19, 299, 4578, 71394, 1153956, 19471500, 343976400, 6366517200, 123418922400]|
 
-SymPoly:Rev Diagonals as columns
+HyperHarmonic:Rev Diagonals as columns
 
 | DiagCol  |   Seq  |
 | :---     |  :---  |
@@ -334,7 +337,7 @@ SymPoly:Rev Diagonals as columns
 | DiagCol8 | [40320, 1026576, 6999840, 30334320, 101378880, 284574960, 703404576, 1576890000, 3270729600, 6366517200] |
 | DiagCol9 | [362880, 10628640, 80627040, 383970240, 1397759040, 4243508640, 11277554400, 27046454400, 59753750400, 123418922400] |
 
-SymPoly:Rev Polynomial values as rows
+HyperHarmonic:Rev Polynomial values as rows
 
 | PolyRow  |   Seq  |
 | :---     |  :---  |
@@ -349,7 +352,7 @@ SymPoly:Rev Polynomial values as rows
 | PolyRow8 | [1, 250892, 29671479, 561170926, 4748274653, 25474076976, 101829060307, 331260042674, 925258217721, 2298079953748] |
 | PolyRow9 | [1, 2367629, 551104591, 15520809643, 174330811061, 1165570557361, 5578773484819, 21137513617151, 67385118274633, 188084091286261] |
 
-SymPoly:Rev Polynomial values as columns
+HyperHarmonic:Rev Polynomial values as columns
 
 | PolyCol  |   Seq  |
 | :---     |  :---  |
@@ -364,10 +367,10 @@ SymPoly:Rev Polynomial values as columns
 | PolyCol8 | [1, 9, 153, 3817, 125625, 5136393, 251002585, 14270019369, 925258217721, 67385118274633] |
 | PolyCol9 | [1, 10, 190, 5311, 196084, 8999749, 493905052, 31543623001, 2298079953748, 188084091286261] |
 
-# SymPoly:Inv:Rev
+# HyperHarmonic:Inv:Rev
 []
 
-SymPoly:Inv:Rev Triangle view
+HyperHarmonic:Inv:Rev Triangle view
 
 |  Row   |  Seq   |
 | :---   |  :---  |
@@ -382,7 +385,7 @@ SymPoly:Inv:Rev Triangle view
 | Row8 | [1, -15, 49, 0, 0, 0, 0, 0, 0] |
 | Row9 | [1, -17, 64, 0, 0, 0, 0, 0, 0, 0] |
 
-SymPoly:Inv:Rev Triangles
+HyperHarmonic:Inv:Rev Triangles
 
 | Flat       |  Seq  |
 | :---       | :---  |
@@ -394,7 +397,7 @@ SymPoly:Inv:Rev Triangles
 | AccRevTabl | [[1], [-1, 0], [1, -2, -1], [0, 4, -1, 0], [0, 0, 9, 2, 3], [0, 0, 0, 16, 7, 8], [0, 0, 0, 0, 25, 14, 15], [0, 0, 0, 0, 0, 36, 23, 24], [0, 0, 0, 0, 0, 0, 49, 34, 35], [0, 0, 0, 0, 0, 0, 0, 64, 47, 48]] |
 | DiffxTabl  | [[1], [1, -2], [1, -6, 3], [1, -10, 12, 0], [1, -14, 27, 0, 0], [1, -18, 48, 0, 0, 0], [1, -22, 75, 0, 0, 0, 0], [1, -26, 108, 0, 0, 0, 0, 0], [1, -30, 147, 0, 0, 0, 0, 0, 0], [1, -34, 192, 0, 0, 0, 0, 0, 0, 0]] |
 
-SymPoly:Inv:Rev Row sums
+HyperHarmonic:Inv:Rev Row sums
 
 | Trait        |   Seq  |
 | :---         |  :---  |
@@ -402,11 +405,12 @@ SymPoly:Inv:Rev Row sums
 | EvenSum      | [1, 1, 2, 5, 10, 17, 26, 37, 50, 65] |
 | OddSum       | [0, -1, -3, -5, -7, -9, -11, -13, -15, -17] |
 | AltSum       | [1, 2, 5, 10, 17, 26, 37, 50, 65, 82] |
+| AbsSum       | [1, 2, 5, 10, 17, 26, 37, 50, 65, 82] |
 | AccSum       | [1, 1, -2, -3, 4, 25, 66, 133, 232, 369] |
 | AccRevSum    | [1, -1, -2, 3, 14, 31, 54, 83, 118, 159] |
 | DiagSum      | [1, 1, 0, -2, -3, -2, 1, 6, 13, 22] |
 
-SymPoly:Inv:Rev Transforms
+HyperHarmonic:Inv:Rev Transforms
 
 | Trans      |   Seq  |
 | :---       |  :---  |
@@ -426,7 +430,7 @@ SymPoly:Inv:Rev Transforms
 | PosHalf    | [1, 1, -1, -4, -4, 16, 112, 448, 1472, 4352] |
 | NegHalf    | [1, -3, 11, -36, 108, -304, 816, -2112, 5312, -13056] |
 
-SymPoly:Inv:Rev Diagonals as rows
+HyperHarmonic:Inv:Rev Diagonals as rows
 
 | DiagRow  |   Seq  |
 | :---     |  :---  |
@@ -441,7 +445,7 @@ SymPoly:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, -17, 81, 0, 0, 0, 0, 0, 0, 0]|
 | DiagRow9 | [1, -19, 100, 0, 0, 0, 0, 0, 0, 0]|
 
-SymPoly:Inv:Rev Diagonals as columns
+HyperHarmonic:Inv:Rev Diagonals as columns
 
 | DiagCol  |   Seq  |
 | :---     |  :---  |
@@ -456,7 +460,7 @@ SymPoly:Inv:Rev Diagonals as columns
 | DiagCol8 | [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] |
 | DiagCol9 | [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] |
 
-SymPoly:Inv:Rev Polynomial values as rows
+HyperHarmonic:Inv:Rev Polynomial values as rows
 
 | PolyRow  |   Seq  |
 | :---     |  :---  |
@@ -471,7 +475,7 @@ SymPoly:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, 35, 167, 397, 725, 1151, 1675, 2297, 3017, 3835] |
 | PolyRow9 | [1, 48, 223, 526, 957, 1516, 2203, 3018, 3961, 5032] |
 
-SymPoly:Inv:Rev Polynomial values as columns
+HyperHarmonic:Inv:Rev Polynomial values as columns
 
 | PolyCol  |   Seq  |
 | :---     |  :---  |

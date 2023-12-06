@@ -210,8 +210,10 @@ def TuttiStats(targetname: str = "traitsstats") -> None:
         print("\nRanking of triangles with regard to their impact:\n")
         cur.execute(f"SELECT * FROM {targetname} ORDER by distanum DESC")
         F = cur.fetchall()
+        rank = 1
         for f in F:
-            print([f[3]], f)
+            print(f"({rank})", [f[3]], f)
+            rank += 1
 
         cur.close()
 

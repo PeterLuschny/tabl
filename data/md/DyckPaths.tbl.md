@@ -1,7 +1,7 @@
-# CatalanSqr
+# DyckPaths
 ['A039599', 'A050155']
 
-CatalanSqr Triangle view
+DyckPaths Triangle view
 
 |  Row   |  Seq   |
 | :---   |  :---  |
@@ -16,7 +16,7 @@ CatalanSqr Triangle view
 | Row8 | [1430, 3432, 3640, 2548, 1260, 440, 104, 15, 1] |
 | Row9 | [4862, 11934, 13260, 9996, 5508, 2244, 663, 135, 17, 1] |
 
-CatalanSqr Triangles
+DyckPaths Triangles
 
 | Flat       |  Seq  |
 | :---       | :---  |
@@ -28,7 +28,7 @@ CatalanSqr Triangles
 | AccRevTabl | [[1], [1, 2], [1, 4, 6], [1, 6, 15, 20], [1, 8, 28, 56, 70], [1, 10, 45, 120, 210, 252], [1, 12, 66, 220, 495, 792, 924], [1, 14, 91, 364, 1001, 2002, 3003, 3432], [1, 16, 120, 560, 1820, 4368, 8008, 11440, 12870], [1, 18, 153, 816, 3060, 8568, 18564, 31824, 43758, 48620]] |
 | DiffxTabl  | [[1], [1, 2], [2, 6, 3], [5, 18, 15, 4], [14, 56, 60, 28, 5], [42, 180, 225, 140, 45, 6], [132, 594, 825, 616, 270, 66, 7], [429, 2002, 3003, 2548, 1365, 462, 91, 8], [1430, 6864, 10920, 10192, 6300, 2640, 728, 120, 9], [4862, 23868, 39780, 39984, 27540, 13464, 4641, 1080, 153, 10]] |
 
-CatalanSqr Row sums
+DyckPaths Row sums
 
 | Trait        |   Seq  |
 | :---         |  :---  |
@@ -36,11 +36,12 @@ CatalanSqr Row sums
 | EvenSum      | [1, 1, 3, 10, 35, 126, 462, 1716, 6435, 24310] |
 | OddSum       | [0, 1, 3, 10, 35, 126, 462, 1716, 6435, 24310] |
 | AltSum       | [1, 0, 0, 0, 0, 0, 0, 0, 0, 0] |
+| AbsSum       | [1, 2, 6, 20, 70, 252, 924, 3432, 12870, 48620] |
 | AccSum       | [1, 3, 13, 58, 257, 1126, 4882, 20980, 89497, 379438] |
 | AccRevSum    | [1, 3, 11, 42, 163, 638, 2510, 9908, 39203, 155382] |
 | DiagSum      | [1, 1, 3, 8, 24, 75, 243, 808, 2742, 9458] |
 
-CatalanSqr Transforms
+DyckPaths Transforms
 
 | Trans      |   Seq  |
 | :---       |  :---  |
@@ -60,7 +61,7 @@ CatalanSqr Transforms
 | PosHalf    | [1, 3, 15, 87, 543, 3543, 23823, 163719, 1143999, 8099511] |
 | NegHalf    | [1, -1, 3, -13, 67, -381, 2307, -14589, 95235, -636925] |
 
-CatalanSqr Diagonals as rows
+DyckPaths Diagonals as rows
 
 | DiagRow  |   Seq  |
 | :---     |  :---  |
@@ -75,7 +76,7 @@ CatalanSqr Diagonals as rows
 | DiagRow8 | [1430, 11934, 48450, 149226, 389367, 904475, 1924065, 3817125, 7152444, 12776588]|
 | DiagRow9 | [4862, 41990, 177650, 572033, 1562275, 3798795, 8454225, 17530500, 34295052, 63882940]|
 
-CatalanSqr Diagonals as columns
+DyckPaths Diagonals as columns
 
 | DiagCol  |   Seq  |
 | :---     |  :---  |
@@ -90,7 +91,7 @@ CatalanSqr Diagonals as columns
 | DiagCol8 | [1, 17, 170, 1309, 8602, 50830, 278460, 1442025, 7152444, 34295052] |
 | DiagCol9 | [1, 19, 209, 1748, 12350, 77805, 451269, 2459664, 12776588, 63882940] |
 
-CatalanSqr Polynomial values as rows
+DyckPaths Polynomial values as rows
 
 | PolyRow  |   Seq  |
 | :---     |  :---  |
@@ -105,7 +106,7 @@ CatalanSqr Polynomial values as rows
 | PolyRow8 | [1430, 12870, 86310, 437444, 1746870, 5778090, 16488710, 41851560, 96642774, 206494190] |
 | PolyRow9 | [4862, 48620, 386250, 2331128, 10916150, 41600532, 134656130, 382641200, 978506478, 2294378300] |
 
-CatalanSqr Polynomial values as columns
+DyckPaths Polynomial values as columns
 
 | PolyCol  |   Seq  |
 | :---     |  :---  |
@@ -120,10 +121,10 @@ CatalanSqr Polynomial values as columns
 | PolyCol8 | [1, 9, 90, 909, 9198, 93114, 942732, 9545013, 96642774, 978506478] |
 | PolyCol9 | [1, 10, 110, 1220, 13550, 150540, 1672620, 18584520, 206494190, 2294378300] |
 
-# CatalanSqr:Inv
+# DyckPaths:Inv
 []
 
-CatalanSqr:Inv Triangle view
+DyckPaths:Inv Triangle view
 
 |  Row   |  Seq   |
 | :---   |  :---  |
@@ -138,7 +139,7 @@ CatalanSqr:Inv Triangle view
 | Row8 | [1, -36, 210, -462, 495, -286, 91, -15, 1] |
 | Row9 | [-1, 45, -330, 924, -1287, 1001, -455, 120, -17, 1] |
 
-CatalanSqr:Inv Triangles
+DyckPaths:Inv Triangles
 
 | Flat       |  Seq  |
 | :---       | :---  |
@@ -150,7 +151,7 @@ CatalanSqr:Inv Triangles
 | AccRevTabl | [[1], [1, 0], [1, -2, -1], [1, -4, 2, 1], [1, -6, 9, -1, 0], [1, -8, 20, -15, 0, -1], [1, -10, 35, -49, 21, 0, 1], [1, -12, 54, -111, 99, -27, 1, 0], [1, -14, 77, -209, 286, -176, 34, -2, -1], [1, -16, 104, -351, 650, -637, 287, -43, 2, 1]] |
 | DiffxTabl  | [[1], [-1, 2], [1, -6, 3], [-1, 12, -15, 4], [1, -20, 45, -28, 5], [-1, 30, -105, 112, -45, 6], [1, -42, 210, -336, 225, -66, 7], [-1, 56, -378, 840, -825, 396, -91, 8], [1, -72, 630, -1848, 2475, -1716, 637, -120, 9], [-1, 90, -990, 3696, -6435, 6006, -3185, 960, -153, 10]] |
 
-CatalanSqr:Inv Row sums
+DyckPaths:Inv Row sums
 
 | Trait        |   Seq  |
 | :---         |  :---  |
@@ -158,11 +159,12 @@ CatalanSqr:Inv Row sums
 | EvenSum      | [1, -1, 2, -6, 17, -45, 117, -305, 798, -2090] |
 | OddSum       | [0, 1, -3, 7, -17, 44, -116, 305, -799, 2091] |
 | AltSum       | [1, -2, 5, -13, 34, -89, 233, -610, 1597, -4181] |
+| AbsSum       | [1, 2, 5, 13, 34, 89, 233, 610, 1597, 4181] |
 | AccSum       | [1, -1, -2, 5, -3, -4, 9, -5, -6, 13] |
 | AccRevSum    | [1, 1, -2, 0, 3, -3, -1, 5, -4, -2] |
 | DiagSum      | [1, -1, 2, -4, 8, -16, 32, -64, 128, -256] |
 
-CatalanSqr:Inv Transforms
+DyckPaths:Inv Transforms
 
 | Trans      |   Seq  |
 | :---       |  :---  |
@@ -182,7 +184,7 @@ CatalanSqr:Inv Transforms
 | PosHalf    | [1, -1, -1, 7, -17, 23, -1, -89, 271, -457] |
 | NegHalf    | [1, 3, 11, 43, 171, 683, 2731, 10923, 43691, 174763] |
 
-CatalanSqr:Inv Diagonals as rows
+DyckPaths:Inv Diagonals as rows
 
 | DiagRow  |   Seq  |
 | :---     |  :---  |
@@ -197,7 +199,7 @@ CatalanSqr:Inv Diagonals as rows
 | DiagRow8 | [1, 45, 495, 3003, 12870, 43758, 125970, 319770, 735471, 1562275]|
 | DiagRow9 | [-1, -55, -715, -5005, -24310, -92378, -293930, -817190, -2042975, -4686825]|
 
-CatalanSqr:Inv Diagonals as columns
+DyckPaths:Inv Diagonals as columns
 
 | DiagCol  |   Seq  |
 | :---     |  :---  |
@@ -212,7 +214,7 @@ CatalanSqr:Inv Diagonals as columns
 | DiagCol8 | [1, -17, 153, -969, 4845, -20349, 74613, -245157, 735471, -2042975] |
 | DiagCol9 | [1, -19, 190, -1330, 7315, -33649, 134596, -480700, 1562275, -4686825] |
 
-CatalanSqr:Inv Polynomial values as rows
+DyckPaths:Inv Polynomial values as rows
 
 | PolyRow  |   Seq  |
 | :---     |  :---  |
@@ -227,7 +229,7 @@ CatalanSqr:Inv Polynomial values as rows
 | PolyRow8 | [1, -1, 1, 1, 17, 3571, 51409, 350981, 1607521, 5702887] |
 | PolyRow9 | [-1, 1, 1, -1, 19, 9349, 191861, 1681651, 9369319, 39088169] |
 
-CatalanSqr:Inv Polynomial values as columns
+DyckPaths:Inv Polynomial values as columns
 
 | PolyCol  |   Seq  |
 | :---     |  :---  |
@@ -242,10 +244,10 @@ CatalanSqr:Inv Polynomial values as columns
 | PolyCol8 | [1, 7, 41, 239, 1393, 8119, 47321, 275807, 1607521, 9369319] |
 | PolyCol9 | [1, 8, 55, 377, 2584, 17711, 121393, 832040, 5702887, 39088169] |
 
-# CatalanSqr:Rev
+# DyckPaths:Rev
 []
 
-CatalanSqr:Rev Triangle view
+DyckPaths:Rev Triangle view
 
 |  Row   |  Seq   |
 | :---   |  :---  |
@@ -260,7 +262,7 @@ CatalanSqr:Rev Triangle view
 | Row8 | [1, 15, 104, 440, 1260, 2548, 3640, 3432, 1430] |
 | Row9 | [1, 17, 135, 663, 2244, 5508, 9996, 13260, 11934, 4862] |
 
-CatalanSqr:Rev Triangles
+DyckPaths:Rev Triangles
 
 | Flat       |  Seq  |
 | :---       | :---  |
@@ -272,7 +274,7 @@ CatalanSqr:Rev Triangles
 | AccRevTabl | [[1], [1, 2], [2, 5, 6], [5, 14, 19, 20], [14, 42, 62, 69, 70], [42, 132, 207, 242, 251, 252], [132, 429, 704, 858, 912, 923, 924], [429, 1430, 2431, 3068, 3341, 3418, 3431, 3432], [1430, 4862, 8502, 11050, 12310, 12750, 12854, 12869, 12870], [4862, 16796, 30056, 40052, 45560, 47804, 48467, 48602, 48619, 48620]] |
 | DiffxTabl  | [[1], [1, 2], [1, 6, 6], [1, 10, 27, 20], [1, 14, 60, 112, 70], [1, 18, 105, 300, 450, 252], [1, 22, 162, 616, 1375, 1782, 924], [1, 26, 231, 1092, 3185, 6006, 7007, 3432], [1, 30, 312, 1760, 6300, 15288, 25480, 27456, 12870], [1, 34, 405, 2652, 11220, 33048, 69972, 106080, 107406, 48620]] |
 
-CatalanSqr:Rev Row sums
+DyckPaths:Rev Row sums
 
 | Trait        |   Seq  |
 | :---         |  :---  |
@@ -280,11 +282,12 @@ CatalanSqr:Rev Row sums
 | EvenSum      | [1, 1, 3, 10, 35, 126, 462, 1716, 6435, 24310] |
 | OddSum       | [0, 1, 3, 10, 35, 126, 462, 1716, 6435, 24310] |
 | AltSum       | [1, 0, 0, 0, 0, 0, 0, 0, 0, 0] |
+| AbsSum       | [1, 2, 6, 20, 70, 252, 924, 3432, 12870, 48620] |
 | AccSum       | [1, 3, 11, 42, 163, 638, 2510, 9908, 39203, 155382] |
 | AccRevSum    | [1, 3, 13, 58, 257, 1126, 4882, 20980, 89497, 379438] |
 | DiagSum      | [1, 1, 2, 4, 8, 17, 35, 75, 157, 337] |
 
-CatalanSqr:Rev Transforms
+DyckPaths:Rev Transforms
 
 | Trans      |   Seq  |
 | :---       |  :---  |
@@ -304,7 +307,7 @@ CatalanSqr:Rev Transforms
 | PosHalf    | [1, 3, 12, 51, 222, 978, 4338, 19323, 86310, 386250] |
 | NegHalf    | [1, -1, 0, -1, -2, -6, -18, -57, -186, -622] |
 
-CatalanSqr:Rev Diagonals as rows
+DyckPaths:Rev Diagonals as rows
 
 | DiagRow  |   Seq  |
 | :---     |  :---  |
@@ -319,7 +322,7 @@ CatalanSqr:Rev Diagonals as rows
 | DiagRow8 | [1, 17, 170, 1309, 8602, 50830, 278460, 1442025, 7152444, 34295052]|
 | DiagRow9 | [1, 19, 209, 1748, 12350, 77805, 451269, 2459664, 12776588, 63882940]|
 
-CatalanSqr:Rev Diagonals as columns
+DyckPaths:Rev Diagonals as columns
 
 | DiagCol  |   Seq  |
 | :---     |  :---  |
@@ -334,7 +337,7 @@ CatalanSqr:Rev Diagonals as columns
 | DiagCol8 | [1430, 11934, 48450, 149226, 389367, 904475, 1924065, 3817125, 7152444, 12776588] |
 | DiagCol9 | [4862, 41990, 177650, 572033, 1562275, 3798795, 8454225, 17530500, 34295052, 63882940] |
 
-CatalanSqr:Rev Polynomial values as rows
+DyckPaths:Rev Polynomial values as rows
 
 | PolyRow  |   Seq  |
 | :---     |  :---  |
@@ -349,7 +352,7 @@ CatalanSqr:Rev Polynomial values as rows
 | PolyRow8 | [1, 12870, 1143999, 20275660, 167817405, 892401426, 3553964155, 11544312984, 32231934585, 80065458910] |
 | PolyRow9 | [1, 48620, 8099511, 211823800, 2321105525, 15368638836, 73266506635, 277190766896, 883404542025, 2466432898300] |
 
-CatalanSqr:Rev Polynomial values as columns
+DyckPaths:Rev Polynomial values as columns
 
 | PolyCol  |   Seq  |
 | :---     |  :---  |
@@ -364,10 +367,10 @@ CatalanSqr:Rev Polynomial values as columns
 | PolyCol8 | [1, 9, 153, 3177, 73017, 1785609, 45543897, 1197639081, 32231934585, 883404542025] |
 | PolyCol9 | [1, 10, 190, 4420, 113950, 3128140, 89608780, 2647358920, 80065458910, 2466432898300] |
 
-# CatalanSqr:Inv:Rev
+# DyckPaths:Inv:Rev
 []
 
-CatalanSqr:Inv:Rev Triangle view
+DyckPaths:Inv:Rev Triangle view
 
 |  Row   |  Seq   |
 | :---   |  :---  |
@@ -382,7 +385,7 @@ CatalanSqr:Inv:Rev Triangle view
 | Row8 | [1, -15, 91, -286, 495, -462, 210, -36, 1] |
 | Row9 | [1, -17, 120, -455, 1001, -1287, 924, -330, 45, -1] |
 
-CatalanSqr:Inv:Rev Triangles
+DyckPaths:Inv:Rev Triangles
 
 | Flat       |  Seq  |
 | :---       | :---  |
@@ -394,7 +397,7 @@ CatalanSqr:Inv:Rev Triangles
 | AccRevTabl | [[1], [-1, 0], [1, -2, -1], [-1, 5, 0, 1], [1, -9, 6, -1, 0], [-1, 14, -21, 7, -2, -1], [1, -20, 50, -34, 11, 0, 1], [-1, 27, -99, 111, -54, 12, -1, 0], [1, -35, 175, -287, 208, -78, 13, -2, -1], [-1, 44, -286, 638, -649, 352, -103, 17, 0, 1]] |
 | DiffxTabl  | [[1], [1, -2], [1, -6, 3], [1, -10, 18, -4], [1, -14, 45, -40, 5], [1, -18, 84, -140, 75, -6], [1, -22, 135, -336, 350, -126, 7], [1, -26, 198, -660, 1050, -756, 196, -8], [1, -30, 273, -1144, 2475, -2772, 1470, -288, 9], [1, -34, 360, -1820, 5005, -7722, 6468, -2640, 405, -10]] |
 
-CatalanSqr:Inv:Rev Row sums
+DyckPaths:Inv:Rev Row sums
 
 | Trait        |   Seq  |
 | :---         |  :---  |
@@ -402,11 +405,12 @@ CatalanSqr:Inv:Rev Row sums
 | EvenSum      | [1, 1, 2, 7, 17, 44, 117, 305, 798, 2091] |
 | OddSum       | [0, -1, -3, -6, -17, -45, -116, -305, -799, -2090] |
 | AltSum       | [1, 2, 5, 13, 34, 89, 233, 610, 1597, 4181] |
+| AbsSum       | [1, 2, 5, 13, 34, 89, 233, 610, 1597, 4181] |
 | AccSum       | [1, 1, -2, 0, 3, -3, -1, 5, -4, -2] |
 | AccRevSum    | [1, -1, -2, 5, -3, -4, 9, -5, -6, 13] |
 | DiagSum      | [1, 1, 0, -2, -3, 0, 6, 8, -1, -17] |
 
-CatalanSqr:Inv:Rev Transforms
+DyckPaths:Inv:Rev Transforms
 
 | Trans      |   Seq  |
 | :---       |  :---  |
@@ -426,7 +430,7 @@ CatalanSqr:Inv:Rev Transforms
 | PosHalf    | [1, 1, -1, -1, 1, 1, -1, -1, 1, 1] |
 | NegHalf    | [1, -3, 11, -41, 153, -571, 2131, -7953, 29681, -110771] |
 
-CatalanSqr:Inv:Rev Diagonals as rows
+DyckPaths:Inv:Rev Diagonals as rows
 
 | DiagRow  |   Seq  |
 | :---     |  :---  |
@@ -441,7 +445,7 @@ CatalanSqr:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, -17, 153, -969, 4845, -20349, 74613, -245157, 735471, -2042975]|
 | DiagRow9 | [1, -19, 190, -1330, 7315, -33649, 134596, -480700, 1562275, -4686825]|
 
-CatalanSqr:Inv:Rev Diagonals as columns
+DyckPaths:Inv:Rev Diagonals as columns
 
 | DiagCol  |   Seq  |
 | :---     |  :---  |
@@ -456,7 +460,7 @@ CatalanSqr:Inv:Rev Diagonals as columns
 | DiagCol8 | [1, 45, 495, 3003, 12870, 43758, 125970, 319770, 735471, 1562275] |
 | DiagCol9 | [-1, -55, -715, -5005, -24310, -92378, -293930, -817190, -2042975, -4686825] |
 
-CatalanSqr:Inv:Rev Polynomial values as rows
+DyckPaths:Inv:Rev Polynomial values as rows
 
 | PolyRow  |   Seq  |
 | :---     |  :---  |
@@ -471,7 +475,7 @@ CatalanSqr:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, -1, 271, 1801, -27403, -308549, -1609901, -5846539, -16922039, -41771753] |
 | PolyRow9 | [1, 1, -457, -15467, -23939, 831041, 7431811, 36623413, 132620153, 392603041] |
 
-CatalanSqr:Inv:Rev Polynomial values as columns
+DyckPaths:Inv:Rev Polynomial values as columns
 
 | PolyCol  |   Seq  |
 | :---     |  :---  |

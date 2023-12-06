@@ -1,7 +1,7 @@
-# CatalanAer
+# CatalanPaths
 ['A053121', 'A052173', 'A112554', 'A322378']
 
-CatalanAer Triangle view
+CatalanPaths Triangle view
 
 |  Row   |  Seq   |
 | :---   |  :---  |
@@ -16,7 +16,7 @@ CatalanAer Triangle view
 | Row8 | [14, 0, 28, 0, 20, 0, 7, 0, 1] |
 | Row9 | [0, 42, 0, 48, 0, 27, 0, 8, 0, 1] |
 
-CatalanAer Triangles
+CatalanPaths Triangles
 
 | Flat       |  Seq  |
 | :---       | :---  |
@@ -28,7 +28,7 @@ CatalanAer Triangles
 | AccRevTabl | [[1], [1, 1], [1, 1, 2], [1, 1, 3, 3], [1, 1, 4, 4, 6], [1, 1, 5, 5, 10, 10], [1, 1, 6, 6, 15, 15, 20], [1, 1, 7, 7, 21, 21, 35, 35], [1, 1, 8, 8, 28, 28, 56, 56, 70], [1, 1, 9, 9, 36, 36, 84, 84, 126, 126]] |
 | DiffxTabl  | [[1], [0, 2], [1, 0, 3], [0, 4, 0, 4], [2, 0, 9, 0, 5], [0, 10, 0, 16, 0, 6], [5, 0, 27, 0, 25, 0, 7], [0, 28, 0, 56, 0, 36, 0, 8], [14, 0, 84, 0, 100, 0, 49, 0, 9], [0, 84, 0, 192, 0, 162, 0, 64, 0, 10]] |
 
-CatalanAer Row sums
+CatalanPaths Row sums
 
 | Trait        |   Seq  |
 | :---         |  :---  |
@@ -36,11 +36,12 @@ CatalanAer Row sums
 | EvenSum      | [1, 0, 2, 0, 6, 0, 20, 0, 70, 0] |
 | OddSum       | [0, 1, 0, 3, 0, 10, 0, 35, 0, 126] |
 | AltSum       | [1, -1, 2, -3, 6, -10, 20, -35, 70, -126] |
+| AbsSum       | [1, 1, 2, 3, 6, 10, 20, 35, 70, 126] |
 | AccSum       | [1, 1, 4, 7, 20, 38, 96, 187, 444, 874] |
 | AccRevSum    | [1, 2, 4, 8, 16, 32, 64, 128, 256, 512] |
 | DiagSum      | [1, 0, 2, 0, 5, 0, 14, 0, 42, 0] |
 
-CatalanAer Transforms
+CatalanPaths Transforms
 
 | Trans      |   Seq  |
 | :---       |  :---  |
@@ -60,7 +61,7 @@ CatalanAer Transforms
 | PosHalf    | [1, 1, 5, 9, 45, 97, 485, 1145, 5725, 14289] |
 | NegHalf    | [1, 1, 5, 9, 45, 97, 485, 1145, 5725, 14289] |
 
-CatalanAer Diagonals as rows
+CatalanPaths Diagonals as rows
 
 | DiagRow  |   Seq  |
 | :---     |  :---  |
@@ -75,7 +76,7 @@ CatalanAer Diagonals as rows
 | DiagRow8 | [14, 42, 90, 165, 275, 429, 637, 910, 1260, 1700]|
 | DiagRow9 | [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]|
 
-CatalanAer Diagonals as columns
+CatalanPaths Diagonals as columns
 
 | DiagCol  |   Seq  |
 | :---     |  :---  |
@@ -90,7 +91,7 @@ CatalanAer Diagonals as columns
 | DiagCol8 | [1, 0, 9, 0, 54, 0, 273, 0, 1260, 0] |
 | DiagCol9 | [1, 0, 10, 0, 65, 0, 350, 0, 1700, 0] |
 
-CatalanAer Polynomial values as rows
+CatalanPaths Polynomial values as rows
 
 | PolyRow  |   Seq  |
 | :---     |  :---  |
@@ -105,7 +106,7 @@ CatalanAer Polynomial values as rows
 | PolyRow8 | [14, 70, 1150, 13550, 99790, 513214, 2033150, 6637750, 18695950, 46900310] |
 | PolyRow9 | [0, 126, 2868, 45162, 424104, 2668710, 12537756, 47412498, 151904592, 427313934] |
 
-CatalanAer Polynomial values as columns
+CatalanPaths Polynomial values as columns
 
 | PolyCol  |   Seq  |
 | :---     |  :---  |
@@ -120,10 +121,10 @@ CatalanAer Polynomial values as columns
 | PolyCol8 | [1, 8, 65, 528, 4290, 34856, 283205, 2301040, 18695950, 151904592] |
 | PolyCol9 | [1, 9, 82, 747, 6806, 62010, 564980, 5147595, 46900310, 427313934] |
 
-# CatalanAer:Inv
+# CatalanPaths:Inv
 []
 
-CatalanAer:Inv Triangle view
+CatalanPaths:Inv Triangle view
 
 |  Row   |  Seq   |
 | :---   |  :---  |
@@ -138,7 +139,7 @@ CatalanAer:Inv Triangle view
 | Row8 | [1, 0, -10, 0, 15, 0, -7, 0, 1] |
 | Row9 | [0, 5, 0, -20, 0, 21, 0, -8, 0, 1] |
 
-CatalanAer:Inv Triangles
+CatalanPaths:Inv Triangles
 
 | Flat       |  Seq  |
 | :---       | :---  |
@@ -150,7 +151,7 @@ CatalanAer:Inv Triangles
 | AccRevTabl | [[1], [1, 1], [1, 1, 0], [1, 1, -1, -1], [1, 1, -2, -2, -1], [1, 1, -3, -3, 0, 0], [1, 1, -4, -4, 2, 2, 1], [1, 1, -5, -5, 5, 5, 1, 1], [1, 1, -6, -6, 9, 9, -1, -1, 0], [1, 1, -7, -7, 14, 14, -6, -6, -1, -1]] |
 | DiffxTabl  | [[1], [0, 2], [-1, 0, 3], [0, -4, 0, 4], [1, 0, -9, 0, 5], [0, 6, 0, -16, 0, 6], [-1, 0, 18, 0, -25, 0, 7], [0, -8, 0, 40, 0, -36, 0, 8], [1, 0, -30, 0, 75, 0, -49, 0, 9], [0, 10, 0, -80, 0, 126, 0, -64, 0, 10]] |
 
-CatalanAer:Inv Row sums
+CatalanPaths:Inv Row sums
 
 | Trait        |   Seq  |
 | :---         |  :---  |
@@ -158,11 +159,12 @@ CatalanAer:Inv Row sums
 | EvenSum      | [1, 0, 0, 0, -1, 0, 1, 0, 0, 0] |
 | OddSum       | [0, 1, 0, -1, 0, 0, 0, 1, 0, -1] |
 | AltSum       | [1, -1, 0, 1, -1, 0, 1, -1, 0, 1] |
+| AbsSum       | [1, 1, 2, 3, 5, 8, 13, 21, 34, 55] |
 | AccSum       | [1, 1, -2, -5, -3, 4, 9, 5, -6, -13] |
 | AccRevSum    | [1, 2, 2, 0, -3, -4, -1, 4, 6, 2] |
 | DiagSum      | [1, 0, 0, 0, 0, 0, 0, 0, 0, 0] |
 
-CatalanAer:Inv Transforms
+CatalanPaths:Inv Transforms
 
 | Trans      |   Seq  |
 | :---       |  :---  |
@@ -182,7 +184,7 @@ CatalanAer:Inv Transforms
 | PosHalf    | [1, 1, -3, -7, 5, 33, 13, -119, -171, 305] |
 | NegHalf    | [1, 1, -3, -7, 5, 33, 13, -119, -171, 305] |
 
-CatalanAer:Inv Diagonals as rows
+CatalanPaths:Inv Diagonals as rows
 
 | DiagRow  |   Seq  |
 | :---     |  :---  |
@@ -197,7 +199,7 @@ CatalanAer:Inv Diagonals as rows
 | DiagRow8 | [1, 5, 15, 35, 70, 126, 210, 330, 495, 715]|
 | DiagRow9 | [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]|
 
-CatalanAer:Inv Diagonals as columns
+CatalanPaths:Inv Diagonals as columns
 
 | DiagCol  |   Seq  |
 | :---     |  :---  |
@@ -212,7 +214,7 @@ CatalanAer:Inv Diagonals as columns
 | DiagCol8 | [1, 0, -9, 0, 45, 0, -165, 0, 495, 0] |
 | DiagCol9 | [1, 0, -10, 0, 55, 0, -220, 0, 715, 0] |
 
-CatalanAer:Inv Polynomial values as rows
+CatalanPaths:Inv Polynomial values as rows
 
 | PolyRow  |   Seq  |
 | :---     |  :---  |
@@ -227,7 +229,7 @@ CatalanAer:Inv Polynomial values as rows
 | PolyRow8 | [1, 0, 9, 2584, 40545, 290376, 1372105, 4976784, 15003009, 39424240] |
 | PolyRow9 | [0, -1, 10, 6765, 151316, 1391275, 7997214, 34111385, 118118440, 350382231] |
 
-CatalanAer:Inv Polynomial values as columns
+CatalanPaths:Inv Polynomial values as columns
 
 | PolyCol  |   Seq  |
 | :---     |  :---  |
@@ -242,10 +244,10 @@ CatalanAer:Inv Polynomial values as columns
 | PolyCol8 | [1, 8, 63, 496, 3905, 30744, 242047, 1905632, 15003009, 118118440] |
 | PolyCol9 | [1, 9, 80, 711, 6319, 56160, 499121, 4435929, 39424240, 350382231] |
 
-# CatalanAer:Rev
+# CatalanPaths:Rev
 []
 
-CatalanAer:Rev Triangle view
+CatalanPaths:Rev Triangle view
 
 |  Row   |  Seq   |
 | :---   |  :---  |
@@ -260,7 +262,7 @@ CatalanAer:Rev Triangle view
 | Row8 | [1, 0, 7, 0, 20, 0, 28, 0, 14] |
 | Row9 | [1, 0, 8, 0, 27, 0, 48, 0, 42, 0] |
 
-CatalanAer:Rev Triangles
+CatalanPaths:Rev Triangles
 
 | Flat       |  Seq  |
 | :---       | :---  |
@@ -272,7 +274,7 @@ CatalanAer:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [1, 1, 2], [0, 2, 2, 3], [2, 2, 5, 5, 6], [0, 5, 5, 9, 9, 10], [5, 5, 14, 14, 19, 19, 20], [0, 14, 14, 28, 28, 34, 34, 35], [14, 14, 42, 42, 62, 62, 69, 69, 70], [0, 42, 42, 90, 90, 117, 117, 125, 125, 126]] |
 | DiffxTabl  | [[1], [1, 0], [1, 0, 3], [1, 0, 6, 0], [1, 0, 9, 0, 10], [1, 0, 12, 0, 25, 0], [1, 0, 15, 0, 45, 0, 35], [1, 0, 18, 0, 70, 0, 98, 0], [1, 0, 21, 0, 100, 0, 196, 0, 126], [1, 0, 24, 0, 135, 0, 336, 0, 378, 0]] |
 
-CatalanAer:Rev Row sums
+CatalanPaths:Rev Row sums
 
 | Trait        |   Seq  |
 | :---         |  :---  |
@@ -280,11 +282,12 @@ CatalanAer:Rev Row sums
 | EvenSum      | [1, 1, 2, 3, 6, 10, 20, 35, 70, 126] |
 | OddSum       | [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] |
 | AltSum       | [1, 1, 2, 3, 6, 10, 20, 35, 70, 126] |
+| AbsSum       | [1, 1, 2, 3, 6, 10, 20, 35, 70, 126] |
 | AccSum       | [1, 2, 4, 8, 16, 32, 64, 128, 256, 512] |
 | AccRevSum    | [1, 1, 4, 7, 20, 38, 96, 187, 444, 874] |
 | DiagSum      | [1, 1, 1, 1, 2, 3, 4, 5, 8, 12] |
 
-CatalanAer:Rev Transforms
+CatalanPaths:Rev Transforms
 
 | Trans      |   Seq  |
 | :---       |  :---  |
@@ -304,7 +307,7 @@ CatalanAer:Rev Transforms
 | PosHalf    | [1, 2, 5, 12, 30, 74, 185, 460, 1150, 2868] |
 | NegHalf    | [1, -2, 5, -12, 30, -74, 185, -460, 1150, -2868] |
 
-CatalanAer:Rev Diagonals as rows
+CatalanPaths:Rev Diagonals as rows
 
 | DiagRow  |   Seq  |
 | :---     |  :---  |
@@ -319,7 +322,7 @@ CatalanAer:Rev Diagonals as rows
 | DiagRow8 | [1, 0, 9, 0, 54, 0, 273, 0, 1260, 0]|
 | DiagRow9 | [1, 0, 10, 0, 65, 0, 350, 0, 1700, 0]|
 
-CatalanAer:Rev Diagonals as columns
+CatalanPaths:Rev Diagonals as columns
 
 | DiagCol  |   Seq  |
 | :---     |  :---  |
@@ -334,7 +337,7 @@ CatalanAer:Rev Diagonals as columns
 | DiagCol8 | [14, 42, 90, 165, 275, 429, 637, 910, 1260, 1700] |
 | DiagCol9 | [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] |
 
-CatalanAer:Rev Polynomial values as rows
+CatalanPaths:Rev Polynomial values as rows
 
 | PolyRow  |   Seq  |
 | :---     |  :---  |
@@ -349,7 +352,7 @@ CatalanAer:Rev Polynomial values as rows
 | PolyRow8 | [1, 70, 5725, 113950, 1037425, 5918926, 24847165, 84049750, 242303425, 617666230] |
 | PolyRow9 | [1, 126, 14289, 312814, 2956161, 17173326, 72818641, 247834014, 717337089, 1833649246] |
 
-CatalanAer:Rev Polynomial values as columns
+CatalanPaths:Rev Polynomial values as columns
 
 | PolyCol  |   Seq  |
 | :---     |  :---  |
@@ -364,10 +367,10 @@ CatalanAer:Rev Polynomial values as columns
 | PolyCol8 | [1, 1, 65, 129, 8385, 20737, 1347905, 3727745, 242303425, 717337089] |
 | PolyCol9 | [1, 1, 82, 163, 13366, 33130, 2716660, 7532515, 617666230, 1833649246] |
 
-# CatalanAer:Inv:Rev
+# CatalanPaths:Inv:Rev
 []
 
-CatalanAer:Inv:Rev Triangle view
+CatalanPaths:Inv:Rev Triangle view
 
 |  Row   |  Seq   |
 | :---   |  :---  |
@@ -382,7 +385,7 @@ CatalanAer:Inv:Rev Triangle view
 | Row8 | [1, 0, -7, 0, 15, 0, -10, 0, 1] |
 | Row9 | [1, 0, -8, 0, 21, 0, -20, 0, 5, 0] |
 
-CatalanAer:Inv:Rev Triangles
+CatalanPaths:Inv:Rev Triangles
 
 | Flat       |  Seq  |
 | :---       | :---  |
@@ -394,7 +397,7 @@ CatalanAer:Inv:Rev Triangles
 | AccRevTabl | [[1], [0, 1], [-1, -1, 0], [0, -2, -2, -1], [1, 1, -2, -2, -1], [0, 3, 3, -1, -1, 0], [-1, -1, 5, 5, 0, 0, 1], [0, -4, -4, 6, 6, 0, 0, 1], [1, 1, -9, -9, 6, 6, -1, -1, 0], [0, 5, 5, -15, -15, 6, 6, -2, -2, -1]] |
 | DiffxTabl  | [[1], [1, 0], [1, 0, -3], [1, 0, -6, 0], [1, 0, -9, 0, 5], [1, 0, -12, 0, 15, 0], [1, 0, -15, 0, 30, 0, -7], [1, 0, -18, 0, 50, 0, -28, 0], [1, 0, -21, 0, 75, 0, -70, 0, 9], [1, 0, -24, 0, 105, 0, -140, 0, 45, 0]] |
 
-CatalanAer:Inv:Rev Row sums
+CatalanPaths:Inv:Rev Row sums
 
 | Trait        |   Seq  |
 | :---         |  :---  |
@@ -402,11 +405,12 @@ CatalanAer:Inv:Rev Row sums
 | EvenSum      | [1, 1, 0, -1, -1, 0, 1, 1, 0, -1] |
 | OddSum       | [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] |
 | AltSum       | [1, 1, 0, -1, -1, 0, 1, 1, 0, -1] |
+| AbsSum       | [1, 1, 2, 3, 5, 8, 13, 21, 34, 55] |
 | AccSum       | [1, 2, 2, 0, -3, -4, -1, 4, 6, 2] |
 | AccRevSum    | [1, 1, -2, -5, -3, 4, 9, 5, -6, -13] |
 | DiagSum      | [1, 1, 1, 1, 0, -1, -2, -3, -3, -2] |
 
-CatalanAer:Inv:Rev Transforms
+CatalanPaths:Inv:Rev Transforms
 
 | Trans      |   Seq  |
 | :---       |  :---  |
@@ -426,7 +430,7 @@ CatalanAer:Inv:Rev Transforms
 | PosHalf    | [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] |
 | NegHalf    | [1, -2, 3, -4, 5, -6, 7, -8, 9, -10] |
 
-CatalanAer:Inv:Rev Diagonals as rows
+CatalanPaths:Inv:Rev Diagonals as rows
 
 | DiagRow  |   Seq  |
 | :---     |  :---  |
@@ -441,7 +445,7 @@ CatalanAer:Inv:Rev Diagonals as rows
 | DiagRow8 | [1, 0, -9, 0, 45, 0, -165, 0, 495, 0]|
 | DiagRow9 | [1, 0, -10, 0, 55, 0, -220, 0, 715, 0]|
 
-CatalanAer:Inv:Rev Diagonals as columns
+CatalanPaths:Inv:Rev Diagonals as columns
 
 | DiagCol  |   Seq  |
 | :---     |  :---  |
@@ -456,7 +460,7 @@ CatalanAer:Inv:Rev Diagonals as columns
 | DiagCol8 | [1, 5, 15, 35, 70, 126, 210, 330, 495, 715] |
 | DiagCol9 | [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] |
 
-CatalanAer:Inv:Rev Polynomial values as rows
+CatalanPaths:Inv:Rev Polynomial values as rows
 
 | PolyRow  |   Seq  |
 | :---     |  :---  |
@@ -471,7 +475,7 @@ CatalanAer:Inv:Rev Polynomial values as rows
 | PolyRow8 | [1, 0, -171, 424, 28305, 243576, 1232245, 4623984, 14216769, 37830160] |
 | PolyRow9 | [1, -1, 305, 19855, 251009, 1653551, 7491889, 26521055, 78728705, 204741919] |
 
-CatalanAer:Inv:Rev Polynomial values as columns
+CatalanPaths:Inv:Rev Polynomial values as columns
 
 | PolyCol  |   Seq  |
 | :---     |  :---  |

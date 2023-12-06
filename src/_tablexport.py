@@ -14,7 +14,6 @@ The html version of the 'readme' (crossreference table) needs (and only needs):
 # #@
 
 readme_header = """
-*** La sélection du Chef ***
 
 # Tables à la carte
 

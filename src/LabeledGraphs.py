@@ -1,5 +1,5 @@
 from functools import cache
-from Binomial import Binomial
+from Pascal import Binomial
 from _tabltypes import MakeTriangle
 
 """Labeled graphs.

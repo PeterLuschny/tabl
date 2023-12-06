@@ -1,6 +1,6 @@
 from functools import cache
-from Binomial import Binomial
-from StirlingCyc import StirlingCycle
+from Pascal import Binomial
+from StirlingCycle import StirlingCycle
 from _tabltypes import MakeTriangle
 
 """Sylvester polynomials.

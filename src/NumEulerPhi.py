@@ -1,5 +1,5 @@
 from functools import cache
-from MoebiusMat import moebiusmat
+from Moebius import moebius
 
 """Euler totient function phi, A000010,
 but with offset 0 and a(0) = 0,
@@ -11,7 +11,7 @@ cardinality of numbers <= n and prime to n.
 
 @cache
 def eulerphi(n: int) -> int:
-    return sum(k * moebiusmat(n)[k] for k in range(n + 1))
+    return sum(k * moebius(n)[k] for k in range(n + 1))
 
 
 if __name__ == "__main__":

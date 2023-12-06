@@ -1,7 +1,7 @@
 from functools import cache
 from _tabltypes import MakeTriangle
 
-"""Symmetric polynomial, row k gives the (n-1)-st elementary of [k, k+1, k+2,..., k+n].
+"""The hyperharmonic numbers.
 
 [0]    1;
 [1]    1,     1;
@@ -15,11 +15,11 @@ from _tabltypes import MakeTriangle
 
 
 @cache
-def sympoly(n: int) -> list[int]:
+def hyperharmonic(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row = sympoly(n - 1) + [1]
+    row = hyperharmonic(n - 1) + [1]
 
     for m in range(n - 1, 0, -1):
         row[m] = (n - m + 1) * row[m] + row[m - 1]
@@ -28,12 +28,12 @@ def sympoly(n: int) -> list[int]:
     return row
 
 
-@MakeTriangle(sympoly, "SymPoly", ["A165675", "A093905", "A105954", "A165674"], True)
-def SymPoly(n: int, k: int) -> int:
-    return sympoly(n)[k]
+@MakeTriangle(hyperharmonic, "HyperHarmonic", ["A165675", "A093905", "A105954", "A165674"], True)
+def HyperHarmonic(n: int, k: int) -> int:
+    return hyperharmonic(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(SymPoly)
+    TablTest(HyperHarmonic)

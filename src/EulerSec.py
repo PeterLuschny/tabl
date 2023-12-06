@@ -1,5 +1,5 @@
 from functools import cache
-from Binomial import binomial
+from Pascal import binomial
 from _tabltypes import MakeTriangle
 
 """Euler secant polynomials.

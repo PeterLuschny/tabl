@@ -1,6 +1,7 @@
 from os import getcwd
 from os.path import join, isfile
 
+
 tabl_files: list[str] = [
     "_tablpaths.py",
     "_tablinverse.py",
@@ -16,17 +17,17 @@ tabl_files: list[str] = [
     "Bessel.py",
     "Bessel2.py",
     "BinaryPell.py",
-    "Binomial.py",
     "BinomialBell.py",
     "BinomialCatalan.py",
     "BinomialMinus.py",
     "BinomialPell.py",
     "BinomialDiffPell.py",
     "Catalan.py",
-    "CatalanAer.py",
-    "CatalanSqr.py",
+    "CatalanPaths.py",
     "CentralCyc.py",
     "CentralSet.py",
+    "Chains.py",
+    "Charlier.py",
     "ChebyshevS.py",
     "ChebyshevT.py",
     "ChebyshevU.py",
@@ -35,6 +36,7 @@ tabl_files: list[str] = [
     "CTree.py",
     "Delannoy.py",
     "Divisibility.py",
+    "DyckPaths.py",
     "Euclid.py",
     "Euler.py",
     "Eulerian.py",
@@ -51,6 +53,7 @@ tabl_files: list[str] = [
     "Harmonic.py",
     "HermiteE.py",
     "HermiteH.py",
+    "HyperHarmonic.py",
     "LabeledGraphs.py",
     "Laguerre.py",
     "Lah.py",
@@ -58,9 +61,9 @@ tabl_files: list[str] = [
     "Leibniz.py",
     "Levin.py",
     "Lozanic.py",
-    "MoebiusMat.py",
+    "Moebius.py",
     "Motzkin.py",
-    "MotzkinGF.py",
+    "MotzkinPoly.py",
     "Narayana.py",
     "Naturals.py",
     "Nicomachus.py",
@@ -70,6 +73,7 @@ tabl_files: list[str] = [
     "Partition.py",
     "PartitionDist.py",
     "PartitionMax.py",
+    "Pascal.py",
     "Polygonal.py",
     "PowLaguerre.py",
     "Rencontres.py",
@@ -80,14 +84,13 @@ tabl_files: list[str] = [
     "Seidel.py",
     "SeidelBoust.py",
     "Sierpinski.py",
-    "StirlingCyc.py",
+    "StirlingCycle.py",
     "StirlingCyc2.py",
     "StirlingCycB.py",
     "StirlingSet.py",
     "StirlingSet2.py",
     "StirlingSetB.py",
     "Sylvester.py",
-    "SymPoly.py",
     "TernaryTrees.py",
     "WardSet.py",
     "Worpitzky.py",
@@ -125,10 +128,11 @@ tabl_fun: list[tgen] = [
     BinomialPell,
     BinomialDiffPell,
     Catalan,
-    CatalanAer,
-    CatalanSqr,
+    CatalanPaths,
     CentralCycle,
     CentralSet,
+    Chains,
+    Charlier,
     ChebyshevS,
     ChebyshevT,
     ChebyshevU,
@@ -137,6 +141,7 @@ tabl_fun: list[tgen] = [
     CTree,
     Delannoy,
     Divisibility,
+    DyckPaths,
     Euclid,
     Euler,
     Eulerian,
@@ -153,6 +158,7 @@ tabl_fun: list[tgen] = [
     Harmonic,
     HermiteE,
     HermiteH,
+    HyperHarmonic,
     LabeledGraphs,
     Laguerre,
     Lah,
@@ -160,9 +166,9 @@ tabl_fun: list[tgen] = [
     Leibniz,
     Levin,
     Lozanic,
-    MoebiusMat,
+    Moebius,
     Motzkin,
-    MotzkinGF,
+    MotzkinPoly,
     Narayana,
     Naturals,
     Nicomachus,
@@ -189,7 +195,6 @@ tabl_fun: list[tgen] = [
     StirlingSet2,
     StirlingSetB,
     Sylvester,
-    SymPoly,
     TernaryTree,
     WardSet,
     Worpitzky,
@@ -221,7 +226,7 @@ import_header: list[str] = [
 ]
 
 
-def make() -> None:
+def MakeTabl() -> None:
     """
     This function generates a 'tabl.py' file by combining the contents of multiple source files.
     It reads the source files from the 'src' directory and writes the combined content to 'tabl.py'.
@@ -234,7 +239,7 @@ def make() -> None:
     None
     """
     dir = join(getcwd(), "src")
-    dest = open("tabl.py", "w+", encoding="utf-8")
+    dest = open(join(dir, "tabl.py"), "w+", encoding="utf-8")
 
     dest.writelines(import_header)
     dest.write("setrecursionlimit(3000)\n")
@@ -271,4 +276,4 @@ def make() -> None:
 
 
 if __name__ == "__main__":
-    make()
+    MakeTabl()

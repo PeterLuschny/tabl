@@ -1329,45 +1329,16 @@ def BinaryPell(n: int, k: int) -> int:
 
 
 @cache
-def binomial(n: int) -> list[int]:
-    if n == 0:
-        return [1]
-    row = [1] + binomial(n - 1)
-    for k in range(1, n):
-        row[k] += row[k + 1]
-    return row
-
-
-@MakeTriangle(
-    binomial,
-    "Binomial",
-    [
-        "A007318",
-        "A074909",
-        "A108086",
-        "A117440",
-        "A118433",
-        "A130595",
-        "A135278",
-        "A154926",
-    ],
-    True,
-)
-def Binomial(n: int, k: int) -> int:
-    return binomial(n)[k]
-
-
-@cache
 def binomialbell(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
-        return [0, 1]
+        return [1, 1]
     a = binomialbell(n - 1) + [1]
     s = sum(a) - 1
-    for j in range(n - 2, 0, -1):
-        a[j + 1] = (a[j] * (n - 1)) // j
-    a[1] = s
+    for j in range(n - 1, 0, -1):
+        a[j] = (a[j - 1] * n) // j
+    a[0] = s
     return a
 
 
@@ -1468,42 +1439,24 @@ def Catalan(n: int, k: int) -> int:
 
 
 @cache
-def catalanaer(n: int) -> list[int]:
+def catalanpaths(n: int) -> list[int]:
     if n == 0:
         return [1]
 
     def r(k: int) -> int:
-        return catalanaer(n - 1)[k] if k >= 0 and k < n else 0
+        return catalanpaths(n - 1)[k] if k >= 0 and k < n else 0
 
-    row = catalanaer(n - 1) + [1]
+    row = catalanpaths(n - 1) + [1]
     for k in range(0, n):
         row[k] = r(k - 1) + r(k + 1)
     return row
 
 
 @MakeTriangle(
-    catalanaer, "CatalanAer", ["A053121", "A052173", "A112554", "A322378"], True
+    catalanpaths, "CatalanPaths", ["A053121", "A052173", "A112554", "A322378"], True
 )
-def CatalanAer(n: int, k: int) -> int:
-    return catalanaer(n)[k]
-
-
-@cache
-def catalansqr(n: int) -> list[int]:
-    if n == 0:
-        return [1]
-    pow = catalansqr(n - 1) + [0]
-    row = pow.copy()
-    row[0] += row[1]
-    row[n] = 1
-    for k in range(n - 1, 0, -1):
-        row[k] = pow[k - 1] + 2 * pow[k] + pow[k + 1]
-    return row
-
-
-@MakeTriangle(catalansqr, "CatalanSqr", ["A039599", "A050155"], True)
-def CatalanSqr(n: int, k: int) -> int:
-    return catalansqr(n)[k]
+def CatalanPaths(n: int, k: int) -> int:
+    return catalanpaths(n)[k]
 
 
 @cache
@@ -1538,6 +1491,43 @@ def centralset(n: int) -> list[int]:
 @MakeTriangle(centralset, "CentralSet", ["A269945", "A008957", "A036969"], True)
 def CentralSet(n: int, k: int) -> int:
     return centralset(n)[k]
+
+
+@cache
+def chains(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    ch = chains(n - 1) + [0]
+    row = ch.copy()
+    row[0] = 2 * ch[0]
+    row[n] = n * ch[n - 1]
+    for k in range(n - 1, 0, -1):
+        row[k] = k * ch[k - 1] + (k + 2) * ch[k]
+    return row
+
+
+@MakeTriangle(chains, "Chains", ["A038719"], False)
+def Chains(n: int, k: int) -> int:
+    return chains(n)[k]
+
+
+@cache
+def charlier(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [1, -1]
+    a = charlier(n - 1)
+    b = [0] + charlier(n - 2)
+    c = charlier(n - 1) + [(-1) ** n]
+    for k in range(1, n):
+        c[k] = a[k] - n * a[k - 1] - (n - 1) * b[k - 1]
+    return c
+
+
+@MakeTriangle(charlier, "Charlier", ["A046716", "A094816"], True)
+def Charlier(n: int, k: int) -> int:
+    return charlier(n)[k]
 
 
 @cache
@@ -1676,6 +1666,24 @@ def divisibility(n: int) -> list[int]:
 @MakeTriangle(divisibility, "Divisibility", ["A113704", "A051731"], True)
 def Divisibility(n: int, k: int) -> int:
     return divisibility(n)[k]
+
+
+@cache
+def dyckpaths(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    pow = dyckpaths(n - 1) + [0]
+    row = pow.copy()
+    row[0] += row[1]
+    row[n] = 1
+    for k in range(n - 1, 0, -1):
+        row[k] = pow[k - 1] + 2 * pow[k] + pow[k + 1]
+    return row
+
+
+@MakeTriangle(dyckpaths, "DyckPaths", ["A039599", "A050155"], True)
+def DyckPaths(n: int, k: int) -> int:
+    return dyckpaths(n)[k]
 
 
 @cache
@@ -1970,6 +1978,24 @@ def HermiteH(n: int, k: int) -> int:
 
 
 @cache
+def hyperharmonic(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    row = hyperharmonic(n - 1) + [1]
+    for m in range(n - 1, 0, -1):
+        row[m] = (n - m + 1) * row[m] + row[m - 1]
+    row[0] *= n
+    return row
+
+
+@MakeTriangle(
+    hyperharmonic, "HyperHarmonic", ["A165675", "A093905", "A105954", "A165674"], True
+)
+def HyperHarmonic(n: int, k: int) -> int:
+    return hyperharmonic(n)[k]
+
+
+@cache
 def labeledgraphs(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -2093,66 +2119,66 @@ def Lozanic(n: int, k: int) -> int:
 
 
 @cache
-def moebius(n: int) -> int:
+def _moebius(n: int) -> int:
     if n == 1:
         return 1
     if n == 2:
         return -1
-    return -sum(moebius(k) for k, i in enumerate(divisibility(n)[: n - 1]) if i != 0)
+    return -sum(_moebius(k) for k, i in enumerate(divisibility(n)[: n - 1]) if i != 0)
 
 
 @cache
-def moebiusmat(n: int) -> list[int]:
+def moebius(n: int) -> list[int]:
     if n == 0:
         return [1]
     r = [0 for _ in range(n + 1)]
     r[n] = 1
     for k in range(1, n):
         if n % k == 0:
-            r[k] = moebius(n // k)
+            r[k] = _moebius(n // k)
     return r
 
 
-@MakeTriangle(moebiusmat, "MoebiusMat", ["A363914", "A054525"], True)
-def MoebiusMat(n: int, k: int) -> int:
-    return moebiusmat(n)[k]
+@MakeTriangle(moebius, "Moebius", ["A363914", "A054525"], True)
+def Moebius(n: int, k: int) -> int:
+    return moebius(n)[k]
 
 
 @cache
 def motzkin(n: int) -> list[int]:
     if n == 0:
         return [1]
-    if n == 1:
-        return [1, 0]
-    h = 0 if n % 2 else (motzkin(n - 2)[n - 2] * 2 * (n - 1)) // (n // 2 + 1)
-    row = motzkin(n - 1) + [h]
-    for k in range(2, n, 2):
-        row[k] = (n * row[k]) // (n - k)
-    return row
-
-
-@MakeTriangle(motzkin, "Motzkin", ["A359364"], False)
-def Motzkin(n: int, k: int) -> int:
-    return motzkin(n)[k]
-
-
-@cache
-def motzkingf(n: int) -> list[int]:
-    if n == 0:
-        return [1]
 
     def r(k: int) -> int:
-        return motzkingf(n - 1)[k] if k >= 0 and k < n else 0
+        return motzkin(n - 1)[k] if k >= 0 and k < n else 0
 
-    row = motzkingf(n - 1) + [1]
+    row = motzkin(n - 1) + [1]
     for k in range(0, n):
         row[k] += r(k - 1) + r(k + 1)
     return row
 
 
-@MakeTriangle(motzkingf, "MotzkinGF", ["A064189", "A026300", "A009766"], True)
-def MotzkinGF(n: int, k: int) -> int:
-    return motzkingf(n)[k]
+@MakeTriangle(motzkin, "Motzkin", ["A064189", "A026300", "A009766"], True)
+def Motzkin(n: int, k: int) -> int:
+    return motzkin(n)[k]
+
+
+@cache
+def motzkinpoly(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [1, 0]
+    h = 0 if n % 2 else (motzkinpoly(n - 2)[n - 2] * 2 * (n - 1)) // (n // 2 + 1)
+    row = motzkinpoly(n - 1) + [h]
+    for k in range(2, n, 2):
+        row[k] = (n * row[k]) // (n - k)
+    return row
+
+
+@MakeTriangle(motzkinpoly, "MotzkinPoly", ["A359364"], False)
+def MotzkinPoly(n: int, k: int) -> int:
+    return motzkinpoly(n)[k]
 
 
 @cache
@@ -2290,6 +2316,35 @@ def partnummax(n: int) -> list[int]:
 @MakeTriangle(partnummax, "PartitionMax", ["A026820"], False)
 def PartnumMax(n: int, k: int) -> int:
     return partnummax(n)[k]
+
+
+@cache
+def binomial(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    row = [1] + binomial(n - 1)
+    for k in range(1, n):
+        row[k] += row[k + 1]
+    return row
+
+
+@MakeTriangle(
+    binomial,
+    "Binomial",
+    [
+        "A007318",
+        "A074909",
+        "A108086",
+        "A117440",
+        "A118433",
+        "A130595",
+        "A135278",
+        "A154926",
+    ],
+    True,
+)
+def Binomial(n: int, k: int) -> int:
+    return binomial(n)[k]
 
 
 @cache
@@ -2474,7 +2529,7 @@ def stirlingcycle(n: int) -> list[int]:
 
 @MakeTriangle(
     stirlingcycle,
-    "StirlingCyc",
+    "StirlingCycle",
     ["A132393", "A008275", "A008276", "A048994", "A054654", "A094638", "A130534"],
     True,
 )
@@ -2603,22 +2658,6 @@ def Sylvester(n: int, k: int) -> int:
 
 
 @cache
-def sympoly(n: int) -> list[int]:
-    if n == 0:
-        return [1]
-    row = sympoly(n - 1) + [1]
-    for m in range(n - 1, 0, -1):
-        row[m] = (n - m + 1) * row[m] + row[m - 1]
-    row[0] *= n
-    return row
-
-
-@MakeTriangle(sympoly, "SymPoly", ["A165675", "A093905", "A105954", "A165674"], True)
-def SymPoly(n: int, k: int) -> int:
-    return sympoly(n)[k]
-
-
-@cache
 def ternarytree(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -2692,11 +2731,11 @@ def euler_num(n: int) -> int:
 
 @cache
 def eulerphi(n: int) -> int:
-    return sum(k * moebiusmat(n)[k] for k in range(n + 1))
+    return sum(k * moebius(n)[k] for k in range(n + 1))
 
 
 def motzkin_num(n: int) -> int:
-    return sum(motzkin(n))
+    return sum(motzkinpoly(n))
 
 
 def partlist_num(n: int) -> int:
@@ -2725,10 +2764,11 @@ tabl_fun: list[tgen] = [
     BinomialPell,
     BinomialDiffPell,
     Catalan,
-    CatalanAer,
-    CatalanSqr,
+    CatalanPaths,
     CentralCycle,
     CentralSet,
+    Chains,
+    Charlier,
     ChebyshevS,
     ChebyshevT,
     ChebyshevU,
@@ -2737,6 +2777,7 @@ tabl_fun: list[tgen] = [
     CTree,
     Delannoy,
     Divisibility,
+    DyckPaths,
     Euclid,
     Euler,
     Eulerian,
@@ -2753,6 +2794,7 @@ tabl_fun: list[tgen] = [
     Harmonic,
     HermiteE,
     HermiteH,
+    HyperHarmonic,
     LabeledGraphs,
     Laguerre,
     Lah,
@@ -2760,9 +2802,9 @@ tabl_fun: list[tgen] = [
     Leibniz,
     Levin,
     Lozanic,
-    MoebiusMat,
+    Moebius,
     Motzkin,
-    MotzkinGF,
+    MotzkinPoly,
     Narayana,
     Naturals,
     Nicomachus,
@@ -2789,13 +2831,11 @@ tabl_fun: list[tgen] = [
     StirlingSet2,
     StirlingSetB,
     Sylvester,
-    SymPoly,
     TernaryTree,
     WardSet,
     Worpitzky,
 ]
 readme_header = """
-*** La sélection du Chef ***
 INTEGER SEQUENCES ARE ONLY THE SHADOWS OF INTEGER TRIANGLES
 Python implementations of integer sequences dubbed tabl in the OEIS.
 The notebook gives a first introduction for the user.
@@ -3365,8 +3405,10 @@ def TuttiStats(targetname: str = "traitsstats") -> None:
         print("\nRanking of triangles with regard to their impact:\n")
         cur.execute(f"SELECT * FROM {targetname} ORDER by distanum DESC")
         F = cur.fetchall()
+        rank = 1
         for f in F:
-            print([f[3]], f)
+            print(f"({rank})", [f[3]], f)
+            rank += 1
         cur.close()
     print("The statistics were created on", datetime.datetime.now(), ".\n")
     print(f"Created database {targetname}.db in data/db.")
@@ -4086,7 +4128,7 @@ def MergeAllDBs(tablfun: list[tgen]):
 def SingleMake(fun: tgen) -> None:
     """
     - Saves the traits of the triangle 'fun' to a database, a CSV file, and Markdown file.
-    - Then the HTML file is updated.
+    - Then the HTML file is created/updated.
     - The traits statistics is displayed.
     Args:
         fun (tgen): The generator of the triangle.

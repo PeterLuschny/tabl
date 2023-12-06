@@ -1,4 +1,4 @@
-from Motzkin import motzkin
+from MotzkinPoly import motzkinpoly
 
 """Motzkin numbers A001006
 
@@ -9,7 +9,7 @@ from Motzkin import motzkin
 
 
 def motzkin_num(n: int) -> int:
-    return sum(motzkin(n))
+    return sum(motzkinpoly(n))
 
 
 if __name__ == "__main__":

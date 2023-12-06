@@ -1,7 +1,7 @@
 from functools import cache
 from _tabltypes import MakeTriangle
 
-"""The Riordan square of the Catalan numbers in the sense of A321620.
+"""DyckPaths
 
 [0]    1;
 [1]    1,     1;
@@ -17,11 +17,11 @@ from _tabltypes import MakeTriangle
 
 
 @cache
-def catalansqr(n: int) -> list[int]:
+def dyckpaths(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    pow = catalansqr(n - 1) + [0]
+    pow = dyckpaths(n - 1) + [0]
     row = pow.copy()
     row[0] += row[1]
     row[n] = 1
@@ -32,12 +32,12 @@ def catalansqr(n: int) -> list[int]:
     return row
 
 
-@MakeTriangle(catalansqr, "CatalanSqr", ["A039599", "A050155"], True)
-def CatalanSqr(n: int, k: int) -> int:
-    return catalansqr(n)[k]
+@MakeTriangle(dyckpaths, "DyckPaths", ["A039599", "A050155"], True)
+def DyckPaths(n: int, k: int) -> int:
+    return dyckpaths(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(CatalanSqr)
+    TablTest(DyckPaths)

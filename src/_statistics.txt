@@ -1,6 +1,7 @@
 And here are the new statistics with the current ranking:
 
 
+
 * Statistic about Abel:
 The number of ...
         all      hashes    is 204.
@@ -27,9 +28,9 @@ The number of ...
         distinct hashes    is 66.
         core     triangles is 1.
         distinct types     is 3.
-        missing  sequences is 57.
-        all      A-numbers is 65.
-        distinct A-numbers is 24.
+        missing  sequences is 49.
+        all      A-numbers is 73.
+        distinct A-numbers is 27.
 
 * Statistic about Bessel:
 The number of ...
@@ -73,13 +74,13 @@ The number of ...
 
 * Statistic about BinomialBell:
 The number of ...
-        all      hashes    is 202.
-        distinct hashes    is 113.
+        all      hashes    is 209.
+        distinct hashes    is 120.
         core     triangles is 1.
         distinct types     is 5.
-        missing  sequences is 130.
-        all      A-numbers is 72.
-        distinct A-numbers is 32.
+        missing  sequences is 99.
+        all      A-numbers is 110.
+        distinct A-numbers is 55.
 
 * Statistic about BinomialCatalan:
 The number of ...
@@ -131,7 +132,7 @@ The number of ...
         all      A-numbers is 128.
         distinct A-numbers is 64.
 
-* Statistic about CatalanAer:
+* Statistic about CatalanPaths:
 The number of ...
         all      hashes    is 196.
         distinct hashes    is 88.
@@ -140,16 +141,6 @@ The number of ...
         missing  sequences is 70.
         all      A-numbers is 126.
         distinct A-numbers is 46.
-
-* Statistic about CatalanSqr:
-The number of ...
-        all      hashes    is 204.
-        distinct hashes    is 112.
-        core     triangles is 1.
-        distinct types     is 5.
-        missing  sequences is 68.
-        all      A-numbers is 136.
-        distinct A-numbers is 68.
 
 * Statistic about CentralCycle:
 The number of ...
@@ -170,6 +161,26 @@ The number of ...
         missing  sequences is 121.
         all      A-numbers is 78.
         distinct A-numbers is 28.
+
+* Statistic about Chains:
+The number of ...
+        all      hashes    is 120.
+        distinct hashes    is 67.
+        core     triangles is 1.
+        distinct types     is 3.
+        missing  sequences is 68.
+        all      A-numbers is 52.
+        distinct A-numbers is 26.
+
+* Statistic about Charlier:
+The number of ...
+        all      hashes    is 249.
+        distinct hashes    is 145.
+        core     triangles is 1.
+        distinct types     is 6.
+        missing  sequences is 168.
+        all      A-numbers is 81.
+        distinct A-numbers is 37.
 
 * Statistic about ChebyshevS:
 The number of ...
@@ -250,6 +261,16 @@ The number of ...
         missing  sequences is 54.
         all      A-numbers is 125.
         distinct A-numbers is 62.
+
+* Statistic about DyckPaths:
+The number of ...
+        all      hashes    is 204.
+        distinct hashes    is 112.
+        core     triangles is 1.
+        distinct types     is 5.
+        missing  sequences is 68.
+        all      A-numbers is 136.
+        distinct A-numbers is 68.
 
 * Statistic about Euclid:
 The number of ...
@@ -411,6 +432,16 @@ The number of ...
         all      A-numbers is 42.
         distinct A-numbers is 14.
 
+* Statistic about HyperHarmonic:
+The number of ...
+        all      hashes    is 206.
+        distinct hashes    is 118.
+        core     triangles is 1.
+        distinct types     is 5.
+        missing  sequences is 122.
+        all      A-numbers is 84.
+        distinct A-numbers is 33.
+
 * Statistic about LabeledGraphs:
 The number of ...
         all      hashes    is 121.
@@ -481,7 +512,7 @@ The number of ...
         all      A-numbers is 62.
         distinct A-numbers is 25.
 
-* Statistic about MoebiusMat:
+* Statistic about Moebius:
 The number of ...
         all      hashes    is 180.
         distinct hashes    is 98.
@@ -493,16 +524,6 @@ The number of ...
 
 * Statistic about Motzkin:
 The number of ...
-        all      hashes    is 157.
-        distinct hashes    is 77.
-        core     triangles is 1.
-        distinct types     is 4.
-        missing  sequences is 91.
-        all      A-numbers is 66.
-        distinct A-numbers is 23.
-
-* Statistic about MotzkinGF:
-The number of ...
         all      hashes    is 208.
         distinct hashes    is 114.
         core     triangles is 1.
@@ -510,6 +531,16 @@ The number of ...
         missing  sequences is 62.
         all      A-numbers is 146.
         distinct A-numbers is 68.
+
+* Statistic about MotzkinPoly:
+The number of ...
+        all      hashes    is 157.
+        distinct hashes    is 77.
+        core     triangles is 1.
+        distinct types     is 4.
+        missing  sequences is 91.
+        all      A-numbers is 66.
+        distinct A-numbers is 23.
 
 * Statistic about Narayana:
 The number of ...
@@ -701,7 +732,7 @@ The number of ...
         all      A-numbers is 106.
         distinct A-numbers is 31.
 
-* Statistic about StirlingCyc:
+* Statistic about StirlingCycle:
 The number of ...
         all      hashes    is 199.
         distinct hashes    is 113.
@@ -747,9 +778,9 @@ The number of ...
         distinct hashes    is 59.
         core     triangles is 1.
         distinct types     is 3.
-        missing  sequences is 60.
-        all      A-numbers is 55.
-        distinct A-numbers is 24.
+        missing  sequences is 59.
+        all      A-numbers is 56.
+        distinct A-numbers is 25.
 
 * Statistic about StirlingSetB:
 The number of ...
@@ -770,16 +801,6 @@ The number of ...
         missing  sequences is 81.
         all      A-numbers is 41.
         distinct A-numbers is 20.
-
-* Statistic about SymPoly:
-The number of ...
-        all      hashes    is 206.
-        distinct hashes    is 118.
-        core     triangles is 1.
-        distinct types     is 5.
-        missing  sequences is 122.
-        all      A-numbers is 84.
-        distinct A-numbers is 33.
 
 * Statistic about TernaryTrees:
 The number of ...
@@ -811,110 +832,104 @@ The number of ...
         all      A-numbers is 91.
         distinct A-numbers is 42.
 
-* Statistic about Zarankiewicz:
-The number of ...
-        all      hashes    is 125.
-        distinct hashes    is 67.
-        core     triangles is 1.
-        distinct types     is 3.
-        missing  sequences is 95.
-        all      A-numbers is 30.
-        distinct A-numbers is 10.
-
 * Statistic about traits:
 The number of ...
-        all      hashes    is 12897.
-        distinct hashes    is 5567.
-        core     triangles is 81.
+        all      hashes    is 13148.
+        distinct hashes    is 5681.
+        core     triangles is 82.
         distinct types     is 6.
-        missing  sequences is 5878.
-        all      A-numbers is 7019.
-        distinct A-numbers is 1866.
+        missing  sequences is 5979.
+        all      A-numbers is 7169.
+        distinct A-numbers is 1911.
 
 Ranking of triangles with regard to their impact:
 
-[87] ('A048993', 'StirlingSet', 171, 87, 199, 113, 1, 5, 28)
-[83] ('A132393', 'StirlingCyc', 170, 83, 199, 113, 1, 5, 29)
-[74] ('A008279', 'FallingFact', 145, 74, 164, 88, 1, 4, 19)
-[68] ('A039599', 'CatalanSqr', 136, 68, 204, 112, 1, 5, 68)
-[68] ('A064189', 'MotzkinGF', 146, 68, 208, 114, 1, 5, 62)
-[64] ('A128899', 'Catalan', 128, 64, 204, 116, 1, 5, 76)
-[62] ('A113704', 'Divisibility', 125, 62, 179, 98, 1, 5, 54)
-[60] ('A363914', 'MoebiusMat', 125, 60, 180, 98, 1, 5, 55)
-[59] ('A038207', 'BinaryPell', 174, 59, 200, 72, 1, 5, 26)
-[59] ('A122538', 'Schroeder', 132, 59, 202, 114, 1, 5, 70)
-[56] ('A137452', 'Abel', 116, 56, 204, 116, 1, 5, 88)
-[56] ('A059481', 'BinomialMinus', 109, 56, 162, 98, 1, 4, 53)
-[56] ('A072233', 'Partition', 116, 56, 201, 110, 1, 5, 85)
-[55] ('A271703', 'Lah', 162, 55, 204, 75, 1, 5, 42)
-[51] ('A090181', 'Narayana', 116, 51, 199, 114, 1, 5, 83)
-[50] ('A132062', 'Bessel', 113, 50, 203, 113, 1, 5, 90)
-[48] ('A002262', 'Ordinals', 109, 48, 118, 55, 1, 3, 9)
-[48] ('A008290', 'Rencontres', 115, 48, 199, 111, 1, 5, 84)
-[47] ('A131689', 'Fubini', 89, 47, 115, 64, 1, 3, 26)
-[46] ('A053121', 'CatalanAer', 126, 46, 196, 88, 1, 5, 70)
-[46] ('A049310', 'ChebyshevS', 123, 46, 196, 88, 1, 5, 73)
-[45] ('A124644', 'BinomialCatalan', 90, 45, 168, 103, 1, 4, 78)
+(1) [87] ('A048993', 'StirlingSet', 171, 87, 199, 113, 1, 5, 28)
+(2) [83] ('A132393', 'StirlingCycle', 170, 83, 199, 113, 1, 5, 29)
+(3) [74] ('A008279', 'FallingFact', 145, 74, 164, 88, 1, 4, 19)
+(4) [68] ('A039599', 'DyckPaths', 136, 68, 204, 112, 1, 5, 68)
+(5) [68] ('A064189', 'Motzkin', 146, 68, 208, 114, 1, 5, 62)
+(6) [64] ('A128899', 'Catalan', 128, 64, 204, 116, 1, 5, 76)
+(7) [62] ('A113704', 'Divisibility', 125, 62, 179, 98, 1, 5, 54)
+(8) [60] ('A363914', 'Moebius', 125, 60, 180, 98, 1, 5, 55)
 
-[44] ('A119879', 'EulerSec', 109, 44, 195, 90, 1, 5, 86)
-[44] ('A000012', 'One', 105, 44, 110, 49, 0, 4, 5)
-[43] ('A106465', 'CTree', 108, 43, 148, 72, 1, 4, 40)
-[43] ('A008288', 'Delannoy', 111, 43, 166, 89, 1, 4, 55)
-[43] ('A123125', 'Eulerian', 96, 43, 199, 114, 1, 5, 103)
-[42] ('A028246', 'Worpitzky', 91, 42, 160, 96, 1, 4, 69)
-[40] ('A021009', 'Laguerre', 138, 40, 211, 75, 1, 5, 73)
-[40] ('A104684', 'SchroederP', 81, 40, 206, 118, 1, 5, 125)
-[38] ('A028338', 'StirlingCycB', 106, 38, 206, 116, 1, 5, 100)
-[36] ('A225479', 'OrderedCycle', 73, 36, 121, 65, 1, 3, 48)
-[35] ('A007318', 'Binomial', 152, 35, 160, 38, 1, 4, 8)
-[34] ('A247453', 'Euler', 130, 34, 211, 74, 1, 5, 81)
-[33] ('A036561', 'Nicomachus', 78, 33, 119, 65, 1, 3, 41)
-[33] ('A165675', 'SymPoly', 84, 33, 206, 118, 1, 5, 122)
-[32] ('A056857', 'BinomialBell', 72, 32, 202, 113, 1, 5, 130)
-[31] ('A358694', 'Harmonic', 78, 31, 204, 116, 1, 5, 126)
-[31] ('A172094', 'SchroederL', 79, 31, 206, 116, 1, 5, 127)
-[31] ('A047999', 'Sierpinski', 106, 31, 153, 56, 1, 4, 47)
-[29] ('A048004', 'Composition', 65, 29, 201, 115, 1, 5, 136)
-[28] ('A269945', 'CentralSet', 78, 28, 199, 115, 1, 5, 121)
-[28] ('A022166', 'Gaussq2', 87, 28, 166, 89, 1, 4, 79)
-[28] ('A003506', 'Leibniz', 73, 28, 82, 38, 1, 2, 9)
-[28] ('A000027', 'Naturals', 69, 28, 122, 67, 1, 3, 53)
-[28] ('A196347', 'PowLaguerre', 68, 28, 82, 38, 1, 2, 14)
-[28] ('A358622', 'StirlingCyc2', 59, 28, 115, 60, 1, 3, 56)
-[27] ('A365676', 'PartitionDist', 64, 27, 121, 63, 1, 3, 57)
-[26] ('A355173', 'FussCatalan', 62, 26, 118, 63, 1, 3, 56)
-[26] ('A354794', 'Lehmer', 64, 26, 201, 117, 1, 5, 137)
-[26] ('A269939', 'WardSet', 52, 26, 118, 65, 1, 3, 66)
-[25] ('A053117', 'ChebyshevU', 66, 25, 118, 49, 1, 3, 52)
-[25] ('A217831', 'Euclid', 54, 25, 74, 37, 1, 2, 20)
-[25] ('A099174', 'HermiteE', 93, 25, 197, 72, 1, 5, 104)
-[25] ('A034851', 'Lozanic', 62, 25, 166, 87, 1, 4, 104)
-[24] ('A011971', 'Bell', 65, 24, 122, 66, 1, 3, 57)
-[24] ('A367211', 'BinomialPell', 57, 24, 125, 64, 1, 3, 68)
-[24] ('A269940', 'CentralCycle', 48, 24, 115, 64, 1, 3, 67)
-[24] ('A053120', 'ChebyshevT', 62, 24, 109, 46, 1, 3, 47)
-[24] ('A354267', 'Fibonacci', 60, 24, 126, 66, 1, 3, 66)
-[24] ('A124320', 'RisingFact', 62, 24, 169, 100, 1, 4, 107)
-[24] ('A358623', 'StirlingSet2', 55, 24, 115, 59, 1, 3, 60)
-[23] ('A359760', 'Bessel2', 79, 23, 157, 63, 1, 4, 78)
-[23] ('A340556', 'Eulerian2', 55, 23, 118, 65, 1, 3, 63)
-[23] ('A359364', 'Motzkin', 66, 23, 157, 77, 1, 4, 91)
-[23] ('A008281', 'Seidel', 61, 23, 118, 63, 1, 3, 57)
-[22] ('A154602', 'StirlingSetB', 51, 22, 206, 116, 1, 5, 155)
-[21] ('A367564', 'BinomialDiffPell', 56, 21, 208, 112, 1, 5, 152)
-[20] ('A139600', 'Polygonal', 51, 20, 118, 63, 1, 3, 67)
-[20] ('A008280', 'SeidelBoust', 43, 20, 121, 66, 1, 3, 78)
-[20] ('A341101', 'Sylvester', 41, 20, 122, 67, 1, 3, 81)
-[19] ('A356546', 'Levin', 51, 19, 82, 38, 1, 2, 31)
-[19] ('A026820', 'PartitionMax', 48, 19, 118, 63, 1, 3, 70)
-[16] ('A126198', 'CompositionMax', 42, 16, 118, 64, 1, 3, 76)
-[16] ('A060187', 'EulerianB', 49, 16, 166, 89, 1, 4, 117)
-[16] ('A355172', 'TernaryTrees', 46, 16, 118, 64, 1, 3, 72)
-[15] ('A359363', 'Baxter', 36, 15, 120, 67, 1, 3, 84)
-[15] ('A162660', 'EulerTan', 45, 15, 116, 48, 1, 3, 71)
-[14] ('A060821', 'HermiteH', 42, 14, 118, 49, 1, 3, 76)
-[13] ('A360603', 'LabeledGraphs', 37, 13, 121, 64, 1, 3, 84)
-[10] ('A297703', 'Genocchi', 32, 10, 122, 65, 1, 3, 90)
-[10] ('A298368', 'Zarankiewicz', 30, 10, 125, 67, 1, 3, 95)
+( 9) [59] ('A038207', 'BinaryPell', 174, 59, 200, 72, 1, 5, 26)
+(10) [59] ('A122538', 'Schroeder', 132, 59, 202, 114, 1, 5, 70)
+(11) [56] ('A137452', 'Abel', 116, 56, 204, 116, 1, 5, 88)
+(12) [56] ('A059481', 'BinomialMinus', 109, 56, 162, 98, 1, 4, 53)
+(13) [56] ('A072233', 'Partition', 116, 56, 201, 110, 1, 5, 85)
+(14) [55] ('A056857', 'BinomialBell', 110, 55, 209, 120, 1, 5, 99)
+(15) [55] ('A271703', 'Lah', 162, 55, 204, 75, 1, 5, 42)
+(16) [51] ('A090181', 'Narayana', 116, 51, 199, 114, 1, 5, 83)
+(17) [50] ('A132062', 'Bessel', 113, 50, 203, 113, 1, 5, 90)
+# (18) [48] ('A002262', 'Ordinals', 109, 48, 118, 55, 1, 3, 9)
+(19) [48] ('A008290', 'Rencontres', 115, 48, 199, 111, 1, 5, 84)
+(20) [47] ('A131689', 'Fubini', 89, 47, 115, 64, 1, 3, 26)
+(21) [46] ('A053121', 'CatalanPaths', 126, 46, 196, 88, 1, 5, 70)
+(22) [46] ('A049310', 'ChebyshevS', 123, 46, 196, 88, 1, 5, 73)
+(23) [45] ('A124644', 'BinomialCatalan', 90, 45, 168, 103, 1, 4, 78)
 
-The statistics were created on 2023-12-01 03:52:53.563530 .
+(24) [44] ('A119879', 'EulerSec', 109, 44, 195, 90, 1, 5, 86)
+# (25) [44] ('A000012', 'One', 105, 44, 110, 49, 0, 4, 5)
+# (26) [43] ('A106465', 'CTree', 108, 43, 148, 72, 1, 4, 40)
+(27) [43] ('A008288', 'Delannoy', 111, 43, 166, 89, 1, 4, 55)
+(28) [43] ('A123125', 'Eulerian', 96, 43, 199, 114, 1, 5, 103)
+(29) [42] ('A028246', 'Worpitzky', 91, 42, 160, 96, 1, 4, 69)
+(30) [40] ('A021009', 'Laguerre', 138, 40, 211, 75, 1, 5, 73)
+(31) [40] ('A104684', 'SchroederP', 81, 40, 206, 118, 1, 5, 125)
+(32) [38] ('A028338', 'StirlingCycB', 106, 38, 206, 116, 1, 5, 100)
+(33) [37] ('A046716', 'Charlier', 81, 37, 249, 145, 1, 6, 168)
+(34) [36] ('A225479', 'OrderedCycle', 73, 36, 121, 65, 1, 3, 48)
+(35) [35] ('A007318', 'Binomial', 152, 35, 160, 38, 1, 4, 8)
+-------------------------------------------------------------------
+(36) [34] ('A247453', 'Euler', 130, 34, 211, 74, 1, 5, 81)
+(37) [33] ('A165675', 'HyperHarmonic', 84, 33, 206, 118, 1, 5, 122)
+(38) [33] ('A036561', 'Nicomachus', 78, 33, 119, 65, 1, 3, 41)
+(39) [31] ('A358694', 'Harmonic', 78, 31, 204, 116, 1, 5, 126)
+(40) [31] ('A172094', 'SchroederL', 79, 31, 206, 116, 1, 5, 127)
+(41) [31] ('A047999', 'Sierpinski', 106, 31, 153, 56, 1, 4, 47)
+
+(42) [29] ('A048004', 'Composition', 65, 29, 201, 115, 1, 5, 136)
+(43) [28] ('A269945', 'CentralSet', 78, 28, 199, 115, 1, 5, 121)
+(44) [28] ('A022166', 'Gaussq2', 87, 28, 166, 89, 1, 4, 79)
+(45) [28] ('A003506', 'Leibniz', 73, 28, 82, 38, 1, 2, 9)
+(46) [28] ('A000027', 'Naturals', 69, 28, 122, 67, 1, 3, 53)
+(47) [28] ('A196347', 'PowLaguerre', 68, 28, 82, 38, 1, 2, 14)
+(48) [28] ('A358622', 'StirlingCyc2', 59, 28, 115, 60, 1, 3, 56)
+(49) [27] ('A011971', 'Bell', 73, 27, 122, 66, 1, 3, 49)
+(50) [27] ('A365676', 'PartitionDist', 64, 27, 121, 63, 1, 3, 57)
+(51) [26] ('A038719', 'Chains', 52, 26, 120, 67, 1, 3, 68)
+(52) [26] ('A355173', 'FussCatalan', 62, 26, 118, 63, 1, 3, 56)
+(53) [26] ('A354794', 'Lehmer', 64, 26, 201, 117, 1, 5, 137)
+(54) [26] ('A269939', 'WardSet', 52, 26, 118, 65, 1, 3, 66)
+(55) [25] ('A053117', 'ChebyshevU', 66, 25, 118, 49, 1, 3, 52)
+(56) [25] ('A217831', 'Euclid', 54, 25, 74, 37, 1, 2, 20)
+(57) [25] ('A099174', 'HermiteE', 93, 25, 197, 72, 1, 5, 104)
+(58) [25] ('A034851', 'Lozanic', 62, 25, 166, 87, 1, 4, 104)
+(59) [25] ('A358623', 'StirlingSet2', 56, 25, 115, 59, 1, 3, 59)
+(60) [24] ('A367211', 'BinomialPell', 57, 24, 125, 64, 1, 3, 68)
+(61) [24] ('A269940', 'CentralCycle', 48, 24, 115, 64, 1, 3, 67)
+(62) [24] ('A053120', 'ChebyshevT', 62, 24, 109, 46, 1, 3, 47)
+(63) [24] ('A354267', 'Fibonacci', 60, 24, 126, 66, 1, 3, 66)
+(64) [24] ('A124320', 'RisingFact', 62, 24, 169, 100, 1, 4, 107)
+(65) [23] ('A359760', 'Bessel2', 79, 23, 157, 63, 1, 4, 78)
+(66) [23] ('A340556', 'Eulerian2', 55, 23, 118, 65, 1, 3, 63)
+(67) [23] ('A359364', 'MotzkinPoly', 66, 23, 157, 77, 1, 4, 91)
+(68) [23] ('A008281', 'Seidel', 61, 23, 118, 63, 1, 3, 57)
+(69) [22] ('A154602', 'StirlingSetB', 51, 22, 206, 116, 1, 5, 155)
+(70) [21] ('A367564', 'BinomialDiffPell', 56, 21, 208, 112, 1, 5, 152)
+(71) [20] ('A139600', 'Polygonal', 51, 20, 118, 63, 1, 3, 67)
+(72) [20] ('A008280', 'SeidelBoust', 43, 20, 121, 66, 1, 3, 78)
+(73) [20] ('A341101', 'Sylvester', 41, 20, 122, 67, 1, 3, 81)
+(74) [19] ('A356546', 'Levin', 51, 19, 82, 38, 1, 2, 31)
+(75) [19] ('A026820', 'PartitionMax', 48, 19, 118, 63, 1, 3, 70)
+(76) [16] ('A126198', 'CompositionMax', 42, 16, 118, 64, 1, 3, 76)
+(77) [16] ('A060187', 'EulerianB', 49, 16, 166, 89, 1, 4, 117)
+(78) [16] ('A355172', 'TernaryTrees', 46, 16, 118, 64, 1, 3, 72)
+(79) [15] ('A359363', 'Baxter', 36, 15, 120, 67, 1, 3, 84)
+(80) [15] ('A162660', 'EulerTan', 45, 15, 116, 48, 1, 3, 71)
+(81) [14] ('A060821', 'HermiteH', 42, 14, 118, 49, 1, 3, 76)
+(82) [13] ('A360603', 'LabeledGraphs', 37, 13, 121, 64, 1, 3, 84)
+(83) [10] ('A297703', 'Genocchi', 32, 10, 122, 65, 1, 3, 90)
+
+The statistics were created on 2023-12-06 03:10:12.728037 .

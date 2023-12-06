@@ -1,6 +1,6 @@
 from functools import cache
 from _tabltypes import MakeTriangle
-from Binomial import binomial
+from Pascal import binomial
 
 """Lozanic numbers.
 

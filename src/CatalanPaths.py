@@ -1,7 +1,7 @@
 from functools import cache
 from _tabltypes import MakeTriangle
 
-"""Catalan triangle aerated.
+"""Catalan paths.
 
 [0]   1,
 [1]   0,   1,
@@ -17,27 +17,27 @@ from _tabltypes import MakeTriangle
 
 
 @cache
-def catalanaer(n: int) -> list[int]:
+def catalanpaths(n: int) -> list[int]:
     if n == 0:
         return [1]
 
     def r(k: int) -> int:
-        return catalanaer(n - 1)[k] if k >= 0 and k < n else 0
+        return catalanpaths(n - 1)[k] if k >= 0 and k < n else 0
 
-    row = catalanaer(n - 1) + [1]
+    row = catalanpaths(n - 1) + [1]
     for k in range(0, n):
         row[k] = r(k - 1) + r(k + 1)
     return row
 
 
 @MakeTriangle(
-    catalanaer, "CatalanAer", ["A053121", "A052173", "A112554", "A322378"], True
+    catalanpaths, "CatalanPaths", ["A053121", "A052173", "A112554", "A322378"], True
 )
-def CatalanAer(n: int, k: int) -> int:
-    return catalanaer(n)[k]
+def CatalanPaths(n: int, k: int) -> int:
+    return catalanpaths(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(CatalanAer)
+    TablTest(CatalanPaths)

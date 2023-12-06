@@ -1,8 +1,9 @@
-from _tabltypes import tgen
-from _tablpaths import GetDataPath
-from _tablhtml import CsvToHtml
-from _tabldata import SaveTraitsToDB, ConvertDBtoCSVandMD
-from _tablstatistic import SingleStatistic, PrintSummary
+from _tablmake import MakeTabl
+from tabl import *
+
+# Make sure that everything is up to date but do not include
+# 'MakeTabl' in 'SingleMake' as this would be circular.
+MakeTabl()
 
 
 # #@
@@ -11,7 +12,7 @@ from _tablstatistic import SingleStatistic, PrintSummary
 def SingleMake(fun: tgen) -> None:
     """
     - Saves the traits of the triangle 'fun' to a database, a CSV file, and Markdown file.
-    - Then the HTML file is updated.
+    - Then the HTML file is created/updated.
     - The traits statistics is displayed.
 
     Args:
@@ -28,5 +29,5 @@ def SingleMake(fun: tgen) -> None:
 
 
 if __name__ == "__main__":
-    from Eulerian import Eulerian as triangle
+    from Chains import Chains as triangle
     SingleMake(triangle)
