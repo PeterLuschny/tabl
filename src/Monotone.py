@@ -1,7 +1,7 @@
 from functools import cache
 from _tabltypes import MakeTriangle
 
-"""Binomial coefficients (-n, k), signless.
+"""Monotone words (binomial(-n, k)).
 
 [0] [1]
 [1] [1, 1]
@@ -17,7 +17,7 @@ from _tabltypes import MakeTriangle
 
 
 @cache
-def binomialminus(n: int) -> list[int]:
+def monotone(n: int) -> list[int]:
     if n == 0:
         return [1]
 
@@ -28,12 +28,12 @@ def binomialminus(n: int) -> list[int]:
     return row
 
 
-@MakeTriangle(binomialminus, "BinomialMinus", ["A059481", "A027555"], True)
-def BinomialMinus(n: int, k: int) -> int:
-    return binomialminus(n)[k]
+@MakeTriangle(monotone, "Monotone", ["A059481", "A027555"], True)
+def Monotone(n: int, k: int) -> int:
+    return monotone(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(BinomialMinus)
+    TablTest(Monotone)
