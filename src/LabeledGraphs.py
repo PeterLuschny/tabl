@@ -39,4 +39,4 @@ def LabeledGraphs(n: int, k: int) -> int:
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(LabeledGraphs)
+    TablTest(LabeledGraphs, short=True)

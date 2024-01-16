@@ -29,7 +29,7 @@ def TablTest(T: tgen, dim: int = 8, short: bool = False) -> None:
         print(f"py> tabl[{arg}][{a2}] =")
         print(gen(arg)[arg // 2])
     except ValueError:
-        print("Exceeds the limit for integer string conversion.")
+        print("ValueError: Exceeds the limit for integer string conversion.")
 
     V = InvertTabl(T.tab(8))
     if V == []:

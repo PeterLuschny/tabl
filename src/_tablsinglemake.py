@@ -23,11 +23,11 @@ def SingleMake(fun: tgen) -> None:
     """
     SaveTraitsToDB(fun)
     ConvertDBtoCSVandMD(GetDataPath(fun.id, "db"), fun.id)
-    #CsvToHtml(fun)
+    CsvToHtml(fun)
     SingleStatistic(fun)
     PrintSummary(fun.id)
 
 
 if __name__ == "__main__":
-    from B import B as triangle
+    from Abel import Abel as triangle
     SingleMake(triangle)
