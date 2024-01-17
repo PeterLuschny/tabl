@@ -1329,6 +1329,35 @@ def BinaryPell(n: int, k: int) -> int:
 
 
 @cache
+def binomial(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    row: list[int] = [1] + binomial(n - 1)
+    for k in range(1, n):
+        row[k] += row[k + 1]
+    return row
+
+
+@MakeTriangle(
+    binomial,
+    "Binomial",
+    [
+        "A007318",
+        "A074909",
+        "A108086",
+        "A117440",
+        "A118433",
+        "A130595",
+        "A135278",
+        "A154926",
+    ],
+    True,
+)
+def Binomial(n: int, k: int) -> int:
+    return binomial(n)[k]
+
+
+@cache
 def binomialbell(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -2319,18 +2348,18 @@ def PartnumMax(n: int, k: int) -> int:
 
 
 @cache
-def binomial(n: int) -> list[int]:
+def pascal(n: int) -> list[int]:
     if n == 0:
         return [1]
-    row = [1] + binomial(n - 1)
+    row = [1] + pascal(n - 1)
     for k in range(1, n):
         row[k] += row[k + 1]
     return row
 
 
 @MakeTriangle(
-    binomial,
-    "Binomial",
+    pascal,
+    "Pascal",
     [
         "A007318",
         "A074909",
@@ -2343,8 +2372,8 @@ def binomial(n: int) -> list[int]:
     ],
     True,
 )
-def Binomial(n: int, k: int) -> int:
-    return binomial(n)[k]
+def Pascal(n: int, k: int) -> int:
+    return pascal(n)[k]
 
 
 @cache
@@ -2814,6 +2843,7 @@ tabl_fun: list[tgen] = [
     PartnumExact,
     PartnumDist,
     PartnumMax,
+    Pascal,
     Polygonal,
     PowLaguerre,
     Rencontres,

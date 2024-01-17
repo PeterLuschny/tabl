@@ -18,19 +18,19 @@ from _tabltypes import MakeTriangle
 
 
 @cache
-def pascal(n: int) -> list[int]:
+def binomial(n: int) -> list[int]:
     if n == 0:
         return [1]
 
-    row = [1] + pascal(n - 1)
+    row: list[int] = [1] + binomial(n - 1)
     for k in range(1, n):
         row[k] += row[k + 1]
     return row
 
 
 @MakeTriangle(
-    pascal,
-    "Pascal",
+    binomial,
+    "Binomial",
     [
         "A007318",
         "A074909",
@@ -43,11 +43,11 @@ def pascal(n: int) -> list[int]:
     ],
     True,
 )
-def Pascal(n: int, k: int) -> int:
-    return pascal(n)[k]
+def Binomial(n: int, k: int) -> int:
+    return binomial(n)[k]
 
 
 if __name__ == "__main__":
     from _tabltest import TablTest
 
-    TablTest(Pascal)
+    TablTest(Binomial)

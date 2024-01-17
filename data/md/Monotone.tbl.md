@@ -1,7 +1,7 @@
-# BinomialMinus
+# Monotone
 ['A059481', 'A027555']
 
-BinomialMinus Triangle view
+Monotone Triangle view
 
 |  Row   |  Seq   |
 | :---   |  :---  |
@@ -16,7 +16,7 @@ BinomialMinus Triangle view
 | Row8 | [1, 8, 36, 120, 330, 792, 1716, 3432, 6435] |
 | Row9 | [1, 9, 45, 165, 495, 1287, 3003, 6435, 12870, 24310] |
 
-BinomialMinus Triangles
+Monotone Triangles
 
 | Flat       |  Seq  |
 | :---       | :---  |
@@ -28,7 +28,7 @@ BinomialMinus Triangles
 | AccRevTabl | [[1], [1, 2], [3, 5, 6], [10, 16, 19, 20], [35, 55, 65, 69, 70], [126, 196, 231, 246, 251, 252], [462, 714, 840, 896, 917, 923, 924], [1716, 2640, 3102, 3312, 3396, 3424, 3431, 3432], [6435, 9867, 11583, 12375, 12705, 12825, 12861, 12869, 12870], [24310, 37180, 43615, 46618, 47905, 48400, 48565, 48610, 48619, 48620]] |
 | DiffxTabl  | [[1], [1, 2], [1, 4, 9], [1, 6, 18, 40], [1, 8, 30, 80, 175], [1, 10, 45, 140, 350, 756], [1, 12, 63, 224, 630, 1512, 3234], [1, 14, 84, 336, 1050, 2772, 6468, 13728], [1, 16, 108, 480, 1650, 4752, 12012, 27456, 57915], [1, 18, 135, 660, 2475, 7722, 21021, 51480, 115830, 243100]] |
 
-BinomialMinus Row sums
+Monotone Row sums
 
 | Trait        |   Seq  |
 | :---         |  :---  |
@@ -41,7 +41,7 @@ BinomialMinus Row sums
 | AccRevSum    | [1, 3, 14, 65, 294, 1302, 5676, 24453, 104390, 442442] |
 | DiagSum      | [1, 1, 2, 3, 7, 11, 26, 42, 99, 163] |
 
-BinomialMinus Transforms
+Monotone Transforms
 
 | Trans      |   Seq  |
 | :---       |  :---  |
@@ -61,7 +61,7 @@ BinomialMinus Transforms
 | PosHalf    | [1, 3, 11, 42, 163, 638, 2510, 9908, 39203, 155382] |
 | NegHalf    | [1, -1, 3, 2, 19, 54, 222, 804, 3075, 11630] |
 
-BinomialMinus Diagonals as rows
+Monotone Diagonals as rows
 
 | DiagRow  |   Seq  |
 | :---     |  :---  |
@@ -76,7 +76,7 @@ BinomialMinus Diagonals as rows
 | DiagRow8 | [1, 9, 55, 286, 1365, 6188, 27132, 116280, 490314, 2042975]|
 | DiagRow9 | [1, 10, 66, 364, 1820, 8568, 38760, 170544, 735471, 3124550]|
 
-BinomialMinus Diagonals as columns
+Monotone Diagonals as columns
 
 | DiagCol  |   Seq  |
 | :---     |  :---  |
@@ -91,7 +91,7 @@ BinomialMinus Diagonals as columns
 | DiagCol8 | [6435, 12870, 24310, 43758, 75582, 125970, 203490, 319770, 490314, 735471] |
 | DiagCol9 | [24310, 48620, 92378, 167960, 293930, 497420, 817190, 1307504, 2042975, 3124550] |
 
-BinomialMinus Polynomial values as rows
+Monotone Polynomial values as rows
 
 | PolyRow  |   Seq  |
 | :---     |  :---  |
@@ -106,7 +106,7 @@ BinomialMinus Polynomial values as rows
 | PolyRow8 | [1, 12870, 2228225, 51199558, 485886561, 2811306566, 11855744545, 40138926150, 115636017473, 294381774406] |
 | PolyRow9 | [1, 48620, 16807935, 579554056, 7335356213, 53061821796, 268557630355, 1060864852160, 3493082416521, 10004657077468] |
 
-BinomialMinus Polynomial values as columns
+Monotone Polynomial values as columns
 
 | PolyCol  |   Seq  |
 | :---     |  :---  |
@@ -121,10 +121,10 @@ BinomialMinus Polynomial values as columns
 | PolyCol8 | [1, 9, 209, 5529, 154273, 4434409, 129914225, 3856977721, 115636017473, 3493082416521] |
 | PolyCol9 | [1, 10, 262, 7804, 245062, 7926220, 261275356, 8727348304, 294381774406, 10004657077468] |
 
-# BinomialMinus:Rev
+# Monotone:Rev
 []
 
-BinomialMinus:Rev Triangle view
+Monotone:Rev Triangle view
 
 |  Row   |  Seq   |
 | :---   |  :---  |
@@ -139,7 +139,7 @@ BinomialMinus:Rev Triangle view
 | Row8 | [6435, 3432, 1716, 792, 330, 120, 36, 8, 1] |
 | Row9 | [24310, 12870, 6435, 3003, 1287, 495, 165, 45, 9, 1] |
 
-BinomialMinus:Rev Triangles
+Monotone:Rev Triangles
 
 | Flat       |  Seq  |
 | :---       | :---  |
@@ -151,7 +151,7 @@ BinomialMinus:Rev Triangles
 | AccRevTabl | [[1], [1, 2], [1, 3, 6], [1, 4, 10, 20], [1, 5, 15, 35, 70], [1, 6, 21, 56, 126, 252], [1, 7, 28, 84, 210, 462, 924], [1, 8, 36, 120, 330, 792, 1716, 3432], [1, 9, 45, 165, 495, 1287, 3003, 6435, 12870], [1, 10, 55, 220, 715, 2002, 5005, 11440, 24310, 48620]] |
 | DiffxTabl  | [[1], [1, 2], [3, 4, 3], [10, 12, 9, 4], [35, 40, 30, 16, 5], [126, 140, 105, 60, 25, 6], [462, 504, 378, 224, 105, 36, 7], [1716, 1848, 1386, 840, 420, 168, 49, 8], [6435, 6864, 5148, 3168, 1650, 720, 252, 64, 9], [24310, 25740, 19305, 12012, 6435, 2970, 1155, 360, 81, 10]] |
 
-BinomialMinus:Rev Row sums
+Monotone:Rev Row sums
 
 | Trait        |   Seq  |
 | :---         |  :---  |
@@ -164,7 +164,7 @@ BinomialMinus:Rev Row sums
 | AccRevSum    | [1, 3, 10, 35, 126, 462, 1716, 6435, 24310, 92378] |
 | DiagSum      | [1, 1, 4, 12, 42, 149, 543, 2007, 7501, 28265] |
 
-BinomialMinus:Rev Transforms
+Monotone:Rev Transforms
 
 | Trans      |   Seq  |
 | :---       |  :---  |
@@ -184,7 +184,7 @@ BinomialMinus:Rev Transforms
 | PosHalf    | [1, 3, 17, 111, 769, 5503, 40193, 297727, 2228225, 16807935] |
 | NegHalf    | [1, -1, 9, -61, 433, -3141, 23145, -172509, 1296993, -9817909] |
 
-BinomialMinus:Rev Diagonals as rows
+Monotone:Rev Diagonals as rows
 
 | DiagRow  |   Seq  |
 | :---     |  :---  |
@@ -199,7 +199,7 @@ BinomialMinus:Rev Diagonals as rows
 | DiagRow8 | [6435, 12870, 24310, 43758, 75582, 125970, 203490, 319770, 490314, 735471]|
 | DiagRow9 | [24310, 48620, 92378, 167960, 293930, 497420, 817190, 1307504, 2042975, 3124550]|
 
-BinomialMinus:Rev Diagonals as columns
+Monotone:Rev Diagonals as columns
 
 | DiagCol  |   Seq  |
 | :---     |  :---  |
@@ -214,7 +214,7 @@ BinomialMinus:Rev Diagonals as columns
 | DiagCol8 | [1, 9, 55, 286, 1365, 6188, 27132, 116280, 490314, 2042975] |
 | DiagCol9 | [1, 10, 66, 364, 1820, 8568, 38760, 170544, 735471, 3124550] |
 
-BinomialMinus:Rev Polynomial values as rows
+Monotone:Rev Polynomial values as rows
 
 | PolyRow  |   Seq  |
 | :---     |  :---  |
@@ -229,7 +229,7 @@ BinomialMinus:Rev Polynomial values as rows
 | PolyRow8 | [6435, 12870, 39203, 159750, 649731, 2324870, 7219395, 19783878, 48824675, 110447046] |
 | PolyRow9 | [24310, 48620, 155382, 723880, 3472382, 14538660, 51988510, 161577632, 446406630, 1118286172] |
 
-BinomialMinus:Rev Polynomial values as columns
+Monotone:Rev Polynomial values as columns
 
 | PolyCol  |   Seq  |
 | :---     |  :---  |
@@ -244,10 +244,10 @@ BinomialMinus:Rev Polynomial values as columns
 | PolyCol8 | [1, 9, 83, 762, 6979, 63854, 583982, 5339924, 48824675, 446406630] |
 | PolyCol9 | [1, 10, 102, 1036, 10502, 106380, 1077276, 10908096, 110447046, 1118286172] |
 
-# BinomialMinus:Rev:Inv
+# Monotone:Rev:Inv
 []
 
-BinomialMinus:Rev:Inv Triangle view
+Monotone:Rev:Inv Triangle view
 
 |  Row   |  Seq   |
 | :---   |  :---  |
@@ -262,7 +262,7 @@ BinomialMinus:Rev:Inv Triangle view
 | Row8 | [-1, 0, 0, 0, 2, -16, 20, -8, 1] |
 | Row9 | [-1, 0, 0, 0, 0, 9, -30, 27, -9, 1] |
 
-BinomialMinus:Rev:Inv Triangles
+Monotone:Rev:Inv Triangles
 
 | Flat       |  Seq  |
 | :---       | :---  |
@@ -274,7 +274,7 @@ BinomialMinus:Rev:Inv Triangles
 | AccRevTabl | [[1], [1, 0], [1, -1, -2], [1, -2, -2, -3], [1, -3, -1, -1, -2], [1, -4, 1, 1, 1, 0], [1, -5, 4, 2, 2, 2, 1], [1, -6, 8, 1, 1, 1, 1, 0], [1, -7, 13, -3, -1, -1, -1, -1, -2], [1, -8, 19, -11, -2, -2, -2, -2, -2, -3]] |
 | DiffxTabl  | [[1], [-1, 2], [-1, -4, 3], [-1, 0, -9, 4], [-1, 0, 6, -16, 5], [-1, 0, 0, 20, -25, 6], [-1, 0, 0, -8, 45, -36, 7], [-1, 0, 0, 0, -35, 84, -49, 8], [-1, 0, 0, 0, 10, -96, 140, -64, 9], [-1, 0, 0, 0, 0, 54, -210, 216, -81, 10]] |
 
-BinomialMinus:Rev:Inv Row sums
+Monotone:Rev:Inv Row sums
 
 | Trait        |   Seq  |
 | :---         |  :---  |
@@ -287,7 +287,7 @@ BinomialMinus:Rev:Inv Row sums
 | AccRevSum    | [1, 1, -2, -6, -6, 0, 7, 7, -2, -12] |
 | DiagSum      | [1, -1, 0, -3, 0, -4, 2, -5, 5, -8] |
 
-BinomialMinus:Rev:Inv Transforms
+Monotone:Rev:Inv Transforms
 
 | Trans      |   Seq  |
 | :---       |  :---  |
@@ -307,7 +307,7 @@ BinomialMinus:Rev:Inv Transforms
 | PosHalf    | [1, -1, -7, -13, -15, -21, -55, -141, -287, -517] |
 | NegHalf    | [1, 3, 1, 15, 1, 63, 1, 255, 1, 1023] |
 
-BinomialMinus:Rev:Inv Diagonals as rows
+Monotone:Rev:Inv Diagonals as rows
 
 | DiagRow  |   Seq  |
 | :---     |  :---  |
@@ -322,7 +322,7 @@ BinomialMinus:Rev:Inv Diagonals as rows
 | DiagRow8 | [-1, 0, 0, 0, 0, 0, 0, 0, 2, 17]|
 | DiagRow9 | [-1, 0, 0, 0, 0, 0, 0, 0, 0, -2]|
 
-BinomialMinus:Rev:Inv Diagonals as columns
+Monotone:Rev:Inv Diagonals as columns
 
 | DiagCol  |   Seq  |
 | :---     |  :---  |
@@ -337,7 +337,7 @@ BinomialMinus:Rev:Inv Diagonals as columns
 | DiagCol8 | [1, -9, 35, -77, 105, -91, 49, -15, 2, 0] |
 | DiagCol9 | [1, -10, 44, -112, 182, -196, 140, -64, 17, -2] |
 
-BinomialMinus:Rev:Inv Polynomial values as rows
+Monotone:Rev:Inv Polynomial values as rows
 
 | PolyRow  |   Seq  |
 | :---     |  :---  |
@@ -352,7 +352,7 @@ BinomialMinus:Rev:Inv Polynomial values as rows
 | PolyRow8 | [-1, -2, 31, -82, 511, 29374, 251423, 1265326, 4726783, 14480126] |
 | PolyRow9 | [-1, -3, 31, -1, 1023, 106249, 1189727, 7327851, 32276479, 113728373] |
 
-BinomialMinus:Rev:Inv Polynomial values as columns
+Monotone:Rev:Inv Polynomial values as columns
 
 | PolyCol  |   Seq  |
 | :---     |  :---  |

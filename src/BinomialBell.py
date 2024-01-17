@@ -18,7 +18,6 @@ T(n, k) = if k == 0 then 0^n else binomial(n-1, k-1) * Bell(n - k)
 
 @cache
 def binomialbell(n: int) -> list[int]:
-
     if n == 0:
         return [1]
     if n == 1:

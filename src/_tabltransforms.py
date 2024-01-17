@@ -1,5 +1,5 @@
 from typing import Callable
-from Pascal import binomial
+from Binomial import binomial
 from math import lcm, gcd
 from functools import reduce
 from _tabltypes import seq, tabl, trow, rgen, tgen
