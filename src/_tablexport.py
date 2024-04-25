@@ -17,6 +17,9 @@ readme_header = """
 
 # Tables à la carte
 
+
+         Sequentiae umbras triangulorum sunt
+
 INTEGER SEQUENCES ARE ONLY THE SHADOWS OF INTEGER TRIANGLES
 
 Python implementations of integer sequences dubbed tabl in the OEIS.
@@ -48,7 +51,7 @@ def CrossReferences(name: str = "README.md") -> None:
             s = str(similars).replace("[", "").replace("]", "").replace("'", "")
             for sim in similars:
                 anum += "%7Cid%3A" + sim
-            xrefs.write(f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/data/md/{id}.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://oeis.org/search?q={anum}) |\n")
+            xrefs.write(f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/data/md/{id}.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://intdb.io/search?q={anum}) |\n")
 
     print("Info: 'README.md' written to the root folder.")
 

@@ -6,6 +6,8 @@ from tabl import tabl_fun
 
 # #@
 
+# provider = 'oeis.org'
+provider = 'intdb.io'
 
 Header = [
     "<!DOCTYPE html>",
@@ -128,7 +130,7 @@ def navbar(fun: tgen) -> list[str]:
         f"<td {rc};><a style='color:white' href='https://github.com/PeterLuschny/tabl/blob/main/src/{fun.id}.py'>Source</a></td>"
     )
     NAVBAR.append(
-        f"<td {rc};><a style='color:white' href='https://oeis.org/search?q={anums}'>Similars</a></td>"
+        f"<td {rc};><a style='color:white' href='https://intdb.io/search?q={anums}'>Similars</a></td>"
     )
     NAVBAR.append(
         f"<td {rc};><a style='color:white' href='https://luschny.de/math/oeis/index.html'>Index</a></td>"
@@ -209,21 +211,21 @@ def CsvToHtml(fun: tgen, nomissings: bool = False) -> None:
 
                 if anum == "missing":
                     color = "rgb(0, 0, 0)"
-                    url = f"https://oeis.org/search?q={sseq}"
+                    url = f"https://intdb.io/search?q={sseq}"
                     outfile.write(
                         f"<td><a href='{url}' style='color:{color}' target='_blank'>missing</a></td>"
                     )
                 elif anum[0] == 'B':
                     Anum = 'A' + anum[1:]
                     color = "rgb(0, 0, 255)"
-                    url = f"https://oeis.org/search?q={sseq}"
+                    url = f"https://intdb.io/search?q={sseq}"
                     outfile.write(
-                        f"<td><a href='https://oeis.org/{Anum}' style='color:{color}' target='_blank'>{anum}</a></td>"
+                        f"<td><a href='https://intdb.io/{Anum}' style='color:{color}' target='_blank'>{anum}</a></td>"
                     )
                 else:
                     color = "rgb(127, 0, 255)"
                     outfile.write(
-                        f"<td><a href='https://oeis.org/{anum}' style='color:{color}' target='_blank'>{anum}</a></td>"
+                        f"<td><a href='https://intdb.io/{anum}' style='color:{color}' target='_blank'>{anum}</a></td>"
                     )
 
                 # seq
@@ -251,4 +253,4 @@ def AllCsvToHtml(nomissings: bool = False) -> None:
 if __name__ == "__main__":
     # from Abel import Abel
     # CsvToHtml(Abel)
-    AllCsvToHtml(True)
+    AllCsvToHtml(False)

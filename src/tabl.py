@@ -2298,6 +2298,26 @@ def OrderedCycle(n: int, k: int) -> int:
 
 
 @cache
+def A(n: int, k: int) -> int:
+    if n == 0:
+        return int(k == 0)
+    if k > n:
+        n, k = k, n
+    b = binomial(k + 1)
+    return k * A(n - 1, k) + sum(b[j + 1] * A(n - 1, k - j) for j in range(1, k + 1))
+
+
+@cache
+def parades(n: int) -> list[int]:
+    return [A(n - k, k) for k in range(n + 1)]
+
+
+@MakeTriangle(parades, "Parades", ["A371761", "A272644"], True)
+def Parades(n: int, k: int) -> int:
+    return parades(n)[k]
+
+
+@cache
 def part(n: int, k: int) -> int:
     if k < 0 or n < 0:
         return 0
@@ -2840,6 +2860,7 @@ tabl_fun: list[tgen] = [
     One,
     Ordinals,
     OrderedCycle,
+    Parades,
     PartnumExact,
     PartnumDist,
     PartnumMax,
@@ -2866,6 +2887,7 @@ tabl_fun: list[tgen] = [
     Worpitzky,
 ]
 readme_header = """
+         Sequentiae umbras triangulorum sunt
 INTEGER SEQUENCES ARE ONLY THE SHADOWS OF INTEGER TRIANGLES
 Python implementations of integer sequences dubbed tabl in the OEIS.
 The notebook gives a first introduction for the user.
@@ -2891,7 +2913,7 @@ def CrossReferences(name: str = "README.md") -> None:
             for sim in similars:
                 anum += "%7Cid%3A" + sim
             xrefs.write(
-                f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/data/md/{id}.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://oeis.org/search?q={anum}) |\n"
+                f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/data/md/{id}.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://intdb.io/search?q={anum}) |\n"
             )
     print("Info: 'README.md' written to the root folder.")
 
@@ -2922,6 +2944,7 @@ def SaveExtendedTables(dim: int = 10) -> None:
     print("Info: Extended tables written to the data/md folder as 'name.tbl.md'.")
 
 
+provider = "intdb.io"
 Header = [
     "<!DOCTYPE html>",
     "<html lang='en'><head><meta charset='UTF-8'/>",
@@ -3038,7 +3061,7 @@ def navbar(fun: tgen) -> list[str]:
         f"<td {rc};><a style='color:white' href='https://github.com/PeterLuschny/tabl/blob/main/src/{fun.id}.py'>Source</a></td>"
     )
     NAVBAR.append(
-        f"<td {rc};><a style='color:white' href='https://oeis.org/search?q={anums}'>Similars</a></td>"
+        f"<td {rc};><a style='color:white' href='https://intdb.io/search?q={anums}'>Similars</a></td>"
     )
     NAVBAR.append(
         f"<td {rc};><a style='color:white' href='https://luschny.de/math/oeis/index.html'>Index</a></td>"
@@ -3103,21 +3126,21 @@ def CsvToHtml(fun: tgen, nomissings: bool = False) -> None:
                 sseq = (seq.split(" ", 3)[3]).replace(" ", ",")
                 if anum == "missing":
                     color = "rgb(0, 0, 0)"
-                    url = f"https://oeis.org/search?q={sseq}"
+                    url = f"https://intdb.io/search?q={sseq}"
                     outfile.write(
                         f"<td><a href='{url}' style='color:{color}' target='_blank'>missing</a></td>"
                     )
                 elif anum[0] == "B":
                     Anum = "A" + anum[1:]
                     color = "rgb(0, 0, 255)"
-                    url = f"https://oeis.org/search?q={sseq}"
+                    url = f"https://intdb.io/search?q={sseq}"
                     outfile.write(
-                        f"<td><a href='https://oeis.org/{Anum}' style='color:{color}' target='_blank'>{anum}</a></td>"
+                        f"<td><a href='https://intdb.io/{Anum}' style='color:{color}' target='_blank'>{anum}</a></td>"
                     )
                 else:
                     color = "rgb(127, 0, 255)"
                     outfile.write(
-                        f"<td><a href='https://oeis.org/{anum}' style='color:{color}' target='_blank'>{anum}</a></td>"
+                        f"<td><a href='https://intdb.io/{anum}' style='color:{color}' target='_blank'>{anum}</a></td>"
                     )
                 # seq
                 outfile.write(
@@ -3143,7 +3166,8 @@ def is_tabletrait(f: Callable):
     (a) The 'table' type: Callable[[tabl], trow]]:
     (b) The 'generic' type: Callable[[rgen, int], trow]]
     To diffenrentiate use the function 'is_tabletrait(f)'
-    that returns 'True' if 'f' is of table-type."""
+    that returns 'True' if 'f' is of table-type.
+    """
     sig = signature(f)
     ann = list(sig.parameters.values())[0].annotation
     return ann == list[list[int]]
@@ -3230,9 +3254,9 @@ def Formulas() -> dict[str, str]:
     FORMULA["AbsSum"] = "&sum;<sub> k=0..n </sub> | T(n, k) |"
     FORMULA["DiagSum"] = "&sum;<sub> k=0..n // 2 </sub> T(n - k, k)"
     FORMULA["AccSum"] = "&sum;<sub> k=0..n </sub>&sum;<sub> j=0..k </sub> T(n, j)"
-    FORMULA[
-        "AccRevSum"
-    ] = "&sum;<sub> k=0..n </sub>&sum;<sub> j=0..k </sub> T(n, n - j)"
+    FORMULA["AccRevSum"] = (
+        "&sum;<sub> k=0..n </sub>&sum;<sub> j=0..k </sub> T(n, n - j)"
+    )
     FORMULA["RowLcm"] = "Lcm<sub> k=0..n </sub> | T(n, k) | &gt; 1"
     FORMULA["RowGcd"] = "Gcd<sub> k=0..n </sub> | T(n, k) | &gt; 1"
     FORMULA["RowMax"] = "Max<sub> k=0..n </sub> | T(n, k) |"
