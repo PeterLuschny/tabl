@@ -3,7 +3,7 @@
 # Tables à la carte
 
 
-Sequentiae umbras triangulorum sunt
+         Sequentiae umbras triangulorum sunt
 
 INTEGER SEQUENCES ARE ONLY THE SHADOWS OF INTEGER TRIANGLES
 
@@ -44,6 +44,7 @@ The notebook gives a first introduction for the user.
 | [Eulerian](https://github.com/PeterLuschny/tabl/blob/main/data/md/Eulerian.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/Eulerian.py) | [traits](https://luschny.de/math/oeis/Eulerian.html) | [A123125, A173018, A008292](https://intdb.io/search?q=%7Cid%3AA123125%7Cid%3AA173018%7Cid%3AA008292) |
 | [Eulerian2](https://github.com/PeterLuschny/tabl/blob/main/data/md/Eulerian2.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/Eulerian2.py) | [traits](https://luschny.de/math/oeis/Eulerian2.html) | [A340556, A008517, A112007, A163936](https://intdb.io/search?q=%7Cid%3AA340556%7Cid%3AA008517%7Cid%3AA112007%7Cid%3AA163936) |
 | [EulerianB](https://github.com/PeterLuschny/tabl/blob/main/data/md/EulerianB.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/EulerianB.py) | [traits](https://luschny.de/math/oeis/EulerianB.html) | [A060187, A138076](https://intdb.io/search?q=%7Cid%3AA060187%7Cid%3AA138076) |
+| [EulerianZigZag](https://github.com/PeterLuschny/tabl/blob/main/data/md/EulerianZigZag.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/EulerianZigZag.py) | [traits](https://luschny.de/math/oeis/EulerianZigZag.html) | [A205497](https://intdb.io/search?q=%7Cid%3AA205497) |
 | [EulerSec](https://github.com/PeterLuschny/tabl/blob/main/data/md/EulerSec.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/EulerSec.py) | [traits](https://luschny.de/math/oeis/EulerSec.html) | [A119879, A081658, A153641](https://intdb.io/search?q=%7Cid%3AA119879%7Cid%3AA081658%7Cid%3AA153641) |
 | [EulerTan](https://github.com/PeterLuschny/tabl/blob/main/data/md/EulerTan.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/EulerTan.py) | [traits](https://luschny.de/math/oeis/EulerTan.html) | [A162660, A350972, A155585, A009006, A000182](https://intdb.io/search?q=%7Cid%3AA162660%7Cid%3AA350972%7Cid%3AA155585%7Cid%3AA009006%7Cid%3AA000182) |
 | [FallingFact](https://github.com/PeterLuschny/tabl/blob/main/data/md/FallingFact.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/FallingFact.py) | [traits](https://luschny.de/math/oeis/FallingFact.html) | [A008279, A068424, A094587, A173333, A181511](https://intdb.io/search?q=%7Cid%3AA008279%7Cid%3AA068424%7Cid%3AA094587%7Cid%3AA173333%7Cid%3AA181511) |
@@ -56,6 +57,7 @@ The notebook gives a first introduction for the user.
 | [HermiteE](https://github.com/PeterLuschny/tabl/blob/main/data/md/HermiteE.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/HermiteE.py) | [traits](https://luschny.de/math/oeis/HermiteE.html) | [A099174, A066325, A073278](https://intdb.io/search?q=%7Cid%3AA099174%7Cid%3AA066325%7Cid%3AA073278) |
 | [HermiteH](https://github.com/PeterLuschny/tabl/blob/main/data/md/HermiteH.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/HermiteH.py) | [traits](https://luschny.de/math/oeis/HermiteH.html) | [A060821](https://intdb.io/search?q=%7Cid%3AA060821) |
 | [HyperHarmonic](https://github.com/PeterLuschny/tabl/blob/main/data/md/HyperHarmonic.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/HyperHarmonic.py) | [traits](https://luschny.de/math/oeis/HyperHarmonic.html) | [A165675, A093905, A105954, A165674](https://intdb.io/search?q=%7Cid%3AA165675%7Cid%3AA093905%7Cid%3AA105954%7Cid%3AA165674) |
+| [Kekule](https://github.com/PeterLuschny/tabl/blob/main/data/md/Kekule.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/Kekule.py) | [traits](https://luschny.de/math/oeis/Kekule.html) | [A050446, A050447](https://intdb.io/search?q=%7Cid%3AA050446, A050447) |
 | [LabeledGraphs](https://github.com/PeterLuschny/tabl/blob/main/data/md/LabeledGraphs.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/LabeledGraphs.py) | [traits](https://luschny.de/math/oeis/LabeledGraphs.html) | [A360603](https://intdb.io/search?q=%7Cid%3AA360603) |
 | [Laguerre](https://github.com/PeterLuschny/tabl/blob/main/data/md/Laguerre.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/Laguerre.py) | [traits](https://luschny.de/math/oeis/Laguerre.html) | [A021009, A021010, A144084](https://intdb.io/search?q=%7Cid%3AA021009%7Cid%3AA021010%7Cid%3AA144084) |
 | [Lah](https://github.com/PeterLuschny/tabl/blob/main/data/md/Lah.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/Lah.py) | [traits](https://luschny.de/math/oeis/Lah.html) | [A271703, A008297, A066667, A089231, A105278, A111596](https://intdb.io/search?q=%7Cid%3AA271703%7Cid%3AA008297%7Cid%3AA066667%7Cid%3AA089231%7Cid%3AA105278%7Cid%3AA111596) |

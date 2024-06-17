@@ -1682,6 +1682,16 @@ def Divisibility(n: int, k: int) -> int:
 
 
 @cache
+def dist_latt(n, k):
+    if k == 0 or n == 0:
+        return 1
+    return dist_latt(n, k - 1) + sum(
+        dist_latt(2 * j, k - 1) * dist_latt(n - 1 - 2 * j, k)
+        for j in range(1 + (n - 1) // 2)
+    )
+
+
+@cache
 def dyckpaths(n: int) -> list[int]:
     if n == 0:
         return [1]
@@ -1793,6 +1803,20 @@ def eulerianb(n: int) -> list[int]:
 @MakeTriangle(eulerianb, "EulerianB", ["A060187", "A138076"], True)
 def EulerianB(n: int, k: int) -> int:
     return eulerianb(n)[k]
+
+
+@cache
+def eulerianzigzag(n: int) -> list[int]:
+    b = binomial(n + 1)
+    return [
+        sum((-1) ** j * b[j] * dist_latt(n, k - j) for j in range(k + 1))
+        for k in range(n + 1)
+    ]
+
+
+@MakeTriangle(eulerianzigzag, "EulerianZigZag", ["A205497"], False)
+def EulerianZigZag(n: int, k: int) -> int:
+    return eulerianzigzag(n)[k]
 
 
 @cache
@@ -2006,6 +2030,16 @@ def hyperharmonic(n: int) -> list[int]:
 )
 def HyperHarmonic(n: int, k: int) -> int:
     return hyperharmonic(n)[k]
+
+
+@cache
+def kekule(n: int) -> list[int]:
+    return [dist_latt(n - k, k) for k in range(n + 1)]
+
+
+@MakeTriangle(kekule, "Kekule", ["A050446", "A050447"], False)
+def Kekule(n: int, k: int) -> int:
+    return kekule(n)[k]
 
 
 @cache
@@ -2831,6 +2865,7 @@ tabl_fun: list[tgen] = [
     Eulerian,
     Eulerian2,
     EulerianB,
+    EulerianZigZag,
     EulerSec,
     EulerTan,
     FallingFactorial,
@@ -2843,6 +2878,7 @@ tabl_fun: list[tgen] = [
     HermiteE,
     HermiteH,
     HyperHarmonic,
+    Kekule,
     LabeledGraphs,
     Laguerre,
     Lah,
@@ -2944,7 +2980,7 @@ def SaveExtendedTables(dim: int = 10) -> None:
     print("Info: Extended tables written to the data/md folder as 'name.tbl.md'.")
 
 
-provider = "intdb.io"
+provider = "oeis.org"
 Header = [
     "<!DOCTYPE html>",
     "<html lang='en'><head><meta charset='UTF-8'/>",
@@ -3061,7 +3097,7 @@ def navbar(fun: tgen) -> list[str]:
         f"<td {rc};><a style='color:white' href='https://github.com/PeterLuschny/tabl/blob/main/src/{fun.id}.py'>Source</a></td>"
     )
     NAVBAR.append(
-        f"<td {rc};><a style='color:white' href='https://intdb.io/search?q={anums}'>Similars</a></td>"
+        f"<td {rc};><a style='color:white' href='https://oeis.org/search?q={anums}'>Similars</a></td>"
     )
     NAVBAR.append(
         f"<td {rc};><a style='color:white' href='https://luschny.de/math/oeis/index.html'>Index</a></td>"
@@ -3126,21 +3162,21 @@ def CsvToHtml(fun: tgen, nomissings: bool = False) -> None:
                 sseq = (seq.split(" ", 3)[3]).replace(" ", ",")
                 if anum == "missing":
                     color = "rgb(0, 0, 0)"
-                    url = f"https://intdb.io/search?q={sseq}"
+                    url = f"https://oeis.org/search?q={sseq}"
                     outfile.write(
                         f"<td><a href='{url}' style='color:{color}' target='_blank'>missing</a></td>"
                     )
                 elif anum[0] == "B":
                     Anum = "A" + anum[1:]
                     color = "rgb(0, 0, 255)"
-                    url = f"https://intdb.io/search?q={sseq}"
+                    url = f"https://oeis.org/search?q={sseq}"
                     outfile.write(
-                        f"<td><a href='https://intdb.io/{Anum}' style='color:{color}' target='_blank'>{anum}</a></td>"
+                        f"<td><a href='https://oeis.org/{Anum}' style='color:{color}' target='_blank'>{anum}</a></td>"
                     )
                 else:
                     color = "rgb(127, 0, 255)"
                     outfile.write(
-                        f"<td><a href='https://intdb.io/{anum}' style='color:{color}' target='_blank'>{anum}</a></td>"
+                        f"<td><a href='https://oeis.org/{anum}' style='color:{color}' target='_blank'>{anum}</a></td>"
                     )
                 # seq
                 outfile.write(
