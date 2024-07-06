@@ -1814,6 +1814,16 @@ def eulerianzigzag(n: int) -> list[int]:
     ]
 
 
+@cache
+def ezz(n: int) -> list[int]:
+    n += 2
+    b = binomial(n + 1)
+    return [
+        sum((-1) ** j * b[j] * dist_latt(n, k - j) for j in range(k + 1))
+        for k in range(n - 1)
+    ]
+
+
 @MakeTriangle(eulerianzigzag, "EulerianZigZag", ["A205497"], False)
 def EulerianZigZag(n: int, k: int) -> int:
     return eulerianzigzag(n)[k]

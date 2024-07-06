@@ -29,5 +29,5 @@ def SingleMake(fun: tgen) -> None:
 
 
 if __name__ == "__main__":
-    from Abel import Abel as triangle
+    from EulerianZigZag import EulerianZigZag as triangle
     SingleMake(triangle)
