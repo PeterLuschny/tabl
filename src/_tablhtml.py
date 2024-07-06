@@ -8,6 +8,7 @@ from tabl import tabl_fun
 
 provider = 'oeis.org'
 # provider = 'intdb.io'
+# change also in _tablexport.py
 
 Header = [
     "<!DOCTYPE html>",
