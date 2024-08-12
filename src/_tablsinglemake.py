@@ -29,5 +29,5 @@ def SingleMake(fun: tgen) -> None:
 
 
 if __name__ == "__main__":
-    from EulerianZigZag import EulerianZigZag as triangle
+    from FiboLucasInv import FiboLucasInv as triangle
     SingleMake(triangle)

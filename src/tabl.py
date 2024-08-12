@@ -1682,7 +1682,7 @@ def Divisibility(n: int, k: int) -> int:
 
 
 @cache
-def dist_latt(n, k):
+def dist_latt(n: int, k: int) -> int:
     if k == 0 or n == 0:
         return 1
     return dist_latt(n, k - 1) + sum(
@@ -1887,6 +1887,49 @@ def fallingfactorial(n: int) -> list[int]:
 )
 def FallingFactorial(n: int, k: int) -> int:
     return fallingfactorial(n)[k]
+
+
+@cache
+def fibolucas(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [1, 2]
+    if n == 2:
+        return [1, 2, 1]
+    rowA = fibolucas(n - 2)
+    row = fibolucas(n - 1) + [1 + n % 2]
+    row[2] += 1
+    for k in range(3, n):
+        row[k] += rowA[k - 2]
+    return row
+
+
+@MakeTriangle(fibolucas, "FiboLucas", ["A374439"], True)
+def FiboLucas(n: int, k: int) -> int:
+    return fibolucas(n)[k]
+
+
+@cache
+def fibolucasinv(n: int) -> list[int]:
+    return FiboLucas.invrev(n + 1)[-1]
+
+
+@MakeTriangle(fibolucasinv, "FiboLucasInv", ["A375025"], True)
+def FiboLucasInv(n: int, k: int) -> int:
+    return fibolucasinv(n)[k]
+
+
+@cache
+def fibolucasrev(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    return list(reversed(fibolucas(n)))
+
+
+@MakeTriangle(fibolucasrev, "FiboLucasRev", ["A124038"], True)
+def FiboLucasRev(n: int, k: int) -> int:
+    return fibolucasrev(n)[k]
 
 
 @cache
@@ -2173,6 +2216,27 @@ def lozanic(n: int) -> list[int]:
 @MakeTriangle(lozanic, "Lozanic", ["A034851"], True)
 def Lozanic(n: int, k: int) -> int:
     return lozanic(n)[k]
+
+
+@cache
+def lucas(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [1, 0]
+    if n == 2:
+        return [1, 1, 1]
+    rowA = lucas(n - 2)
+    row = lucas(n - 1) + [(n + 1) % 2]
+    row[1] += 1
+    for k in range(3, n):
+        row[k] += rowA[k - 2]
+    return row
+
+
+@MakeTriangle(lucas, "Lucas", ["A374440"], True)
+def Lucas(n: int, k: int) -> int:
+    return lucas(n)[k]
 
 
 @cache
@@ -2879,6 +2943,9 @@ tabl_fun: list[tgen] = [
     EulerSec,
     EulerTan,
     FallingFactorial,
+    FiboLucas,
+    FiboLucasInv,
+    FiboLucasRev,
     Fibonacci,
     Fubini,
     FussCatalan,
@@ -2896,6 +2963,7 @@ tabl_fun: list[tgen] = [
     Leibniz,
     Levin,
     Lozanic,
+    Lucas,
     Moebius,
     Monotone,
     Motzkin,
@@ -2959,7 +3027,7 @@ def CrossReferences(name: str = "README.md") -> None:
             for sim in similars:
                 anum += "%7Cid%3A" + sim
             xrefs.write(
-                f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/data/md/{id}.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://intdb.io/search?q={anum}) |\n"
+                f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/data/md/{id}.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://oeis.org/search?q={anum}) |\n"
             )
     print("Info: 'README.md' written to the root folder.")
 
@@ -3704,7 +3772,7 @@ def IsInOEIS(seq: list[int]) -> str:
     for _ in range(3):
         time.sleep(0.5)  # give the OEIS server some time to relax
         try:
-            jdata = get(url, timeout=10).json()
+            jdata = get(url, timeout=20).json()
             anumber = ""
             if jdata["count"] > 0:
                 number = jdata["results"][0]["number"]

@@ -3,7 +3,7 @@ from functools import cache
 # Cardinalities of finite distributive lattices
 
 @cache
-def dist_latt(n, k):
+def dist_latt(n: int, k: int) -> int:
     if k == 0 or n == 0: return 1
     return (dist_latt(n, k - 1)
           + sum(dist_latt(2 * j, k - 1) * dist_latt(n - 1 - 2 * j, k)

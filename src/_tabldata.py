@@ -146,7 +146,7 @@ def IsInOEIS(seq: list[int]) -> str:
     for _ in range(3):
         time.sleep(0.5)  # give the OEIS server some time to relax
         try:
-            jdata = get(url, timeout=10).json()
+            jdata = get(url, timeout=20).json()
             anumber = ""
             if jdata["count"] > 0:
                 number = jdata["results"][0]["number"]

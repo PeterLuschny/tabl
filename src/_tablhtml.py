@@ -252,6 +252,6 @@ def AllCsvToHtml(nomissings: bool = False) -> None:
 
 
 if __name__ == "__main__":
-    # from Abel import Abel
-    # CsvToHtml(Abel)
-    AllCsvToHtml(False)
+    from Lucas import Lucas
+    CsvToHtml(Lucas)
+    # AllCsvToHtml(False)

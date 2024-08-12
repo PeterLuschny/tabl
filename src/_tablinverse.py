@@ -1,22 +1,21 @@
 
-import numpy as np
+# import numpy as np
 
+# def NumpyInvertTabl(L: list[list[int]]) -> list[list[int]]:
+#     """ NOT YET TESTED! """
+#     n = len(L)
+#     inv = np.zeros((n, n))
 
-def NumpyInvertTabl(L: list[list[int]]) -> list[list[int]]:
-    """ NOT YET TESTED! """
-    n = len(L)
-    inv = np.zeros((n, n))
+#     for k in range(n):
+#         if L[k][k] == 0:
+#             return []  # Inverse does not exist
 
-    for k in range(n):
-        if L[k][k] == 0:
-            return []  # Inverse does not exist
+#         inv[k][k] = 1 / L[k][k]
 
-        inv[k][k] = 1 / L[k][k]
+#         for j in range(k + 1, n):
+#             inv[k][j] = -np.dot(inv[k][:k], L[k][:k+1:-1]) / L[k][k]
 
-        for j in range(k + 1, n):
-            inv[k][j] = -np.dot(inv[k][:k], L[k][:k+1:-1]) / L[k][k]
-
-    return inv.tolist()
+#     return inv.tolist()
 
 # #@
 
