@@ -3763,7 +3763,7 @@ def IsInOEIS(seq: list[int]) -> str:
     Args:
         seq (list[int]): The sequence to check.
     Returns:
-        str: The A-number of the sequence if found in OEIS, otherwise an empty string.
+        str: The A-number of the sequence if found in OEIS, otherwise the empty string.
     Raises:
         Exception: If the OEIS server cannot be reached after multiple attempts.
     """
@@ -3772,11 +3772,16 @@ def IsInOEIS(seq: list[int]) -> str:
     for _ in range(3):
         time.sleep(0.5)  # give the OEIS server some time to relax
         try:
-            jdata = get(url, timeout=20).json()
+            jdata: None | list[dict[str, int | str | list[str]]] = get(
+                url, timeout=20
+            ).json()
+            if jdata == None:
+                print("Sorry, no match found for:", strseq)
+                return ""
             anumber = ""
-            if jdata["count"] > 0:
-                number = jdata["results"][0]["number"]
-                anumber = f"B{(6 - len(str(number))) * '0' + str(number)}"
+            seq = jdata[0]  # type: ignore
+            number = seq["number"]  # type: ignore
+            anumber = f"B{(6 - len(str(number))) * '0' + str(number)}"  # type: ignore
             return anumber
         except requests.exceptions.RequestException as e:
             print(f"Error: {e}")
