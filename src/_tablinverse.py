@@ -17,6 +17,8 @@
 
 #     return inv.tolist()
 
+from typing import Any
+
 # #@
 
 
@@ -33,7 +35,7 @@ def InvertTabl(L: list[list[int]]) -> list[list[int]]:
 
     """
     n = len(L)
-    inv = [[0 for i in range(n)] for _ in range(n)]  # Identity matrix
+    inv = [[0 for _ in range(n)] for _ in range(n)]  # Identity matrix
     for i in range(n):
         inv[i][i] = 1
     for k in range(n):
@@ -54,23 +56,23 @@ def InvertTabl(L: list[list[int]]) -> list[list[int]]:
     return [row[0:n + 1] for n, row in enumerate(inv)]
 
 
-def InvertTriangle(r, dim: int) -> list[list[int]]:
+def InvertTriangle(r: Any, dim: int) -> list[list[int]]:
     M = [[r(n)[k] if k <= n else 0 for k in range(dim)] for n in range(dim)]
     return InvertTabl(M)
 
 
 if __name__ == "__main__":
 
-    def test():
-        M = [[1, 0, 0], [1, 2, 0], [1, 2, 3]]
-        V = InvertTabl(M)
-        print(V)
+    def test() -> None:
+        m = [[1, 0, 0], [1, 2, 0], [1, 2, 3]]
+        v = InvertTabl(m)
+        print(v)
 
-        M = [[1, 0, 0], [1, 2, 0], [1, 2, 0]]
-        V = InvertTabl(M)
-        print(V)
+        m = [[1, 0, 0], [1, 2, 0], [1, 2, 0]]
+        v = InvertTabl(m)
+        print(v)
 
-        M = [
+        m = [
             [1,      0,      0,     0,    0,   0,  0, 0],
             [0,      1,      0,     0,    0,   0,  0, 0],
             [0,      2,      1,     0,    0,   0,  0, 0],
@@ -80,8 +82,8 @@ if __name__ == "__main__":
             [0,   7776,   6480,  2160,  360,  30,  1, 0],
             [0, 117649, 100842, 36015, 6860, 735, 42, 1],
         ]
-        V = InvertTabl(M)
-        print(V)
+        v = InvertTabl(m)
+        print(v)
 
     from Abel import Abel
     from Bell import Bell

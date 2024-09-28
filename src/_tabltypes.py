@@ -1,5 +1,5 @@
 from functools import cache
-from typing import Callable, TypeAlias
+from typing import Callable, TypeAlias, Any
 from _tablinverse import InvertTriangle, InvertTabl
 
 # #@
@@ -34,6 +34,9 @@ rgen: TypeAlias = Callable[[int], trow]
 """Type: triangle (resp. table) generator"""
 # tgen: TypeAlias = Callable[[int, int], list[int] | int]  | Callable[[int], list[int] | int]
 tgen: TypeAlias = Callable[[int, int], int]
+
+"""Type: trait"""
+trait: TypeAlias = Callable[[Any], trow] | Callable[[Any, Any], trow]
 
 
 def Flat(T: tabl) -> list[int]:
@@ -327,7 +330,7 @@ if __name__ == "__main__":
     print(Abel.tab(7))
     print()
 
-    def abel11(n):
+    def abel11(n: int):
         return Abel.sub(1, 1)(n)
 
     @MakeTriangle(abel11, "Abel11", ["A359", "A05"], False)

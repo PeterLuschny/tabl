@@ -27,7 +27,7 @@ def _pdist(n: int, k: int, r: int) -> int:
 
 
 @cache
-def partnumdist(n) -> list[int]:
+def partnumdist(n: int) -> list[int]:
     return [_pdist(n, k, n) for k in range(n + 1)]
 
 

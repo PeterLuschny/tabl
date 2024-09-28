@@ -17,7 +17,7 @@ from _tabltypes import MakeTriangle
 
 
 @cache
-def binomialpell(n):
+def binomialpell(n: int) -> list[int]:
 
     if n == 0:
         return [1]

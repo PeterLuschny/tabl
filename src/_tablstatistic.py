@@ -1,5 +1,6 @@
 import datetime
 import sqlite3
+from typing import Any
 from _tablpaths import GetDataPath
 from _tabldata import GetNameByAnum, SaveTraitsToDB
 from tabl import tabl_fun, tgen
@@ -111,7 +112,7 @@ def ListAllAnums() -> None:
     con.close()
 
 
-def Statistic(dbname: str) -> list:
+def Statistic(dbname: str) -> list[Any]:
     """
     Calculate various statistics about the given database.
 
@@ -244,7 +245,7 @@ def SingleStatistic(triangle: tgen, makenew: bool=False) -> None:
     ListByDistinctAnum(triangle.id)
 
 
-def Distribution(dbname: str) -> list | None:
+def Distribution(dbname: str) -> list[Any] | None:
     """
     Retrieves the distribution of A-numbers in the specified database.
 
@@ -280,7 +281,7 @@ def Distribution(dbname: str) -> list | None:
         return None
 
 
-def DistinctAnumbers(table_name: str) -> list:
+def DistinctAnumbers(table_name: str) -> list[Any]:
     """
     Count the number of distinct A-numbers in a table.
     Group the traits by A-number.
@@ -307,7 +308,7 @@ def DistinctAnumbers(table_name: str) -> list:
     return ret
 
 
-def PrintSummary(name: str):
+def PrintSummary(name: str) -> None:
     """
     Print a summary of duplicates for a given name.
 

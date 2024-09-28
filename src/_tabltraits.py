@@ -1,38 +1,23 @@
-from typing import Callable
+from _tabltypes import trait
 from inspect import signature
-from _tablpoly import (
-    PolyRow1,
-    PolyRow2,
-    PolyRow3,
-    PolyCol2,
-    PolyCol3,
-    PolyDiag,
-    PosHalf,
-    NegHalf,
-    Poly,
-)
 from _tablsums import RowSum, EvenSum, OddSum, AltSum, AbsSum, AccSum, AccRevSum, DiagSum
 from _tabltransforms import DiagRow1, DiagRow2, DiagRow3, DiagCol1, DiagCol2, DiagCol3
 from _tabltransforms import TransNat0, TransNat1, TransSqrs
 from _tabltabls import Triangle, Acc, AccRev, AntiDiag, Rev, Inv, InvRev, RevInv, Diffx1
 from _tabltransforms import (
-    BinConv,
-    InvBinConv,
-    RowLcm,
-    RowGcd,
-    RowMax,
-    ColMiddle,
-    CentralE,
-    CentralO,
-    ColLeft,
-    ColRight,
+    BinConv, InvBinConv, RowLcm, RowGcd, RowMax,
+    ColMiddle, CentralE, CentralO, ColLeft, ColRight,
+)
+from _tablpoly import (
+    PolyRow1, PolyRow2, PolyRow3, PolyCol2, PolyCol3,
+    PolyDiag, PosHalf, NegHalf, Poly,
 )
 
 
 # #@
 
 
-def is_tabletrait(f: Callable):
+def is_tabletrait(f: trait) -> bool:
     """
     Traits come in two flavors:
 
@@ -47,10 +32,10 @@ def is_tabletrait(f: Callable):
     return ann == list[list[int]]
 
 
-def RegisterTraits() -> dict[str, Callable]:
-    TRAITS: dict[str, Callable] = {}
+def RegisterTraits() -> dict[str, trait]:
+    TRAITS: dict[str, trait] = {}
 
-    def RegisterTrait(f: Callable):
+    def RegisterTrait(f: trait) -> None:
         TRAITS[f.__name__] = f
 
     # TYPE: Callable[[tabl], trow]]:

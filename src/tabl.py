@@ -4,7 +4,7 @@ from functools import cache, reduce
 from itertools import accumulate
 from math import lcm, gcd, factorial
 from sys import setrecursionlimit, set_int_max_str_digits
-from typing import Callable, TypeAlias
+from typing import Callable, TypeAlias, Any
 from inspect import signature
 import traceback
 import contextlib
@@ -64,7 +64,7 @@ def InvertTabl(L: list[list[int]]) -> list[list[int]]:
         []: If the inverse does not exist.
     """
     n = len(L)
-    inv = [[0 for i in range(n)] for _ in range(n)]  # Identity matrix
+    inv = [[0 for _ in range(n)] for _ in range(n)]  # Identity matrix
     for i in range(n):
         inv[i][i] = 1
     for k in range(n):
@@ -85,7 +85,7 @@ def InvertTabl(L: list[list[int]]) -> list[list[int]]:
     return [row[0 : n + 1] for n, row in enumerate(inv)]
 
 
-def InvertTriangle(r, dim: int) -> list[list[int]]:
+def InvertTriangle(r: Any, dim: int) -> list[list[int]]:
     M = [[r(n)[k] if k <= n else 0 for k in range(dim)] for n in range(dim)]
     return InvertTabl(M)
 
@@ -100,6 +100,8 @@ seq: TypeAlias = Callable[[int], int]
 rgen: TypeAlias = Callable[[int], trow]
 """Type: triangle (resp. table) generator"""
 tgen: TypeAlias = Callable[[int, int], int]
+"""Type: trait"""
+trait: TypeAlias = Callable[[Any], trow] | Callable[[Any, Any], trow]
 
 
 def Flat(T: tabl) -> list[int]:
@@ -1395,7 +1397,7 @@ def BinomialCatalan(n: int, k: int) -> int:
 
 
 @cache
-def binomialpell(n):
+def binomialpell(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
@@ -2456,7 +2458,7 @@ def _pdist(n: int, k: int, r: int) -> int:
 
 
 @cache
-def partnumdist(n) -> list[int]:
+def partnumdist(n: int) -> list[int]:
     return [_pdist(n, k, n) for k in range(n + 1)]
 
 
@@ -3274,7 +3276,7 @@ def AllCsvToHtml(nomissings: bool = False) -> None:
         CsvToHtml(fun, nomissings)
 
 
-def is_tabletrait(f: Callable):
+def is_tabletrait(f: trait) -> bool:
     """
     Traits come in two flavors:
     (a) The 'table' type: Callable[[tabl], trow]]:
@@ -3287,10 +3289,10 @@ def is_tabletrait(f: Callable):
     return ann == list[list[int]]
 
 
-def RegisterTraits() -> dict[str, Callable]:
-    TRAITS: dict[str, Callable] = {}
+def RegisterTraits() -> dict[str, trait]:
+    TRAITS: dict[str, trait] = {}
 
-    def RegisterTrait(f: Callable):
+    def RegisterTrait(f: trait) -> None:
         TRAITS[f.__name__] = f
 
     # TYPE: Callable[[tabl], trow]]:
@@ -3493,7 +3495,7 @@ def ListAllAnums() -> None:
     con.close()
 
 
-def Statistic(dbname: str) -> list:
+def Statistic(dbname: str) -> list[Any]:
     """
     Calculate various statistics about the given database.
     Parameters:
@@ -3602,7 +3604,7 @@ def SingleStatistic(triangle: tgen, makenew: bool = False) -> None:
     ListByDistinctAnum(triangle.id)
 
 
-def Distribution(dbname: str) -> list | None:
+def Distribution(dbname: str) -> list[Any] | None:
     """
     Retrieves the distribution of A-numbers in the specified database.
     Args:
@@ -3629,7 +3631,7 @@ def Distribution(dbname: str) -> list | None:
         return None
 
 
-def DistinctAnumbers(table_name: str) -> list:
+def DistinctAnumbers(table_name: str) -> list[Any]:
     """
     Count the number of distinct A-numbers in a table.
     Group the traits by A-number.
@@ -3654,7 +3656,7 @@ def DistinctAnumbers(table_name: str) -> list:
     return ret
 
 
-def PrintSummary(name: str):
+def PrintSummary(name: str) -> None:
     """
     Print a summary of duplicates for a given name.
     Args:

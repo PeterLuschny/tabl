@@ -224,7 +224,7 @@ import_header: list[str] = [
     "from itertools import accumulate\n",
     "from math import lcm, gcd, factorial\n",
     "from sys import setrecursionlimit, set_int_max_str_digits\n",
-    "from typing import Callable, TypeAlias\n",
+    "from typing import Callable, TypeAlias, Any\n",
     "from inspect import signature\n",
     # "from tabulate import tabulate\n",  # needed by pandas
     "import traceback\n",
