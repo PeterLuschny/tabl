@@ -3,7 +3,7 @@
 # Tables à la carte
 
 
-         Sequentiae umbras triangulorum sunt
+         Sequentia umbrae triangulorum sunt
 
 INTEGER SEQUENCES ARE ONLY THE SHADOWS OF INTEGER TRIANGLES
 
@@ -48,6 +48,9 @@ The notebook gives a first introduction for the user.
 | [EulerSec](https://github.com/PeterLuschny/tabl/blob/main/data/md/EulerSec.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/EulerSec.py) | [traits](https://luschny.de/math/oeis/EulerSec.html) | [A119879, A081658, A153641](https://oeis.org/search?q=%7Cid%3AA119879%7Cid%3AA081658%7Cid%3AA153641) |
 | [EulerTan](https://github.com/PeterLuschny/tabl/blob/main/data/md/EulerTan.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/EulerTan.py) | [traits](https://luschny.de/math/oeis/EulerTan.html) | [A162660, A350972, A155585, A009006, A000182](https://oeis.org/search?q=%7Cid%3AA162660%7Cid%3AA350972%7Cid%3AA155585%7Cid%3AA009006%7Cid%3AA000182) |
 | [FallingFact](https://github.com/PeterLuschny/tabl/blob/main/data/md/FallingFact.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/FallingFact.py) | [traits](https://luschny.de/math/oeis/FallingFact.html) | [A008279, A068424, A094587, A173333, A181511](https://oeis.org/search?q=%7Cid%3AA008279%7Cid%3AA068424%7Cid%3AA094587%7Cid%3AA173333%7Cid%3AA181511) |
+| [FiboLucas](https://github.com/PeterLuschny/tabl/blob/main/data/md/FiboLucas.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/FiboLucas.py) | [traits](https://luschny.de/math/oeis/FiboLucas.html) | [A374439](https://oeis.org/search?q=%7Cid%3AA374439) |
+| [FiboLucasInv](https://github.com/PeterLuschny/tabl/blob/main/data/md/FiboLucasInv.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/FiboLucasInv.py) | [traits](https://luschny.de/math/oeis/FiboLucasInv.html) | [A375025](https://oeis.org/search?q=%7Cid%3AA375025) |
+| [FiboLucasRev](https://github.com/PeterLuschny/tabl/blob/main/data/md/FiboLucasRev.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/FiboLucasRev.py) | [traits](https://luschny.de/math/oeis/FiboLucasRev.html) | [A124038](https://oeis.org/search?q=%7Cid%3AA124038) |
 | [Fibonacci](https://github.com/PeterLuschny/tabl/blob/main/data/md/Fibonacci.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/Fibonacci.py) | [traits](https://luschny.de/math/oeis/Fibonacci.html) | [A354267, A105809, A228074](https://oeis.org/search?q=%7Cid%3AA354267%7Cid%3AA105809%7Cid%3AA228074) |
 | [Fubini](https://github.com/PeterLuschny/tabl/blob/main/data/md/Fubini.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/Fubini.py) | [traits](https://luschny.de/math/oeis/Fubini.html) | [A131689, A019538, A090582, A278075](https://oeis.org/search?q=%7Cid%3AA131689%7Cid%3AA019538%7Cid%3AA090582%7Cid%3AA278075) |
 | [FussCatalan](https://github.com/PeterLuschny/tabl/blob/main/data/md/FussCatalan.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/FussCatalan.py) | [traits](https://luschny.de/math/oeis/FussCatalan.html) | [A355173, A030237, A054445](https://oeis.org/search?q=%7Cid%3AA355173%7Cid%3AA030237%7Cid%3AA054445) |
@@ -65,6 +68,7 @@ The notebook gives a first introduction for the user.
 | [Leibniz](https://github.com/PeterLuschny/tabl/blob/main/data/md/Leibniz.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/Leibniz.py) | [traits](https://luschny.de/math/oeis/Leibniz.html) | [A003506](https://oeis.org/search?q=%7Cid%3AA003506) |
 | [Levin](https://github.com/PeterLuschny/tabl/blob/main/data/md/Levin.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/Levin.py) | [traits](https://luschny.de/math/oeis/Levin.html) | [A356546](https://oeis.org/search?q=%7Cid%3AA356546) |
 | [Lozanic](https://github.com/PeterLuschny/tabl/blob/main/data/md/Lozanic.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/Lozanic.py) | [traits](https://luschny.de/math/oeis/Lozanic.html) | [A034851](https://oeis.org/search?q=%7Cid%3AA034851) |
+| [Lucas](https://github.com/PeterLuschny/tabl/blob/main/data/md/Lucas.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/Lucas.py) | [traits](https://luschny.de/math/oeis/Lucas.html) | [A374440](https://oeis.org/search?q=%7Cid%3AA374440) |
 | [Moebius](https://github.com/PeterLuschny/tabl/blob/main/data/md/Moebius.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/Moebius.py) | [traits](https://luschny.de/math/oeis/Moebius.html) | [A363914, A054525](https://oeis.org/search?q=%7Cid%3AA363914%7Cid%3AA054525) |
 | [Monotone](https://github.com/PeterLuschny/tabl/blob/main/data/md/Monotone.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/Monotone.py) | [traits](https://luschny.de/math/oeis/Monotone.html) | [A059481, A027555](https://oeis.org/search?q=%7Cid%3AA059481%7Cid%3AA027555) |
 | [Motzkin](https://github.com/PeterLuschny/tabl/blob/main/data/md/Motzkin.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/Motzkin.py) | [traits](https://luschny.de/math/oeis/Motzkin.html) | [A064189, A026300, A009766](https://oeis.org/search?q=%7Cid%3AA064189%7Cid%3AA026300%7Cid%3AA009766) |

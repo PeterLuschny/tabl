@@ -1,5 +1,5 @@
 # Kekule
-['A050446, A050447']
+['A050446', 'A050447']
 
 Kekule Triangle view
 
