@@ -36,9 +36,9 @@ The number of ...
         distinct hashes    is 113.
         core     triangles is 1.
         distinct types     is 5.
-        missing  sequences is 89.
-        all      A-numbers is 114.
-        distinct A-numbers is 51.
+        missing  sequences is 86.
+        all      A-numbers is 117.
+        distinct A-numbers is 52.
 
 * Statistic about Bessel2:
 The number of ...
@@ -116,9 +116,9 @@ The number of ...
         distinct hashes    is 116.
         core     triangles is 1.
         distinct types     is 5.
-        missing  sequences is 76.
-        all      A-numbers is 128.
-        distinct A-numbers is 64.
+        missing  sequences is 75.
+        all      A-numbers is 129.
+        distinct A-numbers is 65.
 
 * Statistic about CatalanPaths:
 The number of ...
@@ -236,9 +236,9 @@ The number of ...
         distinct hashes    is 89.
         core     triangles is 1.
         distinct types     is 4.
-        missing  sequences is 55.
-        all      A-numbers is 111.
-        distinct A-numbers is 43.
+        missing  sequences is 54.
+        all      A-numbers is 112.
+        distinct A-numbers is 44.
 
 * Statistic about Divisibility:
 The number of ...
@@ -326,9 +326,9 @@ The number of ...
         distinct hashes    is 90.
         core     triangles is 1.
         distinct types     is 5.
-        missing  sequences is 82.
-        all      A-numbers is 113.
-        distinct A-numbers is 45.
+        missing  sequences is 81.
+        all      A-numbers is 114.
+        distinct A-numbers is 46.
 
 * Statistic about EulerTan:
 The number of ...
@@ -656,9 +656,9 @@ The number of ...
         distinct hashes    is 65.
         core     triangles is 1.
         distinct types     is 3.
-        missing  sequences is 48.
-        all      A-numbers is 73.
-        distinct A-numbers is 36.
+        missing  sequences is 45.
+        all      A-numbers is 76.
+        distinct A-numbers is 37.
 
 * Statistic about Parades:
 The number of ...
@@ -916,52 +916,51 @@ The number of ...
         distinct hashes    is 6099.
         core     triangles is 90.
         distinct types     is 6.
-        missing  sequences is 6680.
-        all      A-numbers is 7783.
-        distinct A-numbers is 1989.
+        missing  sequences is 6671.
+        all      A-numbers is 7792.
+        distinct A-numbers is 1994.
 
 Ranking of triangles with regard to their impact:
 
-(1) [88] ('A048993', 'StirlingSet', 172, 88, 199, 113, 1, 5, 27)
-(2) [84] ('A132393', 'StirlingCycle', 171, 84, 199, 113, 1, 5, 28)
-(3) [75] ('A008279', 'FallingFact', 147, 75, 164, 88, 1, 4, 17)
-(4) [68] ('A039599', 'DyckPaths', 136, 68, 204, 112, 1, 5, 68)
-(5) [68] ('A064189', 'Motzkin', 146, 68, 208, 114, 1, 5, 62)
-(6) [64] ('A128899', 'Catalan', 128, 64, 204, 116, 1, 5, 76)
-(7) [62] ('A113704', 'Divisibility', 125, 62, 179, 98, 1, 5, 54)
-(8) [60] ('A363914', 'Moebius', 125, 60, 180, 98, 1, 5, 55)
-(9) [59] ('A038207', 'BinaryPell', 174, 59, 200, 72, 1, 5, 26)
+( 1) [88] ('A048993', 'StirlingSet', 172, 88, 199, 113, 1, 5, 27)
+( 2) [84] ('A132393', 'StirlingCycle', 171, 84, 199, 113, 1, 5, 28)
+( 3) [75] ('A008279', 'FallingFact', 147, 75, 164, 88, 1, 4, 17)
+( 4) [68] ('A039599', 'DyckPaths', 136, 68, 204, 112, 1, 5, 68)
+( 5) [68] ('A064189', 'Motzkin', 146, 68, 208, 114, 1, 5, 62)
+( 6) [65] ('A128899', 'Catalan', 129, 65, 204, 116, 1, 5, 75)
+( 7) [62] ('A113704', 'Divisibility', 125, 62, 179, 98, 1, 5, 54)
+( 8) [60] ('A363914', 'Moebius', 125, 60, 180, 98, 1, 5, 55)
+( 9) [59] ('A038207', 'BinaryPell', 174, 59, 200, 72, 1, 5, 26)
 (10) [59] ('A122538', 'Schroeder', 132, 59, 202, 114, 1, 5, 70)
-
 (11) [57] ('A059481', 'Monotone', 110, 57, 162, 98, 1, 4, 52)
 (12) [56] ('A137452', 'Abel', 116, 56, 204, 116, 1, 5, 88)
 (13) [56] ('A072233', 'Partition', 116, 56, 201, 110, 1, 5, 85)
 (14) [55] ('A056857', 'BinomialBell', 110, 55, 209, 120, 1, 5, 99)
 (15) [55] ('A271703', 'Lah', 162, 55, 204, 75, 1, 5, 42)
-(16) [51] ('A132062', 'Bessel', 114, 51, 203, 113, 1, 5, 89)
+(16) [52] ('A132062', 'Bessel', 117, 52, 203, 113, 1, 5, 86)
 (17) [51] ('A090181', 'Narayana', 116, 51, 199, 114, 1, 5, 83)
 (18) [50] ('A008290', 'Rencontres', 118, 50, 199, 111, 1, 5, 81)
 (19) [48] ('A002262', 'Ordinals', 109, 48, 118, 55, 1, 3, 9)
 (20) [47] ('A131689', 'Fubini', 89, 47, 115, 64, 1, 3, 26)
 (21) [46] ('A053121', 'CatalanPaths', 126, 46, 196, 88, 1, 5, 70)
 (22) [46] ('A049310', 'ChebyshevS', 123, 46, 196, 88, 1, 5, 73)
-(23) [45] ('A124644', 'BinomialCatalan', 90, 45, 168, 103, 1, 4, 78)
-(24) [45] ('A119879', 'EulerSec', 113, 45, 195, 90, 1, 5, 82)
-(25) [44] ('A000012', 'One', 105, 44, 110, 49, 0, 4, 5)
-(26) [44] ('A028246', 'Worpitzky', 93, 44, 160, 96, 1, 4, 67)
-(27) [43] ('A106465', 'CTree', 108, 43, 148, 72, 1, 4, 40)
-(28) [43] ('A008288', 'Delannoy', 111, 43, 166, 89, 1, 4, 55)
+(23) [46] ('A119879', 'EulerSec', 114, 46, 195, 90, 1, 5, 81)
+(24) [45] ('A124644', 'BinomialCatalan', 90, 45, 168, 103, 1, 4, 78)
+(25) [44] ('A008288', 'Delannoy', 112, 44, 166, 89, 1, 4, 54)
+(26) [44] ('A000012', 'One', 105, 44, 110, 49, 0, 4, 5)
+(27) [44] ('A028246', 'Worpitzky', 93, 44, 160, 96, 1, 4, 67)
+(28) [43] ('A106465', 'CTree', 108, 43, 148, 72, 1, 4, 40)
 (29) [43] ('A123125', 'Eulerian', 96, 43, 199, 114, 1, 5, 103)
 (30) [42] ('A124038', 'FiboLucasRev', 88, 42, 211, 123, 1, 5, 123)
 (31) [40] ('A021009', 'Laguerre', 138, 40, 211, 75, 1, 5, 73)
 (32) [40] ('A104684', 'SchroederP', 81, 40, 206, 118, 1, 5, 125)
 (33) [40] ('A028338', 'StirlingCycB', 108, 40, 206, 116, 1, 5, 98)
-
 (34) [38] ('A374439', 'FiboLucas', 75, 38, 169, 106, 1, 4, 94)
 (35) [38] ('A375025', 'FiboLucasInv', 76, 38, 211, 122, 1, 5, 135)
 (36) [37] ('A046716', 'Charlier', 81, 37, 249, 145, 1, 6, 168)
-(37) [36] ('A225479', 'OrderedCycle', 73, 36, 121, 65, 1, 3, 48)
+(37) [37] ('A225479', 'OrderedCycle', 76, 37, 121, 65, 1, 3, 45)
 (38) [35] ('A007318', 'Binomial', 152, 35, 160, 38, 1, 4, 8)
+(39) [35] ('A007318', 'Pascal', 152, 35, 160, 38, 1, 4, 8)
 (40) [34] ('A247453', 'Euler', 130, 34, 211, 74, 1, 5, 81)
 (41) [33] ('A165675', 'HyperHarmonic', 84, 33, 206, 118, 1, 5, 122)
 (42) [33] ('A036561', 'Nicomachus', 78, 33, 119, 65, 1, 3, 41)
@@ -1014,5 +1013,4 @@ Ranking of triangles with regard to their impact:
 (89) [13] ('A360603', 'LabeledGraphs', 37, 13, 121, 64, 1, 3, 84)
 (90) [12] ('A371761', 'Parades', 34, 12, 78, 38, 1, 2, 44)
 (91) [10] ('A297703', 'Genocchi', 32, 10, 122, 65, 1, 3, 90)
-
-The statistics were created on 2024-09-29 12:01:21.730236 .
+The statistics were created on 2024-12-01 12:23:52.064881 .

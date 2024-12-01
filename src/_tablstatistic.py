@@ -332,8 +332,8 @@ if __name__ == "__main__":
     # from tabl import Euler as triangle
 
     # print(Distribution("Abel"))
-    ListByDistinctAnum("Abel")
-    # TuttiStats()
+    # ListByDistinctAnum("Abel")
+    TuttiStats()
     # QuickStatistic(triangle)
     # ListAllAnums()
 

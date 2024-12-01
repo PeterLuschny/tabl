@@ -61,7 +61,7 @@ def EnsureDataDirectories() -> None:
 
 # githubtab    = "https://github.com/PeterLuschny/tabl/blob/main/tables.md"
 # githubsrc    = "https://github.com/PeterLuschny/tabl/blob/main/src/"
-# htmltraits   = "https://luschny.de/math/oeis/"
+# htmltraits   = "https://peterluschny.github.io/tabl/"
 # oeisstripped = "https://oeis.org/stripped.gz"
 # oeissearch   = "https://oeis.org/search?q="
 # sortable     = "https://github.com/tofsjonas/sortable"

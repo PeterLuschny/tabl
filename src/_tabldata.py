@@ -566,10 +566,10 @@ def SaveExtendedTraitsToDB(fun: tgen, size: int, traits_cur: sqlite3.Cursor, oei
 
         # ri = RevInvTable(t, DIAGSIZE)
         ri = RevTable(i, DIAGSIZE)
-        if ri is not None:
-            rihash = FNVhash(ri.flat(DIAGSIZE))
-            if ihash != rihash:
-                SaveTraits(ri, size, traits_cur, oeis_cur, table, TRAITS)
+        # if ri is not None:
+        rihash = FNVhash(ri.flat(DIAGSIZE))
+        if ihash != rihash:
+            SaveTraits(ri, size, traits_cur, oeis_cur, table, TRAITS)
 
 
 def SaveTraitsToDB(fun: tgen) -> None:

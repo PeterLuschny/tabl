@@ -110,5 +110,5 @@ The traits of the Abel triangle as represented in the OEIS.
 | 58 | B366151 | Alt-PolyRow3     | a(n) = T(n, 3), where T(n, k) = Sum_{i=0..n} i^k * binomial(n, i) * (1  |
 
 With much better navigation and the missing sequences:
-    https://luschny.de/math/oeis/Abel.html
+    https://peterluschny.github.io/tabl/Abel.html
 '''

@@ -3029,7 +3029,7 @@ def CrossReferences(name: str = "README.md") -> None:
             for sim in similars:
                 anum += "%7Cid%3A" + sim
             xrefs.write(
-                f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/data/md/{id}.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://luschny.de/math/oeis/{id}.html) | [{s}](https://oeis.org/search?q={anum}) |\n"
+                f"| [{id}](https://github.com/PeterLuschny/tabl/blob/main/data/md/{id}.tbl.md) | [source](https://github.com/PeterLuschny/tabl/blob/main/src/{id}.py) | [traits](https://peterluschny.github.io/tabl/{id}.html) | [{s}](https://oeis.org/search?q={anum}) |\n"
             )
     print("Info: 'README.md' written to the root folder.")
 
@@ -3168,7 +3168,7 @@ def navbar(fun: tgen) -> list[str]:
     rc = "style='border-radius: 15px; background: #73AD21; color: white; padding: 6px; width: 108px; height: 20px; font-weight: 700; text-align: center; margin-left: 8px; margin-right: 8px;'"
     NAVBAR = ["<table class='center'><tr>"]
     NAVBAR.append(
-        f"<td {rc};><a style='color:white' href='https://luschny.de/math/oeis/{prevnext[0]}.html'>&nbsp;&lt;&lt;&nbsp;</a></td>"
+        f"<td {rc};><a style='color:white' href='https://peterluschny.github.io/tabl/{prevnext[0]}.html'>&nbsp;&lt;&lt;&nbsp;</a></td>"
     )
     NAVBAR.append(
         f"<td {rc};><a style='color:white' href='https://github.com/PeterLuschny/tabl/blob/main/data/md/{fun.id}.tbl.md'>Table</a></td>"
@@ -3180,10 +3180,10 @@ def navbar(fun: tgen) -> list[str]:
         f"<td {rc};><a style='color:white' href='https://oeis.org/search?q={anums}'>Similars</a></td>"
     )
     NAVBAR.append(
-        f"<td {rc};><a style='color:white' href='https://luschny.de/math/oeis/index.html'>Index</a></td>"
+        f"<td {rc};><a style='color:white' href='https://peterluschny.github.io/tabl/index.html'>Index</a></td>"
     )
     NAVBAR.append(
-        f"<td {rc};><a style='color:white' href='https://luschny.de/math/oeis/{prevnext[1]}.html'>&nbsp;&gt;&gt;&nbsp;</a></td>"
+        f"<td {rc};><a style='color:white' href='https://peterluschny.github.io/tabl/{prevnext[1]}.html'>&nbsp;&gt;&gt;&nbsp;</a></td>"
     )
     NAVBAR.append("</tr></table>")
     return NAVBAR
@@ -4154,10 +4154,10 @@ def SaveExtendedTraitsToDB(
         SaveTraits(i, size, traits_cur, oeis_cur, table, TRAITS)
         # ri = RevInvTable(t, DIAGSIZE)
         ri = RevTable(i, DIAGSIZE)
-        if ri is not None:
-            rihash = FNVhash(ri.flat(DIAGSIZE))
-            if ihash != rihash:
-                SaveTraits(ri, size, traits_cur, oeis_cur, table, TRAITS)
+        # if ri is not None:
+        rihash = FNVhash(ri.flat(DIAGSIZE))
+        if ihash != rihash:
+            SaveTraits(ri, size, traits_cur, oeis_cur, table, TRAITS)
 
 
 def SaveTraitsToDB(fun: tgen) -> None:
