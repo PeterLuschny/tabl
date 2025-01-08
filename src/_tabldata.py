@@ -10,8 +10,9 @@ from requests import get
 import traceback
 import pandas as pd
 from _tablpaths import GetDataPath, strippedpath, oeisnamespath
-from _tabltypes import tgen, InvTable, RevTable, AltTable, SeqString
+from _tabltypes import tgen, trait, InvTable, RevTable, AltTable, SeqToString
 from _tabltraits import RegisterTraits, is_tabletrait
+from _tabloeis import QueryOEIS
 
 
 """
@@ -109,7 +110,7 @@ def isInOEIS(seq: list[int]) -> bool:
     Raises:
         Exception: If the OEIS server cannot be reached after multiple attempts.
     """
-    strseq = SeqString(seq, 140, 24, ",", 3)
+    strseq = SeqToString(seq, 140, 24, ",", 3)
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
 
     for _ in range(3):
@@ -140,7 +141,7 @@ def IsInOEIS(seq: list[int]) -> str:
     Raises:
         Exception: If the OEIS server cannot be reached after multiple attempts.
     """
-    strseq = SeqString(seq, 140, 24, ",", 3)
+    strseq = SeqToString(seq, 140, 24, ",", 3)
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
 
     for _ in range(3):
@@ -256,7 +257,7 @@ def MakeOeisminiWithFnv() -> None:
         reader = csv.reader(oeisdata)
         with open(GetDataPath("oeismini", "csv"), "w") as minidata:
             #    A000003 ,1
-            seq_list = [[txt[0][0:7], [abs(int(s)) for s in txt[1:-1]]] for txt in reader]
+            seq_list = [(txt[0][0:7], [abs(int(s)) for s in txt[1:-1]]) for txt in reader]
             for seq in seq_list:
                 if len(seq[1]) < MINTERMS:
                     continue
@@ -296,7 +297,7 @@ def OeisToSql() -> None:
     with open(GetDataPath("oeis", "csv"), "r") as oeisdata:
         reader = csv.reader(oeisdata)
 
-        seq_list = [[txt[0][0:7], [abs(int(s)) for s in txt[1:-1]]] for txt in reader]
+        seq_list = [(txt[0][0:7], [abs(int(s)) for s in txt[1:-1]]) for txt in reader]
         for seq in seq_list:
             if len(seq[1]) < MINTERMS:
                 continue
@@ -375,7 +376,11 @@ def QueryLocalDB(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
     return "missing" if record is None else record[0]
 
 
-def QueryOeis(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
+def QueryOeis(
+    H: str, 
+    seq: list[int], 
+    db_cur: sqlite3.Cursor
+) -> str:
     """
     First query oeis_mini (local), if nothing found query OEIS (internet).
 
@@ -443,7 +448,7 @@ def InsertTable(name: str) -> str:
 
 def FilterTraits(anum: str, anumsonly: bool=False) -> bool:
     """
-    Filter traits to remove traits that are not interresting.
+    Filter traits to remove traits that are not interesting.
 
     Args:
         anumber (str): The traits as A-number.
@@ -459,7 +464,15 @@ def FilterTraits(anum: str, anumsonly: bool=False) -> bool:
     return anum in lame
 
 
-def SaveTraits(fun: tgen, size: int, traits_cur: sqlite3.Cursor, oeis_cur: sqlite3.Cursor, table: str, TRAITS: dict) -> None:
+# from typing import Callable
+
+def SaveTraits(fun: tgen, 
+    size: int, 
+    traits_cur: sqlite3.Cursor, 
+    oeis_cur: sqlite3.Cursor, 
+    table: str, 
+    TRAITS: dict[str, trait]
+) -> None:
     """Saves traits data to a database table.
 
     This function saves traits data to a specified database table. It uses the provided
@@ -492,7 +505,7 @@ def SaveTraits(fun: tgen, size: int, traits_cur: sqlite3.Cursor, oeis_cur: sqlit
         if trityp == traitname:
             continue
 
-        seq = trait(T) if is_tabletrait(trait) else trait(r, size)
+        seq = trait(T) if is_tabletrait(trait) else trait(r, size) # type: ignore
         if seq == []:
             print(f"Info: {triname} -> {traitname} does not exist.")
             continue
@@ -506,19 +519,39 @@ def SaveTraits(fun: tgen, size: int, traits_cur: sqlite3.Cursor, oeis_cur: sqlit
 
         fnvhash = FNVhash(seq, True)
         # anum = queryminioeis(fnvhash, seq, oeis_cur)  # local
-        anum = QueryOeis(fnvhash, seq, oeis_cur)  # with internet
-
-        if FilterTraits(anum):  # discard traits that are not interresting
+        # anum = QueryOeis(fnvhash, seq, oeis_cur)  # with internet
+        
+        ''' def QueryOEIS(
+        seqlist: list[int], 
+        maxnum: int = 1,
+        info: bool = False, 
+        minlen: int = 24 
+        ) -> int: '''
+        anum = QueryOEIS(seq)  # with internet
+        if anum == -999999:
             continue
+        elif anum == 0:
+            stranum = "missing"
+        else:
+            stranum = 'A' + str(anum).rjust(6, "0")
+            # discard results that are not interresting
+            #if FilterTraits(stranum):  
+            #    continue
 
-        seqstr = SeqString(seq, MAXSTRLEN, 99)
+        seqstr = SeqToString(seq, MAXSTRLEN, 99)
 
-        tup = (funname, trityp, traitname, anum, fnvhash, seqstr)
+        tup = (funname, trityp, traitname, stranum, fnvhash, seqstr)
         sql = InsertTable(table)
         traits_cur.execute(sql, tup)
 
 
-def SaveExtendedTraitsToDB(fun: tgen, size: int, traits_cur: sqlite3.Cursor, oeis_cur: sqlite3.Cursor, table: str) -> None:
+def SaveExtendedTraitsToDB(
+    fun: tgen, 
+    size: int, 
+    traits_cur: sqlite3.Cursor, 
+    oeis_cur: sqlite3.Cursor, 
+    table: str
+) -> None:
     """
     Saves the extended traits of a triangle to a SQLite database.
 
@@ -667,7 +700,7 @@ def ConvertDBtoCSVandMD(dbpath: Path, funname: str) -> int:
         for table_name in tables:
             table_name = table_name[0]
             sql = f"SELECT triangle, type, trait, anum, seq FROM {table_name}"
-            table = pd.read_sql_query(sql, db)
+            table = pd.read_sql_query(sql, db) # type: ignore
             csv_path = GetDataPath(table_name, "csv")
             md_path = GetDataPath(table_name, "md")
             table.to_csv(csv_path, index_label="index")
@@ -782,8 +815,8 @@ if __name__ == "__main__":
         SaveTraitsToDB(Abel)
 
     def test77():
-        from BinomialDiffPell import BinomialDiffPell
-        SaveTraitsToDB(BinomialDiffPell)
+        from StirlingSet import StirlingSet
+        SaveTraitsToDB(StirlingSet)
 
     def test99():
         for fun in tabl_fun:
@@ -817,3 +850,4 @@ if __name__ == "__main__":
 
     # OeisToSql()
     # test33()
+    test77()

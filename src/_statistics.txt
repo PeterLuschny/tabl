@@ -1,94 +1,92 @@
-And here are the new statistics with the current ranking:
-
 * Statistic about Abel:
 The number of ...
-        all      hashes    is 204.
-        distinct hashes    is 116.
+        all      hashes    is 214.
+        distinct hashes    is 117.
         core     triangles is 1.
         distinct types     is 5.
         missing  sequences is 88.
-        all      A-numbers is 116.
-        distinct A-numbers is 56.
+        all      A-numbers is 126.
+        distinct A-numbers is 52.
 
 * Statistic about Baxter:
 The number of ...
-        all      hashes    is 120.
-        distinct hashes    is 67.
+        all      hashes    is 129.
+        distinct hashes    is 69.
         core     triangles is 1.
         distinct types     is 3.
         missing  sequences is 78.
-        all      A-numbers is 42.
-        distinct A-numbers is 18.
+        all      A-numbers is 51.
+        distinct A-numbers is 14.
 
 * Statistic about Bell:
 The number of ...
-        all      hashes    is 122.
-        distinct hashes    is 66.
+        all      hashes    is 123.
+        distinct hashes    is 67.
         core     triangles is 1.
         distinct types     is 3.
         missing  sequences is 49.
-        all      A-numbers is 73.
-        distinct A-numbers is 27.
+        all      A-numbers is 74.
+        distinct A-numbers is 25.
 
 * Statistic about Bessel:
 The number of ...
-        all      hashes    is 203.
-        distinct hashes    is 113.
+        all      hashes    is 205.
+        distinct hashes    is 112.
         core     triangles is 1.
         distinct types     is 5.
-        missing  sequences is 86.
-        all      A-numbers is 117.
-        distinct A-numbers is 52.
+        missing  sequences is 89.
+        all      A-numbers is 116.
+        distinct A-numbers is 43.
 
 * Statistic about Bessel2:
 The number of ...
         all      hashes    is 157.
-        distinct hashes    is 63.
+        distinct hashes    is 64.
         core     triangles is 1.
         distinct types     is 4.
-        missing  sequences is 78.
-        all      A-numbers is 79.
-        distinct A-numbers is 23.
+        missing  sequences is 60.
+        all      A-numbers is 97.
+        distinct A-numbers is 31.
 
 * Statistic about BinaryPell:
 The number of ...
-        all      hashes    is 200.
-        distinct hashes    is 72.
+        all      hashes    is 204.
+        distinct hashes    is 74.
         core     triangles is 1.
         distinct types     is 5.
         missing  sequences is 26.
-        all      A-numbers is 174.
-        distinct A-numbers is 59.
+        all      A-numbers is 178.
+        distinct A-numbers is 52.
 
 * Statistic about Binomial:
 The number of ...
-        all      hashes    is 160.
-        distinct hashes    is 38.
+        all      hashes    is 158.
+        distinct hashes    is 39.
         core     triangles is 1.
         distinct types     is 4.
         missing  sequences is 8.
-        all      A-numbers is 152.
-        distinct A-numbers is 35.
+        all      A-numbers is 150.
+        distinct A-numbers is 31.
 
 * Statistic about BinomialBell:
 The number of ...
-        all      hashes    is 209.
-        distinct hashes    is 120.
+        all      hashes    is 213.
+        distinct hashes    is 121.
         core     triangles is 1.
         distinct types     is 5.
         missing  sequences is 99.
-        all      A-numbers is 110.
-        distinct A-numbers is 55.
+        all      A-numbers is 114.
+        distinct A-numbers is 52.
 
 * Statistic about BinomialCatalan:
 The number of ...
-        all      hashes    is 168.
-        distinct hashes    is 103.
+        all      hashes    is 172.
+        distinct hashes    is 104.
         core     triangles is 1.
         distinct types     is 4.
         missing  sequences is 78.
-        all      A-numbers is 90.
-        distinct A-numbers is 45.
+        all      A-numbers is 94.
+        distinct A-numbers is 44.
 
 * Statistic about BinomialPell:
 The number of ...
@@ -96,359 +94,359 @@ The number of ...
         distinct hashes    is 64.
         core     triangles is 1.
         distinct types     is 3.
-        missing  sequences is 68.
-        all      A-numbers is 57.
-        distinct A-numbers is 24.
+        missing  sequences is 67.
+        all      A-numbers is 58.
+        distinct A-numbers is 23.
 
 * Statistic about BinomialDiffPell:
 The number of ...
-        all      hashes    is 208.
-        distinct hashes    is 112.
+        all      hashes    is 209.
+        distinct hashes    is 110.
         core     triangles is 1.
         distinct types     is 5.
-        missing  sequences is 152.
-        all      A-numbers is 56.
-        distinct A-numbers is 21.
+        missing  sequences is 143.
+        all      A-numbers is 66.
+        distinct A-numbers is 20.
 
 * Statistic about Catalan:
 The number of ...
-        all      hashes    is 204.
-        distinct hashes    is 116.
+        all      hashes    is 214.
+        distinct hashes    is 117.
         core     triangles is 1.
         distinct types     is 5.
-        missing  sequences is 75.
-        all      A-numbers is 129.
-        distinct A-numbers is 65.
+        missing  sequences is 74.
+        all      A-numbers is 140.
+        distinct A-numbers is 61.
 
 * Statistic about CatalanPaths:
 The number of ...
-        all      hashes    is 196.
-        distinct hashes    is 88.
+        all      hashes    is 190.
+        distinct hashes    is 84.
         core     triangles is 1.
         distinct types     is 5.
-        missing  sequences is 70.
-        all      A-numbers is 126.
-        distinct A-numbers is 46.
+        missing  sequences is 47.
+        all      A-numbers is 143.
+        distinct A-numbers is 51.
 
 * Statistic about CentralCycle:
 The number of ...
-        all      hashes    is 115.
-        distinct hashes    is 64.
+        all      hashes    is 121.
+        distinct hashes    is 66.
         core     triangles is 1.
         distinct types     is 3.
-        missing  sequences is 67.
-        all      A-numbers is 48.
+        missing  sequences is 66.
+        all      A-numbers is 55.
         distinct A-numbers is 24.
 
 * Statistic about CentralSet:
 The number of ...
-        all      hashes    is 199.
-        distinct hashes    is 115.
+        all      hashes    is 215.
+        distinct hashes    is 117.
         core     triangles is 1.
         distinct types     is 5.
         missing  sequences is 121.
-        all      A-numbers is 78.
-        distinct A-numbers is 28.
+        all      A-numbers is 94.
+        distinct A-numbers is 27.
 
 * Statistic about Chains:
 The number of ...
-        all      hashes    is 120.
-        distinct hashes    is 67.
+        all      hashes    is 124.
+        distinct hashes    is 69.
         core     triangles is 1.
         distinct types     is 3.
         missing  sequences is 65.
-        all      A-numbers is 55.
-        distinct A-numbers is 28.
+        all      A-numbers is 59.
+        distinct A-numbers is 25.
 
 * Statistic about Charlier:
 The number of ...
-        all      hashes    is 249.
-        distinct hashes    is 145.
+        all      hashes    is 262.
+        distinct hashes    is 147.
         core     triangles is 1.
         distinct types     is 6.
         missing  sequences is 168.
-        all      A-numbers is 81.
-        distinct A-numbers is 37.
+        all      A-numbers is 94.
+        distinct A-numbers is 36.
 
 * Statistic about ChebyshevS:
 The number of ...
-        all      hashes    is 196.
-        distinct hashes    is 88.
+        all      hashes    is 181.
+        distinct hashes    is 84.
         core     triangles is 1.
         distinct types     is 5.
-        missing  sequences is 73.
-        all      A-numbers is 123.
-        distinct A-numbers is 46.
+        missing  sequences is 48.
+        all      A-numbers is 133.
+        distinct A-numbers is 51.
 
 * Statistic about ChebyshevT:
 The number of ...
-        all      hashes    is 109.
-        distinct hashes    is 46.
+        all      hashes    is 108.
+        distinct hashes    is 48.
         core     triangles is 1.
         distinct types     is 3.
-        missing  sequences is 47.
-        all      A-numbers is 62.
-        distinct A-numbers is 24.
+        missing  sequences is 37.
+        all      A-numbers is 71.
+        distinct A-numbers is 29.
 
 * Statistic about ChebyshevU:
+The number of ...
+        all      hashes    is 115.
+        distinct hashes    is 49.
+        core     triangles is 1.
+        distinct types     is 3.
+        missing  sequences is 43.
+        all      A-numbers is 72.
+        distinct A-numbers is 27.
+
+* Statistic about Composition:
+The number of ...
+        all      hashes    is 212.
+        distinct hashes    is 115.
+        core     triangles is 1.
+        distinct types     is 5.
+        missing  sequences is 135.
+        all      A-numbers is 77.
+        distinct A-numbers is 22.
+
+* Statistic about CompositionMax:
+The number of ...
+        all      hashes    is 125.
+        distinct hashes    is 66.
+        core     triangles is 1.
+        distinct types     is 3.
+        missing  sequences is 74.
+        all      A-numbers is 51.
+        distinct A-numbers is 17.
+
+* Statistic about CTree:
+The number of ...
+        all      hashes    is 155.
+        distinct hashes    is 69.
+        core     triangles is 1.
+        distinct types     is 4.
+        missing  sequences is 38.
+        all      A-numbers is 117.
+        distinct A-numbers is 37.
+
+* Statistic about Delannoy:
+The number of ...
+        all      hashes    is 165.
+        distinct hashes    is 88.
+        core     triangles is 1.
+        distinct types     is 4.
+        missing  sequences is 49.
+        all      A-numbers is 116.
+        distinct A-numbers is 40.
+
+* Statistic about Divisibility:
+The number of ...
+        all      hashes    is 211.
+        distinct hashes    is 99.
+        core     triangles is 1.
+        distinct types     is 5.
+        missing  sequences is 47.
+        all      A-numbers is 164.
+        distinct A-numbers is 56.
+
+* Statistic about DyckPaths:
+The number of ...
+        all      hashes    is 201.
+        distinct hashes    is 107.
+        core     triangles is 1.
+        distinct types     is 5.
+        missing  sequences is 59.
+        all      A-numbers is 142.
+        distinct A-numbers is 59.
+
+* Statistic about Euclid:
+The number of ...
+        all      hashes    is 81.
+        distinct hashes    is 38.
+        core     triangles is 1.
+        distinct types     is 2.
+        missing  sequences is 18.
+        all      A-numbers is 63.
+        distinct A-numbers is 22.
+
+* Statistic about Euler:
+The number of ...
+        all      hashes    is 215.
+        distinct hashes    is 75.
+        core     triangles is 1.
+        distinct types     is 5.
+        missing  sequences is 81.
+        all      A-numbers is 134.
+        distinct A-numbers is 30.
+
+* Statistic about Eulerian:
+The number of ...
+        all      hashes    is 215.
+        distinct hashes    is 116.
+        core     triangles is 1.
+        distinct types     is 5.
+        missing  sequences is 103.
+        all      A-numbers is 112.
+        distinct A-numbers is 37.
+
+* Statistic about Eulerian2:
+The number of ...
+        all      hashes    is 125.
+        distinct hashes    is 67.
+        core     triangles is 1.
+        distinct types     is 3.
+        missing  sequences is 63.
+        all      A-numbers is 62.
+        distinct A-numbers is 23.
+
+* Statistic about EulerianB:
+The number of ...
+        all      hashes    is 175.
+        distinct hashes    is 91.
+        core     triangles is 1.
+        distinct types     is 4.
+        missing  sequences is 115.
+        all      A-numbers is 60.
+        distinct A-numbers is 18.
+
+* Statistic about EulerianZigZag:
+The number of ...
+        all      hashes    is 172.
+        distinct hashes    is 96.
+        core     triangles is 1.
+        distinct types     is 4.
+        missing  sequences is 108.
+        all      A-numbers is 64.
+        distinct A-numbers is 18.
+
+* Statistic about EulerSec:
+The number of ...
+        all      hashes    is 203.
+        distinct hashes    is 92.
+        core     triangles is 1.
+        distinct types     is 5.
+        missing  sequences is 66.
+        all      A-numbers is 137.
+        distinct A-numbers is 52.
+
+* Statistic about EulerTan:
 The number of ...
         all      hashes    is 118.
         distinct hashes    is 49.
         core     triangles is 1.
         distinct types     is 3.
-        missing  sequences is 52.
-        all      A-numbers is 66.
-        distinct A-numbers is 25.
-
-* Statistic about Composition:
-The number of ...
-        all      hashes    is 201.
-        distinct hashes    is 115.
-        core     triangles is 1.
-        distinct types     is 5.
-        missing  sequences is 135.
-        all      A-numbers is 66.
-        distinct A-numbers is 30.
-
-* Statistic about CompositionMax:
-The number of ...
-        all      hashes    is 118.
-        distinct hashes    is 64.
-        core     triangles is 1.
-        distinct types     is 3.
-        missing  sequences is 74.
-        all      A-numbers is 44.
-        distinct A-numbers is 17.
-
-* Statistic about CTree:
-The number of ...
-        all      hashes    is 148.
-        distinct hashes    is 72.
-        core     triangles is 1.
-        distinct types     is 4.
-        missing  sequences is 40.
-        all      A-numbers is 108.
-        distinct A-numbers is 43.
-
-* Statistic about Delannoy:
-The number of ...
-        all      hashes    is 166.
-        distinct hashes    is 89.
-        core     triangles is 1.
-        distinct types     is 4.
-        missing  sequences is 54.
-        all      A-numbers is 112.
-        distinct A-numbers is 44.
-
-* Statistic about Divisibility:
-The number of ...
-        all      hashes    is 179.
-        distinct hashes    is 98.
-        core     triangles is 1.
-        distinct types     is 5.
-        missing  sequences is 54.
-        all      A-numbers is 125.
-        distinct A-numbers is 62.
-
-* Statistic about DyckPaths:
-The number of ...
-        all      hashes    is 204.
-        distinct hashes    is 112.
-        core     triangles is 1.
-        distinct types     is 5.
-        missing  sequences is 68.
-        all      A-numbers is 136.
-        distinct A-numbers is 68.
-
-* Statistic about Euclid:
-The number of ...
-        all      hashes    is 74.
-        distinct hashes    is 37.
-        core     triangles is 1.
-        distinct types     is 2.
-        missing  sequences is 20.
-        all      A-numbers is 54.
-        distinct A-numbers is 25.
-
-* Statistic about Euler:
-The number of ...
-        all      hashes    is 211.
-        distinct hashes    is 74.
-        core     triangles is 1.
-        distinct types     is 5.
-        missing  sequences is 81.
-        all      A-numbers is 130.
-        distinct A-numbers is 34.
-
-* Statistic about Eulerian:
-The number of ...
-        all      hashes    is 199.
-        distinct hashes    is 114.
-        core     triangles is 1.
-        distinct types     is 5.
-        missing  sequences is 103.
-        all      A-numbers is 96.
-        distinct A-numbers is 43.
-
-* Statistic about Eulerian2:
-The number of ...
-        all      hashes    is 118.
-        distinct hashes    is 65.
-        core     triangles is 1.
-        distinct types     is 3.
-        missing  sequences is 63.
-        all      A-numbers is 55.
-        distinct A-numbers is 23.
-
-* Statistic about EulerianB:
-The number of ...
-        all      hashes    is 166.
-        distinct hashes    is 89.
-        core     triangles is 1.
-        distinct types     is 4.
-        missing  sequences is 117.
+        missing  sequences is 69.
         all      A-numbers is 49.
         distinct A-numbers is 16.
 
-* Statistic about EulerianZigZag:
-The number of ...
-        all      hashes    is 153.
-        distinct hashes    is 94.
-        core     triangles is 1.
-        distinct types     is 4.
-        missing  sequences is 107.
-        all      A-numbers is 46.
-        distinct A-numbers is 21.
-
-* Statistic about EulerSec:
-The number of ...
-        all      hashes    is 195.
-        distinct hashes    is 90.
-        core     triangles is 1.
-        distinct types     is 5.
-        missing  sequences is 81.
-        all      A-numbers is 114.
-        distinct A-numbers is 46.
-
-* Statistic about EulerTan:
-The number of ...
-        all      hashes    is 116.
-        distinct hashes    is 48.
-        core     triangles is 1.
-        distinct types     is 3.
-        missing  sequences is 71.
-        all      A-numbers is 45.
-        distinct A-numbers is 15.
-
 * Statistic about FallingFact:
 The number of ...
-        all      hashes    is 164.
-        distinct hashes    is 88.
-        core     triangles is 1.
-        distinct types     is 4.
-        missing  sequences is 17.
-        all      A-numbers is 147.
-        distinct A-numbers is 75.
-
-* Statistic about FiboLucas:
-The number of ...
-        all      hashes    is 169.
-        distinct hashes    is 106.
-        core     triangles is 1.
-        distinct types     is 4.
-        missing  sequences is 94.
-        all      A-numbers is 75.
-        distinct A-numbers is 38.
-
-* Statistic about FiboLucasInv:
-The number of ...
-        all      hashes    is 211.
-        distinct hashes    is 122.
-        core     triangles is 1.
-        distinct types     is 5.
-        missing  sequences is 135.
-        all      A-numbers is 76.
-        distinct A-numbers is 38.
-
-* Statistic about FiboLucasRev:
-The number of ...
-        all      hashes    is 211.
-        distinct hashes    is 123.
-        core     triangles is 1.
-        distinct types     is 5.
-        missing  sequences is 123.
-        all      A-numbers is 88.
-        distinct A-numbers is 42.
-
-* Statistic about Fibonacci:
-The number of ...
-        all      hashes    is 126.
-        distinct hashes    is 66.
-        core     triangles is 1.
-        distinct types     is 3.
-        missing  sequences is 60.
-        all      A-numbers is 66.
-        distinct A-numbers is 25.
-
-* Statistic about Fubini:
-The number of ...
-        all      hashes    is 115.
-        distinct hashes    is 64.
-        core     triangles is 1.
-        distinct types     is 3.
-        missing  sequences is 26.
-        all      A-numbers is 89.
-        distinct A-numbers is 47.
-
-* Statistic about FussCatalan:
-The number of ...
-        all      hashes    is 118.
-        distinct hashes    is 63.
-        core     triangles is 1.
-        distinct types     is 3.
-        missing  sequences is 56.
-        all      A-numbers is 62.
-        distinct A-numbers is 26.
-
-* Statistic about Gaussq2:
-The number of ...
-        all      hashes    is 166.
+        all      hashes    is 170.
         distinct hashes    is 89.
         core     triangles is 1.
         distinct types     is 4.
-        missing  sequences is 79.
-        all      A-numbers is 87.
-        distinct A-numbers is 28.
+        missing  sequences is 17.
+        all      A-numbers is 153.
+        distinct A-numbers is 64.
 
-* Statistic about Genocchi:
+* Statistic about FiboLucas:
 The number of ...
-        all      hashes    is 122.
+        all      hashes    is 172.
+        distinct hashes    is 107.
+        core     triangles is 1.
+        distinct types     is 4.
+        missing  sequences is 92.
+        all      A-numbers is 80.
+        distinct A-numbers is 32.
+
+* Statistic about FiboLucasInv:
+The number of ...
+        all      hashes    is 214.
+        distinct hashes    is 123.
+        core     triangles is 1.
+        distinct types     is 5.
+        missing  sequences is 133.
+        all      A-numbers is 81.
+        distinct A-numbers is 32.
+
+* Statistic about FiboLucasRev:
+The number of ...
+        all      hashes    is 214.
+        distinct hashes    is 124.
+        core     triangles is 1.
+        distinct types     is 5.
+        missing  sequences is 121.
+        all      A-numbers is 93.
+        distinct A-numbers is 36.
+
+* Statistic about Fibonacci:
+The number of ...
+        all      hashes    is 127.
+        distinct hashes    is 67.
+        core     triangles is 1.
+        distinct types     is 3.
+        missing  sequences is 61.
+        all      A-numbers is 66.
+        distinct A-numbers is 22.
+
+* Statistic about Fubini:
+The number of ...
+        all      hashes    is 121.
+        distinct hashes    is 66.
+        core     triangles is 1.
+        distinct types     is 3.
+        missing  sequences is 25.
+        all      A-numbers is 96.
+        distinct A-numbers is 46.
+
+* Statistic about FussCatalan:
+The number of ...
+        all      hashes    is 124.
         distinct hashes    is 65.
         core     triangles is 1.
         distinct types     is 3.
+        missing  sequences is 56.
+        all      A-numbers is 68.
+        distinct A-numbers is 23.
+
+* Statistic about Gaussq2:
+The number of ...
+        all      hashes    is 175.
+        distinct hashes    is 91.
+        core     triangles is 1.
+        distinct types     is 4.
+        missing  sequences is 77.
+        all      A-numbers is 98.
+        distinct A-numbers is 29.
+
+* Statistic about Genocchi:
+The number of ...
+        all      hashes    is 125.
+        distinct hashes    is 66.
+        core     triangles is 1.
+        distinct types     is 3.
         missing  sequences is 90.
-        all      A-numbers is 32.
-        distinct A-numbers is 10.
+        all      A-numbers is 35.
+        distinct A-numbers is 8.
 
 * Statistic about Harmonic:
 The number of ...
-        all      hashes    is 204.
-        distinct hashes    is 116.
+        all      hashes    is 215.
+        distinct hashes    is 118.
         core     triangles is 1.
         distinct types     is 5.
         missing  sequences is 126.
-        all      A-numbers is 78.
+        all      A-numbers is 89.
         distinct A-numbers is 31.
 
 * Statistic about HermiteE:
 The number of ...
-        all      hashes    is 197.
-        distinct hashes    is 72.
+        all      hashes    is 196.
+        distinct hashes    is 73.
         core     triangles is 1.
         distinct types     is 5.
-        missing  sequences is 104.
-        all      A-numbers is 93.
-        distinct A-numbers is 25.
+        missing  sequences is 80.
+        all      A-numbers is 116.
+        distinct A-numbers is 32.
 
 * Statistic about HermiteH:
 The number of ...
@@ -456,561 +454,561 @@ The number of ...
         distinct hashes    is 49.
         core     triangles is 1.
         distinct types     is 3.
-        missing  sequences is 76.
-        all      A-numbers is 42.
+        missing  sequences is 75.
+        all      A-numbers is 43.
         distinct A-numbers is 14.
 
 * Statistic about HyperHarmonic:
 The number of ...
-        all      hashes    is 206.
-        distinct hashes    is 118.
+        all      hashes    is 213.
+        distinct hashes    is 119.
         core     triangles is 1.
         distinct types     is 5.
-        missing  sequences is 122.
-        all      A-numbers is 84.
-        distinct A-numbers is 33.
+        missing  sequences is 131.
+        all      A-numbers is 82.
+        distinct A-numbers is 29.
 
 * Statistic about Kekule:
 The number of ...
-        all      hashes    is 170.
-        distinct hashes    is 99.
+        all      hashes    is 175.
+        distinct hashes    is 100.
         core     triangles is 1.
         distinct types     is 4.
-        missing  sequences is 112.
-        all      A-numbers is 58.
-        distinct A-numbers is 20.
+        missing  sequences is 111.
+        all      A-numbers is 64.
+        distinct A-numbers is 19.
 
 * Statistic about LabeledGraphs:
 The number of ...
-        all      hashes    is 121.
-        distinct hashes    is 64.
+        all      hashes    is 125.
+        distinct hashes    is 66.
         core     triangles is 1.
         distinct types     is 3.
         missing  sequences is 84.
-        all      A-numbers is 37.
+        all      A-numbers is 41.
         distinct A-numbers is 13.
 
 * Statistic about Laguerre:
 The number of ...
-        all      hashes    is 211.
-        distinct hashes    is 75.
+        all      hashes    is 215.
+        distinct hashes    is 76.
         core     triangles is 1.
         distinct types     is 5.
         missing  sequences is 73.
-        all      A-numbers is 138.
-        distinct A-numbers is 40.
+        all      A-numbers is 142.
+        distinct A-numbers is 39.
 
 * Statistic about Lah:
 The number of ...
-        all      hashes    is 204.
-        distinct hashes    is 75.
+        all      hashes    is 215.
+        distinct hashes    is 77.
         core     triangles is 1.
         distinct types     is 5.
         missing  sequences is 42.
-        all      A-numbers is 162.
-        distinct A-numbers is 55.
+        all      A-numbers is 173.
+        distinct A-numbers is 51.
 
 * Statistic about Lehmer:
 The number of ...
-        all      hashes    is 201.
-        distinct hashes    is 117.
+        all      hashes    is 215.
+        distinct hashes    is 119.
         core     triangles is 1.
         distinct types     is 5.
         missing  sequences is 137.
-        all      A-numbers is 64.
-        distinct A-numbers is 26.
+        all      A-numbers is 78.
+        distinct A-numbers is 25.
 
 * Statistic about Leibniz:
 The number of ...
-        all      hashes    is 82.
-        distinct hashes    is 38.
+        all      hashes    is 84.
+        distinct hashes    is 39.
         core     triangles is 1.
         distinct types     is 2.
-        missing  sequences is 9.
-        all      A-numbers is 73.
-        distinct A-numbers is 28.
+        missing  sequences is 10.
+        all      A-numbers is 74.
+        distinct A-numbers is 27.
 
 * Statistic about Levin:
 The number of ...
-        all      hashes    is 82.
-        distinct hashes    is 38.
+        all      hashes    is 84.
+        distinct hashes    is 39.
         core     triangles is 1.
         distinct types     is 2.
-        missing  sequences is 31.
-        all      A-numbers is 51.
-        distinct A-numbers is 19.
+        missing  sequences is 30.
+        all      A-numbers is 54.
+        distinct A-numbers is 18.
 
 * Statistic about Lozanic:
 The number of ...
-        all      hashes    is 166.
-        distinct hashes    is 87.
+        all      hashes    is 170.
+        distinct hashes    is 89.
         core     triangles is 1.
         distinct types     is 4.
-        missing  sequences is 104.
-        all      A-numbers is 62.
-        distinct A-numbers is 25.
+        missing  sequences is 102.
+        all      A-numbers is 68.
+        distinct A-numbers is 24.
 
 * Statistic about Lucas:
 The number of ...
-        all      hashes    is 163.
-        distinct hashes    is 99.
+        all      hashes    is 173.
+        distinct hashes    is 101.
         core     triangles is 1.
         distinct types     is 4.
         missing  sequences is 113.
-        all      A-numbers is 50.
-        distinct A-numbers is 21.
+        all      A-numbers is 60.
+        distinct A-numbers is 20.
 
 * Statistic about Moebius:
 The number of ...
-        all      hashes    is 180.
+        all      hashes    is 208.
         distinct hashes    is 98.
         core     triangles is 1.
         distinct types     is 5.
-        missing  sequences is 55.
-        all      A-numbers is 125.
-        distinct A-numbers is 60.
+        missing  sequences is 44.
+        all      A-numbers is 164.
+        distinct A-numbers is 54.
 
 * Statistic about Monotone:
 The number of ...
-        all      hashes    is 162.
+        all      hashes    is 172.
         distinct hashes    is 98.
         core     triangles is 1.
         distinct types     is 4.
         missing  sequences is 52.
-        all      A-numbers is 110.
-        distinct A-numbers is 57.
+        all      A-numbers is 120.
+        distinct A-numbers is 53.
 
 * Statistic about Motzkin:
 The number of ...
-        all      hashes    is 208.
-        distinct hashes    is 114.
+        all      hashes    is 193.
+        distinct hashes    is 107.
         core     triangles is 1.
         distinct types     is 5.
-        missing  sequences is 62.
-        all      A-numbers is 146.
-        distinct A-numbers is 68.
+        missing  sequences is 56.
+        all      A-numbers is 137.
+        distinct A-numbers is 60.
 
 * Statistic about MotzkinPoly:
 The number of ...
-        all      hashes    is 157.
-        distinct hashes    is 77.
+        all      hashes    is 163.
+        distinct hashes    is 78.
         core     triangles is 1.
         distinct types     is 4.
-        missing  sequences is 91.
-        all      A-numbers is 66.
-        distinct A-numbers is 23.
+        missing  sequences is 78.
+        all      A-numbers is 85.
+        distinct A-numbers is 31.
 
 * Statistic about Narayana:
 The number of ...
-        all      hashes    is 199.
-        distinct hashes    is 114.
+        all      hashes    is 215.
+        distinct hashes    is 116.
         core     triangles is 1.
         distinct types     is 5.
         missing  sequences is 83.
-        all      A-numbers is 116.
-        distinct A-numbers is 51.
+        all      A-numbers is 132.
+        distinct A-numbers is 45.
 
 * Statistic about Naturals:
 The number of ...
-        all      hashes    is 122.
-        distinct hashes    is 67.
+        all      hashes    is 123.
+        distinct hashes    is 68.
         core     triangles is 1.
         distinct types     is 3.
         missing  sequences is 53.
-        all      A-numbers is 69.
-        distinct A-numbers is 28.
+        all      A-numbers is 70.
+        distinct A-numbers is 29.
 
 * Statistic about Nicomachus:
 The number of ...
-        all      hashes    is 119.
-        distinct hashes    is 65.
+        all      hashes    is 123.
+        distinct hashes    is 66.
         core     triangles is 1.
         distinct types     is 3.
         missing  sequences is 41.
-        all      A-numbers is 78.
+        all      A-numbers is 82.
         distinct A-numbers is 33.
 
 * Statistic about One:
 The number of ...
-        all      hashes    is 110.
-        distinct hashes    is 49.
-        core     triangles is 0.
+        all      hashes    is 147.
+        distinct hashes    is 50.
+        core     triangles is 1.
         distinct types     is 4.
         missing  sequences is 5.
-        all      A-numbers is 105.
-        distinct A-numbers is 44.
+        all      A-numbers is 142.
+        distinct A-numbers is 37.
 
 * Statistic about Ordinals:
 The number of ...
-        all      hashes    is 118.
-        distinct hashes    is 55.
+        all      hashes    is 122.
+        distinct hashes    is 56.
         core     triangles is 1.
         distinct types     is 3.
         missing  sequences is 9.
-        all      A-numbers is 109.
-        distinct A-numbers is 48.
+        all      A-numbers is 113.
+        distinct A-numbers is 42.
 
 * Statistic about OrderedCycle:
 The number of ...
-        all      hashes    is 121.
-        distinct hashes    is 65.
+        all      hashes    is 125.
+        distinct hashes    is 67.
         core     triangles is 1.
         distinct types     is 3.
         missing  sequences is 45.
-        all      A-numbers is 76.
+        all      A-numbers is 80.
         distinct A-numbers is 37.
 
 * Statistic about Parades:
 The number of ...
-        all      hashes    is 78.
-        distinct hashes    is 38.
+        all      hashes    is 82.
+        distinct hashes    is 39.
         core     triangles is 1.
         distinct types     is 2.
-        missing  sequences is 44.
-        all      A-numbers is 34.
-        distinct A-numbers is 12.
+        missing  sequences is 42.
+        all      A-numbers is 40.
+        distinct A-numbers is 13.
 
 * Statistic about Partition:
 The number of ...
-        all      hashes    is 201.
-        distinct hashes    is 110.
+        all      hashes    is 211.
+        distinct hashes    is 111.
         core     triangles is 1.
         distinct types     is 5.
-        missing  sequences is 85.
-        all      A-numbers is 116.
-        distinct A-numbers is 56.
+        missing  sequences is 89.
+        all      A-numbers is 122.
+        distinct A-numbers is 50.
 
 * Statistic about PartitionDist:
 The number of ...
-        all      hashes    is 121.
-        distinct hashes    is 63.
+        all      hashes    is 122.
+        distinct hashes    is 65.
         core     triangles is 1.
         distinct types     is 3.
         missing  sequences is 57.
-        all      A-numbers is 64.
-        distinct A-numbers is 27.
+        all      A-numbers is 65.
+        distinct A-numbers is 26.
 
 * Statistic about PartitionMax:
 The number of ...
-        all      hashes    is 118.
-        distinct hashes    is 63.
+        all      hashes    is 125.
+        distinct hashes    is 65.
         core     triangles is 1.
         distinct types     is 3.
         missing  sequences is 70.
-        all      A-numbers is 48.
+        all      A-numbers is 55.
         distinct A-numbers is 19.
 
 * Statistic about Pascal:
 The number of ...
-        all      hashes    is 160.
-        distinct hashes    is 38.
+        all      hashes    is 158.
+        distinct hashes    is 39.
         core     triangles is 1.
         distinct types     is 4.
         missing  sequences is 8.
-        all      A-numbers is 152.
-        distinct A-numbers is 35.
+        all      A-numbers is 150.
+        distinct A-numbers is 31.
 
 * Statistic about Polygonal:
 The number of ...
-        all      hashes    is 118.
-        distinct hashes    is 63.
+        all      hashes    is 122.
+        distinct hashes    is 64.
         core     triangles is 1.
         distinct types     is 3.
-        missing  sequences is 67.
-        all      A-numbers is 51.
-        distinct A-numbers is 20.
+        missing  sequences is 66.
+        all      A-numbers is 56.
+        distinct A-numbers is 21.
 
 * Statistic about PowLaguerre:
 The number of ...
-        all      hashes    is 82.
-        distinct hashes    is 38.
+        all      hashes    is 80.
+        distinct hashes    is 39.
         core     triangles is 1.
         distinct types     is 2.
-        missing  sequences is 14.
-        all      A-numbers is 68.
-        distinct A-numbers is 28.
+        missing  sequences is 11.
+        all      A-numbers is 69.
+        distinct A-numbers is 25.
 
 * Statistic about Rencontres:
 The number of ...
-        all      hashes    is 199.
-        distinct hashes    is 111.
+        all      hashes    is 209.
+        distinct hashes    is 112.
         core     triangles is 1.
         distinct types     is 5.
-        missing  sequences is 81.
-        all      A-numbers is 118.
-        distinct A-numbers is 50.
+        missing  sequences is 82.
+        all      A-numbers is 127.
+        distinct A-numbers is 49.
 
 * Statistic about RisingFact:
 The number of ...
-        all      hashes    is 169.
-        distinct hashes    is 100.
+        all      hashes    is 173.
+        distinct hashes    is 101.
         core     triangles is 1.
         distinct types     is 4.
         missing  sequences is 107.
-        all      A-numbers is 62.
-        distinct A-numbers is 24.
+        all      A-numbers is 66.
+        distinct A-numbers is 20.
 
 * Statistic about Schroeder:
 The number of ...
-        all      hashes    is 202.
+        all      hashes    is 206.
         distinct hashes    is 114.
         core     triangles is 1.
         distinct types     is 5.
         missing  sequences is 70.
-        all      A-numbers is 132.
-        distinct A-numbers is 59.
+        all      A-numbers is 136.
+        distinct A-numbers is 53.
 
 * Statistic about SchroederL:
 The number of ...
-        all      hashes    is 206.
-        distinct hashes    is 116.
-        core     triangles is 1.
-        distinct types     is 5.
-        missing  sequences is 127.
-        all      A-numbers is 79.
-        distinct A-numbers is 31.
-
-* Statistic about SchroederP:
-The number of ...
-        all      hashes    is 206.
+        all      hashes    is 216.
         distinct hashes    is 118.
         core     triangles is 1.
         distinct types     is 5.
-        missing  sequences is 125.
-        all      A-numbers is 81.
-        distinct A-numbers is 40.
+        missing  sequences is 130.
+        all      A-numbers is 86.
+        distinct A-numbers is 30.
+
+* Statistic about SchroederP:
+The number of ...
+        all      hashes    is 205.
+        distinct hashes    is 117.
+        core     triangles is 1.
+        distinct types     is 5.
+        missing  sequences is 118.
+        all      A-numbers is 87.
+        distinct A-numbers is 37.
 
 * Statistic about Seidel:
 The number of ...
-        all      hashes    is 118.
-        distinct hashes    is 63.
+        all      hashes    is 122.
+        distinct hashes    is 65.
         core     triangles is 1.
         distinct types     is 3.
         missing  sequences is 57.
-        all      A-numbers is 61.
-        distinct A-numbers is 23.
+        all      A-numbers is 65.
+        distinct A-numbers is 21.
 
 * Statistic about SeidelBoust:
-The number of ...
-        all      hashes    is 121.
-        distinct hashes    is 66.
-        core     triangles is 1.
-        distinct types     is 3.
-        missing  sequences is 78.
-        all      A-numbers is 43.
-        distinct A-numbers is 20.
-
-* Statistic about Sierpinski:
-The number of ...
-        all      hashes    is 153.
-        distinct hashes    is 56.
-        core     triangles is 1.
-        distinct types     is 4.
-        missing  sequences is 47.
-        all      A-numbers is 106.
-        distinct A-numbers is 31.
-
-* Statistic about StirlingCycle:
-The number of ...
-        all      hashes    is 199.
-        distinct hashes    is 113.
-        core     triangles is 1.
-        distinct types     is 5.
-        missing  sequences is 28.
-        all      A-numbers is 171.
-        distinct A-numbers is 84.
-
-* Statistic about StirlingCyc2:
-The number of ...
-        all      hashes    is 115.
-        distinct hashes    is 60.
-        core     triangles is 1.
-        distinct types     is 3.
-        missing  sequences is 56.
-        all      A-numbers is 59.
-        distinct A-numbers is 28.
-
-* Statistic about StirlingCycB:
-The number of ...
-        all      hashes    is 206.
-        distinct hashes    is 116.
-        core     triangles is 1.
-        distinct types     is 5.
-        missing  sequences is 98.
-        all      A-numbers is 108.
-        distinct A-numbers is 40.
-
-* Statistic about StirlingSet:
-The number of ...
-        all      hashes    is 199.
-        distinct hashes    is 113.
-        core     triangles is 1.
-        distinct types     is 5.
-        missing  sequences is 27.
-        all      A-numbers is 172.
-        distinct A-numbers is 88.
-
-* Statistic about StirlingSet2:
-The number of ...
-        all      hashes    is 115.
-        distinct hashes    is 59.
-        core     triangles is 1.
-        distinct types     is 3.
-        missing  sequences is 59.
-        all      A-numbers is 56.
-        distinct A-numbers is 25.
-
-* Statistic about StirlingSetB:
-The number of ...
-        all      hashes    is 206.
-        distinct hashes    is 116.
-        core     triangles is 1.
-        distinct types     is 5.
-        missing  sequences is 155.
-        all      A-numbers is 51.
-        distinct A-numbers is 22.
-
-* Statistic about Sylvester:
 The number of ...
         all      hashes    is 122.
         distinct hashes    is 67.
         core     triangles is 1.
         distinct types     is 3.
+        missing  sequences is 78.
+        all      A-numbers is 44.
+        distinct A-numbers is 17.
+
+* Statistic about Sierpinski:
+The number of ...
+        all      hashes    is 164.
+        distinct hashes    is 57.
+        core     triangles is 1.
+        distinct types     is 4.
+        missing  sequences is 42.
+        all      A-numbers is 122.
+        distinct A-numbers is 30.
+
+* Statistic about StirlingCycle:
+The number of ...
+        all      hashes    is 209.
+        distinct hashes    is 115.
+        core     triangles is 1.
+        distinct types     is 5.
+        missing  sequences is 30.
+        all      A-numbers is 179.
+        distinct A-numbers is 78.
+
+* Statistic about StirlingCyc2:
+The number of ...
+        all      hashes    is 121.
+        distinct hashes    is 61.
+        core     triangles is 1.
+        distinct types     is 3.
+        missing  sequences is 59.
+        all      A-numbers is 62.
+        distinct A-numbers is 25.
+
+* Statistic about StirlingCycB:
+The number of ...
+        all      hashes    is 216.
+        distinct hashes    is 118.
+        core     triangles is 1.
+        distinct types     is 5.
+        missing  sequences is 98.
+        all      A-numbers is 118.
+        distinct A-numbers is 41.
+
+* Statistic about StirlingSet:
+The number of ...
+        all      hashes    is 215.
+        distinct hashes    is 115.
+        core     triangles is 1.
+        distinct types     is 5.
+        missing  sequences is 29.
+        all      A-numbers is 186.
+        distinct A-numbers is 80.
+
+* Statistic about StirlingSet2:
+The number of ...
+        all      hashes    is 121.
+        distinct hashes    is 60.
+        core     triangles is 1.
+        distinct types     is 3.
+        missing  sequences is 62.
+        all      A-numbers is 59.
+        distinct A-numbers is 24.
+
+* Statistic about StirlingSetB:
+The number of ...
+        all      hashes    is 216.
+        distinct hashes    is 118.
+        core     triangles is 1.
+        distinct types     is 5.
+        missing  sequences is 155.
+        all      A-numbers is 61.
+        distinct A-numbers is 22.
+
+* Statistic about Sylvester:
+The number of ...
+        all      hashes    is 125.
+        distinct hashes    is 68.
+        core     triangles is 1.
+        distinct types     is 3.
         missing  sequences is 81.
-        all      A-numbers is 41.
+        all      A-numbers is 44.
         distinct A-numbers is 20.
 
 * Statistic about TernaryTrees:
 The number of ...
-        all      hashes    is 118.
-        distinct hashes    is 64.
+        all      hashes    is 125.
+        distinct hashes    is 66.
         core     triangles is 1.
         distinct types     is 3.
         missing  sequences is 72.
-        all      A-numbers is 46.
-        distinct A-numbers is 16.
+        all      A-numbers is 53.
+        distinct A-numbers is 17.
 
 * Statistic about WardSet:
 The number of ...
-        all      hashes    is 118.
-        distinct hashes    is 65.
+        all      hashes    is 125.
+        distinct hashes    is 67.
         core     triangles is 1.
         distinct types     is 3.
         missing  sequences is 66.
-        all      A-numbers is 52.
-        distinct A-numbers is 26.
+        all      A-numbers is 59.
+        distinct A-numbers is 25.
 
 * Statistic about Worpitzky:
 The number of ...
-        all      hashes    is 160.
-        distinct hashes    is 96.
+        all      hashes    is 169.
+        distinct hashes    is 97.
         core     triangles is 1.
         distinct types     is 4.
         missing  sequences is 67.
-        all      A-numbers is 93.
-        distinct A-numbers is 44.
+        all      A-numbers is 102.
+        distinct A-numbers is 39.
 
 * Statistic about traits:
 The number of ...
-        all      hashes    is 14463.
-        distinct hashes    is 6099.
-        core     triangles is 90.
+        all      hashes    is 15002.
+        distinct hashes    is 6062.
+        core     triangles is 91.
         distinct types     is 6.
-        missing  sequences is 6671.
-        all      A-numbers is 7792.
-        distinct A-numbers is 1994.
+        missing  sequences is 6477.
+        all      A-numbers is 8525.
+        distinct A-numbers is 1758.
 
 Ranking of triangles with regard to their impact:
 
-( 1) [88] ('A048993', 'StirlingSet', 172, 88, 199, 113, 1, 5, 27)
-( 2) [84] ('A132393', 'StirlingCycle', 171, 84, 199, 113, 1, 5, 28)
-( 3) [75] ('A008279', 'FallingFact', 147, 75, 164, 88, 1, 4, 17)
-( 4) [68] ('A039599', 'DyckPaths', 136, 68, 204, 112, 1, 5, 68)
-( 5) [68] ('A064189', 'Motzkin', 146, 68, 208, 114, 1, 5, 62)
-( 6) [65] ('A128899', 'Catalan', 129, 65, 204, 116, 1, 5, 75)
-( 7) [62] ('A113704', 'Divisibility', 125, 62, 179, 98, 1, 5, 54)
-( 8) [60] ('A363914', 'Moebius', 125, 60, 180, 98, 1, 5, 55)
-( 9) [59] ('A038207', 'BinaryPell', 174, 59, 200, 72, 1, 5, 26)
-(10) [59] ('A122538', 'Schroeder', 132, 59, 202, 114, 1, 5, 70)
-(11) [57] ('A059481', 'Monotone', 110, 57, 162, 98, 1, 4, 52)
-(12) [56] ('A137452', 'Abel', 116, 56, 204, 116, 1, 5, 88)
-(13) [56] ('A072233', 'Partition', 116, 56, 201, 110, 1, 5, 85)
-(14) [55] ('A056857', 'BinomialBell', 110, 55, 209, 120, 1, 5, 99)
-(15) [55] ('A271703', 'Lah', 162, 55, 204, 75, 1, 5, 42)
-(16) [52] ('A132062', 'Bessel', 117, 52, 203, 113, 1, 5, 86)
-(17) [51] ('A090181', 'Narayana', 116, 51, 199, 114, 1, 5, 83)
-(18) [50] ('A008290', 'Rencontres', 118, 50, 199, 111, 1, 5, 81)
-(19) [48] ('A002262', 'Ordinals', 109, 48, 118, 55, 1, 3, 9)
-(20) [47] ('A131689', 'Fubini', 89, 47, 115, 64, 1, 3, 26)
-(21) [46] ('A053121', 'CatalanPaths', 126, 46, 196, 88, 1, 5, 70)
-(22) [46] ('A049310', 'ChebyshevS', 123, 46, 196, 88, 1, 5, 73)
-(23) [46] ('A119879', 'EulerSec', 114, 46, 195, 90, 1, 5, 81)
-(24) [45] ('A124644', 'BinomialCatalan', 90, 45, 168, 103, 1, 4, 78)
-(25) [44] ('A008288', 'Delannoy', 112, 44, 166, 89, 1, 4, 54)
-(26) [44] ('A000012', 'One', 105, 44, 110, 49, 0, 4, 5)
-(27) [44] ('A028246', 'Worpitzky', 93, 44, 160, 96, 1, 4, 67)
-(28) [43] ('A106465', 'CTree', 108, 43, 148, 72, 1, 4, 40)
-(29) [43] ('A123125', 'Eulerian', 96, 43, 199, 114, 1, 5, 103)
-(30) [42] ('A124038', 'FiboLucasRev', 88, 42, 211, 123, 1, 5, 123)
-(31) [40] ('A021009', 'Laguerre', 138, 40, 211, 75, 1, 5, 73)
-(32) [40] ('A104684', 'SchroederP', 81, 40, 206, 118, 1, 5, 125)
-(33) [40] ('A028338', 'StirlingCycB', 108, 40, 206, 116, 1, 5, 98)
-(34) [38] ('A374439', 'FiboLucas', 75, 38, 169, 106, 1, 4, 94)
-(35) [38] ('A375025', 'FiboLucasInv', 76, 38, 211, 122, 1, 5, 135)
-(36) [37] ('A046716', 'Charlier', 81, 37, 249, 145, 1, 6, 168)
-(37) [37] ('A225479', 'OrderedCycle', 76, 37, 121, 65, 1, 3, 45)
-(38) [35] ('A007318', 'Binomial', 152, 35, 160, 38, 1, 4, 8)
-(39) [35] ('A007318', 'Pascal', 152, 35, 160, 38, 1, 4, 8)
-(40) [34] ('A247453', 'Euler', 130, 34, 211, 74, 1, 5, 81)
-(41) [33] ('A165675', 'HyperHarmonic', 84, 33, 206, 118, 1, 5, 122)
-(42) [33] ('A036561', 'Nicomachus', 78, 33, 119, 65, 1, 3, 41)
-(43) [31] ('A358694', 'Harmonic', 78, 31, 204, 116, 1, 5, 126)
-(44) [31] ('A172094', 'SchroederL', 79, 31, 206, 116, 1, 5, 127)
-(45) [31] ('A047999', 'Sierpinski', 106, 31, 153, 56, 1, 4, 47)
-(46) [30] ('A048004', 'Composition', 66, 30, 201, 115, 1, 5, 135)
-(47) [28] ('A269945', 'CentralSet', 78, 28, 199, 115, 1, 5, 121)
-(48) [28] ('A038719', 'Chains', 55, 28, 120, 67, 1, 3, 65)
-(49) [28] ('A022166', 'Gaussq2', 87, 28, 166, 89, 1, 4, 79)
-(50) [28] ('A003506', 'Leibniz', 73, 28, 82, 38, 1, 2, 9)
-(51) [28] ('A000027', 'Naturals', 69, 28, 122, 67, 1, 3, 53)
-(52) [28] ('A196347', 'PowLaguerre', 68, 28, 82, 38, 1, 2, 14)
-(53) [28] ('A358622', 'StirlingCyc2', 59, 28, 115, 60, 1, 3, 56)
-(54) [27] ('A011971', 'Bell', 73, 27, 122, 66, 1, 3, 49)
-(55) [27] ('A365676', 'PartitionDist', 64, 27, 121, 63, 1, 3, 57)
-(56) [26] ('A355173', 'FussCatalan', 62, 26, 118, 63, 1, 3, 56)
-(57) [26] ('A354794', 'Lehmer', 64, 26, 201, 117, 1, 5, 137)
-(58) [26] ('A269939', 'WardSet', 52, 26, 118, 65, 1, 3, 66)
-(59) [25] ('A053117', 'ChebyshevU', 66, 25, 118, 49, 1, 3, 52)
-(60) [25] ('A217831', 'Euclid', 54, 25, 74, 37, 1, 2, 20)
-(61) [25] ('A354267', 'Fibonacci', 66, 25, 126, 66, 1, 3, 60)
-(62) [25] ('A099174', 'HermiteE', 93, 25, 197, 72, 1, 5, 104)
-(63) [25] ('A034851', 'Lozanic', 62, 25, 166, 87, 1, 4, 104)
-(64) [25] ('A358623', 'StirlingSet2', 56, 25, 115, 59, 1, 3, 59)
-(65) [24] ('A367211', 'BinomialPell', 57, 24, 125, 64, 1, 3, 68)
-(66) [24] ('A269940', 'CentralCycle', 48, 24, 115, 64, 1, 3, 67)
-(67) [24] ('A053120', 'ChebyshevT', 62, 24, 109, 46, 1, 3, 47)
-(68) [24] ('A124320', 'RisingFact', 62, 24, 169, 100, 1, 4, 107)
-(69) [23] ('A359760', 'Bessel2', 79, 23, 157, 63, 1, 4, 78)
-(70) [23] ('A340556', 'Eulerian2', 55, 23, 118, 65, 1, 3, 63)
-(71) [23] ('A359364', 'MotzkinPoly', 66, 23, 157, 77, 1, 4, 91)
-(72) [23] ('A008281', 'Seidel', 61, 23, 118, 63, 1, 3, 57)
-(73) [22] ('A154602', 'StirlingSetB', 51, 22, 206, 116, 1, 5, 155)
-(74) [21] ('A367564', 'BinomialDiffPell', 56, 21, 208, 112, 1, 5, 152)
-(75) [21] ('A205497', 'EulerianZigZag', 46, 21, 153, 94, 1, 4, 107)
-(76) [21] ('A374440', 'Lucas', 50, 21, 163, 99, 1, 4, 113)
-(77) [20] ('A050446', 'Kekule', 58, 20, 170, 99, 1, 4, 112)
-(78) [20] ('A139600', 'Polygonal', 51, 20, 118, 63, 1, 3, 67)
-(79) [20] ('A008280', 'SeidelBoust', 43, 20, 121, 66, 1, 3, 78)
-(80) [20] ('A341101', 'Sylvester', 41, 20, 122, 67, 1, 3, 81)
-(81) [19] ('A356546', 'Levin', 51, 19, 82, 38, 1, 2, 31)
-(82) [19] ('A026820', 'PartitionMax', 48, 19, 118, 63, 1, 3, 70)
-(83) [18] ('A359363', 'Baxter', 42, 18, 120, 67, 1, 3, 78)
-(84) [17] ('A126198', 'CompositionMax', 44, 17, 118, 64, 1, 3, 74)
-(85) [16] ('A060187', 'EulerianB', 49, 16, 166, 89, 1, 4, 117)
-(86) [16] ('A355172', 'TernaryTrees', 46, 16, 118, 64, 1, 3, 72)
-(87) [15] ('A162660', 'EulerTan', 45, 15, 116, 48, 1, 3, 71)
-(88) [14] ('A060821', 'HermiteH', 42, 14, 118, 49, 1, 3, 76)
-(89) [13] ('A360603', 'LabeledGraphs', 37, 13, 121, 64, 1, 3, 84)
-(90) [12] ('A371761', 'Parades', 34, 12, 78, 38, 1, 2, 44)
-(91) [10] ('A297703', 'Genocchi', 32, 10, 122, 65, 1, 3, 90)
-The statistics were created on 2024-12-01 12:23:52.064881 .
+(1) [186] ('A048993', 'StirlingSet', 186, 80, 215)
+(2) [179] ('A132393', 'StirlingCycle', 179, 78, 209)
+(3) [178] ('A038207', 'BinaryPell', 178, 52, 204)
+(4) [173] ('A271703', 'Lah', 173, 51, 215)
+(5) [164] ('A113704', 'Divisibility', 164, 56, 211)
+(6) [164] ('A363914', 'Moebius', 164, 54, 208)
+(7) [153] ('A008279', 'FallingFact', 153, 64, 170)
+(8) [150] ('A007318', 'Binomial', 150, 31, 158)
+(9) [150] ('A007318', 'Pascal', 150, 31, 158)
+(10) [143] ('A053121', 'CatalanPaths', 143, 51, 190)
+(11) [142] ('A039599', 'DyckPaths', 142, 59, 201)
+(12) [142] ('A021009', 'Laguerre', 142, 39, 215)
+(13) [142] ('A000012', 'One', 142, 37, 147)
+(14) [140] ('A128899', 'Catalan', 140, 61, 214)
+(15) [137] ('A119879', 'EulerSec', 137, 52, 203)
+(16) [137] ('A064189', 'Motzkin', 137, 60, 193)
+(17) [136] ('A122538', 'Schroeder', 136, 53, 206)
+(18) [134] ('A247453', 'Euler', 134, 30, 215)
+(19) [133] ('A049310', 'ChebyshevS', 133, 51, 181)
+(20) [132] ('A090181', 'Narayana', 132, 45, 215)
+(21) [127] ('A008290', 'Rencontres', 127, 49, 209)
+(22) [126] ('A137452', 'Abel', 126, 52, 214)
+(23) [122] ('A072233', 'Partition', 122, 50, 211)
+(24) [122] ('A047999', 'Sierpinski', 122, 30, 164)
+(25) [120] ('A059481', 'Monotone', 120, 53, 172)
+(26) [118] ('A028338', 'StirlingCycB', 118, 41, 216)
+(27) [117] ('A106465', 'CTree', 117, 37, 155)
+(28) [116] ('A132062', 'Bessel', 116, 43, 205)
+(29) [116] ('A008288', 'Delannoy', 116, 40, 165)
+(30) [116] ('A099174', 'HermiteE', 116, 32, 196)
+(31) [114] ('A056857', 'BinomialBell', 114, 52, 213)
+(32) [113] ('A002262', 'Ordinals', 113, 42, 122)
+(33) [112] ('A123125', 'Eulerian', 112, 37, 215)
+(34) [102] ('A028246', 'Worpitzky', 102, 39, 169)
+(35) [98] ('A022166', 'Gaussq2', 98, 29, 175)
+(36) [97] ('A359760', 'Bessel2', 97, 31, 157)
+(37) [96] ('A131689', 'Fubini', 96, 46, 121)
+(38) [94] ('A124644', 'BinomialCatalan', 94, 44, 172)
+(39) [94] ('A269945', 'CentralSet', 94, 27, 215)
+(40) [94] ('A046716', 'Charlier', 94, 36, 262)
+(41) [93] ('A124038', 'FiboLucasRev', 93, 36, 214)
+(42) [89] ('A358694', 'Harmonic', 89, 31, 215)
+(43) [87] ('A104684', 'SchroederP', 87, 37, 205)
+(44) [86] ('A172094', 'SchroederL', 86, 30, 216)
+(45) [85] ('A359364', 'MotzkinPoly', 85, 31, 163)
+(46) [82] ('A165675', 'HyperHarmonic', 82, 29, 213)
+(47) [82] ('A036561', 'Nicomachus', 82, 33, 123)
+(48) [81] ('A375025', 'FiboLucasInv', 81, 32, 214)
+(49) [80] ('A374439', 'FiboLucas', 80, 32, 172)
+(50) [80] ('A225479', 'OrderedCycle', 80, 37, 125)
+(51) [78] ('A354794', 'Lehmer', 78, 25, 215)
+(52) [77] ('A048004', 'Composition', 77, 22, 212)
+(53) [74] ('A011971', 'Bell', 74, 25, 123)
+(54) [74] ('A003506', 'Leibniz', 74, 27, 84)
+(55) [72] ('A053117', 'ChebyshevU', 72, 27, 115)
+(56) [71] ('A053120', 'ChebyshevT', 71, 29, 108)
+(57) [70] ('A000027', 'Naturals', 70, 29, 123)
+(58) [69] ('A196347', 'PowLaguerre', 69, 25, 80)
+(59) [68] ('A355173', 'FussCatalan', 68, 23, 124)
+(60) [68] ('A034851', 'Lozanic', 68, 24, 170)
+(61) [66] ('A367564', 'BinomialDiffPell', 66, 20, 209)
+(62) [66] ('A354267', 'Fibonacci', 66, 22, 127)
+(63) [66] ('A124320', 'RisingFact', 66, 20, 173)
+(64) [65] ('A365676', 'PartitionDist', 65, 26, 122)
+(65) [65] ('A008281', 'Seidel', 65, 21, 122)
+(66) [64] ('A205497', 'EulerianZigZag', 64, 18, 172)
+(67) [64] ('A050446', 'Kekule', 64, 19, 175)
+(68) [63] ('A217831', 'Euclid', 63, 22, 81)
+(69) [62] ('A340556', 'Eulerian2', 62, 23, 125)
+(70) [62] ('A358622', 'StirlingCyc2', 62, 25, 121)
+(71) [61] ('A154602', 'StirlingSetB', 61, 22, 216)
+(72) [60] ('A060187', 'EulerianB', 60, 18, 175)
+(73) [60] ('A374440', 'Lucas', 60, 20, 173)
+(74) [59] ('A038719', 'Chains', 59, 25, 124)
+(75) [59] ('A358623', 'StirlingSet2', 59, 24, 121)
+(76) [59] ('A269939', 'WardSet', 59, 25, 125)
+(77) [58] ('A367211', 'BinomialPell', 58, 23, 125)
+(78) [56] ('A139600', 'Polygonal', 56, 21, 122)
+(79) [55] ('A269940', 'CentralCycle', 55, 24, 121)
+(80) [55] ('A026820', 'PartitionMax', 55, 19, 125)
+(81) [54] ('A356546', 'Levin', 54, 18, 84)
+(82) [53] ('A355172', 'TernaryTrees', 53, 17, 125)
+(83) [51] ('A359363', 'Baxter', 51, 14, 129)
+(84) [51] ('A126198', 'CompositionMax', 51, 17, 125)
+(85) [49] ('A162660', 'EulerTan', 49, 16, 118)
+(86) [44] ('A008280', 'SeidelBoust', 44, 17, 122)
+(87) [44] ('A341101', 'Sylvester', 44, 20, 125)
+(88) [43] ('A060821', 'HermiteH', 43, 14, 118)
+(89) [41] ('A360603', 'LabeledGraphs', 41, 13, 125)
+(90) [40] ('A371761', 'Parades', 40, 13, 82)
+(91) [35] ('A297703', 'Genocchi', 35, 8, 125)
+The statistics were created on 2025-01-08 15:08:00.423706 .        

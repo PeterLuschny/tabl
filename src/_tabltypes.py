@@ -53,20 +53,27 @@ def Flat(T: tabl) -> list[int]:
     return [i for row in T for i in row]
 
 
-def SeqString(seq: list[int], maxchars: int, maxterms: int, sep: str=' ', offset: int=0) -> str:
+def SeqToString(
+        seq: list[int],
+        maxchars: int,
+        maxterms: int,
+        sep: str = ' ',
+        offset: int = 0,
+        absval: bool = False,
+    ) -> str:
     """
     Converts a sequence of integers into a string representation.
 
     Args:
-        seq (list[int]): The sequence of integers to be converted.
-        maxchars (int): The maximum length of the resulting string.
-        maxterms (int): The maximum number of terms included.
-        sep (string, optional): String seperator. Default is ' '.
-        offset (int, optional): The starting index of the sequence. Defaults to 0.
+        seq: The sequence of integers to be converted.
+        maxchars: The maximum length of the resulting string.
+        maxterms: The maximum number of terms included.
+        sep: String seperator. Default is ' '.
+        offset: The starting index of the sequence. Defaults to 0.
+        absval: Use the absolute value of the terms. Defaults to False.
 
     Returns:
         str: The string representation of the sequence.
-
     """
     seqstr = ""
     maxt = maxl = 0
@@ -74,11 +81,15 @@ def SeqString(seq: list[int], maxchars: int, maxterms: int, sep: str=' ', offset
         maxt += 1
         if maxt > maxterms:
             break
-        s = str(trm) + sep
+        if absval:
+            s = str(abs(trm)) + sep
+        else:
+            s = str(trm) + sep
         maxl += len(s)
         if maxl > maxchars:
             break
         seqstr += s
+
     return seqstr
 
 

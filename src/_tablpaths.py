@@ -5,23 +5,24 @@ from pathlib import Path
 #    |
 #    data
 #       | -> csv
-#               | -> oeis.csv
-#               | -> Abel.csv
-#               | -> *.csv
+#           | -> oeis.csv
+#           | -> Abel.csv
+#           | -> *.csv
 #       | -> db
-#               | -> oeismini.db
-#               | -> traits.db
-#               | -> Abel.db
-#               | -> *.db
+#           | -> oeismini.db
+#           | -> traits.db
+#           | -> Abel.db
+#           | -> *.db
 #       | -> md
-#               | -> Abel.md
-#               | -> Abel.tbl.md
-#               | -> *.md
-#               | -> *.tbl.md
-#       | -> html
-#               | -> sortable.js
-#               | -> Abel.html
-#               | -> *.html
+#           | -> Abel.md
+#           | -> Abel.tbl.md
+#           | -> *.md
+#           | -> *.tbl.md
+#    |
+#    docs
+#       | -> sortable.js
+#       | -> Abel.html
+#       | -> *.html
 
 
 # #@
@@ -55,8 +56,8 @@ def MakeDirectory(dir: Path) -> None:
 def EnsureDataDirectories() -> None:
     MakeDirectory(GetRoot("data/csv"))
     MakeDirectory(GetRoot("data/db"))
-    MakeDirectory(GetRoot("data/html"))
     MakeDirectory(GetRoot("data/md"))
+    MakeDirectory(GetRoot("docs"))  # for *.html files
 
 
 # githubtab    = "https://github.com/PeterLuschny/tabl/blob/main/tables.md"

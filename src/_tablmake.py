@@ -113,6 +113,7 @@ tabl_files: list[str] = [
     "NumParts.py",
     "NumRiordan.py",
     "_tablmake.py",
+    "_tabloeis.py",
     "_tablexport.py",
     "_tablhtml.py",
     "_tabltraits.py",

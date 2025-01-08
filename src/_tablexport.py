@@ -17,10 +17,7 @@ readme_header = """
 
 # Tables à la carte
 
-
-         Sequentiae umbras triangulorum sunt
-
-INTEGER SEQUENCES ARE ONLY THE SHADOWS OF INTEGER TRIANGLES
+  INTEGER SEQUENCES ARE ONLY THE SHADOWS OF INTEGER TRIANGLES
 
 Python implementations of integer sequences dubbed tabl in the OEIS.
 The notebook gives a first introduction for the user.

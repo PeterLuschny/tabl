@@ -50,8 +50,8 @@ def MakeDirectory(dir: Path) -> None:
 def EnsureDataDirectories() -> None:
     MakeDirectory(GetRoot("data/csv"))
     MakeDirectory(GetRoot("data/db"))
-    MakeDirectory(GetRoot("data/html"))
     MakeDirectory(GetRoot("data/md"))
+    MakeDirectory(GetRoot("docs"))  # for *.html files
 
 
 def InvertTabl(L: list[list[int]]) -> list[list[int]]:
@@ -116,17 +116,23 @@ def Flat(T: tabl) -> list[int]:
     return [i for row in T for i in row]
 
 
-def SeqString(
-    seq: list[int], maxchars: int, maxterms: int, sep: str = " ", offset: int = 0
+def SeqToString(
+    seq: list[int],
+    maxchars: int,
+    maxterms: int,
+    sep: str = " ",
+    offset: int = 0,
+    absval: bool = False,
 ) -> str:
     """
     Converts a sequence of integers into a string representation.
     Args:
-        seq (list[int]): The sequence of integers to be converted.
-        maxchars (int): The maximum length of the resulting string.
-        maxterms (int): The maximum number of terms included.
-        sep (string, optional): String seperator. Default is ' '.
-        offset (int, optional): The starting index of the sequence. Defaults to 0.
+        seq: The sequence of integers to be converted.
+        maxchars: The maximum length of the resulting string.
+        maxterms: The maximum number of terms included.
+        sep: String seperator. Default is ' '.
+        offset: The starting index of the sequence. Defaults to 0.
+        absval: Use the absolute value of the terms. Defaults to False.
     Returns:
         str: The string representation of the sequence.
     """
@@ -136,7 +142,10 @@ def SeqString(
         maxt += 1
         if maxt > maxterms:
             break
-        s = str(trm) + sep
+        if absval:
+            s = str(abs(trm)) + sep
+        else:
+            s = str(trm) + sep
         maxl += len(s)
         if maxl > maxchars:
             break
@@ -3002,9 +3011,120 @@ tabl_fun: list[tgen] = [
     WardSet,
     Worpitzky,
 ]
+
+
+def lcsubstr(s: str, t: str) -> tuple[int, int]:
+    """
+    With CC BY-SA 4.0 from: https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Longest_common_substring
+    Finds the longest common substring of s and t that is contiguous.
+    Args:
+      s: The first string.
+      t: The second string.
+    Returns:
+        (s, l): The matched substring starts at index 's' in the first string and has length 'l'.
+    """
+    m = [[0] * (1 + len(t)) for _ in range(1 + len(s))]
+    longest, x_longest = 0, 0
+    for x in range(1, 1 + len(s)):
+        for y in range(1, 1 + len(t)):
+            if s[x - 1] == t[y - 1]:
+                m[x][y] = m[x - 1][y - 1] + 1
+                if m[x][y] > longest:
+                    longest = m[x][y]
+                    x_longest = x
+            else:
+                m[x][y] = 0
+    # lcs_str =  s[x_longest - longest : x_longest]
+    return (x_longest - longest, longest)
+
+
+def QueryOEIS(
+    seqlist: list[int], maxnum: int = 1, info: bool = False, minlen: int = 24
+) -> int:
+    """
+    Query if a given sequence is present in the OEIS. At least 24 terms
+    of the sequence must be given. The first three terms and signs are disregard.
+    Sequences with huge terms might have to few terms to give reliable results.
+    This is a heuristic function, understand it's limited reach.
+    Args:
+        seqlist: The sequence to search. Must have at least 24 terms.
+        maxnum: max number of sequences to be returned. Defaults to 1.
+        info: Prints details, otherwise is quiet except for warnings. Defaults to False.
+
+        minlen: At least {minlen} terms are required.
+    Returns:
+        Returns anum is the A-number of the sequence,
+        Returns 0 if the sequence was not found.
+        If sl < 5 and dl > 12, then anum probably matches the sequence,
+        modulo a couple of first terms and the signs.
+    Raises:
+        Exception: If the OEIS server cannot be reached after multiple attempts.
+        Currently, the function will return -999999 if the OEIS server cannot be reached
+        or if the sequence has only zeros.
+    """
+    if len(seqlist) < minlen:
+        print(f"Sequence is too short! We require at least {minlen} terms.")
+        print("You provided:", seqlist)
+        return 0
+    # Warning. These 'magical' constants are very sensible!
+    if 0 == sum(seqlist[0:36]):
+        return -999999  # XXXXX dont search for the all zeros sequence
+    off = (
+        0 if 0 == sum(seqlist[3:36]) else 3
+    )  # XXXXX dont skip leading terms if the rest is zero
+    seqstr = SeqToString(seqlist, 160, 36, ",", off, True)
+    url = f"https://oeis.org/search?q={seqstr}&fmt=json"
+    for repeat in range(3):
+        time.sleep(0.5)  # give the OEIS server some time to relax
+        if info:
+            print(f"[{repeat}]")
+        try:
+            # jdata: None | list[dict[str, int | str | list[str] ]] = get(url, timeout=20).json()
+            jdata = get(url, timeout=20).json()
+            if jdata == None:
+                if 0 == sum(seqlist[::2]) or 0 == sum(seqlist[1::2]):
+                    seqlist = [k for k in seqlist if k != 0]
+                    seqstr = SeqToString(seqlist, 160, 36, ",", 3, True)
+                    if info:
+                        print("Searching without zeros:", seqstr)
+                    url = f"https://oeis.org/search?q={seqstr}&fmt=json"
+                    raise ValueError("Try again")
+                if info:
+                    print("Sorry, no match found for:", seqstr)
+                return 0
+            number = dl = ol = 0
+            for j in range(min(maxnum, len(jdata))):
+                seq = jdata[j]
+                number = seq["number"]
+                anumber = f"A{(6 - len(str(number))) * '0' + str(number)}"
+                name = seq["name"]
+                data = seq["data"].replace("-", "")  # type: ignore
+                seqstr = SeqToString(seqlist, 160, 25, ",", 0, True)
+                start, length = lcsubstr(data, seqstr)  # type: ignore
+                ol = data.count(",")  # type: ignore
+                sl = data.count(",", 0, start)  # type: ignore
+                dl = data.count(",", start, start + length)  # type: ignore
+                if dl < 12:
+                    print(f"\n*** WARNING! Only {dl} out of {ol} terms match! ***\n")
+                if info or dl < 12:
+                    print("You searched:", seqstr)
+                    print("OEIS-data is:", data)  # type: ignore
+                    # print(f"Starting at index {sl} the next {dl} consecutive terms match. The matched substring starts at {start} and has length {length}.")
+                    print("***Found:", anumber, name)
+                if dl > 12:
+                    break
+            return int(number)
+        except ValueError:
+            continue
+        except requests.exceptions.RequestException as e:
+            print(f"Error: {e}")
+    # raise Exception(f"Could not open {url}.")
+    print(f"Exception! Could not open {url}.")
+    return -999999
+
+
 readme_header = """
-         Sequentiae umbras triangulorum sunt
-INTEGER SEQUENCES ARE ONLY THE SHADOWS OF INTEGER TRIANGLES
+  INTEGER SEQUENCES ARE ONLY THE SHADOWS OF INTEGER TRIANGLES
 Python implementations of integer sequences dubbed tabl in the OEIS.
 The notebook gives a first introduction for the user.
 """
@@ -3200,7 +3320,7 @@ def CsvToHtml(fun: tgen, nomissings: bool = False) -> None:
     """
     name = fun.id
     csvfile = GetDataPath(name, "csv")
-    outfile = GetDataPath(name, "html")
+    outfile = GetDataPath(name, "docs")
     FORMULA = Formulas()
     with open(csvfile, "r", encoding="utf-8") as csvfile:
         reader = csv.reader(csvfile)
@@ -3272,7 +3392,7 @@ def CsvToHtml(fun: tgen, nomissings: bool = False) -> None:
 
 def AllCsvToHtml(nomissings: bool = False) -> None:
     for fun in tabl_fun:
-        print(f"Info: Generating data/html/{fun.id}.html.")
+        print(f"Info: Generating data/docs/{fun.id}.html.")
         CsvToHtml(fun, nomissings)
 
 
@@ -3564,7 +3684,7 @@ def TuttiStats(targetname: str = "traitsstats") -> None:
         pass
     with sqlite3.connect(filename) as db:
         cur = db.cursor()
-        sql = f"CREATE TABLE {targetname}(Anum, name, allanum, distanum, allhash, disthash, triangles, types, missing)"
+        sql = f"CREATE TABLE {targetname}(Anum, name, distanum, allanum, allhash, disthash, triangles, types, missing)"
         cur.execute(sql)
         for fun in tabl_fun:
             score = [fun.sim[0]] + Statistic(fun.id)
@@ -3577,7 +3697,7 @@ def TuttiStats(targetname: str = "traitsstats") -> None:
         F = cur.fetchall()
         rank = 1
         for f in F:
-            print(f"({rank})", [f[3]], f)
+            print(f"({rank})", [f[2]], f[0:5])
             rank += 1
         cur.close()
     print("The statistics were created on", datetime.datetime.now(), ".\n")
@@ -3743,7 +3863,7 @@ def isInOEIS(seq: list[int]) -> bool:
     Raises:
         Exception: If the OEIS server cannot be reached after multiple attempts.
     """
-    strseq = SeqString(seq, 140, 24, ",", 3)
+    strseq = SeqToString(seq, 140, 24, ",", 3)
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
     for _ in range(3):
         time.sleep(0.5)  # give the OEIS server some time to relax
@@ -3769,7 +3889,7 @@ def IsInOEIS(seq: list[int]) -> str:
     Raises:
         Exception: If the OEIS server cannot be reached after multiple attempts.
     """
-    strseq = SeqString(seq, 140, 24, ",", 3)
+    strseq = SeqToString(seq, 140, 24, ",", 3)
     url = f"https://oeis.org/search?q={strseq}&fmt=json"
     for _ in range(3):
         time.sleep(0.5)  # give the OEIS server some time to relax
@@ -3873,7 +3993,7 @@ def MakeOeisminiWithFnv() -> None:
         with open(GetDataPath("oeismini", "csv"), "w") as minidata:
             #    A000003 ,1
             seq_list = [
-                [txt[0][0:7], [abs(int(s)) for s in txt[1:-1]]] for txt in reader
+                (txt[0][0:7], [abs(int(s)) for s in txt[1:-1]]) for txt in reader
             ]
             for seq in seq_list:
                 if len(seq[1]) < MINTERMS:
@@ -3906,7 +4026,7 @@ def OeisToSql() -> None:
     cur.execute(sql)
     with open(GetDataPath("oeis", "csv"), "r") as oeisdata:
         reader = csv.reader(oeisdata)
-        seq_list = [[txt[0][0:7], [abs(int(s)) for s in txt[1:-1]]] for txt in reader]
+        seq_list = [(txt[0][0:7], [abs(int(s)) for s in txt[1:-1]]) for txt in reader]
         for seq in seq_list:
             if len(seq[1]) < MINTERMS:
                 continue
@@ -4039,7 +4159,7 @@ def InsertTable(name: str) -> str:
 
 def FilterTraits(anum: str, anumsonly: bool = False) -> bool:
     """
-    Filter traits to remove traits that are not interresting.
+    Filter traits to remove traits that are not interesting.
     Args:
         anumber (str): The traits as A-number.
         anumsonly (bool, optional): Disregard missing anums. Defaults to False.
@@ -4058,7 +4178,7 @@ def SaveTraits(
     traits_cur: sqlite3.Cursor,
     oeis_cur: sqlite3.Cursor,
     table: str,
-    TRAITS: dict,
+    TRAITS: dict[str, trait],
 ) -> None:
     """Saves traits data to a database table.
     This function saves traits data to a specified database table. It uses the provided
@@ -4089,7 +4209,7 @@ def SaveTraits(
     for traitname, trait in TRAITS.items():
         if trityp == traitname:
             continue
-        seq = trait(T) if is_tabletrait(trait) else trait(r, size)
+        seq = trait(T) if is_tabletrait(trait) else trait(r, size)  # type: ignore
         if seq == []:
             print(f"Info: {triname} -> {traitname} does not exist.")
             continue
@@ -4102,11 +4222,26 @@ def SaveTraits(
         print(f"Processing {triname}, {traitname}, {len(seq)} ")
         fnvhash = FNVhash(seq, True)
         # anum = queryminioeis(fnvhash, seq, oeis_cur)  # local
-        anum = QueryOeis(fnvhash, seq, oeis_cur)  # with internet
-        if FilterTraits(anum):  # discard traits that are not interresting
+        # anum = QueryOeis(fnvhash, seq, oeis_cur)  # with internet
+
+        """ def QueryOEIS(
+        seqlist: list[int], 
+        maxnum: int = 1,
+        info: bool = False, 
+        minlen: int = 24 
+        ) -> int: """
+        anum = QueryOEIS(seq)  # with internet
+        if anum == -999999:
             continue
-        seqstr = SeqString(seq, MAXSTRLEN, 99)
-        tup = (funname, trityp, traitname, anum, fnvhash, seqstr)
+        elif anum == 0:
+            stranum = "missing"
+        else:
+            stranum = "A" + str(anum).rjust(6, "0")
+            # discard results that are not interresting
+            # if FilterTraits(stranum):
+            #    continue
+        seqstr = SeqToString(seq, MAXSTRLEN, 99)
+        tup = (funname, trityp, traitname, stranum, fnvhash, seqstr)
         sql = InsertTable(table)
         traits_cur.execute(sql, tup)
 
@@ -4239,7 +4374,7 @@ def ConvertDBtoCSVandMD(dbpath: Path, funname: str) -> int:
         for table_name in tables:
             table_name = table_name[0]
             sql = f"SELECT triangle, type, trait, anum, seq FROM {table_name}"
-            table = pd.read_sql_query(sql, db)
+            table = pd.read_sql_query(sql, db)  # type: ignore
             csv_path = GetDataPath(table_name, "csv")
             md_path = GetDataPath(table_name, "md")
             table.to_csv(csv_path, index_label="index")

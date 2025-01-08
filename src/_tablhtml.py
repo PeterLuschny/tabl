@@ -157,7 +157,7 @@ def CsvToHtml(fun: tgen, nomissings: bool = False) -> None:
     name = fun.id
 
     csvfile = GetDataPath(name, "csv")
-    outfile = GetDataPath(name, "html")
+    outfile = GetDataPath(name, "docs")
 
     FORMULA = Formulas()
 
@@ -247,7 +247,7 @@ def CsvToHtml(fun: tgen, nomissings: bool = False) -> None:
 
 def AllCsvToHtml(nomissings: bool = False) -> None:
     for fun in tabl_fun:
-        print(f"Info: Generating data/html/{fun.id}.html.")
+        print(f"Info: Generating data/docs/{fun.id}.html.")
         CsvToHtml(fun, nomissings)
 
 

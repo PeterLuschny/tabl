@@ -196,7 +196,7 @@ def TuttiStats(targetname: str = "traitsstats") -> None:
 
     with sqlite3.connect(filename) as db:
         cur = db.cursor()
-        sql = f"CREATE TABLE {targetname}(Anum, name, allanum, distanum, allhash, disthash, triangles, types, missing)"
+        sql = f"CREATE TABLE {targetname}(Anum, name, distanum, allanum, allhash, disthash, triangles, types, missing)"
         cur.execute(sql)
 
         for fun in tabl_fun:
@@ -213,7 +213,7 @@ def TuttiStats(targetname: str = "traitsstats") -> None:
         F = cur.fetchall()
         rank = 1
         for f in F:
-            print(f"({rank})", [f[3]], f)
+            print(f"({rank})", [f[2]], f[0:5])
             rank += 1
 
         cur.close()
