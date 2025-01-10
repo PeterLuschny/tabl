@@ -53,3 +53,45 @@ if __name__ == "__main__":
     from _tabltest import TablTest
 
     TablTest(Polygonal)
+
+''' OEIS
+
+The traits of the Polygonal triangle as represented in the OEIS.
+
+|     | A-number| trait            | A-name                                                                         |
+|-----|---------|------------------|--------------------------------------------------------------------------------|
+| 1   | A000012 | Std-DiagCol1     | The simplest sequence of positive numbers: the all 1's sequence                |
+| 2   | A000027 | Std-ColRight     | The positive integers. Also called the natural numbers, the whole numbers or t |
+| 3   | A000217 | Std-DiagRow1     | Triangular numbers: a(n) = binomial(n+1,2) = n*(n+1)/2 = 0 + 1 + 2 + ... + n   |
+| 4   | A000290 | Std-DiagRow2     | The squares: a(n) = n^2                                                        |
+| 5   | A000326 | Std-DiagRow3     | Pentagonal numbers: a(n) = n*(3*n-1)/2                                         |
+| 6   | A000384 | Alt-PolyRow2     | Hexagonal numbers: a(n) = n*(2*n-1)                                            |
+| 7   | A002061 | Rev-PolyRow3     | Central polygonal numbers: a(n) = n^2 - n + 1                                  |
+| 8   | A005563 | Alt-AccSum       | a(n) = n*(n+2) = (n+1)^2 - 1                                                   |
+| 9   | A005915 | Alt-PolyRow3     | Hexagonal prism numbers: a(n) = (n + 1)*(3*n^2 + 3*n + 1)                      |
+| 10  | A006000 | Std-CentralE     | a(n) = (n+1)*(n^2+n+2)/2; g.f.: (1 + 2*x^2) / (1 - x)^4                        |
+| 11  | A006003 | Std-CentralO     | a(n) = n*(n^2 + 1)/2                                                           |
+| 12  | A008585 | Std-DiagCol3     | a(n) = 3*n                                                                     |
+| 13  | A014105 | Std-PolyRow2     | Second hexagonal numbers: a(n) = n*(2*n + 1)                                   |
+| 14  | A055795 | Std-RowSum       | a(n) = binomial(n,4) + binomial(n,2)                                           |
+| 15  | A064808 | Rev-CentralO     | a(n) is the (n+1)st (n+2)-gonal number                                         |
+| 16  | A083927 | Std-InvBinConv   | Inverse function of N -> N injection A057123                                   |
+| 17  | A114890 | Std-RowGcd       | First differences of A114889                                                   |
+| 18  | A139600 | Std-Triangle     | Square array T(n,k) = n*(k-1)*k/2+k, of nonnegative numbers together with poly |
+| 19  | A249354 | Std-PolyRow3     | a(n) = n*(3*n^2 + 3*n + 1)                                                     |
+| 20  | A360605 | Std-NegHalf      | The polygonal polynomials evaluated at x = -1/2 and normalized with (-2)^n     |
+| 21  | A360606 | Std-PosHalf      | The polygonal polynomials evaluated at x = 1/2 and normalized with 2^n         |
+
+* Statistic about Polygonal:
+
+	Triangles considered: ['Std', 'Alt', 'Rev'].
+	distinct A-numbers  : 21.
+	all      A-numbers  : 56.
+	missing  sequences  : 66.
+
+[('missing', 66), ('A000027', 9), ('A055795', 6), ('A000012', 4), ('A360606', 3), ('A114890', 3), ('A083927', 3), ('A008585', 3), ('A006000', 3), ('A000326', 3), ('A000290', 3), ('A000217', 3), ('A360605', 2), ('A139600', 2), ('A006003', 2), ('A249354', 1), ('A064808', 1), ('A014105', 1), ('A005915', 1), ('A005563', 1), ('A002061', 1), ('A000384', 1)]
+
+A related webpage is: https://peterluschny.github.io/tabl/Polygonal.html .
+2025/01/10
+
+'''

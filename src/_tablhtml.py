@@ -1,6 +1,6 @@
 import csv
 from _tabltypes import tgen
-from _tablpaths import GetDataPath
+from _tablpaths import GetDataPath, GetDocsPath
 from _tabltraits import Formulas
 from tabl import tabl_fun
 
@@ -86,10 +86,9 @@ SCRIPT = [
 
 Footer = ("<div style='word-wrap: break-word; width: 95%; max-width:710px;'><p style='margin-left:14px'>"
           "Note: The A-numbers are based on a finite number of numerical comparisons. "
-          "The B-numbers are A-numbers of sligthly different variants. They ignore the sign "
-          "and the OEIS-offset and might differ in the first few values. Since the offset "
-          "of all triangles is 0 also the offset of all sequences is 0. It should also be "
-          "noted that we do not list A000004, A000007, and A000012.</p></div>")
+          "They ignore the sign and the OEIS-offset. Sometimes they differ in the first few values. In such cases, "
+          "we consider our version to be the better one because it has a common formula as a root. "
+          "Since the offset of all triangles is 0 also the offset of all sequences is 0.</p></div>")
 
 
 def HtmlTriangle(fun: tgen) -> str:
@@ -157,7 +156,7 @@ def CsvToHtml(fun: tgen, nomissings: bool = False) -> None:
     name = fun.id
 
     csvfile = GetDataPath(name, "csv")
-    outfile = GetDataPath(name, "docs")
+    outfile = GetDocsPath(name, "html")
 
     FORMULA = Formulas()
 
@@ -247,11 +246,11 @@ def CsvToHtml(fun: tgen, nomissings: bool = False) -> None:
 
 def AllCsvToHtml(nomissings: bool = False) -> None:
     for fun in tabl_fun:
-        print(f"Info: Generating data/docs/{fun.id}.html.")
+        print(f"Info: Generating docs/{fun.id}.html.")
         CsvToHtml(fun, nomissings)
 
 
 if __name__ == "__main__":
-    from Lucas import Lucas
-    CsvToHtml(Lucas)
-    # AllCsvToHtml(False)
+    #from Lucas import Lucas
+    # CsvToHtml(Lucas)
+    AllCsvToHtml()

@@ -24,10 +24,10 @@ def SingleMake(fun: tgen) -> None:
     SaveTraitsToDB(fun)
     ConvertDBtoCSVandMD(GetDataPath(fun.id, "db"), fun.id)
     CsvToHtml(fun)
-    SingleStatistic(fun)
-    PrintSummary(fun.id)
+    StatisticReport(fun, True)
+    SummaryReport(fun.id)
 
 
 if __name__ == "__main__":
-    from FiboLucasInv import FiboLucasInv as triangle
+    from SchroederPaths import SchroederPaths as triangle
     SingleMake(triangle)

@@ -43,41 +43,44 @@ if __name__ == "__main__":
 
     TablTest(BinomialDiffPell)
 
-'''* Statistic about BinomialDiffPell:
 
-The number of ...
-        all      hashes    is 203.
-        distinct hashes    is 111.
-        core     triangles is 1.
-        distinct types     is 5.
-        missing  sequences is 149.
-        all      A-numbers is 54.
-        distinct A-numbers is 22.
+''' OEIS
 
 The traits of the BinomialDiffPell triangle as represented in the OEIS.
 
-|     | A-number | trait            | A-name                                                                    |
-| --- | -------- | ---------------- | --------------------------------------------------------------------------|
-| 1   | A000027  | Std-DiagRow1     | The positive integers. Also called the natural numbers, the whole numbers |
-| 2   | A001333  | Std-ColLeft      | Numerators of continued fraction convergents to sqrt(2)                   |
-| 3   | A001541  | Std-PosHalf      | a(0) = 1, a(1) = 3; for n > 1, a(n) = 6*a(n-1) - a(n-2)                   |
-| 4   | A006012  | Std-RowSum       | a(0) = 1, a(1) = 2, a(n) = 4*a(n-1) - 2*a(n-2), n >= 2                    |
-| 5   | A008865  | Inv:Rev-PolyRow2 | a(n) = n^2 - 2                                                            |
-| 6   | A011973  | Inv:Rev-AntiDiag | Irregular triangle of numbers read by rows: {binomial(n-k, k), n >= 0, 0  |
-| 7   | A023443  | Alt-PolyRow1     | a(n) = n - 1                                                              |
-| 8   | A025731  | Inv-DiagRow2     | Index of 8^n within sequence of numbers of form 7^i*8^j                   |
-| 9   | A056109  | Rev-PolyRow2     | Fifth spoke of a hexagonal spiral                                         |
-| 10  | A059100  | Alt-PolyRow2     | a(n) = n^2 + 2                                                            |
-| 11  | A077957  | Std-AltSum       | Powers of 2 alternating with zeros                                        |
-| 12  | A083878  | Std-PolyCol2     | a(0)=1, a(1)=3, a(n) = 6*a(n-1) - 7*a(n-2), n >= 2                        |
-| 13  | A083879  | Std-PolyCol3     | a(0)=1, a(1)=4, a(n) = 8*a(n-1) - 14*a(n-2), n >= 2                       |
-| 14  | A084058  | Std-NegHalf      | a(n) = 2*a(n-1) + 7*a(n-2) for n>1, a(0)=1, a(1)=1                        |
-| 15  | A084154  | Std-OddSum       | Binomial transform of sinh(x)*cosh(sqrt(2)*x)                             |
-| 16  | A088013  | Std-EvenSum      | Binomial transform of A001541 (with interpolated zeros)                   |
-| 17  | A183199  | Std-PolyRow2     | Least integer k such that Floor(k*f(n+1)>k*f(n), where f(n)=(n^2)/(1+n^2) |
-| 18  | A329684  | Inv-RowGcd       | Number of excursions of length n with Motzkin-steps forbidding all consec |
-| 19  | B008865  | Inv-PolyRow2     | a(n) = n^2 - 2                                                            |
-| 20  | B045943  | Std-DiagRow2     | Triangular matchstick numbers: a(n) = 3*n*(n+1)/2                         |
-| 21  | B134481  | Inv-DiagRow3     | Row sums of triangle A134480                                              |
-| 22  | B367564  | Std-Triangle     | Triangular array read by rows: T(n, k) = binomial(n, k) * A001333(n - k)  |
+|     | A-number| trait            | A-name                                                                         |
+|-----|---------|------------------|--------------------------------------------------------------------------------|
+| 1   | A000012 | Std-RowGcd       | The simplest sequence of positive numbers: the all 1's sequence                |
+| 2   | A000027 | Std-DiagRow1     | The positive integers. Also called the natural numbers, the whole numbers or t |
+| 3   | A000217 | Inv-DiagRow2     | Triangular numbers: a(n) = binomial(n+1,2) = n*(n+1)/2 = 0 + 1 + 2 + ... + n   |
+| 4   | A001333 | Std-ColLeft      | Pell-Lucas numbers: numerators of continued fraction convergents to sqrt(2)    |
+| 5   | A001541 | Std-PosHalf      | a(0) = 1, a(1) = 3; for n > 1, a(n) = 6*a(n-1) - a(n-2)                        |
+| 6   | A006012 | Std-RowSum       | a(0) = 1, a(1) = 2, a(n) = 4*a(n-1) - 2*a(n-2), n >= 2                         |
+| 7   | A008865 | Inv-PolyRow2     | a(n) = n^2 - 2                                                                 |
+| 8   | A012816 | Inv-RowSum       | E.g.f. arctan(sec(x)*sinh(x)) (odd powers only)                                |
+| 9   | A014480 | Alt-TransNat0    | Expansion of (1+2*x)/(1-2*x)^2                                                 |
+| 10  | A045943 | Std-DiagRow2     | Triangular matchstick numbers: a(n) = 3*n*(n+1)/2                              |
+| 11  | A056109 | Rev-PolyRow2     | Fifth spoke of a hexagonal spiral                                              |
+| 12  | A059100 | Std-PolyRow2     | a(n) = n^2 + 2                                                                 |
+| 13  | A077957 | Std-AltSum       | Powers of 2 alternating with zeros                                             |
+| 14  | A083100 | Std-NegHalf      | a(n) = 2*a(n-1) + 7*a(n-2)                                                     |
+| 15  | A083878 | Std-PolyCol2     | a(0)=1, a(1)=3, a(n) = 6*a(n-1) - 7*a(n-2), n >= 2                             |
+| 16  | A083879 | Std-PolyCol3     | a(0)=1, a(1)=4, a(n) = 8*a(n-1) - 14*a(n-2), n >= 2                            |
+| 17  | A084154 | Std-OddSum       | Binomial transform of sinh(x)*cosh(sqrt(2)*x)                                  |
+| 18  | A088013 | Std-EvenSum      | Binomial transform of A001541 (with interpolated zeros)                        |
+| 19  | A134481 | Inv-DiagRow3     | Row sums of triangle A134480                                                   |
+| 20  | A367564 | Std-Triangle     | Triangular array read by rows: T(n, k) = binomial(n, k) * A001333(n - k)       |
+
+* Statistic about BinomialDiffPell:
+
+	Triangles considered: ['Std', 'Alt', 'Rev', 'Inv', 'Inv:Rev'].
+	distinct A-numbers  : 20.
+	all      A-numbers  : 66.
+	missing  sequences  : 143.
+
+[('missing', 143), ('A000027', 10), ('A000012', 9), ('A006012', 7), ('A001333', 5), ('A367564', 3), ('A088013', 3), ('A084154', 3), ('A077957', 3), ('A045943', 3), ('A001541', 3), ('A134481', 2), ('A083878', 2), ('A083100', 2), ('A059100', 2), ('A012816', 2), ('A008865', 2), ('A000217', 2), ('A083879', 1), ('A056109', 1), ('A014480', 1)]
+
+A related webpage is: https://peterluschny.github.io/tabl/BinomialDiffPell.html .
+2025/01/10
+
 '''

@@ -47,6 +47,11 @@ def GetDataPath(name: str, fix: str) -> Path:
     return (path / relpath).resolve()
 
 
+def GetDocsPath(name: str, fix: str) -> Path:
+    relpath = f"docs/{name}.{fix}"
+    return (path / relpath).resolve()
+
+
 def MakeDirectory(dir: Path) -> None:
     """Checks if a path exists, and if not,
     creates the new path."""
@@ -57,7 +62,7 @@ def EnsureDataDirectories() -> None:
     MakeDirectory(GetRoot("data/csv"))
     MakeDirectory(GetRoot("data/db"))
     MakeDirectory(GetRoot("data/md"))
-    MakeDirectory(GetRoot("docs"))  # for *.html files
+
 
 
 # githubtab    = "https://github.com/PeterLuschny/tabl/blob/main/tables.md"

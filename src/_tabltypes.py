@@ -263,7 +263,10 @@ def AbsSubTriangle(g: rgen, N: int, K: int, size: int) -> tabl:
 
 
 def MakeTriangle(
-    gen: rgen, id: str, sim: list[str], vert: bool = False
+    gen: rgen, 
+    id: str, 
+    sim: list[str], 
+    vert: bool = False
 ) -> Callable[..., Callable[[int, int], int]]:
     def makerow(n: int) -> trow:
         return list(gen(n))

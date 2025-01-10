@@ -1,5 +1,5 @@
 from os import remove
-import datetime
+from datetime import datetime
 from functools import cache, reduce
 from itertools import accumulate
 from math import lcm, gcd, factorial
@@ -41,6 +41,11 @@ def GetDataPath(name: str, fix: str) -> Path:
     return (path / relpath).resolve()
 
 
+def GetDocsPath(name: str, fix: str) -> Path:
+    relpath = f"docs/{name}.{fix}"
+    return (path / relpath).resolve()
+
+
 def MakeDirectory(dir: Path) -> None:
     """Checks if a path exists, and if not,
     creates the new path."""
@@ -51,7 +56,6 @@ def EnsureDataDirectories() -> None:
     MakeDirectory(GetRoot("data/csv"))
     MakeDirectory(GetRoot("data/db"))
     MakeDirectory(GetRoot("data/md"))
-    MakeDirectory(GetRoot("docs"))  # for *.html files
 
 
 def InvertTabl(L: list[list[int]]) -> list[list[int]]:
@@ -2618,7 +2622,7 @@ def schroederpaths(n: int) -> list[int]:
     return row
 
 
-@MakeTriangle(schroederpaths, "SchroederP", ["A104684", "A063007"], True)
+@MakeTriangle(schroederpaths, "SchroederPaths", ["A104684", "A063007"], True)
 def SchroederPaths(n: int, k: int) -> int:
     return schroederpaths(n)[k]
 
@@ -2718,7 +2722,9 @@ def stirlingcycle2(n: int) -> list[int]:
     return row
 
 
-@MakeTriangle(stirlingcycle2, "StirlingCyc2", ["A358622", "A008306", "A106828"], False)
+@MakeTriangle(
+    stirlingcycle2, "StirlingCycle2", ["A358622", "A008306", "A106828"], False
+)
 def StirlingCycle2(n: int, k: int) -> int:
     return stirlingcycle2(n)[k]
 
@@ -2736,7 +2742,7 @@ def stirlingcycleb(n: int) -> list[int]:
 
 
 @MakeTriangle(
-    stirlingcycleb, "StirlingCycB", ["A028338", "A039757", "A039758", "A109692"], True
+    stirlingcycleb, "StirlingCycleB", ["A028338", "A039757", "A039758", "A109692"], True
 )
 def StirlingCycleB(n: int, k: int) -> int:
     return stirlingcycleb(n)[k]
@@ -2826,18 +2832,18 @@ def Sylvester(n: int, k: int) -> int:
 
 
 @cache
-def ternarytree(n: int) -> list[int]:
+def ternarytrees(n: int) -> list[int]:
     if n == 0:
         return [1]
     if n == 1:
         return [0, 1]
-    row = ternarytree(n - 1) + [ternarytree(n - 1)[n - 1]]
+    row = ternarytrees(n - 1) + [ternarytrees(n - 1)[n - 1]]
     return list(accumulate(accumulate(row)))
 
 
-@MakeTriangle(ternarytree, "TernaryTrees", ["A355172"], False)
-def TernaryTree(n: int, k: int) -> int:
-    return ternarytree(n)[k]
+@MakeTriangle(ternarytrees, "TernaryTrees", ["A355172"], False)
+def TernaryTrees(n: int, k: int) -> int:
+    return ternarytrees(n)[k]
 
 
 @cache
@@ -3007,7 +3013,7 @@ tabl_fun: list[tgen] = [
     StirlingSet2,
     StirlingSetB,
     Sylvester,
-    TernaryTree,
+    TernaryTrees,
     WardSet,
     Worpitzky,
 ]
@@ -3252,10 +3258,9 @@ SCRIPT = [
 Footer = (
     "<div style='word-wrap: break-word; width: 95%; max-width:710px;'><p style='margin-left:14px'>"
     "Note: The A-numbers are based on a finite number of numerical comparisons. "
-    "The B-numbers are A-numbers of sligthly different variants. They ignore the sign "
-    "and the OEIS-offset and might differ in the first few values. Since the offset "
-    "of all triangles is 0 also the offset of all sequences is 0. It should also be "
-    "noted that we do not list A000004, A000007, and A000012.</p></div>"
+    "They ignore the sign and the OEIS-offset. Sometimes they differ in the first few values. In such cases, "
+    "we consider our version to be the better one because it has a common formula as a root. "
+    "Since the offset of all triangles is 0 also the offset of all sequences is 0.</p></div>"
 )
 
 
@@ -3320,7 +3325,7 @@ def CsvToHtml(fun: tgen, nomissings: bool = False) -> None:
     """
     name = fun.id
     csvfile = GetDataPath(name, "csv")
-    outfile = GetDataPath(name, "docs")
+    outfile = GetDocsPath(name, "html")
     FORMULA = Formulas()
     with open(csvfile, "r", encoding="utf-8") as csvfile:
         reader = csv.reader(csvfile)
@@ -3392,7 +3397,7 @@ def CsvToHtml(fun: tgen, nomissings: bool = False) -> None:
 
 def AllCsvToHtml(nomissings: bool = False) -> None:
     for fun in tabl_fun:
-        print(f"Info: Generating data/docs/{fun.id}.html.")
+        print(f"Info: Generating docs/{fun.id}.html.")
         CsvToHtml(fun, nomissings)
 
 
@@ -3524,6 +3529,22 @@ def Formulas() -> dict[str, str]:
     return FORMULA
 
 
+textcache: list[str] = []
+
+
+def Print(text: str = "") -> None:
+    """
+    Print the given string `text` and append it to the global `textcache`.
+    Args:
+        strtext (str): The input string.
+    Returns:
+        None
+    """
+    global textcache
+    textcache.append(text)
+    print(text)
+
+
 def ListByAnum(dbname: str) -> None:
     """
     Retrieve and print the list of traits grouped by 'anum'
@@ -3566,17 +3587,17 @@ def ListByDistinctAnum(dbname: str) -> None:
     Returns:
     - None
     """
-    print(f"\nThe traits of the {dbname} triangle as represented in the OEIS.\n")
+    Print(f"\nThe traits of the {dbname} triangle as represented in the OEIS.\n")
     con = sqlite3.connect(GetDataPath(dbname, "db"))
     cur = con.cursor()
     sql = f"SELECT DISTINCT(anum), triangle, type, trait FROM {dbname} WHERE anum != 'missing' GROUP BY anum;"
     res = cur.execute(sql)
     wer = res.fetchall()
     count = 1
-    print(
+    Print(
         "|     | A-number| trait            | A-name                                                                         |"
     )
-    print(
+    Print(
         "|-----|---------|------------------|--------------------------------------------------------------------------------|"
     )
     for seq in wer:
@@ -3584,9 +3605,9 @@ def ListByDistinctAnum(dbname: str) -> None:
         trait = setLength(seq[2] + "-" + seq[3], 16)
         seqname = setLength(GetNameByAnum(seq[0]), 78)
         rn = setLength(str(count), 3)
-        print(f"| {rn} | {anum} | {trait} | {seqname} |")
+        Print(f"| {rn} | {anum} | {trait} | {seqname} |")
         count += 1
-    print()
+    Print()
     cur.close()
     con.close()
 
@@ -3621,57 +3642,46 @@ def Statistic(dbname: str) -> list[Any]:
     Parameters:
     dbname (str): The name of the database.
     Returns:
-    list: A list containing the statistics in the following order:
-        - Database name
-        - Total number of A-numbers
         - Total number of distinct A-numbers
-        - Total number of all hashes
-        - Total number of distinct hashes
-        - Total number of core triangles
-        - Total number of distinct types
-        - Total number of missing sequences
     """
     con = sqlite3.connect(GetDataPath(dbname, "db"))
     cur = con.cursor()
-    print(f"\n* Statistic about {dbname}:")
-    print("The number of ...")
-    sql = f"SELECT COUNT(hash) FROM {dbname};"
+    Print(f"\n* Statistic about {dbname}:\n")
+
+    sql = f"SELECT DISTINCT type FROM {dbname};"
     res = cur.execute(sql)
-    anum = res.fetchone()
-    print(f"\tall      hashes    is {anum[0]}.")
-    sql = f"SELECT COUNT(DISTINCT hash) FROM {dbname};"
-    res = cur.execute(sql)
-    bnum = res.fetchone()
-    print(f"\tdistinct hashes    is {bnum[0]}.")
-    sql = f"SELECT COUNT() FROM {dbname} WHERE trait = 'Triangle' AND type = 'Std';"
-    res = cur.execute(sql)
-    cnum = res.fetchone()
-    print(f"\tcore     triangles is {cnum[0]}.")
-    sql = f"SELECT COUNT(DISTINCT type) FROM {dbname};"
-    res = cur.execute(sql)
-    dnum = res.fetchone()
-    print(f"\tdistinct types     is {dnum[0]}.")
-    sql = f"SELECT COUNT() FROM {dbname} WHERE anum = 'missing';"
-    res = cur.execute(sql)
-    enum = res.fetchone()
-    print(f"\tmissing  sequences is {enum[0]}.")
-    sql = f"SELECT COUNT() FROM {dbname} WHERE anum != 'missing';"
-    res = cur.execute(sql)
-    gnum = res.fetchone()
-    print(f"\tall      A-numbers is {gnum[0]}.")
+    t = [typ[0] for typ in res.fetchall()]
+    Print(f"\tTriangles considered: {t}.")
     sql = f"SELECT COUNT(DISTINCT anum) FROM {dbname} WHERE anum != 'missing';"
     res = cur.execute(sql)
     hnum = res.fetchone()
-    print(f"\tdistinct A-numbers is {hnum[0]}.")
+    Print(f"\tdistinct A-numbers  : {hnum[0]}.")
+
+    sql = f"SELECT COUNT() FROM {dbname} WHERE anum != 'missing';"
+    res = cur.execute(sql)
+    gnum = res.fetchone()
+    Print(f"\tall      A-numbers  : {gnum[0]}.")
+    # sql = f"SELECT COUNT(DISTINCT hash) FROM {dbname};"
+    # res = cur.execute(sql)
+    # bnum = res.fetchone()
+    # Print(f"\tdistinct hashes     : {bnum[0]}.")
+    # sql = f"SELECT COUNT(hash) FROM {dbname};"
+    # res = cur.execute(sql)
+    # anum = res.fetchone()
+    # Print(f"\tall      hashes     : {anum[0]}.")
+    sql = f"SELECT COUNT() FROM {dbname} WHERE anum = 'missing';"
+    res = cur.execute(sql)
+    enum = res.fetchone()
+    Print(f"\tmissing  sequences  : {enum[0]}.")
     con.commit()
     cur.close()
     con.close()
-    return [dbname, gnum[0], hnum[0], anum[0], bnum[0], cnum[0], dnum[0], enum[0]]
+    return [hnum[0], gnum[0], enum[0]]
 
 
 def TuttiStats(targetname: str = "traitsstats") -> None:
     """
-    Generate statistics for all databases and store them in a SQLite database.
+    Generate statistics for all tables and store them in a SQLite database.
     Parameters:
     - name (str): The name of the target base. Default is "traitsstats".
     Returns:
@@ -3684,11 +3694,16 @@ def TuttiStats(targetname: str = "traitsstats") -> None:
         pass
     with sqlite3.connect(filename) as db:
         cur = db.cursor()
-        sql = f"CREATE TABLE {targetname}(Anum, name, distanum, allanum, allhash, disthash, triangles, types, missing)"
+        sql = f"CREATE TABLE {targetname}(Anum, name, distanum, allanum, missing)"
         cur.execute(sql)
         for fun in tabl_fun:
-            score = [fun.sim[0]] + Statistic(fun.id)
-            sql = f"INSERT INTO {targetname} VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            if fun.id == "StirlingCycle2":
+                continue
+            if fun.id == "StirlingCycleB":
+                continue
+
+            score = [fun.sim[0], fun.id] + Statistic(fun.id)
+            sql = f"INSERT INTO {targetname} VALUES(?, ?, ?, ?, ?)"
             cur.execute(sql, score)
         db.commit()
         Statistic("traits")
@@ -3697,22 +3712,29 @@ def TuttiStats(targetname: str = "traitsstats") -> None:
         F = cur.fetchall()
         rank = 1
         for f in F:
-            print(f"({rank})", [f[2]], f[0:5])
+            print(f"({rank})", [f[2]], f[0], f[1], f[2], f[3], f[4])
             rank += 1
         cur.close()
-    print("The statistics were created on", datetime.datetime.now(), ".\n")
+    print("The statistics were created on", datetime.now(), ".\n")
     print(f"Created database {targetname}.db in data/db.")
 
 
-def SingleStatistic(triangle: tgen, makenew: bool = False) -> None:
+def StatisticReport(
+    triangle: tgen,
+    apptosrc: bool = False,
+    makenew: bool = False,
+) -> None:
     """
     Generate statistics on the given triangle.
     Args:
         triangle (tgen): The triangle the statistics are to be generated.
-        makenew (bool, optional): Flag indicating whether to create a new database first. Defaults to False.
+        apptosrc (bool, optional): Flag indicating whether to append the statistics to the source file. Defaults to False.
+        makenew (bool, optional): Flag indicating whether to create a new database. Defaults to False.
     Returns:
         None
     """
+    global textcache
+    textcache = []
     if makenew:
         filename = GetDataPath(triangle.id, "db")
         try:
@@ -3720,8 +3742,25 @@ def SingleStatistic(triangle: tgen, makenew: bool = False) -> None:
         except OSError:
             pass
         SaveTraitsToDB(triangle)
-    Statistic(triangle.id)
     ListByDistinctAnum(triangle.id)
+    Statistic(triangle.id)
+    Print()
+    Distribution(triangle.id)
+    Print()
+    Print(
+        "A related webpage is: "
+        + f"https://peterluschny.github.io/tabl/{triangle.id}.html ."
+    )
+    now = datetime.now()  # current date and time
+    Print(now.strftime("%Y/%m/%d"))
+    Print()
+    if apptosrc:
+        with open(f"src/{triangle.id}.py", "a", encoding="utf-8") as f:
+            f.write("\n")
+            f.write("''' OEIS\n")
+            for t in textcache:
+                f.write(t + "\n")
+            f.write("'''\n")
 
 
 def Distribution(dbname: str) -> list[Any] | None:
@@ -3739,12 +3778,14 @@ def Distribution(dbname: str) -> list[Any] | None:
     try:
         con = sqlite3.connect(GetDataPath(dbname, "db"))
         cur = con.cursor()
-        print(f"\n* Distribution of A-numbers in {dbname}.")
+        # Print(f"\n* Distribution of A-numbers in {dbname}.\n")
         sql = f"SELECT anum, COUNT(anum) AS cnt FROM {dbname} GROUP BY anum ORDER BY cnt DESC"
         cur.execute(sql)
         result = cur.fetchall()
         cur.close()
         con.close()
+
+        Print(str(result))
         return result
     except sqlite3.Error as e:
         print(f"Error accessing database: {e}")
@@ -3776,9 +3817,9 @@ def DistinctAnumbers(table_name: str) -> list[Any]:
     return ret
 
 
-def PrintSummary(name: str) -> None:
+def SummaryReport(name: str) -> None:
     """
-    Print a summary of duplicates for a given name.
+    Print a summary of all traits of the table with the given name.
     Args:
         name (str): The name to summarize.
     """
@@ -4448,5 +4489,5 @@ def SingleMake(fun: tgen) -> None:
     SaveTraitsToDB(fun)
     ConvertDBtoCSVandMD(GetDataPath(fun.id, "db"), fun.id)
     CsvToHtml(fun)
-    SingleStatistic(fun)
-    PrintSummary(fun.id)
+    StatisticReport(fun, True)
+    SummaryReport(fun.id)
