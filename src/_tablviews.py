@@ -1,3 +1,34 @@
+"""
+This module provides various functions to print and transform tables (tabls) and their properties.
+Functions:
+    flat(t: tabl) -> list[int]:
+        Flatten a table to a sequence.
+    PrintTabl(t: tabl) -> None:
+        Print the table row by row.
+    PrintFlat(t: tabl) -> None:
+        Print the flattened table.
+    PrintRows(t: tabl) -> None:
+        Print the table with row indices.
+    PrintTerms(t: tabl) -> None:
+        Print each term in the table with its position.
+    PrintRowArray(T: rgen, rows: int, cols: int) -> None:
+        Print the diagonals of the table as rows.
+    PrintColArray(T: rgen, rows: int, cols: int) -> None:
+        Print the diagonals of the table as columns.
+    PrintPolyRowArray(T: rgen, rows: int, cols: int) -> None:
+        Print polynomial values of the table as rows.
+    PrintPolyColArray(T: rgen, rows: int, cols: int) -> None:
+        Print polynomial values of the table as columns.
+    PrintFlats(t: tabl) -> None:
+        Print various transformations of the table.
+    PrintTrans(t: tabl) -> None:
+        Print various transformations of the table.
+    PrintViews(g: tgen, rows: int = 7, verbose: bool = True) -> None:
+        Print different views and transformations of the table.
+    PrintProfile(fun: tgen, dim: int = 10) -> None:
+        Print the profile of the table including its inverse and reverse transformations.
+"""
+
 from _tabltypes import rgen, tgen, tabl
 from _tabltypes import InvTable, RevTable, RevInvTable, InvRevTable
 from _tablpoly import PolyCol, PolyRow, PosHalf, NegHalf

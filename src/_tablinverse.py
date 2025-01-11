@@ -1,20 +1,28 @@
+'''
+Calculates the inverse of a lower triangular matrix with integer elements.
+    L (list[list[int]]): The lower triangular matrix to be inverted.
+    []: If the inverse does not exist or if integer terms do not exist.
+# Function implementation
+Generates a lower triangular matrix using a given function and calculates its inverse.
+    r (Any): A function that generates the elements of the matrix.
+    dim (int): The dimension of the matrix.
+    list[list[int]]: The integer inverse of the generated lower triangular matrix if it exists.
+    []: If the inverse does not exist or if integer terms do not exist.
+'''
+
+# Function implementation
 
 # import numpy as np
-
 # def NumpyInvertTabl(L: list[list[int]]) -> list[list[int]]:
 #     """ NOT YET TESTED! """
 #     n = len(L)
 #     inv = np.zeros((n, n))
-
 #     for k in range(n):
 #         if L[k][k] == 0:
 #             return []  # Inverse does not exist
-
 #         inv[k][k] = 1 / L[k][k]
-
 #         for j in range(k + 1, n):
 #             inv[k][j] = -np.dot(inv[k][:k], L[k][:k+1:-1]) / L[k][k]
-
 #     return inv.tolist()
 
 from typing import Any

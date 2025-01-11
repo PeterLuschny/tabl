@@ -1,3 +1,18 @@
+"""
+This module defines traits and their registration for table transformations and operations.
+Functions:
+    is_tabletrait(f: trait) -> bool:
+        Determines if a given function is of the 'table' type trait.
+    RegisterTraits() -> dict[str, trait]:
+        Registers and returns a dictionary of all available traits.
+    Formulas() -> dict[str, str]:
+        Returns a dictionary of formulas associated with each trait.
+Usage:
+    To check if a function is a table trait, use the is_tabletrait function.
+    To register all traits, use the RegisterTraits function.
+    To get the formulas for each trait, use the Formulas function.
+"""
+
 from _tabltypes import trait
 from inspect import signature
 from _tablsums import RowSum, EvenSum, OddSum, AltSum, AbsSum, AccSum, AccRevSum, DiagSum

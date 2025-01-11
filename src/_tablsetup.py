@@ -1,3 +1,17 @@
+"""
+    This module sets up and updates all data related to defined integer triangles.
+    Functions:
+    setup: Updates all data related to the defined integer triangles, including
+           downloading the latest compressed database from the OEIS, updating
+           the corresponding CSV and HTML files, and managing cross-references.
+           This process is typically only performed by the administrator when 
+           preparing a new release.
+    Usage:
+        Run this module directly to execute the setup function. Ensure you are
+        online as it queries the OEIS database. The process will take
+        approximately 4 hours to complete.
+"""
+
 from _tabldata import (
     GetCompressed,
     GetNames,

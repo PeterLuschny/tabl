@@ -1,3 +1,25 @@
+'''
+This module provides functionality to convert CSV files to HTML files with specific formatting and layout.
+It includes functions to generate HTML content for tables, navigation bars, and tooltips.
+Modules:
+    csv: Provides CSV file reading and writing capabilities.
+    _tabltypes: Contains type definitions and generator functions.
+    _tablpaths: Provides functions to get data and documentation paths.
+    _tabltraits: Contains formulas and traits for the tables.
+    tabl: Contains table functions.
+Functions:
+    HtmlTriangle(fun: tgen) -> str:
+        Generates an HTML representation of a triangle for a given function.
+    getprevnext(funname: list[str]) -> tuple[str, str]:
+        Returns the previous and next function names in the list of function names.
+    navbar(fun: tgen) -> list[str]:
+        Generates an HTML navigation bar for a given function.
+    CsvToHtml(fun: tgen, nomissings: bool = False) -> None:
+        Converts a CSV file to an HTML file with specific formatting and layout.
+    AllCsvToHtml(nomissings: bool = False) -> None:
+        Converts all CSV files to HTML files with specific formatting and layout.
+'''
+
 import csv
 from _tabltypes import tgen
 from _tablpaths import GetDataPath, GetDocsPath

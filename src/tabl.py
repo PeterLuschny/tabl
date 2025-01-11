@@ -9,8 +9,6 @@ from inspect import signature
 import traceback
 import contextlib
 import csv
-import urllib.request
-import urllib.error
 import requests
 from requests import get
 import time
@@ -2236,22 +2234,39 @@ def Lozanic(n: int, k: int) -> int:
 @cache
 def lucas(n: int) -> list[int]:
     if n == 0:
+        return [2]
+    if n == 1:
+        return [1, 2]
+    row = lucas(n - 1) + [0]
+    for k in range(n, 0, -1):
+        row[k] += row[k - 1]
+    return row
+
+
+@MakeTriangle(lucas, "Lucas", ["A029635", "A029653"])
+def Lucas(n: int, k: int) -> int:
+    return lucas(n)[k]
+
+
+@cache
+def lucaspoly(n: int) -> list[int]:
+    if n == 0:
         return [1]
     if n == 1:
         return [1, 0]
     if n == 2:
         return [1, 1, 1]
-    rowA = lucas(n - 2)
-    row = lucas(n - 1) + [(n + 1) % 2]
+    rowA = lucaspoly(n - 2)
+    row = lucaspoly(n - 1) + [(n + 1) % 2]
     row[1] += 1
     for k in range(3, n):
         row[k] += rowA[k - 2]
     return row
 
 
-@MakeTriangle(lucas, "Lucas", ["A374440"], True)
-def Lucas(n: int, k: int) -> int:
-    return lucas(n)[k]
+@MakeTriangle(lucaspoly, "LucasPoly", ["A374440"], True)
+def LucasPoly(n: int, k: int) -> int:
+    return lucaspoly(n)[k]
 
 
 @cache
@@ -2335,15 +2350,13 @@ def MotzkinPoly(n: int, k: int) -> int:
 
 @cache
 def narayana(n: int) -> list[int]:
-    if n < 3:
-        return [[1], [0, 1], [0, 1, 1]][n]
-    a = narayana(n - 2) + [0, 0]
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 1]
     row = narayana(n - 1) + [1]
-    for k in range(n - 1, 1, -1):
-        row[k] = (
-            (row[k] + row[k - 1]) * (2 * n - 1)
-            - (a[k] - 2 * a[k - 1] + a[k - 2]) * (n - 2)
-        ) // (n + 1)
+    for k in range(n - 1, 0, -1):
+        row[k] += ((2 * n - k) * row[k - 1]) // k
     return row
 
 
@@ -2538,6 +2551,19 @@ def polygonal(n: int) -> list[int]:
 )
 def Polygonal(n: int, k: int) -> int:
     return polygonal(n)[k]
+
+
+@cache
+def powers(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    lrow = powers(n - 1)
+    return [k * lrow[k] for k in range(n)] + [1]
+
+
+@MakeTriangle(powers, "Powers", ["A004248", "A009998", "A051129"])
+def Powers(n: int, k: int) -> int:
+    return powers(n)[k]
 
 
 @cache
@@ -2981,6 +3007,7 @@ tabl_fun: list[tgen] = [
     Levin,
     Lozanic,
     Lucas,
+    LucasPoly,
     Moebius,
     Monotone,
     Motzkin,
@@ -2997,6 +3024,7 @@ tabl_fun: list[tgen] = [
     PartnumMax,
     Pascal,
     Polygonal,
+    Powers,
     PowLaguerre,
     Rencontres,
     RisingFactorial,
@@ -3697,11 +3725,6 @@ def TuttiStats(targetname: str = "traitsstats") -> None:
         sql = f"CREATE TABLE {targetname}(Anum, name, distanum, allanum, missing)"
         cur.execute(sql)
         for fun in tabl_fun:
-            if fun.id == "StirlingCycle2":
-                continue
-            if fun.id == "StirlingCycleB":
-                continue
-
             score = [fun.sim[0], fun.id] + Statistic(fun.id)
             sql = f"INSERT INTO {targetname} VALUES(?, ?, ?, ?, ?)"
             cur.execute(sql, score)
@@ -3851,10 +3874,6 @@ Maximal length of the string representing the sequence.
 MAXSTRLEN = 100
 
 
-def GetMaxStrLen() -> int:
-    return MAXSTRLEN
-
-
 def fnv(data: bytes) -> int:
     """
     This function calculates the FNV-1a hash value for the given data.
@@ -3891,64 +3910,6 @@ def FNVhash(seq: list[int], absolut: bool = False) -> str:
     else:
         x = " ".join(str(i) for i in seq[0:MINTERMS])
     return hex(fnv(bytes(x, encoding="ascii")))[2:]
-
-
-def isInOEIS(seq: list[int]) -> bool:
-    """
-    Check if a given sequence is present in the OEIS (Online Encyclopedia of Integer Sequences).
-    The search uses seq[3:] with max string length 160.
-    Args:
-        seq (list[int]): The sequence to check.
-    Returns:
-        bool: True if the sequence is found in the OEIS, False otherwise.
-    Raises:
-        Exception: If the OEIS server cannot be reached after multiple attempts.
-    """
-    strseq = SeqToString(seq, 140, 24, ",", 3)
-    url = f"https://oeis.org/search?q={strseq}&fmt=json"
-    for _ in range(3):
-        time.sleep(0.5)  # give the OEIS server some time to relax
-        try:
-            with urllib.request.urlopen(url) as response:
-                page = response.read()
-                return -1 == page.find(b'"count": 0')
-        except urllib.error.HTTPError as he:
-            print(he.__dict__)
-        except urllib.error.URLError as ue:
-            print(ue.__dict__)
-    raise Exception(f"Could not open {url}.")
-
-
-def IsInOEIS(seq: list[int]) -> str:
-    """
-    Check if a given sequence is present in the OEIS (Online Encyclopedia of Integer Sequences).
-    The search uses seq[3:] with max string length 160.
-    Args:
-        seq (list[int]): The sequence to check.
-    Returns:
-        str: The A-number of the sequence if found in OEIS, otherwise the empty string.
-    Raises:
-        Exception: If the OEIS server cannot be reached after multiple attempts.
-    """
-    strseq = SeqToString(seq, 140, 24, ",", 3)
-    url = f"https://oeis.org/search?q={strseq}&fmt=json"
-    for _ in range(3):
-        time.sleep(0.5)  # give the OEIS server some time to relax
-        try:
-            jdata: None | list[dict[str, int | str | list[str]]] = get(
-                url, timeout=20
-            ).json()
-            if jdata == None:
-                print("Sorry, no match found for:", strseq)
-                return ""
-            anumber = ""
-            seq = jdata[0]  # type: ignore
-            number = seq["number"]  # type: ignore
-            anumber = f"B{(6 - len(str(number))) * '0' + str(number)}"  # type: ignore
-            return anumber
-        except requests.exceptions.RequestException as e:
-            print(f"Error: {e}")
-    raise Exception(f"Could not open {url}.")
 
 
 def GetNameByAnum(anum: str) -> str:
@@ -4136,49 +4097,6 @@ def QueryLocalDB(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
     return "missing" if record is None else record[0]
 
 
-def QueryOeis(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
-    """
-    First query oeis_mini (local), if nothing found query OEIS (internet).
-    Args:
-        H (str): The hash value to query.
-        seq (list[int]): The sequence to query.
-        oeis_cur (sqlite3.Cursor): The cursor object for executing SQL queries.
-    Returns:
-        str: The corresponding anum value if the sequence is found, otherwise "missing".
-    """
-    rec = QueryLocalDB(H, seq, db_cur)
-    if rec != "missing":
-        return rec
-    bnum = IsInOEIS(seq)
-    if bnum == "":
-        return "missing"
-    return bnum
-
-
-def DebugQueryOeis(H: str, seq: list[int], db_cur: sqlite3.Cursor) -> str:
-    """
-    First query oeis_mini (local), if nothing found query OEIS (internet).
-    Args:
-        H (str): The hash value to query.
-        seq (list[int]): The sequence to query.
-        oeis_cur (sqlite3.Cursor): The cursor object for executing SQL queries.
-    Returns:
-        str: The corresponding anum value if the sequence is found, otherwise "missing".
-    """
-    rec = QueryLocalDB(H, seq, db_cur)
-    print(seq)
-    if rec != "missing":
-        print(f"Using hash {H} found in local database.")
-        f = FNVhash(seq, True)
-        print(f"{f} is actual hash.")
-        return rec
-    bnum = IsInOEIS(seq)
-    if bnum == "":
-        return "missing"
-    print(f"seq found in OEIS.")
-    return bnum
-
-
 def GetType(name: str) -> list[str]:
     """
     There are 7 types:
@@ -4217,7 +4135,6 @@ def SaveTraits(
     fun: tgen,
     size: int,
     traits_cur: sqlite3.Cursor,
-    oeis_cur: sqlite3.Cursor,
     table: str,
     TRAITS: dict[str, trait],
 ) -> None:
@@ -4262,15 +4179,6 @@ def SaveTraits(
             )
         print(f"Processing {triname}, {traitname}, {len(seq)} ")
         fnvhash = FNVhash(seq, True)
-        # anum = queryminioeis(fnvhash, seq, oeis_cur)  # local
-        # anum = QueryOeis(fnvhash, seq, oeis_cur)  # with internet
-
-        """ def QueryOEIS(
-        seqlist: list[int], 
-        maxnum: int = 1,
-        info: bool = False, 
-        minlen: int = 24 
-        ) -> int: """
         anum = QueryOEIS(seq)  # with internet
         if anum == -999999:
             continue
@@ -4288,11 +4196,7 @@ def SaveTraits(
 
 
 def SaveExtendedTraitsToDB(
-    fun: tgen,
-    size: int,
-    traits_cur: sqlite3.Cursor,
-    oeis_cur: sqlite3.Cursor,
-    table: str,
+    fun: tgen, size: int, traits_cur: sqlite3.Cursor, table: str
 ) -> None:
     """
     Saves the extended traits of a triangle to a SQLite database.
@@ -4311,29 +4215,29 @@ def SaveExtendedTraitsToDB(
     fun.id = fun.id + ":Std"
     TRAITS = RegisterTraits()
     thash = FNVhash(fun.flat(DIAGSIZE))
-    SaveTraits(fun, size, traits_cur, oeis_cur, table, TRAITS)
+    SaveTraits(fun, size, traits_cur, table, TRAITS)
     fun.id = Tid
     a = AltTable(fun, DIAGSIZE)
-    SaveTraits(a, size, traits_cur, oeis_cur, table, TRAITS)
+    SaveTraits(a, size, traits_cur, table, TRAITS)
     r = RevTable(fun, DIAGSIZE)
     rhash = FNVhash(r.flat(DIAGSIZE))
     if thash != rhash:
-        SaveTraits(r, size, traits_cur, oeis_cur, table, TRAITS)
+        SaveTraits(r, size, traits_cur, table, TRAITS)
         # ir = InvRevTable(t, DIAGSIZE)
         ir = InvTable(r, DIAGSIZE)
         if ir is not None:
-            SaveTraits(ir, size, traits_cur, oeis_cur, table, TRAITS)
+            SaveTraits(ir, size, traits_cur, table, TRAITS)
     i = InvTable(fun, DIAGSIZE)
     ihash = "0"
     if i is not None:
         ihash = FNVhash(i.flat(DIAGSIZE))
-        SaveTraits(i, size, traits_cur, oeis_cur, table, TRAITS)
+        SaveTraits(i, size, traits_cur, table, TRAITS)
         # ri = RevInvTable(t, DIAGSIZE)
         ri = RevTable(i, DIAGSIZE)
         # if ri is not None:
         rihash = FNVhash(ri.flat(DIAGSIZE))
         if ihash != rihash:
-            SaveTraits(ri, size, traits_cur, oeis_cur, table, TRAITS)
+            SaveTraits(ri, size, traits_cur, table, TRAITS)
 
 
 def SaveTraitsToDB(fun: tgen) -> None:
@@ -4350,9 +4254,7 @@ def SaveTraitsToDB(fun: tgen) -> None:
     with sqlite3.connect(GetDataPath(name, "db")) as db:
         traits_cur = db.cursor()
         traits_cur.execute(CreateTable(name))
-        with sqlite3.connect(GetDataPath("oeismini", "db")) as oeis:
-            oeis_cur = oeis.cursor()
-            SaveExtendedTraitsToDB(fun, MINROWS, traits_cur, oeis_cur, name)
+        SaveExtendedTraitsToDB(fun, MINROWS, traits_cur, name)
         db.commit()
     print(f"Info: Created database {name}.db in data/db.")
 

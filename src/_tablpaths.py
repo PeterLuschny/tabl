@@ -1,5 +1,29 @@
-from pathlib import Path
+"""
+This module provides utility functions for managing file paths and directories
+within a project structure. It includes functions to get paths for various
+directories and files, create directories if they do not exist, and ensure
+that specific data directories are present.
+Functions:
+- GetRoot(name: str = '') -> Path: Returns the root path of the project or a
+    specified subpath.
+- GetData(name: str) -> Path: Returns the path to a specified data subdirectory.
+- GetDataPath(name: str, fix: str) -> Path: Returns the path to a specific data
+    file with a given extension.
+- GetDocsPath(name: str, fix: str) -> Path: Returns the path to a specific
+    documentation file with a given extension.
+- MakeDirectory(dir: Path) -> None: Creates a directory if it does not exist.
+- EnsureDataDirectories() -> None: Ensures that the required data directories
+    (csv, db, md) exist.
+Constants:
+- path: The root path of the project.
+- strippedpath: The path to the stripped data directory.
+- oeisnamespath: The path to the names data directory.
+Usage:
+- This module can be run as a script to print the root path and ensure that
+    the required data directories are created.
+"""
 
+from pathlib import Path
 
 # root
 #    |

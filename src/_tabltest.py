@@ -1,3 +1,19 @@
+"""
+This module provides a function to test the properties and behavior of a given 
+triangular number generator (tgen) and its related operations.
+Functions:
+    TablTest(T: tgen, dim: int = 8, short: bool = False) -> None
+        Tests the properties of the triangular number generator T, prints views,
+        checks equality conditions, and attempts to invert the triangle.
+    __main__
+        Sets recursion and integer string conversion limits, and runs initial tests.
+Dependencies:
+    - sys: Provides access to system-specific parameters and functions.
+    - _tablviews: Contains the PrintViews function for displaying triangular views.
+    - _tablinverse: Contains the InvertTabl function for inverting triangular arrays.
+    - _tabltypes: Contains type definitions for tgen and rgen.
+"""
+
 import sys
 from _tablviews import PrintViews
 from _tablinverse import InvertTabl

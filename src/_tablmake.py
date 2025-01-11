@@ -1,6 +1,34 @@
+'''
+This script generates a 'tabl.py' file by combining the contents of multiple source files.
+The script also sets the recursion limit and the maximum number of digits for integer conversion.
+Modules:
+    os: Provides functions for interacting with the operating system.
+    os.path: Provides functions for manipulating file paths.
+    datetime: Supplies classes for manipulating dates and times.
+    functools: Provides higher-order functions that act on or return other functions.
+    itertools: Implements a number of iterator building blocks.
+    math: Provides access to mathematical functions.
+    sys: Provides access to some variables used or maintained by the interpreter.
+    typing: Provides runtime support for type hints.
+    inspect: Provides several useful functions to help get information about live objects.
+    traceback: Provides a standard interface to extract, format, and print stack traces of Python programs.
+    contextlib: Utilities for common tasks involving the with statement.
+    csv: Implements classes to read and write tabular data in CSV format.
+    requests: Allows you to send HTTP requests.
+    time: Provides various time-related functions.
+    gzip: Provides a simple interface to compress and decompress files.
+    sqlite3: Provides a SQL interface compliant with the DB-API 2.0 specification.
+    pandas: Provides data structures and data analysis tools.
+    fractions: Provides support for rational number arithmetic.
+    pathlib: Offers classes representing filesystem paths with semantics appropriate for different operating systems.
+Functions:
+    MakeTabl: Generates a 'tabl.py' file by combining the contents of multiple source files.
+Usage:
+    Run this script directly to generate the 'tabl.py' file.
+'''
+
 from os import getcwd
 from os.path import join, isfile
-
 
 tabl_files: list[str] = [
     "_tablpaths.py",
@@ -68,6 +96,7 @@ tabl_files: list[str] = [
     "Levin.py",
     "Lozanic.py",
     "Lucas.py",
+    "LucasPoly.py",
     "Moebius.py",
     "Monotone.py",
     "Motzkin.py",
@@ -84,6 +113,7 @@ tabl_files: list[str] = [
     "PartitionMax.py",
     "Pascal.py",
     "Polygonal.py",
+    "Powers.py",
     "PowLaguerre.py",
     "Rencontres.py",
     "RisingFact.py",
@@ -181,6 +211,7 @@ tabl_fun: list[tgen] = [
     Levin,
     Lozanic,
     Lucas,
+    LucasPoly,
     Moebius,
     Monotone,
     Motzkin,
@@ -197,6 +228,7 @@ tabl_fun: list[tgen] = [
     PartnumMax,
     Pascal,
     Polygonal,
+    Powers,
     PowLaguerre,
     Rencontres,
     RisingFactorial,
@@ -227,12 +259,9 @@ import_header: list[str] = [
     "from sys import setrecursionlimit, set_int_max_str_digits\n",
     "from typing import Callable, TypeAlias, Any\n",
     "from inspect import signature\n",
-    # "from tabulate import tabulate\n",  # needed by pandas
     "import traceback\n",
     "import contextlib\n",
     "import csv\n",
-    "import urllib.request\n",
-    "import urllib.error\n",
     "import requests\n",
     "from requests import get\n",
     "import time\n",

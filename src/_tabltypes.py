@@ -1,3 +1,40 @@
+"""
+This module provides various utilities for working with triangular tables of integers.
+It includes functions for generating and manipulating these tables, as well as type aliases
+for common types used in the module.
+
+Functions:
+    Flat(T: tabl) -> list[int]:
+        Flattens a table into a sequence.
+    SeqToString(seq: list[int], maxchars: int, maxterms: int, sep: str = ' ', offset: int = 0, absval: bool = False) -> str:
+    InvTable(T: tgen, size: int) -> tgen | None:
+        Returns a generator for the inverse triangle if the triangle is invertible.
+    RevTable(T: tgen, size: int) -> tgen:
+    AltTable(T: tgen, size: int = 0) -> tgen:
+    RevInvTable(T: tgen, size: int) -> tgen | None:
+        First inverts, then reverses the triangle.
+    InvRevTable(T: tgen, size: int) -> tgen | None:
+        First reverses, then inverts the triangle.
+    SubTriangle(g: rgen, N: int, K: int, size: int) -> tabl:
+    AbsSubTriangle(g: rgen, N: int, K: int, size: int) -> tabl:
+    MakeTriangle(gen: rgen, id: str, sim: list[str], vert: bool = False) -> Callable[..., Callable[[int, int], int]]:
+        Decorator to create a triangle generator with various utility methods.
+
+Type Aliases:
+    trow: TypeAlias
+        Type alias for a table row (list of integers).
+    tabl: TypeAlias
+        Type alias for a triangle or table (list of table rows).
+    seq: TypeAlias
+        Type alias for a sequence generator (function that takes an integer and returns an integer).
+    rgen: TypeAlias
+        Type alias for a row generator (function that takes an integer and returns a table row).
+    tgen: TypeAlias
+        Type alias for a triangle or table generator (function that takes two integers and returns an integer).
+    trait: TypeAlias
+        Type alias for a trait (function that takes one or two arguments and returns a table row).
+"""
+
 from functools import cache
 from typing import Callable, TypeAlias, Any
 from _tablinverse import InvertTriangle, InvertTabl

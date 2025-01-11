@@ -1,6 +1,14 @@
-from tabl import tabl_fun
+'''
+This module provides functions to save extended tables and generate cross-references for integer triangles.
+Functions:
+    CrossReferences(name: str = "README.md") -> None:
+        Writes the cross-references as a markdown table to the root directory.
+    SaveExtendedTables(dim: int = 10) -> None:
+        Saves the extended tables to the data/md folder with the specified dimension.
+'''
 
 import contextlib
+from tabl import tabl_fun
 from _tablpaths import GetRoot, GetDataPath
 from _tablviews import PrintViews
 from _tabltypes import (InvTable, RevTable, RevInvTable, InvRevTable)

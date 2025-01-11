@@ -202,9 +202,6 @@ def TuttiStats(targetname: str = "traitsstats") -> None:
         cur.execute(sql)
 
         for fun in tabl_fun:
-            if fun.id == "StirlingCycle2": continue
-            if fun.id == "StirlingCycleB": continue
-            
             score = [fun.sim[0], fun.id] + Statistic(fun.id)
             sql = f"INSERT INTO {targetname} VALUES(?, ?, ?, ?, ?)"
             cur.execute(sql, score)

@@ -17,20 +17,16 @@ from _tabltypes import MakeTriangle
 [9]  0,  1,  36,  336,  1176,  1764,  1176,  336,  36,  1;
 """
 
-
 @cache
 def narayana(n: int) -> list[int]:
-    if n < 3:
-        return [[1], [0, 1], [0, 1, 1]][n]
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 1]
 
-    a = narayana(n - 2) + [0, 0]
     row = narayana(n - 1) + [1]
-    for k in range(n - 1, 1, -1):
-        row[k] = (
-            (row[k] + row[k - 1]) * (2 * n - 1)
-            - (a[k] - 2 * a[k - 1] + a[k - 2]) * (n - 2)
-        ) // (n + 1)
-
+    for k in range(n - 1, 0, -1):
+        row[k] += ((2*n - k) * row[k - 1]) // k 
     return row
 
 

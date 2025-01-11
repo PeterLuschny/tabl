@@ -44,7 +44,7 @@ if __name__ == "__main__":
 
 ''' OEIS
 
-The traits of the StirlingCycB triangle as represented in the OEIS.
+The traits of the StirlingCycleB triangle as represented in the OEIS.
 
 |     | A-number| trait            | A-name                                                                         |
 |-----|---------|------------------|--------------------------------------------------------------------------------|
@@ -90,7 +90,8 @@ The traits of the StirlingCycB triangle as represented in the OEIS.
 | 40  | A370912 | Std-PolyRow3     | a(n) = n*(n + 2)*(n + 4)                                                       |
 | 41  | A374866 | Std-PolyDiag     | Obverse convolution (n)**(3n+2); see Comments                                  |
 
-* Statistic about StirlingCycB:
+
+* Statistic about StirlingCycleB:
 
 	Triangles considered: ['Std', 'Alt', 'Rev', 'Inv', 'Inv:Rev'].
 	distinct A-numbers  : 41.
@@ -99,7 +100,7 @@ The traits of the StirlingCycB triangle as represented in the OEIS.
 
 [('missing', 98), ('A000165', 10), ('A002866', 7), ('A001147', 7), ('A000012', 7), ('A004041', 6), ('A000290', 5), ('A000027', 5), ('A109692', 4), ('A039755', 4), ('A007405', 4), ('A293318', 3), ('A039756', 3), ('A028340', 3), ('A028339', 3), ('A028338', 3), ('A024197', 3), ('A024196', 3), ('A008545', 3), ('A000007', 3), ('A334190', 2), ('A308645', 2), ('A297382', 2), ('A123968', 2), ('A103220', 2), ('A021424', 2), ('A016209', 2), ('A007696', 2), ('A005563', 2), ('A003462', 2), ('A374866', 1), ('A370912', 1), ('A355165', 1), ('A348087', 1), ('A203159', 1), ('A202153', 1), ('A197130', 1), ('A177145', 1), ('A130706', 1), ('A126390', 1), ('A049308', 1), ('A000567', 1)]
 
-A related webpage is: https://peterluschny.github.io/tabl/StirlingCycB.html .
-2025/01/10
+A related webpage is: https://peterluschny.github.io/tabl/StirlingCycleB.html .
+2025/01/11
 
 '''

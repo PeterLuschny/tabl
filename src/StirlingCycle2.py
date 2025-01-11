@@ -45,7 +45,7 @@ if __name__ == "__main__":
 
 ''' OEIS
 
-The traits of the StirlingCyc2 triangle as represented in the OEIS.
+The traits of the StirlingCycle2 triangle as represented in the OEIS.
 
 |     | A-number| trait            | A-name                                                                         |
 |-----|---------|------------------|--------------------------------------------------------------------------------|
@@ -75,7 +75,8 @@ The traits of the StirlingCyc2 triangle as represented in the OEIS.
 | 24  | A295182 | Std-PolyDiag     | a(n) = n! * [x^n] exp(-n*x)/(1 - x)^n                                          |
 | 25  | A358622 | Std-Triangle     | Regular triangle read by rows. T(n, k) = [[n, k]], where [[n, k]] are the seco |
 
-* Statistic about StirlingCyc2:
+
+* Statistic about StirlingCycle2:
 
 	Triangles considered: ['Std', 'Alt', 'Rev'].
 	distinct A-numbers  : 25.
@@ -84,7 +85,7 @@ The traits of the StirlingCyc2 triangle as represented in the OEIS.
 
 [('missing', 59), ('A000027', 9), ('A000166', 6), ('A000007', 6), ('A063524', 3), ('A053871', 3), ('A001147', 3), ('A000483', 3), ('A000276', 3), ('A000142', 3), ('A358622', 2), ('A216779', 2), ('A216778', 2), ('A087981', 2), ('A055142', 2), ('A005843', 2), ('A000906', 2), ('A295182', 1), ('A277423', 1), ('A162973', 1), ('A137775', 1), ('A123023', 1), ('A033030', 1), ('A003221', 1), ('A001105', 1), ('A000387', 1)]
 
-A related webpage is: https://peterluschny.github.io/tabl/StirlingCyc2.html .
-2025/01/10
+A related webpage is: https://peterluschny.github.io/tabl/StirlingCycle2.html .
+2025/01/11
 
 '''

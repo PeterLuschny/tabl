@@ -1,3 +1,30 @@
+"""
+This module provides functions to generate the coefficients of the Abel polynomials and their corresponding triangle.
+
+Functions:
+    abel(n: int) -> list[int]:
+        Computes the coefficients of the n-th Abel polynomial.
+    Abel(n: int, k: int) -> int:
+        Returns the k-th coefficient of the n-th Abel polynomial.
+
+Usage:
+    The abel function uses memoization to cache the rows of the triangle.
+    The Abel function is decorated with MakeTriangle to generate the triangle of Abel polynomial coefficients.
+    The Abel function can be used to access the coefficients of the Abel polynomials directly.
+
+Example:
+    >>> abel(3)
+    [0, 9, 6, 1]
+    >>> Abel(3, 2)
+    6
+
+References:
+    Variants of the triangle are https://oeis.org/ A137452 A061356 A139526.
+    The triangle is invertible and the inverse is A059297, the triangle of idempotent numbers.
+    The module includes references to various sequences in the OEIS related to the Abel triangle.
+    See also https://peterluschny.github.io/tabl/Abel.html
+"""
+
 from functools import cache
 from Binomial import binomial
 from _tabltypes import MakeTriangle
