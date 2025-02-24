@@ -24,7 +24,7 @@ def fallingfactorial(n: int) -> list[int]:
     return row
 
 
-@MakeTriangle(fallingfactorial, "FallingFact",
+@MakeTriangle(fallingfactorial, "FallingFactorial",
              ["A008279", "A068424", "A094587", "A173333", "A181511"],
              False)
 def FallingFactorial(n: int, k: int) -> int:
@@ -35,6 +35,7 @@ if __name__ == "__main__":
     from _tabltest import TablTest
 
     TablTest(FallingFactorial)
+
 
 ''' OEIS
 
@@ -107,7 +108,8 @@ The traits of the FallingFact triangle as represented in the OEIS.
 | 63  | A358603 | Alt-DiagSum      | a(n) = Sum_{k=0..floor(n/2)} (-1)^k * (n-k)!/(n-2*k)!                          |
 | 64  | A367962 | Std-AccRev       | Triangle read by rows. T(n, k) = Sum_{j=0..k} (n!/j!)                          |
 
-* Statistic about FallingFact:
+
+* Statistic about FallingFactorial:
 
 	Triangles considered: ['Std', 'Alt', 'Rev', 'Rev:Inv'].
 	distinct A-numbers  : 64.
@@ -116,7 +118,6 @@ The traits of the FallingFact triangle as represented in the OEIS.
 
 [('missing', 17), ('A000027', 17), ('A000142', 12), ('A000522', 6), ('A000012', 5), ('A128229', 4), ('A094587', 4), ('A000166', 4), ('A111063', 3), ('A010842', 3), ('A009940', 3), ('A008279', 3), ('A007531', 3), ('A005563', 3), ('A005408', 3), ('A002720', 3), ('A002378', 3), ('A001813', 3), ('A001715', 3), ('A001710', 3), ('A001339', 3), ('A367962', 2), ('A347667', 2), ('A344391', 2), ('A205825', 2), ('A130706', 2), ('A127701', 2), ('A121757', 2), ('A087208', 2), ('A028387', 2), ('A010844', 2), ('A006963', 2), ('A002747', 2), ('A002522', 2), ('A001844', 2), ('A000354', 2), ('A000255', 2), ('A000023', 2), ('A000007', 2), ('A358603', 1), ('A343276', 1), ('A319392', 1), ('A318765', 1), ('A277452', 1), ('A261595', 1), ('A186763', 1), ('A169585', 1), ('A134558', 1), ('A130779', 1), ('A124625', 1), ('A093964', 1), ('A093178', 1), ('A081125', 1), ('A072374', 1), ('A063170', 1), ('A058922', 1), ('A057979', 1), ('A053486', 1), ('A030297', 1), ('A010845', 1), ('A009179', 1), ('A007526', 1), ('A003470', 1), ('A000407', 1), ('A000180', 1)]
 
-A related webpage is: https://peterluschny.github.io/tabl/FallingFact.html .
-2025/01/10
-
+A related webpage is: https://peterluschny.github.io/tabl/FallingFactorial.html .
+2025/02/24
 '''

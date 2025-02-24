@@ -1253,6 +1253,18 @@ def Abel(n: int, k: int) -> int:
 
 
 @cache
+def abelinv(n: int) -> list[int]:
+    b = binomial(n)
+    p = powers(n)
+    return [b[k] * p[k] for k in range(n + 1)]
+
+
+@MakeTriangle(abelinv, "AbelInv", ["A059297", "A059298"], True)
+def AbelInv(n: int, k: int) -> int:
+    return abelinv(n)[k]
+
+
+@cache
 def F(n: int) -> int:
     return factorial(n) ** 3 * ((n + 1) * (n + 1) * (n + 2))
 
@@ -1299,6 +1311,19 @@ def bessel(n: int) -> list[int]:
 @MakeTriangle(bessel, "Bessel", ["A132062", "A001497", "A001498", "A122850"], True)
 def Bessel(n: int, k: int) -> int:
     return bessel(n)[k]
+
+
+@cache
+def besselinv(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    b = besselinv(n - 1)
+    return [0] + [(2 * k - n + 1) * b[k] + b[k - 1] for k in range(1, n)] + [1]
+
+
+@MakeTriangle(besselinv, "BesselInv", ["A122848", "A104556", "A096713"], True)
+def BesselInv(n: int, k: int) -> int:
+    return besselinv(n)[k]
 
 
 @cache
@@ -1462,6 +1487,27 @@ def catalan(n: int) -> list[int]:
 @MakeTriangle(catalan, "Catalan", ["A128899", "A039598"], True)
 def Catalan(n: int, k: int) -> int:
     return catalan(n)[k]
+
+
+@cache
+def catalaninv(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [0, 1]
+    row = [0] * (n + 1)
+    c0 = catalaninv(n - 2) + [0, 0]
+    c1 = catalaninv(n - 1) + [0]
+    for k in range(1, n + 1):
+        row[k] = c1[k - 1] + 2 * c1[k] - c0[k]
+    return row
+
+
+@MakeTriangle(
+    catalaninv, "CatalanInv", ["A128908", "A053122", "A078812", "A285072"], True
+)
+def CatalanInv(n: int, k: int) -> int:
+    return catalaninv(n)[k]
 
 
 @cache
@@ -1723,6 +1769,26 @@ def DyckPaths(n: int, k: int) -> int:
 
 
 @cache
+def dyckpathsinv(n: int) -> list[int]:
+    if n == 0:
+        return [1]
+    if n == 1:
+        return [1, 1]
+    q = dyckpathsinv(n - 2) + [0]
+    p = dyckpathsinv(n - 1) + [0]
+    row = p.copy()
+    row[n] = 1
+    for k in range(n - 1, 0, -1):
+        row[k] = p[k - 1] + 2 * p[k] - q[k]
+    return row
+
+
+@MakeTriangle(dyckpathsinv, "DyckPathsInv", ["A039599", "A050155"], True)
+def DyckPathsInv(n: int, k: int) -> int:
+    return dyckpathsinv(n)[k]
+
+
+@cache
 def _euclid(n: int, k: int) -> int:
     while k != 0:
         t = k
@@ -1894,7 +1960,7 @@ def fallingfactorial(n: int) -> list[int]:
 
 @MakeTriangle(
     fallingfactorial,
-    "FallingFact",
+    "FallingFactorial",
     ["A008279", "A068424", "A094587", "A173333", "A181511"],
     False,
 )
@@ -2952,9 +3018,11 @@ def riordan_num(n: int) -> int:
 
 tabl_fun: list[tgen] = [
     Abel,
+    AbelInv,
     Baxter,
     Bell,
     Bessel,
+    BesselInv,
     Bessel2,
     BinaryPell,
     Binomial,
@@ -2963,6 +3031,7 @@ tabl_fun: list[tgen] = [
     BinomialPell,
     BinomialDiffPell,
     Catalan,
+    CatalanInv,
     CatalanPaths,
     CentralCycle,
     CentralSet,
@@ -2977,6 +3046,7 @@ tabl_fun: list[tgen] = [
     Delannoy,
     Divisibility,
     DyckPaths,
+    DyckPathsInv,
     Euclid,
     Euler,
     Eulerian,

@@ -41,5 +41,9 @@ def SingleMake(fun: tgen) -> None:
 
 
 if __name__ == "__main__":
-    from Powers import Powers as triangle
+    
+    #from BesselInv import BesselInv as triangle
+    #from CatalanInv import CatalanInv as triangle
+    #from DyckPathsInv import DyckPathsInv as triangle
+    from FallingFactorial import FallingFactorial as triangle
     SingleMake(triangle)

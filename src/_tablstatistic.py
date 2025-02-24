@@ -352,18 +352,18 @@ def SummaryReport(name: str) -> None:
 if __name__ == "__main__":
     # TODO: What hash values whith no A-number are the most frequent?
 
-    #from tabl import Abel as triangle
+    from tabl import AbelInv as triangle
 
     #for fun in tabl_fun: StatisticReport(fun)
     
-    #StatisticReport(triangle)
+    StatisticReport(triangle)
 
     # print(Distribution(triangle.id))
     # ListByDistinctAnum("Abel")
-    TuttiStats()
+    #TuttiStats()
     # ListAllAnums()
     # SummaryReport(triangle.id)
-    print()
+    #print()
 
 '''
     StatisticReport(Abel)
